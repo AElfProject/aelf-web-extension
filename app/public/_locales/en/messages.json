@@ -1,0 +1,6 @@
+{
+	"pluginDesc": {
+	    "message": "Explorer extension from AElf."
+	},
+	"helloWorld": {"message": "Hello World!"}
+}
