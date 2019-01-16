@@ -1,0 +1,8 @@
+.asstes-container .am-list-body {
+    background: none;
+    border: none;
+}
+
+.asstes-container .am-list-view-scrollview-content {
+    width: 100%;
+}

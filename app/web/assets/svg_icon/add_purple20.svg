@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/添加/紫20</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/添加/紫20" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" opacity="0" transform="translate(0.833333, 0.833333)" stroke-width="0.5">
+            <circle id="Oval-2" stroke="#979797" cx="9.16666667" cy="9.16666667" r="8.91666667"></circle>
+            <rect id="Rectangle" stroke="#D0021B" x="1.08333333" y="1.08333333" width="16.1666667" height="16.1666667" rx="0.833333333"></rect>
+            <rect id="Rectangle" stroke="#979797" x="1.91666667" y="0.25" width="14.5" height="17.8333333" rx="0.833333333"></rect>
+            <rect id="Rectangle" stroke="#979797" x="0.25" y="1.91666667" width="17.8333333" height="14.5" rx="0.833333333"></rect>
+        </g>
+        <circle id="Oval-3" fill="#AC00E6" cx="10" cy="10" r="9.16666667"></circle>
+        <rect id="Rectangle-2" fill="#FFFFFF" x="5" y="9.16666667" width="10" height="1.66666667" rx="0.833333333"></rect>
+        <rect id="Rectangle-2-Copy" fill="#FFFFFF" transform="translate(10.000000, 10.000000) rotate(90.000000) translate(-10.000000, -10.000000) " x="5" y="9.16666667" width="10" height="1.66666667" rx="0.833333333"></rect>
+    </g>
+</svg>

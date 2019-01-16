@@ -31,12 +31,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     // When mode is production or not defined, minimize is enabled. This option automatically adds Uglify plugin.
     // production will remove the 'dead code'. Look at Tree Shaking
-    mode: 'production',
+    mode: 'none',
+    // mode: 'production',
     // mode: 'development',
     entry: {
         // wallet: './app/web/js/index.jsx',
         // transactionDetail: './app/web/js/transactionDetail.jsx'
         popup: './app/web/pages/Popup/Popup.js',
+        background: './app/web/background.js',
         extensionSDK: './app/web/extensionSDK.js'
     },
     output: {
@@ -86,11 +88,12 @@ module.exports = {
                 'postcss-loader'
             ]
         }, {
+            // TODO 位置需要调整下，不然拿到的路径不对。
             test: /\.(png|svg|jpg|gif|ico)$/,
             use: [{
                 loader: 'file-loader',
                 options: {
-                    outputPath: './public/assets/output'
+                    outputPath: './assets/output'
                 }
             }]
         }]
@@ -128,6 +131,11 @@ module.exports = {
             {
                 from: './app/web/assets',
                 to: './public/assets',
+                toType: 'dir'
+            },
+            {
+                from: './app/web/style',
+                to: './public/style',
                 toType: 'dir'
             },
             {

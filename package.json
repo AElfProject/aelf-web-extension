@@ -9,6 +9,7 @@
         "apisauce": "^1.0.1",
         "clipboard": "^2.0.1",
         "diff-so-fancy": "^1.2.0",
+        "extension-streams": "^1.0.7",
         "intl": "^1.2.5",
         "moment": "^2.22.2",
         "qrcode.react": "^0.8.0",

@@ -1,6 +1,8 @@
 {
 	// 清单文件的版本，这个必须写，而且必须是2
-	"manifest_version": 2,
+    "manifest_version": 2,
+    // TODO: Because the lib protobuf use unsafe Function. Try to remove it.
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 	// 插件的名称
 	"name": "aelf-explorer-extension",
 	// 插件的版本
@@ -19,7 +21,7 @@
 	{
 		// 2种指定方式，如果指定JS，那么会自动生成一个背景页
 		"page": "background.html"
-		//"scripts": ["js/background.js"]
+		// "scripts": ["background.js"]
 	},
 	// 浏览器右上角图标设置，browser_action、page_action、app必须三选一
 	"browser_action": 

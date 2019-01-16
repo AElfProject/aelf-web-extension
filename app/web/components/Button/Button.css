@@ -1,0 +1,17 @@
+.am-button.am-button-active {
+    opacity: .6;
+    background-color: #FFF;
+}
+
+.am-button {
+    display: block;
+    outline: 0 none;
+    box-sizing: border-box;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    white-space: nowrap;
+    background-color: #fff;
+}

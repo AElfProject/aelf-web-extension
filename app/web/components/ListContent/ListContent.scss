@@ -1,0 +1,16 @@
+.listContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 18px;
+  line-height: 18px;
+  padding: 17px 10px;
+  align-items: center;
+}
+
+.listLeft {
+  display: flex;
+}
+
+.listIconLeft {
+  margin: 0 8px 0 0;
+}

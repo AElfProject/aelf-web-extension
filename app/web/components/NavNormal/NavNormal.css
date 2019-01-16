@@ -1,0 +1,21 @@
+.am-navbar {
+	/*color: #333;*/
+	/*background-color: #FFF;*/
+	background-color: rgba(0, 0, 0, 0);
+	color: #FFF;
+}
+
+.nav-normal-whitespace {
+	/*height: 11px;  +45px*/
+	height: 45px;
+	width: 10px;
+}
+
+.aelf-normal-navbar-container .aelf-normal-navbar {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	max-width:520px;
+	backgroundColor: rgba(0, 0, 0, 0);
+	color: #FFF;
+}
