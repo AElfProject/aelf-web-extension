@@ -5,7 +5,6 @@
  */
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {hashHistory} from 'react-router';
 import {
     ListView,
     Toast,
@@ -13,41 +12,18 @@ import {
 } from 'antd-mobile';
 import {historyPush} from '../../../utils/historyChange';
 import {
-    getPageContainerStyle,
-    clipboard,
-    addressOmit
+    getPageContainerStyle
 } from '../../../utils/utils';
 import NavNormal from '../../../components/NavNormal/NavNormal';
+import ScrollFooter from '../../../components/ScrollFooter/ScrollFooter';
 
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 
-
-// import {
-//     // SCROLLLIST,
-//     SCROLLFOOTER
-// } from '../../constants';
 import style from './Permissions.scss';
 require('./Permissions.css');
 
 const alert = Modal.alert;
-
-const SCROLLLIST = {
-    loading: 'Loading...',
-    loaded: 'Loaded',
-    end: 'No More o((⊙﹏⊙))o'
-};
-const SCROLLFOOTER = (isLoading, hasMore) => {
-    return (
-        <div style={{padding: 6, textAlign: 'center', color: 'rgba(255, 255, 255, 0.7)'}}>
-            {
-                isLoading
-                    ? SCROLLLIST.loading
-                    : (hasMore ? SCROLLLIST.loading : SCROLLLIST.end)
-            }
-        </div>
-    );
-};
 
 const NUM_ROWS = 9999;
 const pageSize = 9999;
@@ -114,7 +90,7 @@ function removePermission(permissionNeedRemove, callback) {
 
 function checkPermission() {
     const permission = {
-        domain: 'https://aelf.io',
+        hostname: 'https://aelf.io',
         address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + randomName()
     };
     InternalMessage.payload(InternalMessageTypes.CHECK_PERMISSION, permission).send().then(result => {
@@ -332,7 +308,7 @@ export default class Permissions extends Component {
                                 ref={el => this.lv = el}
                                 dataSource={this.state.dataSource}
 
-                                renderFooter={() => SCROLLFOOTER(this.state.isLoading, this.state.hasMore)}
+                                renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
 
                                 renderRow={this.renderRow}
                                 useBodyScroll={this.state.useBodyScroll}

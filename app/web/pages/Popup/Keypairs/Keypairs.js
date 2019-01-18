@@ -18,36 +18,15 @@ import {
     addressOmit
 } from '../../../utils/utils';
 import NavNormal from '../../../components/NavNormal/NavNormal';
+import ScrollFooter from '../../../components/ScrollFooter/ScrollFooter';
 
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 
-
-// import {
-//     // SCROLLLIST,
-//     SCROLLFOOTER
-// } from '../../constants';
 import style from './Keypairs.scss';
 require('./Keypairs.css');
 
 const alert = Modal.alert;
-
-const SCROLLLIST = {
-    loading: 'Loading...',
-    loaded: 'Loaded',
-    end: 'No More o((⊙﹏⊙))o'
-};
-const SCROLLFOOTER = (isLoading, hasMore) => {
-    return (
-        <div style={{padding: 6, textAlign: 'center', color: 'rgba(255, 255, 255, 0.7)'}}>
-            {
-                isLoading
-                    ? SCROLLLIST.loading
-                    : (hasMore ? SCROLLLIST.loading : SCROLLLIST.end)
-            }
-        </div>
-    );
-};
 
 const NUM_ROWS = 9999;
 const pageSize = 9999;
@@ -224,7 +203,7 @@ export default class Keypairs extends Component {
                                 ref={el => this.lv = el}
                                 dataSource={this.state.dataSource}
 
-                                renderFooter={() => SCROLLFOOTER(this.state.isLoading, this.state.hasMore)}
+                                renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
 
                                 renderRow={this.renderRow}
                                 useBodyScroll={this.state.useBodyScroll}

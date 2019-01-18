@@ -45,6 +45,9 @@ export default class Lock extends Component {
             password: '',
             walletStatus: false
         };
+        const action = getParam('action', location.href);
+        const isClear = action === 'clear_wallet';
+        this.isClear = isClear;
     }
 
     setPassword(password) {
@@ -54,11 +57,27 @@ export default class Lock extends Component {
         });
     }
 
+    turnToHomePage(walletStatus, callback) {
+        const {
+            nightElfEncrypto,
+            nightElf
+        } = walletStatus || {};
+
+        if (nightElfEncrypto && nightElf && !this.isClear) {
+            hashHistory.push('/home');
+        }
+        else {
+            callback();
+        }
+    }
+
     checkWallet() {
         InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
             console.log(InternalMessageTypes.CHECK_WALLET, result);
-            this.setState({
-                walletStatus: result
+            this.turnToHomePage(result, () => {
+                this.setState({
+                    walletStatus: result
+                });
             });
         });
     }
@@ -218,9 +237,6 @@ export default class Lock extends Component {
     }
 
     render() {
-        const action = getParam('action', location.href);
-        const isClear = action === 'clear_wallet';
-
         let titleText = 'Welcome';
         let buttonHTML = '';
         let navHTML = '';
@@ -229,22 +245,27 @@ export default class Lock extends Component {
             nightElfEncrypto,
             nightElf
         } = walletStatus || {};
-        if (walletStatus && !nightElfEncrypto) {
-            buttonHTML = this.renderCreate();
-        }
-        else if (walletStatus && nightElfEncrypto && !nightElf) {
-            buttonHTML = this.renderUnlock();
-        }
-        else if (walletStatus && nightElfEncrypto && !isClear) {
-            hashHistory.push('/home');
-            return <div></div>;
-        }
-        else if (walletStatus && nightElfEncrypto && isClear) {
-            buttonHTML = this.renderClear();
-            titleText = 'Delete';
-            navHTML = <NavNormal
-                    onLeftClick={() => hashHistory.push('/home')}
-                ></NavNormal>;
+
+        if (walletStatus) {
+            if (!nightElfEncrypto) {
+                buttonHTML = this.renderCreate();
+            }
+            else {
+                if (!nightElf) {
+                    buttonHTML = this.renderUnlock();
+                }
+                // else if (!this.isClear) {
+                //     hashHistory.push('/home');
+                //     return <div></div>;
+                // }
+                else if (this.isClear) {
+                    buttonHTML = this.renderClear();
+                    titleText = 'Delete';
+                    navHTML = <NavNormal
+                            onLeftClick={() => hashHistory.push('/home')}
+                        ></NavNormal>;
+                }
+            }
         }
 
         const testHTML = this.renderTestButtons();

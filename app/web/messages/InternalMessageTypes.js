@@ -28,3 +28,9 @@ export const RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
 export const INIT_AELF_CONTRACT = 'initAelfContract';
 export const CALL_AELF_CONTRACT = 'callAelfContract';
 export const RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
+
+export const GET_ADDRESS = 'getAddress';
+
+export const OPEN_PROMPT = 'openPrompt';
+export const SET_PROMPT = 'setPrompt';
+export const GET_PROMPT = 'getPrompt';

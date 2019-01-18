@@ -38,8 +38,11 @@ module.exports = {
         // wallet: './app/web/js/index.jsx',
         // transactionDetail: './app/web/js/transactionDetail.jsx'
         popup: './app/web/pages/Popup/Popup.js',
+        prompt: './app/web/pages/Prompt/Prompt.js',
         background: './app/web/background.js',
-        extensionSDK: './app/web/extensionSDK.js'
+        extensionSDK: './app/web/extensionSDK.js',
+        content: './app/web/content.js',
+        inject: './app/web/inject.js'
     },
     output: {
         path: path.resolve(__dirname, 'app'), // equal to __diname + '/build'
@@ -120,8 +123,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             chunks: [''],
-            template: './app/web/bindApp.html',
-            filename: './public/bindApp.html'
+            template: './app/web/prompt.html',
+            filename: './public/prompt.html'
         }),
         new CopyWebpackPlugin([{
                 from: './app/web/manifest.json',

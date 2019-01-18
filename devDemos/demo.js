@@ -1,10 +1,4 @@
-# aelf-web-extension
-
-## How to use
-
-### 1.CONNECT_AELF_CHAIN
-
-```javascript
+# 1.CONNECT_AELF_CHAIN
 nightElf.action.send({
     appName: 'hzzTest',
     method: 'CONNECT_AELF_CHAIN',
@@ -15,11 +9,8 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```
 
-### 2.CALL_AELF_CHAIN
-
-```javascript
+# 2.CALL_AELF_CHAIN
 nightElf.action.send({
     appName: 'hzzTest',
     method: 'CALL_AELF_CHAIN',
@@ -45,11 +36,8 @@ nightElf.action.send({
 //         description: 'token contract'
 //     }]
 // }
-```
 
-### 3.OPEN_PROMPT -> other method
-
-```javascript
+# 3.OPEN_PROMPT -> other method
 // TODO: param check
 nightElf.action.send({
     appName: 'hzzTest',
@@ -83,11 +71,8 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```
 
-### 4.OPEN_PROMPT
-
-```javascript
+# 4.OPEN_PROMPT
 nightElf.action.send({
     appName: 'hzzTest',
     method: 'OPEN_PROMPT',
@@ -100,11 +85,8 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```
 
-### 5.INIT_AELF_CONTRACT
-
-```javascript
+# 5.INIT_AELF_CONTRACT
 nightElf.action.send({
     appName: 'hzzTest',
     method: 'INIT_AELF_CONTRACT',
@@ -118,11 +100,8 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```
 
-### 5.INIT_AELF_CONTRACT Wrong
-
-```javascript
+# 5.INIT_AELF_CONTRACT Wrong
 nightElf.action.send({
     appName: 'hzzTest', // do not
     method: 'INIT_AELF_CONTRACT',
@@ -136,11 +115,8 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```
 
-### 6.CALL_AELF_CONTRACT
-
-```javascript
+# 6.CALL_AELF_CONTRACT
 nightElf.action.send({
     appName: 'hzzTest',
     method: 'CALL_AELF_CONTRACT',
@@ -154,11 +130,8 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```
 
-### 6.CALL_AELF_CONTRACT Wrong
-
-```javascript
+# 6.CALL_AELF_CONTRACT Wrong
 nightElf.action.send({
     appName: 'hzzTest',
     method: 'CALL_AELF_CONTRACT',
@@ -172,11 +145,8 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```
 
-### 7.CHECK_PERMISSION Wrong
-
-```javascript
+# 7.CHECK_PERMISSION Wrong
 nightElf.action.send({
     appName: 'hzzTest',
     method: 'CHECK_PERMISSION',
@@ -184,15 +154,11 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```
 
-### 8.GET_ADDRESS
-
-```javascript
+# 8.GET_ADDRESS
 nightElf.action.send({
     appName: 'hzzTest',
     method: 'GET_ADDRESS'
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-```

@@ -22,6 +22,7 @@ import clipboard from './clipboard';
 // import walletStatusCheck from './walletStatusCheck'
 // import txIdOmit from './txIdOmit';
 // import tokenOmit from './tokenOmit';
+import IdGenerator from './IdGenerator';
 
 export {
     addressOmit,
@@ -38,9 +39,10 @@ export {
     // getBalanceAndTokenName,
     // whetherBackupCheck,
     // checkStatus,
-    clipboard
+    clipboard,
     // insertWalletInfo,
     // walletStatusCheck,
     // txIdOmit,
     // tokenOmit
+    IdGenerator
 };
