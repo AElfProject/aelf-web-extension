@@ -32,19 +32,6 @@ nightElf.action.send({
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
 })
-
-// SET_PERMISSION
-// {
-//     appName: 'hzz Test',
-//     domain: 'aelf.io',
-//     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
-//     contracts: [{
-//         chainId: 'AELF',
-//         contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
-//         contractName: 'token',
-//         description: 'token contract'
-//     }]
-// }
 ```
 
 ### 3.OPEN_PROMPT -> other method
@@ -174,7 +161,7 @@ nightElf.action.send({
 })
 ```
 
-### 7.CHECK_PERMISSION Wrong
+### 7.CHECK_PERMISSION
 
 ```javascript
 nightElf.action.send({
