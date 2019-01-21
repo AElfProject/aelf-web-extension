@@ -175,6 +175,7 @@ NightElf.api({
 NightElf.api({
     appName: 'hzzTest',
     method: 'CHECK_PERMISSION',
+    // TODO:  type: 'address/domain/contract
     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
