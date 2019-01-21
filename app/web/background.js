@@ -302,7 +302,7 @@ export default class Background {
                 if (error || !result || !result.result) {
                     sendResponse({
                         error: 200001,
-                        message: error,
+                        message: error.message || error,
                         result
                     });
                     return;
@@ -555,6 +555,7 @@ export default class Background {
             const wallet = Aelf.wallet.getWalletByPrivateKey(keypair.privateKey);
             const contractMethods = dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet);
             const contract = {
+                address,
                 contractName,
                 contractAddress,
                 contractMethods
@@ -656,16 +657,27 @@ export default class Background {
                 return;
             }
 
-            extendContract.contractMethods[method](...params, (error, result) => {
-                if (error) {
-                    sendResponse({
-                        error: 200001,
-                        result: error
-                    });
+            const contractInfoTemp = Object.assign({}, contractInfo, {
+                payload: {
+                    address: extendContract.address,
+                    contractAddress: extendContract.contractAddress
                 }
-                sendResponse({
-                    error: 0,
-                    result
+            });
+            // If the user remove the permission after the dapp initialized the contract
+            this.checkDappContractStatus(sendResponse, contractInfoTemp).then(() => {
+                extendContract.contractMethods[method](...params, (error, result) => {
+                    if (error) {
+                        sendResponse({
+                            error: 200001,
+                            result: error
+                        });
+                    }
+                    else {
+                        sendResponse({
+                            error: 0,
+                            result
+                        });
+                    }
                 });
             });
         });
@@ -1142,14 +1154,18 @@ export default class Background {
                     }
                 });
                 // sendResponse(Error.locked());
-                sendResponse({
+                const error = {
                     error: 200001,
                     message: 'Night Elf is locked'
+                };
+                sendResponse(error);
+                reject(error);
+            } else {
+                resolve({
+                    error: 0
                 });
             }
-            resolve({
-                error: 0
-            });
+
         });
     }
 

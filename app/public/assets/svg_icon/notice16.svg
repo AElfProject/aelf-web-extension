@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/警示16</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/警示16" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9.30441122,2.56226782 L14.8318206,11.9706242 C15.204833,12.6055389 14.9925192,13.4226254 14.3576044,13.7956378 C14.1528496,13.9159313 13.9196822,13.9793562 13.6822057,13.9793562 L2.39217809,13.9793562 C1.65579842,13.9793562 1.05884475,13.3824026 1.05884475,12.6460229 C1.05884475,12.4002255 1.12678925,12.1592116 1.2551722,11.9496068 L7.01779047,2.54125044 C7.40241046,1.91329943 8.22326145,1.71604067 8.85121246,2.10066066 C9.03788056,2.21499487 9.19352754,2.37352964 9.30441122,2.56226782 Z" id="Triangle" fill="#FFAA00"></path>
+        <rect id="Rectangle-6" fill="#FFFFFF" x="7.5" y="5.66666667" width="1.33333333" height="4" rx="0.666666667"></rect>
+        <circle id="Oval" fill="#FFFFFF" cx="8.16666667" cy="11.3333333" r="1"></circle>
+    </g>
+</svg>

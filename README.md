@@ -1,11 +1,19 @@
 # aelf-web-extension
 
+## How to add Extension
+
+download the code.
+
+open development mode, add the directory /public.
+
+[TODO] publish to chrome.
+
 ## How to use
 
 ### 1.CONNECT_AELF_CHAIN
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'CONNECT_AELF_CHAIN',
     hostname: 'aelf.io', // TODO: 这个需要content.js 主动获取
@@ -20,7 +28,7 @@ nightElf.action.send({
 ### 2.CALL_AELF_CHAIN
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'CALL_AELF_CHAIN',
     chainId: 'AELF',
@@ -38,7 +46,7 @@ nightElf.action.send({
 
 ```javascript
 // TODO: param check
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'OPEN_PROMPT',
     chainId: 'AELF',
@@ -75,7 +83,7 @@ nightElf.action.send({
 ### 4.OPEN_PROMPT
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'OPEN_PROMPT',
     chainId: 'AELF',
@@ -92,7 +100,7 @@ nightElf.action.send({
 ### 5.INIT_AELF_CONTRACT
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'INIT_AELF_CONTRACT',
     // hostname: 'aelf.io',
@@ -110,7 +118,7 @@ nightElf.action.send({
 ### 5.INIT_AELF_CONTRACT Wrong
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest', // do not
     method: 'INIT_AELF_CONTRACT',
     // hostname: 'aelf.io',
@@ -128,7 +136,7 @@ nightElf.action.send({
 ### 6.CALL_AELF_CONTRACT
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'CALL_AELF_CONTRACT',
     hostname: 'aelf.io',
@@ -146,7 +154,7 @@ nightElf.action.send({
 ### 6.CALL_AELF_CONTRACT Wrong
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'CALL_AELF_CONTRACT',
     hostname: 'aelf.io',
@@ -164,7 +172,7 @@ nightElf.action.send({
 ### 7.CHECK_PERMISSION
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'CHECK_PERMISSION',
     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
@@ -176,7 +184,7 @@ nightElf.action.send({
 ### 8.GET_ADDRESS
 
 ```javascript
-nightElf.action.send({
+NightElf.api({
     appName: 'hzzTest',
     method: 'GET_ADDRESS'
 }).then(result => {

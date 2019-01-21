@@ -9,7 +9,6 @@ import EncryptedStream from './utils/EncryptedStream';
 // } from 'extension-streams';
 import * as PageContentTags from './messages/PageContentTags';
 // import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
-// import Scatterdapp from './scatterdapp'
 
 /***
  * This is the javascript which gets injected into
@@ -38,10 +37,10 @@ class Inject {
         // web application.
         // const key = IdGenerator.text(64);
         const stream = new EncryptedStream(PageContentTags.PAGE_NIGHTELF, IdGenerator.text(64));
-        console.log('inject stream', stream);
+        // console.log('inject stream', stream);
 
         stream.addEventListener(result => {
-            console.log('inject addEventListener: ', result);
+            // console.log('inject addEventListener: ', result);
             handlePendingPromise(result);
         });
 
@@ -57,15 +56,17 @@ class Inject {
             });
         }
 
-        window.nightElf = {
-            action: {
-                send: promiseSend
-            }
+        console.log('inject init ready2333!!!');
+
+        window.NightElf = {
+            api: promiseSend
         };
 
-        // window.nightElfTemp = {
-        //     stream
-        // };
+        document.dispatchEvent(new CustomEvent('NightElf'), {
+            error: 0,
+            message: 'Night Elf is ready.'
+        });
+
         // Waiting for scatter to push itself onto the application
         // stream.listenWith(msg => {
         //     console.log('inject listenWith msg: ', msg);
