@@ -12,6 +12,8 @@ open development mode, add the directory /public.
 
 ### 1.CONNECT_AELF_CHAIN
 
+You can see the demo ./devDemos/test.html. [demo.js just a draft]
+
 ```javascript
 NightElf.api({
     appName: 'hzzTest',
@@ -175,7 +177,8 @@ NightElf.api({
 NightElf.api({
     appName: 'hzzTest',
     method: 'CHECK_PERMISSION',
-    // TODO:  type: 'address/domain/contract
+    // type: 'contract/address/domain(default)'
+    type: 'address', // if you did not set type, it aways get by domain.
     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
 }).then(result => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);

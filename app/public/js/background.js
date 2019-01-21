@@ -47972,10 +47972,8 @@ var Background = function () {
             });
         }
 
-        // TODO: 只检查domain匹配，获取所有的权限。
-        // 1.domain address 查询。、
-        // 2.domain查询。
-        // 3.查询指定合约的权限。
+        // 3 Way to get Permisions
+        // by address,contranctAddress,domain(default way)
 
     }, {
         key: 'getPermission',
@@ -47990,6 +47988,71 @@ var Background = function () {
                 var _nightElfObject$keych3 = nightElfObject.keychain.permissions,
                     permissions = _nightElfObject$keych3 === undefined ? [] : _nightElfObject$keych3;
 
+
+                switch (queryInfo.type) {
+                    case 'address':
+                        {
+                            if (!queryInfo.address) {
+                                sendResponse({
+                                    error: 200001,
+                                    message: 'missing param address.'
+                                });
+                                return;
+                            }
+                            var _permissionsTemp = permissions.filter(function (permission) {
+                                var domainCheck = permission.domain === queryInfo.hostname;
+                                var addressCheck = permission.address === queryInfo.address;
+                                return domainCheck && addressCheck;
+                            });
+
+                            sendResponse({
+                                error: 0,
+                                permissions: _permissionsTemp
+                            });
+                        }
+                        break;
+                    // TODO: use database such lick NeDB ?
+                    case 'contract':
+                        {
+                            if (!queryInfo.contractAddress) {
+                                sendResponse({
+                                    error: 200001,
+                                    message: 'missing param contractAddress.'
+                                });
+                                return;
+                            }
+                            var permissionsByDomain = permissions.filter(function (permission) {
+                                var domainCheck = permission.domain === queryInfo.hostname;
+                                return domainCheck;
+                            });
+
+                            var permissionsByContract = permissionsByDomain.filter(function (permission) {
+                                var contractMatch = permission.contracts.filter(function (contract) {
+                                    return contract.contractAddress === queryInfo.contractAddress;
+                                });
+                                return contractMatch && contractMatch.length;
+                            });
+
+                            sendResponse({
+                                error: 0,
+                                permissions: permissionsByContract
+                            });
+                        }
+                        break;
+                    default:
+                        // defaut to check domain;
+                        {
+                            var _permissionsTemp2 = permissions.filter(function (permission) {
+                                var domainCheck = permission.domain === queryInfo.hostname;
+                                return domainCheck;
+                            });
+
+                            sendResponse({
+                                error: 0,
+                                permissions: _permissionsTemp2
+                            });
+                        }
+                }
 
                 var permissionsTemp = permissions.filter(function (permission) {
                     var domainCheck = permission.domain === queryInfo.hostname;

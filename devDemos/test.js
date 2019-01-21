@@ -4,6 +4,9 @@
  */
 /* globals NightElf */
 console.log(Date.now());
+
+const httpProvider = 'http://localhost:1234/chain';
+
 document.addEventListener('NightElf', result => {
 
     console.log(Date.now());
@@ -14,7 +17,9 @@ document.addEventListener('NightElf', result => {
     const openPrompt = document.getElementById('open-prompt');
     const initAelfContract = document.getElementById('init-aelf-contract');
     const callAelfContract = document.getElementById('call-aelf-contract');
-    const checkPermission = document.getElementById('check-permission');
+    const checkPermissionDefault = document.getElementById('check-permission-default');
+    const checkPermissionAddress = document.getElementById('check-permission-address');
+    const checkPermissionContractAddress = document.getElementById('check-permission-contract');
     const getAddress = document.getElementById('get-address');
     connectChainBtn.onclick = function () {
         NightElf.api({
@@ -22,7 +27,7 @@ document.addEventListener('NightElf', result => {
             method: 'CONNECT_AELF_CHAIN',
             hostname: 'aelf.io', // TODO: 这个需要content.js 主动获取
             payload: {
-                httpProvider: 'http://localhost:1234/chain'
+                httpProvider
             }
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
@@ -34,7 +39,6 @@ document.addEventListener('NightElf', result => {
             appName: 'hzzTest',
             method: 'CALL_AELF_CHAIN',
             chainId: 'AELF',
-            hostname: 'aelf.io',
             payload: {
                 method: 'getTxResult',
                 params: ['5feb4d3175b4144e54f5f4d0a12b19559633a2aede0e87dc42322efe1aac12c9']
@@ -60,7 +64,7 @@ document.addEventListener('NightElf', result => {
                 payload: {
                     // appName: message.appName,
                     // domain: message.hostname
-                    address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
+                    address: 'ELF_4yCJfobjm2YAdxGrwACQihpa3TMz1prDTdYiWTvFTvefQFs',
                     contracts: [{
                         chainId: 'AELF',
                         contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
@@ -111,11 +115,33 @@ document.addEventListener('NightElf', result => {
         });
     };
 
-    checkPermission.onclick = function () {
+    checkPermissionDefault.onclick = function () {
         NightElf.api({
             appName: 'hzzTest',
             method: 'CHECK_PERMISSION',
             address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    checkPermissionAddress.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CHECK_PERMISSION',
+            type: 'address', // if you did not set type, it aways get by domain.
+            address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    checkPermissionContractAddress.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CHECK_PERMISSION',
+            type: 'contract', // if you did not set type, it aways get by domain.
+            contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx'
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
         });

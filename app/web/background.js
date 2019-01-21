@@ -856,10 +856,8 @@ export default class Background {
         });
     }
 
-    // TODO: 只检查domain匹配，获取所有的权限。
-    // 1.domain address 查询。、
-    // 2.domain查询。
-    // 3.查询指定合约的权限。
+    // 3 Way to get Permisions
+    // by address,contranctAddress,domain(default way)
     static getPermission(sendResponse, queryInfo) {
         // this static function call the this,
         // the this is the Class but not the instance of the Class.
@@ -874,6 +872,70 @@ export default class Background {
                     permissions = []
                 }
             } = nightElfObject;
+
+            switch (queryInfo.type) {
+                case 'address':
+                    {
+                        if (!queryInfo.address) {
+                            sendResponse({
+                                error: 200001,
+                                message: 'missing param address.'
+                            });
+                            return;
+                        }
+                        const permissionsTemp = permissions.filter(permission => {
+                            const domainCheck = permission.domain === queryInfo.hostname;
+                            const addressCheck = permission.address === queryInfo.address;
+                            return domainCheck && addressCheck;
+                        });
+
+                        sendResponse({
+                            error: 0,
+                            permissions: permissionsTemp
+                        });
+                    }
+                    break;
+                // TODO: use database such lick NeDB ?
+                case 'contract':
+                    {
+                        if (!queryInfo.contractAddress) {
+                            sendResponse({
+                                error: 200001,
+                                message: 'missing param contractAddress.'
+                            });
+                            return;
+                        }
+                        const permissionsByDomain = permissions.filter(permission => {
+                            const domainCheck = permission.domain === queryInfo.hostname;
+                            return domainCheck;
+                        });
+
+                        const permissionsByContract = permissionsByDomain.filter(permission => {
+                            const contractMatch = permission.contracts.filter(contract => {
+                                return contract.contractAddress === queryInfo.contractAddress;
+                            });
+                            return contractMatch && contractMatch.length;
+                        });
+
+                        sendResponse({
+                            error: 0,
+                            permissions: permissionsByContract
+                        });
+                    }
+                    break;
+                default: // defaut to check domain;
+                    {
+                        const permissionsTemp = permissions.filter(permission => {
+                            const domainCheck = permission.domain === queryInfo.hostname;
+                            return domainCheck;
+                        });
+
+                        sendResponse({
+                            error: 0,
+                            permissions: permissionsTemp
+                        });
+                    }
+            }
 
             const permissionsTemp = permissions.filter(permission => {
                 const domainCheck = permission.domain === queryInfo.hostname;
