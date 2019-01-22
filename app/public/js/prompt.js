@@ -66327,6 +66327,7 @@ var en_US = (_en_US = {
     'aelf.Becareful09': 'Please DO NOT use screen capture!',
     'aelf.Becareful010': 'If anyone obtains your Mnemonic, they WILL obtain your digital assets!',
     'aelf.Confirm Mnemonic ': 'Confirm Mnemonic',
+    'aelf.ConfirmMnemonic': 'Confirm Mnemonic',
     'aelf.hint01': 'Mnemonic is not in the right sequence, please rearrange!',
     'aelf.hint02': 'To confirm your backup, please click on the Mnemonic in order.',
     'aelf.Copy Private Key': 'Copy Private Key',

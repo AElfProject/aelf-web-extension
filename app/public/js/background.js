@@ -48309,6 +48309,7 @@ var Background = function () {
 
                 var addressList = keypairs.map(function (item) {
                     return {
+                        name: item.name,
                         address: item.address,
                         publicKey: item.publicKey
                     };

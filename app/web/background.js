@@ -1146,6 +1146,7 @@ export default class Background {
             } = nightElfObject;
             const addressList = keypairs.map(item => {
                 return {
+                    name: item.name,
                     address: item.address,
                     publicKey: item.publicKey
                 };
