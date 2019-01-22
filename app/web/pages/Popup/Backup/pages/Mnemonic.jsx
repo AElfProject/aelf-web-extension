@@ -74,6 +74,7 @@ export default class Mnemonic extends Component {
                 mnemonicDisorderedListStyle: Array.from(state.mnemonicDisorderedListStyleDefault)
             };
         }
+        return state;
     }
 
     setMnemonicDisorderedListStyle() {

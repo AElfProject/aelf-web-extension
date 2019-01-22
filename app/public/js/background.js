@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 880);
+/******/ 	return __webpack_require__(__webpack_require__.s = 882);
 /******/ })
 /************************************************************************/
 /******/ (Array(106).concat([
@@ -47057,6 +47057,51 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @file BrowserApis.js
+ * @author Scatter
+ */
+var swallow = function swallow(fn) {
+    try {
+        fn();
+    } catch (e) {}
+};
+
+var ApiGenerator = function ApiGenerator() {
+    var _this = this;
+
+    _classCallCheck(this, ApiGenerator);
+
+    ['app', 'storage', 'extension', 'runtime', 'windows'].map(function (api) {
+        if (typeof chrome !== 'undefined') swallow(function () {
+            if (chrome[api]) _this[api] = chrome[api];
+        });
+        if (typeof browser !== 'undefined') swallow(function () {
+            if (browser[api]) _this[api] = browser[api];
+        });
+    });
+
+    if (typeof browser !== 'undefined') swallow(function () {
+        if (browser && browser.runtime) _this.runtime = browser.runtime;
+    });
+};
+
+var apis = exports.apis = new ApiGenerator();
+
+/***/ }),
+/* 881 */,
+/* 882 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @file background.js
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @author huangzongzhe,hzz780; Scatter: Shai James;
@@ -47072,13 +47117,13 @@ var _InternalMessageTypes = __webpack_require__(692);
 
 var InternalMessageTypes = _interopRequireWildcard(_InternalMessageTypes);
 
-var _NightElf = __webpack_require__(881);
+var _NightElf = __webpack_require__(883);
 
 var _NightElf2 = _interopRequireDefault(_NightElf);
 
-var _BrowserApis = __webpack_require__(884);
+var _BrowserApis = __webpack_require__(880);
 
-var _NotificationService = __webpack_require__(885);
+var _NotificationService = __webpack_require__(886);
 
 var _NotificationService2 = _interopRequireDefault(_NotificationService);
 
@@ -48263,7 +48308,10 @@ var Background = function () {
                     keypairs = _nightElfObject$keych6 === undefined ? [] : _nightElfObject$keych6;
 
                 var addressList = keypairs.map(function (item) {
-                    return item.address;
+                    return {
+                        address: item.address,
+                        publicKey: item.publicKey
+                    };
                 });
                 sendResponse({
                     error: 0,
@@ -48645,7 +48693,7 @@ exports.default = Background;
 var background = new Background();
 
 /***/ }),
-/* 881 */
+/* 883 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48662,7 +48710,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 // import Settings from './Settings';
 
 
-var _Keychain = __webpack_require__(882);
+var _Keychain = __webpack_require__(884);
 
 var _Keychain2 = _interopRequireDefault(_Keychain);
 
@@ -48758,7 +48806,7 @@ var NightElf = function () {
 exports.default = NightElf;
 
 /***/ }),
-/* 882 */
+/* 884 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48777,7 +48825,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 // import KeyPair from './KeyPair';
 
 
-var _ObjectHelpers = __webpack_require__(883);
+var _ObjectHelpers = __webpack_require__(885);
 
 var _ObjectHelpers2 = _interopRequireDefault(_ObjectHelpers);
 
@@ -48927,7 +48975,7 @@ var Keychain = function () {
 exports.default = Keychain;
 
 /***/ }),
-/* 883 */
+/* 885 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49075,51 +49123,7 @@ var ObjectHelpers = function () {
 exports.default = ObjectHelpers;
 
 /***/ }),
-/* 884 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * @file BrowserApis.js
- * @author Scatter
- */
-var swallow = function swallow(fn) {
-    try {
-        fn();
-    } catch (e) {}
-};
-
-var ApiGenerator = function ApiGenerator() {
-    var _this = this;
-
-    _classCallCheck(this, ApiGenerator);
-
-    ['app', 'storage', 'extension', 'runtime', 'windows'].map(function (api) {
-        if (typeof chrome !== 'undefined') swallow(function () {
-            if (chrome[api]) _this[api] = chrome[api];
-        });
-        if (typeof browser !== 'undefined') swallow(function () {
-            if (browser[api]) _this[api] = browser[api];
-        });
-    });
-
-    if (typeof browser !== 'undefined') swallow(function () {
-        if (browser && browser.runtime) _this.runtime = browser.runtime;
-    });
-};
-
-var apis = exports.apis = new ApiGenerator();
-
-/***/ }),
-/* 885 */
+/* 886 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49131,11 +49135,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Error = __webpack_require__(886);
+var _Error = __webpack_require__(887);
 
 var _Error2 = _interopRequireDefault(_Error);
 
-var _BrowserApis = __webpack_require__(884);
+var _BrowserApis = __webpack_require__(880);
 
 var _InternalMessage = __webpack_require__(693);
 
@@ -49263,7 +49267,7 @@ var NotificationService = function () {
 exports.default = NotificationService;
 
 /***/ }),
-/* 886 */
+/* 887 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49276,7 +49280,7 @@ exports.ErrorCodes = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ErrorTypes = __webpack_require__(887);
+var _ErrorTypes = __webpack_require__(888);
 
 var ErrorTypes = _interopRequireWildcard(_ErrorTypes);
 
@@ -49363,7 +49367,7 @@ var Error = function () {
 exports.default = Error;
 
 /***/ }),
-/* 887 */
+/* 888 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

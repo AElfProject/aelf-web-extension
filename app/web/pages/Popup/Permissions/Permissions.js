@@ -28,48 +28,48 @@ const alert = Modal.alert;
 const NUM_ROWS = 9999;
 const pageSize = 9999;
 
-function randomName() {
-    return Math.ceil(Math.random() * 3);
-}
+// function randomName() {
+//     return Math.ceil(Math.random() * 3);
+// }
 
-function setPermission(permission, callback) {
-    // let random = randomName();
-    // let permission = {
-    //     appName: 'aelf' + random,
-    //     domain: 'https://aelf.io',
-    //     address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + random,
-    //     contracts: [
-    //         {
-    //             chainId: 'xxxx',
-    //             contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t0',
-    //             contractName: 'xxx',
-    //             description: 'xxxx'
-    //         },
-    //         {
-    //             chainId: 'xxxx',
-    //             contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
-    //             contractName: 'xxx',
-    //             description: 'xxxx'
-    //         },
-    //         {
-    //             chainId: 'xxxx',
-    //             contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
-    //             contractName: 'contractName' + Math.random(),
-    //             description: 'description' + Math.random()
-    //         }
-    //     ]
-    // };
+// function setPermission(permission, callback) {
+//     // let random = randomName();
+//     // let permission = {
+//     //     appName: 'aelf' + random,
+//     //     domain: 'https://aelf.io',
+//     //     address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + random,
+//     //     contracts: [
+//     //         {
+//     //             chainId: 'xxxx',
+//     //             contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t0',
+//     //             contractName: 'xxx',
+//     //             description: 'xxxx'
+//     //         },
+//     //         {
+//     //             chainId: 'xxxx',
+//     //             contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
+//     //             contractName: 'xxx',
+//     //             description: 'xxxx'
+//     //         },
+//     //         {
+//     //             chainId: 'xxxx',
+//     //             contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
+//     //             contractName: 'contractName' + Math.random(),
+//     //             description: 'description' + Math.random()
+//     //         }
+//     //     ]
+//     // };
 
-    InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, permission).send().then(result => {
-        console.log(InternalMessageTypes.SET_PERMISSION, result);
-        if (result.error === 0) {
-            callback();
-        }
-        else {
-            Toast.fail(result.message, 3, () => {}, false);
-        }
-    });
-}
+//     InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, permission).send().then(result => {
+//         console.log(InternalMessageTypes.SET_PERMISSION, result);
+//         if (result.error === 0) {
+//             callback();
+//         }
+//         else {
+//             Toast.fail(result.message, 3, () => {}, false);
+//         }
+//     });
+// }
 
 function removePermission(permissionNeedRemove, callback) {
     // const permission = {
@@ -88,24 +88,24 @@ function removePermission(permissionNeedRemove, callback) {
     });
 }
 
-function checkPermission() {
-    const permission = {
-        hostname: 'https://aelf.io',
-        address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + randomName()
-    };
-    InternalMessage.payload(InternalMessageTypes.CHECK_PERMISSION, permission).send().then(result => {
-        console.log(InternalMessageTypes.CHECK_PERMISSION, result);
-        if (result.error === 0) {
-        }
-        else {
-            Toast.fail(result.message, 3, () => {}, false);
-        }
-    });
-}
+// function checkPermission() {
+//     const permission = {
+//         hostname: 'https://aelf.io',
+//         address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + randomName()
+//     };
+//     InternalMessage.payload(InternalMessageTypes.CHECK_PERMISSION, permission).send().then(result => {
+//         console.log(InternalMessageTypes.CHECK_PERMISSION, result);
+//         if (result.error === 0) {
+//         }
+//         else {
+//             Toast.fail(result.message, 3, () => {}, false);
+//         }
+//     });
+// }
 
 function getAllPermissions(callback) {
     InternalMessage.payload(InternalMessageTypes.GET_ALLPERMISSIONS).send().then(result => {
-        console.log(InternalMessageTypes.GET_ALLPERMISSIONS, result);
+        // console.log(InternalMessageTypes.GET_ALLPERMISSIONS, result);
         if (result.error === 0) {
             callback(result.permissions);
         }
@@ -230,53 +230,53 @@ export default class Permissions extends Component {
         this.setState = () => { };
     }
 
-    setPerTest() {
-        let random = randomName();
-        let permission = {
-            appName: 'aelf' + random,
-            domain: 'https://aelf.io',
-            address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + random,
-            contracts: [
-                {
-                    chainId: 'xxxx',
-                    contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t0',
-                    contractName: 'xxx',
-                    description: 'xxxx'
-                },
-                {
-                    chainId: 'xxxx',
-                    contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
-                    contractName: 'xxx',
-                    description: 'xxxx'
-                },
-                {
-                    chainId: 'xxxx',
-                    contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
-                    contractName: 'contractName' + Math.random(),
-                    description: 'description' + Math.random()
-                }
-            ]
-        };
+    // setPerTest() {
+    //     let random = randomName();
+    //     let permission = {
+    //         appName: 'aelf' + random,
+    //         domain: 'https://aelf.io',
+    //         address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + random,
+    //         contracts: [
+    //             {
+    //                 chainId: 'xxxx',
+    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t0',
+    //                 contractName: 'xxx',
+    //                 description: 'xxxx'
+    //             },
+    //             {
+    //                 chainId: 'xxxx',
+    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
+    //                 contractName: 'xxx',
+    //                 description: 'xxxx'
+    //             },
+    //             {
+    //                 chainId: 'xxxx',
+    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
+    //                 contractName: 'contractName' + Math.random(),
+    //                 description: 'description' + Math.random()
+    //             }
+    //         ]
+    //     };
 
-        setPermission(permission, permissionSeted => {
-            console.log('permission666: ', permission);
-            // Just for test
-            const temp = Array.from(this.rData);
-            const list = this.rData.filter(item => {
-                const domainCheck = permission.domain === item.domain;
-                const addressCheck = permission.address === item.address;
-                return domainCheck && addressCheck;
-            });
-            if (list.length === 0) {
-                temp.unshift(permission);
-                this.rData = temp;
-                console.log('this.rData: ', this.rData);
-                this.setState({
-                    dataSource: this.state.dataSource.cloneWithRows(this.rData)
-                });
-            }
-        });
-    }
+    //     setPermission(permission, permissionSeted => {
+    //         console.log('permission666: ', permission);
+    //         // Just for test
+    //         const temp = Array.from(this.rData);
+    //         const list = this.rData.filter(item => {
+    //             const domainCheck = permission.domain === item.domain;
+    //             const addressCheck = permission.address === item.address;
+    //             return domainCheck && addressCheck;
+    //         });
+    //         if (list.length === 0) {
+    //             temp.unshift(permission);
+    //             this.rData = temp;
+    //             console.log('this.rData: ', this.rData);
+    //             this.setState({
+    //                 dataSource: this.state.dataSource.cloneWithRows(this.rData)
+    //             });
+    //         }
+    //     });
+    // }
 
     render() {
         let pageContainerStyle = getPageContainerStyle();
@@ -294,12 +294,12 @@ export default class Permissions extends Component {
                     <div className={style.backgroundMask}></div>
                     <div className={style.container} style={containerStyle}>
 
-                        <button onClick={() => checkPermission()}>checkPermission</button>
+                        {/* <button onClick={() => checkPermission()}>checkPermission</button>
                         <button onClick={() => this.setPerTest()}>setPermission</button>
                         <button onClick={() => removePermission()}>removePermission</button>
                         <button onClick={() => getAllPermissions(output => {
                             console.log('click getAllPermissions: ', output);
-                        })}>getAllPermissions</button>
+                        })}>getAllPermissions</button> */}
 
                         <div className={style.transactionList}>
                             <ListView

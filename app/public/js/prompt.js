@@ -91014,7 +91014,7 @@ var _Permission = __webpack_require__(879);
 
 var _Permission2 = _interopRequireDefault(_Permission);
 
-var _Prompt = __webpack_require__(893);
+var _Prompt = __webpack_require__(881);
 
 var _Prompt2 = _interopRequireDefault(_Prompt);
 
@@ -91077,7 +91077,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _antdMobile = __webpack_require__(170);
 
-var _BrowserApis = __webpack_require__(884);
+var _BrowserApis = __webpack_require__(880);
 
 var _reactRouter = __webpack_require__(109);
 
@@ -91283,11 +91283,7 @@ var Permission = function (_Component) {
 exports.default = Permission;
 
 /***/ }),
-/* 880 */,
-/* 881 */,
-/* 882 */,
-/* 883 */,
-/* 884 */
+/* 880 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91331,15 +91327,7 @@ var ApiGenerator = function ApiGenerator() {
 var apis = exports.apis = new ApiGenerator();
 
 /***/ }),
-/* 885 */,
-/* 886 */,
-/* 887 */,
-/* 888 */,
-/* 889 */,
-/* 890 */,
-/* 891 */,
-/* 892 */,
-/* 893 */
+/* 881 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91355,7 +91343,7 @@ var _react = __webpack_require__(94);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _BrowserApis = __webpack_require__(884);
+var _BrowserApis = __webpack_require__(880);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

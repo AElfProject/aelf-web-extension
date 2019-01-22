@@ -76,7 +76,7 @@
 	// 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的
 	"web_accessible_resources": ["js/inject.js"],
 	// 插件主页，这个很重要，不要浪费了这个免费广告位
-	"homepage_url": "https://www.baidu.com",
+	// "homepage_url": "https://www.baidu.com",
 	// 覆盖浏览器默认页面
 	// "chrome_url_overrides":
 	// {
@@ -93,7 +93,7 @@
 		"chrome_style": true
 	},
 	// 向地址栏注册一个关键字以提供搜索建议，只能设置一个关键字
-	"omnibox": { "keyword" : "go" },
+	// "omnibox": { "keyword" : "go" },
 	// 默认语言
     "default_locale": "zh_CN"
     //,

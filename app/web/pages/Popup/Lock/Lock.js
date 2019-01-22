@@ -268,7 +268,7 @@ export default class Lock extends Component {
             }
         }
 
-        const testHTML = this.renderTestButtons();
+        // const testHTML = this.renderTestButtons();
         const containerStyle = getPageContainerStyle();
         return (
             <div className={style.container} style={containerStyle}>
@@ -282,7 +282,7 @@ export default class Lock extends Component {
                 </div>
 
                 {buttonHTML}
-                {testHTML}
+                {/* {testHTML} */}
             </div>
         );
     }

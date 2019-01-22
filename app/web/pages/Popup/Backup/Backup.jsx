@@ -65,7 +65,7 @@ export default class Backup extends Component {
         }
 
         const walletInfo = aelf.wallet.createNewWallet();
-        console.log('walletInfo: ', walletInfo);
+        // console.log('walletInfo: ', walletInfo);
         this.walletInfo = walletInfo;
         this.setState({
             mnemonic: walletInfo.mnemonic,
@@ -80,9 +80,16 @@ export default class Backup extends Component {
     }
 
     insertWallet() {
-        const {address, mnemonic, privateKey} = this.walletInfo;
+        const {address, mnemonic, privateKey, keyPair} = this.walletInfo;
         const name = this.state.name;
-        const walletInfo = {name, address, mnemonic, privateKey};
+        let publicKey = keyPair.getPublic();
+        const walletInfo = {
+            name, address, mnemonic, privateKey,
+            publicKey: {
+                x: publicKey.x.toString('hex'),
+                y: publicKey.y.toString('hex')
+            }
+        };
         InternalMessage.payload(InternalMessageTypes.INSERT_KEYPAIR, walletInfo).send().then(result => {
             console.log(InternalMessageTypes.INSERT_KEYPAIR, result);
             this.setState({
