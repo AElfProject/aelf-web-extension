@@ -47510,25 +47510,32 @@ var Background = function () {
                 console.log('call AelfChain show dappAelfMeta: ', aelfMeta);
                 console.log('call AelfChain show NightElf: ', nightElf);
                 if (dappAelfMeta) {
-                    var _dappAelfMeta$aelf$ch;
-
                     var _callInfo$payload = callInfo.payload,
                         method = _callInfo$payload.method,
                         params = _callInfo$payload.params;
 
-                    (_dappAelfMeta$aelf$ch = dappAelfMeta.aelf.chain)[method].apply(_dappAelfMeta$aelf$ch, _toConsumableArray(params).concat([function (error, result) {
-                        if (error) {
+                    try {
+                        var _dappAelfMeta$aelf$ch;
+
+                        (_dappAelfMeta$aelf$ch = dappAelfMeta.aelf.chain)[method].apply(_dappAelfMeta$aelf$ch, _toConsumableArray(params).concat([function (error, result) {
+                            if (error) {
+                                sendResponse({
+                                    error: 200001,
+                                    result: error
+                                });
+                                return;
+                            }
                             sendResponse({
-                                error: 200001,
-                                result: error
+                                error: 0,
+                                result: result
                             });
-                            return;
-                        }
+                        }]));
+                    } catch (error) {
                         sendResponse({
-                            error: 0,
-                            result: result
+                            error: 100001,
+                            result: error.message
                         });
-                    }]));
+                    }
                 } else {
                     sendResponse({
                         error: 200001,
@@ -48382,17 +48389,17 @@ var Background = function () {
             return new Promise(function (resolve, reject) {
                 if (!(seed && seed.length)) {
                     // NotificationService.open(Prompt.scatterIsLocked());
-                    _NotificationService2.default.open({
-                        sendResponse: sendResponse,
-                        route: '#/prompt',
-                        message: {
-                            appName: 'NightElf',
-                            domain: 'aelf.io',
-                            payload: {
-                                message: 'Night Elf is locked.'
-                            }
-                        }
-                    });
+                    // NotificationService.open({
+                    //     sendResponse,
+                    //     route: '#/prompt',
+                    //     message: {
+                    //         appName: 'NightElf',
+                    //         domain: 'aelf.io',
+                    //         payload: {
+                    //             message: 'Night Elf is locked.'
+                    //         }
+                    //     }
+                    // });
                     // sendResponse(Error.locked());
                     var error = {
                         error: 200001,
