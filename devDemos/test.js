@@ -5,8 +5,72 @@
 /* globals NightElf */
 console.log(Date.now());
 
-const httpProvider = 'http://localhost:1234/chain';
+let nightElfInstance = null;
+class NightElfCheck {
+    constructor() {
+        let resovleTemp = null;
+        this.check = new Promise((resolve, reject) => {
+            if (window.NightElf) {
+                resolve(true);
+            }
+            setTimeout(() => {
+                reject({
+                    error: 200001,
+                    message: 'timeout'
+                });
+            }, 3000);
+            resovleTemp = resolve;
+        });
+        document.addEventListener('NightElf', result => {
+            resovleTemp(true);
+        });
+    }
+    static getInstance() {
+        if (!nightElfInstance) {
+            nightElfInstance = new NightElfCheck();
+            return nightElfInstance;
+        }
+        return nightElfInstance;
+    }
+}
+const a = NightElfCheck.getInstance();
+const b = NightElfCheck.getInstance();
+console.log(a === b);
+a.check.then(item => {
+    console.log('aci: ', item, 'NightElf is Ready!');
+}).catch(error => {
+    console.log('actc: ', error, 'loading NightElf timeout');
+});
+b.check.then(item => {
+    console.log('bci: ', item);
+}).catch(error => {
+    console.log('bctc: ', error);
+});
+// function nightElfCheck() {
+//     this.listener = null;
+//     const resovleTemp = null;
+//     const nightElfCheck = new Promise((resolve, reject) => {
+//         if (window.NightElf) {
+//             resolve(true);
+//         }
+//         setTimeout(() => {
+//             reject({
+//                 error: 200001,
+//                 message: 'timeout'
+//             });
+//         }, 3000);
+//         resovleTemp = resolve;
+//     });
 
+//     this.listener = document.addEventListener('NightElf', result => {
+//         resovleTemp(true);
+//     });
+// }
+
+
+// const httpProvider = 'http://localhost:1234/chain';
+const httpProvider = 'http://192.168.197.70:8001/chain';
+console.log('window.NightElf: ', window.NightElf);
 document.addEventListener('NightElf', result => {
 
     console.log(Date.now());
@@ -21,6 +85,17 @@ document.addEventListener('NightElf', result => {
     const checkPermissionAddress = document.getElementById('check-permission-address');
     const checkPermissionContractAddress = document.getElementById('check-permission-contract');
     const getAddress = document.getElementById('get-address');
+
+    const checkContent = document.getElementById('check-content');
+    checkContent.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CHECK_CONTENT'
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
     connectChainBtn.onclick = function () {
         NightElf.api({
             appName: 'hzzTest',
@@ -42,6 +117,57 @@ document.addEventListener('NightElf', result => {
             payload: {
                 method: 'getTxResult',
                 params: ['5feb4d3175b4144e54f5f4d0a12b19559633a2aede0e87dc42322efe1aac12c9']
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    const getBlockInfo = document.getElementById('get-block-info');
+    getBlockInfo.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CALL_AELF_CHAIN',
+            chainId: 'AELF',
+            payload: {
+                method: 'getBlockInfo',
+                params: [233, true]
+                // This one will throw error.
+                // params: [233]
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    // 如果定义了需要N个参数，那么需要传入N个参数，没有的必须传入默认值。
+    // If you define N params, must input N params.
+    const getBlockInfoFail = document.getElementById('get-block-info-fail');
+    getBlockInfoFail.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CALL_AELF_CHAIN',
+            chainId: 'AELF',
+            payload: {
+                method: 'getBlockInfo',
+                params: [233]
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    const sendTransaction = document.getElementById('send-transation');
+    sendTransaction.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CALL_AELF_CHAIN',
+            chainId: 'AELF',
+            payload: {
+                method: 'sendTransaction',
+                params: [{}]
+                // This one will throw error.
+                // params: [233]
             }
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
@@ -151,6 +277,16 @@ document.addEventListener('NightElf', result => {
         NightElf.api({
             appName: 'hzzTest',
             method: 'GET_ADDRESS'
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    const illegalMethod = document.getElementById('error-illegal-method');
+    illegalMethod.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'GET_ADDRESS233'
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
         });

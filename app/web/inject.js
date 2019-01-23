@@ -58,6 +58,20 @@ class Inject {
 
         console.log('inject init ready2333!!!');
 
+        // let dirtyCheckInterval = null;
+        // function dirtyCheck(
+        //     dirtyCheckInterval = setInterval(() => {
+        //         clearInterval(dirtyCheckInterval);
+        //     }, 100)
+        // );
+        let intervalTimer = null;
+        function check() {
+            intervalTimer = setInterval(() => {
+                console.log(2333);
+                clearInterval(intervalTimer);
+            }, 500);
+        }
+
         window.NightElf = {
             api: promiseSend
         };

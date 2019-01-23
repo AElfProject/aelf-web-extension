@@ -87,13 +87,24 @@ class Content {
         // console.log('contentListener: ', message, location.host || location.hostname);
         // TODO: params check or use TS?
         // sid, method, appName, hostname,
-        const {method} = message;
+        const {method, sid} = message;
+        console.log('message: ', message);
+        if (method === 'CHECK_CONTENT') {
+            this.respond({
+                sid,
+                error: 0,
+                message: 'NightElf is ready.'
+            });
+            return;
+        }
+
         const methodWhiteList = [
             'CONNECT_AELF_CHAIN', 'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT',
             'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS'
         ];
         if (!methodWhiteList.includes(method)) {
             this.respond({
+                sid,
                 error: 200001,
                 message: `${message.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`
             });

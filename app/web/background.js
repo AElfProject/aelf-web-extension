@@ -328,7 +328,8 @@ export default class Background {
                 };
                 if (existentMeta) {
                     aelfMeta[existentMetaIndex] = aelfMetaTemp;
-                } else {
+                }
+                else {
                     aelfMeta.push(aelfMetaTemp);
                 }
                 sendResponse({
@@ -376,20 +377,29 @@ export default class Background {
                     method,
                     params
                 } = callInfo.payload;
-                dappAelfMeta.aelf.chain[method](...params, (error, result) => {
-                    if (error) {
+                try {
+                    dappAelfMeta.aelf.chain[method](...params, (error, result) => {
+                        if (error) {
+                            sendResponse({
+                                error: 200001,
+                                result: error
+                            });
+                            return;
+                        }
                         sendResponse({
-                            error: 200001,
-                            result: error
+                            error: 0,
+                            result
                         });
-                        return;
-                    }
-                    sendResponse({
-                        error: 0,
-                        result
                     });
-                });
-            } else {
+                }
+                catch (error) {
+                    sendResponse({
+                        error: 100001,
+                        result: error.message
+                    });
+                }
+            }
+            else {
                 sendResponse({
                     error: 200001,
                     message: 'Please connect the chain at first. ' +
@@ -1208,17 +1218,17 @@ export default class Background {
         return new Promise((resolve, reject) => {
             if (!(seed && seed.length)) {
                 // NotificationService.open(Prompt.scatterIsLocked());
-                NotificationService.open({
-                    sendResponse,
-                    route: '#/prompt',
-                    message: {
-                        appName: 'NightElf',
-                        domain: 'aelf.io',
-                        payload: {
-                            message: 'Night Elf is locked.'
-                        }
-                    }
-                });
+                // NotificationService.open({
+                //     sendResponse,
+                //     route: '#/prompt',
+                //     message: {
+                //         appName: 'NightElf',
+                //         domain: 'aelf.io',
+                //         payload: {
+                //             message: 'Night Elf is locked.'
+                //         }
+                //     }
+                // });
                 // sendResponse(Error.locked());
                 const error = {
                     error: 200001,
