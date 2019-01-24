@@ -291,4 +291,20 @@ document.addEventListener('NightElf', result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
         });
     };
+
+    const tokenMissingParam = document.getElementById('error-token-missing-param');
+    tokenMissingParam.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CALL_AELF_CONTRACT',
+            chainId: 'AELF',
+            payload: {
+                contractName: 'token',
+                method: 'BalanceOf',
+                params: []
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
 });

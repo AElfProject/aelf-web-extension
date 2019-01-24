@@ -81,22 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 889);
+/******/ 	return __webpack_require__(__webpack_require__.s = 683);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 889:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+/***/ 683:
+/***/ (function(module, exports) {
 
 console.log('Hello World!');
 
 function testzzz() {
-    console.log('testzzz: ', 1231231);
+  console.log('testzzz: ', 1231231);
 }
+
 testzzz();
 
 /***/ })

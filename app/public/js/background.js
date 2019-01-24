@@ -81,11 +81,67 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 882);
+/******/ 	return __webpack_require__(__webpack_require__.s = 670);
 /******/ })
 /************************************************************************/
-/******/ (Array(106).concat([
-/* 106 */
+/******/ (Array(102).concat([
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(103);
+
+var iterableToArray = __webpack_require__(104);
+
+var nonIterableSpread = __webpack_require__(105);
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports) {
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */
 /***/ (function(module, exports) {
 
 var g;
@@ -111,10 +167,6 @@ module.exports = g;
 
 
 /***/ }),
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
 /* 111 */,
 /* 112 */,
 /* 113 */,
@@ -220,7 +272,27 @@ module.exports = g;
 /* 213 */,
 /* 214 */,
 /* 215 */,
-/* 216 */,
+/* 216 */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
 /* 217 */,
 /* 218 */,
 /* 219 */,
@@ -239,7 +311,256 @@ module.exports = g;
 /* 232 */,
 /* 233 */,
 /* 234 */,
-/* 235 */
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */
+/***/ (function(module, exports) {
+
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+
+/***/ }),
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = __webpack_require__(282)
+exports.createHash = exports.Hash = __webpack_require__(289)
+exports.createHmac = exports.Hmac = __webpack_require__(327)
+
+var algos = __webpack_require__(330)
+var algoKeys = Object.keys(algos)
+var hashes = ['sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'md5', 'rmd160'].concat(algoKeys)
+exports.getHashes = function () {
+  return hashes
+}
+
+var p = __webpack_require__(332)
+exports.pbkdf2 = p.pbkdf2
+exports.pbkdf2Sync = p.pbkdf2Sync
+
+var aes = __webpack_require__(337)
+
+exports.Cipher = aes.Cipher
+exports.createCipher = aes.createCipher
+exports.Cipheriv = aes.Cipheriv
+exports.createCipheriv = aes.createCipheriv
+exports.Decipher = aes.Decipher
+exports.createDecipher = aes.createDecipher
+exports.Decipheriv = aes.Decipheriv
+exports.createDecipheriv = aes.createDecipheriv
+exports.getCiphers = aes.getCiphers
+exports.listCiphers = aes.listCiphers
+
+var dh = __webpack_require__(366)
+
+exports.DiffieHellmanGroup = dh.DiffieHellmanGroup
+exports.createDiffieHellmanGroup = dh.createDiffieHellmanGroup
+exports.getDiffieHellman = dh.getDiffieHellman
+exports.createDiffieHellman = dh.createDiffieHellman
+exports.DiffieHellman = dh.DiffieHellman
+
+var sign = __webpack_require__(376)
+
+exports.createSign = sign.createSign
+exports.Sign = sign.Sign
+exports.createVerify = sign.createVerify
+exports.Verify = sign.Verify
+
+exports.createECDH = __webpack_require__(432)
+
+var publicEncrypt = __webpack_require__(433)
+
+exports.publicEncrypt = publicEncrypt.publicEncrypt
+exports.privateEncrypt = publicEncrypt.privateEncrypt
+exports.publicDecrypt = publicEncrypt.publicDecrypt
+exports.privateDecrypt = publicEncrypt.privateDecrypt
+
+// the least I can do is make error messages for the rest of the node.js/crypto api.
+// ;[
+//   'createCredentials'
+// ].forEach(function (name) {
+//   exports[name] = function () {
+//     throw new Error([
+//       'sorry, ' + name + ' is not implemented yet',
+//       'we accept pull requests',
+//       'https://github.com/crypto-browserify/crypto-browserify'
+//     ].join('\n'))
+//   }
+// })
+
+var rf = __webpack_require__(439)
+
+exports.randomFill = rf.randomFill
+exports.randomFillSync = rf.randomFillSync
+
+exports.createCredentials = function () {
+  throw new Error([
+    'sorry, createCredentials is not implemented yet',
+    'we accept pull requests',
+    'https://github.com/crypto-browserify/crypto-browserify'
+  ].join('\n'))
+}
+
+exports.constants = {
+  'DH_CHECK_P_NOT_SAFE_PRIME': 2,
+  'DH_CHECK_P_NOT_PRIME': 1,
+  'DH_UNABLE_TO_CHECK_GENERATOR': 4,
+  'DH_NOT_SUITABLE_GENERATOR': 8,
+  'NPN_ENABLED': 1,
+  'ALPN_ENABLED': 1,
+  'RSA_PKCS1_PADDING': 1,
+  'RSA_SSLV23_PADDING': 2,
+  'RSA_NO_PADDING': 3,
+  'RSA_PKCS1_OAEP_PADDING': 4,
+  'RSA_X931_PADDING': 5,
+  'RSA_PKCS1_PSS_PADDING': 6,
+  'POINT_CONVERSION_COMPRESSED': 2,
+  'POINT_CONVERSION_UNCOMPRESSED': 4,
+  'POINT_CONVERSION_HYBRID': 6
+}
+
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global, process) {
+
+function oldBrowser () {
+  throw new Error('Secure random number generation is not supported by this browser.\nUse Chrome, Firefox or Internet Explorer 11')
+}
+
+var Buffer = __webpack_require__(284).Buffer
+var crypto = global.crypto || global.msCrypto
+
+if (crypto && crypto.getRandomValues) {
+  module.exports = randomBytes
+} else {
+  module.exports = oldBrowser
+}
+
+function randomBytes (size, cb) {
+  // phantomjs needs to throw
+  if (size > 65536) throw new Error('requested too many random bytes')
+  // in case browserify  isn't using the Uint8Array version
+  var rawBytes = new global.Uint8Array(size)
+
+  // This will not work in older browsers.
+  // See https://developer.mozilla.org/en-US/docs/Web/API/window.crypto.getRandomValues
+  if (size > 0) {  // getRandomValues fails on IE if size == 0
+    crypto.getRandomValues(rawBytes)
+  }
+
+  // XXX: phantomjs doesn't like a buffer being passed here
+  var bytes = Buffer.from(rawBytes.buffer)
+
+  if (typeof cb === 'function') {
+    return process.nextTick(function () {
+      cb(null, bytes)
+    })
+  }
+
+  return bytes
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110), __webpack_require__(283)))
+
+/***/ }),
+/* 283 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -429,430 +750,11 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */,
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */,
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */,
-/* 312 */,
-/* 313 */,
-/* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */,
-/* 341 */,
-/* 342 */,
-/* 343 */,
-/* 344 */,
-/* 345 */,
-/* 346 */,
-/* 347 */,
-/* 348 */,
-/* 349 */,
-/* 350 */,
-/* 351 */,
-/* 352 */,
-/* 353 */,
-/* 354 */,
-/* 355 */,
-/* 356 */,
-/* 357 */,
-/* 358 */,
-/* 359 */,
-/* 360 */,
-/* 361 */,
-/* 362 */,
-/* 363 */,
-/* 364 */,
-/* 365 */,
-/* 366 */,
-/* 367 */,
-/* 368 */,
-/* 369 */,
-/* 370 */,
-/* 371 */,
-/* 372 */,
-/* 373 */,
-/* 374 */,
-/* 375 */,
-/* 376 */,
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */,
-/* 415 */,
-/* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */,
-/* 424 */,
-/* 425 */,
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
-/* 431 */,
-/* 432 */,
-/* 433 */,
-/* 434 */,
-/* 435 */,
-/* 436 */,
-/* 437 */,
-/* 438 */,
-/* 439 */,
-/* 440 */,
-/* 441 */,
-/* 442 */,
-/* 443 */,
-/* 444 */,
-/* 445 */,
-/* 446 */,
-/* 447 */,
-/* 448 */,
-/* 449 */,
-/* 450 */,
-/* 451 */,
-/* 452 */,
-/* 453 */,
-/* 454 */,
-/* 455 */,
-/* 456 */,
-/* 457 */,
-/* 458 */,
-/* 459 */,
-/* 460 */,
-/* 461 */,
-/* 462 */,
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */,
-/* 471 */,
-/* 472 */,
-/* 473 */,
-/* 474 */,
-/* 475 */,
-/* 476 */,
-/* 477 */,
-/* 478 */,
-/* 479 */,
-/* 480 */,
-/* 481 */,
-/* 482 */,
-/* 483 */,
-/* 484 */,
-/* 485 */,
-/* 486 */,
-/* 487 */,
-/* 488 */,
-/* 489 */,
-/* 490 */,
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */,
-/* 495 */,
-/* 496 */,
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */,
-/* 504 */,
-/* 505 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = __webpack_require__(506)
-exports.createHash = exports.Hash = __webpack_require__(512)
-exports.createHmac = exports.Hmac = __webpack_require__(550)
-
-var algos = __webpack_require__(553)
-var algoKeys = Object.keys(algos)
-var hashes = ['sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'md5', 'rmd160'].concat(algoKeys)
-exports.getHashes = function () {
-  return hashes
-}
-
-var p = __webpack_require__(555)
-exports.pbkdf2 = p.pbkdf2
-exports.pbkdf2Sync = p.pbkdf2Sync
-
-var aes = __webpack_require__(560)
-
-exports.Cipher = aes.Cipher
-exports.createCipher = aes.createCipher
-exports.Cipheriv = aes.Cipheriv
-exports.createCipheriv = aes.createCipheriv
-exports.Decipher = aes.Decipher
-exports.createDecipher = aes.createDecipher
-exports.Decipheriv = aes.Decipheriv
-exports.createDecipheriv = aes.createDecipheriv
-exports.getCiphers = aes.getCiphers
-exports.listCiphers = aes.listCiphers
-
-var dh = __webpack_require__(589)
-
-exports.DiffieHellmanGroup = dh.DiffieHellmanGroup
-exports.createDiffieHellmanGroup = dh.createDiffieHellmanGroup
-exports.getDiffieHellman = dh.getDiffieHellman
-exports.createDiffieHellman = dh.createDiffieHellman
-exports.DiffieHellman = dh.DiffieHellman
-
-var sign = __webpack_require__(599)
-
-exports.createSign = sign.createSign
-exports.Sign = sign.Sign
-exports.createVerify = sign.createVerify
-exports.Verify = sign.Verify
-
-exports.createECDH = __webpack_require__(655)
-
-var publicEncrypt = __webpack_require__(656)
-
-exports.publicEncrypt = publicEncrypt.publicEncrypt
-exports.privateEncrypt = publicEncrypt.privateEncrypt
-exports.publicDecrypt = publicEncrypt.publicDecrypt
-exports.privateDecrypt = publicEncrypt.privateDecrypt
-
-// the least I can do is make error messages for the rest of the node.js/crypto api.
-// ;[
-//   'createCredentials'
-// ].forEach(function (name) {
-//   exports[name] = function () {
-//     throw new Error([
-//       'sorry, ' + name + ' is not implemented yet',
-//       'we accept pull requests',
-//       'https://github.com/crypto-browserify/crypto-browserify'
-//     ].join('\n'))
-//   }
-// })
-
-var rf = __webpack_require__(662)
-
-exports.randomFill = rf.randomFill
-exports.randomFillSync = rf.randomFillSync
-
-exports.createCredentials = function () {
-  throw new Error([
-    'sorry, createCredentials is not implemented yet',
-    'we accept pull requests',
-    'https://github.com/crypto-browserify/crypto-browserify'
-  ].join('\n'))
-}
-
-exports.constants = {
-  'DH_CHECK_P_NOT_SAFE_PRIME': 2,
-  'DH_CHECK_P_NOT_PRIME': 1,
-  'DH_UNABLE_TO_CHECK_GENERATOR': 4,
-  'DH_NOT_SUITABLE_GENERATOR': 8,
-  'NPN_ENABLED': 1,
-  'ALPN_ENABLED': 1,
-  'RSA_PKCS1_PADDING': 1,
-  'RSA_SSLV23_PADDING': 2,
-  'RSA_NO_PADDING': 3,
-  'RSA_PKCS1_OAEP_PADDING': 4,
-  'RSA_X931_PADDING': 5,
-  'RSA_PKCS1_PSS_PADDING': 6,
-  'POINT_CONVERSION_COMPRESSED': 2,
-  'POINT_CONVERSION_UNCOMPRESSED': 4,
-  'POINT_CONVERSION_HYBRID': 6
-}
-
-
-/***/ }),
-/* 506 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global, process) {
-
-function oldBrowser () {
-  throw new Error('Secure random number generation is not supported by this browser.\nUse Chrome, Firefox or Internet Explorer 11')
-}
-
-var Buffer = __webpack_require__(507).Buffer
-var crypto = global.crypto || global.msCrypto
-
-if (crypto && crypto.getRandomValues) {
-  module.exports = randomBytes
-} else {
-  module.exports = oldBrowser
-}
-
-function randomBytes (size, cb) {
-  // phantomjs needs to throw
-  if (size > 65536) throw new Error('requested too many random bytes')
-  // in case browserify  isn't using the Uint8Array version
-  var rawBytes = new global.Uint8Array(size)
-
-  // This will not work in older browsers.
-  // See https://developer.mozilla.org/en-US/docs/Web/API/window.crypto.getRandomValues
-  if (size > 0) {  // getRandomValues fails on IE if size == 0
-    crypto.getRandomValues(rawBytes)
-  }
-
-  // XXX: phantomjs doesn't like a buffer being passed here
-  var bytes = Buffer.from(rawBytes.buffer)
-
-  if (typeof cb === 'function') {
-    return process.nextTick(function () {
-      cb(null, bytes)
-    })
-  }
-
-  return bytes
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106), __webpack_require__(235)))
-
-/***/ }),
-/* 507 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(508)
+var buffer = __webpack_require__(285)
 var Buffer = buffer.Buffer
 
 // alternative to using Object.keys for old browsers
@@ -916,7 +818,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 
 /***/ }),
-/* 508 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -930,9 +832,9 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 
 
-var base64 = __webpack_require__(509)
-var ieee754 = __webpack_require__(510)
-var isArray = __webpack_require__(511)
+var base64 = __webpack_require__(286)
+var ieee754 = __webpack_require__(287)
+var isArray = __webpack_require__(288)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2710,10 +2612,10 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110)))
 
 /***/ }),
-/* 509 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2871,7 +2773,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 510 */
+/* 287 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2961,7 +2863,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 511 */
+/* 288 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2972,16 +2874,16 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 512 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var inherits = __webpack_require__(513)
-var MD5 = __webpack_require__(514)
-var RIPEMD160 = __webpack_require__(540)
-var sha = __webpack_require__(541)
-var Base = __webpack_require__(549)
+var inherits = __webpack_require__(290)
+var MD5 = __webpack_require__(291)
+var RIPEMD160 = __webpack_require__(317)
+var sha = __webpack_require__(318)
+var Base = __webpack_require__(326)
 
 function Hash (hash) {
   Base.call(this, 'digest')
@@ -3009,7 +2911,7 @@ module.exports = function createHash (alg) {
 
 
 /***/ }),
-/* 513 */
+/* 290 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -3038,14 +2940,14 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 514 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var inherits = __webpack_require__(513)
-var HashBase = __webpack_require__(515)
-var Buffer = __webpack_require__(507).Buffer
+var inherits = __webpack_require__(290)
+var HashBase = __webpack_require__(292)
+var Buffer = __webpack_require__(284).Buffer
 
 var ARRAY16 = new Array(16)
 
@@ -3191,14 +3093,14 @@ module.exports = MD5
 
 
 /***/ }),
-/* 515 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Buffer = __webpack_require__(507).Buffer
-var Transform = __webpack_require__(516).Transform
-var inherits = __webpack_require__(513)
+var Buffer = __webpack_require__(284).Buffer
+var Transform = __webpack_require__(293).Transform
+var inherits = __webpack_require__(290)
 
 function throwIfNotStringOrBuffer (val, prefix) {
   if (!Buffer.isBuffer(val) && typeof val !== 'string') {
@@ -3293,7 +3195,7 @@ module.exports = HashBase
 
 
 /***/ }),
-/* 516 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -3319,15 +3221,15 @@ module.exports = HashBase
 
 module.exports = Stream;
 
-var EE = __webpack_require__(517).EventEmitter;
-var inherits = __webpack_require__(513);
+var EE = __webpack_require__(294).EventEmitter;
+var inherits = __webpack_require__(290);
 
 inherits(Stream, EE);
-Stream.Readable = __webpack_require__(518);
-Stream.Writable = __webpack_require__(536);
-Stream.Duplex = __webpack_require__(537);
-Stream.Transform = __webpack_require__(538);
-Stream.PassThrough = __webpack_require__(539);
+Stream.Readable = __webpack_require__(295);
+Stream.Writable = __webpack_require__(313);
+Stream.Duplex = __webpack_require__(314);
+Stream.Transform = __webpack_require__(315);
+Stream.PassThrough = __webpack_require__(316);
 
 // Backwards-compat with node 0.4.x
 Stream.Stream = Stream;
@@ -3426,9 +3328,10 @@ Stream.prototype.pipe = function(dest, options) {
 
 
 /***/ }),
-/* 517 */
-/***/ (function(module, exports) {
+/* 294 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3450,9 +3353,39 @@ Stream.prototype.pipe = function(dest, options) {
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+
+
+var R = typeof Reflect === 'object' ? Reflect : null
+var ReflectApply = R && typeof R.apply === 'function'
+  ? R.apply
+  : function ReflectApply(target, receiver, args) {
+    return Function.prototype.apply.call(target, receiver, args);
+  }
+
+var ReflectOwnKeys
+if (R && typeof R.ownKeys === 'function') {
+  ReflectOwnKeys = R.ownKeys
+} else if (Object.getOwnPropertySymbols) {
+  ReflectOwnKeys = function ReflectOwnKeys(target) {
+    return Object.getOwnPropertyNames(target)
+      .concat(Object.getOwnPropertySymbols(target));
+  };
+} else {
+  ReflectOwnKeys = function ReflectOwnKeys(target) {
+    return Object.getOwnPropertyNames(target);
+  };
+}
+
+function ProcessEmitWarning(warning) {
+  if (console && console.warn) console.warn(warning);
+}
+
+var NumberIsNaN = Number.isNaN || function NumberIsNaN(value) {
+  return value !== value;
+}
+
 function EventEmitter() {
-  this._events = this._events || {};
-  this._maxListeners = this._maxListeners || undefined;
+  EventEmitter.init.call(this);
 }
 module.exports = EventEmitter;
 
@@ -3460,294 +3393,410 @@ module.exports = EventEmitter;
 EventEmitter.EventEmitter = EventEmitter;
 
 EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._eventsCount = 0;
 EventEmitter.prototype._maxListeners = undefined;
 
 // By default EventEmitters will print a warning if more than 10 listeners are
 // added to it. This is a useful default which helps finding memory leaks.
-EventEmitter.defaultMaxListeners = 10;
+var defaultMaxListeners = 10;
+
+Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
+  enumerable: true,
+  get: function() {
+    return defaultMaxListeners;
+  },
+  set: function(arg) {
+    if (typeof arg !== 'number' || arg < 0 || NumberIsNaN(arg)) {
+      throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' + arg + '.');
+    }
+    defaultMaxListeners = arg;
+  }
+});
+
+EventEmitter.init = function() {
+
+  if (this._events === undefined ||
+      this._events === Object.getPrototypeOf(this)._events) {
+    this._events = Object.create(null);
+    this._eventsCount = 0;
+  }
+
+  this._maxListeners = this._maxListeners || undefined;
+};
 
 // Obviously not all Emitters should be limited to 10. This function allows
 // that to be increased. Set to zero for unlimited.
-EventEmitter.prototype.setMaxListeners = function(n) {
-  if (!isNumber(n) || n < 0 || isNaN(n))
-    throw TypeError('n must be a positive number');
+EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
+  if (typeof n !== 'number' || n < 0 || NumberIsNaN(n)) {
+    throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + '.');
+  }
   this._maxListeners = n;
   return this;
 };
 
-EventEmitter.prototype.emit = function(type) {
-  var er, handler, len, args, i, listeners;
+function $getMaxListeners(that) {
+  if (that._maxListeners === undefined)
+    return EventEmitter.defaultMaxListeners;
+  return that._maxListeners;
+}
 
-  if (!this._events)
-    this._events = {};
+EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
+  return $getMaxListeners(this);
+};
 
-  // If there is no 'error' event listener then throw.
-  if (type === 'error') {
-    if (!this._events.error ||
-        (isObject(this._events.error) && !this._events.error.length)) {
-      er = arguments[1];
-      if (er instanceof Error) {
-        throw er; // Unhandled 'error' event
-      } else {
-        // At least give some kind of context to the user
-        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
-        err.context = er;
-        throw err;
-      }
-    }
-  }
+EventEmitter.prototype.emit = function emit(type) {
+  var args = [];
+  for (var i = 1; i < arguments.length; i++) args.push(arguments[i]);
+  var doError = (type === 'error');
 
-  handler = this._events[type];
-
-  if (isUndefined(handler))
+  var events = this._events;
+  if (events !== undefined)
+    doError = (doError && events.error === undefined);
+  else if (!doError)
     return false;
 
-  if (isFunction(handler)) {
-    switch (arguments.length) {
-      // fast cases
-      case 1:
-        handler.call(this);
-        break;
-      case 2:
-        handler.call(this, arguments[1]);
-        break;
-      case 3:
-        handler.call(this, arguments[1], arguments[2]);
-        break;
-      // slower
-      default:
-        args = Array.prototype.slice.call(arguments, 1);
-        handler.apply(this, args);
+  // If there is no 'error' event listener then throw.
+  if (doError) {
+    var er;
+    if (args.length > 0)
+      er = args[0];
+    if (er instanceof Error) {
+      // Note: The comments on the `throw` lines are intentional, they show
+      // up in Node's output if this results in an unhandled exception.
+      throw er; // Unhandled 'error' event
     }
-  } else if (isObject(handler)) {
-    args = Array.prototype.slice.call(arguments, 1);
-    listeners = handler.slice();
-    len = listeners.length;
-    for (i = 0; i < len; i++)
-      listeners[i].apply(this, args);
+    // At least give some kind of context to the user
+    var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));
+    err.context = er;
+    throw err; // Unhandled 'error' event
+  }
+
+  var handler = events[type];
+
+  if (handler === undefined)
+    return false;
+
+  if (typeof handler === 'function') {
+    ReflectApply(handler, this, args);
+  } else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      ReflectApply(listeners[i], this, args);
   }
 
   return true;
 };
 
-EventEmitter.prototype.addListener = function(type, listener) {
+function _addListener(target, type, listener, prepend) {
   var m;
+  var events;
+  var existing;
 
-  if (!isFunction(listener))
-    throw TypeError('listener must be a function');
+  if (typeof listener !== 'function') {
+    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+  }
 
-  if (!this._events)
-    this._events = {};
+  events = target._events;
+  if (events === undefined) {
+    events = target._events = Object.create(null);
+    target._eventsCount = 0;
+  } else {
+    // To avoid recursion in the case that type === "newListener"! Before
+    // adding it to the listeners, first emit "newListener".
+    if (events.newListener !== undefined) {
+      target.emit('newListener', type,
+                  listener.listener ? listener.listener : listener);
 
-  // To avoid recursion in the case that type === "newListener"! Before
-  // adding it to the listeners, first emit "newListener".
-  if (this._events.newListener)
-    this.emit('newListener', type,
-              isFunction(listener.listener) ?
-              listener.listener : listener);
+      // Re-assign `events` because a newListener handler could have caused the
+      // this._events to be assigned to a new object
+      events = target._events;
+    }
+    existing = events[type];
+  }
 
-  if (!this._events[type])
+  if (existing === undefined) {
     // Optimize the case of one listener. Don't need the extra array object.
-    this._events[type] = listener;
-  else if (isObject(this._events[type]))
-    // If we've already got an array, just append.
-    this._events[type].push(listener);
-  else
-    // Adding the second element, need to change to array.
-    this._events[type] = [this._events[type], listener];
-
-  // Check for listener leak
-  if (isObject(this._events[type]) && !this._events[type].warned) {
-    if (!isUndefined(this._maxListeners)) {
-      m = this._maxListeners;
+    existing = events[type] = listener;
+    ++target._eventsCount;
+  } else {
+    if (typeof existing === 'function') {
+      // Adding the second element, need to change to array.
+      existing = events[type] =
+        prepend ? [listener, existing] : [existing, listener];
+      // If we've already got an array, just append.
+    } else if (prepend) {
+      existing.unshift(listener);
     } else {
-      m = EventEmitter.defaultMaxListeners;
+      existing.push(listener);
     }
 
-    if (m && m > 0 && this._events[type].length > m) {
-      this._events[type].warned = true;
-      console.error('(node) warning: possible EventEmitter memory ' +
-                    'leak detected. %d listeners added. ' +
-                    'Use emitter.setMaxListeners() to increase limit.',
-                    this._events[type].length);
-      if (typeof console.trace === 'function') {
-        // not supported in IE 10
-        console.trace();
-      }
+    // Check for listener leak
+    m = $getMaxListeners(target);
+    if (m > 0 && existing.length > m && !existing.warned) {
+      existing.warned = true;
+      // No error code for this since it is a Warning
+      // eslint-disable-next-line no-restricted-syntax
+      var w = new Error('Possible EventEmitter memory leak detected. ' +
+                          existing.length + ' ' + String(type) + ' listeners ' +
+                          'added. Use emitter.setMaxListeners() to ' +
+                          'increase limit');
+      w.name = 'MaxListenersExceededWarning';
+      w.emitter = target;
+      w.type = type;
+      w.count = existing.length;
+      ProcessEmitWarning(w);
     }
   }
 
-  return this;
+  return target;
+}
+
+EventEmitter.prototype.addListener = function addListener(type, listener) {
+  return _addListener(this, type, listener, false);
 };
 
 EventEmitter.prototype.on = EventEmitter.prototype.addListener;
 
-EventEmitter.prototype.once = function(type, listener) {
-  if (!isFunction(listener))
-    throw TypeError('listener must be a function');
+EventEmitter.prototype.prependListener =
+    function prependListener(type, listener) {
+      return _addListener(this, type, listener, true);
+    };
 
-  var fired = false;
-
-  function g() {
-    this.removeListener(type, g);
-
-    if (!fired) {
-      fired = true;
-      listener.apply(this, arguments);
-    }
+function onceWrapper() {
+  var args = [];
+  for (var i = 0; i < arguments.length; i++) args.push(arguments[i]);
+  if (!this.fired) {
+    this.target.removeListener(this.type, this.wrapFn);
+    this.fired = true;
+    ReflectApply(this.listener, this.target, args);
   }
+}
 
-  g.listener = listener;
-  this.on(type, g);
+function _onceWrap(target, type, listener) {
+  var state = { fired: false, wrapFn: undefined, target: target, type: type, listener: listener };
+  var wrapped = onceWrapper.bind(state);
+  wrapped.listener = listener;
+  state.wrapFn = wrapped;
+  return wrapped;
+}
 
+EventEmitter.prototype.once = function once(type, listener) {
+  if (typeof listener !== 'function') {
+    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+  }
+  this.on(type, _onceWrap(this, type, listener));
   return this;
 };
 
-// emits a 'removeListener' event iff the listener was removed
-EventEmitter.prototype.removeListener = function(type, listener) {
-  var list, position, length, i;
-
-  if (!isFunction(listener))
-    throw TypeError('listener must be a function');
-
-  if (!this._events || !this._events[type])
-    return this;
-
-  list = this._events[type];
-  length = list.length;
-  position = -1;
-
-  if (list === listener ||
-      (isFunction(list.listener) && list.listener === listener)) {
-    delete this._events[type];
-    if (this._events.removeListener)
-      this.emit('removeListener', type, listener);
-
-  } else if (isObject(list)) {
-    for (i = length; i-- > 0;) {
-      if (list[i] === listener ||
-          (list[i].listener && list[i].listener === listener)) {
-        position = i;
-        break;
+EventEmitter.prototype.prependOnceListener =
+    function prependOnceListener(type, listener) {
+      if (typeof listener !== 'function') {
+        throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
       }
-    }
-
-    if (position < 0)
+      this.prependListener(type, _onceWrap(this, type, listener));
       return this;
+    };
 
-    if (list.length === 1) {
-      list.length = 0;
-      delete this._events[type];
-    } else {
-      list.splice(position, 1);
-    }
+// Emits a 'removeListener' event if and only if the listener was removed.
+EventEmitter.prototype.removeListener =
+    function removeListener(type, listener) {
+      var list, events, position, i, originalListener;
 
-    if (this._events.removeListener)
-      this.emit('removeListener', type, listener);
-  }
+      if (typeof listener !== 'function') {
+        throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+      }
 
-  return this;
+      events = this._events;
+      if (events === undefined)
+        return this;
+
+      list = events[type];
+      if (list === undefined)
+        return this;
+
+      if (list === listener || list.listener === listener) {
+        if (--this._eventsCount === 0)
+          this._events = Object.create(null);
+        else {
+          delete events[type];
+          if (events.removeListener)
+            this.emit('removeListener', type, list.listener || listener);
+        }
+      } else if (typeof list !== 'function') {
+        position = -1;
+
+        for (i = list.length - 1; i >= 0; i--) {
+          if (list[i] === listener || list[i].listener === listener) {
+            originalListener = list[i].listener;
+            position = i;
+            break;
+          }
+        }
+
+        if (position < 0)
+          return this;
+
+        if (position === 0)
+          list.shift();
+        else {
+          spliceOne(list, position);
+        }
+
+        if (list.length === 1)
+          events[type] = list[0];
+
+        if (events.removeListener !== undefined)
+          this.emit('removeListener', type, originalListener || listener);
+      }
+
+      return this;
+    };
+
+EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
+
+EventEmitter.prototype.removeAllListeners =
+    function removeAllListeners(type) {
+      var listeners, events, i;
+
+      events = this._events;
+      if (events === undefined)
+        return this;
+
+      // not listening for removeListener, no need to emit
+      if (events.removeListener === undefined) {
+        if (arguments.length === 0) {
+          this._events = Object.create(null);
+          this._eventsCount = 0;
+        } else if (events[type] !== undefined) {
+          if (--this._eventsCount === 0)
+            this._events = Object.create(null);
+          else
+            delete events[type];
+        }
+        return this;
+      }
+
+      // emit removeListener for all listeners on all events
+      if (arguments.length === 0) {
+        var keys = Object.keys(events);
+        var key;
+        for (i = 0; i < keys.length; ++i) {
+          key = keys[i];
+          if (key === 'removeListener') continue;
+          this.removeAllListeners(key);
+        }
+        this.removeAllListeners('removeListener');
+        this._events = Object.create(null);
+        this._eventsCount = 0;
+        return this;
+      }
+
+      listeners = events[type];
+
+      if (typeof listeners === 'function') {
+        this.removeListener(type, listeners);
+      } else if (listeners !== undefined) {
+        // LIFO order
+        for (i = listeners.length - 1; i >= 0; i--) {
+          this.removeListener(type, listeners[i]);
+        }
+      }
+
+      return this;
+    };
+
+function _listeners(target, type, unwrap) {
+  var events = target._events;
+
+  if (events === undefined)
+    return [];
+
+  var evlistener = events[type];
+  if (evlistener === undefined)
+    return [];
+
+  if (typeof evlistener === 'function')
+    return unwrap ? [evlistener.listener || evlistener] : [evlistener];
+
+  return unwrap ?
+    unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
+}
+
+EventEmitter.prototype.listeners = function listeners(type) {
+  return _listeners(this, type, true);
 };
 
-EventEmitter.prototype.removeAllListeners = function(type) {
-  var key, listeners;
-
-  if (!this._events)
-    return this;
-
-  // not listening for removeListener, no need to emit
-  if (!this._events.removeListener) {
-    if (arguments.length === 0)
-      this._events = {};
-    else if (this._events[type])
-      delete this._events[type];
-    return this;
-  }
-
-  // emit removeListener for all listeners on all events
-  if (arguments.length === 0) {
-    for (key in this._events) {
-      if (key === 'removeListener') continue;
-      this.removeAllListeners(key);
-    }
-    this.removeAllListeners('removeListener');
-    this._events = {};
-    return this;
-  }
-
-  listeners = this._events[type];
-
-  if (isFunction(listeners)) {
-    this.removeListener(type, listeners);
-  } else if (listeners) {
-    // LIFO order
-    while (listeners.length)
-      this.removeListener(type, listeners[listeners.length - 1]);
-  }
-  delete this._events[type];
-
-  return this;
-};
-
-EventEmitter.prototype.listeners = function(type) {
-  var ret;
-  if (!this._events || !this._events[type])
-    ret = [];
-  else if (isFunction(this._events[type]))
-    ret = [this._events[type]];
-  else
-    ret = this._events[type].slice();
-  return ret;
-};
-
-EventEmitter.prototype.listenerCount = function(type) {
-  if (this._events) {
-    var evlistener = this._events[type];
-
-    if (isFunction(evlistener))
-      return 1;
-    else if (evlistener)
-      return evlistener.length;
-  }
-  return 0;
+EventEmitter.prototype.rawListeners = function rawListeners(type) {
+  return _listeners(this, type, false);
 };
 
 EventEmitter.listenerCount = function(emitter, type) {
-  return emitter.listenerCount(type);
+  if (typeof emitter.listenerCount === 'function') {
+    return emitter.listenerCount(type);
+  } else {
+    return listenerCount.call(emitter, type);
+  }
 };
 
-function isFunction(arg) {
-  return typeof arg === 'function';
+EventEmitter.prototype.listenerCount = listenerCount;
+function listenerCount(type) {
+  var events = this._events;
+
+  if (events !== undefined) {
+    var evlistener = events[type];
+
+    if (typeof evlistener === 'function') {
+      return 1;
+    } else if (evlistener !== undefined) {
+      return evlistener.length;
+    }
+  }
+
+  return 0;
 }
 
-function isNumber(arg) {
-  return typeof arg === 'number';
+EventEmitter.prototype.eventNames = function eventNames() {
+  return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
+};
+
+function arrayClone(arr, n) {
+  var copy = new Array(n);
+  for (var i = 0; i < n; ++i)
+    copy[i] = arr[i];
+  return copy;
 }
 
-function isObject(arg) {
-  return typeof arg === 'object' && arg !== null;
+function spliceOne(list, index) {
+  for (; index + 1 < list.length; index++)
+    list[index] = list[index + 1];
+  list.pop();
 }
 
-function isUndefined(arg) {
-  return arg === void 0;
+function unwrapListeners(arr) {
+  var ret = new Array(arr.length);
+  for (var i = 0; i < ret.length; ++i) {
+    ret[i] = arr[i].listener || arr[i];
+  }
+  return ret;
 }
 
 
 /***/ }),
-/* 518 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(519);
+exports = module.exports = __webpack_require__(296);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(529);
-exports.Duplex = __webpack_require__(528);
-exports.Transform = __webpack_require__(534);
-exports.PassThrough = __webpack_require__(535);
+exports.Writable = __webpack_require__(306);
+exports.Duplex = __webpack_require__(305);
+exports.Transform = __webpack_require__(311);
+exports.PassThrough = __webpack_require__(312);
 
 
 /***/ }),
-/* 519 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3776,13 +3825,13 @@ exports.PassThrough = __webpack_require__(535);
 
 /*<replacement>*/
 
-var pna = __webpack_require__(520);
+var pna = __webpack_require__(297);
 /*</replacement>*/
 
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = __webpack_require__(521);
+var isArray = __webpack_require__(298);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -3792,7 +3841,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(517).EventEmitter;
+var EE = __webpack_require__(294).EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -3800,12 +3849,12 @@ var EElistenerCount = function (emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(522);
+var Stream = __webpack_require__(299);
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(507).Buffer;
+var Buffer = __webpack_require__(284).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -3817,12 +3866,12 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = __webpack_require__(523);
-util.inherits = __webpack_require__(513);
+var util = __webpack_require__(300);
+util.inherits = __webpack_require__(290);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(524);
+var debugUtil = __webpack_require__(301);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -3831,8 +3880,8 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(525);
-var destroyImpl = __webpack_require__(527);
+var BufferList = __webpack_require__(302);
+var destroyImpl = __webpack_require__(304);
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -3852,7 +3901,7 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(528);
+  Duplex = Duplex || __webpack_require__(305);
 
   options = options || {};
 
@@ -3922,14 +3971,14 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(533).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(310).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
 }
 
 function Readable(options) {
-  Duplex = Duplex || __webpack_require__(528);
+  Duplex = Duplex || __webpack_require__(305);
 
   if (!(this instanceof Readable)) return new Readable(options);
 
@@ -4078,7 +4127,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(533).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(310).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -4770,10 +4819,10 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106), __webpack_require__(235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110), __webpack_require__(283)))
 
 /***/ }),
-/* 520 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4822,10 +4871,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(283)))
 
 /***/ }),
-/* 521 */
+/* 298 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -4836,14 +4885,14 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 522 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(517).EventEmitter;
+module.exports = __webpack_require__(294).EventEmitter;
 
 
 /***/ }),
-/* 523 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
@@ -4954,16 +5003,16 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 524 */
+/* 301 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 525 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4971,8 +5020,8 @@ function objectToString(o) {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = __webpack_require__(507).Buffer;
-var util = __webpack_require__(526);
+var Buffer = __webpack_require__(284).Buffer;
+var util = __webpack_require__(303);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -5048,13 +5097,13 @@ if (util && util.inspect && util.inspect.custom) {
 }
 
 /***/ }),
-/* 526 */
+/* 303 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 527 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5062,7 +5111,7 @@ if (util && util.inspect && util.inspect.custom) {
 
 /*<replacement>*/
 
-var pna = __webpack_require__(520);
+var pna = __webpack_require__(297);
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -5134,7 +5183,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 528 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5168,7 +5217,7 @@ module.exports = {
 
 /*<replacement>*/
 
-var pna = __webpack_require__(520);
+var pna = __webpack_require__(297);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -5183,12 +5232,12 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = __webpack_require__(523);
-util.inherits = __webpack_require__(513);
+var util = __webpack_require__(300);
+util.inherits = __webpack_require__(290);
 /*</replacement>*/
 
-var Readable = __webpack_require__(519);
-var Writable = __webpack_require__(529);
+var Readable = __webpack_require__(296);
+var Writable = __webpack_require__(306);
 
 util.inherits(Duplex, Readable);
 
@@ -5271,7 +5320,7 @@ Duplex.prototype._destroy = function (err, cb) {
 };
 
 /***/ }),
-/* 529 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5304,7 +5353,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
 /*<replacement>*/
 
-var pna = __webpack_require__(520);
+var pna = __webpack_require__(297);
 /*</replacement>*/
 
 module.exports = Writable;
@@ -5341,23 +5390,23 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = __webpack_require__(523);
-util.inherits = __webpack_require__(513);
+var util = __webpack_require__(300);
+util.inherits = __webpack_require__(290);
 /*</replacement>*/
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(532)
+  deprecate: __webpack_require__(309)
 };
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(522);
+var Stream = __webpack_require__(299);
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(507).Buffer;
+var Buffer = __webpack_require__(284).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -5368,14 +5417,14 @@ function _isUint8Array(obj) {
 
 /*</replacement>*/
 
-var destroyImpl = __webpack_require__(527);
+var destroyImpl = __webpack_require__(304);
 
 util.inherits(Writable, Stream);
 
 function nop() {}
 
 function WritableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(528);
+  Duplex = Duplex || __webpack_require__(305);
 
   options = options || {};
 
@@ -5525,7 +5574,7 @@ if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.protot
 }
 
 function Writable(options) {
-  Duplex = Duplex || __webpack_require__(528);
+  Duplex = Duplex || __webpack_require__(305);
 
   // Writable ctor is applied to Duplexes, too.
   // `realHasInstance` is necessary because using plain `instanceof`
@@ -5962,10 +6011,10 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(235), __webpack_require__(530).setImmediate, __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(283), __webpack_require__(307).setImmediate, __webpack_require__(110)))
 
 /***/ }),
-/* 530 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -6021,7 +6070,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(531);
+__webpack_require__(308);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -6032,10 +6081,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110)))
 
 /***/ }),
-/* 531 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -6225,10 +6274,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106), __webpack_require__(235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110), __webpack_require__(283)))
 
 /***/ }),
-/* 532 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -6299,10 +6348,10 @@ function config (name) {
   return String(val).toLowerCase() === 'true';
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110)))
 
 /***/ }),
-/* 533 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6331,7 +6380,7 @@ function config (name) {
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(507).Buffer;
+var Buffer = __webpack_require__(284).Buffer;
 /*</replacement>*/
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
@@ -6604,7 +6653,7 @@ function simpleEnd(buf) {
 }
 
 /***/ }),
-/* 534 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6675,11 +6724,11 @@ function simpleEnd(buf) {
 
 module.exports = Transform;
 
-var Duplex = __webpack_require__(528);
+var Duplex = __webpack_require__(305);
 
 /*<replacement>*/
-var util = __webpack_require__(523);
-util.inherits = __webpack_require__(513);
+var util = __webpack_require__(300);
+util.inherits = __webpack_require__(290);
 /*</replacement>*/
 
 util.inherits(Transform, Duplex);
@@ -6824,7 +6873,7 @@ function done(stream, er, data) {
 }
 
 /***/ }),
-/* 535 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6857,11 +6906,11 @@ function done(stream, er, data) {
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(534);
+var Transform = __webpack_require__(311);
 
 /*<replacement>*/
-var util = __webpack_require__(523);
-util.inherits = __webpack_require__(513);
+var util = __webpack_require__(300);
+util.inherits = __webpack_require__(290);
 /*</replacement>*/
 
 util.inherits(PassThrough, Transform);
@@ -6877,42 +6926,42 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 };
 
 /***/ }),
-/* 536 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(529);
+module.exports = __webpack_require__(306);
 
 
 /***/ }),
-/* 537 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(528);
+module.exports = __webpack_require__(305);
 
 
 /***/ }),
-/* 538 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(518).Transform
+module.exports = __webpack_require__(295).Transform
 
 
 /***/ }),
-/* 539 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(518).PassThrough
+module.exports = __webpack_require__(295).PassThrough
 
 
 /***/ }),
-/* 540 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Buffer = __webpack_require__(508).Buffer
-var inherits = __webpack_require__(513)
-var HashBase = __webpack_require__(515)
+var Buffer = __webpack_require__(285).Buffer
+var inherits = __webpack_require__(290)
+var HashBase = __webpack_require__(292)
 
 var ARRAY16 = new Array(16)
 
@@ -7075,7 +7124,7 @@ module.exports = RIPEMD160
 
 
 /***/ }),
-/* 541 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var exports = module.exports = function SHA (algorithm) {
@@ -7087,16 +7136,16 @@ var exports = module.exports = function SHA (algorithm) {
   return new Algorithm()
 }
 
-exports.sha = __webpack_require__(542)
-exports.sha1 = __webpack_require__(544)
-exports.sha224 = __webpack_require__(545)
-exports.sha256 = __webpack_require__(546)
-exports.sha384 = __webpack_require__(547)
-exports.sha512 = __webpack_require__(548)
+exports.sha = __webpack_require__(319)
+exports.sha1 = __webpack_require__(321)
+exports.sha224 = __webpack_require__(322)
+exports.sha256 = __webpack_require__(323)
+exports.sha384 = __webpack_require__(324)
+exports.sha512 = __webpack_require__(325)
 
 
 /***/ }),
-/* 542 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -7107,9 +7156,9 @@ exports.sha512 = __webpack_require__(548)
  * operation was added.
  */
 
-var inherits = __webpack_require__(513)
-var Hash = __webpack_require__(543)
-var Buffer = __webpack_require__(507).Buffer
+var inherits = __webpack_require__(290)
+var Hash = __webpack_require__(320)
+var Buffer = __webpack_require__(284).Buffer
 
 var K = [
   0x5a827999, 0x6ed9eba1, 0x8f1bbcdc | 0, 0xca62c1d6 | 0
@@ -7196,10 +7245,10 @@ module.exports = Sha
 
 
 /***/ }),
-/* 543 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(507).Buffer
+var Buffer = __webpack_require__(284).Buffer
 
 // prototype class for hash functions
 function Hash (blockSize, finalSize) {
@@ -7283,7 +7332,7 @@ module.exports = Hash
 
 
 /***/ }),
-/* 544 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -7295,9 +7344,9 @@ module.exports = Hash
  * See http://pajhome.org.uk/crypt/md5 for details.
  */
 
-var inherits = __webpack_require__(513)
-var Hash = __webpack_require__(543)
-var Buffer = __webpack_require__(507).Buffer
+var inherits = __webpack_require__(290)
+var Hash = __webpack_require__(320)
+var Buffer = __webpack_require__(284).Buffer
 
 var K = [
   0x5a827999, 0x6ed9eba1, 0x8f1bbcdc | 0, 0xca62c1d6 | 0
@@ -7388,7 +7437,7 @@ module.exports = Sha1
 
 
 /***/ }),
-/* 545 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -7399,10 +7448,10 @@ module.exports = Sha1
  *
  */
 
-var inherits = __webpack_require__(513)
-var Sha256 = __webpack_require__(546)
-var Hash = __webpack_require__(543)
-var Buffer = __webpack_require__(507).Buffer
+var inherits = __webpack_require__(290)
+var Sha256 = __webpack_require__(323)
+var Hash = __webpack_require__(320)
+var Buffer = __webpack_require__(284).Buffer
 
 var W = new Array(64)
 
@@ -7447,7 +7496,7 @@ module.exports = Sha224
 
 
 /***/ }),
-/* 546 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -7458,9 +7507,9 @@ module.exports = Sha224
  *
  */
 
-var inherits = __webpack_require__(513)
-var Hash = __webpack_require__(543)
-var Buffer = __webpack_require__(507).Buffer
+var inherits = __webpack_require__(290)
+var Hash = __webpack_require__(320)
+var Buffer = __webpack_require__(284).Buffer
 
 var K = [
   0x428A2F98, 0x71374491, 0xB5C0FBCF, 0xE9B5DBA5,
@@ -7588,13 +7637,13 @@ module.exports = Sha256
 
 
 /***/ }),
-/* 547 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(513)
-var SHA512 = __webpack_require__(548)
-var Hash = __webpack_require__(543)
-var Buffer = __webpack_require__(507).Buffer
+var inherits = __webpack_require__(290)
+var SHA512 = __webpack_require__(325)
+var Hash = __webpack_require__(320)
+var Buffer = __webpack_require__(284).Buffer
 
 var W = new Array(160)
 
@@ -7651,12 +7700,12 @@ module.exports = Sha384
 
 
 /***/ }),
-/* 548 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(513)
-var Hash = __webpack_require__(543)
-var Buffer = __webpack_require__(507).Buffer
+var inherits = __webpack_require__(290)
+var Hash = __webpack_require__(320)
+var Buffer = __webpack_require__(284).Buffer
 
 var K = [
   0x428a2f98, 0xd728ae22, 0x71374491, 0x23ef65cd,
@@ -7917,13 +7966,13 @@ module.exports = Sha512
 
 
 /***/ }),
-/* 549 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(507).Buffer
-var Transform = __webpack_require__(516).Transform
-var StringDecoder = __webpack_require__(533).StringDecoder
-var inherits = __webpack_require__(513)
+var Buffer = __webpack_require__(284).Buffer
+var Transform = __webpack_require__(293).Transform
+var StringDecoder = __webpack_require__(310).StringDecoder
+var inherits = __webpack_require__(290)
 
 function CipherBase (hashMode) {
   Transform.call(this)
@@ -8022,19 +8071,19 @@ module.exports = CipherBase
 
 
 /***/ }),
-/* 550 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var inherits = __webpack_require__(513)
-var Legacy = __webpack_require__(551)
-var Base = __webpack_require__(549)
-var Buffer = __webpack_require__(507).Buffer
-var md5 = __webpack_require__(552)
-var RIPEMD160 = __webpack_require__(540)
+var inherits = __webpack_require__(290)
+var Legacy = __webpack_require__(328)
+var Base = __webpack_require__(326)
+var Buffer = __webpack_require__(284).Buffer
+var md5 = __webpack_require__(329)
+var RIPEMD160 = __webpack_require__(317)
 
-var sha = __webpack_require__(541)
+var sha = __webpack_require__(318)
 
 var ZEROS = Buffer.alloc(128)
 
@@ -8091,15 +8140,15 @@ module.exports = function createHmac (alg, key) {
 
 
 /***/ }),
-/* 551 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var inherits = __webpack_require__(513)
-var Buffer = __webpack_require__(507).Buffer
+var inherits = __webpack_require__(290)
+var Buffer = __webpack_require__(284).Buffer
 
-var Base = __webpack_require__(549)
+var Base = __webpack_require__(326)
 
 var ZEROS = Buffer.alloc(128)
 var blocksize = 64
@@ -8144,10 +8193,10 @@ module.exports = Hmac
 
 
 /***/ }),
-/* 552 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MD5 = __webpack_require__(514)
+var MD5 = __webpack_require__(291)
 
 module.exports = function (buffer) {
   return new MD5().update(buffer).digest()
@@ -8155,34 +8204,34 @@ module.exports = function (buffer) {
 
 
 /***/ }),
-/* 553 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(554)
+module.exports = __webpack_require__(331)
 
 
 /***/ }),
-/* 554 */
+/* 331 */
 /***/ (function(module) {
 
 module.exports = {"sha224WithRSAEncryption":{"sign":"rsa","hash":"sha224","id":"302d300d06096086480165030402040500041c"},"RSA-SHA224":{"sign":"ecdsa/rsa","hash":"sha224","id":"302d300d06096086480165030402040500041c"},"sha256WithRSAEncryption":{"sign":"rsa","hash":"sha256","id":"3031300d060960864801650304020105000420"},"RSA-SHA256":{"sign":"ecdsa/rsa","hash":"sha256","id":"3031300d060960864801650304020105000420"},"sha384WithRSAEncryption":{"sign":"rsa","hash":"sha384","id":"3041300d060960864801650304020205000430"},"RSA-SHA384":{"sign":"ecdsa/rsa","hash":"sha384","id":"3041300d060960864801650304020205000430"},"sha512WithRSAEncryption":{"sign":"rsa","hash":"sha512","id":"3051300d060960864801650304020305000440"},"RSA-SHA512":{"sign":"ecdsa/rsa","hash":"sha512","id":"3051300d060960864801650304020305000440"},"RSA-SHA1":{"sign":"rsa","hash":"sha1","id":"3021300906052b0e03021a05000414"},"ecdsa-with-SHA1":{"sign":"ecdsa","hash":"sha1","id":""},"sha256":{"sign":"ecdsa","hash":"sha256","id":""},"sha224":{"sign":"ecdsa","hash":"sha224","id":""},"sha384":{"sign":"ecdsa","hash":"sha384","id":""},"sha512":{"sign":"ecdsa","hash":"sha512","id":""},"DSA-SHA":{"sign":"dsa","hash":"sha1","id":""},"DSA-SHA1":{"sign":"dsa","hash":"sha1","id":""},"DSA":{"sign":"dsa","hash":"sha1","id":""},"DSA-WITH-SHA224":{"sign":"dsa","hash":"sha224","id":""},"DSA-SHA224":{"sign":"dsa","hash":"sha224","id":""},"DSA-WITH-SHA256":{"sign":"dsa","hash":"sha256","id":""},"DSA-SHA256":{"sign":"dsa","hash":"sha256","id":""},"DSA-WITH-SHA384":{"sign":"dsa","hash":"sha384","id":""},"DSA-SHA384":{"sign":"dsa","hash":"sha384","id":""},"DSA-WITH-SHA512":{"sign":"dsa","hash":"sha512","id":""},"DSA-SHA512":{"sign":"dsa","hash":"sha512","id":""},"DSA-RIPEMD160":{"sign":"dsa","hash":"rmd160","id":""},"ripemd160WithRSA":{"sign":"rsa","hash":"rmd160","id":"3021300906052b2403020105000414"},"RSA-RIPEMD160":{"sign":"rsa","hash":"rmd160","id":"3021300906052b2403020105000414"},"md5WithRSAEncryption":{"sign":"rsa","hash":"md5","id":"3020300c06082a864886f70d020505000410"},"RSA-MD5":{"sign":"rsa","hash":"md5","id":"3020300c06082a864886f70d020505000410"}};
 
 /***/ }),
-/* 555 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports.pbkdf2 = __webpack_require__(556)
-exports.pbkdf2Sync = __webpack_require__(559)
+exports.pbkdf2 = __webpack_require__(333)
+exports.pbkdf2Sync = __webpack_require__(336)
 
 
 /***/ }),
-/* 556 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global, process) {var checkParameters = __webpack_require__(557)
-var defaultEncoding = __webpack_require__(558)
-var sync = __webpack_require__(559)
-var Buffer = __webpack_require__(507).Buffer
+/* WEBPACK VAR INJECTION */(function(global, process) {var checkParameters = __webpack_require__(334)
+var defaultEncoding = __webpack_require__(335)
+var sync = __webpack_require__(336)
+var Buffer = __webpack_require__(284).Buffer
 
 var ZERO_BUF
 var subtle = global.crypto && global.crypto.subtle
@@ -8280,10 +8329,10 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
   }), callback)
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106), __webpack_require__(235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110), __webpack_require__(283)))
 
 /***/ }),
-/* 557 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {var MAX_ALLOC = Math.pow(2, 30) - 1 // default in iojs
@@ -8315,10 +8364,10 @@ module.exports = function (password, salt, iterations, keylen) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 558 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var defaultEncoding
@@ -8332,19 +8381,19 @@ if (process.browser) {
 }
 module.exports = defaultEncoding
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(283)))
 
 /***/ }),
-/* 559 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var md5 = __webpack_require__(552)
-var RIPEMD160 = __webpack_require__(540)
-var sha = __webpack_require__(541)
+var md5 = __webpack_require__(329)
+var RIPEMD160 = __webpack_require__(317)
+var sha = __webpack_require__(318)
 
-var checkParameters = __webpack_require__(557)
-var defaultEncoding = __webpack_require__(558)
-var Buffer = __webpack_require__(507).Buffer
+var checkParameters = __webpack_require__(334)
+var defaultEncoding = __webpack_require__(335)
+var Buffer = __webpack_require__(284).Buffer
 var ZEROS = Buffer.alloc(128)
 var sizes = {
   md5: 16,
@@ -8445,14 +8494,14 @@ module.exports = pbkdf2
 
 
 /***/ }),
-/* 560 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var DES = __webpack_require__(561)
-var aes = __webpack_require__(569)
-var aesModes = __webpack_require__(571)
-var desModes = __webpack_require__(588)
-var ebtk = __webpack_require__(586)
+var DES = __webpack_require__(338)
+var aes = __webpack_require__(346)
+var aesModes = __webpack_require__(348)
+var desModes = __webpack_require__(365)
+var ebtk = __webpack_require__(363)
 
 function createCipher (suite, password) {
   suite = suite.toLowerCase()
@@ -8518,13 +8567,13 @@ exports.listCiphers = exports.getCiphers = getCiphers
 
 
 /***/ }),
-/* 561 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var CipherBase = __webpack_require__(549)
-var des = __webpack_require__(562)
-var inherits = __webpack_require__(513)
-var Buffer = __webpack_require__(507).Buffer
+var CipherBase = __webpack_require__(326)
+var des = __webpack_require__(339)
+var inherits = __webpack_require__(290)
+var Buffer = __webpack_require__(284).Buffer
 
 var modes = {
   'des-ede3-cbc': des.CBC.instantiate(des.EDE),
@@ -8574,21 +8623,21 @@ DES.prototype._final = function () {
 
 
 /***/ }),
-/* 562 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.utils = __webpack_require__(563);
-exports.Cipher = __webpack_require__(564);
-exports.DES = __webpack_require__(566);
-exports.CBC = __webpack_require__(567);
-exports.EDE = __webpack_require__(568);
+exports.utils = __webpack_require__(340);
+exports.Cipher = __webpack_require__(341);
+exports.DES = __webpack_require__(343);
+exports.CBC = __webpack_require__(344);
+exports.EDE = __webpack_require__(345);
 
 
 /***/ }),
-/* 563 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8851,13 +8900,13 @@ exports.padSplit = function padSplit(num, size, group) {
 
 
 /***/ }),
-/* 564 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var assert = __webpack_require__(565);
+var assert = __webpack_require__(342);
 
 function Cipher(options) {
   this.options = options;
@@ -8999,7 +9048,7 @@ Cipher.prototype._finalDecrypt = function _finalDecrypt() {
 
 
 /***/ }),
-/* 565 */
+/* 342 */
 /***/ (function(module, exports) {
 
 module.exports = assert;
@@ -9016,16 +9065,16 @@ assert.equal = function assertEqual(l, r, msg) {
 
 
 /***/ }),
-/* 566 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var assert = __webpack_require__(565);
-var inherits = __webpack_require__(513);
+var assert = __webpack_require__(342);
+var inherits = __webpack_require__(290);
 
-var des = __webpack_require__(562);
+var des = __webpack_require__(339);
 var utils = des.utils;
 var Cipher = des.Cipher;
 
@@ -9166,14 +9215,14 @@ DES.prototype._decrypt = function _decrypt(state, lStart, rStart, out, off) {
 
 
 /***/ }),
-/* 567 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var assert = __webpack_require__(565);
-var inherits = __webpack_require__(513);
+var assert = __webpack_require__(342);
+var inherits = __webpack_require__(290);
 
 var proto = {};
 
@@ -9238,16 +9287,16 @@ proto._update = function _update(inp, inOff, out, outOff) {
 
 
 /***/ }),
-/* 568 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var assert = __webpack_require__(565);
-var inherits = __webpack_require__(513);
+var assert = __webpack_require__(342);
+var inherits = __webpack_require__(290);
 
-var des = __webpack_require__(562);
+var des = __webpack_require__(339);
 var Cipher = des.Cipher;
 var DES = des.DES;
 
@@ -9300,12 +9349,12 @@ EDE.prototype._unpad = DES.prototype._unpad;
 
 
 /***/ }),
-/* 569 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ciphers = __webpack_require__(570)
-var deciphers = __webpack_require__(587)
-var modes = __webpack_require__(581)
+var ciphers = __webpack_require__(347)
+var deciphers = __webpack_require__(364)
+var modes = __webpack_require__(358)
 
 function getCiphers () {
   return Object.keys(modes)
@@ -9319,17 +9368,17 @@ exports.listCiphers = exports.getCiphers = getCiphers
 
 
 /***/ }),
-/* 570 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MODES = __webpack_require__(571)
-var AuthCipher = __webpack_require__(582)
-var Buffer = __webpack_require__(507).Buffer
-var StreamCipher = __webpack_require__(585)
-var Transform = __webpack_require__(549)
-var aes = __webpack_require__(583)
-var ebtk = __webpack_require__(586)
-var inherits = __webpack_require__(513)
+var MODES = __webpack_require__(348)
+var AuthCipher = __webpack_require__(359)
+var Buffer = __webpack_require__(284).Buffer
+var StreamCipher = __webpack_require__(362)
+var Transform = __webpack_require__(326)
+var aes = __webpack_require__(360)
+var ebtk = __webpack_require__(363)
+var inherits = __webpack_require__(290)
 
 function Cipher (mode, key, iv) {
   Transform.call(this)
@@ -9439,21 +9488,21 @@ exports.createCipher = createCipher
 
 
 /***/ }),
-/* 571 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var modeModules = {
-  ECB: __webpack_require__(572),
-  CBC: __webpack_require__(573),
-  CFB: __webpack_require__(575),
-  CFB8: __webpack_require__(576),
-  CFB1: __webpack_require__(577),
-  OFB: __webpack_require__(578),
-  CTR: __webpack_require__(579),
-  GCM: __webpack_require__(579)
+  ECB: __webpack_require__(349),
+  CBC: __webpack_require__(350),
+  CFB: __webpack_require__(352),
+  CFB8: __webpack_require__(353),
+  CFB1: __webpack_require__(354),
+  OFB: __webpack_require__(355),
+  CTR: __webpack_require__(356),
+  GCM: __webpack_require__(356)
 }
 
-var modes = __webpack_require__(581)
+var modes = __webpack_require__(358)
 
 for (var key in modes) {
   modes[key].module = modeModules[modes[key].mode]
@@ -9463,7 +9512,7 @@ module.exports = modes
 
 
 /***/ }),
-/* 572 */
+/* 349 */
 /***/ (function(module, exports) {
 
 exports.encrypt = function (self, block) {
@@ -9476,10 +9525,10 @@ exports.decrypt = function (self, block) {
 
 
 /***/ }),
-/* 573 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var xor = __webpack_require__(574)
+var xor = __webpack_require__(351)
 
 exports.encrypt = function (self, block) {
   var data = xor(block, self._prev)
@@ -9499,7 +9548,7 @@ exports.decrypt = function (self, block) {
 
 
 /***/ }),
-/* 574 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {module.exports = function xor (a, b) {
@@ -9513,14 +9562,14 @@ exports.decrypt = function (self, block) {
   return buffer
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 575 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(507).Buffer
-var xor = __webpack_require__(574)
+var Buffer = __webpack_require__(284).Buffer
+var xor = __webpack_require__(351)
 
 function encryptStart (self, data, decrypt) {
   var len = data.length
@@ -9555,10 +9604,10 @@ exports.encrypt = function (self, data, decrypt) {
 
 
 /***/ }),
-/* 576 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(507).Buffer
+var Buffer = __webpack_require__(284).Buffer
 
 function encryptByte (self, byteParam, decrypt) {
   var pad = self._cipher.encryptBlock(self._prev)
@@ -9586,10 +9635,10 @@ exports.encrypt = function (self, chunk, decrypt) {
 
 
 /***/ }),
-/* 577 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(507).Buffer
+var Buffer = __webpack_require__(284).Buffer
 
 function encryptByte (self, byteParam, decrypt) {
   var pad
@@ -9634,10 +9683,10 @@ exports.encrypt = function (self, chunk, decrypt) {
 
 
 /***/ }),
-/* 578 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var xor = __webpack_require__(574)
+/* WEBPACK VAR INJECTION */(function(Buffer) {var xor = __webpack_require__(351)
 
 function getBlock (self) {
   self._prev = self._cipher.encryptBlock(self._prev)
@@ -9654,15 +9703,15 @@ exports.encrypt = function (self, chunk) {
   return xor(chunk, pad)
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 579 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var xor = __webpack_require__(574)
-var Buffer = __webpack_require__(507).Buffer
-var incr32 = __webpack_require__(580)
+var xor = __webpack_require__(351)
+var Buffer = __webpack_require__(284).Buffer
+var incr32 = __webpack_require__(357)
 
 function getBlock (self) {
   var out = self._cipher.encryptBlockRaw(self._prev)
@@ -9693,7 +9742,7 @@ exports.encrypt = function (self, chunk) {
 
 
 /***/ }),
-/* 580 */
+/* 357 */
 /***/ (function(module, exports) {
 
 function incr32 (iv) {
@@ -9714,22 +9763,22 @@ module.exports = incr32
 
 
 /***/ }),
-/* 581 */
+/* 358 */
 /***/ (function(module) {
 
 module.exports = {"aes-128-ecb":{"cipher":"AES","key":128,"iv":0,"mode":"ECB","type":"block"},"aes-192-ecb":{"cipher":"AES","key":192,"iv":0,"mode":"ECB","type":"block"},"aes-256-ecb":{"cipher":"AES","key":256,"iv":0,"mode":"ECB","type":"block"},"aes-128-cbc":{"cipher":"AES","key":128,"iv":16,"mode":"CBC","type":"block"},"aes-192-cbc":{"cipher":"AES","key":192,"iv":16,"mode":"CBC","type":"block"},"aes-256-cbc":{"cipher":"AES","key":256,"iv":16,"mode":"CBC","type":"block"},"aes128":{"cipher":"AES","key":128,"iv":16,"mode":"CBC","type":"block"},"aes192":{"cipher":"AES","key":192,"iv":16,"mode":"CBC","type":"block"},"aes256":{"cipher":"AES","key":256,"iv":16,"mode":"CBC","type":"block"},"aes-128-cfb":{"cipher":"AES","key":128,"iv":16,"mode":"CFB","type":"stream"},"aes-192-cfb":{"cipher":"AES","key":192,"iv":16,"mode":"CFB","type":"stream"},"aes-256-cfb":{"cipher":"AES","key":256,"iv":16,"mode":"CFB","type":"stream"},"aes-128-cfb8":{"cipher":"AES","key":128,"iv":16,"mode":"CFB8","type":"stream"},"aes-192-cfb8":{"cipher":"AES","key":192,"iv":16,"mode":"CFB8","type":"stream"},"aes-256-cfb8":{"cipher":"AES","key":256,"iv":16,"mode":"CFB8","type":"stream"},"aes-128-cfb1":{"cipher":"AES","key":128,"iv":16,"mode":"CFB1","type":"stream"},"aes-192-cfb1":{"cipher":"AES","key":192,"iv":16,"mode":"CFB1","type":"stream"},"aes-256-cfb1":{"cipher":"AES","key":256,"iv":16,"mode":"CFB1","type":"stream"},"aes-128-ofb":{"cipher":"AES","key":128,"iv":16,"mode":"OFB","type":"stream"},"aes-192-ofb":{"cipher":"AES","key":192,"iv":16,"mode":"OFB","type":"stream"},"aes-256-ofb":{"cipher":"AES","key":256,"iv":16,"mode":"OFB","type":"stream"},"aes-128-ctr":{"cipher":"AES","key":128,"iv":16,"mode":"CTR","type":"stream"},"aes-192-ctr":{"cipher":"AES","key":192,"iv":16,"mode":"CTR","type":"stream"},"aes-256-ctr":{"cipher":"AES","key":256,"iv":16,"mode":"CTR","type":"stream"},"aes-128-gcm":{"cipher":"AES","key":128,"iv":12,"mode":"GCM","type":"auth"},"aes-192-gcm":{"cipher":"AES","key":192,"iv":12,"mode":"GCM","type":"auth"},"aes-256-gcm":{"cipher":"AES","key":256,"iv":12,"mode":"GCM","type":"auth"}};
 
 /***/ }),
-/* 582 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var aes = __webpack_require__(583)
-var Buffer = __webpack_require__(507).Buffer
-var Transform = __webpack_require__(549)
-var inherits = __webpack_require__(513)
-var GHASH = __webpack_require__(584)
-var xor = __webpack_require__(574)
-var incr32 = __webpack_require__(580)
+var aes = __webpack_require__(360)
+var Buffer = __webpack_require__(284).Buffer
+var Transform = __webpack_require__(326)
+var inherits = __webpack_require__(290)
+var GHASH = __webpack_require__(361)
+var xor = __webpack_require__(351)
+var incr32 = __webpack_require__(357)
 
 function xorTest (a, b) {
   var out = 0
@@ -9843,7 +9892,7 @@ module.exports = StreamCipher
 
 
 /***/ }),
-/* 583 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // based on the aes implimentation in triple sec
@@ -9851,7 +9900,7 @@ module.exports = StreamCipher
 // which is in turn based on the one from crypto-js
 // https://code.google.com/p/crypto-js/
 
-var Buffer = __webpack_require__(507).Buffer
+var Buffer = __webpack_require__(284).Buffer
 
 function asUInt32Array (buf) {
   if (!Buffer.isBuffer(buf)) buf = Buffer.from(buf)
@@ -10077,10 +10126,10 @@ module.exports.AES = AES
 
 
 /***/ }),
-/* 584 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(507).Buffer
+var Buffer = __webpack_require__(284).Buffer
 var ZEROES = Buffer.alloc(16, 0)
 
 function toArray (buf) {
@@ -10172,13 +10221,13 @@ module.exports = GHASH
 
 
 /***/ }),
-/* 585 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var aes = __webpack_require__(583)
-var Buffer = __webpack_require__(507).Buffer
-var Transform = __webpack_require__(549)
-var inherits = __webpack_require__(513)
+var aes = __webpack_require__(360)
+var Buffer = __webpack_require__(284).Buffer
+var Transform = __webpack_require__(326)
+var inherits = __webpack_require__(290)
 
 function StreamCipher (mode, key, iv, decrypt) {
   Transform.call(this)
@@ -10205,11 +10254,11 @@ module.exports = StreamCipher
 
 
 /***/ }),
-/* 586 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(507).Buffer
-var MD5 = __webpack_require__(514)
+var Buffer = __webpack_require__(284).Buffer
+var MD5 = __webpack_require__(291)
 
 /* eslint-disable camelcase */
 function EVP_BytesToKey (password, salt, keyBits, ivLen) {
@@ -10256,17 +10305,17 @@ module.exports = EVP_BytesToKey
 
 
 /***/ }),
-/* 587 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var AuthCipher = __webpack_require__(582)
-var Buffer = __webpack_require__(507).Buffer
-var MODES = __webpack_require__(571)
-var StreamCipher = __webpack_require__(585)
-var Transform = __webpack_require__(549)
-var aes = __webpack_require__(583)
-var ebtk = __webpack_require__(586)
-var inherits = __webpack_require__(513)
+var AuthCipher = __webpack_require__(359)
+var Buffer = __webpack_require__(284).Buffer
+var MODES = __webpack_require__(348)
+var StreamCipher = __webpack_require__(362)
+var Transform = __webpack_require__(326)
+var aes = __webpack_require__(360)
+var ebtk = __webpack_require__(363)
+var inherits = __webpack_require__(290)
 
 function Decipher (mode, key, iv) {
   Transform.call(this)
@@ -10386,7 +10435,7 @@ exports.createDecipheriv = createDecipheriv
 
 
 /***/ }),
-/* 588 */
+/* 365 */
 /***/ (function(module, exports) {
 
 exports['des-ecb'] = {
@@ -10416,13 +10465,13 @@ exports['des-ede'] = {
 
 
 /***/ }),
-/* 589 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var generatePrime = __webpack_require__(590)
-var primes = __webpack_require__(597)
+/* WEBPACK VAR INJECTION */(function(Buffer) {var generatePrime = __webpack_require__(367)
+var primes = __webpack_require__(374)
 
-var DH = __webpack_require__(598)
+var DH = __webpack_require__(375)
 
 function getDiffieHellman (mod) {
   var prime = new Buffer(primes[mod].prime, 'hex')
@@ -10462,19 +10511,19 @@ function createDiffieHellman (prime, enc, generator, genc) {
 exports.DiffieHellmanGroup = exports.createDiffieHellmanGroup = exports.getDiffieHellman = getDiffieHellman
 exports.createDiffieHellman = exports.DiffieHellman = createDiffieHellman
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 590 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var randomBytes = __webpack_require__(506);
+var randomBytes = __webpack_require__(282);
 module.exports = findPrime;
 findPrime.simpleSieve = simpleSieve;
 findPrime.fermatTest = fermatTest;
-var BN = __webpack_require__(591);
+var BN = __webpack_require__(368);
 var TWENTYFOUR = new BN(24);
-var MillerRabin = __webpack_require__(594);
+var MillerRabin = __webpack_require__(371);
 var millerRabin = new MillerRabin();
 var ONE = new BN(1);
 var TWO = new BN(2);
@@ -10576,7 +10625,7 @@ function findPrime(bits, gen) {
 
 
 /***/ }),
-/* 591 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {(function (module, exports) {
@@ -10631,7 +10680,7 @@ function findPrime(bits, gen) {
 
   var Buffer;
   try {
-    Buffer = __webpack_require__(593).Buffer;
+    Buffer = __webpack_require__(370).Buffer;
   } catch (e) {
   }
 
@@ -14007,10 +14056,10 @@ function findPrime(bits, gen) {
   };
 })( false || module, this);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(592)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(369)(module)))
 
 /***/ }),
-/* 592 */
+/* 369 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -14038,17 +14087,17 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 593 */
+/* 370 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 594 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var bn = __webpack_require__(591);
-var brorand = __webpack_require__(595);
+var bn = __webpack_require__(368);
+var brorand = __webpack_require__(372);
 
 function MillerRabin(rand) {
   this.rand = rand || new brorand.Rand();
@@ -14165,7 +14214,7 @@ MillerRabin.prototype.getDivisor = function getDivisor(n, k) {
 
 
 /***/ }),
-/* 595 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var r;
@@ -14223,7 +14272,7 @@ if (typeof self === 'object') {
 } else {
   // Node.js or Web worker with no crypto support
   try {
-    var crypto = __webpack_require__(596);
+    var crypto = __webpack_require__(373);
     if (typeof crypto.randomBytes !== 'function')
       throw new Error('Not supported');
 
@@ -14236,31 +14285,31 @@ if (typeof self === 'object') {
 
 
 /***/ }),
-/* 596 */
+/* 373 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 597 */
+/* 374 */
 /***/ (function(module) {
 
 module.exports = {"modp1":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a63a3620ffffffffffffffff"},"modp2":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece65381ffffffffffffffff"},"modp5":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece45b3dc2007cb8a163bf0598da48361c55d39a69163fa8fd24cf5f83655d23dca3ad961c62f356208552bb9ed529077096966d670c354e4abc9804f1746c08ca237327ffffffffffffffff"},"modp14":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece45b3dc2007cb8a163bf0598da48361c55d39a69163fa8fd24cf5f83655d23dca3ad961c62f356208552bb9ed529077096966d670c354e4abc9804f1746c08ca18217c32905e462e36ce3be39e772c180e86039b2783a2ec07a28fb5c55df06f4c52c9de2bcbf6955817183995497cea956ae515d2261898fa051015728e5a8aacaa68ffffffffffffffff"},"modp15":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece45b3dc2007cb8a163bf0598da48361c55d39a69163fa8fd24cf5f83655d23dca3ad961c62f356208552bb9ed529077096966d670c354e4abc9804f1746c08ca18217c32905e462e36ce3be39e772c180e86039b2783a2ec07a28fb5c55df06f4c52c9de2bcbf6955817183995497cea956ae515d2261898fa051015728e5a8aaac42dad33170d04507a33a85521abdf1cba64ecfb850458dbef0a8aea71575d060c7db3970f85a6e1e4c7abf5ae8cdb0933d71e8c94e04a25619dcee3d2261ad2ee6bf12ffa06d98a0864d87602733ec86a64521f2b18177b200cbbe117577a615d6c770988c0bad946e208e24fa074e5ab3143db5bfce0fd108e4b82d120a93ad2caffffffffffffffff"},"modp16":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece45b3dc2007cb8a163bf0598da48361c55d39a69163fa8fd24cf5f83655d23dca3ad961c62f356208552bb9ed529077096966d670c354e4abc9804f1746c08ca18217c32905e462e36ce3be39e772c180e86039b2783a2ec07a28fb5c55df06f4c52c9de2bcbf6955817183995497cea956ae515d2261898fa051015728e5a8aaac42dad33170d04507a33a85521abdf1cba64ecfb850458dbef0a8aea71575d060c7db3970f85a6e1e4c7abf5ae8cdb0933d71e8c94e04a25619dcee3d2261ad2ee6bf12ffa06d98a0864d87602733ec86a64521f2b18177b200cbbe117577a615d6c770988c0bad946e208e24fa074e5ab3143db5bfce0fd108e4b82d120a92108011a723c12a787e6d788719a10bdba5b2699c327186af4e23c1a946834b6150bda2583e9ca2ad44ce8dbbbc2db04de8ef92e8efc141fbecaa6287c59474e6bc05d99b2964fa090c3a2233ba186515be7ed1f612970cee2d7afb81bdd762170481cd0069127d5b05aa993b4ea988d8fddc186ffb7dc90a6c08f4df435c934063199ffffffffffffffff"},"modp17":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece45b3dc2007cb8a163bf0598da48361c55d39a69163fa8fd24cf5f83655d23dca3ad961c62f356208552bb9ed529077096966d670c354e4abc9804f1746c08ca18217c32905e462e36ce3be39e772c180e86039b2783a2ec07a28fb5c55df06f4c52c9de2bcbf6955817183995497cea956ae515d2261898fa051015728e5a8aaac42dad33170d04507a33a85521abdf1cba64ecfb850458dbef0a8aea71575d060c7db3970f85a6e1e4c7abf5ae8cdb0933d71e8c94e04a25619dcee3d2261ad2ee6bf12ffa06d98a0864d87602733ec86a64521f2b18177b200cbbe117577a615d6c770988c0bad946e208e24fa074e5ab3143db5bfce0fd108e4b82d120a92108011a723c12a787e6d788719a10bdba5b2699c327186af4e23c1a946834b6150bda2583e9ca2ad44ce8dbbbc2db04de8ef92e8efc141fbecaa6287c59474e6bc05d99b2964fa090c3a2233ba186515be7ed1f612970cee2d7afb81bdd762170481cd0069127d5b05aa993b4ea988d8fddc186ffb7dc90a6c08f4df435c93402849236c3fab4d27c7026c1d4dcb2602646dec9751e763dba37bdf8ff9406ad9e530ee5db382f413001aeb06a53ed9027d831179727b0865a8918da3edbebcf9b14ed44ce6cbaced4bb1bdb7f1447e6cc254b332051512bd7af426fb8f401378cd2bf5983ca01c64b92ecf032ea15d1721d03f482d7ce6e74fef6d55e702f46980c82b5a84031900b1c9e59e7c97fbec7e8f323a97a7e36cc88be0f1d45b7ff585ac54bd407b22b4154aacc8f6d7ebf48e1d814cc5ed20f8037e0a79715eef29be32806a1d58bb7c5da76f550aa3d8a1fbff0eb19ccb1a313d55cda56c9ec2ef29632387fe8d76e3c0468043e8f663f4860ee12bf2d5b0b7474d6e694f91e6dcc4024ffffffffffffffff"},"modp18":{"gen":"02","prime":"ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece45b3dc2007cb8a163bf0598da48361c55d39a69163fa8fd24cf5f83655d23dca3ad961c62f356208552bb9ed529077096966d670c354e4abc9804f1746c08ca18217c32905e462e36ce3be39e772c180e86039b2783a2ec07a28fb5c55df06f4c52c9de2bcbf6955817183995497cea956ae515d2261898fa051015728e5a8aaac42dad33170d04507a33a85521abdf1cba64ecfb850458dbef0a8aea71575d060c7db3970f85a6e1e4c7abf5ae8cdb0933d71e8c94e04a25619dcee3d2261ad2ee6bf12ffa06d98a0864d87602733ec86a64521f2b18177b200cbbe117577a615d6c770988c0bad946e208e24fa074e5ab3143db5bfce0fd108e4b82d120a92108011a723c12a787e6d788719a10bdba5b2699c327186af4e23c1a946834b6150bda2583e9ca2ad44ce8dbbbc2db04de8ef92e8efc141fbecaa6287c59474e6bc05d99b2964fa090c3a2233ba186515be7ed1f612970cee2d7afb81bdd762170481cd0069127d5b05aa993b4ea988d8fddc186ffb7dc90a6c08f4df435c93402849236c3fab4d27c7026c1d4dcb2602646dec9751e763dba37bdf8ff9406ad9e530ee5db382f413001aeb06a53ed9027d831179727b0865a8918da3edbebcf9b14ed44ce6cbaced4bb1bdb7f1447e6cc254b332051512bd7af426fb8f401378cd2bf5983ca01c64b92ecf032ea15d1721d03f482d7ce6e74fef6d55e702f46980c82b5a84031900b1c9e59e7c97fbec7e8f323a97a7e36cc88be0f1d45b7ff585ac54bd407b22b4154aacc8f6d7ebf48e1d814cc5ed20f8037e0a79715eef29be32806a1d58bb7c5da76f550aa3d8a1fbff0eb19ccb1a313d55cda56c9ec2ef29632387fe8d76e3c0468043e8f663f4860ee12bf2d5b0b7474d6e694f91e6dbe115974a3926f12fee5e438777cb6a932df8cd8bec4d073b931ba3bc832b68d9dd300741fa7bf8afc47ed2576f6936ba424663aab639c5ae4f5683423b4742bf1c978238f16cbe39d652de3fdb8befc848ad922222e04a4037c0713eb57a81a23f0c73473fc646cea306b4bcbc8862f8385ddfa9d4b7fa2c087e879683303ed5bdd3a062b3cf5b3a278a66d2a13f83f44f82ddf310ee074ab6a364597e899a0255dc164f31cc50846851df9ab48195ded7ea1b1d510bd7ee74d73faf36bc31ecfa268359046f4eb879f924009438b481c6cd7889a002ed5ee382bc9190da6fc026e479558e4475677e9aa9e3050e2765694dfc81f56e880b96e7160c980dd98edd3dfffffffffffffffff"}};
 
 /***/ }),
-/* 598 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var BN = __webpack_require__(591);
-var MillerRabin = __webpack_require__(594);
+/* WEBPACK VAR INJECTION */(function(Buffer) {var BN = __webpack_require__(368);
+var MillerRabin = __webpack_require__(371);
 var millerRabin = new MillerRabin();
 var TWENTYFOUR = new BN(24);
 var ELEVEN = new BN(11);
 var TEN = new BN(10);
 var THREE = new BN(3);
 var SEVEN = new BN(7);
-var primes = __webpack_require__(590);
-var randomBytes = __webpack_require__(506);
+var primes = __webpack_require__(367);
+var randomBytes = __webpack_require__(282);
 module.exports = DH;
 
 function setPublicKey(pub, enc) {
@@ -14416,19 +14465,19 @@ function formatReturnValue(bn, enc) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 599 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var createHash = __webpack_require__(512)
-var stream = __webpack_require__(516)
-var inherits = __webpack_require__(513)
-var sign = __webpack_require__(600)
-var verify = __webpack_require__(654)
+/* WEBPACK VAR INJECTION */(function(Buffer) {var createHash = __webpack_require__(289)
+var stream = __webpack_require__(293)
+var inherits = __webpack_require__(290)
+var sign = __webpack_require__(377)
+var verify = __webpack_require__(431)
 
-var algorithms = __webpack_require__(554)
+var algorithms = __webpack_require__(331)
 Object.keys(algorithms).forEach(function (key) {
   algorithms[key].id = new Buffer(algorithms[key].id, 'hex')
   algorithms[key.toLowerCase()] = algorithms[key]
@@ -14514,19 +14563,19 @@ module.exports = {
   createVerify: createVerify
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 600 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// much of this based on https://github.com/indutny/self-signed/blob/gh-pages/lib/rsa.js
-var createHmac = __webpack_require__(550)
-var crt = __webpack_require__(601)
-var EC = __webpack_require__(602).ec
-var BN = __webpack_require__(591)
-var parseKeys = __webpack_require__(632)
-var curves = __webpack_require__(653)
+var createHmac = __webpack_require__(327)
+var crt = __webpack_require__(378)
+var EC = __webpack_require__(379).ec
+var BN = __webpack_require__(368)
+var parseKeys = __webpack_require__(409)
+var curves = __webpack_require__(430)
 
 function sign (hash, key, hashType, signType, tag) {
   var priv = parseKeys(key)
@@ -14666,14 +14715,14 @@ module.exports = sign
 module.exports.getKey = getKey
 module.exports.makeKey = makeKey
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 601 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var bn = __webpack_require__(591);
-var randomBytes = __webpack_require__(506);
+/* WEBPACK VAR INJECTION */(function(Buffer) {var bn = __webpack_require__(368);
+var randomBytes = __webpack_require__(282);
 module.exports = crt;
 function blind(priv) {
   var r = getr(priv);
@@ -14713,10 +14762,10 @@ function getr(priv) {
   return r;
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 602 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14724,34 +14773,34 @@ function getr(priv) {
 
 var elliptic = exports;
 
-elliptic.version = __webpack_require__(603).version;
-elliptic.utils = __webpack_require__(604);
-elliptic.rand = __webpack_require__(595);
-elliptic.curve = __webpack_require__(606);
-elliptic.curves = __webpack_require__(611);
+elliptic.version = __webpack_require__(380).version;
+elliptic.utils = __webpack_require__(381);
+elliptic.rand = __webpack_require__(372);
+elliptic.curve = __webpack_require__(383);
+elliptic.curves = __webpack_require__(388);
 
 // Protocols
-elliptic.ec = __webpack_require__(625);
-elliptic.eddsa = __webpack_require__(629);
+elliptic.ec = __webpack_require__(402);
+elliptic.eddsa = __webpack_require__(406);
 
 
 /***/ }),
-/* 603 */
+/* 380 */
 /***/ (function(module) {
 
 module.exports = {"_args":[["elliptic@6.4.1","/Users/huangzongzhe/workspace/github/aelf-web-extension"]],"_from":"elliptic@6.4.1","_id":"elliptic@6.4.1","_inBundle":false,"_integrity":"sha512-BsXLz5sqX8OHcsh7CqBMztyXARmGQ3LWPtGjJi6DiJHq5C/qvi9P3OqgswKSDftbu8+IoI/QDTAm2fFnQ9SZSQ==","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.4.1","name":"elliptic","escapedName":"elliptic","rawSpec":"6.4.1","saveSpec":null,"fetchSpec":"6.4.1"},"_requiredBy":["/aelf-sdk","/browserify-sign","/create-ecdh","/key-encoder"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.1.tgz","_spec":"6.4.1","_where":"/Users/huangzongzhe/workspace/github/aelf-web-extension","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.1"};
 
 /***/ }),
-/* 604 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = exports;
-var BN = __webpack_require__(591);
-var minAssert = __webpack_require__(565);
-var minUtils = __webpack_require__(605);
+var BN = __webpack_require__(368);
+var minAssert = __webpack_require__(342);
+var minUtils = __webpack_require__(382);
 
 utils.assert = minAssert;
 utils.toArray = minUtils.toArray;
@@ -14869,7 +14918,7 @@ utils.intFromLE = intFromLE;
 
 
 /***/ }),
-/* 605 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14934,7 +14983,7 @@ utils.encode = function encode(arr, enc) {
 
 
 /***/ }),
-/* 606 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14942,21 +14991,21 @@ utils.encode = function encode(arr, enc) {
 
 var curve = exports;
 
-curve.base = __webpack_require__(607);
-curve.short = __webpack_require__(608);
-curve.mont = __webpack_require__(609);
-curve.edwards = __webpack_require__(610);
+curve.base = __webpack_require__(384);
+curve.short = __webpack_require__(385);
+curve.mont = __webpack_require__(386);
+curve.edwards = __webpack_require__(387);
 
 
 /***/ }),
-/* 607 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var BN = __webpack_require__(591);
-var elliptic = __webpack_require__(602);
+var BN = __webpack_require__(368);
+var elliptic = __webpack_require__(379);
 var utils = elliptic.utils;
 var getNAF = utils.getNAF;
 var getJSF = utils.getJSF;
@@ -15331,16 +15380,16 @@ BasePoint.prototype.dblp = function dblp(k) {
 
 
 /***/ }),
-/* 608 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var curve = __webpack_require__(606);
-var elliptic = __webpack_require__(602);
-var BN = __webpack_require__(591);
-var inherits = __webpack_require__(513);
+var curve = __webpack_require__(383);
+var elliptic = __webpack_require__(379);
+var BN = __webpack_require__(368);
+var inherits = __webpack_require__(290);
 var Base = curve.base;
 
 var assert = elliptic.utils.assert;
@@ -16275,18 +16324,18 @@ JPoint.prototype.isInfinity = function isInfinity() {
 
 
 /***/ }),
-/* 609 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var curve = __webpack_require__(606);
-var BN = __webpack_require__(591);
-var inherits = __webpack_require__(513);
+var curve = __webpack_require__(383);
+var BN = __webpack_require__(368);
+var inherits = __webpack_require__(290);
 var Base = curve.base;
 
-var elliptic = __webpack_require__(602);
+var elliptic = __webpack_require__(379);
 var utils = elliptic.utils;
 
 function MontCurve(conf) {
@@ -16462,16 +16511,16 @@ Point.prototype.getX = function getX() {
 
 
 /***/ }),
-/* 610 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var curve = __webpack_require__(606);
-var elliptic = __webpack_require__(602);
-var BN = __webpack_require__(591);
-var inherits = __webpack_require__(513);
+var curve = __webpack_require__(383);
+var elliptic = __webpack_require__(379);
+var BN = __webpack_require__(368);
+var inherits = __webpack_require__(290);
 var Base = curve.base;
 
 var assert = elliptic.utils.assert;
@@ -16902,7 +16951,7 @@ Point.prototype.mixedAdd = Point.prototype.add;
 
 
 /***/ }),
-/* 611 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16910,8 +16959,8 @@ Point.prototype.mixedAdd = Point.prototype.add;
 
 var curves = exports;
 
-var hash = __webpack_require__(612);
-var elliptic = __webpack_require__(602);
+var hash = __webpack_require__(389);
+var elliptic = __webpack_require__(379);
 
 var assert = elliptic.utils.assert;
 
@@ -17075,7 +17124,7 @@ defineCurve('ed25519', {
 
 var pre;
 try {
-  pre = __webpack_require__(624);
+  pre = __webpack_require__(401);
 } catch (e) {
   pre = undefined;
 }
@@ -17114,16 +17163,16 @@ defineCurve('secp256k1', {
 
 
 /***/ }),
-/* 612 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var hash = exports;
 
-hash.utils = __webpack_require__(613);
-hash.common = __webpack_require__(614);
-hash.sha = __webpack_require__(615);
-hash.ripemd = __webpack_require__(622);
-hash.hmac = __webpack_require__(623);
+hash.utils = __webpack_require__(390);
+hash.common = __webpack_require__(391);
+hash.sha = __webpack_require__(392);
+hash.ripemd = __webpack_require__(399);
+hash.hmac = __webpack_require__(400);
 
 // Proxy hash functions to the main object
 hash.sha1 = hash.sha.sha1;
@@ -17135,14 +17184,14 @@ hash.ripemd160 = hash.ripemd.ripemd160;
 
 
 /***/ }),
-/* 613 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var assert = __webpack_require__(565);
-var inherits = __webpack_require__(513);
+var assert = __webpack_require__(342);
+var inherits = __webpack_require__(290);
 
 exports.inherits = inherits;
 
@@ -17420,14 +17469,14 @@ exports.shr64_lo = shr64_lo;
 
 
 /***/ }),
-/* 614 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
-var assert = __webpack_require__(565);
+var utils = __webpack_require__(390);
+var assert = __webpack_require__(342);
 
 function BlockHash() {
   this.pending = null;
@@ -17519,29 +17568,29 @@ BlockHash.prototype._pad = function pad() {
 
 
 /***/ }),
-/* 615 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.sha1 = __webpack_require__(616);
-exports.sha224 = __webpack_require__(618);
-exports.sha256 = __webpack_require__(619);
-exports.sha384 = __webpack_require__(620);
-exports.sha512 = __webpack_require__(621);
+exports.sha1 = __webpack_require__(393);
+exports.sha224 = __webpack_require__(395);
+exports.sha256 = __webpack_require__(396);
+exports.sha384 = __webpack_require__(397);
+exports.sha512 = __webpack_require__(398);
 
 
 /***/ }),
-/* 616 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
-var common = __webpack_require__(614);
-var shaCommon = __webpack_require__(617);
+var utils = __webpack_require__(390);
+var common = __webpack_require__(391);
+var shaCommon = __webpack_require__(394);
 
 var rotl32 = utils.rotl32;
 var sum32 = utils.sum32;
@@ -17614,13 +17663,13 @@ SHA1.prototype._digest = function digest(enc) {
 
 
 /***/ }),
-/* 617 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
+var utils = __webpack_require__(390);
 var rotr32 = utils.rotr32;
 
 function ft_1(s, x, y, z) {
@@ -17670,14 +17719,14 @@ exports.g1_256 = g1_256;
 
 
 /***/ }),
-/* 618 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
-var SHA256 = __webpack_require__(619);
+var utils = __webpack_require__(390);
+var SHA256 = __webpack_require__(396);
 
 function SHA224() {
   if (!(this instanceof SHA224))
@@ -17707,16 +17756,16 @@ SHA224.prototype._digest = function digest(enc) {
 
 
 /***/ }),
-/* 619 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
-var common = __webpack_require__(614);
-var shaCommon = __webpack_require__(617);
-var assert = __webpack_require__(565);
+var utils = __webpack_require__(390);
+var common = __webpack_require__(391);
+var shaCommon = __webpack_require__(394);
+var assert = __webpack_require__(342);
 
 var sum32 = utils.sum32;
 var sum32_4 = utils.sum32_4;
@@ -17819,15 +17868,15 @@ SHA256.prototype._digest = function digest(enc) {
 
 
 /***/ }),
-/* 620 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
+var utils = __webpack_require__(390);
 
-var SHA512 = __webpack_require__(621);
+var SHA512 = __webpack_require__(398);
 
 function SHA384() {
   if (!(this instanceof SHA384))
@@ -17861,15 +17910,15 @@ SHA384.prototype._digest = function digest(enc) {
 
 
 /***/ }),
-/* 621 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
-var common = __webpack_require__(614);
-var assert = __webpack_require__(565);
+var utils = __webpack_require__(390);
+var common = __webpack_require__(391);
+var assert = __webpack_require__(342);
 
 var rotr64_hi = utils.rotr64_hi;
 var rotr64_lo = utils.rotr64_lo;
@@ -18198,14 +18247,14 @@ function g1_512_lo(xh, xl) {
 
 
 /***/ }),
-/* 622 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
-var common = __webpack_require__(614);
+var utils = __webpack_require__(390);
+var common = __webpack_require__(391);
 
 var rotl32 = utils.rotl32;
 var sum32 = utils.sum32;
@@ -18351,14 +18400,14 @@ var sh = [
 
 
 /***/ }),
-/* 623 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(613);
-var assert = __webpack_require__(565);
+var utils = __webpack_require__(390);
+var assert = __webpack_require__(342);
 
 function Hmac(hash, key, enc) {
   if (!(this instanceof Hmac))
@@ -18405,7 +18454,7 @@ Hmac.prototype.digest = function digest(enc) {
 
 
 /***/ }),
-/* 624 */
+/* 401 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -19191,20 +19240,20 @@ module.exports = {
 
 
 /***/ }),
-/* 625 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var BN = __webpack_require__(591);
-var HmacDRBG = __webpack_require__(626);
-var elliptic = __webpack_require__(602);
+var BN = __webpack_require__(368);
+var HmacDRBG = __webpack_require__(403);
+var elliptic = __webpack_require__(379);
 var utils = elliptic.utils;
 var assert = utils.assert;
 
-var KeyPair = __webpack_require__(627);
-var Signature = __webpack_require__(628);
+var KeyPair = __webpack_require__(404);
+var Signature = __webpack_require__(405);
 
 function EC(options) {
   if (!(this instanceof EC))
@@ -19438,15 +19487,15 @@ EC.prototype.getKeyRecoveryParam = function(e, signature, Q, enc) {
 
 
 /***/ }),
-/* 626 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var hash = __webpack_require__(612);
-var utils = __webpack_require__(605);
-var assert = __webpack_require__(565);
+var hash = __webpack_require__(389);
+var utils = __webpack_require__(382);
+var assert = __webpack_require__(342);
 
 function HmacDRBG(options) {
   if (!(this instanceof HmacDRBG))
@@ -19558,14 +19607,14 @@ HmacDRBG.prototype.generate = function generate(len, enc, add, addEnc) {
 
 
 /***/ }),
-/* 627 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var BN = __webpack_require__(591);
-var elliptic = __webpack_require__(602);
+var BN = __webpack_require__(368);
+var elliptic = __webpack_require__(379);
 var utils = elliptic.utils;
 var assert = utils.assert;
 
@@ -19684,15 +19733,15 @@ KeyPair.prototype.inspect = function inspect() {
 
 
 /***/ }),
-/* 628 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var BN = __webpack_require__(591);
+var BN = __webpack_require__(368);
 
-var elliptic = __webpack_require__(602);
+var elliptic = __webpack_require__(379);
 var utils = elliptic.utils;
 var assert = utils.assert;
 
@@ -19826,19 +19875,19 @@ Signature.prototype.toDER = function toDER(enc) {
 
 
 /***/ }),
-/* 629 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var hash = __webpack_require__(612);
-var elliptic = __webpack_require__(602);
+var hash = __webpack_require__(389);
+var elliptic = __webpack_require__(379);
 var utils = elliptic.utils;
 var assert = utils.assert;
 var parseBytes = utils.parseBytes;
-var KeyPair = __webpack_require__(630);
-var Signature = __webpack_require__(631);
+var KeyPair = __webpack_require__(407);
+var Signature = __webpack_require__(408);
 
 function EDDSA(curve) {
   assert(curve === 'ed25519', 'only tested with ed25519 so far');
@@ -19951,13 +20000,13 @@ EDDSA.prototype.isPoint = function isPoint(val) {
 
 
 /***/ }),
-/* 630 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var elliptic = __webpack_require__(602);
+var elliptic = __webpack_require__(379);
 var utils = elliptic.utils;
 var assert = utils.assert;
 var parseBytes = utils.parseBytes;
@@ -20054,14 +20103,14 @@ module.exports = KeyPair;
 
 
 /***/ }),
-/* 631 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var BN = __webpack_require__(591);
-var elliptic = __webpack_require__(602);
+var BN = __webpack_require__(368);
+var elliptic = __webpack_require__(379);
 var utils = elliptic.utils;
 var assert = utils.assert;
 var cachedProperty = utils.cachedProperty;
@@ -20127,14 +20176,15 @@ module.exports = Signature;
 
 
 /***/ }),
-/* 632 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var asn1 = __webpack_require__(633)
-var aesid = __webpack_require__(651)
-var fixProc = __webpack_require__(652)
-var ciphers = __webpack_require__(569)
-var compat = __webpack_require__(555)
+var asn1 = __webpack_require__(410)
+var aesid = __webpack_require__(428)
+var fixProc = __webpack_require__(429)
+var ciphers = __webpack_require__(346)
+var compat = __webpack_require__(332)
+var Buffer = __webpack_require__(284).Buffer
 module.exports = parseKeys
 
 function parseKeys (buffer) {
@@ -20144,7 +20194,7 @@ function parseKeys (buffer) {
     buffer = buffer.key
   }
   if (typeof buffer === 'string') {
-    buffer = new Buffer(buffer)
+    buffer = Buffer.from(buffer)
   }
 
   var stripped = fixProc(buffer, password)
@@ -20229,7 +20279,7 @@ function decrypt (data, password) {
   var iv = data.algorithm.decrypt.cipher.iv
   var cipherText = data.subjectPrivateKey
   var keylen = parseInt(algo.split('-')[1], 10) / 8
-  var key = compat.pbkdf2Sync(password, salt, iters, keylen)
+  var key = compat.pbkdf2Sync(password, salt, iters, keylen, 'sha1')
   var cipher = ciphers.createDecipheriv(algo, key, iv)
   var out = []
   out.push(cipher.update(cipherText))
@@ -20237,10 +20287,9 @@ function decrypt (data, password) {
   return Buffer.concat(out)
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
 
 /***/ }),
-/* 633 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20248,9 +20297,9 @@ function decrypt (data, password) {
 // Fedor, you are amazing.
 
 
-var asn1 = __webpack_require__(634)
+var asn1 = __webpack_require__(411)
 
-exports.certificate = __webpack_require__(650)
+exports.certificate = __webpack_require__(427)
 
 var RSAPrivateKey = asn1.define('RSAPrivateKey', function () {
   this.seq().obj(
@@ -20369,26 +20418,26 @@ exports.signature = asn1.define('signature', function () {
 
 
 /***/ }),
-/* 634 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var asn1 = exports;
 
-asn1.bignum = __webpack_require__(591);
+asn1.bignum = __webpack_require__(368);
 
-asn1.define = __webpack_require__(635).define;
-asn1.base = __webpack_require__(638);
-asn1.constants = __webpack_require__(642);
-asn1.decoders = __webpack_require__(644);
-asn1.encoders = __webpack_require__(647);
+asn1.define = __webpack_require__(412).define;
+asn1.base = __webpack_require__(415);
+asn1.constants = __webpack_require__(419);
+asn1.decoders = __webpack_require__(421);
+asn1.encoders = __webpack_require__(424);
 
 
 /***/ }),
-/* 635 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var asn1 = __webpack_require__(634);
-var inherits = __webpack_require__(513);
+var asn1 = __webpack_require__(411);
+var inherits = __webpack_require__(290);
 
 var api = exports;
 
@@ -20407,7 +20456,7 @@ function Entity(name, body) {
 Entity.prototype._createNamed = function createNamed(base) {
   var named;
   try {
-    named = __webpack_require__(636).runInThisContext(
+    named = __webpack_require__(413).runInThisContext(
       '(function ' + this.name + '(entity) {\n' +
       '  this._initNamed(entity);\n' +
       '})'
@@ -20451,10 +20500,10 @@ Entity.prototype.encode = function encode(data, enc, /* internal */ reporter) {
 
 
 /***/ }),
-/* 636 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var indexOf = __webpack_require__(637);
+var indexOf = __webpack_require__(414);
 
 var Object_keys = function (obj) {
     if (Object.keys) return Object.keys(obj)
@@ -20595,7 +20644,7 @@ exports.createContext = Script.createContext = function (context) {
 
 
 /***/ }),
-/* 637 */
+/* 414 */
 /***/ (function(module, exports) {
 
 
@@ -20610,22 +20659,22 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 638 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var base = exports;
 
-base.Reporter = __webpack_require__(639).Reporter;
-base.DecoderBuffer = __webpack_require__(640).DecoderBuffer;
-base.EncoderBuffer = __webpack_require__(640).EncoderBuffer;
-base.Node = __webpack_require__(641);
+base.Reporter = __webpack_require__(416).Reporter;
+base.DecoderBuffer = __webpack_require__(417).DecoderBuffer;
+base.EncoderBuffer = __webpack_require__(417).EncoderBuffer;
+base.Node = __webpack_require__(418);
 
 
 /***/ }),
-/* 639 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(513);
+var inherits = __webpack_require__(290);
 
 function Reporter(options) {
   this._reporterState = {
@@ -20749,12 +20798,12 @@ ReporterError.prototype.rethrow = function rethrow(msg) {
 
 
 /***/ }),
-/* 640 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(513);
-var Reporter = __webpack_require__(638).Reporter;
-var Buffer = __webpack_require__(508).Buffer;
+var inherits = __webpack_require__(290);
+var Reporter = __webpack_require__(415).Reporter;
+var Buffer = __webpack_require__(285).Buffer;
 
 function DecoderBuffer(base, options) {
   Reporter.call(this, options);
@@ -20871,13 +20920,13 @@ EncoderBuffer.prototype.join = function join(out, offset) {
 
 
 /***/ }),
-/* 641 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Reporter = __webpack_require__(638).Reporter;
-var EncoderBuffer = __webpack_require__(638).EncoderBuffer;
-var DecoderBuffer = __webpack_require__(638).DecoderBuffer;
-var assert = __webpack_require__(565);
+var Reporter = __webpack_require__(415).Reporter;
+var EncoderBuffer = __webpack_require__(415).EncoderBuffer;
+var DecoderBuffer = __webpack_require__(415).DecoderBuffer;
+var assert = __webpack_require__(342);
 
 // Supported tags
 var tags = [
@@ -21511,7 +21560,7 @@ Node.prototype._isPrintstr = function isPrintstr(str) {
 
 
 /***/ }),
-/* 642 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var constants = exports;
@@ -21532,14 +21581,14 @@ constants._reverse = function reverse(map) {
   return res;
 };
 
-constants.der = __webpack_require__(643);
+constants.der = __webpack_require__(420);
 
 
 /***/ }),
-/* 643 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var constants = __webpack_require__(642);
+var constants = __webpack_require__(419);
 
 exports.tagClass = {
   0: 'universal',
@@ -21584,22 +21633,22 @@ exports.tagByName = constants._reverse(exports.tag);
 
 
 /***/ }),
-/* 644 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var decoders = exports;
 
-decoders.der = __webpack_require__(645);
-decoders.pem = __webpack_require__(646);
+decoders.der = __webpack_require__(422);
+decoders.pem = __webpack_require__(423);
 
 
 /***/ }),
-/* 645 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(513);
+var inherits = __webpack_require__(290);
 
-var asn1 = __webpack_require__(634);
+var asn1 = __webpack_require__(411);
 var base = asn1.base;
 var bignum = asn1.bignum;
 
@@ -21924,13 +21973,13 @@ function derDecodeLen(buf, primitive, fail) {
 
 
 /***/ }),
-/* 646 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(513);
-var Buffer = __webpack_require__(508).Buffer;
+var inherits = __webpack_require__(290);
+var Buffer = __webpack_require__(285).Buffer;
 
-var DERDecoder = __webpack_require__(645);
+var DERDecoder = __webpack_require__(422);
 
 function PEMDecoder(entity) {
   DERDecoder.call(this, entity);
@@ -21979,23 +22028,23 @@ PEMDecoder.prototype.decode = function decode(data, options) {
 
 
 /***/ }),
-/* 647 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var encoders = exports;
 
-encoders.der = __webpack_require__(648);
-encoders.pem = __webpack_require__(649);
+encoders.der = __webpack_require__(425);
+encoders.pem = __webpack_require__(426);
 
 
 /***/ }),
-/* 648 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(513);
-var Buffer = __webpack_require__(508).Buffer;
+var inherits = __webpack_require__(290);
+var Buffer = __webpack_require__(285).Buffer;
 
-var asn1 = __webpack_require__(634);
+var asn1 = __webpack_require__(411);
 var base = asn1.base;
 
 // Import DER constants
@@ -22290,12 +22339,12 @@ function encodeTag(tag, primitive, cls, reporter) {
 
 
 /***/ }),
-/* 649 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var inherits = __webpack_require__(513);
+var inherits = __webpack_require__(290);
 
-var DEREncoder = __webpack_require__(648);
+var DEREncoder = __webpack_require__(425);
 
 function PEMEncoder(entity) {
   DEREncoder.call(this, entity);
@@ -22317,7 +22366,7 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
 
 /***/ }),
-/* 650 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22326,7 +22375,7 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
 
 
-var asn = __webpack_require__(634)
+var asn = __webpack_require__(411)
 
 var Time = asn.define('Time', function () {
   this.choice({
@@ -22345,7 +22394,8 @@ var AttributeTypeValue = asn.define('AttributeTypeValue', function () {
 var AlgorithmIdentifier = asn.define('AlgorithmIdentifier', function () {
   this.seq().obj(
     this.key('algorithm').objid(),
-    this.key('parameters').optional()
+    this.key('parameters').optional(),
+    this.key('curve').objid().optional()
   )
 })
 
@@ -22387,7 +22437,7 @@ var Extension = asn.define('Extension', function () {
 
 var TBSCertificate = asn.define('TBSCertificate', function () {
   this.seq().obj(
-    this.key('version').explicit(0).int(),
+    this.key('version').explicit(0).int().optional(),
     this.key('serialNumber').int(),
     this.key('signature').use(AlgorithmIdentifier),
     this.key('issuer').use(Name),
@@ -22412,21 +22462,21 @@ module.exports = X509Certificate
 
 
 /***/ }),
-/* 651 */
+/* 428 */
 /***/ (function(module) {
 
 module.exports = {"2.16.840.1.101.3.4.1.1":"aes-128-ecb","2.16.840.1.101.3.4.1.2":"aes-128-cbc","2.16.840.1.101.3.4.1.3":"aes-128-ofb","2.16.840.1.101.3.4.1.4":"aes-128-cfb","2.16.840.1.101.3.4.1.21":"aes-192-ecb","2.16.840.1.101.3.4.1.22":"aes-192-cbc","2.16.840.1.101.3.4.1.23":"aes-192-ofb","2.16.840.1.101.3.4.1.24":"aes-192-cfb","2.16.840.1.101.3.4.1.41":"aes-256-ecb","2.16.840.1.101.3.4.1.42":"aes-256-cbc","2.16.840.1.101.3.4.1.43":"aes-256-ofb","2.16.840.1.101.3.4.1.44":"aes-256-cfb"};
 
 /***/ }),
-/* 652 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// adapted from https://github.com/apatil/pemstrip
 var findProc = /Proc-Type: 4,ENCRYPTED[\n\r]+DEK-Info: AES-((?:128)|(?:192)|(?:256))-CBC,([0-9A-H]+)[\n\r]+([0-9A-z\n\r\+\/\=]+)[\n\r]+/m
 var startRegex = /^-----BEGIN ((?:.* KEY)|CERTIFICATE)-----/m
 var fullRegex = /^-----BEGIN ((?:.* KEY)|CERTIFICATE)-----([0-9A-z\n\r\+\/\=]+)-----END \1-----$/m
-var evp = __webpack_require__(586)
-var ciphers = __webpack_require__(569)
+var evp = __webpack_require__(363)
+var ciphers = __webpack_require__(346)
 module.exports = function (okey, password) {
   var key = okey.toString()
   var match = key.match(findProc)
@@ -22452,23 +22502,23 @@ module.exports = function (okey, password) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 653 */
+/* 430 */
 /***/ (function(module) {
 
 module.exports = {"1.3.132.0.10":"secp256k1","1.3.132.0.33":"p224","1.2.840.10045.3.1.1":"p192","1.2.840.10045.3.1.7":"p256","1.3.132.0.34":"p384","1.3.132.0.35":"p521"};
 
 /***/ }),
-/* 654 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// much of this based on https://github.com/indutny/self-signed/blob/gh-pages/lib/rsa.js
-var BN = __webpack_require__(591)
-var EC = __webpack_require__(602).ec
-var parseKeys = __webpack_require__(632)
-var curves = __webpack_require__(653)
+var BN = __webpack_require__(368)
+var EC = __webpack_require__(379).ec
+var parseKeys = __webpack_require__(409)
+var curves = __webpack_require__(430)
 
 function verify (sig, hash, key, signType, tag) {
   var pub = parseKeys(key)
@@ -22548,14 +22598,14 @@ function checkValue (b, q) {
 
 module.exports = verify
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 655 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer) {var elliptic = __webpack_require__(602)
-var BN = __webpack_require__(591)
+/* WEBPACK VAR INJECTION */(function(Buffer) {var elliptic = __webpack_require__(379)
+var BN = __webpack_require__(368)
 
 module.exports = function createECDH (curve) {
   return new ECDH(curve)
@@ -22679,14 +22729,14 @@ function formatReturnValue (bn, enc, len) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 656 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports.publicEncrypt = __webpack_require__(657)
-exports.privateDecrypt = __webpack_require__(661)
+exports.publicEncrypt = __webpack_require__(434)
+exports.privateDecrypt = __webpack_require__(438)
 
 exports.privateEncrypt = function privateEncrypt (key, buf) {
   return exports.publicEncrypt(key, buf, true)
@@ -22698,18 +22748,18 @@ exports.publicDecrypt = function publicDecrypt (key, buf) {
 
 
 /***/ }),
-/* 657 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parseKeys = __webpack_require__(632)
-var randomBytes = __webpack_require__(506)
-var createHash = __webpack_require__(512)
-var mgf = __webpack_require__(658)
-var xor = __webpack_require__(659)
-var BN = __webpack_require__(591)
-var withPublic = __webpack_require__(660)
-var crt = __webpack_require__(601)
-var Buffer = __webpack_require__(507).Buffer
+var parseKeys = __webpack_require__(409)
+var randomBytes = __webpack_require__(282)
+var createHash = __webpack_require__(289)
+var mgf = __webpack_require__(435)
+var xor = __webpack_require__(436)
+var BN = __webpack_require__(368)
+var withPublic = __webpack_require__(437)
+var crt = __webpack_require__(378)
+var Buffer = __webpack_require__(284).Buffer
 
 module.exports = function publicEncrypt (publicKey, msg, reverse) {
   var padding
@@ -22792,11 +22842,11 @@ function nonZero (len) {
 
 
 /***/ }),
-/* 658 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var createHash = __webpack_require__(512)
-var Buffer = __webpack_require__(507).Buffer
+var createHash = __webpack_require__(289)
+var Buffer = __webpack_require__(284).Buffer
 
 module.exports = function (seed, len) {
   var t = Buffer.alloc(0)
@@ -22817,7 +22867,7 @@ function i2ops (c) {
 
 
 /***/ }),
-/* 659 */
+/* 436 */
 /***/ (function(module, exports) {
 
 module.exports = function xor (a, b) {
@@ -22831,11 +22881,11 @@ module.exports = function xor (a, b) {
 
 
 /***/ }),
-/* 660 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var BN = __webpack_require__(591)
-var Buffer = __webpack_require__(507).Buffer
+var BN = __webpack_require__(368)
+var Buffer = __webpack_require__(284).Buffer
 
 function withPublic (paddedMsg, key) {
   return Buffer.from(paddedMsg
@@ -22849,17 +22899,17 @@ module.exports = withPublic
 
 
 /***/ }),
-/* 661 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parseKeys = __webpack_require__(632)
-var mgf = __webpack_require__(658)
-var xor = __webpack_require__(659)
-var BN = __webpack_require__(591)
-var crt = __webpack_require__(601)
-var createHash = __webpack_require__(512)
-var withPublic = __webpack_require__(660)
-var Buffer = __webpack_require__(507).Buffer
+var parseKeys = __webpack_require__(409)
+var mgf = __webpack_require__(435)
+var xor = __webpack_require__(436)
+var BN = __webpack_require__(368)
+var crt = __webpack_require__(378)
+var createHash = __webpack_require__(289)
+var withPublic = __webpack_require__(437)
+var Buffer = __webpack_require__(284).Buffer
 
 module.exports = function privateDecrypt (privateKey, enc, reverse) {
   var padding
@@ -22960,7 +23010,7 @@ function compare (a, b) {
 
 
 /***/ }),
-/* 662 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22969,8 +23019,8 @@ function compare (a, b) {
 function oldBrowser () {
   throw new Error('secure random number generation not supported by this browser\nuse chrome, FireFox or Internet Explorer 11')
 }
-var safeBuffer = __webpack_require__(507)
-var randombytes = __webpack_require__(506)
+var safeBuffer = __webpack_require__(284)
+var randombytes = __webpack_require__(282)
 var Buffer = safeBuffer.Buffer
 var kBufferMaxLength = safeBuffer.kMaxLength
 var crypto = global.crypto || global.msCrypto
@@ -23073,171 +23123,189 @@ function randomFillSync (buf, offset, size) {
   return actualFill(buf, offset, size)
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106), __webpack_require__(235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110), __webpack_require__(283)))
 
 /***/ }),
-/* 663 */,
-/* 664 */,
-/* 665 */,
-/* 666 */,
-/* 667 */,
-/* 668 */,
-/* 669 */,
-/* 670 */,
-/* 671 */,
-/* 672 */,
-/* 673 */,
-/* 674 */,
-/* 675 */,
-/* 676 */,
-/* 677 */,
-/* 678 */,
-/* 679 */,
-/* 680 */,
-/* 681 */,
-/* 682 */,
-/* 683 */,
-/* 684 */,
-/* 685 */,
-/* 686 */,
-/* 687 */,
-/* 688 */,
-/* 689 */,
-/* 690 */,
-/* 691 */,
-/* 692 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SEED", function() { return SET_SEED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREAT_WALLET", function() { return CREAT_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHECK_WALLET", function() { return CHECK_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_WALLET", function() { return CLEAR_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNLOCK_WALLET", function() { return UNLOCK_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCK_WALLET", function() { return LOCK_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_WALLET", function() { return UPDATE_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INSERT_KEYPAIR", function() { return INSERT_KEYPAIR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_KEYPAIR", function() { return REMOVE_KEYPAIR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_KEYPAIR", function() { return GET_KEYPAIR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PERMISSION", function() { return SET_PERMISSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHECK_PERMISSION", function() { return CHECK_PERMISSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ALLPERMISSIONS", function() { return GET_ALLPERMISSIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_PERMISSION", function() { return REMOVE_PERMISSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONNECT_AELF_CHAIN", function() { return CONNECT_AELF_CHAIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CHAIN", function() { return CALL_AELF_CHAIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CHAIN", function() { return RELEASE_AELF_CHAIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT_AELF_CONTRACT", function() { return INIT_AELF_CONTRACT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT", function() { return CALL_AELF_CONTRACT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CONTRACT", function() { return RELEASE_AELF_CONTRACT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ADDRESS", function() { return GET_ADDRESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_PROMPT", function() { return OPEN_PROMPT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROMPT", function() { return SET_PROMPT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_PROMPT", function() { return GET_PROMPT; });
 /**
  * @file InternalMessageTypes.js
  * @author huangzongzhe
  */
+var SET_SEED = 'setSeed';
+var CREAT_WALLET = 'createWallet';
+var CHECK_WALLET = 'checkWallet';
+var CLEAR_WALLET = 'clearWallet';
+var UNLOCK_WALLET = 'unlockWallet';
+var LOCK_WALLET = 'lockWallet';
+var UPDATE_WALLET = 'updateWallet';
+var INSERT_KEYPAIR = 'insertKeypair';
+var REMOVE_KEYPAIR = 'removeKeypair';
+var GET_KEYPAIR = 'getKeypair';
+var SET_PERMISSION = 'setPermission';
+var CHECK_PERMISSION = 'checkPermission';
+var GET_ALLPERMISSIONS = 'getAllPermissions';
+var REMOVE_PERMISSION = 'removePermission';
+var CONNECT_AELF_CHAIN = 'connectAelfChain';
+var CALL_AELF_CHAIN = 'callAelfChain';
+var RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
 
-var SET_SEED = exports.SET_SEED = 'setSeed';
+var INIT_AELF_CONTRACT = 'initAelfContract';
+var CALL_AELF_CONTRACT = 'callAelfContract';
+var RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
-var CREAT_WALLET = exports.CREAT_WALLET = 'createWallet';
-var CHECK_WALLET = exports.CHECK_WALLET = 'checkWallet';
-var CLEAR_WALLET = exports.CLEAR_WALLET = 'clearWallet';
-var UNLOCK_WALLET = exports.UNLOCK_WALLET = 'unlockWallet';
-var LOCK_WALLET = exports.LOCK_WALLET = 'lockWallet';
-var UPDATE_WALLET = exports.UPDATE_WALLET = 'updateWallet';
-
-var INSERT_KEYPAIR = exports.INSERT_KEYPAIR = 'insertKeypair';
-var REMOVE_KEYPAIR = exports.REMOVE_KEYPAIR = 'removeKeypair';
-var GET_KEYPAIR = exports.GET_KEYPAIR = 'getKeypair';
-
-var SET_PERMISSION = exports.SET_PERMISSION = 'setPermission';
-var CHECK_PERMISSION = exports.CHECK_PERMISSION = 'checkPermission';
-var GET_ALLPERMISSIONS = exports.GET_ALLPERMISSIONS = 'getAllPermissions';
-var REMOVE_PERMISSION = exports.REMOVE_PERMISSION = 'removePermission';
-
-var CONNECT_AELF_CHAIN = exports.CONNECT_AELF_CHAIN = 'connectAelfChain';
-var CALL_AELF_CHAIN = exports.CALL_AELF_CHAIN = 'callAelfChain';
-var RELEASE_AELF_CHAIN = exports.RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
-
-var INIT_AELF_CONTRACT = exports.INIT_AELF_CONTRACT = 'initAelfContract';
-var CALL_AELF_CONTRACT = exports.CALL_AELF_CONTRACT = 'callAelfContract';
-var RELEASE_AELF_CONTRACT = exports.RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
-
-var GET_ADDRESS = exports.GET_ADDRESS = 'getAddress';
-
-var OPEN_PROMPT = exports.OPEN_PROMPT = 'openPrompt';
-var SET_PROMPT = exports.SET_PROMPT = 'setPrompt';
-var GET_PROMPT = exports.GET_PROMPT = 'getPrompt';
+var GET_ADDRESS = 'getAddress';
+var OPEN_PROMPT = 'openPrompt';
+var SET_PROMPT = 'setPrompt';
+var GET_PROMPT = 'getPrompt';
 
 /***/ }),
-/* 693 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 471 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return InternalMessage; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(472);
+/* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(extension_streams__WEBPACK_IMPORTED_MODULE_2__);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @file InternalMessage.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @author Scatter:Shai James.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+/**
+ * @file InternalMessage.js
+ * @author Scatter:Shai James.
+ */
 
 
-var _extensionStreams = __webpack_require__(694);
+var InternalMessage =
+/*#__PURE__*/
+function () {
+  function InternalMessage() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, InternalMessage);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    this.type = '';
+    this.payload = '';
+  }
 
-var InternalMessage = function () {
-    function InternalMessage() {
-        _classCallCheck(this, InternalMessage);
-
-        this.type = '';
-        this.payload = '';
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(InternalMessage, [{
+    key: "send",
+    value: function send() {
+      return extension_streams__WEBPACK_IMPORTED_MODULE_2__["LocalStream"].send(this);
     }
+  }], [{
+    key: "placeholder",
+    value: function placeholder() {
+      return new InternalMessage();
+    }
+  }, {
+    key: "fromJson",
+    value: function fromJson(json) {
+      return Object.assign(this.placeholder(), json);
+    }
+  }, {
+    key: "payload",
+    value: function payload(type, _payload) {
+      var p = this.placeholder();
+      p.type = type;
+      p.payload = _payload;
+      return p;
+    }
+  }, {
+    key: "signal",
+    value: function signal(type) {
+      var p = this.placeholder();
+      p.type = type;
+      return p;
+    }
+  }]);
 
-    _createClass(InternalMessage, [{
-        key: 'send',
-        value: function send() {
-            return _extensionStreams.LocalStream.send(this);
-        }
-    }], [{
-        key: 'placeholder',
-        value: function placeholder() {
-            return new InternalMessage();
-        }
-    }, {
-        key: 'fromJson',
-        value: function fromJson(json) {
-            return Object.assign(this.placeholder(), json);
-        }
-    }, {
-        key: 'payload',
-        value: function payload(type, _payload) {
-            var p = this.placeholder();
-            p.type = type;
-            p.payload = _payload;
-            return p;
-        }
-    }, {
-        key: 'signal',
-        value: function signal(type) {
-            var p = this.placeholder();
-            p.type = type;
-            return p;
-        }
-    }]);
-
-    return InternalMessage;
+  return InternalMessage;
 }();
 
-exports.default = InternalMessage;
+
 
 /***/ }),
-/* 694 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var EncryptedStream_1 = __webpack_require__(695);
+var EncryptedStream_1 = __webpack_require__(473);
 exports.EncryptedStream = EncryptedStream_1.EncryptedStream;
-var LocalStream_1 = __webpack_require__(698);
+var LocalStream_1 = __webpack_require__(476);
 exports.LocalStream = LocalStream_1.LocalStream;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 695 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const aes_oop_1 = __webpack_require__(696);
+const aes_oop_1 = __webpack_require__(474);
 class EncryptedStream {
     constructor(_eventName, _randomized) {
         this.eventName = _eventName;
@@ -23247,9 +23315,7 @@ class EncryptedStream {
         this.listenForSync();
     }
     listenWith(func) {
-        console.log('EncryptedStream: ', this.eventName);
         document.addEventListener(this.eventName, (event) => {
-            console.log(event);
             if (!this.synced) return false;
             let msg = JSON.parse(event.detail);
             msg = (this.synced && typeof msg === 'string') ? aes_oop_1.default.decrypt(msg, this.key) : msg;
@@ -23294,12 +23360,12 @@ exports.default = EncryptedStream;
 //# sourceMappingURL=EncryptedStream.js.map
 
 /***/ }),
-/* 696 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const sjcl = __webpack_require__(697);
+const sjcl = __webpack_require__(475);
 class AES {
     static encrypt(data, key) {
         if (typeof data === 'object')
@@ -23324,7 +23390,7 @@ exports.default = AES;
 //# sourceMappingURL=AES.js.map
 
 /***/ }),
-/* 697 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23377,7 +23443,7 @@ this.a.mouseCollector),document.detachEvent("keypress",this.a.keyboardCollector)
 a.touches[0]||a.changedTouches[0];this.addEntropy([a.pageX||a.clientX,a.pageY||a.clientY],1,"touch");C(this,0)},ma:function(){C(this,2)},ea:function(a){a=a.accelerationIncludingGravity.x||a.accelerationIncludingGravity.y||a.accelerationIncludingGravity.z;if(window.orientation){var b=window.orientation;"number"===typeof b&&this.addEntropy(b,1,"accelerometer")}a&&this.addEntropy(a,2,"accelerometer");C(this,0)}};
 function A(a,b){var c,d=sjcl.random.K[a],e=[];for(c in d)d.hasOwnProperty(c)&&e.push(d[c]);for(c=0;c<e.length;c++)e[c](b)}function C(a,b){"undefined"!==typeof window&&window.performance&&"function"===typeof window.performance.now?a.addEntropy(window.performance.now(),b,"loadtime"):a.addEntropy((new Date).valueOf(),b,"loadtime")}function y(a){a.b=z(a).concat(z(a));a.L=new sjcl.cipher.aes(a.b)}function z(a){for(var b=0;4>b&&(a.h[b]=a.h[b]+1|0,!a.h[b]);b++);return a.L.encrypt(a.h)}
 function B(a,b){return function(){b.apply(a,arguments)}}sjcl.random=new sjcl.prng(6);
-a:try{var D,E,F,G;if(G= true&&module.exports){var H;try{H=__webpack_require__(505)}catch(a){H=null}G=E=H}if(G&&E.randomBytes)D=E.randomBytes(128),D=new Uint32Array((new Uint8Array(D)).buffer),sjcl.random.addEntropy(D,1024,"crypto['randomBytes']");else if("undefined"!==typeof window&&"undefined"!==typeof Uint32Array){F=new Uint32Array(32);if(window.crypto&&window.crypto.getRandomValues)window.crypto.getRandomValues(F);else if(window.msCrypto&&window.msCrypto.getRandomValues)window.msCrypto.getRandomValues(F);
+a:try{var D,E,F,G;if(G= true&&module.exports){var H;try{H=__webpack_require__(281)}catch(a){H=null}G=E=H}if(G&&E.randomBytes)D=E.randomBytes(128),D=new Uint32Array((new Uint8Array(D)).buffer),sjcl.random.addEntropy(D,1024,"crypto['randomBytes']");else if("undefined"!==typeof window&&"undefined"!==typeof Uint32Array){F=new Uint32Array(32);if(window.crypto&&window.crypto.getRandomValues)window.crypto.getRandomValues(F);else if(window.msCrypto&&window.msCrypto.getRandomValues)window.msCrypto.getRandomValues(F);
 else break a;sjcl.random.addEntropy(F,1024,"crypto['getRandomValues']")}}catch(a){"undefined"!==typeof window&&window.console&&(console.log("There was an error collecting entropy from the browser:"),console.log(a))}
 sjcl.json={defaults:{v:1,iter:1E4,ks:128,ts:64,mode:"ccm",adata:"",cipher:"aes"},ja:function(a,b,c,d){c=c||{};d=d||{};var e=sjcl.json,f=e.g({iv:sjcl.random.randomWords(4,0)},e.defaults),g;e.g(f,c);c=f.adata;"string"===typeof f.salt&&(f.salt=sjcl.codec.base64.toBits(f.salt));"string"===typeof f.iv&&(f.iv=sjcl.codec.base64.toBits(f.iv));if(!sjcl.mode[f.mode]||!sjcl.cipher[f.cipher]||"string"===typeof a&&100>=f.iter||64!==f.ts&&96!==f.ts&&128!==f.ts||128!==f.ks&&192!==f.ks&&0x100!==f.ks||2>f.iv.length||
 4<f.iv.length)throw new sjcl.exception.invalid("json encrypt: invalid parameters");"string"===typeof a?(g=sjcl.misc.cachedPbkdf2(a,f),a=g.key.slice(0,f.ks/32),f.salt=g.salt):sjcl.ecc&&a instanceof sjcl.ecc.elGamal.publicKey&&(g=a.kem(),f.kemtag=g.tag,a=g.key.slice(0,f.ks/32));"string"===typeof b&&(b=sjcl.codec.utf8String.toBits(b));"string"===typeof c&&(f.adata=c=sjcl.codec.utf8String.toBits(c));g=new sjcl.cipher[f.cipher](a);e.g(d,f);d.key=a;f.ct="ccm"===f.mode&&sjcl.arrayBuffer&&sjcl.arrayBuffer.ccm&&
@@ -23392,7 +23458,7 @@ b){var c={},d;for(d=0;d<b.length;d++)void 0!==a[b[d]]&&(c[b[d]]=a[b[d]]);return 
 
 
 /***/ }),
-/* 698 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23418,23 +23484,23 @@ exports.default = LocalStream;
 //# sourceMappingURL=LocalStream.js.map
 
 /***/ }),
-/* 699 */,
-/* 700 */,
-/* 701 */,
-/* 702 */,
-/* 703 */,
-/* 704 */,
-/* 705 */,
-/* 706 */,
-/* 707 */,
-/* 708 */,
-/* 709 */,
-/* 710 */,
-/* 711 */,
-/* 712 */,
-/* 713 */,
-/* 714 */,
-/* 715 */
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -23470,12 +23536,12 @@ exports.default = LocalStream;
  * @date 2014
  */
 
-var RequestManager = __webpack_require__(716);
-var Chain = __webpack_require__(720);
-var Settings = __webpack_require__(818);
-var version = __webpack_require__(819);
-var HttpProvider = __webpack_require__(820);
-var wallet = __webpack_require__(797);
+var RequestManager = __webpack_require__(494);
+var Chain = __webpack_require__(498);
+var Settings = __webpack_require__(596);
+var version = __webpack_require__(597);
+var HttpProvider = __webpack_require__(598);
+var wallet = __webpack_require__(575);
 
 function Aelf (provider) {
     this._requestManager = new RequestManager(provider);
@@ -23521,7 +23587,7 @@ module.exports = Aelf;
 
 
 /***/ }),
-/* 716 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -23550,9 +23616,9 @@ module.exports = Aelf;
  * @date 2014
  */
 
-var Jsonrpc = __webpack_require__(717);
-var c = __webpack_require__(718);
-var errors = __webpack_require__(719);
+var Jsonrpc = __webpack_require__(495);
+var c = __webpack_require__(496);
+var errors = __webpack_require__(497);
 
 /**
  * It's responsible for passing messages to providers
@@ -23791,7 +23857,7 @@ module.exports = RequestManager;
 
 
 /***/ }),
-/* 717 */
+/* 495 */
 /***/ (function(module, exports) {
 
 /*
@@ -23882,7 +23948,7 @@ module.exports = Jsonrpc;
 
 
 /***/ }),
-/* 718 */
+/* 496 */
 /***/ (function(module, exports) {
 
 /*
@@ -23933,7 +23999,7 @@ module.exports = {
 
 
 /***/ }),
-/* 719 */
+/* 497 */
 /***/ (function(module, exports) {
 
 /*
@@ -23978,7 +24044,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 720 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24007,10 +24073,10 @@ module.exports = {
 
 
 
-var formatters = __webpack_require__(721);
-var Contract = __webpack_require__(767);
-var Method = __webpack_require__(817);
-var c = __webpack_require__(718);
+var formatters = __webpack_require__(499);
+var Contract = __webpack_require__(545);
+var Method = __webpack_require__(595);
+var c = __webpack_require__(496);
 
 // var blockCall = function (args) {
 //     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? "eth_getBlockByHash" : "eth_getBlockByNumber";
@@ -24238,7 +24304,7 @@ module.exports = Chain;
 
 
 /***/ }),
-/* 721 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24266,8 +24332,8 @@ module.exports = Chain;
  */
 
 
-var protobuf = __webpack_require__(722);
-var abiDescriptor = __webpack_require__(766)
+var protobuf = __webpack_require__(500);
+var abiDescriptor = __webpack_require__(544)
 var ModuleMessage = protobuf.Root.fromJSON(abiDescriptor).Module;
 
 var inputAddressFormatter = function (address) {
@@ -24294,45 +24360,45 @@ module.exports = {
 };
 
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 722 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // full library entry point.
 
 
-module.exports = __webpack_require__(723);
+module.exports = __webpack_require__(501);
 
 
 /***/ }),
-/* 723 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var protobuf = module.exports = __webpack_require__(724);
+var protobuf = module.exports = __webpack_require__(502);
 
 protobuf.build = "full";
 
 // Parser
-protobuf.tokenize         = __webpack_require__(763);
-protobuf.parse            = __webpack_require__(764);
-protobuf.common           = __webpack_require__(765);
+protobuf.tokenize         = __webpack_require__(541);
+protobuf.parse            = __webpack_require__(542);
+protobuf.common           = __webpack_require__(543);
 
 // Configure parser
 protobuf.Root._configure(protobuf.Type, protobuf.parse, protobuf.common);
 
 
 /***/ }),
-/* 724 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var protobuf = module.exports = __webpack_require__(725);
+var protobuf = module.exports = __webpack_require__(503);
 
 protobuf.build = "light";
 
@@ -24405,30 +24471,30 @@ function loadSync(filename, root) {
 protobuf.loadSync = loadSync;
 
 // Serialization
-protobuf.encoder          = __webpack_require__(742);
-protobuf.decoder          = __webpack_require__(758);
-protobuf.verifier         = __webpack_require__(759);
-protobuf.converter        = __webpack_require__(760);
+protobuf.encoder          = __webpack_require__(520);
+protobuf.decoder          = __webpack_require__(536);
+protobuf.verifier         = __webpack_require__(537);
+protobuf.converter        = __webpack_require__(538);
 
 // Reflection
-protobuf.ReflectionObject = __webpack_require__(744);
-protobuf.Namespace        = __webpack_require__(750);
-protobuf.Root             = __webpack_require__(762);
-protobuf.Enum             = __webpack_require__(743);
-protobuf.Type             = __webpack_require__(749);
-protobuf.Field            = __webpack_require__(751);
-protobuf.OneOf            = __webpack_require__(753);
-protobuf.MapField         = __webpack_require__(754);
-protobuf.Service          = __webpack_require__(755);
-protobuf.Method           = __webpack_require__(756);
+protobuf.ReflectionObject = __webpack_require__(522);
+protobuf.Namespace        = __webpack_require__(528);
+protobuf.Root             = __webpack_require__(540);
+protobuf.Enum             = __webpack_require__(521);
+protobuf.Type             = __webpack_require__(527);
+protobuf.Field            = __webpack_require__(529);
+protobuf.OneOf            = __webpack_require__(531);
+protobuf.MapField         = __webpack_require__(532);
+protobuf.Service          = __webpack_require__(533);
+protobuf.Method           = __webpack_require__(534);
 
 // Runtime
-protobuf.Message          = __webpack_require__(757);
-protobuf.wrappers         = __webpack_require__(761);
+protobuf.Message          = __webpack_require__(535);
+protobuf.wrappers         = __webpack_require__(539);
 
 // Utility
-protobuf.types            = __webpack_require__(752);
-protobuf.util             = __webpack_require__(745);
+protobuf.types            = __webpack_require__(530);
+protobuf.util             = __webpack_require__(523);
 
 // Set up possibly cyclic reflection dependencies
 protobuf.ReflectionObject._configure(protobuf.Root);
@@ -24438,7 +24504,7 @@ protobuf.Field._configure(protobuf.Type);
 
 
 /***/ }),
-/* 725 */
+/* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24454,15 +24520,15 @@ var protobuf = exports;
 protobuf.build = "minimal";
 
 // Serialization
-protobuf.Writer       = __webpack_require__(726);
-protobuf.BufferWriter = __webpack_require__(736);
-protobuf.Reader       = __webpack_require__(737);
-protobuf.BufferReader = __webpack_require__(738);
+protobuf.Writer       = __webpack_require__(504);
+protobuf.BufferWriter = __webpack_require__(514);
+protobuf.Reader       = __webpack_require__(515);
+protobuf.BufferReader = __webpack_require__(516);
 
 // Utility
-protobuf.util         = __webpack_require__(727);
-protobuf.rpc          = __webpack_require__(739);
-protobuf.roots        = __webpack_require__(741);
+protobuf.util         = __webpack_require__(505);
+protobuf.rpc          = __webpack_require__(517);
+protobuf.roots        = __webpack_require__(519);
 protobuf.configure    = configure;
 
 /* istanbul ignore next */
@@ -24481,14 +24547,14 @@ configure();
 
 
 /***/ }),
-/* 726 */
+/* 504 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = Writer;
 
-var util      = __webpack_require__(727);
+var util      = __webpack_require__(505);
 
 var BufferWriter; // cyclic
 
@@ -24947,7 +25013,7 @@ Writer._configure = function(BufferWriter_) {
 
 
 /***/ }),
-/* 727 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24955,28 +25021,28 @@ Writer._configure = function(BufferWriter_) {
 var util = exports;
 
 // used to return a Promise where callback is omitted
-util.asPromise = __webpack_require__(728);
+util.asPromise = __webpack_require__(506);
 
 // converts to / from base64 encoded strings
-util.base64 = __webpack_require__(729);
+util.base64 = __webpack_require__(507);
 
 // base class of rpc.Service
-util.EventEmitter = __webpack_require__(730);
+util.EventEmitter = __webpack_require__(508);
 
 // float handling accross browsers
-util.float = __webpack_require__(731);
+util.float = __webpack_require__(509);
 
 // requires modules optionally and hides the call from bundlers
-util.inquire = __webpack_require__(732);
+util.inquire = __webpack_require__(510);
 
 // converts to / from utf8 encoded strings
-util.utf8 = __webpack_require__(733);
+util.utf8 = __webpack_require__(511);
 
 // provides a node-like buffer pool in the browser
-util.pool = __webpack_require__(734);
+util.pool = __webpack_require__(512);
 
 // utility to work with the low and high bits of a 64 bit value
-util.LongBits = __webpack_require__(735);
+util.LongBits = __webpack_require__(513);
 
 // global object reference
 util.global = typeof window !== "undefined" && window
@@ -25065,7 +25131,7 @@ util.isSet = function isSet(obj, prop) {
  * @extends Uint8Array
  */
 // 纯粹为了解决问题做的
-util.BufferTemp = __webpack_require__(508).Buffer;
+util.BufferTemp = __webpack_require__(285).Buffer;
 /**
  * Node's Buffer class if available.
  * @type {Constructor<Buffer>}
@@ -25371,10 +25437,10 @@ util._configure = function() {
         };
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110)))
 
 /***/ }),
-/* 728 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25433,7 +25499,7 @@ function asPromise(fn, ctx/*, varargs */) {
 
 
 /***/ }),
-/* 729 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25579,7 +25645,7 @@ base64.test = function test(string) {
 
 
 /***/ }),
-/* 730 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25662,7 +25728,7 @@ EventEmitter.prototype.emit = function emit(evt) {
 
 
 /***/ }),
-/* 731 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26004,7 +26070,7 @@ function readUintBE(buf, pos) {
 
 
 /***/ }),
-/* 732 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26028,7 +26094,7 @@ function inquire(moduleName) {
 
 
 /***/ }),
-/* 733 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26140,7 +26206,7 @@ utf8.write = function utf8_write(string, buffer, offset) {
 
 
 /***/ }),
-/* 734 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26195,14 +26261,14 @@ function pool(alloc, slice, size) {
 
 
 /***/ }),
-/* 735 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = LongBits;
 
-var util = __webpack_require__(727);
+var util = __webpack_require__(505);
 
 /**
  * Constructs new long bits.
@@ -26402,7 +26468,7 @@ LongBits.prototype.length = function length() {
 
 
 /***/ }),
-/* 736 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26410,10 +26476,10 @@ LongBits.prototype.length = function length() {
 module.exports = BufferWriter;
 
 // extends Writer
-var Writer = __webpack_require__(726);
+var Writer = __webpack_require__(504);
 (BufferWriter.prototype = Object.create(Writer.prototype)).constructor = BufferWriter;
 
-var util = __webpack_require__(727);
+var util = __webpack_require__(505);
 
 var Buffer = util.Buffer;
 
@@ -26490,14 +26556,14 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 
 
 /***/ }),
-/* 737 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = Reader;
 
-var util      = __webpack_require__(727);
+var util      = __webpack_require__(505);
 
 var BufferReader; // cyclic
 
@@ -26902,7 +26968,7 @@ Reader._configure = function(BufferReader_) {
 
 
 /***/ }),
-/* 738 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26910,10 +26976,10 @@ Reader._configure = function(BufferReader_) {
 module.exports = BufferReader;
 
 // extends Reader
-var Reader = __webpack_require__(737);
+var Reader = __webpack_require__(515);
 (BufferReader.prototype = Object.create(Reader.prototype)).constructor = BufferReader;
 
-var util = __webpack_require__(727);
+var util = __webpack_require__(505);
 
 /**
  * Constructs a new buffer reader instance.
@@ -26953,7 +27019,7 @@ BufferReader.prototype.string = function read_string_buffer() {
 
 
 /***/ }),
-/* 739 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26992,18 +27058,18 @@ var rpc = exports;
  * @returns {undefined}
  */
 
-rpc.Service = __webpack_require__(740);
+rpc.Service = __webpack_require__(518);
 
 
 /***/ }),
-/* 740 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = Service;
 
-var util = __webpack_require__(727);
+var util = __webpack_require__(505);
 
 // Extends EventEmitter
 (Service.prototype = Object.create(util.EventEmitter.prototype)).constructor = Service;
@@ -27145,7 +27211,7 @@ Service.prototype.end = function end(endedByRPC) {
 
 
 /***/ }),
-/* 741 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27170,16 +27236,16 @@ module.exports = {};
 
 
 /***/ }),
-/* 742 */
+/* 520 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = encoder;
 
-var Enum     = __webpack_require__(743),
-    types    = __webpack_require__(752),
-    util     = __webpack_require__(745);
+var Enum     = __webpack_require__(521),
+    types    = __webpack_require__(530),
+    util     = __webpack_require__(523);
 
 /**
  * Generates a partial message type encoder.
@@ -27276,7 +27342,7 @@ function encoder(mtype) {
 }
 
 /***/ }),
-/* 743 */
+/* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27284,11 +27350,11 @@ function encoder(mtype) {
 module.exports = Enum;
 
 // extends ReflectionObject
-var ReflectionObject = __webpack_require__(744);
+var ReflectionObject = __webpack_require__(522);
 ((Enum.prototype = Object.create(ReflectionObject.prototype)).constructor = Enum).className = "Enum";
 
-var Namespace = __webpack_require__(750),
-    util = __webpack_require__(745);
+var Namespace = __webpack_require__(528),
+    util = __webpack_require__(523);
 
 /**
  * Constructs a new enum instance.
@@ -27464,7 +27530,7 @@ Enum.prototype.isReservedName = function isReservedName(name) {
 
 
 /***/ }),
-/* 744 */
+/* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27473,7 +27539,7 @@ module.exports = ReflectionObject;
 
 ReflectionObject.className = "ReflectionObject";
 
-var util = __webpack_require__(745);
+var util = __webpack_require__(523);
 
 var Root; // cyclic
 
@@ -27671,7 +27737,7 @@ ReflectionObject._configure = function(Root_) {
 
 
 /***/ }),
-/* 745 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27681,16 +27747,16 @@ ReflectionObject._configure = function(Root_) {
  * Various utility functions.
  * @namespace
  */
-var util = module.exports = __webpack_require__(727);
+var util = module.exports = __webpack_require__(505);
 
-var roots = __webpack_require__(741);
+var roots = __webpack_require__(519);
 
 var Type, // cyclic
     Enum;
 
-util.codegen = __webpack_require__(746);
-util.fetch   = __webpack_require__(747);
-util.path    = __webpack_require__(748);
+util.codegen = __webpack_require__(524);
+util.fetch   = __webpack_require__(525);
+util.path    = __webpack_require__(526);
 
 /**
  * Node's fs module if available.
@@ -27809,7 +27875,7 @@ util.decorateType = function decorateType(ctor, typeName) {
 
     /* istanbul ignore next */
     if (!Type)
-        Type = __webpack_require__(749);
+        Type = __webpack_require__(527);
 
     var type = new Type(typeName || ctor.name);
     util.decorateRoot.add(type);
@@ -27834,7 +27900,7 @@ util.decorateEnum = function decorateEnum(object) {
 
     /* istanbul ignore next */
     if (!Enum)
-        Enum = __webpack_require__(743);
+        Enum = __webpack_require__(521);
 
     var enm = new Enum("Enum" + decorateEnumIndex++, object);
     util.decorateRoot.add(enm);
@@ -27850,13 +27916,13 @@ util.decorateEnum = function decorateEnum(object) {
  */
 Object.defineProperty(util, "decorateRoot", {
     get: function() {
-        return roots["decorated"] || (roots["decorated"] = new (__webpack_require__(762))());
+        return roots["decorated"] || (roots["decorated"] = new (__webpack_require__(540))());
     }
 });
 
 
 /***/ }),
-/* 746 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27962,15 +28028,15 @@ codegen.verbose = false;
 
 
 /***/ }),
-/* 747 */
+/* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = fetch;
 
-var asPromise = __webpack_require__(728),
-    inquire   = __webpack_require__(732);
+var asPromise = __webpack_require__(506),
+    inquire   = __webpack_require__(510);
 
 var fs = inquire("fs");
 
@@ -28084,7 +28150,7 @@ fetch.xhr = function fetch_xhr(filename, options, callback) {
 
 
 /***/ }),
-/* 748 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28156,7 +28222,7 @@ path.resolve = function resolve(originPath, includePath, alreadyNormalized) {
 
 
 /***/ }),
-/* 749 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28164,23 +28230,23 @@ path.resolve = function resolve(originPath, includePath, alreadyNormalized) {
 module.exports = Type;
 
 // extends Namespace
-var Namespace = __webpack_require__(750);
+var Namespace = __webpack_require__(528);
 ((Type.prototype = Object.create(Namespace.prototype)).constructor = Type).className = "Type";
 
-var Enum      = __webpack_require__(743),
-    OneOf     = __webpack_require__(753),
-    Field     = __webpack_require__(751),
-    MapField  = __webpack_require__(754),
-    Service   = __webpack_require__(755),
-    Message   = __webpack_require__(757),
-    Reader    = __webpack_require__(737),
-    Writer    = __webpack_require__(726),
-    util      = __webpack_require__(745),
-    encoder   = __webpack_require__(742),
-    decoder   = __webpack_require__(758),
-    verifier  = __webpack_require__(759),
-    converter = __webpack_require__(760),
-    wrappers  = __webpack_require__(761);
+var Enum      = __webpack_require__(521),
+    OneOf     = __webpack_require__(531),
+    Field     = __webpack_require__(529),
+    MapField  = __webpack_require__(532),
+    Service   = __webpack_require__(533),
+    Message   = __webpack_require__(535),
+    Reader    = __webpack_require__(515),
+    Writer    = __webpack_require__(504),
+    util      = __webpack_require__(523),
+    encoder   = __webpack_require__(520),
+    decoder   = __webpack_require__(536),
+    verifier  = __webpack_require__(537),
+    converter = __webpack_require__(538),
+    wrappers  = __webpack_require__(539);
 
 /**
  * Constructs a new reflected message type instance.
@@ -28752,7 +28818,7 @@ Type.d = function decorateType(typeName) {
 
 
 /***/ }),
-/* 750 */
+/* 528 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28760,11 +28826,11 @@ Type.d = function decorateType(typeName) {
 module.exports = Namespace;
 
 // extends ReflectionObject
-var ReflectionObject = __webpack_require__(744);
+var ReflectionObject = __webpack_require__(522);
 ((Namespace.prototype = Object.create(ReflectionObject.prototype)).constructor = Namespace).className = "Namespace";
 
-var Field    = __webpack_require__(751),
-    util     = __webpack_require__(745);
+var Field    = __webpack_require__(529),
+    util     = __webpack_require__(523);
 
 var Type,    // cyclic
     Service,
@@ -29192,7 +29258,7 @@ Namespace._configure = function(Type_, Service_, Enum_) {
 
 
 /***/ }),
-/* 751 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29200,12 +29266,12 @@ Namespace._configure = function(Type_, Service_, Enum_) {
 module.exports = Field;
 
 // extends ReflectionObject
-var ReflectionObject = __webpack_require__(744);
+var ReflectionObject = __webpack_require__(522);
 ((Field.prototype = Object.create(ReflectionObject.prototype)).constructor = Field).className = "Field";
 
-var Enum  = __webpack_require__(743),
-    types = __webpack_require__(752),
-    util  = __webpack_require__(745);
+var Enum  = __webpack_require__(521),
+    types = __webpack_require__(530),
+    util  = __webpack_require__(523);
 
 var Type; // cyclic
 
@@ -29570,7 +29636,7 @@ Field._configure = function configure(Type_) {
 
 
 /***/ }),
-/* 752 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29582,7 +29648,7 @@ Field._configure = function configure(Type_) {
  */
 var types = exports;
 
-var util = __webpack_require__(745);
+var util = __webpack_require__(523);
 
 var s = [
     "double",   // 0
@@ -29773,7 +29839,7 @@ types.packed = bake([
 
 
 /***/ }),
-/* 753 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29781,11 +29847,11 @@ types.packed = bake([
 module.exports = OneOf;
 
 // extends ReflectionObject
-var ReflectionObject = __webpack_require__(744);
+var ReflectionObject = __webpack_require__(522);
 ((OneOf.prototype = Object.create(ReflectionObject.prototype)).constructor = OneOf).className = "OneOf";
 
-var Field = __webpack_require__(751),
-    util  = __webpack_require__(745);
+var Field = __webpack_require__(529),
+    util  = __webpack_require__(523);
 
 /**
  * Constructs a new oneof instance.
@@ -29983,7 +30049,7 @@ OneOf.d = function decorateOneOf() {
 
 
 /***/ }),
-/* 754 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29991,11 +30057,11 @@ OneOf.d = function decorateOneOf() {
 module.exports = MapField;
 
 // extends Field
-var Field = __webpack_require__(751);
+var Field = __webpack_require__(529);
 ((MapField.prototype = Object.create(Field.prototype)).constructor = MapField).className = "MapField";
 
-var types   = __webpack_require__(752),
-    util    = __webpack_require__(745);
+var types   = __webpack_require__(530),
+    util    = __webpack_require__(523);
 
 /**
  * Constructs a new map field instance.
@@ -30116,7 +30182,7 @@ MapField.d = function decorateMapField(fieldId, fieldKeyType, fieldValueType) {
 
 
 /***/ }),
-/* 755 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30124,12 +30190,12 @@ MapField.d = function decorateMapField(fieldId, fieldKeyType, fieldValueType) {
 module.exports = Service;
 
 // extends Namespace
-var Namespace = __webpack_require__(750);
+var Namespace = __webpack_require__(528);
 ((Service.prototype = Object.create(Namespace.prototype)).constructor = Service).className = "Service";
 
-var Method = __webpack_require__(756),
-    util   = __webpack_require__(745),
-    rpc    = __webpack_require__(739);
+var Method = __webpack_require__(534),
+    util   = __webpack_require__(523),
+    rpc    = __webpack_require__(517);
 
 /**
  * Constructs a new service instance.
@@ -30290,7 +30356,7 @@ Service.prototype.create = function create(rpcImpl, requestDelimited, responseDe
 
 
 /***/ }),
-/* 756 */
+/* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30298,10 +30364,10 @@ Service.prototype.create = function create(rpcImpl, requestDelimited, responseDe
 module.exports = Method;
 
 // extends ReflectionObject
-var ReflectionObject = __webpack_require__(744);
+var ReflectionObject = __webpack_require__(522);
 ((Method.prototype = Object.create(ReflectionObject.prototype)).constructor = Method).className = "Method";
 
-var util = __webpack_require__(745);
+var util = __webpack_require__(523);
 
 /**
  * Constructs a new service method instance.
@@ -30448,14 +30514,14 @@ Method.prototype.resolve = function resolve() {
 
 
 /***/ }),
-/* 757 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = Message;
 
-var util = __webpack_require__(727);
+var util = __webpack_require__(505);
 
 /**
  * Constructs a new message instance.
@@ -30593,16 +30659,16 @@ Message.prototype.toJSON = function toJSON() {
 /*eslint-enable valid-jsdoc*/
 
 /***/ }),
-/* 758 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = decoder;
 
-var Enum    = __webpack_require__(743),
-    types   = __webpack_require__(752),
-    util    = __webpack_require__(745);
+var Enum    = __webpack_require__(521),
+    types   = __webpack_require__(530),
+    util    = __webpack_require__(523);
 
 function missing(field) {
     return "missing required '" + field.name + "'";
@@ -30706,15 +30772,15 @@ function decoder(mtype) {
 
 
 /***/ }),
-/* 759 */
+/* 537 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 module.exports = verifier;
 
-var Enum      = __webpack_require__(743),
-    util      = __webpack_require__(745);
+var Enum      = __webpack_require__(521),
+    util      = __webpack_require__(523);
 
 function invalid(field, expected) {
     return field.name + ": " + expected + (field.repeated && expected !== "array" ? "[]" : field.map && expected !== "object" ? "{k:"+field.keyType+"}" : "") + " expected";
@@ -30889,7 +30955,7 @@ function verifier(mtype) {
 }
 
 /***/ }),
-/* 760 */
+/* 538 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30900,8 +30966,8 @@ function verifier(mtype) {
  */
 var converter = exports;
 
-var Enum = __webpack_require__(743),
-    util = __webpack_require__(745);
+var Enum = __webpack_require__(521),
+    util = __webpack_require__(523);
 
 /**
  * Generates a partial value fromObject conveter.
@@ -31189,7 +31255,7 @@ converter.toObject = function toObject(mtype) {
 
 
 /***/ }),
-/* 761 */
+/* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31202,7 +31268,7 @@ converter.toObject = function toObject(mtype) {
  */
 var wrappers = exports;
 
-var Message = __webpack_require__(757);
+var Message = __webpack_require__(535);
 
 /**
  * From object converter part of an {@link IWrapper}.
@@ -31279,7 +31345,7 @@ wrappers[".google.protobuf.Any"] = {
 
 
 /***/ }),
-/* 762 */
+/* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31287,13 +31353,13 @@ wrappers[".google.protobuf.Any"] = {
 module.exports = Root;
 
 // extends Namespace
-var Namespace = __webpack_require__(750);
+var Namespace = __webpack_require__(528);
 ((Root.prototype = Object.create(Namespace.prototype)).constructor = Root).className = "Root";
 
-var Field   = __webpack_require__(751),
-    Enum    = __webpack_require__(743),
-    OneOf   = __webpack_require__(753),
-    util    = __webpack_require__(745);
+var Field   = __webpack_require__(529),
+    Enum    = __webpack_require__(521),
+    OneOf   = __webpack_require__(531),
+    util    = __webpack_require__(523);
 
 var Type,   // cyclic
     parse,  // might be excluded
@@ -31637,7 +31703,7 @@ Root._configure = function(Type_, parse_, common_) {
 
 
 /***/ }),
-/* 763 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32041,7 +32107,7 @@ function tokenize(source, alternateCommentMode) {
 
 
 /***/ }),
-/* 764 */
+/* 542 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32051,17 +32117,17 @@ module.exports = parse;
 parse.filename = null;
 parse.defaults = { keepCase: false };
 
-var tokenize  = __webpack_require__(763),
-    Root      = __webpack_require__(762),
-    Type      = __webpack_require__(749),
-    Field     = __webpack_require__(751),
-    MapField  = __webpack_require__(754),
-    OneOf     = __webpack_require__(753),
-    Enum      = __webpack_require__(743),
-    Service   = __webpack_require__(755),
-    Method    = __webpack_require__(756),
-    types     = __webpack_require__(752),
-    util      = __webpack_require__(745);
+var tokenize  = __webpack_require__(541),
+    Root      = __webpack_require__(540),
+    Type      = __webpack_require__(527),
+    Field     = __webpack_require__(529),
+    MapField  = __webpack_require__(532),
+    OneOf     = __webpack_require__(531),
+    Enum      = __webpack_require__(521),
+    Service   = __webpack_require__(533),
+    Method    = __webpack_require__(534),
+    types     = __webpack_require__(530),
+    util      = __webpack_require__(523);
 
 var base10Re    = /^[1-9][0-9]*$/,
     base10NegRe = /^-?[1-9][0-9]*$/,
@@ -32806,7 +32872,7 @@ function parse(source, root, options) {
 
 
 /***/ }),
-/* 765 */
+/* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33212,13 +33278,13 @@ common.get = function get(file) {
 
 
 /***/ }),
-/* 766 */
+/* 544 */
 /***/ (function(module) {
 
 module.exports = {"options":{"csharp_namespace":"AElf.ABI.CSharp"},"nested":{"Field":{"fields":{"Type":{"type":"string","id":1},"Name":{"type":"string","id":2}}},"Type":{"fields":{"Name":{"type":"string","id":1},"Fields":{"rule":"repeated","type":"Field","id":2}}},"Event":{"fields":{"Name":{"type":"string","id":1},"Indexed":{"rule":"repeated","type":"Field","id":2},"NonIndexed":{"rule":"repeated","type":"Field","id":3}}},"Method":{"fields":{"Name":{"type":"string","id":1},"Params":{"rule":"repeated","type":"Field","id":2},"ReturnType":{"type":"string","id":3},"IsView":{"type":"bool","id":4},"IsAsync":{"type":"bool","id":5}}},"Module":{"fields":{"Name":{"type":"string","id":1},"Methods":{"rule":"repeated","type":"Method","id":2},"Events":{"rule":"repeated","type":"Event","id":3},"Types":{"rule":"repeated","type":"Type","id":4}}}}};
 
 /***/ }),
-/* 767 */
+/* 545 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -33243,8 +33309,8 @@ module.exports = {"options":{"csharp_namespace":"AElf.ABI.CSharp"},"nested":{"Fi
  * @date 2014
  */
 
-var utils = __webpack_require__(768);
-var ContractMethod = __webpack_require__(776);
+var utils = __webpack_require__(546);
+var ContractMethod = __webpack_require__(554);
 
 /**
  * Should be called to add functions to contract object
@@ -33486,7 +33552,7 @@ module.exports = ContractFactory;
 
 
 /***/ }),
-/* 768 */
+/* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -33524,9 +33590,9 @@ module.exports = ContractFactory;
  * @constructor
  */
 
-var BigNumber = __webpack_require__(769);
-var utf8 = __webpack_require__(770);
-var base58check = __webpack_require__(771);
+var BigNumber = __webpack_require__(547);
+var utf8 = __webpack_require__(548);
+var base58check = __webpack_require__(549);
 
 var unitMap = {
     'noether':      '0',
@@ -34077,10 +34143,10 @@ module.exports = {
     uint8ArrayToHex: uint8ArrayToHex
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 769 */
+/* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! bignumber.js v2.4.0 https://github.com/MikeMcl/bignumber.js/LICENCE */
@@ -36814,7 +36880,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*! bignumber.js v2.4.0 https://github.com/Mik
 
 
 /***/ }),
-/* 770 */
+/* 548 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*! https://mths.be/utf8js v3.0.0 by @mathias */
@@ -37022,14 +37088,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*! bignumber.js v2.4.0 https://github.com/Mik
 
 
 /***/ }),
-/* 771 */
+/* 549 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
-var sha256 = __webpack_require__(772).sha256;
+var sha256 = __webpack_require__(550).sha256;
 // var crypto = require('crypto');
-var base58 = __webpack_require__(774);
+var base58 = __webpack_require__(552);
 
 
 module.exports.encode = (data, encoding = 'hex') => {
@@ -37062,10 +37128,10 @@ module.exports.decode = (string, encoding) => {
   }
   return data;
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 772 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -37094,7 +37160,7 @@ module.exports.decode = (string, encoding) => {
     root = self;
   }
   var COMMON_JS = !root.JS_SHA256_NO_COMMON_JS && typeof module === 'object' && module.exports;
-  var AMD =  true && __webpack_require__(773);
+  var AMD =  true && __webpack_require__(551);
   var ARRAY_BUFFER = !root.JS_SHA256_NO_ARRAY_BUFFER && typeof ArrayBuffer !== 'undefined';
   var HEX_CHARS = '0123456789abcdef'.split('');
   var EXTRA = [-2147483648, 8388608, 32768, 128];
@@ -37588,10 +37654,10 @@ module.exports.decode = (string, encoding) => {
   }
 })();
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(235), __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(283), __webpack_require__(110)))
 
 /***/ }),
-/* 773 */
+/* 551 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -37600,17 +37666,17 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(this, {}))
 
 /***/ }),
-/* 774 */
+/* 552 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var basex = __webpack_require__(775)
+var basex = __webpack_require__(553)
 var ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
 module.exports = basex(ALPHABET)
 
 
 /***/ }),
-/* 775 */
+/* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // base-x encoding / decoding
@@ -37619,7 +37685,7 @@ module.exports = basex(ALPHABET)
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php.
 
-const Buffer = __webpack_require__(507).Buffer
+const Buffer = __webpack_require__(284).Buffer
 
 module.exports = function base (ALPHABET) {
   if (ALPHABET.length >= 255) throw new TypeError('Alphabet too long')
@@ -37766,7 +37832,7 @@ module.exports = function base (ALPHABET) {
 
 
 /***/ }),
-/* 776 */
+/* 554 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -37791,12 +37857,12 @@ module.exports = function base (ALPHABET) {
  * @date 2015
  */
 
-var coder = __webpack_require__(777);
-var utils = __webpack_require__(768);
-var config = __webpack_require__(718);
-var errors = __webpack_require__(719);
-var proto = __webpack_require__(779);
-var wallet = __webpack_require__(797);
+var coder = __webpack_require__(555);
+var utils = __webpack_require__(546);
+var config = __webpack_require__(496);
+var errors = __webpack_require__(497);
+var proto = __webpack_require__(557);
+var wallet = __webpack_require__(575);
 
 /**
  * This prototype should be used to call/sendTransaction to solidity functions
@@ -38018,10 +38084,10 @@ ContractMethod.prototype.attachToContract = function (contract) {
 
 module.exports = ContractMethod;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 777 */
+/* 555 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -38046,21 +38112,21 @@ module.exports = ContractMethod;
  * @date 2015
  */
 
-var f = __webpack_require__(778);
+var f = __webpack_require__(556);
 
-var TypeBool = __webpack_require__(783);
-var TypeInt = __webpack_require__(785);
-var TypeUInt = __webpack_require__(786);
-var TypeLong = __webpack_require__(787);
-var TypeULong = __webpack_require__(788);
-var TypeBytes = __webpack_require__(789);
-var TypeString = __webpack_require__(790);
-var TypeAddress = __webpack_require__(791);
-var TypeHash = __webpack_require__(792);
-var TypeAuthorization = __webpack_require__(793);
-var TypeProposal = __webpack_require__(794);
-var TypeApproval = __webpack_require__(795);
-var TypeSideChainInfo = __webpack_require__(796);
+var TypeBool = __webpack_require__(561);
+var TypeInt = __webpack_require__(563);
+var TypeUInt = __webpack_require__(564);
+var TypeLong = __webpack_require__(565);
+var TypeULong = __webpack_require__(566);
+var TypeBytes = __webpack_require__(567);
+var TypeString = __webpack_require__(568);
+var TypeAddress = __webpack_require__(569);
+var TypeHash = __webpack_require__(570);
+var TypeAuthorization = __webpack_require__(571);
+var TypeProposal = __webpack_require__(572);
+var TypeApproval = __webpack_require__(573);
+var TypeSideChainInfo = __webpack_require__(574);
 
 /**
  * SolidityCoder prototype should be used to encode/decode solidity params of any type
@@ -38157,10 +38223,10 @@ var coder = new Coder([
 
 module.exports = coder;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 778 */
+/* 556 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -38185,8 +38251,8 @@ module.exports = coder;
  * @date 2015
  */
 
-var protobuf = __webpack_require__(722);
-var proto = __webpack_require__(779);
+var protobuf = __webpack_require__(500);
+var proto = __webpack_require__(557);
 
 /**
  * Formats input bool to bytes
@@ -38355,7 +38421,7 @@ var formatInputProposal = function (proposal, fieldNumber) {
     var types = proposal.TxnData.MethodAbi.Params.map(function (i) {
         return i.Type;
     });
-    var coder = __webpack_require__(777);
+    var coder = __webpack_require__(555);
     var args = Array.prototype.slice.call(proposal.TxnData.Params).filter(function (a) {return a !== undefined; });
     var raw_txn = proto.getMsigTransaction(proposal.TxnData.From, proposal.TxnData.To, proposal.TxnData.MethodName, coder.encodeParams(types, args));
     var p = proto.getProposal(proposal.MultiSigAccount, proposal.Name, raw_txn, proposal.ExpiredTime, proposal.Proposer);
@@ -38576,25 +38642,25 @@ module.exports = {
     formatInputSideChainInfo: formatInputSideChainInfo
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 779 */
+/* 557 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
 
-var utils = __webpack_require__(768);
-var protobuf = __webpack_require__(722);
-var kernelDescriptor = __webpack_require__(780);
+var utils = __webpack_require__(546);
+var protobuf = __webpack_require__(500);
+var kernelDescriptor = __webpack_require__(558);
 var kernelRoot = protobuf.Root.fromJSON(kernelDescriptor);
 
-var authDescriptor = __webpack_require__(781);
+var authDescriptor = __webpack_require__(559);
 var auth = protobuf.Root.fromJSON(authDescriptor);
 
-var crossChainDescriptor = __webpack_require__(782);
+var crossChainDescriptor = __webpack_require__(560);
 var crosschain = protobuf.Root.fromJSON(crossChainDescriptor);
 
 var getAddressFromRep = function(rep){
@@ -38746,32 +38812,32 @@ module.exports = {
     ResourceTypeBalancePair: crosschain.ResourceTypeBalancePair
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 780 */
+/* 558 */
 /***/ (function(module) {
 
 module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureSt":{"type":"SignatureStatus","id":3},"RefBlockSt":{"type":"RefBlockStatus","id":4},"Status":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}},"nested":{"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"CrossChainBlockInfoTransaction":2,"MsigTransaction":3,"ContractDeployTransaction":4}},"Status":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"Status","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"MerklePath":{"type":"MerklePath","id":10},"DeferredTxnId":{"type":"Hash","id":11}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedAndCommitted":1,"ExecutedButNotCommitted":2,"SystemError":-1,"ContractError":-2,"ExceededMaxCallDepth":-3,"Canceled":-4}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Index":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"Hash","id":10},"SideChainBlockHeadersRoot":{"type":"Hash","id":11},"SideChainTransactionsRoot":{"type":"Hash","id":12}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3},"IndexedInfo":{"rule":"repeated","type":"SideChainBlockInfo","id":4}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"ContractHash":{"type":"Hash","id":2},"ContractBytes":{"type":"bytes","id":3},"SerialNumber":{"type":"uint64","id":4}}},"SmartContractDeployment":{"fields":{"ContractHash":{"type":"Hash","id":1},"Caller":{"type":"Hash","id":2},"ConstructParams":{"type":"bytes","id":3},"IncrementId":{"type":"uint64","id":4}}},"Parameters":{"fields":{"Params":{"rule":"repeated","type":"Param","id":1}}},"Param":{"oneofs":{"data":{"oneof":["intVal","uintVal","longVal","ulongVal","boolVal","bytesVal","strVal","dVal","hashVal","registerVal","deploymentVal"]}},"fields":{"intVal":{"type":"int32","id":1},"uintVal":{"type":"uint32","id":2},"longVal":{"type":"int64","id":3},"ulongVal":{"type":"uint64","id":4},"boolVal":{"type":"bool","id":5},"bytesVal":{"type":"bytes","id":6},"strVal":{"type":"string","id":7},"dVal":{"type":"double","id":8},"hashVal":{"type":"Hash","id":9},"registerVal":{"type":"SmartContractRegistration","id":10},"deploymentVal":{"type":"SmartContractDeployment","id":11}}},"SmartContractInvokeContext":{"fields":{"Caller":{"type":"Hash","id":1},"IncrementId":{"type":"uint64","id":2},"MethodName":{"type":"string","id":3},"Params":{"type":"bytes","id":4}}},"DataItem":{"fields":{"ResourcePath":{"type":"Hash","id":1},"ResourcePointer":{"type":"Hash","id":2},"StateMerkleTreeLeaf":{"type":"Hash","id":3}}},"WorldState":{"fields":{"Data":{"rule":"repeated","type":"DataItem","id":1}}},"Chain":{"fields":{"Id":{"type":"Hash","id":1},"GenesisBlockHash":{"type":"Hash","id":2}}},"OngoingMiners":{"fields":{"Miners":{"rule":"repeated","type":"Miners","id":1}}},"Candidates":{"fields":{"Nodes":{"rule":"repeated","type":"Address","id":1}}},"Tickets":{"fields":{"RemainingTickets":{"type":"uint64","id":1},"VotingRecord":{"rule":"repeated","type":"VotingRecord","id":2}}},"VotingRecord":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"TicketsCount":{"type":"uint64","id":3},"RoundNumber":{"type":"uint64","id":4},"TransactionId":{"type":"Hash","id":5},"State":{"type":"bool","id":6}}},"Miners":{"fields":{"TakeEffectRoundNumber":{"type":"uint64","id":1},"Nodes":{"rule":"repeated","type":"Address","id":2}}},"ElectionSnapshot":{"fields":{"StartRoundNumber":{"type":"uint64","id":1},"EndRoundNumber":{"type":"uint64","id":2},"Blocks":{"type":"uint64","id":3},"TicketsMap":{"rule":"repeated","type":"TicketsMap","id":4}}},"TicketsMap":{"fields":{"CandidateAddress":{"type":"Address","id":1},"TicketsCount":{"type":"uint64","id":2},"TotalWeights":{"type":"uint64","id":3}}},"BlockProducer":{"fields":{"Order":{"type":"int32","id":1},"IsEBP":{"type":"bool","id":2},"InValue":{"type":"Hash","id":3},"OutValue":{"type":"Hash","id":4},"Signature":{"type":"Hash","id":5},"TimeSlot":{"type":"google.protobuf.Timestamp","id":6},"Terms":{"rule":"repeated","type":"uint64","id":7},"BlocksOfCurrentTerm":{"type":"uint64","id":8},"BlocksOfAllTerms":{"type":"uint64","id":9}}},"Round":{"fields":{"RoundNumber":{"type":"uint64","id":1},"BlockProducers":{"keyType":"string","type":"BlockProducer","id":2}}},"AElfDPoSInformation":{"fields":{"Rounds":{"rule":"repeated","type":"Round","id":1}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"Key":{"fields":{"Value":{"type":"bytes","id":1},"type":{"type":"string","id":2},"HashType":{"type":"uint32","id":3}}},"DataPath":{"fields":{"ChainId":{"type":"Hash","id":1},"BlockHeight":{"type":"uint64","id":2},"BlockProducerAddress":{"type":"Address","id":3},"ContractAddress":{"type":"Address","id":4},"DataProviderHash":{"type":"Hash","id":5},"KeyHash":{"type":"Hash","id":6},"StatePath":{"type":"StatePath","id":7}}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}}}};
 
 /***/ }),
-/* 781 */
+/* 559 */
 /***/ (function(module) {
 
 module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"Authorization":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"ExecutionThreshold":{"type":"uint32","id":2},"ProposerThreshold":{"type":"uint32","id":3},"Reviewers":{"rule":"repeated","type":"Reviewer","id":4}}},"Reviewer":{"fields":{"PubKey":{"type":"bytes","id":1},"Weight":{"type":"uint32","id":2}}},"Proposal":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"Name":{"type":"string","id":2},"TxnData":{"type":"bytes","id":3},"ExpiredTime":{"type":"double","id":4},"Status":{"type":"ProposalStatus","id":5},"Proposer":{"type":"Address","id":6}}},"ProposalStatus":{"values":{"ToBeDecided":0,"Decided":1,"Released":2}},"Approved":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Approvals":{"rule":"repeated","type":"Approval","id":5}}},"Approval":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Signature":{"type":"bytes","id":2}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureSt":{"type":"SignatureStatus","id":3},"RefBlockSt":{"type":"RefBlockStatus","id":4},"Status":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}},"nested":{"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"CrossChainBlockInfoTransaction":2,"MsigTransaction":3,"ContractDeployTransaction":4}},"Status":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"Status","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"MerklePath":{"type":"MerklePath","id":10},"DeferredTxnId":{"type":"Hash","id":11}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedAndCommitted":1,"ExecutedButNotCommitted":2,"SystemError":-1,"ContractError":-2,"ExceededMaxCallDepth":-3,"Canceled":-4}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Index":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"Hash","id":10},"SideChainBlockHeadersRoot":{"type":"Hash","id":11},"SideChainTransactionsRoot":{"type":"Hash","id":12}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3},"IndexedInfo":{"rule":"repeated","type":"SideChainBlockInfo","id":4}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"ContractHash":{"type":"Hash","id":2},"ContractBytes":{"type":"bytes","id":3},"SerialNumber":{"type":"uint64","id":4}}},"SmartContractDeployment":{"fields":{"ContractHash":{"type":"Hash","id":1},"Caller":{"type":"Hash","id":2},"ConstructParams":{"type":"bytes","id":3},"IncrementId":{"type":"uint64","id":4}}},"Parameters":{"fields":{"Params":{"rule":"repeated","type":"Param","id":1}}},"Param":{"oneofs":{"data":{"oneof":["intVal","uintVal","longVal","ulongVal","boolVal","bytesVal","strVal","dVal","hashVal","registerVal","deploymentVal"]}},"fields":{"intVal":{"type":"int32","id":1},"uintVal":{"type":"uint32","id":2},"longVal":{"type":"int64","id":3},"ulongVal":{"type":"uint64","id":4},"boolVal":{"type":"bool","id":5},"bytesVal":{"type":"bytes","id":6},"strVal":{"type":"string","id":7},"dVal":{"type":"double","id":8},"hashVal":{"type":"Hash","id":9},"registerVal":{"type":"SmartContractRegistration","id":10},"deploymentVal":{"type":"SmartContractDeployment","id":11}}},"SmartContractInvokeContext":{"fields":{"Caller":{"type":"Hash","id":1},"IncrementId":{"type":"uint64","id":2},"MethodName":{"type":"string","id":3},"Params":{"type":"bytes","id":4}}},"DataItem":{"fields":{"ResourcePath":{"type":"Hash","id":1},"ResourcePointer":{"type":"Hash","id":2},"StateMerkleTreeLeaf":{"type":"Hash","id":3}}},"WorldState":{"fields":{"Data":{"rule":"repeated","type":"DataItem","id":1}}},"Chain":{"fields":{"Id":{"type":"Hash","id":1},"GenesisBlockHash":{"type":"Hash","id":2}}},"OngoingMiners":{"fields":{"Miners":{"rule":"repeated","type":"Miners","id":1}}},"Candidates":{"fields":{"Nodes":{"rule":"repeated","type":"Address","id":1}}},"Tickets":{"fields":{"RemainingTickets":{"type":"uint64","id":1},"VotingRecord":{"rule":"repeated","type":"VotingRecord","id":2}}},"VotingRecord":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"TicketsCount":{"type":"uint64","id":3},"RoundNumber":{"type":"uint64","id":4},"TransactionId":{"type":"Hash","id":5},"State":{"type":"bool","id":6}}},"Miners":{"fields":{"TakeEffectRoundNumber":{"type":"uint64","id":1},"Nodes":{"rule":"repeated","type":"Address","id":2}}},"ElectionSnapshot":{"fields":{"StartRoundNumber":{"type":"uint64","id":1},"EndRoundNumber":{"type":"uint64","id":2},"Blocks":{"type":"uint64","id":3},"TicketsMap":{"rule":"repeated","type":"TicketsMap","id":4}}},"TicketsMap":{"fields":{"CandidateAddress":{"type":"Address","id":1},"TicketsCount":{"type":"uint64","id":2},"TotalWeights":{"type":"uint64","id":3}}},"BlockProducer":{"fields":{"Order":{"type":"int32","id":1},"IsEBP":{"type":"bool","id":2},"InValue":{"type":"Hash","id":3},"OutValue":{"type":"Hash","id":4},"Signature":{"type":"Hash","id":5},"TimeSlot":{"type":"google.protobuf.Timestamp","id":6},"Terms":{"rule":"repeated","type":"uint64","id":7},"BlocksOfCurrentTerm":{"type":"uint64","id":8},"BlocksOfAllTerms":{"type":"uint64","id":9}}},"Round":{"fields":{"RoundNumber":{"type":"uint64","id":1},"BlockProducers":{"keyType":"string","type":"BlockProducer","id":2}}},"AElfDPoSInformation":{"fields":{"Rounds":{"rule":"repeated","type":"Round","id":1}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"Key":{"fields":{"Value":{"type":"bytes","id":1},"type":{"type":"string","id":2},"HashType":{"type":"uint32","id":3}}},"DataPath":{"fields":{"ChainId":{"type":"Hash","id":1},"BlockHeight":{"type":"uint64","id":2},"BlockProducerAddress":{"type":"Address","id":3},"ContractAddress":{"type":"Address","id":4},"DataProviderHash":{"type":"Hash","id":5},"KeyHash":{"type":"Hash","id":6},"StatePath":{"type":"StatePath","id":7}}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}}}};
 
 /***/ }),
-/* 782 */
+/* 560 */
 /***/ (function(module) {
 
 module.exports = {"options":{"csharp_namespace":"AElf.Common"},"nested":{"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}}}};
 
 /***/ }),
-/* 783 */
+/* 561 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeBool = function () {
     this._inputFormatter = f.formatInputBool;
@@ -38789,10 +38855,10 @@ module.exports = TypeBool;
 
 
 /***/ }),
-/* 784 */
+/* 562 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
+var f = __webpack_require__(556);
 
 /**
  * SolidityType prototype is used to encode/decode solidity params of certain type
@@ -38842,11 +38908,11 @@ module.exports = BaseType;
 
 
 /***/ }),
-/* 785 */
+/* 563 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeInt = function () {
     this._inputFormatter = f.formatInputInt;
@@ -38864,11 +38930,11 @@ module.exports = TypeInt;
 
 
 /***/ }),
-/* 786 */
+/* 564 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeUInt = function () {
     this._inputFormatter = f.formatInputUInt;
@@ -38886,11 +38952,11 @@ module.exports = TypeUInt;
 
 
 /***/ }),
-/* 787 */
+/* 565 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeLong = function () {
     this._inputFormatter = f.formatInputLong;
@@ -38908,11 +38974,11 @@ module.exports = TypeLong;
 
 
 /***/ }),
-/* 788 */
+/* 566 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeULong = function () {
     this._inputFormatter = f.formatInputULong;
@@ -38930,11 +38996,11 @@ module.exports = TypeULong;
 
 
 /***/ }),
-/* 789 */
+/* 567 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeBytes = function () {
     this._inputFormatter = f.formatInputBytes;
@@ -38952,11 +39018,11 @@ module.exports = TypeBytes;
 
 
 /***/ }),
-/* 790 */
+/* 568 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeString = function () {
     this._inputFormatter = f.formatInputString;
@@ -38974,11 +39040,11 @@ module.exports = TypeString;
 
 
 /***/ }),
-/* 791 */
+/* 569 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeAddress = function () {
     this._inputFormatter = f.formatInputAddress;
@@ -38996,11 +39062,11 @@ module.exports = TypeAddress;
 
 
 /***/ }),
-/* 792 */
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeHash = function () {
     this._inputFormatter = f.formatInputHash;
@@ -39018,11 +39084,11 @@ module.exports = TypeHash;
 
 
 /***/ }),
-/* 793 */
+/* 571 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeAuthorization = function () {
     this._inputFormatter = f.formatInputAuthorization;
@@ -39038,11 +39104,11 @@ module.exports = TypeAuthorization;
 
 
 /***/ }),
-/* 794 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeProposal = function () {
     this._inputFormatter = f.formatInputProposal;
@@ -39057,11 +39123,11 @@ TypeProposal.prototype.isType = function (name) {
 module.exports = TypeProposal;
 
 /***/ }),
-/* 795 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeApproval = function () {
     this._inputFormatter = f.formatInputApproval;
@@ -39076,11 +39142,11 @@ TypeApproval.prototype.isType = function (name) {
 module.exports = TypeApproval;
 
 /***/ }),
-/* 796 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var f = __webpack_require__(778);
-var BaseType = __webpack_require__(784);
+var f = __webpack_require__(556);
+var BaseType = __webpack_require__(562);
 
 var TypeSideChainInfo = function () {
     this._inputFormatter = f.formatInputSideChainInfo;
@@ -39095,7 +39161,7 @@ TypeSideChainInfo.prototype.isType = function (name) {
 module.exports = TypeSideChainInfo;
 
 /***/ }),
-/* 797 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, Buffer) {/*!
@@ -39104,21 +39170,21 @@ module.exports = TypeSideChainInfo;
  * @license lgpl-3.0
  * @see https://github.com/aelf/aelf.js
 */
-var sha256 = __webpack_require__(772).sha256;
-var elliptic = __webpack_require__(602);
-var proto = __webpack_require__(779);
+var sha256 = __webpack_require__(550).sha256;
+var elliptic = __webpack_require__(379);
+var proto = __webpack_require__(557);
 var ec = new elliptic.ec('secp256k1');
-var utils = __webpack_require__(768);
+var utils = __webpack_require__(546);
 
-var bip39 = __webpack_require__(798);
-var createHmac = __webpack_require__(505).createHmac;
+var bip39 = __webpack_require__(576);
+var createHmac = __webpack_require__(281).createHmac;
 if(createHmac === undefined){
     // Used in CLI
     createHmac = global.crypto.createHmac;
 }
 
-var AES = __webpack_require__(808);
-var encUtf8 = __webpack_require__(816);
+var AES = __webpack_require__(586);
+var encUtf8 = __webpack_require__(594);
 
 // Advanced Encryption Standard need crypto-js
 function AESEncrypto (input, password) {
@@ -39256,28 +39322,28 @@ module.exports = {
     AESDecrypto: AESDecrypto
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106), __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110), __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 798 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(507).Buffer
-var createHash = __webpack_require__(512)
-var pbkdf2 = __webpack_require__(555).pbkdf2Sync
-var randomBytes = __webpack_require__(506)
+var Buffer = __webpack_require__(284).Buffer
+var createHash = __webpack_require__(289)
+var pbkdf2 = __webpack_require__(332).pbkdf2Sync
+var randomBytes = __webpack_require__(282)
 
 // use unorm until String.prototype.normalize gets better browser support
-var unorm = __webpack_require__(799)
+var unorm = __webpack_require__(577)
 
-var CHINESE_SIMPLIFIED_WORDLIST = __webpack_require__(800)
-var CHINESE_TRADITIONAL_WORDLIST = __webpack_require__(801)
-var ENGLISH_WORDLIST = __webpack_require__(802)
-var FRENCH_WORDLIST = __webpack_require__(803)
-var ITALIAN_WORDLIST = __webpack_require__(804)
-var JAPANESE_WORDLIST = __webpack_require__(805)
-var KOREAN_WORDLIST = __webpack_require__(806)
-var SPANISH_WORDLIST = __webpack_require__(807)
+var CHINESE_SIMPLIFIED_WORDLIST = __webpack_require__(578)
+var CHINESE_TRADITIONAL_WORDLIST = __webpack_require__(579)
+var ENGLISH_WORDLIST = __webpack_require__(580)
+var FRENCH_WORDLIST = __webpack_require__(581)
+var ITALIAN_WORDLIST = __webpack_require__(582)
+var JAPANESE_WORDLIST = __webpack_require__(583)
+var KOREAN_WORDLIST = __webpack_require__(584)
+var SPANISH_WORDLIST = __webpack_require__(585)
 var DEFAULT_WORDLIST = ENGLISH_WORDLIST
 
 var INVALID_MNEMONIC = 'Invalid mnemonic'
@@ -39418,7 +39484,7 @@ module.exports = {
 
 
 /***/ }),
-/* 799 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (root) {
@@ -39858,61 +39924,61 @@ UChar.udata={
 
 
 /***/ }),
-/* 800 */
+/* 578 */
 /***/ (function(module) {
 
 module.exports = ["的","一","是","在","不","了","有","和","人","这","中","大","为","上","个","国","我","以","要","他","时","来","用","们","生","到","作","地","于","出","就","分","对","成","会","可","主","发","年","动","同","工","也","能","下","过","子","说","产","种","面","而","方","后","多","定","行","学","法","所","民","得","经","十","三","之","进","着","等","部","度","家","电","力","里","如","水","化","高","自","二","理","起","小","物","现","实","加","量","都","两","体","制","机","当","使","点","从","业","本","去","把","性","好","应","开","它","合","还","因","由","其","些","然","前","外","天","政","四","日","那","社","义","事","平","形","相","全","表","间","样","与","关","各","重","新","线","内","数","正","心","反","你","明","看","原","又","么","利","比","或","但","质","气","第","向","道","命","此","变","条","只","没","结","解","问","意","建","月","公","无","系","军","很","情","者","最","立","代","想","已","通","并","提","直","题","党","程","展","五","果","料","象","员","革","位","入","常","文","总","次","品","式","活","设","及","管","特","件","长","求","老","头","基","资","边","流","路","级","少","图","山","统","接","知","较","将","组","见","计","别","她","手","角","期","根","论","运","农","指","几","九","区","强","放","决","西","被","干","做","必","战","先","回","则","任","取","据","处","队","南","给","色","光","门","即","保","治","北","造","百","规","热","领","七","海","口","东","导","器","压","志","世","金","增","争","济","阶","油","思","术","极","交","受","联","什","认","六","共","权","收","证","改","清","美","再","采","转","更","单","风","切","打","白","教","速","花","带","安","场","身","车","例","真","务","具","万","每","目","至","达","走","积","示","议","声","报","斗","完","类","八","离","华","名","确","才","科","张","信","马","节","话","米","整","空","元","况","今","集","温","传","土","许","步","群","广","石","记","需","段","研","界","拉","林","律","叫","且","究","观","越","织","装","影","算","低","持","音","众","书","布","复","容","儿","须","际","商","非","验","连","断","深","难","近","矿","千","周","委","素","技","备","半","办","青","省","列","习","响","约","支","般","史","感","劳","便","团","往","酸","历","市","克","何","除","消","构","府","称","太","准","精","值","号","率","族","维","划","选","标","写","存","候","毛","亲","快","效","斯","院","查","江","型","眼","王","按","格","养","易","置","派","层","片","始","却","专","状","育","厂","京","识","适","属","圆","包","火","住","调","满","县","局","照","参","红","细","引","听","该","铁","价","严","首","底","液","官","德","随","病","苏","失","尔","死","讲","配","女","黄","推","显","谈","罪","神","艺","呢","席","含","企","望","密","批","营","项","防","举","球","英","氧","势","告","李","台","落","木","帮","轮","破","亚","师","围","注","远","字","材","排","供","河","态","封","另","施","减","树","溶","怎","止","案","言","士","均","武","固","叶","鱼","波","视","仅","费","紧","爱","左","章","早","朝","害","续","轻","服","试","食","充","兵","源","判","护","司","足","某","练","差","致","板","田","降","黑","犯","负","击","范","继","兴","似","余","坚","曲","输","修","故","城","夫","够","送","笔","船","占","右","财","吃","富","春","职","觉","汉","画","功","巴","跟","虽","杂","飞","检","吸","助","升","阳","互","初","创","抗","考","投","坏","策","古","径","换","未","跑","留","钢","曾","端","责","站","简","述","钱","副","尽","帝","射","草","冲","承","独","令","限","阿","宣","环","双","请","超","微","让","控","州","良","轴","找","否","纪","益","依","优","顶","础","载","倒","房","突","坐","粉","敌","略","客","袁","冷","胜","绝","析","块","剂","测","丝","协","诉","念","陈","仍","罗","盐","友","洋","错","苦","夜","刑","移","频","逐","靠","混","母","短","皮","终","聚","汽","村","云","哪","既","距","卫","停","烈","央","察","烧","迅","境","若","印","洲","刻","括","激","孔","搞","甚","室","待","核","校","散","侵","吧","甲","游","久","菜","味","旧","模","湖","货","损","预","阻","毫","普","稳","乙","妈","植","息","扩","银","语","挥","酒","守","拿","序","纸","医","缺","雨","吗","针","刘","啊","急","唱","误","训","愿","审","附","获","茶","鲜","粮","斤","孩","脱","硫","肥","善","龙","演","父","渐","血","欢","械","掌","歌","沙","刚","攻","谓","盾","讨","晚","粒","乱","燃","矛","乎","杀","药","宁","鲁","贵","钟","煤","读","班","伯","香","介","迫","句","丰","培","握","兰","担","弦","蛋","沉","假","穿","执","答","乐","谁","顺","烟","缩","征","脸","喜","松","脚","困","异","免","背","星","福","买","染","井","概","慢","怕","磁","倍","祖","皇","促","静","补","评","翻","肉","践","尼","衣","宽","扬","棉","希","伤","操","垂","秋","宜","氢","套","督","振","架","亮","末","宪","庆","编","牛","触","映","雷","销","诗","座","居","抓","裂","胞","呼","娘","景","威","绿","晶","厚","盟","衡","鸡","孙","延","危","胶","屋","乡","临","陆","顾","掉","呀","灯","岁","措","束","耐","剧","玉","赵","跳","哥","季","课","凯","胡","额","款","绍","卷","齐","伟","蒸","殖","永","宗","苗","川","炉","岩","弱","零","杨","奏","沿","露","杆","探","滑","镇","饭","浓","航","怀","赶","库","夺","伊","灵","税","途","灭","赛","归","召","鼓","播","盘","裁","险","康","唯","录","菌","纯","借","糖","盖","横","符","私","努","堂","域","枪","润","幅","哈","竟","熟","虫","泽","脑","壤","碳","欧","遍","侧","寨","敢","彻","虑","斜","薄","庭","纳","弹","饲","伸","折","麦","湿","暗","荷","瓦","塞","床","筑","恶","户","访","塔","奇","透","梁","刀","旋","迹","卡","氯","遇","份","毒","泥","退","洗","摆","灰","彩","卖","耗","夏","择","忙","铜","献","硬","予","繁","圈","雪","函","亦","抽","篇","阵","阴","丁","尺","追","堆","雄","迎","泛","爸","楼","避","谋","吨","野","猪","旗","累","偏","典","馆","索","秦","脂","潮","爷","豆","忽","托","惊","塑","遗","愈","朱","替","纤","粗","倾","尚","痛","楚","谢","奋","购","磨","君","池","旁","碎","骨","监","捕","弟","暴","割","贯","殊","释","词","亡","壁","顿","宝","午","尘","闻","揭","炮","残","冬","桥","妇","警","综","招","吴","付","浮","遭","徐","您","摇","谷","赞","箱","隔","订","男","吹","园","纷","唐","败","宋","玻","巨","耕","坦","荣","闭","湾","键","凡","驻","锅","救","恩","剥","凝","碱","齿","截","炼","麻","纺","禁","废","盛","版","缓","净","睛","昌","婚","涉","筒","嘴","插","岸","朗","庄","街","藏","姑","贸","腐","奴","啦","惯","乘","伙","恢","匀","纱","扎","辩","耳","彪","臣","亿","璃","抵","脉","秀","萨","俄","网","舞","店","喷","纵","寸","汗","挂","洪","贺","闪","柬","爆","烯","津","稻","墙","软","勇","像","滚","厘","蒙","芳","肯","坡","柱","荡","腿","仪","旅","尾","轧","冰","贡","登","黎","削","钻","勒","逃","障","氨","郭","峰","币","港","伏","轨","亩","毕","擦","莫","刺","浪","秘","援","株","健","售","股","岛","甘","泡","睡","童","铸","汤","阀","休","汇","舍","牧","绕","炸","哲","磷","绩","朋","淡","尖","启","陷","柴","呈","徒","颜","泪","稍","忘","泵","蓝","拖","洞","授","镜","辛","壮","锋","贫","虚","弯","摩","泰","幼","廷","尊","窗","纲","弄","隶","疑","氏","宫","姐","震","瑞","怪","尤","琴","循","描","膜","违","夹","腰","缘","珠","穷","森","枝","竹","沟","催","绳","忆","邦","剩","幸","浆","栏","拥","牙","贮","礼","滤","钠","纹","罢","拍","咱","喊","袖","埃","勤","罚","焦","潜","伍","墨","欲","缝","姓","刊","饱","仿","奖","铝","鬼","丽","跨","默","挖","链","扫","喝","袋","炭","污","幕","诸","弧","励","梅","奶","洁","灾","舟","鉴","苯","讼","抱","毁","懂","寒","智","埔","寄","届","跃","渡","挑","丹","艰","贝","碰","拔","爹","戴","码","梦","芽","熔","赤","渔","哭","敬","颗","奔","铅","仲","虎","稀","妹","乏","珍","申","桌","遵","允","隆","螺","仓","魏","锐","晓","氮","兼","隐","碍","赫","拨","忠","肃","缸","牵","抢","博","巧","壳","兄","杜","讯","诚","碧","祥","柯","页","巡","矩","悲","灌","龄","伦","票","寻","桂","铺","圣","恐","恰","郑","趣","抬","荒","腾","贴","柔","滴","猛","阔","辆","妻","填","撤","储","签","闹","扰","紫","砂","递","戏","吊","陶","伐","喂","疗","瓶","婆","抚","臂","摸","忍","虾","蜡","邻","胸","巩","挤","偶","弃","槽","劲","乳","邓","吉","仁","烂","砖","租","乌","舰","伴","瓜","浅","丙","暂","燥","橡","柳","迷","暖","牌","秧","胆","详","簧","踏","瓷","谱","呆","宾","糊","洛","辉","愤","竞","隙","怒","粘","乃","绪","肩","籍","敏","涂","熙","皆","侦","悬","掘","享","纠","醒","狂","锁","淀","恨","牲","霸","爬","赏","逆","玩","陵","祝","秒","浙","貌","役","彼","悉","鸭","趋","凤","晨","畜","辈","秩","卵","署","梯","炎","滩","棋","驱","筛","峡","冒","啥","寿","译","浸","泉","帽","迟","硅","疆","贷","漏","稿","冠","嫩","胁","芯","牢","叛","蚀","奥","鸣","岭","羊","凭","串","塘","绘","酵","融","盆","锡","庙","筹","冻","辅","摄","袭","筋","拒","僚","旱","钾","鸟","漆","沈","眉","疏","添","棒","穗","硝","韩","逼","扭","侨","凉","挺","碗","栽","炒","杯","患","馏","劝","豪","辽","勃","鸿","旦","吏","拜","狗","埋","辊","掩","饮","搬","骂","辞","勾","扣","估","蒋","绒","雾","丈","朵","姆","拟","宇","辑","陕","雕","偿","蓄","崇","剪","倡","厅","咬","驶","薯","刷","斥","番","赋","奉","佛","浇","漫","曼","扇","钙","桃","扶","仔","返","俗","亏","腔","鞋","棱","覆","框","悄","叔","撞","骗","勘","旺","沸","孤","吐","孟","渠","屈","疾","妙","惜","仰","狠","胀","谐","抛","霉","桑","岗","嘛","衰","盗","渗","脏","赖","涌","甜","曹","阅","肌","哩","厉","烃","纬","毅","昨","伪","症","煮","叹","钉","搭","茎","笼","酷","偷","弓","锥","恒","杰","坑","鼻","翼","纶","叙","狱","逮","罐","络","棚","抑","膨","蔬","寺","骤","穆","冶","枯","册","尸","凸","绅","坯","牺","焰","轰","欣","晋","瘦","御","锭","锦","丧","旬","锻","垄","搜","扑","邀","亭","酯","迈","舒","脆","酶","闲","忧","酚","顽","羽","涨","卸","仗","陪","辟","惩","杭","姚","肚","捉","飘","漂","昆","欺","吾","郎","烷","汁","呵","饰","萧","雅","邮","迁","燕","撒","姻","赴","宴","烦","债","帐","斑","铃","旨","醇","董","饼","雏","姿","拌","傅","腹","妥","揉","贤","拆","歪","葡","胺","丢","浩","徽","昂","垫","挡","览","贪","慰","缴","汪","慌","冯","诺","姜","谊","凶","劣","诬","耀","昏","躺","盈","骑","乔","溪","丛","卢","抹","闷","咨","刮","驾","缆","悟","摘","铒","掷","颇","幻","柄","惠","惨","佳","仇","腊","窝","涤","剑","瞧","堡","泼","葱","罩","霍","捞","胎","苍","滨","俩","捅","湘","砍","霞","邵","萄","疯","淮","遂","熊","粪","烘","宿","档","戈","驳","嫂","裕","徙","箭","捐","肠","撑","晒","辨","殿","莲","摊","搅","酱","屏","疫","哀","蔡","堵","沫","皱","畅","叠","阁","莱","敲","辖","钩","痕","坝","巷","饿","祸","丘","玄","溜","曰","逻","彭","尝","卿","妨","艇","吞","韦","怨","矮","歇"];
 
 /***/ }),
-/* 801 */
+/* 579 */
 /***/ (function(module) {
 
 module.exports = ["的","一","是","在","不","了","有","和","人","這","中","大","為","上","個","國","我","以","要","他","時","來","用","們","生","到","作","地","於","出","就","分","對","成","會","可","主","發","年","動","同","工","也","能","下","過","子","說","產","種","面","而","方","後","多","定","行","學","法","所","民","得","經","十","三","之","進","著","等","部","度","家","電","力","裡","如","水","化","高","自","二","理","起","小","物","現","實","加","量","都","兩","體","制","機","當","使","點","從","業","本","去","把","性","好","應","開","它","合","還","因","由","其","些","然","前","外","天","政","四","日","那","社","義","事","平","形","相","全","表","間","樣","與","關","各","重","新","線","內","數","正","心","反","你","明","看","原","又","麼","利","比","或","但","質","氣","第","向","道","命","此","變","條","只","沒","結","解","問","意","建","月","公","無","系","軍","很","情","者","最","立","代","想","已","通","並","提","直","題","黨","程","展","五","果","料","象","員","革","位","入","常","文","總","次","品","式","活","設","及","管","特","件","長","求","老","頭","基","資","邊","流","路","級","少","圖","山","統","接","知","較","將","組","見","計","別","她","手","角","期","根","論","運","農","指","幾","九","區","強","放","決","西","被","幹","做","必","戰","先","回","則","任","取","據","處","隊","南","給","色","光","門","即","保","治","北","造","百","規","熱","領","七","海","口","東","導","器","壓","志","世","金","增","爭","濟","階","油","思","術","極","交","受","聯","什","認","六","共","權","收","證","改","清","美","再","採","轉","更","單","風","切","打","白","教","速","花","帶","安","場","身","車","例","真","務","具","萬","每","目","至","達","走","積","示","議","聲","報","鬥","完","類","八","離","華","名","確","才","科","張","信","馬","節","話","米","整","空","元","況","今","集","溫","傳","土","許","步","群","廣","石","記","需","段","研","界","拉","林","律","叫","且","究","觀","越","織","裝","影","算","低","持","音","眾","書","布","复","容","兒","須","際","商","非","驗","連","斷","深","難","近","礦","千","週","委","素","技","備","半","辦","青","省","列","習","響","約","支","般","史","感","勞","便","團","往","酸","歷","市","克","何","除","消","構","府","稱","太","準","精","值","號","率","族","維","劃","選","標","寫","存","候","毛","親","快","效","斯","院","查","江","型","眼","王","按","格","養","易","置","派","層","片","始","卻","專","狀","育","廠","京","識","適","屬","圓","包","火","住","調","滿","縣","局","照","參","紅","細","引","聽","該","鐵","價","嚴","首","底","液","官","德","隨","病","蘇","失","爾","死","講","配","女","黃","推","顯","談","罪","神","藝","呢","席","含","企","望","密","批","營","項","防","舉","球","英","氧","勢","告","李","台","落","木","幫","輪","破","亞","師","圍","注","遠","字","材","排","供","河","態","封","另","施","減","樹","溶","怎","止","案","言","士","均","武","固","葉","魚","波","視","僅","費","緊","愛","左","章","早","朝","害","續","輕","服","試","食","充","兵","源","判","護","司","足","某","練","差","致","板","田","降","黑","犯","負","擊","范","繼","興","似","餘","堅","曲","輸","修","故","城","夫","夠","送","筆","船","佔","右","財","吃","富","春","職","覺","漢","畫","功","巴","跟","雖","雜","飛","檢","吸","助","昇","陽","互","初","創","抗","考","投","壞","策","古","徑","換","未","跑","留","鋼","曾","端","責","站","簡","述","錢","副","盡","帝","射","草","衝","承","獨","令","限","阿","宣","環","雙","請","超","微","讓","控","州","良","軸","找","否","紀","益","依","優","頂","礎","載","倒","房","突","坐","粉","敵","略","客","袁","冷","勝","絕","析","塊","劑","測","絲","協","訴","念","陳","仍","羅","鹽","友","洋","錯","苦","夜","刑","移","頻","逐","靠","混","母","短","皮","終","聚","汽","村","雲","哪","既","距","衛","停","烈","央","察","燒","迅","境","若","印","洲","刻","括","激","孔","搞","甚","室","待","核","校","散","侵","吧","甲","遊","久","菜","味","舊","模","湖","貨","損","預","阻","毫","普","穩","乙","媽","植","息","擴","銀","語","揮","酒","守","拿","序","紙","醫","缺","雨","嗎","針","劉","啊","急","唱","誤","訓","願","審","附","獲","茶","鮮","糧","斤","孩","脫","硫","肥","善","龍","演","父","漸","血","歡","械","掌","歌","沙","剛","攻","謂","盾","討","晚","粒","亂","燃","矛","乎","殺","藥","寧","魯","貴","鐘","煤","讀","班","伯","香","介","迫","句","豐","培","握","蘭","擔","弦","蛋","沉","假","穿","執","答","樂","誰","順","煙","縮","徵","臉","喜","松","腳","困","異","免","背","星","福","買","染","井","概","慢","怕","磁","倍","祖","皇","促","靜","補","評","翻","肉","踐","尼","衣","寬","揚","棉","希","傷","操","垂","秋","宜","氫","套","督","振","架","亮","末","憲","慶","編","牛","觸","映","雷","銷","詩","座","居","抓","裂","胞","呼","娘","景","威","綠","晶","厚","盟","衡","雞","孫","延","危","膠","屋","鄉","臨","陸","顧","掉","呀","燈","歲","措","束","耐","劇","玉","趙","跳","哥","季","課","凱","胡","額","款","紹","卷","齊","偉","蒸","殖","永","宗","苗","川","爐","岩","弱","零","楊","奏","沿","露","桿","探","滑","鎮","飯","濃","航","懷","趕","庫","奪","伊","靈","稅","途","滅","賽","歸","召","鼓","播","盤","裁","險","康","唯","錄","菌","純","借","糖","蓋","橫","符","私","努","堂","域","槍","潤","幅","哈","竟","熟","蟲","澤","腦","壤","碳","歐","遍","側","寨","敢","徹","慮","斜","薄","庭","納","彈","飼","伸","折","麥","濕","暗","荷","瓦","塞","床","築","惡","戶","訪","塔","奇","透","梁","刀","旋","跡","卡","氯","遇","份","毒","泥","退","洗","擺","灰","彩","賣","耗","夏","擇","忙","銅","獻","硬","予","繁","圈","雪","函","亦","抽","篇","陣","陰","丁","尺","追","堆","雄","迎","泛","爸","樓","避","謀","噸","野","豬","旗","累","偏","典","館","索","秦","脂","潮","爺","豆","忽","托","驚","塑","遺","愈","朱","替","纖","粗","傾","尚","痛","楚","謝","奮","購","磨","君","池","旁","碎","骨","監","捕","弟","暴","割","貫","殊","釋","詞","亡","壁","頓","寶","午","塵","聞","揭","炮","殘","冬","橋","婦","警","綜","招","吳","付","浮","遭","徐","您","搖","谷","贊","箱","隔","訂","男","吹","園","紛","唐","敗","宋","玻","巨","耕","坦","榮","閉","灣","鍵","凡","駐","鍋","救","恩","剝","凝","鹼","齒","截","煉","麻","紡","禁","廢","盛","版","緩","淨","睛","昌","婚","涉","筒","嘴","插","岸","朗","莊","街","藏","姑","貿","腐","奴","啦","慣","乘","夥","恢","勻","紗","扎","辯","耳","彪","臣","億","璃","抵","脈","秀","薩","俄","網","舞","店","噴","縱","寸","汗","掛","洪","賀","閃","柬","爆","烯","津","稻","牆","軟","勇","像","滾","厘","蒙","芳","肯","坡","柱","盪","腿","儀","旅","尾","軋","冰","貢","登","黎","削","鑽","勒","逃","障","氨","郭","峰","幣","港","伏","軌","畝","畢","擦","莫","刺","浪","秘","援","株","健","售","股","島","甘","泡","睡","童","鑄","湯","閥","休","匯","舍","牧","繞","炸","哲","磷","績","朋","淡","尖","啟","陷","柴","呈","徒","顏","淚","稍","忘","泵","藍","拖","洞","授","鏡","辛","壯","鋒","貧","虛","彎","摩","泰","幼","廷","尊","窗","綱","弄","隸","疑","氏","宮","姐","震","瑞","怪","尤","琴","循","描","膜","違","夾","腰","緣","珠","窮","森","枝","竹","溝","催","繩","憶","邦","剩","幸","漿","欄","擁","牙","貯","禮","濾","鈉","紋","罷","拍","咱","喊","袖","埃","勤","罰","焦","潛","伍","墨","欲","縫","姓","刊","飽","仿","獎","鋁","鬼","麗","跨","默","挖","鏈","掃","喝","袋","炭","污","幕","諸","弧","勵","梅","奶","潔","災","舟","鑑","苯","訟","抱","毀","懂","寒","智","埔","寄","屆","躍","渡","挑","丹","艱","貝","碰","拔","爹","戴","碼","夢","芽","熔","赤","漁","哭","敬","顆","奔","鉛","仲","虎","稀","妹","乏","珍","申","桌","遵","允","隆","螺","倉","魏","銳","曉","氮","兼","隱","礙","赫","撥","忠","肅","缸","牽","搶","博","巧","殼","兄","杜","訊","誠","碧","祥","柯","頁","巡","矩","悲","灌","齡","倫","票","尋","桂","鋪","聖","恐","恰","鄭","趣","抬","荒","騰","貼","柔","滴","猛","闊","輛","妻","填","撤","儲","簽","鬧","擾","紫","砂","遞","戲","吊","陶","伐","餵","療","瓶","婆","撫","臂","摸","忍","蝦","蠟","鄰","胸","鞏","擠","偶","棄","槽","勁","乳","鄧","吉","仁","爛","磚","租","烏","艦","伴","瓜","淺","丙","暫","燥","橡","柳","迷","暖","牌","秧","膽","詳","簧","踏","瓷","譜","呆","賓","糊","洛","輝","憤","競","隙","怒","粘","乃","緒","肩","籍","敏","塗","熙","皆","偵","懸","掘","享","糾","醒","狂","鎖","淀","恨","牲","霸","爬","賞","逆","玩","陵","祝","秒","浙","貌","役","彼","悉","鴨","趨","鳳","晨","畜","輩","秩","卵","署","梯","炎","灘","棋","驅","篩","峽","冒","啥","壽","譯","浸","泉","帽","遲","矽","疆","貸","漏","稿","冠","嫩","脅","芯","牢","叛","蝕","奧","鳴","嶺","羊","憑","串","塘","繪","酵","融","盆","錫","廟","籌","凍","輔","攝","襲","筋","拒","僚","旱","鉀","鳥","漆","沈","眉","疏","添","棒","穗","硝","韓","逼","扭","僑","涼","挺","碗","栽","炒","杯","患","餾","勸","豪","遼","勃","鴻","旦","吏","拜","狗","埋","輥","掩","飲","搬","罵","辭","勾","扣","估","蔣","絨","霧","丈","朵","姆","擬","宇","輯","陝","雕","償","蓄","崇","剪","倡","廳","咬","駛","薯","刷","斥","番","賦","奉","佛","澆","漫","曼","扇","鈣","桃","扶","仔","返","俗","虧","腔","鞋","棱","覆","框","悄","叔","撞","騙","勘","旺","沸","孤","吐","孟","渠","屈","疾","妙","惜","仰","狠","脹","諧","拋","黴","桑","崗","嘛","衰","盜","滲","臟","賴","湧","甜","曹","閱","肌","哩","厲","烴","緯","毅","昨","偽","症","煮","嘆","釘","搭","莖","籠","酷","偷","弓","錐","恆","傑","坑","鼻","翼","綸","敘","獄","逮","罐","絡","棚","抑","膨","蔬","寺","驟","穆","冶","枯","冊","屍","凸","紳","坯","犧","焰","轟","欣","晉","瘦","禦","錠","錦","喪","旬","鍛","壟","搜","撲","邀","亭","酯","邁","舒","脆","酶","閒","憂","酚","頑","羽","漲","卸","仗","陪","闢","懲","杭","姚","肚","捉","飄","漂","昆","欺","吾","郎","烷","汁","呵","飾","蕭","雅","郵","遷","燕","撒","姻","赴","宴","煩","債","帳","斑","鈴","旨","醇","董","餅","雛","姿","拌","傅","腹","妥","揉","賢","拆","歪","葡","胺","丟","浩","徽","昂","墊","擋","覽","貪","慰","繳","汪","慌","馮","諾","姜","誼","兇","劣","誣","耀","昏","躺","盈","騎","喬","溪","叢","盧","抹","悶","諮","刮","駕","纜","悟","摘","鉺","擲","頗","幻","柄","惠","慘","佳","仇","臘","窩","滌","劍","瞧","堡","潑","蔥","罩","霍","撈","胎","蒼","濱","倆","捅","湘","砍","霞","邵","萄","瘋","淮","遂","熊","糞","烘","宿","檔","戈","駁","嫂","裕","徙","箭","捐","腸","撐","曬","辨","殿","蓮","攤","攪","醬","屏","疫","哀","蔡","堵","沫","皺","暢","疊","閣","萊","敲","轄","鉤","痕","壩","巷","餓","禍","丘","玄","溜","曰","邏","彭","嘗","卿","妨","艇","吞","韋","怨","矮","歇"];
 
 /***/ }),
-/* 802 */
+/* 580 */
 /***/ (function(module) {
 
 module.exports = ["abandon","ability","able","about","above","absent","absorb","abstract","absurd","abuse","access","accident","account","accuse","achieve","acid","acoustic","acquire","across","act","action","actor","actress","actual","adapt","add","addict","address","adjust","admit","adult","advance","advice","aerobic","affair","afford","afraid","again","age","agent","agree","ahead","aim","air","airport","aisle","alarm","album","alcohol","alert","alien","all","alley","allow","almost","alone","alpha","already","also","alter","always","amateur","amazing","among","amount","amused","analyst","anchor","ancient","anger","angle","angry","animal","ankle","announce","annual","another","answer","antenna","antique","anxiety","any","apart","apology","appear","apple","approve","april","arch","arctic","area","arena","argue","arm","armed","armor","army","around","arrange","arrest","arrive","arrow","art","artefact","artist","artwork","ask","aspect","assault","asset","assist","assume","asthma","athlete","atom","attack","attend","attitude","attract","auction","audit","august","aunt","author","auto","autumn","average","avocado","avoid","awake","aware","away","awesome","awful","awkward","axis","baby","bachelor","bacon","badge","bag","balance","balcony","ball","bamboo","banana","banner","bar","barely","bargain","barrel","base","basic","basket","battle","beach","bean","beauty","because","become","beef","before","begin","behave","behind","believe","below","belt","bench","benefit","best","betray","better","between","beyond","bicycle","bid","bike","bind","biology","bird","birth","bitter","black","blade","blame","blanket","blast","bleak","bless","blind","blood","blossom","blouse","blue","blur","blush","board","boat","body","boil","bomb","bone","bonus","book","boost","border","boring","borrow","boss","bottom","bounce","box","boy","bracket","brain","brand","brass","brave","bread","breeze","brick","bridge","brief","bright","bring","brisk","broccoli","broken","bronze","broom","brother","brown","brush","bubble","buddy","budget","buffalo","build","bulb","bulk","bullet","bundle","bunker","burden","burger","burst","bus","business","busy","butter","buyer","buzz","cabbage","cabin","cable","cactus","cage","cake","call","calm","camera","camp","can","canal","cancel","candy","cannon","canoe","canvas","canyon","capable","capital","captain","car","carbon","card","cargo","carpet","carry","cart","case","cash","casino","castle","casual","cat","catalog","catch","category","cattle","caught","cause","caution","cave","ceiling","celery","cement","census","century","cereal","certain","chair","chalk","champion","change","chaos","chapter","charge","chase","chat","cheap","check","cheese","chef","cherry","chest","chicken","chief","child","chimney","choice","choose","chronic","chuckle","chunk","churn","cigar","cinnamon","circle","citizen","city","civil","claim","clap","clarify","claw","clay","clean","clerk","clever","click","client","cliff","climb","clinic","clip","clock","clog","close","cloth","cloud","clown","club","clump","cluster","clutch","coach","coast","coconut","code","coffee","coil","coin","collect","color","column","combine","come","comfort","comic","common","company","concert","conduct","confirm","congress","connect","consider","control","convince","cook","cool","copper","copy","coral","core","corn","correct","cost","cotton","couch","country","couple","course","cousin","cover","coyote","crack","cradle","craft","cram","crane","crash","crater","crawl","crazy","cream","credit","creek","crew","cricket","crime","crisp","critic","crop","cross","crouch","crowd","crucial","cruel","cruise","crumble","crunch","crush","cry","crystal","cube","culture","cup","cupboard","curious","current","curtain","curve","cushion","custom","cute","cycle","dad","damage","damp","dance","danger","daring","dash","daughter","dawn","day","deal","debate","debris","decade","december","decide","decline","decorate","decrease","deer","defense","define","defy","degree","delay","deliver","demand","demise","denial","dentist","deny","depart","depend","deposit","depth","deputy","derive","describe","desert","design","desk","despair","destroy","detail","detect","develop","device","devote","diagram","dial","diamond","diary","dice","diesel","diet","differ","digital","dignity","dilemma","dinner","dinosaur","direct","dirt","disagree","discover","disease","dish","dismiss","disorder","display","distance","divert","divide","divorce","dizzy","doctor","document","dog","doll","dolphin","domain","donate","donkey","donor","door","dose","double","dove","draft","dragon","drama","drastic","draw","dream","dress","drift","drill","drink","drip","drive","drop","drum","dry","duck","dumb","dune","during","dust","dutch","duty","dwarf","dynamic","eager","eagle","early","earn","earth","easily","east","easy","echo","ecology","economy","edge","edit","educate","effort","egg","eight","either","elbow","elder","electric","elegant","element","elephant","elevator","elite","else","embark","embody","embrace","emerge","emotion","employ","empower","empty","enable","enact","end","endless","endorse","enemy","energy","enforce","engage","engine","enhance","enjoy","enlist","enough","enrich","enroll","ensure","enter","entire","entry","envelope","episode","equal","equip","era","erase","erode","erosion","error","erupt","escape","essay","essence","estate","eternal","ethics","evidence","evil","evoke","evolve","exact","example","excess","exchange","excite","exclude","excuse","execute","exercise","exhaust","exhibit","exile","exist","exit","exotic","expand","expect","expire","explain","expose","express","extend","extra","eye","eyebrow","fabric","face","faculty","fade","faint","faith","fall","false","fame","family","famous","fan","fancy","fantasy","farm","fashion","fat","fatal","father","fatigue","fault","favorite","feature","february","federal","fee","feed","feel","female","fence","festival","fetch","fever","few","fiber","fiction","field","figure","file","film","filter","final","find","fine","finger","finish","fire","firm","first","fiscal","fish","fit","fitness","fix","flag","flame","flash","flat","flavor","flee","flight","flip","float","flock","floor","flower","fluid","flush","fly","foam","focus","fog","foil","fold","follow","food","foot","force","forest","forget","fork","fortune","forum","forward","fossil","foster","found","fox","fragile","frame","frequent","fresh","friend","fringe","frog","front","frost","frown","frozen","fruit","fuel","fun","funny","furnace","fury","future","gadget","gain","galaxy","gallery","game","gap","garage","garbage","garden","garlic","garment","gas","gasp","gate","gather","gauge","gaze","general","genius","genre","gentle","genuine","gesture","ghost","giant","gift","giggle","ginger","giraffe","girl","give","glad","glance","glare","glass","glide","glimpse","globe","gloom","glory","glove","glow","glue","goat","goddess","gold","good","goose","gorilla","gospel","gossip","govern","gown","grab","grace","grain","grant","grape","grass","gravity","great","green","grid","grief","grit","grocery","group","grow","grunt","guard","guess","guide","guilt","guitar","gun","gym","habit","hair","half","hammer","hamster","hand","happy","harbor","hard","harsh","harvest","hat","have","hawk","hazard","head","health","heart","heavy","hedgehog","height","hello","helmet","help","hen","hero","hidden","high","hill","hint","hip","hire","history","hobby","hockey","hold","hole","holiday","hollow","home","honey","hood","hope","horn","horror","horse","hospital","host","hotel","hour","hover","hub","huge","human","humble","humor","hundred","hungry","hunt","hurdle","hurry","hurt","husband","hybrid","ice","icon","idea","identify","idle","ignore","ill","illegal","illness","image","imitate","immense","immune","impact","impose","improve","impulse","inch","include","income","increase","index","indicate","indoor","industry","infant","inflict","inform","inhale","inherit","initial","inject","injury","inmate","inner","innocent","input","inquiry","insane","insect","inside","inspire","install","intact","interest","into","invest","invite","involve","iron","island","isolate","issue","item","ivory","jacket","jaguar","jar","jazz","jealous","jeans","jelly","jewel","job","join","joke","journey","joy","judge","juice","jump","jungle","junior","junk","just","kangaroo","keen","keep","ketchup","key","kick","kid","kidney","kind","kingdom","kiss","kit","kitchen","kite","kitten","kiwi","knee","knife","knock","know","lab","label","labor","ladder","lady","lake","lamp","language","laptop","large","later","latin","laugh","laundry","lava","law","lawn","lawsuit","layer","lazy","leader","leaf","learn","leave","lecture","left","leg","legal","legend","leisure","lemon","lend","length","lens","leopard","lesson","letter","level","liar","liberty","library","license","life","lift","light","like","limb","limit","link","lion","liquid","list","little","live","lizard","load","loan","lobster","local","lock","logic","lonely","long","loop","lottery","loud","lounge","love","loyal","lucky","luggage","lumber","lunar","lunch","luxury","lyrics","machine","mad","magic","magnet","maid","mail","main","major","make","mammal","man","manage","mandate","mango","mansion","manual","maple","marble","march","margin","marine","market","marriage","mask","mass","master","match","material","math","matrix","matter","maximum","maze","meadow","mean","measure","meat","mechanic","medal","media","melody","melt","member","memory","mention","menu","mercy","merge","merit","merry","mesh","message","metal","method","middle","midnight","milk","million","mimic","mind","minimum","minor","minute","miracle","mirror","misery","miss","mistake","mix","mixed","mixture","mobile","model","modify","mom","moment","monitor","monkey","monster","month","moon","moral","more","morning","mosquito","mother","motion","motor","mountain","mouse","move","movie","much","muffin","mule","multiply","muscle","museum","mushroom","music","must","mutual","myself","mystery","myth","naive","name","napkin","narrow","nasty","nation","nature","near","neck","need","negative","neglect","neither","nephew","nerve","nest","net","network","neutral","never","news","next","nice","night","noble","noise","nominee","noodle","normal","north","nose","notable","note","nothing","notice","novel","now","nuclear","number","nurse","nut","oak","obey","object","oblige","obscure","observe","obtain","obvious","occur","ocean","october","odor","off","offer","office","often","oil","okay","old","olive","olympic","omit","once","one","onion","online","only","open","opera","opinion","oppose","option","orange","orbit","orchard","order","ordinary","organ","orient","original","orphan","ostrich","other","outdoor","outer","output","outside","oval","oven","over","own","owner","oxygen","oyster","ozone","pact","paddle","page","pair","palace","palm","panda","panel","panic","panther","paper","parade","parent","park","parrot","party","pass","patch","path","patient","patrol","pattern","pause","pave","payment","peace","peanut","pear","peasant","pelican","pen","penalty","pencil","people","pepper","perfect","permit","person","pet","phone","photo","phrase","physical","piano","picnic","picture","piece","pig","pigeon","pill","pilot","pink","pioneer","pipe","pistol","pitch","pizza","place","planet","plastic","plate","play","please","pledge","pluck","plug","plunge","poem","poet","point","polar","pole","police","pond","pony","pool","popular","portion","position","possible","post","potato","pottery","poverty","powder","power","practice","praise","predict","prefer","prepare","present","pretty","prevent","price","pride","primary","print","priority","prison","private","prize","problem","process","produce","profit","program","project","promote","proof","property","prosper","protect","proud","provide","public","pudding","pull","pulp","pulse","pumpkin","punch","pupil","puppy","purchase","purity","purpose","purse","push","put","puzzle","pyramid","quality","quantum","quarter","question","quick","quit","quiz","quote","rabbit","raccoon","race","rack","radar","radio","rail","rain","raise","rally","ramp","ranch","random","range","rapid","rare","rate","rather","raven","raw","razor","ready","real","reason","rebel","rebuild","recall","receive","recipe","record","recycle","reduce","reflect","reform","refuse","region","regret","regular","reject","relax","release","relief","rely","remain","remember","remind","remove","render","renew","rent","reopen","repair","repeat","replace","report","require","rescue","resemble","resist","resource","response","result","retire","retreat","return","reunion","reveal","review","reward","rhythm","rib","ribbon","rice","rich","ride","ridge","rifle","right","rigid","ring","riot","ripple","risk","ritual","rival","river","road","roast","robot","robust","rocket","romance","roof","rookie","room","rose","rotate","rough","round","route","royal","rubber","rude","rug","rule","run","runway","rural","sad","saddle","sadness","safe","sail","salad","salmon","salon","salt","salute","same","sample","sand","satisfy","satoshi","sauce","sausage","save","say","scale","scan","scare","scatter","scene","scheme","school","science","scissors","scorpion","scout","scrap","screen","script","scrub","sea","search","season","seat","second","secret","section","security","seed","seek","segment","select","sell","seminar","senior","sense","sentence","series","service","session","settle","setup","seven","shadow","shaft","shallow","share","shed","shell","sheriff","shield","shift","shine","ship","shiver","shock","shoe","shoot","shop","short","shoulder","shove","shrimp","shrug","shuffle","shy","sibling","sick","side","siege","sight","sign","silent","silk","silly","silver","similar","simple","since","sing","siren","sister","situate","six","size","skate","sketch","ski","skill","skin","skirt","skull","slab","slam","sleep","slender","slice","slide","slight","slim","slogan","slot","slow","slush","small","smart","smile","smoke","smooth","snack","snake","snap","sniff","snow","soap","soccer","social","sock","soda","soft","solar","soldier","solid","solution","solve","someone","song","soon","sorry","sort","soul","sound","soup","source","south","space","spare","spatial","spawn","speak","special","speed","spell","spend","sphere","spice","spider","spike","spin","spirit","split","spoil","sponsor","spoon","sport","spot","spray","spread","spring","spy","square","squeeze","squirrel","stable","stadium","staff","stage","stairs","stamp","stand","start","state","stay","steak","steel","stem","step","stereo","stick","still","sting","stock","stomach","stone","stool","story","stove","strategy","street","strike","strong","struggle","student","stuff","stumble","style","subject","submit","subway","success","such","sudden","suffer","sugar","suggest","suit","summer","sun","sunny","sunset","super","supply","supreme","sure","surface","surge","surprise","surround","survey","suspect","sustain","swallow","swamp","swap","swarm","swear","sweet","swift","swim","swing","switch","sword","symbol","symptom","syrup","system","table","tackle","tag","tail","talent","talk","tank","tape","target","task","taste","tattoo","taxi","teach","team","tell","ten","tenant","tennis","tent","term","test","text","thank","that","theme","then","theory","there","they","thing","this","thought","three","thrive","throw","thumb","thunder","ticket","tide","tiger","tilt","timber","time","tiny","tip","tired","tissue","title","toast","tobacco","today","toddler","toe","together","toilet","token","tomato","tomorrow","tone","tongue","tonight","tool","tooth","top","topic","topple","torch","tornado","tortoise","toss","total","tourist","toward","tower","town","toy","track","trade","traffic","tragic","train","transfer","trap","trash","travel","tray","treat","tree","trend","trial","tribe","trick","trigger","trim","trip","trophy","trouble","truck","true","truly","trumpet","trust","truth","try","tube","tuition","tumble","tuna","tunnel","turkey","turn","turtle","twelve","twenty","twice","twin","twist","two","type","typical","ugly","umbrella","unable","unaware","uncle","uncover","under","undo","unfair","unfold","unhappy","uniform","unique","unit","universe","unknown","unlock","until","unusual","unveil","update","upgrade","uphold","upon","upper","upset","urban","urge","usage","use","used","useful","useless","usual","utility","vacant","vacuum","vague","valid","valley","valve","van","vanish","vapor","various","vast","vault","vehicle","velvet","vendor","venture","venue","verb","verify","version","very","vessel","veteran","viable","vibrant","vicious","victory","video","view","village","vintage","violin","virtual","virus","visa","visit","visual","vital","vivid","vocal","voice","void","volcano","volume","vote","voyage","wage","wagon","wait","walk","wall","walnut","want","warfare","warm","warrior","wash","wasp","waste","water","wave","way","wealth","weapon","wear","weasel","weather","web","wedding","weekend","weird","welcome","west","wet","whale","what","wheat","wheel","when","where","whip","whisper","wide","width","wife","wild","will","win","window","wine","wing","wink","winner","winter","wire","wisdom","wise","wish","witness","wolf","woman","wonder","wood","wool","word","work","world","worry","worth","wrap","wreck","wrestle","wrist","write","wrong","yard","year","yellow","you","young","youth","zebra","zero","zone","zoo"];
 
 /***/ }),
-/* 803 */
+/* 581 */
 /***/ (function(module) {
 
 module.exports = ["abaisser","abandon","abdiquer","abeille","abolir","aborder","aboutir","aboyer","abrasif","abreuver","abriter","abroger","abrupt","absence","absolu","absurde","abusif","abyssal","académie","acajou","acarien","accabler","accepter","acclamer","accolade","accroche","accuser","acerbe","achat","acheter","aciduler","acier","acompte","acquérir","acronyme","acteur","actif","actuel","adepte","adéquat","adhésif","adjectif","adjuger","admettre","admirer","adopter","adorer","adoucir","adresse","adroit","adulte","adverbe","aérer","aéronef","affaire","affecter","affiche","affreux","affubler","agacer","agencer","agile","agiter","agrafer","agréable","agrume","aider","aiguille","ailier","aimable","aisance","ajouter","ajuster","alarmer","alchimie","alerte","algèbre","algue","aliéner","aliment","alléger","alliage","allouer","allumer","alourdir","alpaga","altesse","alvéole","amateur","ambigu","ambre","aménager","amertume","amidon","amiral","amorcer","amour","amovible","amphibie","ampleur","amusant","analyse","anaphore","anarchie","anatomie","ancien","anéantir","angle","angoisse","anguleux","animal","annexer","annonce","annuel","anodin","anomalie","anonyme","anormal","antenne","antidote","anxieux","apaiser","apéritif","aplanir","apologie","appareil","appeler","apporter","appuyer","aquarium","aqueduc","arbitre","arbuste","ardeur","ardoise","argent","arlequin","armature","armement","armoire","armure","arpenter","arracher","arriver","arroser","arsenic","artériel","article","aspect","asphalte","aspirer","assaut","asservir","assiette","associer","assurer","asticot","astre","astuce","atelier","atome","atrium","atroce","attaque","attentif","attirer","attraper","aubaine","auberge","audace","audible","augurer","aurore","automne","autruche","avaler","avancer","avarice","avenir","averse","aveugle","aviateur","avide","avion","aviser","avoine","avouer","avril","axial","axiome","badge","bafouer","bagage","baguette","baignade","balancer","balcon","baleine","balisage","bambin","bancaire","bandage","banlieue","bannière","banquier","barbier","baril","baron","barque","barrage","bassin","bastion","bataille","bateau","batterie","baudrier","bavarder","belette","bélier","belote","bénéfice","berceau","berger","berline","bermuda","besace","besogne","bétail","beurre","biberon","bicycle","bidule","bijou","bilan","bilingue","billard","binaire","biologie","biopsie","biotype","biscuit","bison","bistouri","bitume","bizarre","blafard","blague","blanchir","blessant","blinder","blond","bloquer","blouson","bobard","bobine","boire","boiser","bolide","bonbon","bondir","bonheur","bonifier","bonus","bordure","borne","botte","boucle","boueux","bougie","boulon","bouquin","bourse","boussole","boutique","boxeur","branche","brasier","brave","brebis","brèche","breuvage","bricoler","brigade","brillant","brioche","brique","brochure","broder","bronzer","brousse","broyeur","brume","brusque","brutal","bruyant","buffle","buisson","bulletin","bureau","burin","bustier","butiner","butoir","buvable","buvette","cabanon","cabine","cachette","cadeau","cadre","caféine","caillou","caisson","calculer","calepin","calibre","calmer","calomnie","calvaire","camarade","caméra","camion","campagne","canal","caneton","canon","cantine","canular","capable","caporal","caprice","capsule","capter","capuche","carabine","carbone","caresser","caribou","carnage","carotte","carreau","carton","cascade","casier","casque","cassure","causer","caution","cavalier","caverne","caviar","cédille","ceinture","céleste","cellule","cendrier","censurer","central","cercle","cérébral","cerise","cerner","cerveau","cesser","chagrin","chaise","chaleur","chambre","chance","chapitre","charbon","chasseur","chaton","chausson","chavirer","chemise","chenille","chéquier","chercher","cheval","chien","chiffre","chignon","chimère","chiot","chlorure","chocolat","choisir","chose","chouette","chrome","chute","cigare","cigogne","cimenter","cinéma","cintrer","circuler","cirer","cirque","citerne","citoyen","citron","civil","clairon","clameur","claquer","classe","clavier","client","cligner","climat","clivage","cloche","clonage","cloporte","cobalt","cobra","cocasse","cocotier","coder","codifier","coffre","cogner","cohésion","coiffer","coincer","colère","colibri","colline","colmater","colonel","combat","comédie","commande","compact","concert","conduire","confier","congeler","connoter","consonne","contact","convexe","copain","copie","corail","corbeau","cordage","corniche","corpus","correct","cortège","cosmique","costume","coton","coude","coupure","courage","couteau","couvrir","coyote","crabe","crainte","cravate","crayon","créature","créditer","crémeux","creuser","crevette","cribler","crier","cristal","critère","croire","croquer","crotale","crucial","cruel","crypter","cubique","cueillir","cuillère","cuisine","cuivre","culminer","cultiver","cumuler","cupide","curatif","curseur","cyanure","cycle","cylindre","cynique","daigner","damier","danger","danseur","dauphin","débattre","débiter","déborder","débrider","débutant","décaler","décembre","déchirer","décider","déclarer","décorer","décrire","décupler","dédale","déductif","déesse","défensif","défiler","défrayer","dégager","dégivrer","déglutir","dégrafer","déjeuner","délice","déloger","demander","demeurer","démolir","dénicher","dénouer","dentelle","dénuder","départ","dépenser","déphaser","déplacer","déposer","déranger","dérober","désastre","descente","désert","désigner","désobéir","dessiner","destrier","détacher","détester","détourer","détresse","devancer","devenir","deviner","devoir","diable","dialogue","diamant","dicter","différer","digérer","digital","digne","diluer","dimanche","diminuer","dioxyde","directif","diriger","discuter","disposer","dissiper","distance","divertir","diviser","docile","docteur","dogme","doigt","domaine","domicile","dompter","donateur","donjon","donner","dopamine","dortoir","dorure","dosage","doseur","dossier","dotation","douanier","double","douceur","douter","doyen","dragon","draper","dresser","dribbler","droiture","duperie","duplexe","durable","durcir","dynastie","éblouir","écarter","écharpe","échelle","éclairer","éclipse","éclore","écluse","école","économie","écorce","écouter","écraser","écrémer","écrivain","écrou","écume","écureuil","édifier","éduquer","effacer","effectif","effigie","effort","effrayer","effusion","égaliser","égarer","éjecter","élaborer","élargir","électron","élégant","éléphant","élève","éligible","élitisme","éloge","élucider","éluder","emballer","embellir","embryon","émeraude","émission","emmener","émotion","émouvoir","empereur","employer","emporter","emprise","émulsion","encadrer","enchère","enclave","encoche","endiguer","endosser","endroit","enduire","énergie","enfance","enfermer","enfouir","engager","engin","englober","énigme","enjamber","enjeu","enlever","ennemi","ennuyeux","enrichir","enrobage","enseigne","entasser","entendre","entier","entourer","entraver","énumérer","envahir","enviable","envoyer","enzyme","éolien","épaissir","épargne","épatant","épaule","épicerie","épidémie","épier","épilogue","épine","épisode","épitaphe","époque","épreuve","éprouver","épuisant","équerre","équipe","ériger","érosion","erreur","éruption","escalier","espadon","espèce","espiègle","espoir","esprit","esquiver","essayer","essence","essieu","essorer","estime","estomac","estrade","étagère","étaler","étanche","étatique","éteindre","étendoir","éternel","éthanol","éthique","ethnie","étirer","étoffer","étoile","étonnant","étourdir","étrange","étroit","étude","euphorie","évaluer","évasion","éventail","évidence","éviter","évolutif","évoquer","exact","exagérer","exaucer","exceller","excitant","exclusif","excuse","exécuter","exemple","exercer","exhaler","exhorter","exigence","exiler","exister","exotique","expédier","explorer","exposer","exprimer","exquis","extensif","extraire","exulter","fable","fabuleux","facette","facile","facture","faiblir","falaise","fameux","famille","farceur","farfelu","farine","farouche","fasciner","fatal","fatigue","faucon","fautif","faveur","favori","fébrile","féconder","fédérer","félin","femme","fémur","fendoir","féodal","fermer","féroce","ferveur","festival","feuille","feutre","février","fiasco","ficeler","fictif","fidèle","figure","filature","filetage","filière","filleul","filmer","filou","filtrer","financer","finir","fiole","firme","fissure","fixer","flairer","flamme","flasque","flatteur","fléau","flèche","fleur","flexion","flocon","flore","fluctuer","fluide","fluvial","folie","fonderie","fongible","fontaine","forcer","forgeron","formuler","fortune","fossile","foudre","fougère","fouiller","foulure","fourmi","fragile","fraise","franchir","frapper","frayeur","frégate","freiner","frelon","frémir","frénésie","frère","friable","friction","frisson","frivole","froid","fromage","frontal","frotter","fruit","fugitif","fuite","fureur","furieux","furtif","fusion","futur","gagner","galaxie","galerie","gambader","garantir","gardien","garnir","garrigue","gazelle","gazon","géant","gélatine","gélule","gendarme","général","génie","genou","gentil","géologie","géomètre","géranium","germe","gestuel","geyser","gibier","gicler","girafe","givre","glace","glaive","glisser","globe","gloire","glorieux","golfeur","gomme","gonfler","gorge","gorille","goudron","gouffre","goulot","goupille","gourmand","goutte","graduel","graffiti","graine","grand","grappin","gratuit","gravir","grenat","griffure","griller","grimper","grogner","gronder","grotte","groupe","gruger","grutier","gruyère","guépard","guerrier","guide","guimauve","guitare","gustatif","gymnaste","gyrostat","habitude","hachoir","halte","hameau","hangar","hanneton","haricot","harmonie","harpon","hasard","hélium","hématome","herbe","hérisson","hermine","héron","hésiter","heureux","hiberner","hibou","hilarant","histoire","hiver","homard","hommage","homogène","honneur","honorer","honteux","horde","horizon","horloge","hormone","horrible","houleux","housse","hublot","huileux","humain","humble","humide","humour","hurler","hydromel","hygiène","hymne","hypnose","idylle","ignorer","iguane","illicite","illusion","image","imbiber","imiter","immense","immobile","immuable","impact","impérial","implorer","imposer","imprimer","imputer","incarner","incendie","incident","incliner","incolore","indexer","indice","inductif","inédit","ineptie","inexact","infini","infliger","informer","infusion","ingérer","inhaler","inhiber","injecter","injure","innocent","inoculer","inonder","inscrire","insecte","insigne","insolite","inspirer","instinct","insulter","intact","intense","intime","intrigue","intuitif","inutile","invasion","inventer","inviter","invoquer","ironique","irradier","irréel","irriter","isoler","ivoire","ivresse","jaguar","jaillir","jambe","janvier","jardin","jauger","jaune","javelot","jetable","jeton","jeudi","jeunesse","joindre","joncher","jongler","joueur","jouissif","journal","jovial","joyau","joyeux","jubiler","jugement","junior","jupon","juriste","justice","juteux","juvénile","kayak","kimono","kiosque","label","labial","labourer","lacérer","lactose","lagune","laine","laisser","laitier","lambeau","lamelle","lampe","lanceur","langage","lanterne","lapin","largeur","larme","laurier","lavabo","lavoir","lecture","légal","léger","légume","lessive","lettre","levier","lexique","lézard","liasse","libérer","libre","licence","licorne","liège","lièvre","ligature","ligoter","ligue","limer","limite","limonade","limpide","linéaire","lingot","lionceau","liquide","lisière","lister","lithium","litige","littoral","livreur","logique","lointain","loisir","lombric","loterie","louer","lourd","loutre","louve","loyal","lubie","lucide","lucratif","lueur","lugubre","luisant","lumière","lunaire","lundi","luron","lutter","luxueux","machine","magasin","magenta","magique","maigre","maillon","maintien","mairie","maison","majorer","malaxer","maléfice","malheur","malice","mallette","mammouth","mandater","maniable","manquant","manteau","manuel","marathon","marbre","marchand","mardi","maritime","marqueur","marron","marteler","mascotte","massif","matériel","matière","matraque","maudire","maussade","mauve","maximal","méchant","méconnu","médaille","médecin","méditer","méduse","meilleur","mélange","mélodie","membre","mémoire","menacer","mener","menhir","mensonge","mentor","mercredi","mérite","merle","messager","mesure","métal","météore","méthode","métier","meuble","miauler","microbe","miette","mignon","migrer","milieu","million","mimique","mince","minéral","minimal","minorer","minute","miracle","miroiter","missile","mixte","mobile","moderne","moelleux","mondial","moniteur","monnaie","monotone","monstre","montagne","monument","moqueur","morceau","morsure","mortier","moteur","motif","mouche","moufle","moulin","mousson","mouton","mouvant","multiple","munition","muraille","murène","murmure","muscle","muséum","musicien","mutation","muter","mutuel","myriade","myrtille","mystère","mythique","nageur","nappe","narquois","narrer","natation","nation","nature","naufrage","nautique","navire","nébuleux","nectar","néfaste","négation","négliger","négocier","neige","nerveux","nettoyer","neurone","neutron","neveu","niche","nickel","nitrate","niveau","noble","nocif","nocturne","noirceur","noisette","nomade","nombreux","nommer","normatif","notable","notifier","notoire","nourrir","nouveau","novateur","novembre","novice","nuage","nuancer","nuire","nuisible","numéro","nuptial","nuque","nutritif","obéir","objectif","obliger","obscur","observer","obstacle","obtenir","obturer","occasion","occuper","océan","octobre","octroyer","octupler","oculaire","odeur","odorant","offenser","officier","offrir","ogive","oiseau","oisillon","olfactif","olivier","ombrage","omettre","onctueux","onduler","onéreux","onirique","opale","opaque","opérer","opinion","opportun","opprimer","opter","optique","orageux","orange","orbite","ordonner","oreille","organe","orgueil","orifice","ornement","orque","ortie","osciller","osmose","ossature","otarie","ouragan","ourson","outil","outrager","ouvrage","ovation","oxyde","oxygène","ozone","paisible","palace","palmarès","palourde","palper","panache","panda","pangolin","paniquer","panneau","panorama","pantalon","papaye","papier","papoter","papyrus","paradoxe","parcelle","paresse","parfumer","parler","parole","parrain","parsemer","partager","parure","parvenir","passion","pastèque","paternel","patience","patron","pavillon","pavoiser","payer","paysage","peigne","peintre","pelage","pélican","pelle","pelouse","peluche","pendule","pénétrer","pénible","pensif","pénurie","pépite","péplum","perdrix","perforer","période","permuter","perplexe","persil","perte","peser","pétale","petit","pétrir","peuple","pharaon","phobie","phoque","photon","phrase","physique","piano","pictural","pièce","pierre","pieuvre","pilote","pinceau","pipette","piquer","pirogue","piscine","piston","pivoter","pixel","pizza","placard","plafond","plaisir","planer","plaque","plastron","plateau","pleurer","plexus","pliage","plomb","plonger","pluie","plumage","pochette","poésie","poète","pointe","poirier","poisson","poivre","polaire","policier","pollen","polygone","pommade","pompier","ponctuel","pondérer","poney","portique","position","posséder","posture","potager","poteau","potion","pouce","poulain","poumon","pourpre","poussin","pouvoir","prairie","pratique","précieux","prédire","préfixe","prélude","prénom","présence","prétexte","prévoir","primitif","prince","prison","priver","problème","procéder","prodige","profond","progrès","proie","projeter","prologue","promener","propre","prospère","protéger","prouesse","proverbe","prudence","pruneau","psychose","public","puceron","puiser","pulpe","pulsar","punaise","punitif","pupitre","purifier","puzzle","pyramide","quasar","querelle","question","quiétude","quitter","quotient","racine","raconter","radieux","ragondin","raideur","raisin","ralentir","rallonge","ramasser","rapide","rasage","ratisser","ravager","ravin","rayonner","réactif","réagir","réaliser","réanimer","recevoir","réciter","réclamer","récolter","recruter","reculer","recycler","rédiger","redouter","refaire","réflexe","réformer","refrain","refuge","régalien","région","réglage","régulier","réitérer","rejeter","rejouer","relatif","relever","relief","remarque","remède","remise","remonter","remplir","remuer","renard","renfort","renifler","renoncer","rentrer","renvoi","replier","reporter","reprise","reptile","requin","réserve","résineux","résoudre","respect","rester","résultat","rétablir","retenir","réticule","retomber","retracer","réunion","réussir","revanche","revivre","révolte","révulsif","richesse","rideau","rieur","rigide","rigoler","rincer","riposter","risible","risque","rituel","rival","rivière","rocheux","romance","rompre","ronce","rondin","roseau","rosier","rotatif","rotor","rotule","rouge","rouille","rouleau","routine","royaume","ruban","rubis","ruche","ruelle","rugueux","ruiner","ruisseau","ruser","rustique","rythme","sabler","saboter","sabre","sacoche","safari","sagesse","saisir","salade","salive","salon","saluer","samedi","sanction","sanglier","sarcasme","sardine","saturer","saugrenu","saumon","sauter","sauvage","savant","savonner","scalpel","scandale","scélérat","scénario","sceptre","schéma","science","scinder","score","scrutin","sculpter","séance","sécable","sécher","secouer","sécréter","sédatif","séduire","seigneur","séjour","sélectif","semaine","sembler","semence","séminal","sénateur","sensible","sentence","séparer","séquence","serein","sergent","sérieux","serrure","sérum","service","sésame","sévir","sevrage","sextuple","sidéral","siècle","siéger","siffler","sigle","signal","silence","silicium","simple","sincère","sinistre","siphon","sirop","sismique","situer","skier","social","socle","sodium","soigneux","soldat","soleil","solitude","soluble","sombre","sommeil","somnoler","sonde","songeur","sonnette","sonore","sorcier","sortir","sosie","sottise","soucieux","soudure","souffle","soulever","soupape","source","soutirer","souvenir","spacieux","spatial","spécial","sphère","spiral","stable","station","sternum","stimulus","stipuler","strict","studieux","stupeur","styliste","sublime","substrat","subtil","subvenir","succès","sucre","suffixe","suggérer","suiveur","sulfate","superbe","supplier","surface","suricate","surmener","surprise","sursaut","survie","suspect","syllabe","symbole","symétrie","synapse","syntaxe","système","tabac","tablier","tactile","tailler","talent","talisman","talonner","tambour","tamiser","tangible","tapis","taquiner","tarder","tarif","tartine","tasse","tatami","tatouage","taupe","taureau","taxer","témoin","temporel","tenaille","tendre","teneur","tenir","tension","terminer","terne","terrible","tétine","texte","thème","théorie","thérapie","thorax","tibia","tiède","timide","tirelire","tiroir","tissu","titane","titre","tituber","toboggan","tolérant","tomate","tonique","tonneau","toponyme","torche","tordre","tornade","torpille","torrent","torse","tortue","totem","toucher","tournage","tousser","toxine","traction","trafic","tragique","trahir","train","trancher","travail","trèfle","tremper","trésor","treuil","triage","tribunal","tricoter","trilogie","triomphe","tripler","triturer","trivial","trombone","tronc","tropical","troupeau","tuile","tulipe","tumulte","tunnel","turbine","tuteur","tutoyer","tuyau","tympan","typhon","typique","tyran","ubuesque","ultime","ultrason","unanime","unifier","union","unique","unitaire","univers","uranium","urbain","urticant","usage","usine","usuel","usure","utile","utopie","vacarme","vaccin","vagabond","vague","vaillant","vaincre","vaisseau","valable","valise","vallon","valve","vampire","vanille","vapeur","varier","vaseux","vassal","vaste","vecteur","vedette","végétal","véhicule","veinard","véloce","vendredi","vénérer","venger","venimeux","ventouse","verdure","vérin","vernir","verrou","verser","vertu","veston","vétéran","vétuste","vexant","vexer","viaduc","viande","victoire","vidange","vidéo","vignette","vigueur","vilain","village","vinaigre","violon","vipère","virement","virtuose","virus","visage","viseur","vision","visqueux","visuel","vital","vitesse","viticole","vitrine","vivace","vivipare","vocation","voguer","voile","voisin","voiture","volaille","volcan","voltiger","volume","vorace","vortex","voter","vouloir","voyage","voyelle","wagon","xénon","yacht","zèbre","zénith","zeste","zoologie"];
 
 /***/ }),
-/* 804 */
+/* 582 */
 /***/ (function(module) {
 
 module.exports = ["abaco","abbaglio","abbinato","abete","abisso","abolire","abrasivo","abrogato","accadere","accenno","accusato","acetone","achille","acido","acqua","acre","acrilico","acrobata","acuto","adagio","addebito","addome","adeguato","aderire","adipe","adottare","adulare","affabile","affetto","affisso","affranto","aforisma","afoso","africano","agave","agente","agevole","aggancio","agire","agitare","agonismo","agricolo","agrumeto","aguzzo","alabarda","alato","albatro","alberato","albo","albume","alce","alcolico","alettone","alfa","algebra","aliante","alibi","alimento","allagato","allegro","allievo","allodola","allusivo","almeno","alogeno","alpaca","alpestre","altalena","alterno","alticcio","altrove","alunno","alveolo","alzare","amalgama","amanita","amarena","ambito","ambrato","ameba","america","ametista","amico","ammasso","ammenda","ammirare","ammonito","amore","ampio","ampliare","amuleto","anacardo","anagrafe","analista","anarchia","anatra","anca","ancella","ancora","andare","andrea","anello","angelo","angolare","angusto","anima","annegare","annidato","anno","annuncio","anonimo","anticipo","anzi","apatico","apertura","apode","apparire","appetito","appoggio","approdo","appunto","aprile","arabica","arachide","aragosta","araldica","arancio","aratura","arazzo","arbitro","archivio","ardito","arenile","argento","argine","arguto","aria","armonia","arnese","arredato","arringa","arrosto","arsenico","arso","artefice","arzillo","asciutto","ascolto","asepsi","asettico","asfalto","asino","asola","aspirato","aspro","assaggio","asse","assoluto","assurdo","asta","astenuto","astice","astratto","atavico","ateismo","atomico","atono","attesa","attivare","attorno","attrito","attuale","ausilio","austria","autista","autonomo","autunno","avanzato","avere","avvenire","avviso","avvolgere","azione","azoto","azzimo","azzurro","babele","baccano","bacino","baco","badessa","badilata","bagnato","baita","balcone","baldo","balena","ballata","balzano","bambino","bandire","baraonda","barbaro","barca","baritono","barlume","barocco","basilico","basso","batosta","battuto","baule","bava","bavosa","becco","beffa","belgio","belva","benda","benevole","benigno","benzina","bere","berlina","beta","bibita","bici","bidone","bifido","biga","bilancia","bimbo","binocolo","biologo","bipede","bipolare","birbante","birra","biscotto","bisesto","bisnonno","bisonte","bisturi","bizzarro","blando","blatta","bollito","bonifico","bordo","bosco","botanico","bottino","bozzolo","braccio","bradipo","brama","branca","bravura","bretella","brevetto","brezza","briglia","brillante","brindare","broccolo","brodo","bronzina","brullo","bruno","bubbone","buca","budino","buffone","buio","bulbo","buono","burlone","burrasca","bussola","busta","cadetto","caduco","calamaro","calcolo","calesse","calibro","calmo","caloria","cambusa","camerata","camicia","cammino","camola","campale","canapa","candela","cane","canino","canotto","cantina","capace","capello","capitolo","capogiro","cappero","capra","capsula","carapace","carcassa","cardo","carisma","carovana","carretto","cartolina","casaccio","cascata","caserma","caso","cassone","castello","casuale","catasta","catena","catrame","cauto","cavillo","cedibile","cedrata","cefalo","celebre","cellulare","cena","cenone","centesimo","ceramica","cercare","certo","cerume","cervello","cesoia","cespo","ceto","chela","chiaro","chicca","chiedere","chimera","china","chirurgo","chitarra","ciao","ciclismo","cifrare","cigno","cilindro","ciottolo","circa","cirrosi","citrico","cittadino","ciuffo","civetta","civile","classico","clinica","cloro","cocco","codardo","codice","coerente","cognome","collare","colmato","colore","colposo","coltivato","colza","coma","cometa","commando","comodo","computer","comune","conciso","condurre","conferma","congelare","coniuge","connesso","conoscere","consumo","continuo","convegno","coperto","copione","coppia","copricapo","corazza","cordata","coricato","cornice","corolla","corpo","corredo","corsia","cortese","cosmico","costante","cottura","covato","cratere","cravatta","creato","credere","cremoso","crescita","creta","criceto","crinale","crisi","critico","croce","cronaca","crostata","cruciale","crusca","cucire","cuculo","cugino","cullato","cupola","curatore","cursore","curvo","cuscino","custode","dado","daino","dalmata","damerino","daniela","dannoso","danzare","datato","davanti","davvero","debutto","decennio","deciso","declino","decollo","decreto","dedicato","definito","deforme","degno","delegare","delfino","delirio","delta","demenza","denotato","dentro","deposito","derapata","derivare","deroga","descritto","deserto","desiderio","desumere","detersivo","devoto","diametro","dicembre","diedro","difeso","diffuso","digerire","digitale","diluvio","dinamico","dinnanzi","dipinto","diploma","dipolo","diradare","dire","dirotto","dirupo","disagio","discreto","disfare","disgelo","disposto","distanza","disumano","dito","divano","divelto","dividere","divorato","doblone","docente","doganale","dogma","dolce","domato","domenica","dominare","dondolo","dono","dormire","dote","dottore","dovuto","dozzina","drago","druido","dubbio","dubitare","ducale","duna","duomo","duplice","duraturo","ebano","eccesso","ecco","eclissi","economia","edera","edicola","edile","editoria","educare","egemonia","egli","egoismo","egregio","elaborato","elargire","elegante","elencato","eletto","elevare","elfico","elica","elmo","elsa","eluso","emanato","emblema","emesso","emiro","emotivo","emozione","empirico","emulo","endemico","enduro","energia","enfasi","enoteca","entrare","enzima","epatite","epilogo","episodio","epocale","eppure","equatore","erario","erba","erboso","erede","eremita","erigere","ermetico","eroe","erosivo","errante","esagono","esame","esanime","esaudire","esca","esempio","esercito","esibito","esigente","esistere","esito","esofago","esortato","esoso","espanso","espresso","essenza","esso","esteso","estimare","estonia","estroso","esultare","etilico","etnico","etrusco","etto","euclideo","europa","evaso","evidenza","evitato","evoluto","evviva","fabbrica","faccenda","fachiro","falco","famiglia","fanale","fanfara","fango","fantasma","fare","farfalla","farinoso","farmaco","fascia","fastoso","fasullo","faticare","fato","favoloso","febbre","fecola","fede","fegato","felpa","feltro","femmina","fendere","fenomeno","fermento","ferro","fertile","fessura","festivo","fetta","feudo","fiaba","fiducia","fifa","figurato","filo","finanza","finestra","finire","fiore","fiscale","fisico","fiume","flacone","flamenco","flebo","flemma","florido","fluente","fluoro","fobico","focaccia","focoso","foderato","foglio","folata","folclore","folgore","fondente","fonetico","fonia","fontana","forbito","forchetta","foresta","formica","fornaio","foro","fortezza","forzare","fosfato","fosso","fracasso","frana","frassino","fratello","freccetta","frenata","fresco","frigo","frollino","fronde","frugale","frutta","fucilata","fucsia","fuggente","fulmine","fulvo","fumante","fumetto","fumoso","fune","funzione","fuoco","furbo","furgone","furore","fuso","futile","gabbiano","gaffe","galateo","gallina","galoppo","gambero","gamma","garanzia","garbo","garofano","garzone","gasdotto","gasolio","gastrico","gatto","gaudio","gazebo","gazzella","geco","gelatina","gelso","gemello","gemmato","gene","genitore","gennaio","genotipo","gergo","ghepardo","ghiaccio","ghisa","giallo","gilda","ginepro","giocare","gioiello","giorno","giove","girato","girone","gittata","giudizio","giurato","giusto","globulo","glutine","gnomo","gobba","golf","gomito","gommone","gonfio","gonna","governo","gracile","grado","grafico","grammo","grande","grattare","gravoso","grazia","greca","gregge","grifone","grigio","grinza","grotta","gruppo","guadagno","guaio","guanto","guardare","gufo","guidare","ibernato","icona","identico","idillio","idolo","idra","idrico","idrogeno","igiene","ignaro","ignorato","ilare","illeso","illogico","illudere","imballo","imbevuto","imbocco","imbuto","immane","immerso","immolato","impacco","impeto","impiego","importo","impronta","inalare","inarcare","inattivo","incanto","incendio","inchino","incisivo","incluso","incontro","incrocio","incubo","indagine","india","indole","inedito","infatti","infilare","inflitto","ingaggio","ingegno","inglese","ingordo","ingrosso","innesco","inodore","inoltrare","inondato","insano","insetto","insieme","insonnia","insulina","intasato","intero","intonaco","intuito","inumidire","invalido","invece","invito","iperbole","ipnotico","ipotesi","ippica","iride","irlanda","ironico","irrigato","irrorare","isolato","isotopo","isterico","istituto","istrice","italia","iterare","labbro","labirinto","lacca","lacerato","lacrima","lacuna","laddove","lago","lampo","lancetta","lanterna","lardoso","larga","laringe","lastra","latenza","latino","lattuga","lavagna","lavoro","legale","leggero","lembo","lentezza","lenza","leone","lepre","lesivo","lessato","lesto","letterale","leva","levigato","libero","lido","lievito","lilla","limatura","limitare","limpido","lineare","lingua","liquido","lira","lirica","lisca","lite","litigio","livrea","locanda","lode","logica","lombare","londra","longevo","loquace","lorenzo","loto","lotteria","luce","lucidato","lumaca","luminoso","lungo","lupo","luppolo","lusinga","lusso","lutto","macabro","macchina","macero","macinato","madama","magico","maglia","magnete","magro","maiolica","malafede","malgrado","malinteso","malsano","malto","malumore","mana","mancia","mandorla","mangiare","manifesto","mannaro","manovra","mansarda","mantide","manubrio","mappa","maratona","marcire","maretta","marmo","marsupio","maschera","massaia","mastino","materasso","matricola","mattone","maturo","mazurca","meandro","meccanico","mecenate","medesimo","meditare","mega","melassa","melis","melodia","meninge","meno","mensola","mercurio","merenda","merlo","meschino","mese","messere","mestolo","metallo","metodo","mettere","miagolare","mica","micelio","michele","microbo","midollo","miele","migliore","milano","milite","mimosa","minerale","mini","minore","mirino","mirtillo","miscela","missiva","misto","misurare","mitezza","mitigare","mitra","mittente","mnemonico","modello","modifica","modulo","mogano","mogio","mole","molosso","monastero","monco","mondina","monetario","monile","monotono","monsone","montato","monviso","mora","mordere","morsicato","mostro","motivato","motosega","motto","movenza","movimento","mozzo","mucca","mucosa","muffa","mughetto","mugnaio","mulatto","mulinello","multiplo","mummia","munto","muovere","murale","musa","muscolo","musica","mutevole","muto","nababbo","nafta","nanometro","narciso","narice","narrato","nascere","nastrare","naturale","nautica","naviglio","nebulosa","necrosi","negativo","negozio","nemmeno","neofita","neretto","nervo","nessuno","nettuno","neutrale","neve","nevrotico","nicchia","ninfa","nitido","nobile","nocivo","nodo","nome","nomina","nordico","normale","norvegese","nostrano","notare","notizia","notturno","novella","nucleo","nulla","numero","nuovo","nutrire","nuvola","nuziale","oasi","obbedire","obbligo","obelisco","oblio","obolo","obsoleto","occasione","occhio","occidente","occorrere","occultare","ocra","oculato","odierno","odorare","offerta","offrire","offuscato","oggetto","oggi","ognuno","olandese","olfatto","oliato","oliva","ologramma","oltre","omaggio","ombelico","ombra","omega","omissione","ondoso","onere","onice","onnivoro","onorevole","onta","operato","opinione","opposto","oracolo","orafo","ordine","orecchino","orefice","orfano","organico","origine","orizzonte","orma","ormeggio","ornativo","orologio","orrendo","orribile","ortensia","ortica","orzata","orzo","osare","oscurare","osmosi","ospedale","ospite","ossa","ossidare","ostacolo","oste","otite","otre","ottagono","ottimo","ottobre","ovale","ovest","ovino","oviparo","ovocito","ovunque","ovviare","ozio","pacchetto","pace","pacifico","padella","padrone","paese","paga","pagina","palazzina","palesare","pallido","palo","palude","pandoro","pannello","paolo","paonazzo","paprica","parabola","parcella","parere","pargolo","pari","parlato","parola","partire","parvenza","parziale","passivo","pasticca","patacca","patologia","pattume","pavone","peccato","pedalare","pedonale","peggio","peloso","penare","pendice","penisola","pennuto","penombra","pensare","pentola","pepe","pepita","perbene","percorso","perdonato","perforare","pergamena","periodo","permesso","perno","perplesso","persuaso","pertugio","pervaso","pesatore","pesista","peso","pestifero","petalo","pettine","petulante","pezzo","piacere","pianta","piattino","piccino","picozza","piega","pietra","piffero","pigiama","pigolio","pigro","pila","pilifero","pillola","pilota","pimpante","pineta","pinna","pinolo","pioggia","piombo","piramide","piretico","pirite","pirolisi","pitone","pizzico","placebo","planare","plasma","platano","plenario","pochezza","poderoso","podismo","poesia","poggiare","polenta","poligono","pollice","polmonite","polpetta","polso","poltrona","polvere","pomice","pomodoro","ponte","popoloso","porfido","poroso","porpora","porre","portata","posa","positivo","possesso","postulato","potassio","potere","pranzo","prassi","pratica","precluso","predica","prefisso","pregiato","prelievo","premere","prenotare","preparato","presenza","pretesto","prevalso","prima","principe","privato","problema","procura","produrre","profumo","progetto","prolunga","promessa","pronome","proposta","proroga","proteso","prova","prudente","prugna","prurito","psiche","pubblico","pudica","pugilato","pugno","pulce","pulito","pulsante","puntare","pupazzo","pupilla","puro","quadro","qualcosa","quasi","querela","quota","raccolto","raddoppio","radicale","radunato","raffica","ragazzo","ragione","ragno","ramarro","ramingo","ramo","randagio","rantolare","rapato","rapina","rappreso","rasatura","raschiato","rasente","rassegna","rastrello","rata","ravveduto","reale","recepire","recinto","recluta","recondito","recupero","reddito","redimere","regalato","registro","regola","regresso","relazione","remare","remoto","renna","replica","reprimere","reputare","resa","residente","responso","restauro","rete","retina","retorica","rettifica","revocato","riassunto","ribadire","ribelle","ribrezzo","ricarica","ricco","ricevere","riciclato","ricordo","ricreduto","ridicolo","ridurre","rifasare","riflesso","riforma","rifugio","rigare","rigettato","righello","rilassato","rilevato","rimanere","rimbalzo","rimedio","rimorchio","rinascita","rincaro","rinforzo","rinnovo","rinomato","rinsavito","rintocco","rinuncia","rinvenire","riparato","ripetuto","ripieno","riportare","ripresa","ripulire","risata","rischio","riserva","risibile","riso","rispetto","ristoro","risultato","risvolto","ritardo","ritegno","ritmico","ritrovo","riunione","riva","riverso","rivincita","rivolto","rizoma","roba","robotico","robusto","roccia","roco","rodaggio","rodere","roditore","rogito","rollio","romantico","rompere","ronzio","rosolare","rospo","rotante","rotondo","rotula","rovescio","rubizzo","rubrica","ruga","rullino","rumine","rumoroso","ruolo","rupe","russare","rustico","sabato","sabbiare","sabotato","sagoma","salasso","saldatura","salgemma","salivare","salmone","salone","saltare","saluto","salvo","sapere","sapido","saporito","saraceno","sarcasmo","sarto","sassoso","satellite","satira","satollo","saturno","savana","savio","saziato","sbadiglio","sbalzo","sbancato","sbarra","sbattere","sbavare","sbendare","sbirciare","sbloccato","sbocciato","sbrinare","sbruffone","sbuffare","scabroso","scadenza","scala","scambiare","scandalo","scapola","scarso","scatenare","scavato","scelto","scenico","scettro","scheda","schiena","sciarpa","scienza","scindere","scippo","sciroppo","scivolo","sclerare","scodella","scolpito","scomparto","sconforto","scoprire","scorta","scossone","scozzese","scriba","scrollare","scrutinio","scuderia","scultore","scuola","scuro","scusare","sdebitare","sdoganare","seccatura","secondo","sedano","seggiola","segnalato","segregato","seguito","selciato","selettivo","sella","selvaggio","semaforo","sembrare","seme","seminato","sempre","senso","sentire","sepolto","sequenza","serata","serbato","sereno","serio","serpente","serraglio","servire","sestina","setola","settimana","sfacelo","sfaldare","sfamato","sfarzoso","sfaticato","sfera","sfida","sfilato","sfinge","sfocato","sfoderare","sfogo","sfoltire","sforzato","sfratto","sfruttato","sfuggito","sfumare","sfuso","sgabello","sgarbato","sgonfiare","sgorbio","sgrassato","sguardo","sibilo","siccome","sierra","sigla","signore","silenzio","sillaba","simbolo","simpatico","simulato","sinfonia","singolo","sinistro","sino","sintesi","sinusoide","sipario","sisma","sistole","situato","slitta","slogatura","sloveno","smarrito","smemorato","smentito","smeraldo","smilzo","smontare","smottato","smussato","snellire","snervato","snodo","sobbalzo","sobrio","soccorso","sociale","sodale","soffitto","sogno","soldato","solenne","solido","sollazzo","solo","solubile","solvente","somatico","somma","sonda","sonetto","sonnifero","sopire","soppeso","sopra","sorgere","sorpasso","sorriso","sorso","sorteggio","sorvolato","sospiro","sosta","sottile","spada","spalla","spargere","spatola","spavento","spazzola","specie","spedire","spegnere","spelatura","speranza","spessore","spettrale","spezzato","spia","spigoloso","spillato","spinoso","spirale","splendido","sportivo","sposo","spranga","sprecare","spronato","spruzzo","spuntino","squillo","sradicare","srotolato","stabile","stacco","staffa","stagnare","stampato","stantio","starnuto","stasera","statuto","stelo","steppa","sterzo","stiletto","stima","stirpe","stivale","stizzoso","stonato","storico","strappo","stregato","stridulo","strozzare","strutto","stuccare","stufo","stupendo","subentro","succoso","sudore","suggerito","sugo","sultano","suonare","superbo","supporto","surgelato","surrogato","sussurro","sutura","svagare","svedese","sveglio","svelare","svenuto","svezia","sviluppo","svista","svizzera","svolta","svuotare","tabacco","tabulato","tacciare","taciturno","tale","talismano","tampone","tannino","tara","tardivo","targato","tariffa","tarpare","tartaruga","tasto","tattico","taverna","tavolata","tazza","teca","tecnico","telefono","temerario","tempo","temuto","tendone","tenero","tensione","tentacolo","teorema","terme","terrazzo","terzetto","tesi","tesserato","testato","tetro","tettoia","tifare","tigella","timbro","tinto","tipico","tipografo","tiraggio","tiro","titanio","titolo","titubante","tizio","tizzone","toccare","tollerare","tolto","tombola","tomo","tonfo","tonsilla","topazio","topologia","toppa","torba","tornare","torrone","tortora","toscano","tossire","tostatura","totano","trabocco","trachea","trafila","tragedia","tralcio","tramonto","transito","trapano","trarre","trasloco","trattato","trave","treccia","tremolio","trespolo","tributo","tricheco","trifoglio","trillo","trincea","trio","tristezza","triturato","trivella","tromba","trono","troppo","trottola","trovare","truccato","tubatura","tuffato","tulipano","tumulto","tunisia","turbare","turchino","tuta","tutela","ubicato","uccello","uccisore","udire","uditivo","uffa","ufficio","uguale","ulisse","ultimato","umano","umile","umorismo","uncinetto","ungere","ungherese","unicorno","unificato","unisono","unitario","unte","uovo","upupa","uragano","urgenza","urlo","usanza","usato","uscito","usignolo","usuraio","utensile","utilizzo","utopia","vacante","vaccinato","vagabondo","vagliato","valanga","valgo","valico","valletta","valoroso","valutare","valvola","vampata","vangare","vanitoso","vano","vantaggio","vanvera","vapore","varano","varcato","variante","vasca","vedetta","vedova","veduto","vegetale","veicolo","velcro","velina","velluto","veloce","venato","vendemmia","vento","verace","verbale","vergogna","verifica","vero","verruca","verticale","vescica","vessillo","vestale","veterano","vetrina","vetusto","viandante","vibrante","vicenda","vichingo","vicinanza","vidimare","vigilia","vigneto","vigore","vile","villano","vimini","vincitore","viola","vipera","virgola","virologo","virulento","viscoso","visione","vispo","vissuto","visura","vita","vitello","vittima","vivanda","vivido","viziare","voce","voga","volatile","volere","volpe","voragine","vulcano","zampogna","zanna","zappato","zattera","zavorra","zefiro","zelante","zelo","zenzero","zerbino","zibetto","zinco","zircone","zitto","zolla","zotico","zucchero","zufolo","zulu","zuppa"];
 
 /***/ }),
-/* 805 */
+/* 583 */
 /***/ (function(module) {
 
 module.exports = ["あいこくしん","あいさつ","あいだ","あおぞら","あかちゃん","あきる","あけがた","あける","あこがれる","あさい","あさひ","あしあと","あじわう","あずかる","あずき","あそぶ","あたえる","あたためる","あたりまえ","あたる","あつい","あつかう","あっしゅく","あつまり","あつめる","あてな","あてはまる","あひる","あぶら","あぶる","あふれる","あまい","あまど","あまやかす","あまり","あみもの","あめりか","あやまる","あゆむ","あらいぐま","あらし","あらすじ","あらためる","あらゆる","あらわす","ありがとう","あわせる","あわてる","あんい","あんがい","あんこ","あんぜん","あんてい","あんない","あんまり","いいだす","いおん","いがい","いがく","いきおい","いきなり","いきもの","いきる","いくじ","いくぶん","いけばな","いけん","いこう","いこく","いこつ","いさましい","いさん","いしき","いじゅう","いじょう","いじわる","いずみ","いずれ","いせい","いせえび","いせかい","いせき","いぜん","いそうろう","いそがしい","いだい","いだく","いたずら","いたみ","いたりあ","いちおう","いちじ","いちど","いちば","いちぶ","いちりゅう","いつか","いっしゅん","いっせい","いっそう","いったん","いっち","いってい","いっぽう","いてざ","いてん","いどう","いとこ","いない","いなか","いねむり","いのち","いのる","いはつ","いばる","いはん","いびき","いひん","いふく","いへん","いほう","いみん","いもうと","いもたれ","いもり","いやがる","いやす","いよかん","いよく","いらい","いらすと","いりぐち","いりょう","いれい","いれもの","いれる","いろえんぴつ","いわい","いわう","いわかん","いわば","いわゆる","いんげんまめ","いんさつ","いんしょう","いんよう","うえき","うえる","うおざ","うがい","うかぶ","うかべる","うきわ","うくらいな","うくれれ","うけたまわる","うけつけ","うけとる","うけもつ","うける","うごかす","うごく","うこん","うさぎ","うしなう","うしろがみ","うすい","うすぎ","うすぐらい","うすめる","うせつ","うちあわせ","うちがわ","うちき","うちゅう","うっかり","うつくしい","うったえる","うつる","うどん","うなぎ","うなじ","うなずく","うなる","うねる","うのう","うぶげ","うぶごえ","うまれる","うめる","うもう","うやまう","うよく","うらがえす","うらぐち","うらない","うりあげ","うりきれ","うるさい","うれしい","うれゆき","うれる","うろこ","うわき","うわさ","うんこう","うんちん","うんてん","うんどう","えいえん","えいが","えいきょう","えいご","えいせい","えいぶん","えいよう","えいわ","えおり","えがお","えがく","えきたい","えくせる","えしゃく","えすて","えつらん","えのぐ","えほうまき","えほん","えまき","えもじ","えもの","えらい","えらぶ","えりあ","えんえん","えんかい","えんぎ","えんげき","えんしゅう","えんぜつ","えんそく","えんちょう","えんとつ","おいかける","おいこす","おいしい","おいつく","おうえん","おうさま","おうじ","おうせつ","おうたい","おうふく","おうべい","おうよう","おえる","おおい","おおう","おおどおり","おおや","おおよそ","おかえり","おかず","おがむ","おかわり","おぎなう","おきる","おくさま","おくじょう","おくりがな","おくる","おくれる","おこす","おこなう","おこる","おさえる","おさない","おさめる","おしいれ","おしえる","おじぎ","おじさん","おしゃれ","おそらく","おそわる","おたがい","おたく","おだやか","おちつく","おっと","おつり","おでかけ","おとしもの","おとなしい","おどり","おどろかす","おばさん","おまいり","おめでとう","おもいで","おもう","おもたい","おもちゃ","おやつ","おやゆび","およぼす","おらんだ","おろす","おんがく","おんけい","おんしゃ","おんせん","おんだん","おんちゅう","おんどけい","かあつ","かいが","がいき","がいけん","がいこう","かいさつ","かいしゃ","かいすいよく","かいぜん","かいぞうど","かいつう","かいてん","かいとう","かいふく","がいへき","かいほう","かいよう","がいらい","かいわ","かえる","かおり","かかえる","かがく","かがし","かがみ","かくご","かくとく","かざる","がぞう","かたい","かたち","がちょう","がっきゅう","がっこう","がっさん","がっしょう","かなざわし","かのう","がはく","かぶか","かほう","かほご","かまう","かまぼこ","かめれおん","かゆい","かようび","からい","かるい","かろう","かわく","かわら","がんか","かんけい","かんこう","かんしゃ","かんそう","かんたん","かんち","がんばる","きあい","きあつ","きいろ","ぎいん","きうい","きうん","きえる","きおう","きおく","きおち","きおん","きかい","きかく","きかんしゃ","ききて","きくばり","きくらげ","きけんせい","きこう","きこえる","きこく","きさい","きさく","きさま","きさらぎ","ぎじかがく","ぎしき","ぎじたいけん","ぎじにってい","ぎじゅつしゃ","きすう","きせい","きせき","きせつ","きそう","きぞく","きぞん","きたえる","きちょう","きつえん","ぎっちり","きつつき","きつね","きてい","きどう","きどく","きない","きなが","きなこ","きぬごし","きねん","きのう","きのした","きはく","きびしい","きひん","きふく","きぶん","きぼう","きほん","きまる","きみつ","きむずかしい","きめる","きもだめし","きもち","きもの","きゃく","きやく","ぎゅうにく","きよう","きょうりゅう","きらい","きらく","きりん","きれい","きれつ","きろく","ぎろん","きわめる","ぎんいろ","きんかくじ","きんじょ","きんようび","ぐあい","くいず","くうかん","くうき","くうぐん","くうこう","ぐうせい","くうそう","ぐうたら","くうふく","くうぼ","くかん","くきょう","くげん","ぐこう","くさい","くさき","くさばな","くさる","くしゃみ","くしょう","くすのき","くすりゆび","くせげ","くせん","ぐたいてき","くださる","くたびれる","くちこみ","くちさき","くつした","ぐっすり","くつろぐ","くとうてん","くどく","くなん","くねくね","くのう","くふう","くみあわせ","くみたてる","くめる","くやくしょ","くらす","くらべる","くるま","くれる","くろう","くわしい","ぐんかん","ぐんしょく","ぐんたい","ぐんて","けあな","けいかく","けいけん","けいこ","けいさつ","げいじゅつ","けいたい","げいのうじん","けいれき","けいろ","けおとす","けおりもの","げきか","げきげん","げきだん","げきちん","げきとつ","げきは","げきやく","げこう","げこくじょう","げざい","けさき","げざん","けしき","けしごむ","けしょう","げすと","けたば","けちゃっぷ","けちらす","けつあつ","けつい","けつえき","けっこん","けつじょ","けっせき","けってい","けつまつ","げつようび","げつれい","けつろん","げどく","けとばす","けとる","けなげ","けなす","けなみ","けぬき","げねつ","けねん","けはい","げひん","けぶかい","げぼく","けまり","けみかる","けむし","けむり","けもの","けらい","けろけろ","けわしい","けんい","けんえつ","けんお","けんか","げんき","けんげん","けんこう","けんさく","けんしゅう","けんすう","げんそう","けんちく","けんてい","けんとう","けんない","けんにん","げんぶつ","けんま","けんみん","けんめい","けんらん","けんり","こあくま","こいぬ","こいびと","ごうい","こうえん","こうおん","こうかん","ごうきゅう","ごうけい","こうこう","こうさい","こうじ","こうすい","ごうせい","こうそく","こうたい","こうちゃ","こうつう","こうてい","こうどう","こうない","こうはい","ごうほう","ごうまん","こうもく","こうりつ","こえる","こおり","ごかい","ごがつ","ごかん","こくご","こくさい","こくとう","こくない","こくはく","こぐま","こけい","こける","ここのか","こころ","こさめ","こしつ","こすう","こせい","こせき","こぜん","こそだて","こたい","こたえる","こたつ","こちょう","こっか","こつこつ","こつばん","こつぶ","こてい","こてん","ことがら","ことし","ことば","ことり","こなごな","こねこね","このまま","このみ","このよ","ごはん","こひつじ","こふう","こふん","こぼれる","ごまあぶら","こまかい","ごますり","こまつな","こまる","こむぎこ","こもじ","こもち","こもの","こもん","こやく","こやま","こゆう","こゆび","こよい","こよう","こりる","これくしょん","ころっけ","こわもて","こわれる","こんいん","こんかい","こんき","こんしゅう","こんすい","こんだて","こんとん","こんなん","こんびに","こんぽん","こんまけ","こんや","こんれい","こんわく","ざいえき","さいかい","さいきん","ざいげん","ざいこ","さいしょ","さいせい","ざいたく","ざいちゅう","さいてき","ざいりょう","さうな","さかいし","さがす","さかな","さかみち","さがる","さぎょう","さくし","さくひん","さくら","さこく","さこつ","さずかる","ざせき","さたん","さつえい","ざつおん","ざっか","ざつがく","さっきょく","ざっし","さつじん","ざっそう","さつたば","さつまいも","さてい","さといも","さとう","さとおや","さとし","さとる","さのう","さばく","さびしい","さべつ","さほう","さほど","さます","さみしい","さみだれ","さむけ","さめる","さやえんどう","さゆう","さよう","さよく","さらだ","ざるそば","さわやか","さわる","さんいん","さんか","さんきゃく","さんこう","さんさい","ざんしょ","さんすう","さんせい","さんそ","さんち","さんま","さんみ","さんらん","しあい","しあげ","しあさって","しあわせ","しいく","しいん","しうち","しえい","しおけ","しかい","しかく","じかん","しごと","しすう","じだい","したうけ","したぎ","したて","したみ","しちょう","しちりん","しっかり","しつじ","しつもん","してい","してき","してつ","じてん","じどう","しなぎれ","しなもの","しなん","しねま","しねん","しのぐ","しのぶ","しはい","しばかり","しはつ","しはらい","しはん","しひょう","しふく","じぶん","しへい","しほう","しほん","しまう","しまる","しみん","しむける","じむしょ","しめい","しめる","しもん","しゃいん","しゃうん","しゃおん","じゃがいも","しやくしょ","しゃくほう","しゃけん","しゃこ","しゃざい","しゃしん","しゃせん","しゃそう","しゃたい","しゃちょう","しゃっきん","じゃま","しゃりん","しゃれい","じゆう","じゅうしょ","しゅくはく","じゅしん","しゅっせき","しゅみ","しゅらば","じゅんばん","しょうかい","しょくたく","しょっけん","しょどう","しょもつ","しらせる","しらべる","しんか","しんこう","じんじゃ","しんせいじ","しんちく","しんりん","すあげ","すあし","すあな","ずあん","すいえい","すいか","すいとう","ずいぶん","すいようび","すうがく","すうじつ","すうせん","すおどり","すきま","すくう","すくない","すける","すごい","すこし","ずさん","すずしい","すすむ","すすめる","すっかり","ずっしり","ずっと","すてき","すてる","すねる","すのこ","すはだ","すばらしい","ずひょう","ずぶぬれ","すぶり","すふれ","すべて","すべる","ずほう","すぼん","すまい","すめし","すもう","すやき","すらすら","するめ","すれちがう","すろっと","すわる","すんぜん","すんぽう","せあぶら","せいかつ","せいげん","せいじ","せいよう","せおう","せかいかん","せきにん","せきむ","せきゆ","せきらんうん","せけん","せこう","せすじ","せたい","せたけ","せっかく","せっきゃく","ぜっく","せっけん","せっこつ","せっさたくま","せつぞく","せつだん","せつでん","せっぱん","せつび","せつぶん","せつめい","せつりつ","せなか","せのび","せはば","せびろ","せぼね","せまい","せまる","せめる","せもたれ","せりふ","ぜんあく","せんい","せんえい","せんか","せんきょ","せんく","せんげん","ぜんご","せんさい","せんしゅ","せんすい","せんせい","せんぞ","せんたく","せんちょう","せんてい","せんとう","せんぬき","せんねん","せんぱい","ぜんぶ","ぜんぽう","せんむ","せんめんじょ","せんもん","せんやく","せんゆう","せんよう","ぜんら","ぜんりゃく","せんれい","せんろ","そあく","そいとげる","そいね","そうがんきょう","そうき","そうご","そうしん","そうだん","そうなん","そうび","そうめん","そうり","そえもの","そえん","そがい","そげき","そこう","そこそこ","そざい","そしな","そせい","そせん","そそぐ","そだてる","そつう","そつえん","そっかん","そつぎょう","そっけつ","そっこう","そっせん","そっと","そとがわ","そとづら","そなえる","そなた","そふぼ","そぼく","そぼろ","そまつ","そまる","そむく","そむりえ","そめる","そもそも","そよかぜ","そらまめ","そろう","そんかい","そんけい","そんざい","そんしつ","そんぞく","そんちょう","ぞんび","ぞんぶん","そんみん","たあい","たいいん","たいうん","たいえき","たいおう","だいがく","たいき","たいぐう","たいけん","たいこ","たいざい","だいじょうぶ","だいすき","たいせつ","たいそう","だいたい","たいちょう","たいてい","だいどころ","たいない","たいねつ","たいのう","たいはん","だいひょう","たいふう","たいへん","たいほ","たいまつばな","たいみんぐ","たいむ","たいめん","たいやき","たいよう","たいら","たいりょく","たいる","たいわん","たうえ","たえる","たおす","たおる","たおれる","たかい","たかね","たきび","たくさん","たこく","たこやき","たさい","たしざん","だじゃれ","たすける","たずさわる","たそがれ","たたかう","たたく","ただしい","たたみ","たちばな","だっかい","だっきゃく","だっこ","だっしゅつ","だったい","たてる","たとえる","たなばた","たにん","たぬき","たのしみ","たはつ","たぶん","たべる","たぼう","たまご","たまる","だむる","ためいき","ためす","ためる","たもつ","たやすい","たよる","たらす","たりきほんがん","たりょう","たりる","たると","たれる","たれんと","たろっと","たわむれる","だんあつ","たんい","たんおん","たんか","たんき","たんけん","たんご","たんさん","たんじょうび","だんせい","たんそく","たんたい","だんち","たんてい","たんとう","だんな","たんにん","だんねつ","たんのう","たんぴん","だんぼう","たんまつ","たんめい","だんれつ","だんろ","だんわ","ちあい","ちあん","ちいき","ちいさい","ちえん","ちかい","ちから","ちきゅう","ちきん","ちけいず","ちけん","ちこく","ちさい","ちしき","ちしりょう","ちせい","ちそう","ちたい","ちたん","ちちおや","ちつじょ","ちてき","ちてん","ちぬき","ちぬり","ちのう","ちひょう","ちへいせん","ちほう","ちまた","ちみつ","ちみどろ","ちめいど","ちゃんこなべ","ちゅうい","ちゆりょく","ちょうし","ちょさくけん","ちらし","ちらみ","ちりがみ","ちりょう","ちるど","ちわわ","ちんたい","ちんもく","ついか","ついたち","つうか","つうじょう","つうはん","つうわ","つかう","つかれる","つくね","つくる","つけね","つける","つごう","つたえる","つづく","つつじ","つつむ","つとめる","つながる","つなみ","つねづね","つのる","つぶす","つまらない","つまる","つみき","つめたい","つもり","つもる","つよい","つるぼ","つるみく","つわもの","つわり","てあし","てあて","てあみ","ていおん","ていか","ていき","ていけい","ていこく","ていさつ","ていし","ていせい","ていたい","ていど","ていねい","ていひょう","ていへん","ていぼう","てうち","ておくれ","てきとう","てくび","でこぼこ","てさぎょう","てさげ","てすり","てそう","てちがい","てちょう","てつがく","てつづき","でっぱ","てつぼう","てつや","でぬかえ","てぬき","てぬぐい","てのひら","てはい","てぶくろ","てふだ","てほどき","てほん","てまえ","てまきずし","てみじか","てみやげ","てらす","てれび","てわけ","てわたし","でんあつ","てんいん","てんかい","てんき","てんぐ","てんけん","てんごく","てんさい","てんし","てんすう","でんち","てんてき","てんとう","てんない","てんぷら","てんぼうだい","てんめつ","てんらんかい","でんりょく","でんわ","どあい","といれ","どうかん","とうきゅう","どうぐ","とうし","とうむぎ","とおい","とおか","とおく","とおす","とおる","とかい","とかす","ときおり","ときどき","とくい","とくしゅう","とくてん","とくに","とくべつ","とけい","とける","とこや","とさか","としょかん","とそう","とたん","とちゅう","とっきゅう","とっくん","とつぜん","とつにゅう","とどける","ととのえる","とない","となえる","となり","とのさま","とばす","どぶがわ","とほう","とまる","とめる","ともだち","ともる","どようび","とらえる","とんかつ","どんぶり","ないかく","ないこう","ないしょ","ないす","ないせん","ないそう","なおす","ながい","なくす","なげる","なこうど","なさけ","なたでここ","なっとう","なつやすみ","ななおし","なにごと","なにもの","なにわ","なのか","なふだ","なまいき","なまえ","なまみ","なみだ","なめらか","なめる","なやむ","ならう","ならび","ならぶ","なれる","なわとび","なわばり","にあう","にいがた","にうけ","におい","にかい","にがて","にきび","にくしみ","にくまん","にげる","にさんかたんそ","にしき","にせもの","にちじょう","にちようび","にっか","にっき","にっけい","にっこう","にっさん","にっしょく","にっすう","にっせき","にってい","になう","にほん","にまめ","にもつ","にやり","にゅういん","にりんしゃ","にわとり","にんい","にんか","にんき","にんげん","にんしき","にんずう","にんそう","にんたい","にんち","にんてい","にんにく","にんぷ","にんまり","にんむ","にんめい","にんよう","ぬいくぎ","ぬかす","ぬぐいとる","ぬぐう","ぬくもり","ぬすむ","ぬまえび","ぬめり","ぬらす","ぬんちゃく","ねあげ","ねいき","ねいる","ねいろ","ねぐせ","ねくたい","ねくら","ねこぜ","ねこむ","ねさげ","ねすごす","ねそべる","ねだん","ねつい","ねっしん","ねつぞう","ねったいぎょ","ねぶそく","ねふだ","ねぼう","ねほりはほり","ねまき","ねまわし","ねみみ","ねむい","ねむたい","ねもと","ねらう","ねわざ","ねんいり","ねんおし","ねんかん","ねんきん","ねんぐ","ねんざ","ねんし","ねんちゃく","ねんど","ねんぴ","ねんぶつ","ねんまつ","ねんりょう","ねんれい","のいず","のおづま","のがす","のきなみ","のこぎり","のこす","のこる","のせる","のぞく","のぞむ","のたまう","のちほど","のっく","のばす","のはら","のべる","のぼる","のみもの","のやま","のらいぬ","のらねこ","のりもの","のりゆき","のれん","のんき","ばあい","はあく","ばあさん","ばいか","ばいく","はいけん","はいご","はいしん","はいすい","はいせん","はいそう","はいち","ばいばい","はいれつ","はえる","はおる","はかい","ばかり","はかる","はくしゅ","はけん","はこぶ","はさみ","はさん","はしご","ばしょ","はしる","はせる","ぱそこん","はそん","はたん","はちみつ","はつおん","はっかく","はづき","はっきり","はっくつ","はっけん","はっこう","はっさん","はっしん","はったつ","はっちゅう","はってん","はっぴょう","はっぽう","はなす","はなび","はにかむ","はぶらし","はみがき","はむかう","はめつ","はやい","はやし","はらう","はろうぃん","はわい","はんい","はんえい","はんおん","はんかく","はんきょう","ばんぐみ","はんこ","はんしゃ","はんすう","はんだん","ぱんち","ぱんつ","はんてい","はんとし","はんのう","はんぱ","はんぶん","はんぺん","はんぼうき","はんめい","はんらん","はんろん","ひいき","ひうん","ひえる","ひかく","ひかり","ひかる","ひかん","ひくい","ひけつ","ひこうき","ひこく","ひさい","ひさしぶり","ひさん","びじゅつかん","ひしょ","ひそか","ひそむ","ひたむき","ひだり","ひたる","ひつぎ","ひっこし","ひっし","ひつじゅひん","ひっす","ひつぜん","ぴったり","ぴっちり","ひつよう","ひてい","ひとごみ","ひなまつり","ひなん","ひねる","ひはん","ひびく","ひひょう","ひほう","ひまわり","ひまん","ひみつ","ひめい","ひめじし","ひやけ","ひやす","ひよう","びょうき","ひらがな","ひらく","ひりつ","ひりょう","ひるま","ひるやすみ","ひれい","ひろい","ひろう","ひろき","ひろゆき","ひんかく","ひんけつ","ひんこん","ひんしゅ","ひんそう","ぴんち","ひんぱん","びんぼう","ふあん","ふいうち","ふうけい","ふうせん","ぷうたろう","ふうとう","ふうふ","ふえる","ふおん","ふかい","ふきん","ふくざつ","ふくぶくろ","ふこう","ふさい","ふしぎ","ふじみ","ふすま","ふせい","ふせぐ","ふそく","ぶたにく","ふたん","ふちょう","ふつう","ふつか","ふっかつ","ふっき","ふっこく","ぶどう","ふとる","ふとん","ふのう","ふはい","ふひょう","ふへん","ふまん","ふみん","ふめつ","ふめん","ふよう","ふりこ","ふりる","ふるい","ふんいき","ぶんがく","ぶんぐ","ふんしつ","ぶんせき","ふんそう","ぶんぽう","へいあん","へいおん","へいがい","へいき","へいげん","へいこう","へいさ","へいしゃ","へいせつ","へいそ","へいたく","へいてん","へいねつ","へいわ","へきが","へこむ","べにいろ","べにしょうが","へらす","へんかん","べんきょう","べんごし","へんさい","へんたい","べんり","ほあん","ほいく","ぼうぎょ","ほうこく","ほうそう","ほうほう","ほうもん","ほうりつ","ほえる","ほおん","ほかん","ほきょう","ぼきん","ほくろ","ほけつ","ほけん","ほこう","ほこる","ほしい","ほしつ","ほしゅ","ほしょう","ほせい","ほそい","ほそく","ほたて","ほたる","ぽちぶくろ","ほっきょく","ほっさ","ほったん","ほとんど","ほめる","ほんい","ほんき","ほんけ","ほんしつ","ほんやく","まいにち","まかい","まかせる","まがる","まける","まこと","まさつ","まじめ","ますく","まぜる","まつり","まとめ","まなぶ","まぬけ","まねく","まほう","まもる","まゆげ","まよう","まろやか","まわす","まわり","まわる","まんが","まんきつ","まんぞく","まんなか","みいら","みうち","みえる","みがく","みかた","みかん","みけん","みこん","みじかい","みすい","みすえる","みせる","みっか","みつかる","みつける","みてい","みとめる","みなと","みなみかさい","みねらる","みのう","みのがす","みほん","みもと","みやげ","みらい","みりょく","みわく","みんか","みんぞく","むいか","むえき","むえん","むかい","むかう","むかえ","むかし","むぎちゃ","むける","むげん","むさぼる","むしあつい","むしば","むじゅん","むしろ","むすう","むすこ","むすぶ","むすめ","むせる","むせん","むちゅう","むなしい","むのう","むやみ","むよう","むらさき","むりょう","むろん","めいあん","めいうん","めいえん","めいかく","めいきょく","めいさい","めいし","めいそう","めいぶつ","めいれい","めいわく","めぐまれる","めざす","めした","めずらしい","めだつ","めまい","めやす","めんきょ","めんせき","めんどう","もうしあげる","もうどうけん","もえる","もくし","もくてき","もくようび","もちろん","もどる","もらう","もんく","もんだい","やおや","やける","やさい","やさしい","やすい","やすたろう","やすみ","やせる","やそう","やたい","やちん","やっと","やっぱり","やぶる","やめる","ややこしい","やよい","やわらかい","ゆうき","ゆうびんきょく","ゆうべ","ゆうめい","ゆけつ","ゆしゅつ","ゆせん","ゆそう","ゆたか","ゆちゃく","ゆでる","ゆにゅう","ゆびわ","ゆらい","ゆれる","ようい","ようか","ようきゅう","ようじ","ようす","ようちえん","よかぜ","よかん","よきん","よくせい","よくぼう","よけい","よごれる","よさん","よしゅう","よそう","よそく","よっか","よてい","よどがわく","よねつ","よやく","よゆう","よろこぶ","よろしい","らいう","らくがき","らくご","らくさつ","らくだ","らしんばん","らせん","らぞく","らたい","らっか","られつ","りえき","りかい","りきさく","りきせつ","りくぐん","りくつ","りけん","りこう","りせい","りそう","りそく","りてん","りねん","りゆう","りゅうがく","りよう","りょうり","りょかん","りょくちゃ","りょこう","りりく","りれき","りろん","りんご","るいけい","るいさい","るいじ","るいせき","るすばん","るりがわら","れいかん","れいぎ","れいせい","れいぞうこ","れいとう","れいぼう","れきし","れきだい","れんあい","れんけい","れんこん","れんさい","れんしゅう","れんぞく","れんらく","ろうか","ろうご","ろうじん","ろうそく","ろくが","ろこつ","ろじうら","ろしゅつ","ろせん","ろてん","ろめん","ろれつ","ろんぎ","ろんぱ","ろんぶん","ろんり","わかす","わかめ","わかやま","わかれる","わしつ","わじまし","わすれもの","わらう","われる"];
 
 /***/ }),
-/* 806 */
+/* 584 */
 /***/ (function(module) {
 
 module.exports = ["가격","가끔","가난","가능","가득","가르침","가뭄","가방","가상","가슴","가운데","가을","가이드","가입","가장","가정","가족","가죽","각오","각자","간격","간부","간섭","간장","간접","간판","갈등","갈비","갈색","갈증","감각","감기","감소","감수성","감자","감정","갑자기","강남","강당","강도","강력히","강변","강북","강사","강수량","강아지","강원도","강의","강제","강조","같이","개구리","개나리","개방","개별","개선","개성","개인","객관적","거실","거액","거울","거짓","거품","걱정","건강","건물","건설","건조","건축","걸음","검사","검토","게시판","게임","겨울","견해","결과","결국","결론","결석","결승","결심","결정","결혼","경계","경고","경기","경력","경복궁","경비","경상도","경영","경우","경쟁","경제","경주","경찰","경치","경향","경험","계곡","계단","계란","계산","계속","계약","계절","계층","계획","고객","고구려","고궁","고급","고등학생","고무신","고민","고양이","고장","고전","고집","고춧가루","고통","고향","곡식","골목","골짜기","골프","공간","공개","공격","공군","공급","공기","공동","공무원","공부","공사","공식","공업","공연","공원","공장","공짜","공책","공통","공포","공항","공휴일","과목","과일","과장","과정","과학","관객","관계","관광","관념","관람","관련","관리","관습","관심","관점","관찰","광경","광고","광장","광주","괴로움","굉장히","교과서","교문","교복","교실","교양","교육","교장","교직","교통","교환","교훈","구경","구름","구멍","구별","구분","구석","구성","구속","구역","구입","구청","구체적","국가","국기","국내","국립","국물","국민","국수","국어","국왕","국적","국제","국회","군대","군사","군인","궁극적","권리","권위","권투","귀국","귀신","규정","규칙","균형","그날","그냥","그늘","그러나","그룹","그릇","그림","그제서야","그토록","극복","극히","근거","근교","근래","근로","근무","근본","근원","근육","근처","글씨","글자","금강산","금고","금년","금메달","금액","금연","금요일","금지","긍정적","기간","기관","기념","기능","기독교","기둥","기록","기름","기법","기본","기분","기쁨","기숙사","기술","기억","기업","기온","기운","기원","기적","기준","기침","기혼","기획","긴급","긴장","길이","김밥","김치","김포공항","깍두기","깜빡","깨달음","깨소금","껍질","꼭대기","꽃잎","나들이","나란히","나머지","나물","나침반","나흘","낙엽","난방","날개","날씨","날짜","남녀","남대문","남매","남산","남자","남편","남학생","낭비","낱말","내년","내용","내일","냄비","냄새","냇물","냉동","냉면","냉방","냉장고","넥타이","넷째","노동","노란색","노력","노인","녹음","녹차","녹화","논리","논문","논쟁","놀이","농구","농담","농민","농부","농업","농장","농촌","높이","눈동자","눈물","눈썹","뉴욕","느낌","늑대","능동적","능력","다방","다양성","다음","다이어트","다행","단계","단골","단독","단맛","단순","단어","단위","단점","단체","단추","단편","단풍","달걀","달러","달력","달리","닭고기","담당","담배","담요","담임","답변","답장","당근","당분간","당연히","당장","대규모","대낮","대단히","대답","대도시","대략","대량","대륙","대문","대부분","대신","대응","대장","대전","대접","대중","대책","대출","대충","대통령","대학","대한민국","대합실","대형","덩어리","데이트","도대체","도덕","도둑","도망","도서관","도심","도움","도입","도자기","도저히","도전","도중","도착","독감","독립","독서","독일","독창적","동화책","뒷모습","뒷산","딸아이","마누라","마늘","마당","마라톤","마련","마무리","마사지","마약","마요네즈","마을","마음","마이크","마중","마지막","마찬가지","마찰","마흔","막걸리","막내","막상","만남","만두","만세","만약","만일","만점","만족","만화","많이","말기","말씀","말투","맘대로","망원경","매년","매달","매력","매번","매스컴","매일","매장","맥주","먹이","먼저","먼지","멀리","메일","며느리","며칠","면담","멸치","명단","명령","명예","명의","명절","명칭","명함","모금","모니터","모델","모든","모범","모습","모양","모임","모조리","모집","모퉁이","목걸이","목록","목사","목소리","목숨","목적","목표","몰래","몸매","몸무게","몸살","몸속","몸짓","몸통","몹시","무관심","무궁화","무더위","무덤","무릎","무슨","무엇","무역","무용","무조건","무지개","무척","문구","문득","문법","문서","문제","문학","문화","물가","물건","물결","물고기","물론","물리학","물음","물질","물체","미국","미디어","미사일","미술","미역","미용실","미움","미인","미팅","미혼","민간","민족","민주","믿음","밀가루","밀리미터","밑바닥","바가지","바구니","바나나","바늘","바닥","바닷가","바람","바이러스","바탕","박물관","박사","박수","반대","반드시","반말","반발","반성","반응","반장","반죽","반지","반찬","받침","발가락","발걸음","발견","발달","발레","발목","발바닥","발생","발음","발자국","발전","발톱","발표","밤하늘","밥그릇","밥맛","밥상","밥솥","방금","방면","방문","방바닥","방법","방송","방식","방안","방울","방지","방학","방해","방향","배경","배꼽","배달","배드민턴","백두산","백색","백성","백인","백제","백화점","버릇","버섯","버튼","번개","번역","번지","번호","벌금","벌레","벌써","범위","범인","범죄","법률","법원","법적","법칙","베이징","벨트","변경","변동","변명","변신","변호사","변화","별도","별명","별일","병실","병아리","병원","보관","보너스","보라색","보람","보름","보상","보안","보자기","보장","보전","보존","보통","보편적","보험","복도","복사","복숭아","복습","볶음","본격적","본래","본부","본사","본성","본인","본질","볼펜","봉사","봉지","봉투","부근","부끄러움","부담","부동산","부문","부분","부산","부상","부엌","부인","부작용","부장","부정","부족","부지런히","부친","부탁","부품","부회장","북부","북한","분노","분량","분리","분명","분석","분야","분위기","분필","분홍색","불고기","불과","불교","불꽃","불만","불법","불빛","불안","불이익","불행","브랜드","비극","비난","비닐","비둘기","비디오","비로소","비만","비명","비밀","비바람","비빔밥","비상","비용","비율","비중","비타민","비판","빌딩","빗물","빗방울","빗줄기","빛깔","빨간색","빨래","빨리","사건","사계절","사나이","사냥","사람","사랑","사립","사모님","사물","사방","사상","사생활","사설","사슴","사실","사업","사용","사월","사장","사전","사진","사촌","사춘기","사탕","사투리","사흘","산길","산부인과","산업","산책","살림","살인","살짝","삼계탕","삼국","삼십","삼월","삼촌","상관","상금","상대","상류","상반기","상상","상식","상업","상인","상자","상점","상처","상추","상태","상표","상품","상황","새벽","색깔","색연필","생각","생명","생물","생방송","생산","생선","생신","생일","생활","서랍","서른","서명","서민","서비스","서양","서울","서적","서점","서쪽","서클","석사","석유","선거","선물","선배","선생","선수","선원","선장","선전","선택","선풍기","설거지","설날","설렁탕","설명","설문","설사","설악산","설치","설탕","섭씨","성공","성당","성명","성별","성인","성장","성적","성질","성함","세금","세미나","세상","세월","세종대왕","세탁","센터","센티미터","셋째","소규모","소극적","소금","소나기","소년","소득","소망","소문","소설","소속","소아과","소용","소원","소음","소중히","소지품","소질","소풍","소형","속담","속도","속옷","손가락","손길","손녀","손님","손등","손목","손뼉","손실","손질","손톱","손해","솔직히","솜씨","송아지","송이","송편","쇠고기","쇼핑","수건","수년","수단","수돗물","수동적","수면","수명","수박","수상","수석","수술","수시로","수업","수염","수영","수입","수준","수집","수출","수컷","수필","수학","수험생","수화기","숙녀","숙소","숙제","순간","순서","순수","순식간","순위","숟가락","술병","술집","숫자","스님","스물","스스로","스승","스웨터","스위치","스케이트","스튜디오","스트레스","스포츠","슬쩍","슬픔","습관","습기","승객","승리","승부","승용차","승진","시각","시간","시골","시금치","시나리오","시댁","시리즈","시멘트","시민","시부모","시선","시설","시스템","시아버지","시어머니","시월","시인","시일","시작","시장","시절","시점","시중","시즌","시집","시청","시합","시험","식구","식기","식당","식량","식료품","식물","식빵","식사","식생활","식초","식탁","식품","신고","신규","신념","신문","신발","신비","신사","신세","신용","신제품","신청","신체","신화","실감","실내","실력","실례","실망","실수","실습","실시","실장","실정","실질적","실천","실체","실컷","실태","실패","실험","실현","심리","심부름","심사","심장","심정","심판","쌍둥이","씨름","씨앗","아가씨","아나운서","아드님","아들","아쉬움","아스팔트","아시아","아울러","아저씨","아줌마","아직","아침","아파트","아프리카","아픔","아홉","아흔","악기","악몽","악수","안개","안경","안과","안내","안녕","안동","안방","안부","안주","알루미늄","알코올","암시","암컷","압력","앞날","앞문","애인","애정","액수","앨범","야간","야단","야옹","약간","약국","약속","약수","약점","약품","약혼녀","양념","양력","양말","양배추","양주","양파","어둠","어려움","어른","어젯밤","어쨌든","어쩌다가","어쩐지","언니","언덕","언론","언어","얼굴","얼른","얼음","얼핏","엄마","업무","업종","업체","엉덩이","엉망","엉터리","엊그제","에너지","에어컨","엔진","여건","여고생","여관","여군","여권","여대생","여덟","여동생","여든","여론","여름","여섯","여성","여왕","여인","여전히","여직원","여학생","여행","역사","역시","역할","연결","연구","연극","연기","연락","연설","연세","연속","연습","연애","연예인","연인","연장","연주","연출","연필","연합","연휴","열기","열매","열쇠","열심히","열정","열차","열흘","염려","엽서","영국","영남","영상","영양","영역","영웅","영원히","영하","영향","영혼","영화","옆구리","옆방","옆집","예감","예금","예방","예산","예상","예선","예술","예습","예식장","예약","예전","예절","예정","예컨대","옛날","오늘","오락","오랫동안","오렌지","오로지","오른발","오븐","오십","오염","오월","오전","오직","오징어","오페라","오피스텔","오히려","옥상","옥수수","온갖","온라인","온몸","온종일","온통","올가을","올림픽","올해","옷차림","와이셔츠","와인","완성","완전","왕비","왕자","왜냐하면","왠지","외갓집","외국","외로움","외삼촌","외출","외침","외할머니","왼발","왼손","왼쪽","요금","요일","요즘","요청","용기","용서","용어","우산","우선","우승","우연히","우정","우체국","우편","운동","운명","운반","운전","운행","울산","울음","움직임","웃어른","웃음","워낙","원고","원래","원서","원숭이","원인","원장","원피스","월급","월드컵","월세","월요일","웨이터","위반","위법","위성","위원","위험","위협","윗사람","유난히","유럽","유명","유물","유산","유적","유치원","유학","유행","유형","육군","육상","육십","육체","은행","음력","음료","음반","음성","음식","음악","음주","의견","의논","의문","의복","의식","의심","의외로","의욕","의원","의학","이것","이곳","이념","이놈","이달","이대로","이동","이렇게","이력서","이론적","이름","이민","이발소","이별","이불","이빨","이상","이성","이슬","이야기","이용","이웃","이월","이윽고","이익","이전","이중","이튿날","이틀","이혼","인간","인격","인공","인구","인근","인기","인도","인류","인물","인생","인쇄","인연","인원","인재","인종","인천","인체","인터넷","인하","인형","일곱","일기","일단","일대","일등","일반","일본","일부","일상","일생","일손","일요일","일월","일정","일종","일주일","일찍","일체","일치","일행","일회용","임금","임무","입대","입력","입맛","입사","입술","입시","입원","입장","입학","자가용","자격","자극","자동","자랑","자부심","자식","자신","자연","자원","자율","자전거","자정","자존심","자판","작가","작년","작성","작업","작용","작은딸","작품","잔디","잔뜩","잔치","잘못","잠깐","잠수함","잠시","잠옷","잠자리","잡지","장관","장군","장기간","장래","장례","장르","장마","장면","장모","장미","장비","장사","장소","장식","장애인","장인","장점","장차","장학금","재능","재빨리","재산","재생","재작년","재정","재채기","재판","재학","재활용","저것","저고리","저곳","저녁","저런","저렇게","저번","저울","저절로","저축","적극","적당히","적성","적용","적응","전개","전공","전기","전달","전라도","전망","전문","전반","전부","전세","전시","전용","전자","전쟁","전주","전철","전체","전통","전혀","전후","절대","절망","절반","절약","절차","점검","점수","점심","점원","점점","점차","접근","접시","접촉","젓가락","정거장","정도","정류장","정리","정말","정면","정문","정반대","정보","정부","정비","정상","정성","정오","정원","정장","정지","정치","정확히","제공","제과점","제대로","제목","제발","제법","제삿날","제안","제일","제작","제주도","제출","제품","제한","조각","조건","조금","조깅","조명","조미료","조상","조선","조용히","조절","조정","조직","존댓말","존재","졸업","졸음","종교","종로","종류","종소리","종업원","종종","종합","좌석","죄인","주관적","주름","주말","주머니","주먹","주문","주민","주방","주변","주식","주인","주일","주장","주전자","주택","준비","줄거리","줄기","줄무늬","중간","중계방송","중국","중년","중단","중독","중반","중부","중세","중소기업","중순","중앙","중요","중학교","즉석","즉시","즐거움","증가","증거","증권","증상","증세","지각","지갑","지경","지극히","지금","지급","지능","지름길","지리산","지방","지붕","지식","지역","지우개","지원","지적","지점","지진","지출","직선","직업","직원","직장","진급","진동","진로","진료","진리","진짜","진찰","진출","진통","진행","질문","질병","질서","짐작","집단","집안","집중","짜증","찌꺼기","차남","차라리","차량","차림","차별","차선","차츰","착각","찬물","찬성","참가","참기름","참새","참석","참여","참외","참조","찻잔","창가","창고","창구","창문","창밖","창작","창조","채널","채점","책가방","책방","책상","책임","챔피언","처벌","처음","천국","천둥","천장","천재","천천히","철도","철저히","철학","첫날","첫째","청년","청바지","청소","청춘","체계","체력","체온","체육","체중","체험","초등학생","초반","초밥","초상화","초순","초여름","초원","초저녁","초점","초청","초콜릿","촛불","총각","총리","총장","촬영","최근","최상","최선","최신","최악","최종","추석","추억","추진","추천","추측","축구","축소","축제","축하","출근","출발","출산","출신","출연","출입","출장","출판","충격","충고","충돌","충분히","충청도","취업","취직","취향","치약","친구","친척","칠십","칠월","칠판","침대","침묵","침실","칫솔","칭찬","카메라","카운터","칼국수","캐릭터","캠퍼스","캠페인","커튼","컨디션","컬러","컴퓨터","코끼리","코미디","콘서트","콜라","콤플렉스","콩나물","쾌감","쿠데타","크림","큰길","큰딸","큰소리","큰아들","큰어머니","큰일","큰절","클래식","클럽","킬로","타입","타자기","탁구","탁자","탄생","태권도","태양","태풍","택시","탤런트","터널","터미널","테니스","테스트","테이블","텔레비전","토론","토마토","토요일","통계","통과","통로","통신","통역","통일","통장","통제","통증","통합","통화","퇴근","퇴원","퇴직금","튀김","트럭","특급","특별","특성","특수","특징","특히","튼튼히","티셔츠","파란색","파일","파출소","판결","판단","판매","판사","팔십","팔월","팝송","패션","팩스","팩시밀리","팬티","퍼센트","페인트","편견","편의","편지","편히","평가","평균","평생","평소","평양","평일","평화","포스터","포인트","포장","포함","표면","표정","표준","표현","품목","품질","풍경","풍속","풍습","프랑스","프린터","플라스틱","피곤","피망","피아노","필름","필수","필요","필자","필통","핑계","하느님","하늘","하드웨어","하룻밤","하반기","하숙집","하순","하여튼","하지만","하천","하품","하필","학과","학교","학급","학기","학년","학력","학번","학부모","학비","학생","학술","학습","학용품","학원","학위","학자","학점","한계","한글","한꺼번에","한낮","한눈","한동안","한때","한라산","한마디","한문","한번","한복","한식","한여름","한쪽","할머니","할아버지","할인","함께","함부로","합격","합리적","항공","항구","항상","항의","해결","해군","해답","해당","해물","해석","해설","해수욕장","해안","핵심","핸드백","햄버거","햇볕","햇살","행동","행복","행사","행운","행위","향기","향상","향수","허락","허용","헬기","현관","현금","현대","현상","현실","현장","현재","현지","혈액","협력","형부","형사","형수","형식","형제","형태","형편","혜택","호기심","호남","호랑이","호박","호텔","호흡","혹시","홀로","홈페이지","홍보","홍수","홍차","화면","화분","화살","화요일","화장","화학","확보","확인","확장","확정","환갑","환경","환영","환율","환자","활기","활동","활발히","활용","활짝","회견","회관","회복","회색","회원","회장","회전","횟수","횡단보도","효율적","후반","후춧가루","훈련","훨씬","휴식","휴일","흉내","흐름","흑백","흑인","흔적","흔히","흥미","흥분","희곡","희망","희생","흰색","힘껏"];
 
 /***/ }),
-/* 807 */
+/* 585 */
 /***/ (function(module) {
 
 module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","aborto","abrazo","abrir","abuelo","abuso","acabar","academia","acceso","acción","aceite","acelga","acento","aceptar","ácido","aclarar","acné","acoger","acoso","activo","acto","actriz","actuar","acudir","acuerdo","acusar","adicto","admitir","adoptar","adorno","aduana","adulto","aéreo","afectar","afición","afinar","afirmar","ágil","agitar","agonía","agosto","agotar","agregar","agrio","agua","agudo","águila","aguja","ahogo","ahorro","aire","aislar","ajedrez","ajeno","ajuste","alacrán","alambre","alarma","alba","álbum","alcalde","aldea","alegre","alejar","alerta","aleta","alfiler","alga","algodón","aliado","aliento","alivio","alma","almeja","almíbar","altar","alteza","altivo","alto","altura","alumno","alzar","amable","amante","amapola","amargo","amasar","ámbar","ámbito","ameno","amigo","amistad","amor","amparo","amplio","ancho","anciano","ancla","andar","andén","anemia","ángulo","anillo","ánimo","anís","anotar","antena","antiguo","antojo","anual","anular","anuncio","añadir","añejo","año","apagar","aparato","apetito","apio","aplicar","apodo","aporte","apoyo","aprender","aprobar","apuesta","apuro","arado","araña","arar","árbitro","árbol","arbusto","archivo","arco","arder","ardilla","arduo","área","árido","aries","armonía","arnés","aroma","arpa","arpón","arreglo","arroz","arruga","arte","artista","asa","asado","asalto","ascenso","asegurar","aseo","asesor","asiento","asilo","asistir","asno","asombro","áspero","astilla","astro","astuto","asumir","asunto","atajo","ataque","atar","atento","ateo","ático","atleta","átomo","atraer","atroz","atún","audaz","audio","auge","aula","aumento","ausente","autor","aval","avance","avaro","ave","avellana","avena","avestruz","avión","aviso","ayer","ayuda","ayuno","azafrán","azar","azote","azúcar","azufre","azul","baba","babor","bache","bahía","baile","bajar","balanza","balcón","balde","bambú","banco","banda","baño","barba","barco","barniz","barro","báscula","bastón","basura","batalla","batería","batir","batuta","baúl","bazar","bebé","bebida","bello","besar","beso","bestia","bicho","bien","bingo","blanco","bloque","blusa","boa","bobina","bobo","boca","bocina","boda","bodega","boina","bola","bolero","bolsa","bomba","bondad","bonito","bono","bonsái","borde","borrar","bosque","bote","botín","bóveda","bozal","bravo","brazo","brecha","breve","brillo","brinco","brisa","broca","broma","bronce","brote","bruja","brusco","bruto","buceo","bucle","bueno","buey","bufanda","bufón","búho","buitre","bulto","burbuja","burla","burro","buscar","butaca","buzón","caballo","cabeza","cabina","cabra","cacao","cadáver","cadena","caer","café","caída","caimán","caja","cajón","cal","calamar","calcio","caldo","calidad","calle","calma","calor","calvo","cama","cambio","camello","camino","campo","cáncer","candil","canela","canguro","canica","canto","caña","cañón","caoba","caos","capaz","capitán","capote","captar","capucha","cara","carbón","cárcel","careta","carga","cariño","carne","carpeta","carro","carta","casa","casco","casero","caspa","castor","catorce","catre","caudal","causa","cazo","cebolla","ceder","cedro","celda","célebre","celoso","célula","cemento","ceniza","centro","cerca","cerdo","cereza","cero","cerrar","certeza","césped","cetro","chacal","chaleco","champú","chancla","chapa","charla","chico","chiste","chivo","choque","choza","chuleta","chupar","ciclón","ciego","cielo","cien","cierto","cifra","cigarro","cima","cinco","cine","cinta","ciprés","circo","ciruela","cisne","cita","ciudad","clamor","clan","claro","clase","clave","cliente","clima","clínica","cobre","cocción","cochino","cocina","coco","código","codo","cofre","coger","cohete","cojín","cojo","cola","colcha","colegio","colgar","colina","collar","colmo","columna","combate","comer","comida","cómodo","compra","conde","conejo","conga","conocer","consejo","contar","copa","copia","corazón","corbata","corcho","cordón","corona","correr","coser","cosmos","costa","cráneo","cráter","crear","crecer","creído","crema","cría","crimen","cripta","crisis","cromo","crónica","croqueta","crudo","cruz","cuadro","cuarto","cuatro","cubo","cubrir","cuchara","cuello","cuento","cuerda","cuesta","cueva","cuidar","culebra","culpa","culto","cumbre","cumplir","cuna","cuneta","cuota","cupón","cúpula","curar","curioso","curso","curva","cutis","dama","danza","dar","dardo","dátil","deber","débil","década","decir","dedo","defensa","definir","dejar","delfín","delgado","delito","demora","denso","dental","deporte","derecho","derrota","desayuno","deseo","desfile","desnudo","destino","desvío","detalle","detener","deuda","día","diablo","diadema","diamante","diana","diario","dibujo","dictar","diente","dieta","diez","difícil","digno","dilema","diluir","dinero","directo","dirigir","disco","diseño","disfraz","diva","divino","doble","doce","dolor","domingo","don","donar","dorado","dormir","dorso","dos","dosis","dragón","droga","ducha","duda","duelo","dueño","dulce","dúo","duque","durar","dureza","duro","ébano","ebrio","echar","eco","ecuador","edad","edición","edificio","editor","educar","efecto","eficaz","eje","ejemplo","elefante","elegir","elemento","elevar","elipse","élite","elixir","elogio","eludir","embudo","emitir","emoción","empate","empeño","empleo","empresa","enano","encargo","enchufe","encía","enemigo","enero","enfado","enfermo","engaño","enigma","enlace","enorme","enredo","ensayo","enseñar","entero","entrar","envase","envío","época","equipo","erizo","escala","escena","escolar","escribir","escudo","esencia","esfera","esfuerzo","espada","espejo","espía","esposa","espuma","esquí","estar","este","estilo","estufa","etapa","eterno","ética","etnia","evadir","evaluar","evento","evitar","exacto","examen","exceso","excusa","exento","exigir","exilio","existir","éxito","experto","explicar","exponer","extremo","fábrica","fábula","fachada","fácil","factor","faena","faja","falda","fallo","falso","faltar","fama","familia","famoso","faraón","farmacia","farol","farsa","fase","fatiga","fauna","favor","fax","febrero","fecha","feliz","feo","feria","feroz","fértil","fervor","festín","fiable","fianza","fiar","fibra","ficción","ficha","fideo","fiebre","fiel","fiera","fiesta","figura","fijar","fijo","fila","filete","filial","filtro","fin","finca","fingir","finito","firma","flaco","flauta","flecha","flor","flota","fluir","flujo","flúor","fobia","foca","fogata","fogón","folio","folleto","fondo","forma","forro","fortuna","forzar","fosa","foto","fracaso","frágil","franja","frase","fraude","freír","freno","fresa","frío","frito","fruta","fuego","fuente","fuerza","fuga","fumar","función","funda","furgón","furia","fusil","fútbol","futuro","gacela","gafas","gaita","gajo","gala","galería","gallo","gamba","ganar","gancho","ganga","ganso","garaje","garza","gasolina","gastar","gato","gavilán","gemelo","gemir","gen","género","genio","gente","geranio","gerente","germen","gesto","gigante","gimnasio","girar","giro","glaciar","globo","gloria","gol","golfo","goloso","golpe","goma","gordo","gorila","gorra","gota","goteo","gozar","grada","gráfico","grano","grasa","gratis","grave","grieta","grillo","gripe","gris","grito","grosor","grúa","grueso","grumo","grupo","guante","guapo","guardia","guerra","guía","guiño","guion","guiso","guitarra","gusano","gustar","haber","hábil","hablar","hacer","hacha","hada","hallar","hamaca","harina","haz","hazaña","hebilla","hebra","hecho","helado","helio","hembra","herir","hermano","héroe","hervir","hielo","hierro","hígado","higiene","hijo","himno","historia","hocico","hogar","hoguera","hoja","hombre","hongo","honor","honra","hora","hormiga","horno","hostil","hoyo","hueco","huelga","huerta","hueso","huevo","huida","huir","humano","húmedo","humilde","humo","hundir","huracán","hurto","icono","ideal","idioma","ídolo","iglesia","iglú","igual","ilegal","ilusión","imagen","imán","imitar","impar","imperio","imponer","impulso","incapaz","índice","inerte","infiel","informe","ingenio","inicio","inmenso","inmune","innato","insecto","instante","interés","íntimo","intuir","inútil","invierno","ira","iris","ironía","isla","islote","jabalí","jabón","jamón","jarabe","jardín","jarra","jaula","jazmín","jefe","jeringa","jinete","jornada","joroba","joven","joya","juerga","jueves","juez","jugador","jugo","juguete","juicio","junco","jungla","junio","juntar","júpiter","jurar","justo","juvenil","juzgar","kilo","koala","labio","lacio","lacra","lado","ladrón","lagarto","lágrima","laguna","laico","lamer","lámina","lámpara","lana","lancha","langosta","lanza","lápiz","largo","larva","lástima","lata","látex","latir","laurel","lavar","lazo","leal","lección","leche","lector","leer","legión","legumbre","lejano","lengua","lento","leña","león","leopardo","lesión","letal","letra","leve","leyenda","libertad","libro","licor","líder","lidiar","lienzo","liga","ligero","lima","límite","limón","limpio","lince","lindo","línea","lingote","lino","linterna","líquido","liso","lista","litera","litio","litro","llaga","llama","llanto","llave","llegar","llenar","llevar","llorar","llover","lluvia","lobo","loción","loco","locura","lógica","logro","lombriz","lomo","lonja","lote","lucha","lucir","lugar","lujo","luna","lunes","lupa","lustro","luto","luz","maceta","macho","madera","madre","maduro","maestro","mafia","magia","mago","maíz","maldad","maleta","malla","malo","mamá","mambo","mamut","manco","mando","manejar","manga","maniquí","manjar","mano","manso","manta","mañana","mapa","máquina","mar","marco","marea","marfil","margen","marido","mármol","marrón","martes","marzo","masa","máscara","masivo","matar","materia","matiz","matriz","máximo","mayor","mazorca","mecha","medalla","medio","médula","mejilla","mejor","melena","melón","memoria","menor","mensaje","mente","menú","mercado","merengue","mérito","mes","mesón","meta","meter","método","metro","mezcla","miedo","miel","miembro","miga","mil","milagro","militar","millón","mimo","mina","minero","mínimo","minuto","miope","mirar","misa","miseria","misil","mismo","mitad","mito","mochila","moción","moda","modelo","moho","mojar","molde","moler","molino","momento","momia","monarca","moneda","monja","monto","moño","morada","morder","moreno","morir","morro","morsa","mortal","mosca","mostrar","motivo","mover","móvil","mozo","mucho","mudar","mueble","muela","muerte","muestra","mugre","mujer","mula","muleta","multa","mundo","muñeca","mural","muro","músculo","museo","musgo","música","muslo","nácar","nación","nadar","naipe","naranja","nariz","narrar","nasal","natal","nativo","natural","náusea","naval","nave","navidad","necio","néctar","negar","negocio","negro","neón","nervio","neto","neutro","nevar","nevera","nicho","nido","niebla","nieto","niñez","niño","nítido","nivel","nobleza","noche","nómina","noria","norma","norte","nota","noticia","novato","novela","novio","nube","nuca","núcleo","nudillo","nudo","nuera","nueve","nuez","nulo","número","nutria","oasis","obeso","obispo","objeto","obra","obrero","observar","obtener","obvio","oca","ocaso","océano","ochenta","ocho","ocio","ocre","octavo","octubre","oculto","ocupar","ocurrir","odiar","odio","odisea","oeste","ofensa","oferta","oficio","ofrecer","ogro","oído","oír","ojo","ola","oleada","olfato","olivo","olla","olmo","olor","olvido","ombligo","onda","onza","opaco","opción","ópera","opinar","oponer","optar","óptica","opuesto","oración","orador","oral","órbita","orca","orden","oreja","órgano","orgía","orgullo","oriente","origen","orilla","oro","orquesta","oruga","osadía","oscuro","osezno","oso","ostra","otoño","otro","oveja","óvulo","óxido","oxígeno","oyente","ozono","pacto","padre","paella","página","pago","país","pájaro","palabra","palco","paleta","pálido","palma","paloma","palpar","pan","panal","pánico","pantera","pañuelo","papá","papel","papilla","paquete","parar","parcela","pared","parir","paro","párpado","parque","párrafo","parte","pasar","paseo","pasión","paso","pasta","pata","patio","patria","pausa","pauta","pavo","payaso","peatón","pecado","pecera","pecho","pedal","pedir","pegar","peine","pelar","peldaño","pelea","peligro","pellejo","pelo","peluca","pena","pensar","peñón","peón","peor","pepino","pequeño","pera","percha","perder","pereza","perfil","perico","perla","permiso","perro","persona","pesa","pesca","pésimo","pestaña","pétalo","petróleo","pez","pezuña","picar","pichón","pie","piedra","pierna","pieza","pijama","pilar","piloto","pimienta","pino","pintor","pinza","piña","piojo","pipa","pirata","pisar","piscina","piso","pista","pitón","pizca","placa","plan","plata","playa","plaza","pleito","pleno","plomo","pluma","plural","pobre","poco","poder","podio","poema","poesía","poeta","polen","policía","pollo","polvo","pomada","pomelo","pomo","pompa","poner","porción","portal","posada","poseer","posible","poste","potencia","potro","pozo","prado","precoz","pregunta","premio","prensa","preso","previo","primo","príncipe","prisión","privar","proa","probar","proceso","producto","proeza","profesor","programa","prole","promesa","pronto","propio","próximo","prueba","público","puchero","pudor","pueblo","puerta","puesto","pulga","pulir","pulmón","pulpo","pulso","puma","punto","puñal","puño","pupa","pupila","puré","quedar","queja","quemar","querer","queso","quieto","química","quince","quitar","rábano","rabia","rabo","ración","radical","raíz","rama","rampa","rancho","rango","rapaz","rápido","rapto","rasgo","raspa","rato","rayo","raza","razón","reacción","realidad","rebaño","rebote","recaer","receta","rechazo","recoger","recreo","recto","recurso","red","redondo","reducir","reflejo","reforma","refrán","refugio","regalo","regir","regla","regreso","rehén","reino","reír","reja","relato","relevo","relieve","relleno","reloj","remar","remedio","remo","rencor","rendir","renta","reparto","repetir","reposo","reptil","res","rescate","resina","respeto","resto","resumen","retiro","retorno","retrato","reunir","revés","revista","rey","rezar","rico","riego","rienda","riesgo","rifa","rígido","rigor","rincón","riñón","río","riqueza","risa","ritmo","rito","rizo","roble","roce","rociar","rodar","rodeo","rodilla","roer","rojizo","rojo","romero","romper","ron","ronco","ronda","ropa","ropero","rosa","rosca","rostro","rotar","rubí","rubor","rudo","rueda","rugir","ruido","ruina","ruleta","rulo","rumbo","rumor","ruptura","ruta","rutina","sábado","saber","sabio","sable","sacar","sagaz","sagrado","sala","saldo","salero","salir","salmón","salón","salsa","salto","salud","salvar","samba","sanción","sandía","sanear","sangre","sanidad","sano","santo","sapo","saque","sardina","sartén","sastre","satán","sauna","saxofón","sección","seco","secreto","secta","sed","seguir","seis","sello","selva","semana","semilla","senda","sensor","señal","señor","separar","sepia","sequía","ser","serie","sermón","servir","sesenta","sesión","seta","setenta","severo","sexo","sexto","sidra","siesta","siete","siglo","signo","sílaba","silbar","silencio","silla","símbolo","simio","sirena","sistema","sitio","situar","sobre","socio","sodio","sol","solapa","soldado","soledad","sólido","soltar","solución","sombra","sondeo","sonido","sonoro","sonrisa","sopa","soplar","soporte","sordo","sorpresa","sorteo","sostén","sótano","suave","subir","suceso","sudor","suegra","suelo","sueño","suerte","sufrir","sujeto","sultán","sumar","superar","suplir","suponer","supremo","sur","surco","sureño","surgir","susto","sutil","tabaco","tabique","tabla","tabú","taco","tacto","tajo","talar","talco","talento","talla","talón","tamaño","tambor","tango","tanque","tapa","tapete","tapia","tapón","taquilla","tarde","tarea","tarifa","tarjeta","tarot","tarro","tarta","tatuaje","tauro","taza","tazón","teatro","techo","tecla","técnica","tejado","tejer","tejido","tela","teléfono","tema","temor","templo","tenaz","tender","tener","tenis","tenso","teoría","terapia","terco","término","ternura","terror","tesis","tesoro","testigo","tetera","texto","tez","tibio","tiburón","tiempo","tienda","tierra","tieso","tigre","tijera","tilde","timbre","tímido","timo","tinta","tío","típico","tipo","tira","tirón","titán","títere","título","tiza","toalla","tobillo","tocar","tocino","todo","toga","toldo","tomar","tono","tonto","topar","tope","toque","tórax","torero","tormenta","torneo","toro","torpedo","torre","torso","tortuga","tos","tosco","toser","tóxico","trabajo","tractor","traer","tráfico","trago","traje","tramo","trance","trato","trauma","trazar","trébol","tregua","treinta","tren","trepar","tres","tribu","trigo","tripa","triste","triunfo","trofeo","trompa","tronco","tropa","trote","trozo","truco","trueno","trufa","tubería","tubo","tuerto","tumba","tumor","túnel","túnica","turbina","turismo","turno","tutor","ubicar","úlcera","umbral","unidad","unir","universo","uno","untar","uña","urbano","urbe","urgente","urna","usar","usuario","útil","utopía","uva","vaca","vacío","vacuna","vagar","vago","vaina","vajilla","vale","válido","valle","valor","válvula","vampiro","vara","variar","varón","vaso","vecino","vector","vehículo","veinte","vejez","vela","velero","veloz","vena","vencer","venda","veneno","vengar","venir","venta","venus","ver","verano","verbo","verde","vereda","verja","verso","verter","vía","viaje","vibrar","vicio","víctima","vida","vídeo","vidrio","viejo","viernes","vigor","vil","villa","vinagre","vino","viñedo","violín","viral","virgo","virtud","visor","víspera","vista","vitamina","viudo","vivaz","vivero","vivir","vivo","volcán","volumen","volver","voraz","votar","voto","voz","vuelo","vulgar","yacer","yate","yegua","yema","yerno","yeso","yodo","yoga","yogur","zafiro","zanja","zapato","zarza","zona","zorro","zumo","zurdo"];
 
 /***/ }),
-/* 808 */
+/* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(809), __webpack_require__(810), __webpack_require__(811), __webpack_require__(812), __webpack_require__(815));
+		module.exports = exports = factory(__webpack_require__(587), __webpack_require__(588), __webpack_require__(589), __webpack_require__(590), __webpack_require__(593));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -40136,7 +40202,7 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 809 */
+/* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
@@ -40894,13 +40960,13 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 810 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(809));
+		module.exports = exports = factory(__webpack_require__(587));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -41027,13 +41093,13 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 811 */
+/* 589 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(809));
+		module.exports = exports = factory(__webpack_require__(587));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -41293,13 +41359,13 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 812 */
+/* 590 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(809), __webpack_require__(813), __webpack_require__(814));
+		module.exports = exports = factory(__webpack_require__(587), __webpack_require__(591), __webpack_require__(592));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -41423,13 +41489,13 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 813 */
+/* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(809));
+		module.exports = exports = factory(__webpack_require__(587));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -41571,13 +41637,13 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 814 */
+/* 592 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(809));
+		module.exports = exports = factory(__webpack_require__(587));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -41712,13 +41778,13 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 815 */
+/* 593 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(809), __webpack_require__(812));
+		module.exports = exports = factory(__webpack_require__(587), __webpack_require__(590));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -42590,13 +42656,13 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 816 */
+/* 594 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(809));
+		module.exports = exports = factory(__webpack_require__(587));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -42606,7 +42672,7 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
 }));
 
 /***/ }),
-/* 817 */
+/* 595 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -42631,8 +42697,8 @@ module.exports = ["ábaco","abdomen","abeja","abierto","abogado","abono","abort
  * @date 2015
  */
 
-var utils = __webpack_require__(768);
-var errors = __webpack_require__(719);
+var utils = __webpack_require__(546);
+var errors = __webpack_require__(497);
 
 var Method = function (options) {
     this.name = options.name;
@@ -42780,7 +42846,7 @@ module.exports = Method;
 
 
 /***/ }),
-/* 818 */
+/* 596 */
 /***/ (function(module, exports) {
 
 
@@ -42794,13 +42860,13 @@ module.exports = Settings;
 
 
 /***/ }),
-/* 819 */
+/* 597 */
 /***/ (function(module) {
 
 module.exports = {"version":"1.1.14"};
 
 /***/ }),
-/* 820 */
+/* 598 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -42827,7 +42893,7 @@ module.exports = {"version":"1.1.14"};
  * @date 2015
  */
 
-var errors = __webpack_require__(719);
+var errors = __webpack_require__(497);
 
 // workaround to use httpprovider in different envs
 
@@ -42836,10 +42902,10 @@ if (typeof window !== 'undefined' && window.XMLHttpRequest) {
   XMLHttpRequest = window.XMLHttpRequest; // jshint ignore: line
 // node
 } else {
-  XMLHttpRequest = __webpack_require__(821).XMLHttpRequest; // jshint ignore: line
+  XMLHttpRequest = __webpack_require__(599).XMLHttpRequest; // jshint ignore: line
 }
 
-var XHR2 = __webpack_require__(838).XMLHttpRequest; // jshint ignore: line
+var XHR2 = __webpack_require__(616).XMLHttpRequest; // jshint ignore: line
 
 /**
  * HttpProvider should be used to send rpc calls over http
@@ -42969,10 +43035,10 @@ HttpProvider.prototype.isConnected = function () {
 };
 
 module.exports = HttpProvider;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 821 */
+/* 599 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer, process) {/**
@@ -42988,9 +43054,9 @@ module.exports = HttpProvider;
  * @license MIT
  */
 
-var Url = __webpack_require__(822);
-var spawn = __webpack_require__(828).spawn;
-var fs = __webpack_require__(829);
+var Url = __webpack_require__(600);
+var spawn = __webpack_require__(606).spawn;
+var fs = __webpack_require__(607);
 
 exports.XMLHttpRequest = function() {
   "use strict";
@@ -42999,8 +43065,8 @@ exports.XMLHttpRequest = function() {
    * Private variables
    */
   var self = this;
-  var http = __webpack_require__(830);
-  var https = __webpack_require__(837);
+  var http = __webpack_require__(608);
+  var https = __webpack_require__(615);
 
   // Holds http.js objects
   var request;
@@ -43605,10 +43671,10 @@ exports.XMLHttpRequest = function() {
   };
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer, __webpack_require__(235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer, __webpack_require__(283)))
 
 /***/ }),
-/* 822 */
+/* 600 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43635,8 +43701,8 @@ exports.XMLHttpRequest = function() {
 
 
 
-var punycode = __webpack_require__(823);
-var util = __webpack_require__(824);
+var punycode = __webpack_require__(601);
+var util = __webpack_require__(602);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -43711,7 +43777,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(825);
+    querystring = __webpack_require__(603);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -44347,7 +44413,7 @@ Url.prototype.parseHost = function() {
 
 
 /***/ }),
-/* 823 */
+/* 601 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -44870,10 +44936,10 @@ Url.prototype.parseHost = function() {
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(592)(module), __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(369)(module), __webpack_require__(110)))
 
 /***/ }),
-/* 824 */
+/* 602 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44896,18 +44962,18 @@ module.exports = {
 
 
 /***/ }),
-/* 825 */
+/* 603 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(826);
-exports.encode = exports.stringify = __webpack_require__(827);
+exports.decode = exports.parse = __webpack_require__(604);
+exports.encode = exports.stringify = __webpack_require__(605);
 
 
 /***/ }),
-/* 826 */
+/* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44998,7 +45064,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 827 */
+/* 605 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45090,26 +45156,26 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 828 */
+/* 606 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 829 */
+/* 607 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 830 */
+/* 608 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(831)
-var response = __webpack_require__(833)
-var extend = __webpack_require__(835)
-var statusCodes = __webpack_require__(836)
-var url = __webpack_require__(822)
+/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(609)
+var response = __webpack_require__(611)
+var extend = __webpack_require__(613)
+var statusCodes = __webpack_require__(614)
+var url = __webpack_require__(600)
 
 var http = exports
 
@@ -45190,17 +45256,17 @@ http.METHODS = [
 	'UNLOCK',
 	'UNSUBSCRIBE'
 ]
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110)))
 
 /***/ }),
-/* 831 */
+/* 609 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(832)
-var inherits = __webpack_require__(513)
-var response = __webpack_require__(833)
-var stream = __webpack_require__(518)
-var toArrayBuffer = __webpack_require__(834)
+/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(610)
+var inherits = __webpack_require__(290)
+var response = __webpack_require__(611)
+var stream = __webpack_require__(295)
+var toArrayBuffer = __webpack_require__(612)
 
 var IncomingMessage = response.IncomingMessage
 var rStates = response.readyStates
@@ -45524,10 +45590,10 @@ var unsafeHeaders = [
 	'via'
 ]
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer, __webpack_require__(106), __webpack_require__(235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer, __webpack_require__(110), __webpack_require__(283)))
 
 /***/ }),
-/* 832 */
+/* 610 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
@@ -45604,15 +45670,15 @@ function isFunction (value) {
 
 xhr = null // Help gc
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(110)))
 
 /***/ }),
-/* 833 */
+/* 611 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(832)
-var inherits = __webpack_require__(513)
-var stream = __webpack_require__(518)
+/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(610)
+var inherits = __webpack_require__(290)
+var stream = __webpack_require__(295)
 
 var rStates = exports.readyStates = {
 	UNSENT: 0,
@@ -45835,13 +45901,13 @@ IncomingMessage.prototype._onXHRProgress = function () {
 	}
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(235), __webpack_require__(508).Buffer, __webpack_require__(106)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(283), __webpack_require__(285).Buffer, __webpack_require__(110)))
 
 /***/ }),
-/* 834 */
+/* 612 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__(508).Buffer
+var Buffer = __webpack_require__(285).Buffer
 
 module.exports = function (buf) {
 	// If the buffer is backed by a Uint8Array, a faster version will work
@@ -45871,7 +45937,7 @@ module.exports = function (buf) {
 
 
 /***/ }),
-/* 835 */
+/* 613 */
 /***/ (function(module, exports) {
 
 module.exports = extend
@@ -45896,7 +45962,7 @@ function extend() {
 
 
 /***/ }),
-/* 836 */
+/* 614 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -45966,11 +46032,11 @@ module.exports = {
 
 
 /***/ }),
-/* 837 */
+/* 615 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var http = __webpack_require__(830)
-var url = __webpack_require__(822)
+var http = __webpack_require__(608)
+var url = __webpack_require__(600)
 
 var https = module.exports
 
@@ -46003,7 +46069,7 @@ function validateParams (params) {
 
 
 /***/ }),
-/* 838 */
+/* 616 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46012,13 +46078,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(839));
-var xml_http_request_event_target_1 = __webpack_require__(843);
+__export(__webpack_require__(617));
+var xml_http_request_event_target_1 = __webpack_require__(621);
 exports.XMLHttpRequestEventTarget = xml_http_request_event_target_1.XMLHttpRequestEventTarget;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 839 */
+/* 617 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46042,15 +46108,15 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var http = __webpack_require__(830);
-var https = __webpack_require__(837);
-var os = __webpack_require__(840);
-var url = __webpack_require__(822);
-var progress_event_1 = __webpack_require__(841);
-var errors_1 = __webpack_require__(842);
-var xml_http_request_event_target_1 = __webpack_require__(843);
-var xml_http_request_upload_1 = __webpack_require__(844);
-var Cookie = __webpack_require__(845);
+var http = __webpack_require__(608);
+var https = __webpack_require__(615);
+var os = __webpack_require__(618);
+var url = __webpack_require__(600);
+var progress_event_1 = __webpack_require__(619);
+var errors_1 = __webpack_require__(620);
+var xml_http_request_event_target_1 = __webpack_require__(621);
+var xml_http_request_upload_1 = __webpack_require__(622);
+var Cookie = __webpack_require__(623);
 var XMLHttpRequest = /** @class */ (function (_super) {
     __extends(XMLHttpRequest, _super);
     function XMLHttpRequest(options) {
@@ -46469,10 +46535,10 @@ XMLHttpRequest.prototype.nodejsHttpAgent = http.globalAgent;
 XMLHttpRequest.prototype.nodejsHttpsAgent = https.globalAgent;
 XMLHttpRequest.prototype.nodejsBaseUrl = null;
 //# sourceMappingURL=xml-http-request.js.map
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(235), __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(283), __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 840 */
+/* 618 */
 /***/ (function(module, exports) {
 
 exports.endianness = function () { return 'LE' };
@@ -46527,7 +46593,7 @@ exports.homedir = function () {
 
 
 /***/ }),
-/* 841 */
+/* 619 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46548,7 +46614,7 @@ exports.ProgressEvent = ProgressEvent;
 //# sourceMappingURL=progress-event.js.map
 
 /***/ }),
-/* 842 */
+/* 620 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46599,7 +46665,7 @@ exports.SyntaxError = SyntaxError;
 //# sourceMappingURL=errors.js.map
 
 /***/ }),
-/* 843 */
+/* 621 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46646,7 +46712,7 @@ exports.XMLHttpRequestEventTarget = XMLHttpRequestEventTarget;
 //# sourceMappingURL=xml-http-request-event-target.js.map
 
 /***/ }),
-/* 844 */
+/* 622 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46662,7 +46728,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var xml_http_request_event_target_1 = __webpack_require__(843);
+var xml_http_request_event_target_1 = __webpack_require__(621);
 var XMLHttpRequestUpload = /** @class */ (function (_super) {
     __extends(XMLHttpRequestUpload, _super);
     function XMLHttpRequestUpload() {
@@ -46728,10 +46794,10 @@ var XMLHttpRequestUpload = /** @class */ (function (_super) {
 }(xml_http_request_event_target_1.XMLHttpRequestEventTarget));
 exports.XMLHttpRequestUpload = XMLHttpRequestUpload;
 //# sourceMappingURL=xml-http-request-upload.js.map
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(508).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(285).Buffer))
 
 /***/ }),
-/* 845 */
+/* 623 */
 /***/ (function(module, exports) {
 
 /* jshint node: true */
@@ -47013,137 +47079,137 @@ exports.XMLHttpRequestUpload = XMLHttpRequestUpload;
 
 
 /***/ }),
-/* 846 */,
-/* 847 */,
-/* 848 */,
-/* 849 */,
-/* 850 */,
-/* 851 */,
-/* 852 */,
-/* 853 */,
-/* 854 */,
-/* 855 */,
-/* 856 */,
-/* 857 */,
-/* 858 */,
-/* 859 */,
-/* 860 */,
-/* 861 */,
-/* 862 */,
-/* 863 */,
-/* 864 */,
-/* 865 */,
-/* 866 */,
-/* 867 */,
-/* 868 */,
-/* 869 */,
-/* 870 */,
-/* 871 */,
-/* 872 */,
-/* 873 */,
-/* 874 */,
-/* 875 */,
-/* 876 */,
-/* 877 */,
-/* 878 */,
-/* 879 */,
-/* 880 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 624 */,
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
+/* 630 */,
+/* 631 */,
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apis", function() { return apis; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * @file BrowserApis.js
  * @author Scatter
  */
 var swallow = function swallow(fn) {
-    try {
-        fn();
-    } catch (e) {}
+  try {
+    fn();
+  } catch (e) {}
 };
 
 var ApiGenerator = function ApiGenerator() {
-    var _this = this;
+  var _this = this;
 
-    _classCallCheck(this, ApiGenerator);
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, ApiGenerator);
 
-    ['app', 'storage', 'extension', 'runtime', 'windows'].map(function (api) {
-        if (typeof chrome !== 'undefined') swallow(function () {
-            if (chrome[api]) _this[api] = chrome[api];
-        });
-        if (typeof browser !== 'undefined') swallow(function () {
-            if (browser[api]) _this[api] = browser[api];
-        });
+  ['app', 'storage', 'extension', 'runtime', 'windows'].map(function (api) {
+    if (typeof chrome !== 'undefined') swallow(function () {
+      if (chrome[api]) _this[api] = chrome[api];
     });
-
     if (typeof browser !== 'undefined') swallow(function () {
-        if (browser && browser.runtime) _this.runtime = browser.runtime;
+      if (browser[api]) _this[api] = browser[api];
     });
+  });
+  if (typeof browser !== 'undefined') swallow(function () {
+    if (browser && browser.runtime) _this.runtime = browser.runtime;
+  });
 };
 
-var apis = exports.apis = new ApiGenerator();
+var apis = new ApiGenerator();
 
 /***/ }),
-/* 881 */,
-/* 882 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 669 */,
+/* 670 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Background; });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(102);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(671);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(472);
+/* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(extension_streams__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(471);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(470);
+/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(672);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(668);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(675);
+/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(676);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(493);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_11__);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @file background.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @author huangzongzhe,hzz780; Scatter: Shai James;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 
-var _extensionStreams = __webpack_require__(694);
 
-var _InternalMessage = __webpack_require__(693);
+/**
+ * @file background.js
+ * @author huangzongzhe,hzz780; Scatter: Shai James;
+ */
 
-var _InternalMessage2 = _interopRequireDefault(_InternalMessage);
 
-var _InternalMessageTypes = __webpack_require__(692);
 
-var InternalMessageTypes = _interopRequireWildcard(_InternalMessageTypes);
 
-var _NightElf = __webpack_require__(883);
 
-var _NightElf2 = _interopRequireDefault(_NightElf);
 
-var _BrowserApis = __webpack_require__(880);
 
-var _NotificationService = __webpack_require__(886);
+ // import { resolve } from 'url';
 
-var _NotificationService2 = _interopRequireDefault(_NotificationService);
-
-var _aelfSdk = __webpack_require__(715);
-
-var _aelfSdk2 = _interopRequireDefault(_aelfSdk);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// import { resolve } from 'url';
-var wallet = _aelfSdk2.default.wallet;
+var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a.wallet;
 var AESEncrypto = wallet.AESEncrypto,
-    AESDecrypto = wallet.AESDecrypto;
-// import AES from 'aes-oop';
+    AESDecrypto = wallet.AESDecrypto; // import AES from 'aes-oop';
 // import * as InternalMessageTypes from './messages/InternalMessageTypes';
 // import InternalMessage from './messages/InternalMessage';
 // import StorageService from './services/StorageService'
@@ -47175,61 +47241,10 @@ var AESEncrypto = wallet.AESEncrypto,
 /* eslint-disable fecs-camelcase */
 
 var seed = '';
-var nightElf = null;
+var nightElf = null; // let inactivityInterval = 0;
+// let timeoutLocker = null;
 
-var inactivityInterval = 0;
-var timeoutLocker = null;
-
-var prompt = null;
-
-// // inject.js
-// NightElf.action({
-//     appName: 'Your app',
-//     method: 'CONNECT_AELF_CHAIN',
-//     payload: {
-//         httpProvider: 'http://localhost:1234/chain'
-//     }
-// });
-// return JSON.stringify(result);
-
-// NightElf.action({
-//     appName: 'Your app',
-//     method: 'INIT_AELF_CONTRACT',
-//     payload: {
-//         contractName: 'cName'
-//         contractAddress: 'xxxx'
-//     }
-// });
-// return JSON.stringify(result);
-
-// NightElf.action({
-//     appName: 'Your app',
-//     method: 'CALL_AELF_CHAIN',
-//     payload: {
-//         method: 'cName'
-//         params: []
-//     }
-// });
-
-// NightElf.action({
-//     appName: 'Your app',
-//     method: 'CALL_AELF_CONTRACT',
-//     payload: {
-//         contractName: 'cName, the same as init',
-//         method: 'transfer',
-//         params: []
-//     }
-// });
-// return JSON.stringify(result);
-// const contractMeta = contractsMeta.filter(item => {
-//     return item.domain === actionInput.domain;
-// });
-// const contract = contractMeta.contracts.filter(item => {
-//     return item.contractName === actionInput.contractName;
-// });
-// contract[actionInput.payload.method](...params);
-
-// // TODO: release single contract
+var prompt = null; // // TODO: release single contract
 // NightElf.action({
 //     appName: 'Your app',
 //     method: 'RELEASE',
@@ -47237,2157 +47252,2732 @@ var prompt = null;
 //     }
 // });
 
-// const aelfMeta = [
-//     {
-//         appName: 'Dapp Test',
-//         domain: 'https://aelf.io',
-//         httpProvider: 'http://localhost:1234/chain',
-//         chainId: '',
-//         aelf: 'new Aelf(new Aelf.providers.HttpProvider("xxxx"));',
-//         contracts: [{
-//             contractName: 'cName',
-//             contractAddress: '',
-//             httpProvider: 'http://localhost:1234/chain',
-//             contract: 'aelf.chain.contractAt("contract_address", wallet); use keypair to get'
-//         }]
-//     }
-// ];
+var aelfMeta = []; // This is the script that runs in the extension's background ( singleton )
 
-// let contractsMeta = [{
-//     appName: 'Dapp Test',
-//     domain: 'https://aelf.io',
-//     contracts: [{
-//         contractName: 'cName',
-//         contractAddress: '',
-//         httpProvider: 'http://localhost:1234/chain',
-//         contract: 'aelf.chain.contractAt("contract_address", wallet); use keypair to get'
-//     }]
-// }];
-// let contractsMeta = [];
-var aelfMeta = [];
-// This is the script that runs in the extension's background ( singleton )
+var Background =
+/*#__PURE__*/
+function () {
+  function Background() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Background);
 
-var Background = function () {
-    function Background() {
-        _classCallCheck(this, Background);
+    this.setupInternalMessaging();
+  }
+  /********************************************/
 
-        this.setupInternalMessaging();
+  /*               VueInitializer             */
+
+  /********************************************/
+  // Watches the internal messaging system ( LocalStream )
+
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Background, [{
+    key: "setupInternalMessaging",
+    value: function setupInternalMessaging() {
+      var _this = this;
+
+      extension_streams__WEBPACK_IMPORTED_MODULE_4__["LocalStream"].watch(function (request, sendResponse) {
+        console.log(request, sendResponse);
+        var message = _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_5__["default"].fromJson(request);
+
+        _this.dispenseMessage(sendResponse, message);
+      });
+    }
+    /***
+     * Delegates message processing to methods by message type
+     * @param sendResponse - Delegating response handler
+     * @param message - The message to be dispensed
+     */
+
+  }, {
+    key: "dispenseMessage",
+    value: function dispenseMessage(sendResponse, message) {
+      // console.log('dispenseMessage: ', message);
+      if (message.payload === false) {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200001)));
+        return;
+      } // sendResponse(true);
+
+
+      switch (message.type) {
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_SEED"]:
+          Background.setSeed(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CREAT_WALLET"]:
+          Background.createWallet(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CLEAR_WALLET"]:
+          Background.clearWallet(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CHECK_WALLET"]:
+          Background.checkWallet(sendResponse);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["UNLOCK_WALLET"]:
+          Background.unlockWallet(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["LOCK_WALLET"]:
+          Background.lockWallet(sendResponse);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["UPDATE_WALLET"]:
+          Background.updateWallet(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["INSERT_KEYPAIR"]:
+          Background.insertKeypair(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_KEYPAIR"]:
+          Background.getKeypair(sendResponse);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["REMOVE_KEYPAIR"]:
+          Background.removeKeypair(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_PERMISSION"]:
+          Background.setPermission(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CHECK_PERMISSION"]:
+          Background.getPermission(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["REMOVE_PERMISSION"]:
+          Background.removePermission(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_ALLPERMISSIONS"]:
+          Background.getAllPermissions(sendResponse);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CONNECT_AELF_CHAIN"]:
+          Background.connectAelfChain(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CALL_AELF_CHAIN"]:
+          Background.callAelfChain(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["RELEASE_AELF_CHAIN"]:
+          Background.releaseAelfChain(sendResponse);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["INIT_AELF_CONTRACT"]:
+          Background.initAelfContract(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CALL_AELF_CONTRACT"]:
+          Background.callAelfContract(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_ADDRESS"]:
+          Background.getAddress(sendResponse);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["OPEN_PROMPT"]:
+          Background.openPrompt(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_PROMPT"]:
+          Background.setPrompt(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_PROMPT"]:
+          Background.getPrompt(sendResponse);
+          break;
+        // TODO:
+        // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
+        //     Background.releaseAELFContract(sendResponse);
+        //     break;
+      }
+    }
+    /**
+     * connect chain, init or refresh the instance of Aelf for dapp.
+     * hostname & chainId as a union key.[like sql]
+     *
+     * @param {Function} sendResponse Delegating response handler.
+     * @param {Object} chainInfo from content.js
+     */
+
+  }], [{
+    key: "connectAelfChain",
+    value: function connectAelfChain(sendResponse, chainInfo) {
+      this.lockGuard(sendResponse, function () {
+        var aelf = new aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a(new aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a.providers.HttpProvider(chainInfo.payload.httpProvider));
+        aelf.chain.connectChain(function (error, result) {
+          // console.log(error, result);
+          if (error || !result || !result.result) {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error), {
+              result: result
+            }));
+            return;
+          }
+
+          var chainId = result.result.chain_id || 'Can not find chain_id';
+          var existentMetaIndex = -1;
+          var existentMeta = aelfMeta.find(function (item, index) {
+            // const checkDomain = chainInfo.hostname.includes(item.hostname);
+            var checkDomain = chainInfo.hostname === item.hostname;
+            var checkChainId = item.chainId === chainId;
+
+            if (checkDomain && checkChainId) {
+              existentMetaIndex = index;
+              return true;
+            }
+          });
+          var aelfMetaTemp = {
+            appName: chainInfo.appName,
+            hostname: chainInfo.hostname,
+            httpProvider: chainInfo.payload.httpProvider,
+            chainId: chainId,
+            aelf: aelf,
+            contracts: []
+          };
+
+          if (existentMeta) {
+            aelfMeta[existentMetaIndex] = aelfMetaTemp;
+          } else {
+            aelfMeta.push(aelfMetaTemp);
+          }
+
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+            result: result // ,
+            // aelfMeta: JSON.stringify(aelfMeta)
+
+          }));
+        });
+      });
+    }
+  }, {
+    key: "callAelfChain",
+    value: function callAelfChain(sendResponse, callInfo) {
+      this.lockGuard(sendResponse, function () {
+        console.log('callAelfChain: ', callInfo);
+        var dappAelfMeta = aelfMeta.find(function (item) {
+          // const checkDomain = callInfo.hostname.includes(item.hostname);
+          var checkDomain = callInfo.hostname === item.hostname;
+          var checkChainId = item.chainId === callInfo.chainId;
+          return checkDomain && checkChainId;
+        });
+        console.log('call AelfChain show dappAelfMeta: ', aelfMeta);
+        console.log('call AelfChain show NightElf: ', nightElf);
+
+        if (dappAelfMeta) {
+          var _callInfo$payload = callInfo.payload,
+              method = _callInfo$payload.method,
+              params = _callInfo$payload.params;
+
+          try {
+            var _dappAelfMeta$aelf$ch;
+
+            (_dappAelfMeta$aelf$ch = dappAelfMeta.aelf.chain)[method].apply(_dappAelfMeta$aelf$ch, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(params).concat([function (error, result) {
+              if (error) {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error)));
+                return;
+              }
+
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                result: result
+              }));
+            }]));
+          } catch (error) {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(100001, error)));
+          }
+        } else {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Please connect the chain at first. ' + "".concat(callInfo.hostname, " have not connect the chain named ").concat(callInfo.chainId, ". ") + ' [Notice]www.aelf.io !== aelf.io ')));
+        }
+      });
+    }
+    /**
+     * 1. hostname: a.aelf.io(page) -> aelf.io is OK;
+     * 2. chainId: must be the same;
+     * 3. contractAddress: must be the same;
+     *
+     */
+
+  }, {
+    key: "checkDappContractStatus",
+    value: function checkDappContractStatus(options, callback) {
+      var sendResponse = options.sendResponse,
+          contractInfo = options.contractInfo;
+      var dappAelfMetaIndex = -1;
+      var hostname = contractInfo.hostname,
+          chainId = contractInfo.chainId,
+          payload = contractInfo.payload;
+      var address = payload.address,
+          contractAddress = payload.contractAddress;
+      var dappAelfMeta = aelfMeta.find(function (item, index) {
+        // const checkDomain = contractInfo.hostname.includes(item.hostname);
+        var checkDomain = hostname === item.hostname;
+        var checkChainId = item.chainId === chainId;
+
+        if (checkDomain && checkChainId) {
+          dappAelfMetaIndex = index;
+          return true;
+        }
+      });
+
+      if (!dappAelfMeta) {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "Please connect the chain: ".concat(chainId, "."))));
+        return;
+      }
+
+      var dappPermission = nightElf.keychain.permissions.find(function (item) {
+        var checkDomain = hostname === item.domain;
+        var checkAddress = address === item.address;
+        return checkDomain && checkAddress;
+      });
+
+      if (!dappPermission) {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200002)));
+        return;
+      }
+
+      var dappContractPermission = dappPermission.contracts.find(function (item) {
+        var checkChain = item.chainId === chainId;
+        var checkContractAddress = item.contractAddress === contractAddress;
+        return checkChain && checkContractAddress;
+      });
+
+      if (!dappContractPermission) {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "There is no permission of this contract: ".concat(contractAddress, "."))));
+        return;
+      }
+
+      callback({
+        dappAelfMetaIndex: dappAelfMetaIndex,
+        dappAelfMeta: dappAelfMeta,
+        dappPermission: dappPermission,
+        dappContractPermission: dappContractPermission
+      });
+      return;
+    }
+  }, {
+    key: "initAelfContract",
+    value: function initAelfContract(sendResponse, contractInfo) {
+      // console.log('initAelfContract: ', contractInfo);
+      this.checkDappContractStatus({
+        sendResponse: sendResponse,
+        contractInfo: contractInfo
+      }, function (output) {
+        var payload = contractInfo.payload;
+        var address = payload.address,
+            contractAddress = payload.contractAddress,
+            contractName = payload.contractName;
+        var dappAelfMetaIndex = output.dappAelfMetaIndex,
+            dappAelfMeta = output.dappAelfMeta;
+        var keypair = nightElf.keychain.keypairs.find(function (item) {
+          return item.address === address;
+        });
+
+        if (!keypair) {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Missing keypair of' + address)));
+          return;
+        }
+
+        var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a.wallet.getWalletByPrivateKey(keypair.privateKey);
+        var contractMethods = dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet);
+        var contract = {
+          address: address,
+          contractName: contractName,
+          contractAddress: contractAddress,
+          contractMethods: contractMethods
+        };
+        var extendContractIndex = -1;
+        dappAelfMeta.contracts.find(function (item, index) {
+          if (contractInfo.payload.contractAddress === item.contractAddress) {
+            extendContractIndex = index;
+            return true;
+          }
+        });
+
+        if (extendContractIndex > -1) {
+          dappAelfMeta.contracts[extendContractIndex] = contract;
+        } else {
+          dappAelfMeta.contracts.push(contract);
+        }
+
+        aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          message: JSON.stringify(contractMethods),
+          detail: JSON.stringify(dappAelfMeta)
+        }));
+      });
+    }
+  }, {
+    key: "callAelfContract",
+    value: function callAelfContract(sendResponse, contractInfo) {
+      var _this2 = this;
+
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function () {
+        var payload = contractInfo.payload,
+            chainId = contractInfo.chainId,
+            hostname = contractInfo.hostname;
+        var contractName = payload.contractName,
+            method = payload.method,
+            params = payload.params;
+        var dappAelfMeta = aelfMeta.find(function (item) {
+          // const checkDomain = hostname.includes(item.hostname);
+          var checkDomain = hostname === item.hostname;
+          var checkChainId = item.chainId === chainId;
+          return checkDomain && checkChainId;
+        });
+
+        if (!dappAelfMeta) {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200003)));
+          return;
+        }
+
+        var extendContract = dappAelfMeta.contracts.find(function (item) {
+          return contractName === item.contractName;
+        });
+
+        if (!extendContract) {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "Please init contract ".concat(contractName, "."))));
+          return;
+        }
+
+        if (!extendContract.contractMethods[method]) {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "Mehtod ".concat(method, " is not exist in the contract."))));
+          return;
+        }
+
+        var contractInfoTemp = Object.assign({}, contractInfo, {
+          payload: {
+            address: extendContract.address,
+            contractAddress: extendContract.contractAddress
+          }
+        }); // If the user remove the permission after the dapp initialized the contract
+
+        _this2.checkDappContractStatus({
+          sendResponse: sendResponse,
+          contractInfo: contractInfoTemp
+        }, function () {
+          try {
+            var _extendContract$contr;
+
+            (_extendContract$contr = extendContract.contractMethods)[method].apply(_extendContract$contr, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(params).concat([function (error, result) {
+              if (error) {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error)));
+              } else {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0, error), {
+                  result: result
+                }));
+              }
+            }]));
+          } catch (error) {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(100001, error)));
+          }
+        });
+      });
+    }
+  }, {
+    key: "createWallet",
+    value: function createWallet(sendResponse, _seed) {
+      nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson({});
+      seed = _seed;
+      Background.updateWallet(sendResponse);
+    }
+  }, {
+    key: "unlockWallet",
+    value: function unlockWallet(sendResponse, _seed) {
+      seed = _seed;
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref) {
+        var nightElfObject = _ref.nightElfObject;
+        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          nightElf: !!nightElf
+        }));
+      });
+    }
+  }, {
+    key: "updateWallet",
+    value: function updateWallet(sendResponse) {
+      // TODO: Check seed.
+      if (nightElf && seed) {
+        var nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
+        _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.set({
+          nightElfEncrypto: nightElfEncrypto
+        }, function (result) {
+          console.log('updateWallet: ', nightElfEncrypto, nightElf);
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+            result: result
+          }));
+        });
+      } else {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200004)));
+      }
+    }
+  }, {
+    key: "checkWallet",
+    value: function checkWallet(sendResponse) {
+      _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.get(['nightElfEncrypto'], function (result) {
+        // console.log(result.nightElfEncrypto);
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          nightElfEncrypto: !!result.nightElfEncrypto,
+          nightElf: nightElf
+        }));
+      });
+    }
+  }, {
+    key: "clearWallet",
+    value: function clearWallet(sendResponse, _seed) {
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function () {
+        _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.clear(function (result) {
+          Background.lockWallet(sendResponse);
+        });
+      });
+    }
+  }, {
+    key: "lockWallet",
+    value: function lockWallet(sendResponse) {
+      seed = null;
+      nightElf = null;
+      sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0)));
+    }
+  }, {
+    key: "insertKeypair",
+    value: function insertKeypair(sendResponse, keypair) {
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref2) {
+        var nightElfObject = _ref2.nightElfObject;
+        nightElfObject.keychain.keypairs.unshift(keypair);
+        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+        Background.updateWallet(sendResponse);
+      });
+    }
+  }, {
+    key: "removeKeypair",
+    value: function removeKeypair(sendResponse, address) {
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref3) {
+        var nightElfObject = _ref3.nightElfObject;
+        nightElfObject.keychain.keypairs = nightElfObject.keychain.keypairs.filter(function (item) {
+          return address !== item.address;
+        });
+        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+        Background.updateWallet(sendResponse);
+      });
+    }
+  }, {
+    key: "getKeypair",
+    value: function getKeypair(sendResponse) {
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref4) {
+        var nightElfObject = _ref4.nightElfObject;
+        var _nightElfObject$keych = nightElfObject.keychain.keypairs,
+            keypairs = _nightElfObject$keych === void 0 ? [] : _nightElfObject$keych;
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          keypairs: keypairs
+        }));
+      });
+    } // Depend on the hostname of the app and the address of user.
+    // TODO: set permisions
+
+  }, {
+    key: "setPermission",
+    value: function setPermission(sendResponse, permissionInput) {
+      // permission example
+      // {
+      //     appName: 'hzz Test',
+      //     domain: 'aelf.io',
+      //     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
+      //     contracts: [{
+      //         chainId: 'AELF',
+      //         contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
+      //         contractName: 'token',
+      //         description: 'token contract',
+      //         description_zh: '',
+      //         description_en: ''
+      //     }]
+      // }
+      var appName = permissionInput.appName,
+          domain = permissionInput.domain,
+          hostname = permissionInput.hostname,
+          address = permissionInput.address,
+          contracts = permissionInput.contracts;
+      var permissionNeedAdd = {
+        appName: appName,
+        domain: domain || hostname,
+        address: address,
+        contracts: contracts
+      };
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref5) {
+        var nightElfObject = _ref5.nightElfObject;
+        var _nightElfObject$keych2 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2;
+        var permissionIndex = [];
+        var permissionsTemp = permissions.filter(function (permission, index) {
+          var domainCheck = permission.domain === domain;
+          var addressCheck = permission.address === address;
+
+          if (domainCheck && addressCheck) {
+            permissionIndex.push(index);
+            return true;
+          }
+
+          return false;
+        });
+
+        if (permissionsTemp.length) {
+          nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
+        } else {
+          nightElfObject.keychain.permissions.unshift(permissionNeedAdd);
+        }
+
+        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+        Background.updateWallet(sendResponse);
+      });
+    } // 3 Way to get Permisions
+    // by address,contranctAddress,domain(default way)
+
+  }, {
+    key: "getPermission",
+    value: function getPermission(sendResponse, queryInfo) {
+      // this static function call the this,
+      // the this is the Class but not the instance of the Class.
+      // it means, we need declare static checkSeed.
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref6) {
+        var nightElfObject = _ref6.nightElfObject;
+        var _nightElfObject$keych3 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych3 === void 0 ? [] : _nightElfObject$keych3;
+
+        switch (queryInfo.type) {
+          case 'address':
+            {
+              if (!queryInfo.address) {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'missing param address.')));
+                return;
+              }
+
+              var _permissionsTemp = permissions.filter(function (permission) {
+                var domainCheck = permission.domain === queryInfo.hostname;
+                var addressCheck = permission.address === queryInfo.address;
+                return domainCheck && addressCheck;
+              });
+
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                permissions: _permissionsTemp
+              }));
+            }
+            break;
+          // TODO: use database such lick NeDB ?
+
+          case 'contract':
+            {
+              if (!queryInfo.contractAddress) {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'missing param contractAddress.')));
+                return;
+              }
+
+              var permissionsByDomain = permissions.filter(function (permission) {
+                var domainCheck = permission.domain === queryInfo.hostname;
+                return domainCheck;
+              });
+              var permissionsByContract = permissionsByDomain.filter(function (permission) {
+                var contractMatch = permission.contracts.filter(function (contract) {
+                  return contract.contractAddress === queryInfo.contractAddress;
+                });
+                return contractMatch && contractMatch.length;
+              });
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                permissions: permissionsByContract
+              }));
+            }
+            break;
+
+          default:
+            // defaut to check domain;
+            {
+              var _permissionsTemp2 = permissions.filter(function (permission) {
+                var domainCheck = permission.domain === queryInfo.hostname;
+                return domainCheck;
+              });
+
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                permissions: _permissionsTemp2
+              }));
+            }
+        }
+
+        var permissionsTemp = permissions.filter(function (permission) {
+          var domainCheck = permission.domain === queryInfo.hostname;
+          var addressCheck = permission.address === queryInfo.address;
+          return domainCheck && addressCheck;
+        });
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          permissions: permissionsTemp
+        }));
+      });
+    }
+  }, {
+    key: "getAllPermissions",
+    value: function getAllPermissions(sendResponse) {
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref7) {
+        var nightElfObject = _ref7.nightElfObject;
+        var _nightElfObject$keych4 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych4 === void 0 ? [] : _nightElfObject$keych4;
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          permissions: permissions
+        }));
+      });
+    } // TODO: remove Single contract permission.
+
+  }, {
+    key: "removePermission",
+    value: function removePermission(sendResponse, removeInfo) {
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref8) {
+        var nightElfObject = _ref8.nightElfObject;
+        var _nightElfObject$keych5 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych5 === void 0 ? [] : _nightElfObject$keych5;
+        nightElfObject.keychain.permissions = permissions.filter(function (item) {
+          var domainCheck = removeInfo.domain === item.domain;
+          var addressCheck = removeInfo.address === item.address;
+          return !(domainCheck && addressCheck);
+        });
+        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+        Background.updateWallet(sendResponse);
+      });
+    } // About Error Code. 冗余的设计。
+    // https://www.zhihu.com/question/24091286
+    // https://open.taobao.com/doc.htm?docId=114&docType=1
+    // 统一格式：A-BB-CCC
+    // A: 错误级别，如1代表系统级错误，2代表服务级错误；
+    // // B: 项目或模块名称，一般公司不会超过99个项目；
+    // // C: 具体错误编号，自增即可，一个项目999种错误应该够用；
+    // B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
+    // C 0，no Error
+
+  }, {
+    key: "checkSeed",
+    value: function checkSeed(options, callback) {
+      var sendResponse = options.sendResponse,
+          _options$decryptoFail = options.decryptoFailMsg,
+          decryptoFailMsg = _options$decryptoFail === void 0 ? '' : _options$decryptoFail,
+          _options$noStorageMsg = options.noStorageMsg,
+          noStorageMsg = _options$noStorageMsg === void 0 ? '' : _options$noStorageMsg; // TODO: sendResponse & resolve/reject
+
+      if (!seed) {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200005)));
+        return;
+      }
+
+      if (typeof sendResponse === 'function') {
+        try {
+          _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.get(['nightElfEncrypto'], function (result) {
+            if (result.nightElfEncrypto) {
+              var nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
+
+              if (nightElfString) {
+                var nightElfObject = JSON.parse(nightElfString);
+                callback(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                  nightElfObject: nightElfObject
+                }));
+              } else {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200006, decryptoFailMsg)));
+              }
+            } else {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200007, noStorageMsg)));
+            }
+          });
+        } catch (e) {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(10000, 'Get Night Elf failed!')));
+        }
+      } else {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Missing param sendResponse(function).')));
+      }
+    } // Lock the user due to inactivity
+
+  }, {
+    key: "checkAutoLock",
+    value: function checkAutoLock() {
+      return true; // if (inactivityInterval === 0) return false;
+      // if (timeoutLocker) clearTimeout(timeoutLocker);
+      // if (seed) timeoutLocker = setTimeout(() => seed = '', inactivityInterval);
+    } // TODO: 是否要限制用户直接获取地址？
+
+  }, {
+    key: "getAddress",
+    value: function getAddress(sendResponse) {
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref9) {
+        var nightElfObject = _ref9.nightElfObject;
+        var _nightElfObject$keych6 = nightElfObject.keychain.keypairs,
+            keypairs = _nightElfObject$keych6 === void 0 ? [] : _nightElfObject$keych6;
+        var addressList = keypairs.map(function (item) {
+          return {
+            name: item.name,
+            address: item.address,
+            publicKey: item.publicKey
+          };
+        });
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          addressList: addressList
+        }));
+      });
+    }
+    /**
+     * some action like SET_PERMISSION need through prompt page.
+     * TODO: According to the input data,
+     * We will render diffenret prompt page.
+     * @param {Function} sendResponse Delegating response handler.
+     * @param {Object} message input data for prompt page.
+     */
+
+  }, {
+    key: "openPrompt",
+    value: function openPrompt(sendResponse, message) {
+      // TODO: NightElf lock notice.
+      var route = message.route === '#/prompt' ? '#/prompt' : '';
+      _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__["default"].open({
+        sendResponse: sendResponse,
+        route: route,
+        message: message
+      });
+    }
+  }, {
+    key: "setPrompt",
+    value: function setPrompt(sendResponse, notification) {
+      prompt = notification;
+      sendResponse(true);
+    }
+  }, {
+    key: "getPrompt",
+    value: function getPrompt(sendResponse) {
+      sendResponse(prompt);
     }
     /********************************************/
-    /*               VueInitializer             */
+
+    /*                 Handlers                 */
+
     /********************************************/
 
-    // Watches the internal messaging system ( LocalStream )
-
-
-    _createClass(Background, [{
-        key: 'setupInternalMessaging',
-        value: function setupInternalMessaging() {
-            var _this = this;
-
-            _extensionStreams.LocalStream.watch(function (request, sendResponse) {
-                console.log(request, sendResponse);
-                var message = _InternalMessage2.default.fromJson(request);
-                _this.dispenseMessage(sendResponse, message);
-            });
-        }
-
-        /***
-         * Delegates message processing to methods by message type
-         * @param sendResponse - Delegating response handler
-         * @param message - The message to be dispensed
-         */
-
-    }, {
-        key: 'dispenseMessage',
-        value: function dispenseMessage(sendResponse, message) {
-            console.log('dispenseMessage: ', message);
-            if (message.payload === false) {
-                sendResponse({
-                    error: 200001,
-                    message: 'payload is false.'
-                });
-                return;
-            }
-            // sendResponse(true);
-            switch (message.type) {
-                case InternalMessageTypes.SET_SEED:
-                    Background.setSeed(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.CREAT_WALLET:
-                    Background.createWallet(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.CLEAR_WALLET:
-                    Background.clearWallet(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.CHECK_WALLET:
-                    Background.checkWallet(sendResponse);
-                    break;
-                case InternalMessageTypes.UNLOCK_WALLET:
-                    Background.unlockWallet(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.LOCK_WALLET:
-                    Background.lockWallet(sendResponse);
-                    break;
-                case InternalMessageTypes.UPDATE_WALLET:
-                    Background.updateWallet(sendResponse, message.payload);
-                    break;
-
-                case InternalMessageTypes.INSERT_KEYPAIR:
-                    Background.insertKeypair(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.GET_KEYPAIR:
-                    Background.getKeypair(sendResponse);
-                    break;
-                case InternalMessageTypes.REMOVE_KEYPAIR:
-                    Background.removeKeypair(sendResponse, message.payload);
-                    break;
-
-                case InternalMessageTypes.SET_PERMISSION:
-                    Background.setPermission(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.CHECK_PERMISSION:
-                    Background.getPermission(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.REMOVE_PERMISSION:
-                    Background.removePermission(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.GET_ALLPERMISSIONS:
-                    Background.getAllPermissions(sendResponse);
-                    break;
-
-                case InternalMessageTypes.CONNECT_AELF_CHAIN:
-                    Background.connectAelfChain(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.CALL_AELF_CHAIN:
-                    Background.callAelfChain(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.RELEASE_AELF_CHAIN:
-                    Background.releaseAelfChain(sendResponse);
-                    break;
-
-                case InternalMessageTypes.INIT_AELF_CONTRACT:
-                    Background.initAelfContract(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.CALL_AELF_CONTRACT:
-                    Background.callAelfContract(sendResponse, message.payload);
-                    break;
-
-                case InternalMessageTypes.GET_ADDRESS:
-                    Background.getAddress(sendResponse);
-                    break;
-
-                case InternalMessageTypes.OPEN_PROMPT:
-                    Background.openPrompt(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.SET_PROMPT:
-                    Background.setPrompt(sendResponse, message.payload);
-                    break;
-                case InternalMessageTypes.GET_PROMPT:
-                    Background.getPrompt(sendResponse);
-                    break;
-                // TODO:
-                // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
-                //     Background.releaseAELFContract(sendResponse);
-                //     break;
-            }
-        }
-
-        /**
-         * connect chain, init or refresh the instance of Aelf for dapp.
-         * hostname & chainId as a union key.[like sql]
-         *
-         * @param {Function} sendResponse Delegating response handler.
-         * @param {Object} chainInfo from content.js
-         */
-
-    }], [{
-        key: 'connectAelfChain',
-        value: function connectAelfChain(sendResponse, chainInfo) {
-            // content.js
-            // chainInfo = {
-            //     appName: 'Your app',
-            //     method: 'CONNECT_AELF_CHAIN',
-            //     hostname: 'aelf.io',
-            //     payload: {
-            //         httpProvider: 'http://localhost:1234/chain'
-            //     }
-            // }
-            // inject.js
-            // NightElf.action({
-            //     appName: 'Your app',
-            //     method: 'CONNECT_AELF_CHAIN',
-            //     payload: {
-            //         httpProvider: 'http://localhost:1234/chain'
-            //     }
-            // });
-            // return JSON.stringify(result);
-            // const aelfMeta = [
-            //     {
-            //         appName: 'Dapp Test',
-            //         domain: 'aelf.io',
-            //         httpProvider: 'http://localhost:1234/chain',
-            //         chainId: '',
-            //         aelf: 'new Aelf(new Aelf.providers.HttpProvider("xxxx"));',
-            //         contracts: [{
-            //         }]
-            //     }
-            // ];
-            this.lockGuard(sendResponse).then(function () {
-                var aelf = new _aelfSdk2.default(new _aelfSdk2.default.providers.HttpProvider(chainInfo.payload.httpProvider));
-                aelf.chain.connectChain(function (error, result) {
-                    console.log(error, result);
-                    if (error || !result || !result.result) {
-                        sendResponse({
-                            error: 200001,
-                            message: error.message || error,
-                            result: result
-                        });
-                        return;
-                    }
-                    var chainId = result.result.chain_id || 'Can not find chain_id';
-                    var existentMetaIndex = -1;
-                    var existentMeta = aelfMeta.find(function (item, index) {
-                        // const checkDomain = chainInfo.hostname.includes(item.hostname);
-                        var checkDomain = chainInfo.hostname === item.hostname;
-                        var checkChainId = item.chainId === chainId;
-                        if (checkDomain && checkChainId) {
-                            existentMetaIndex = index;
-                            return true;
-                        }
-                    });
-                    var aelfMetaTemp = {
-                        appName: chainInfo.appName,
-                        hostname: chainInfo.hostname,
-                        httpProvider: chainInfo.payload.httpProvider,
-                        chainId: chainId,
-                        aelf: aelf,
-                        contracts: []
-                    };
-                    if (existentMeta) {
-                        aelfMeta[existentMetaIndex] = aelfMetaTemp;
-                    } else {
-                        aelfMeta.push(aelfMetaTemp);
-                    }
-                    sendResponse({
-                        error: 0,
-                        result: result // ,
-                        // aelfMeta: JSON.stringify(aelfMeta)
-                    });
-                });
-            });
-        }
-    }, {
-        key: 'callAelfChain',
-        value: function callAelfChain(sendResponse, callInfo) {
-            // content.js
-            // chainInfo = {
-            //     appName: 'Your app',
-            //     method: 'CONNECT_AELF_CHAIN',
-            //     hostname: 'aelf.io',
-            //     payload: {
-            //         httpProvider: 'http://localhost:1234/chain'
-            //     }
-            // }
-            // inject.js
-            // NightElf.action({
-            //     appName: 'Your app',
-            //     method: 'CALL_AELF_CHAIN',
-            //     chainId: 'xxx',
-            //     payload: {
-            //         method: 'cName'
-            //         params: []
-            //     }
-            // });
-            this.lockGuard(sendResponse).then(function () {
-                console.log('callAelfChain: ', callInfo);
-                var dappAelfMeta = aelfMeta.find(function (item) {
-                    // const checkDomain = callInfo.hostname.includes(item.hostname);
-                    var checkDomain = callInfo.hostname === item.hostname;
-                    var checkChainId = item.chainId === callInfo.chainId;
-                    return checkDomain && checkChainId;
-                });
-                console.log('call AelfChain show dappAelfMeta: ', aelfMeta);
-                console.log('call AelfChain show NightElf: ', nightElf);
-                if (dappAelfMeta) {
-                    var _callInfo$payload = callInfo.payload,
-                        method = _callInfo$payload.method,
-                        params = _callInfo$payload.params;
-
-                    try {
-                        var _dappAelfMeta$aelf$ch;
-
-                        (_dappAelfMeta$aelf$ch = dappAelfMeta.aelf.chain)[method].apply(_dappAelfMeta$aelf$ch, _toConsumableArray(params).concat([function (error, result) {
-                            if (error) {
-                                sendResponse({
-                                    error: 200001,
-                                    result: error
-                                });
-                                return;
-                            }
-                            sendResponse({
-                                error: 0,
-                                result: result
-                            });
-                        }]));
-                    } catch (error) {
-                        sendResponse({
-                            error: 100001,
-                            result: error.message
-                        });
-                    }
-                } else {
-                    sendResponse({
-                        error: 200001,
-                        message: 'Please connect the chain at first. ' + (callInfo.hostname + ' have not connect the chain named ' + callInfo.chainId + '. ') + ' [Notice]www.aelf.io !== aelf.io '
-                    });
-                }
-            });
-        }
-
-        /**
-         * 1. hostname: a.aelf.io(page) -> aelf.io is OK;
-         * 2. chainId: must be the same;
-         * 3. contractAddress: must be the same;
-         *
-         * @param {Function} sendResponse Delegating response handler.
-         * @param {Object} contractInfo From content.js
-         * @return {Object} dappAelfMetaIndex, dappAelfMeta, dappPermission, dappContractPermission
-         */
-
-    }, {
-        key: 'checkDappContractStatus',
-        value: function checkDappContractStatus(sendResponse, contractInfo) {
-            console.log('checkDappContractStatus: ', contractInfo);
-            // NightElf.action({
-            //     appName: 'Your app',
-            //     method: 'INIT_AELF_CONTRACT',
-            //     hostname: 'xxxx',
-            //     chainId: 'xxx'
-            //     payload: {
-            //         address: 'keypair 的 address',
-            //         contractName: 'cName'
-            //         contractAddress: 'xxxx'
-            //     }
-            // });
-            // NightElf.action({
-            //     appName: 'Your app',
-            //     method: 'CALL_AELF_CONTRACT',
-            //     hostname: 'xxxx',
-            //     chainId: 'xxx',
-            //     payload: {
-            //         contractName: 'cName, the same as init',
-            //         method: 'transfer',
-            //         params: []
-            //     }
-            // });
-            return new Promise(function (resolve, reject) {
-                var dappAelfMetaIndex = -1;
-                var hostname = contractInfo.hostname,
-                    chainId = contractInfo.chainId,
-                    payload = contractInfo.payload;
-                var address = payload.address,
-                    contractAddress = payload.contractAddress;
-
-                var dappAelfMeta = aelfMeta.find(function (item, index) {
-                    // const checkDomain = contractInfo.hostname.includes(item.hostname);
-                    var checkDomain = hostname === item.hostname;
-                    var checkChainId = item.chainId === chainId;
-                    if (checkDomain && checkChainId) {
-                        dappAelfMetaIndex = index;
-                        return true;
-                    }
-                });
-                if (!dappAelfMeta) {
-                    sendResponse({
-                        error: 200001,
-                        message: 'Please connect the chain: ' + chainId + '.'
-                    });
-                    return;
-                }
-
-                var dappPermission = nightElf.keychain.permissions.find(function (item) {
-                    var checkDomain = hostname === item.domain;
-                    var checkAddress = address === item.address;
-                    return checkDomain && checkAddress;
-                });
-                if (!dappPermission) {
-                    sendResponse({
-                        error: 200001,
-                        message: 'Please set permission at first.'
-                    });
-                    return;
-                }
-
-                var dappContractPermission = dappPermission.contracts.find(function (item) {
-                    var checkChain = item.chainId === chainId;
-                    var checkContractAddress = item.contractAddress === contractAddress;
-                    return checkChain && checkContractAddress;
-                });
-                if (!dappContractPermission) {
-                    sendResponse({
-                        error: 200001,
-                        message: 'There is no permission of this contract: ' + contractAddress + '.'
-                    });
-                    return;
-                }
-                resolve({
-                    dappAelfMetaIndex: dappAelfMetaIndex,
-                    dappAelfMeta: dappAelfMeta,
-                    dappPermission: dappPermission,
-                    dappContractPermission: dappContractPermission
-                });
-            });
-        }
-    }, {
-        key: 'initAelfContract',
-        value: function initAelfContract(sendResponse, contractInfo) {
-            // inject
-            // {
-            //     appName: 'Your app',
-            //     method: 'INIT_AELF_CONTRACT',
-            //     // hostname: 'xxxx', 在content.js补齐。
-            //     chainId: 'xxx'
-            //     payload: {
-            //         address: 'keypair 的 address',
-            //         contractName: 'cName'
-            //         contractAddress: 'xxxx'
-            //     }
-            // }
-            // content.js
-            // NightElf.action({
-            //     appName: 'Your app',
-            //     method: 'INIT_AELF_CONTRACT',
-            //     hostname: 'xxxx',
-            //     chainId: 'xxx'
-            //     payload: {
-            //         address: 'keypair 的 address',
-            //         contractName: 'cName'
-            //         contractAddress: 'xxxx'
-            //     }
-            // });
-            // return JSON.stringify(result);
-            console.log('initAelfContract: ', contractInfo);
-            // const aelfMeta = [
-            //     {
-            //         appName: 'Dapp Test',
-            //         hostname: 'aelf.io',
-            //         httpProvider: 'http://localhost:1234/chain',
-            //         chainId: '',
-            //         aelf: 'new Aelf(new Aelf.providers.HttpProvider("xxxx"));',
-            //         contracts: [{
-            //             contractName: 'cName',
-            //             contractAddress: '',
-            //             httpProvider: 'http://localhost:1234/chain',
-            //             contract: 'aelf.chain.contractAt("contract_address", wallet); use keypair to get'
-            //         }]
-            //     }
-            // ];
-            this.checkDappContractStatus(sendResponse, contractInfo).then(function (output) {
-                var payload = contractInfo.payload;
-                var address = payload.address,
-                    contractAddress = payload.contractAddress,
-                    contractName = payload.contractName;
-                var dappAelfMetaIndex = output.dappAelfMetaIndex,
-                    dappAelfMeta = output.dappAelfMeta;
-
-
-                var keypair = nightElf.keychain.keypairs.find(function (item) {
-                    return item.address === address;
-                });
-                if (!keypair) {
-                    sendResponse({
-                        error: 200001,
-                        message: 'Missing keypair of' + address
-                    });
-                    return;
-                }
-
-                var wallet = _aelfSdk2.default.wallet.getWalletByPrivateKey(keypair.privateKey);
-                var contractMethods = dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet);
-                var contract = {
-                    address: address,
-                    contractName: contractName,
-                    contractAddress: contractAddress,
-                    contractMethods: contractMethods
-                };
-
-                var extendContractIndex = -1;
-                dappAelfMeta.contracts.find(function (item, index) {
-                    if (contractInfo.payload.contractAddress === item.contractAddress) {
-                        extendContractIndex = index;
-                        return true;
-                    }
-                });
-                if (extendContractIndex > -1) {
-                    dappAelfMeta.contracts[extendContractIndex] = contract;
-                } else {
-                    dappAelfMeta.contracts.push(contract);
-                }
-
-                aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
-
-                sendResponse({
-                    error: 0,
-                    message: JSON.stringify(contractMethods),
-                    detail: JSON.stringify(dappAelfMeta)
-                });
-            });
-        }
-    }, {
-        key: 'callAelfContract',
-        value: function callAelfContract(sendResponse, contractInfo) {
-            var _this2 = this;
-
-            // NightElf.action({
-            //     appName: 'Your app',
-            //     method: 'CALL_AELF_CONTRACT',
-            //     chainId: 'xxx',
-            //     payload: {
-            //         contractName: 'cName, the same as init',
-            //         method: 'transfer',
-            //         params: []
-            //     }
-            // });
-            // inject
-            // {
-            //     appName: 'Your app',
-            //     method: 'INIT_AELF_CONTRACT',
-            //     // hostname: 'xxxx', 在content.js补齐。
-            //     chainId: 'xxx'
-            //     payload: {
-            //         address: 'keypair 的 address',
-            //         contractName: 'cName'
-            //         contractAddress: 'xxxx'
-            //     }
-            // }
-            // content.js
-            // NightElf.action({
-            //     appName: 'Your app',
-            //     method: 'INIT_AELF_CONTRACT',
-            //     hostname: 'xxxx',
-            //     chainId: 'xxx'
-            //     payload: {
-            //         address: 'keypair 的 address',
-            //         contractName: 'cName'
-            //         contractAddress: 'xxxx'
-            //     }
-            // });
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function () {
-                var payload = contractInfo.payload,
-                    chainId = contractInfo.chainId,
-                    hostname = contractInfo.hostname;
-                var contractName = payload.contractName,
-                    method = payload.method,
-                    params = payload.params;
-
-                var dappAelfMeta = aelfMeta.find(function (item) {
-                    // const checkDomain = hostname.includes(item.hostname);
-                    var checkDomain = hostname === item.hostname;
-                    var checkChainId = item.chainId === chainId;
-                    return checkDomain && checkChainId;
-                });
-                if (!dappAelfMeta) {
-                    sendResponse({
-                        error: 200001,
-                        message: 'Please connect chain.'
-                    });
-                    return;
-                }
-
-                var extendContract = dappAelfMeta.contracts.find(function (item) {
-                    return contractName === item.contractName;
-                });
-                if (!extendContract) {
-                    sendResponse({
-                        error: 200001,
-                        message: 'Please init contract ' + contractName + '.'
-                    });
-                    return;
-                }
-                if (!extendContract.contractMethods[method]) {
-                    sendResponse({
-                        error: 200002,
-                        message: 'Mehtod ' + method + ' is not exist in the contract.'
-                    });
-                    return;
-                }
-
-                var contractInfoTemp = Object.assign({}, contractInfo, {
-                    payload: {
-                        address: extendContract.address,
-                        contractAddress: extendContract.contractAddress
-                    }
-                });
-                // If the user remove the permission after the dapp initialized the contract
-                _this2.checkDappContractStatus(sendResponse, contractInfoTemp).then(function () {
-                    var _extendContract$contr;
-
-                    (_extendContract$contr = extendContract.contractMethods)[method].apply(_extendContract$contr, _toConsumableArray(params).concat([function (error, result) {
-                        if (error) {
-                            sendResponse({
-                                error: 200001,
-                                result: error
-                            });
-                        } else {
-                            sendResponse({
-                                error: 0,
-                                result: result
-                            });
-                        }
-                    }]));
-                });
-            });
-        }
-    }, {
-        key: 'createWallet',
-        value: function createWallet(sendResponse, _seed) {
-            nightElf = _NightElf2.default.fromJson({});
-            seed = _seed;
-            Background.updateWallet(sendResponse);
-        }
-    }, {
-        key: 'unlockWallet',
-        value: function unlockWallet(sendResponse, _seed) {
-            seed = _seed;
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref) {
-                var nightElfObject = _ref.nightElfObject;
-
-                nightElf = _NightElf2.default.fromJson(nightElfObject);
-                sendResponse({
-                    error: 0,
-                    nightElf: !!nightElf
-                });
-            });
-        }
-    }, {
-        key: 'updateWallet',
-        value: function updateWallet(sendResponse) {
-            // TODO: Check seed.
-            if (nightElf && seed) {
-                var nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
-                _BrowserApis.apis.storage.local.set({
-                    nightElfEncrypto: nightElfEncrypto
-                }, function (result) {
-                    console.log('updateWallet: ', nightElfEncrypto, nightElf);
-                    sendResponse({
-                        error: 0,
-                        result: result
-                    });
-                });
-            } else {
-                sendResponse({
-                    error: 1,
-                    message: 'No Wallet Info.'
-                });
-            }
-        }
-    }, {
-        key: 'checkWallet',
-        value: function checkWallet(sendResponse) {
-            _BrowserApis.apis.storage.local.get(['nightElfEncrypto'], function (result) {
-                console.log(result.nightElfEncrypto);
-                sendResponse({
-                    nightElfEncrypto: !!result.nightElfEncrypto,
-                    nightElf: nightElf
-                });
-            });
-        }
-    }, {
-        key: 'clearWallet',
-        value: function clearWallet(sendResponse, _seed) {
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function () {
-                _BrowserApis.apis.storage.local.clear(function (result) {
-                    Background.lockWallet(sendResponse);
-                });
-            });
-        }
-    }, {
-        key: 'lockWallet',
-        value: function lockWallet(sendResponse) {
-            seed = null;
-            nightElf = null;
-            sendResponse({
-                error: 0
-            });
-        }
-    }, {
-        key: 'insertKeypair',
-        value: function insertKeypair(sendResponse, keypair) {
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref2) {
-                var nightElfObject = _ref2.nightElfObject;
-
-                nightElfObject.keychain.keypairs.unshift(keypair);
-                nightElf = _NightElf2.default.fromJson(nightElfObject);
-                Background.updateWallet(sendResponse);
-            });
-        }
-    }, {
-        key: 'removeKeypair',
-        value: function removeKeypair(sendResponse, address) {
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref3) {
-                var nightElfObject = _ref3.nightElfObject;
-
-                nightElfObject.keychain.keypairs = nightElfObject.keychain.keypairs.filter(function (item) {
-                    return address !== item.address;
-                });
-
-                nightElf = _NightElf2.default.fromJson(nightElfObject);
-                Background.updateWallet(sendResponse);
-            });
-        }
-    }, {
-        key: 'getKeypair',
-        value: function getKeypair(sendResponse) {
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref4) {
-                var nightElfObject = _ref4.nightElfObject;
-                var _nightElfObject$keych = nightElfObject.keychain.keypairs,
-                    keypairs = _nightElfObject$keych === undefined ? [] : _nightElfObject$keych;
-
-                sendResponse({
-                    error: 0,
-                    keypairs: keypairs
-                });
-            });
-        }
-
-        // Depend on the hostname of the app and the address of user.
-        // TODO: set permisions
-
-    }, {
-        key: 'setPermission',
-        value: function setPermission(sendResponse, permissionInput) {
-            // permission example
-            // {
-            //     appName: 'hzz Test',
-            //     domain: 'aelf.io',
-            //     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
-            //     contracts: [{
-            //         chainId: 'AELF',
-            //         contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
-            //         contractName: 'token',
-            //         description: 'token contract',
-            //         description_zh: '',
-            //         description_en: ''
-            //     }]
-            // }
-            var appName = permissionInput.appName,
-                domain = permissionInput.domain,
-                hostname = permissionInput.hostname,
-                address = permissionInput.address,
-                contracts = permissionInput.contracts;
-
-            var permissionNeedAdd = {
-                appName: appName,
-                domain: domain || hostname,
-                address: address,
-                contracts: contracts
-            };
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref5) {
-                var nightElfObject = _ref5.nightElfObject;
-                var _nightElfObject$keych2 = nightElfObject.keychain.permissions,
-                    permissions = _nightElfObject$keych2 === undefined ? [] : _nightElfObject$keych2;
-
-
-                var permissionIndex = [];
-                var permissionsTemp = permissions.filter(function (permission, index) {
-                    var domainCheck = permission.domain === domain;
-                    var addressCheck = permission.address === address;
-                    if (domainCheck && addressCheck) {
-                        permissionIndex.push(index);
-                        return true;
-                    }
-                    return false;
-                });
-
-                if (permissionsTemp.length) {
-                    nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
-                } else {
-                    nightElfObject.keychain.permissions.unshift(permissionNeedAdd);
-                }
-                nightElf = _NightElf2.default.fromJson(nightElfObject);
-                Background.updateWallet(sendResponse);
-            });
-        }
-
-        // 3 Way to get Permisions
-        // by address,contranctAddress,domain(default way)
-
-    }, {
-        key: 'getPermission',
-        value: function getPermission(sendResponse, queryInfo) {
-            // this static function call the this,
-            // the this is the Class but not the instance of the Class.
-            // it means, we need declare static checkSeed.
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref6) {
-                var nightElfObject = _ref6.nightElfObject;
-                var _nightElfObject$keych3 = nightElfObject.keychain.permissions,
-                    permissions = _nightElfObject$keych3 === undefined ? [] : _nightElfObject$keych3;
-
-
-                switch (queryInfo.type) {
-                    case 'address':
-                        {
-                            if (!queryInfo.address) {
-                                sendResponse({
-                                    error: 200001,
-                                    message: 'missing param address.'
-                                });
-                                return;
-                            }
-                            var _permissionsTemp = permissions.filter(function (permission) {
-                                var domainCheck = permission.domain === queryInfo.hostname;
-                                var addressCheck = permission.address === queryInfo.address;
-                                return domainCheck && addressCheck;
-                            });
-
-                            sendResponse({
-                                error: 0,
-                                permissions: _permissionsTemp
-                            });
-                        }
-                        break;
-                    // TODO: use database such lick NeDB ?
-                    case 'contract':
-                        {
-                            if (!queryInfo.contractAddress) {
-                                sendResponse({
-                                    error: 200001,
-                                    message: 'missing param contractAddress.'
-                                });
-                                return;
-                            }
-                            var permissionsByDomain = permissions.filter(function (permission) {
-                                var domainCheck = permission.domain === queryInfo.hostname;
-                                return domainCheck;
-                            });
-
-                            var permissionsByContract = permissionsByDomain.filter(function (permission) {
-                                var contractMatch = permission.contracts.filter(function (contract) {
-                                    return contract.contractAddress === queryInfo.contractAddress;
-                                });
-                                return contractMatch && contractMatch.length;
-                            });
-
-                            sendResponse({
-                                error: 0,
-                                permissions: permissionsByContract
-                            });
-                        }
-                        break;
-                    default:
-                        // defaut to check domain;
-                        {
-                            var _permissionsTemp2 = permissions.filter(function (permission) {
-                                var domainCheck = permission.domain === queryInfo.hostname;
-                                return domainCheck;
-                            });
-
-                            sendResponse({
-                                error: 0,
-                                permissions: _permissionsTemp2
-                            });
-                        }
-                }
-
-                var permissionsTemp = permissions.filter(function (permission) {
-                    var domainCheck = permission.domain === queryInfo.hostname;
-                    var addressCheck = permission.address === queryInfo.address;
-                    return domainCheck && addressCheck;
-                });
-
-                sendResponse({
-                    error: 0,
-                    permissions: permissionsTemp
-                });
-            });
-        }
-    }, {
-        key: 'getAllPermissions',
-        value: function getAllPermissions(sendResponse) {
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref7) {
-                var nightElfObject = _ref7.nightElfObject;
-                var _nightElfObject$keych4 = nightElfObject.keychain.permissions,
-                    permissions = _nightElfObject$keych4 === undefined ? [] : _nightElfObject$keych4;
-
-
-                sendResponse({
-                    error: 0,
-                    permissions: permissions
-                });
-            });
-        }
-
-        // TODO: remove Single contract permission.
-
-    }, {
-        key: 'removePermission',
-        value: function removePermission(sendResponse, removeInfo) {
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref8) {
-                var nightElfObject = _ref8.nightElfObject;
-                var _nightElfObject$keych5 = nightElfObject.keychain.permissions,
-                    permissions = _nightElfObject$keych5 === undefined ? [] : _nightElfObject$keych5;
-
-
-                nightElfObject.keychain.permissions = permissions.filter(function (item) {
-                    var domainCheck = removeInfo.domain === item.domain;
-                    var addressCheck = removeInfo.address === item.address;
-                    return !(domainCheck && addressCheck);
-                });
-
-                nightElf = _NightElf2.default.fromJson(nightElfObject);
-                Background.updateWallet(sendResponse);
-            });
-        }
-
-        // About Error Code. 冗余的设计。
-        // https://www.zhihu.com/question/24091286
-        // https://open.taobao.com/doc.htm?docId=114&docType=1
-        // 统一格式：A-BB-CCC
-        // A: 错误级别，如1代表系统级错误，2代表服务级错误；
-        // // B: 项目或模块名称，一般公司不会超过99个项目；
-        // // C: 具体错误编号，自增即可，一个项目999种错误应该够用；
-        // B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
-        // C 0，no Error
-
-    }, {
-        key: 'checkSeed',
-        value: function checkSeed(options) {
-            return new Promise(function (resolve, reject) {
-                var sendResponse = options.sendResponse,
-                    _options$decryptoFail = options.decryptoFailMsg,
-                    decryptoFailMsg = _options$decryptoFail === undefined ? '' : _options$decryptoFail,
-                    _options$noStorageMsg = options.noStorageMsg,
-                    noStorageMsg = _options$noStorageMsg === undefined ? '' : _options$noStorageMsg;
-                // TODO: sendResponse & resolve/reject
-
-                if (!seed) {
-                    var error = {
-                        error: 200011,
-                        message: 'Night Elf is locked!'
-                    };
-                    sendResponse(error);
-                    reject(error);
-                    return;
-                }
-                if (typeof sendResponse === 'function') {
-                    try {
-                        _BrowserApis.apis.storage.local.get(['nightElfEncrypto'], function (result) {
-                            if (result.nightElfEncrypto) {
-                                var nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
-                                if (nightElfString) {
-                                    var nightElfObject = JSON.parse(nightElfString);
-                                    resolve({
-                                        error: 0,
-                                        nightElfObject: nightElfObject
-                                    });
-                                } else {
-                                    sendResponse({
-                                        error: 200011,
-                                        message: decryptoFailMsg || 'Decrypto Failed. Please unlock your wallet.'
-                                    });
-                                }
-                            } else {
-                                sendResponse({
-                                    error: 200001,
-                                    message: noStorageMsg || 'No Night Elf in storage.'
-                                });
-                            }
-                        });
-                    } catch (e) {
-                        reject({
-                            error: 100001,
-                            message: 'Get Night Elf failed!'
-                        });
-                    }
-                } else {
-                    reject({
-                        error: 200001,
-                        message: 'Missing param sendResponse(function).'
-                    });
-                }
-            });
-        }
-
-        //     Background.checkAutoLock();
-        //     switch (message.type) {
-        //         case InternalMessageTypes.SET_SEED:
-        //             Background.setSeed(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.SET_TIMEOUT:
-        //             Background.setTimeout(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.IS_UNLOCKED:
-        //             Background.isUnlocked(sendResponse);
-        //             break;
-        //         case InternalMessageTypes.LOAD:
-        //             Background.load(sendResponse);
-        //             break;
-        //         case InternalMessageTypes.UPDATE:
-        //             Background.update(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.PUB_TO_PRIV:
-        //             Background.publicToPrivate(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.DESTROY:
-        //             Background.destroy(sendResponse);
-        //             break;
-        //         case InternalMessageTypes.IDENTITY_FROM_PERMISSIONS:
-        //             Background.identityFromPermissions(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.GET_OR_REQUEST_IDENTITY:
-        //             Background.getOrRequestIdentity(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.FORGET_IDENTITY:
-        //             Background.forgetIdentity(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.REQUEST_SIGNATURE:
-        //             Background.requestSignature(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.REQUEST_ARBITRARY_SIGNATURE:
-        //             Background.requestArbitrarySignature(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.REQUEST_ADD_NETWORK:
-        //             Background.requestAddNetwork(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.REQUEST_GET_VERSION:
-        //             Background.requestGetVersion(sendResponse);
-        //             break;
-        //         case InternalMessageTypes.REQUEST_VERSION_UPDATE:
-        //             Background.requestVersionUpdate(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.AUTHENTICATE:
-        //             Background.authenticate(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.ABI_CACHE:
-        //             Background.abiCache(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.SET_PROMPT:
-        //             Background.setPrompt(sendResponse, message.payload);
-        //             break;
-        //         case InternalMessageTypes.GET_PROMPT:
-        //             Background.getPrompt(sendResponse);
-        //             break;
-        //     }
-        // }
-
-        // Lock the user due to inactivity
-
-    }, {
-        key: 'checkAutoLock',
-        value: function checkAutoLock() {
-            return true;
-            // if (inactivityInterval === 0) return false;
-            // if (timeoutLocker) clearTimeout(timeoutLocker);
-            // if (seed) timeoutLocker = setTimeout(() => seed = '', inactivityInterval);
-        }
-
-        // TODO: 是否要限制用户直接获取地址？
-
-    }, {
-        key: 'getAddress',
-        value: function getAddress(sendResponse) {
-            this.checkSeed({
-                sendResponse: sendResponse
-            }).then(function (_ref9) {
-                var nightElfObject = _ref9.nightElfObject;
-                var _nightElfObject$keych6 = nightElfObject.keychain.keypairs,
-                    keypairs = _nightElfObject$keych6 === undefined ? [] : _nightElfObject$keych6;
-
-                var addressList = keypairs.map(function (item) {
-                    return {
-                        name: item.name,
-                        address: item.address,
-                        publicKey: item.publicKey
-                    };
-                });
-                sendResponse({
-                    error: 0,
-                    addressList: addressList
-                });
-            });
-        }
-
-        /**
-         * some action like SET_PERMISSION need through prompt page.
-         * TODO: According to the input data,
-         * We will render diffenret prompt page.
-         * @param {Function} sendResponse Delegating response handler.
-         * @param {Object} message input data for prompt page.
-         */
-
-    }, {
-        key: 'openPrompt',
-        value: function openPrompt(sendResponse, message) {
-            // TODO: NightElf lock notice.
-            var route = message.route === '#/prompt' ? '#/prompt' : '';
-            _NotificationService2.default.open({
-                sendResponse: sendResponse,
-                route: route,
-                message: message
-            });
-        }
-    }, {
-        key: 'setPrompt',
-        value: function setPrompt(sendResponse, notification) {
-            prompt = notification;
-            sendResponse(true);
-        }
-    }, {
-        key: 'getPrompt',
-        value: function getPrompt(sendResponse) {
-            sendResponse(prompt);
-        }
-
-        /********************************************/
-        /*                 Handlers                 */
-        /********************************************/
-
-        /***
-         * Sets the seed on scope to use from decryption
-         * @param sendResponse - Delegating response handler
-         * @param _seed - The seed to set
-         */
-
-    }, {
-        key: 'setSeed',
-        value: function setSeed(sendResponse, _seed) {
-            seed = _seed;
-            sendResponse(true);
-        }
-
-        /***
-         * Returns a an error if Scatter is locked,
-         * or passes through the callback if Scatter is open
-         * @param sendResponse - Delegating response handler
-         * @param cb - Callback to perform if open
-         */
-
-    }, {
-        key: 'lockGuard',
-        value: function lockGuard(sendResponse) {
-            return new Promise(function (resolve, reject) {
-                if (!(seed && seed.length)) {
-                    // NotificationService.open(Prompt.scatterIsLocked());
-                    // NotificationService.open({
-                    //     sendResponse,
-                    //     route: '#/prompt',
-                    //     message: {
-                    //         appName: 'NightElf',
-                    //         domain: 'aelf.io',
-                    //         payload: {
-                    //             message: 'Night Elf is locked.'
-                    //         }
-                    //     }
-                    // });
-                    // sendResponse(Error.locked());
-                    var error = {
-                        error: 200001,
-                        message: 'Night Elf is locked'
-                    };
-                    sendResponse(error);
-                    reject(error);
-                } else {
-                    resolve({
-                        error: 0
-                    });
-                }
-            });
-        }
-
-        /***
-         * Checks whether Scatter is locked
-         * @param sendResponse - Delegating response handler
-         * @returns {boolean}
-         */
-        // static isUnlocked(sendResponse) {
-        //     // Even if a seed is set, that doesn't mean that the seed is correct.
-        //     if (seed.length) StorageService.get().then(scatter => {
-        //         try {
-        //             scatter.decrypt(seed);
-        //             sendResponse(!scatter.isEncrypted());
-        //         } catch (e) {
-        //             seed = '';
-        //             sendResponse(false);
+    /***
+     * Sets the seed on scope to use from decryption
+     * @param sendResponse - Delegating response handler
+     * @param _seed - The seed to set
+     */
+
+  }, {
+    key: "setSeed",
+    value: function setSeed(sendResponse, _seed) {
+      seed = _seed;
+      sendResponse(true);
+    }
+    /***
+     * Returns a an error if Scatter is locked,
+     * or passes through the callback if Scatter is open
+     * @param sendResponse - Delegating response handler
+     * @param cb - Callback to perform if open
+     */
+
+  }, {
+    key: "lockGuard",
+    value: function lockGuard(sendResponse, callback) {
+      if (!(seed && seed.length)) {
+        // NotificationService.open(Prompt.scatterIsLocked());
+        // NotificationService.open({
+        //     sendResponse,
+        //     route: '#/prompt',
+        //     message: {
+        //         appName: 'NightElf',
+        //         domain: 'aelf.io',
+        //         payload: {
+        //             message: 'Night Elf is locked.'
         //         }
-        //     });
-        //     // If no seed is set, Scatter is definitely locked
-        //     else sendResponse(false);
-        // }
-
-        /***
-         * Returns the saved instance of Scatter from the storage
-         * @param sendResponse - Delegating response handler
-         * @returns {Scatter}
-         */
-        // static load(sendResponse) {
-        //     StorageService.get().then(async scatter => {
-        //         // sync the timeout inactivity interval
-        //         inactivityInterval = scatter.settings.inactivityInterval;
-
-        //         if (!seed.length) return sendResponse(scatter);
-
-        //         scatter.decrypt(seed);
-        //         const migrated = await migrate(scatter);
-        //         if (migrated) this.update(() => {}, scatter);
-        //         sendResponse(scatter)
-        //     })
-        // }
-
-        /***
-         * Updates the Scatter instance inside persistent storage
-         * @param sendResponse - Delegating response handler
-         * @param scatter - The updated cleartext Scatter instance
-         * @returns {boolean}
-         */
-        // static update(sendResponse, scatter) {
-        //     this.lockGuard(sendResponse, () => {
-        //         scatter = Scatter.fromJson(scatter);
-
-        //         // Private Keys are always separately encrypted
-        //         scatter.keychain.keypairs.map(keypair => keypair.encrypt(seed));
-        //         scatter.keychain.identities.map(id => id.encrypt(seed));
-
-        //         // Keychain is always stored encrypted.
-        //         scatter.encrypt(seed);
-
-        //         StorageService.save(scatter).then(saved => {
-        //             scatter.decrypt(seed);
-        //             sendResponse(scatter)
-        //         })
-        //     })
-        // }
-
-        /***
-         * Retrieves a Private Key from a Public Key
-         * @param sendResponse - Delegating response handler
-         * @param publicKey - The Public Key to search for
-         * @returns {privateKey:string | null}
-         */
-        // static publicToPrivate(sendResponse, publicKey) {
-        //     this.lockGuard(sendResponse, () => {
-        //         StorageService.get().then(scatter => {
-        //             scatter.decrypt(seed);
-        //             let keypair = scatter.keychain.keypairs.find(keypair => keypair.publicKey === publicKey);
-        //             if (!keypair) keypair = scatter.keychain.identities.find(id => id.publicKey === publicKey);
-        //             sendResponse((keypair) ? AES.decrypt(keypair.privateKey, seed) : null);
-        //         })
-        //     })
-        // }
-
-        /***
-         * Destroys this instance of Scatter
-         * @param sendResponse
-         */
-        // static destroy(sendResponse) {
-        //     // TODO: Mock
-        //     this.lockGuard(sendResponse, () => {
-        //         console.log("Destroying");
-        //         seed = '';
-        //         apis.storage.local.clear();
-        //         sendResponse(true);
-        //     })
-        // }
-
-        /***
-         * Sets the timeout interval on scope to determine the lockout time
-         * @param sendResponse - Delegating response handler
-         * @param _timeoutMinutes - The timeout minutes to set
-         */
-        // static setTimeout(sendResponse, _timeoutMinutes) {
-        //     this.load(scatter => {
-        //         inactivityInterval = TimingHelpers.minutes(_timeoutMinutes);
-        //         scatter.settings.inactivityInterval = inactivityInterval;
-        //         this.update(() => {}, scatter);
-        //     });
-
-        //     sendResponse(true);
-        // }
-
-
-        /********************************************/
-        /*              Web Application             */
-        /********************************************/
-
-        // static identityFromPermissions(sendResponse, payload) {
-        //     if (!seed.length) {
-        //         sendResponse(null);
-        //         return false;
         //     }
+        // });
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200005)));
+      } else {
+        callback(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0)));
+      }
+    }
+    /***
+     * Checks whether Scatter is locked
+     * @param sendResponse - Delegating response handler
+     * @returns {boolean}
+     */
+    // static isUnlocked(sendResponse) {
+    //     // Even if a seed is set, that doesn't mean that the seed is correct.
+    //     if (seed.length) StorageService.get().then(scatter => {
+    //         try {
+    //             scatter.decrypt(seed);
+    //             sendResponse(!scatter.isEncrypted());
+    //         } catch (e) {
+    //             seed = '';
+    //             sendResponse(false);
+    //         }
+    //     });
+    //     // If no seed is set, Scatter is definitely locked
+    //     else sendResponse(false);
+    // }
 
-        //     Background.load(scatter => {
-        //         const domain = payload.domain;
-        //         const permission = IdentityService.identityPermission(domain, scatter);
-        //         if (!permission) {
-        //             sendResponse(null);
-        //             return false;
-        //         }
-        //         const identity = permission.getIdentity(scatter.keychain);
-        //         sendResponse(identity.asOnlyRequiredFields(permission.fields));
-        //     });
-        // }
+    /***
+     * Returns the saved instance of Scatter from the storage
+     * @param sendResponse - Delegating response handler
+     * @returns {Scatter}
+     */
+    // static load(sendResponse) {
+    //     StorageService.get().then(async scatter => {
+    //         // sync the timeout inactivity interval
+    //         inactivityInterval = scatter.settings.inactivityInterval;
+    //         if (!seed.length) return sendResponse(scatter);
+    //         scatter.decrypt(seed);
+    //         const migrated = await migrate(scatter);
+    //         if (migrated) this.update(() => {}, scatter);
+    //         sendResponse(scatter)
+    //     })
+    // }
 
-        /***
-         * Prompts a request for Identity provision
-         * @param sendResponse
-         * @param payload
-         */
-        // static getOrRequestIdentity(sendResponse, payload) {
-        //     this.lockGuard(sendResponse, () => {
-        //         Background.load(scatter => {
-        //             const {
-        //                 domain,
-        //                 fields
-        //             } = payload;
+    /***
+     * Updates the Scatter instance inside persistent storage
+     * @param sendResponse - Delegating response handler
+     * @param scatter - The updated cleartext Scatter instance
+     * @returns {boolean}
+     */
+    // static update(sendResponse, scatter) {
+    //     this.lockGuard(sendResponse, () => {
+    //         scatter = Scatter.fromJson(scatter);
+    //         // Private Keys are always separately encrypted
+    //         scatter.keychain.keypairs.map(keypair => keypair.encrypt(seed));
+    //         scatter.keychain.identities.map(id => id.encrypt(seed));
+    //         // Keychain is always stored encrypted.
+    //         scatter.encrypt(seed);
+    //         StorageService.save(scatter).then(saved => {
+    //             scatter.decrypt(seed);
+    //             sendResponse(scatter)
+    //         })
+    //     })
+    // }
 
-        //             IdentityService.getOrRequestIdentity(domain, fields, scatter, (identity, fromPermission) => {
-        //                 if (!identity) {
-        //                     sendResponse(Error.signatureError("identity_rejected", "User rejected the provision of an Identity"));
-        //                     return false;
-        //                 }
+    /***
+     * Retrieves a Private Key from a Public Key
+     * @param sendResponse - Delegating response handler
+     * @param publicKey - The Public Key to search for
+     * @returns {privateKey:string | null}
+     */
+    // static publicToPrivate(sendResponse, publicKey) {
+    //     this.lockGuard(sendResponse, () => {
+    //         StorageService.get().then(scatter => {
+    //             scatter.decrypt(seed);
+    //             let keypair = scatter.keychain.keypairs.find(keypair => keypair.publicKey === publicKey);
+    //             if (!keypair) keypair = scatter.keychain.identities.find(id => id.publicKey === publicKey);
+    //             sendResponse((keypair) ? AES.decrypt(keypair.privateKey, seed) : null);
+    //         })
+    //     })
+    // }
 
-        //                 if (!fromPermission) {
-        //                     this.addHistory(HistoricEventTypes.PROVIDED_IDENTITY, {
-        //                         domain,
-        //                         provided: !!identity,
-        //                         identityName: identity ? identity.name : false,
-        //                         publicKey: (identity) ? identity.publicKey : false
-        //                     });
+    /***
+     * Destroys this instance of Scatter
+     * @param sendResponse
+     */
+    // static destroy(sendResponse) {
+    //     // TODO: Mock
+    //     this.lockGuard(sendResponse, () => {
+    //         console.log("Destroying");
+    //         seed = '';
+    //         apis.storage.local.clear();
+    //         sendResponse(true);
+    //     })
+    // }
 
-        //                     this.addPermissions([Permission.fromJson({
-        //                         domain,
-        //                         identity: identity.publicKey,
-        //                         timestamp: +new Date(),
-        //                         fields,
-        //                         checksum: domain
-        //                     })])
-        //                 }
+    /***
+     * Sets the timeout interval on scope to determine the lockout time
+     * @param sendResponse - Delegating response handler
+     * @param _timeoutMinutes - The timeout minutes to set
+     */
+    // static setTimeout(sendResponse, _timeoutMinutes) {
+    //     this.load(scatter => {
+    //         inactivityInterval = TimingHelpers.minutes(_timeoutMinutes);
+    //         scatter.settings.inactivityInterval = inactivityInterval;
+    //         this.update(() => {}, scatter);
+    //     });
+    //     sendResponse(true);
+    // }
 
-        //                 sendResponse(identity);
-        //             });
-        //         });
-        //     })
-        // }
+    /********************************************/
 
-        // static forgetIdentity(sendResponse, payload) {
-        //     this.lockGuard(sendResponse, () => {
-        //         Background.load(scatter => {
-        //             const permission = scatter.keychain.permissions.find(permission => permission.isIdentityOnly() && permission.domain === payload.domain);
-        //             if (!permission) {
-        //                 sendResponse(true);
-        //                 return false;
-        //             }
+    /*              Web Application             */
 
-        //             const clone = scatter.clone();
-        //             clone.keychain.removePermission(permission);
+    /********************************************/
+    // static identityFromPermissions(sendResponse, payload) {
+    //     if (!seed.length) {
+    //         sendResponse(null);
+    //         return false;
+    //     }
+    //     Background.load(scatter => {
+    //         const domain = payload.domain;
+    //         const permission = IdentityService.identityPermission(domain, scatter);
+    //         if (!permission) {
+    //             sendResponse(null);
+    //             return false;
+    //         }
+    //         const identity = permission.getIdentity(scatter.keychain);
+    //         sendResponse(identity.asOnlyRequiredFields(permission.fields));
+    //     });
+    // }
+    // /***
+    //  * Authenticates the Identity by returning a signed passphrase using the
+    //  * private key associated with the Identity
+    //  * @param sendResponse
+    //  * @param payload
+    //  */
+    // static authenticate(sendResponse, payload) {
+    //     this.lockGuard(sendResponse, () => {
+    //         Background.load(scatter => {
+    //             const identity = scatter.keychain.findIdentity(payload.publicKey);
+    //             if (!identity) return sendResponse(Error.identityMissing());
+    //             identity.decrypt(seed);
+    //             const plugin = PluginRepository.plugin(Blockchains.EOS);
+    //             plugin.signer(this, {
+    //                 data: payload.domain
+    //             }, identity.publicKey, sendResponse, true);
+    //         })
+    //     })
+    // }
+    // static abiCache(sendResponse, payload) {
+    //     this.lockGuard(sendResponse, async () => {
+    //         sendResponse(payload.abiGet ?
+    //             await StorageService.getABI(payload.abiContractName, payload.chainId) :
+    //             await StorageService.cacheABI(payload.abiContractName, payload.chainId, payload.abi));
+    //     })
+    // }
 
-        //             this.update(() => {
-        //                 sendResponse(true);
-        //             }, clone);
-        //         })
-        //     })
-        // }
+    /***
+     * Prompts a request for a transaction signature
+     * @param sendResponse
+     * @param payload
+     */
+    // static requestSignature(sendResponse, payload) {
+    //     this.lockGuard(sendResponse, () => {
+    //         Background.load(scatter => {
+    //             SignatureService.requestSignature(payload, scatter, this, sendResponse);
+    //         })
+    //     })
+    // }
 
-        // /***
-        //  * Authenticates the Identity by returning a signed passphrase using the
-        //  * private key associated with the Identity
-        //  * @param sendResponse
-        //  * @param payload
-        //  */
-        // static authenticate(sendResponse, payload) {
-        //     this.lockGuard(sendResponse, () => {
-        //         Background.load(scatter => {
-        //             const identity = scatter.keychain.findIdentity(payload.publicKey);
-        //             if (!identity) return sendResponse(Error.identityMissing());
-        //             identity.decrypt(seed);
+    /***
+     * Prompts a request for an arbitrary signature
+     * @param sendResponse
+     * @param payload
+     */
+    // static requestArbitrarySignature(sendResponse, payload) {
+    //     this.lockGuard(sendResponse, () => {
+    //         Background.load(scatter => {
+    //             SignatureService.requestArbitrarySignature(payload, scatter, this, sendResponse);
+    //         })
+    //     })
+    // }
 
-        //             const plugin = PluginRepository.plugin(Blockchains.EOS);
-        //             plugin.signer(this, {
-        //                 data: payload.domain
-        //             }, identity.publicKey, sendResponse, true);
-        //         })
-        //     })
-        // }
+    /***
+     * Adds a historic event to the keychain
+     * @param type
+     * @param data
+     */
+    // static addHistory(type, data) {
+    //     this.load(scatter => {
+    //         // scatter.histories.unshift(new HistoricEvent(type, data));
+    //         // this.update(() => {}, scatter);
+    //     })
+    // }
 
-        // static abiCache(sendResponse, payload) {
-        //     this.lockGuard(sendResponse, async () => {
-        //         sendResponse(payload.abiGet ?
-        //             await StorageService.getABI(payload.abiContractName, payload.chainId) :
-        //             await StorageService.cacheABI(payload.abiContractName, payload.chainId, payload.abi));
-        //     })
-        // }
+    /***
+     * Adds a permission to the keychain
+     * @param permissions
+     */
+    // static addPermissions(permissions) {
+    //     this.load(scatter => {
+    //         permissions.map(permission => {
+    //             if (!scatter.keychain.hasPermission(permission.checksum, permission.fields))
+    //                 scatter.keychain.permissions.unshift(permission);
+    //         });
+    //         this.update(() => {}, scatter);
+    //     })
+    // }
 
-        /***
-         * Prompts a request for a transaction signature
-         * @param sendResponse
-         * @param payload
-         */
-        // static requestSignature(sendResponse, payload) {
-        //     this.lockGuard(sendResponse, () => {
-        //         Background.load(scatter => {
-        //             SignatureService.requestSignature(payload, scatter, this, sendResponse);
-        //         })
-        //     })
-        // }
+  }]);
 
-        /***
-         * Prompts a request for an arbitrary signature
-         * @param sendResponse
-         * @param payload
-         */
-        // static requestArbitrarySignature(sendResponse, payload) {
-        //     this.lockGuard(sendResponse, () => {
-        //         Background.load(scatter => {
-        //             SignatureService.requestArbitrarySignature(payload, scatter, this, sendResponse);
-        //         })
-        //     })
-        // }
-
-
-        /***
-         * Adds a historic event to the keychain
-         * @param type
-         * @param data
-         */
-        // static addHistory(type, data) {
-        //     this.load(scatter => {
-        //         // scatter.histories.unshift(new HistoricEvent(type, data));
-        //         // this.update(() => {}, scatter);
-        //     })
-        // }
-
-        /***
-         * Adds a permission to the keychain
-         * @param permissions
-         */
-        // static addPermissions(permissions) {
-        //     this.load(scatter => {
-        //         permissions.map(permission => {
-        //             if (!scatter.keychain.hasPermission(permission.checksum, permission.fields))
-        //                 scatter.keychain.permissions.unshift(permission);
-        //         });
-        //         this.update(() => {}, scatter);
-        //     })
-        // }
-
-    }]);
-
-    return Background;
+  return Background;
 }();
 
-exports.default = Background;
 
-
-var background = new Background();
+new Background();
 
 /***/ }),
-/* 883 */
+/* 671 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var defineProperty = __webpack_require__(216);
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
+
+/***/ }),
+/* 672 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NightElf; });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(276);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(673);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(493);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_4__);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // import Meta from './Meta';
-
-// import Settings from './Settings';
+// import Meta from './Meta';
+ // import Settings from './Settings';
 
 
-var _Keychain = __webpack_require__(884);
-
-var _Keychain2 = _interopRequireDefault(_Keychain);
-
-var _aelfSdk = __webpack_require__(715);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var AESEncrypto = _aelfSdk.wallet.AESEncrypto,
-    AESDecrypto = _aelfSdk.wallet.AESDecrypto;
-// import Hasher from '../util/Hasher'
+var AESEncrypto = aelf_sdk__WEBPACK_IMPORTED_MODULE_4__["wallet"].AESEncrypto,
+    AESDecrypto = aelf_sdk__WEBPACK_IMPORTED_MODULE_4__["wallet"].AESDecrypto; // import Hasher from '../util/Hasher'
 // import IdGenerator from '../util/IdGenerator'
 
 /* eslint-disable fecs-camelcase */
 
-var NightElf = function () {
-    function NightElf() {
-        _classCallCheck(this, NightElf);
+var NightElf =
+/*#__PURE__*/
+function () {
+  function NightElf() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, NightElf);
 
-        // this.meta = Meta.placeholder();
-        this.keychain = _Keychain2.default.placeholder();
-        // this.settings = Settings.placeholder();
-        this.histories = [];
-        // this.hash = Hasher.insecureHash(IdGenerator.text(2048));
+    // this.meta = Meta.placeholder();
+    this.keychain = _Keychain__WEBPACK_IMPORTED_MODULE_3__["default"].placeholder(); // this.settings = Settings.placeholder();
+
+    this.histories = []; // this.hash = Hasher.insecureHash(IdGenerator.text(2048));
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(NightElf, [{
+    key: "clone",
+    value: function clone() {
+      return NightElf.fromJson(JSON.parse(JSON.stringify(this)));
     }
+  }, {
+    key: "isEncrypted",
+    value: function isEncrypted() {
+      return _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(this.keychain) !== 'object';
+    }
+    /***
+     * Encrypts the entire keychain
+     * @param seed - The seed to encrypt with
+     */
 
-    _createClass(NightElf, [{
-        key: 'clone',
-        value: function clone() {
-            return NightElf.fromJson(JSON.parse(JSON.stringify(this)));
-        }
-    }, {
-        key: 'isEncrypted',
-        value: function isEncrypted() {
-            return _typeof(this.keychain) !== 'object';
-        }
+  }, {
+    key: "decrypt",
+    value: function decrypt(seed) {
+      if (this.isEncrypted()) {
+        this.keychain = _Keychain__WEBPACK_IMPORTED_MODULE_3__["default"].fromJson(AESDecrypto(this.keychain, seed));
+      }
+    }
+    /***
+     * Decrypts the entire keychain
+     * @param seed - The seed to decrypt with
+     */
 
-        /***
-         * Encrypts the entire keychain
-         * @param seed - The seed to encrypt with
-         */
+  }, {
+    key: "encrypt",
+    value: function encrypt(seed) {
+      if (!this.isEncrypted()) this.keychain = AESEncrypto(this.keychain, seed);
+    }
+  }, {
+    key: "forBackup",
+    value: function forBackup() {
+      var clone = this.clone();
+      clone.histories = [];
+      return clone;
+    }
+  }], [{
+    key: "placeholder",
+    value: function placeholder() {
+      return new NightElf();
+    }
+  }, {
+    key: "fromJson",
+    value: function fromJson(json) {
+      var p = Object.assign(this.placeholder(), json); // if (json.hasOwnProperty('meta')) p.meta = Meta.fromJson(json.meta);
+      // if (json.hasOwnProperty('settings')) p.settings = Settings.fromJson(json.settings);
+      // if (json.hasOwnProperty('keychain')) {
+      //     p.keychain
+      //         = (typeof json.keychain === 'string')
+      //         ? json.keychain : Keychain.fromJson(json.keychain);
+      // }
 
-    }, {
-        key: 'decrypt',
-        value: function decrypt(seed) {
-            if (this.isEncrypted()) {
-                this.keychain = _Keychain2.default.fromJson(AESDecrypto(this.keychain, seed));
-            }
-        }
+      return p;
+    }
+  }]);
 
-        /***
-         * Decrypts the entire keychain
-         * @param seed - The seed to decrypt with
-         */
-
-    }, {
-        key: 'encrypt',
-        value: function encrypt(seed) {
-            if (!this.isEncrypted()) this.keychain = AESEncrypto(this.keychain, seed);
-        }
-    }, {
-        key: 'forBackup',
-        value: function forBackup() {
-            var clone = this.clone();
-            clone.histories = [];
-            return clone;
-        }
-    }], [{
-        key: 'placeholder',
-        value: function placeholder() {
-            return new NightElf();
-        }
-    }, {
-        key: 'fromJson',
-        value: function fromJson(json) {
-            var p = Object.assign(this.placeholder(), json);
-            // if (json.hasOwnProperty('meta')) p.meta = Meta.fromJson(json.meta);
-            // if (json.hasOwnProperty('settings')) p.settings = Settings.fromJson(json.settings);
-            // if (json.hasOwnProperty('keychain')) {
-            //     p.keychain
-            //         = (typeof json.keychain === 'string')
-            //         ? json.keychain : Keychain.fromJson(json.keychain);
-            // }
-
-            return p;
-        }
-    }]);
-
-    return NightElf;
+  return NightElf;
 }();
 
-exports.default = NightElf;
+
 
 /***/ }),
-/* 884 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 673 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Keychain; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(674);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @file Keychain.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @author huangzongzhe; Scatter;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+/**
+ * @file Keychain.js
+ * @author huangzongzhe; Scatter;
+ */
 // import Identity from './Identity';
 // import Permission from './Permission';
 // import KeyPair from './KeyPair';
 
 
-var _ObjectHelpers = __webpack_require__(885);
+var Keychain =
+/*#__PURE__*/
+function () {
+  function Keychain() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Keychain);
 
-var _ObjectHelpers2 = _interopRequireDefault(_ObjectHelpers);
+    // {name,address,mnemonic, privateKey}
+    this.keypairs = []; // this.identities = [];
+    // {
+    //     domain,
+    //     address,
+    //     contracts: [...contractIDList]
+    // }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+    this.permissions = [];
+  }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Keychain = function () {
-    function Keychain() {
-        _classCallCheck(this, Keychain);
-
-        // {name,address,mnemonic, privateKey}
-        this.keypairs = [];
-        // this.identities = [];
-        // {
-        //     domain,
-        //     address,
-        //     contracts: [...contractIDList]
-        // }
-        this.permissions = [];
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Keychain, [{
+    key: "clone",
+    value: function clone() {
+      return Keychain.fromJson(JSON.parse(JSON.stringify(this)));
     }
+  }, {
+    key: "removePermissionsByKeypair",
+    value: function removePermissionsByKeypair(keypair) {
+      this.permissions = this.permissions.filter(function (perm) {
+        return perm.keypair !== keypair.unique();
+      });
+    }
+  }, {
+    key: "removePermission",
+    value: function removePermission(permission) {
+      this.permissions = this.permissions.filter(function (perm) {
+        return perm.checksum !== permission.checksum;
+      });
+    }
+  }, {
+    key: "getPermission",
+    value: function getPermission(checksum) {
+      return this.permissions.find(function (permission) {
+        return permission.checksum === checksum;
+      });
+    }
+  }, {
+    key: "hasPermission",
+    value: function hasPermission(checksum) {
+      var fields = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
-    _createClass(Keychain, [{
-        key: 'clone',
-        value: function clone() {
-            return Keychain.fromJson(JSON.parse(JSON.stringify(this)));
-        }
-    }, {
-        key: 'removePermissionsByKeypair',
-        value: function removePermissionsByKeypair(keypair) {
-            this.permissions = this.permissions.filter(function (perm) {
-                return perm.keypair !== keypair.unique();
-            });
-        }
-    }, {
-        key: 'removePermission',
-        value: function removePermission(permission) {
-            this.permissions = this.permissions.filter(function (perm) {
-                return perm.checksum !== permission.checksum;
-            });
-        }
-    }, {
-        key: 'getPermission',
-        value: function getPermission(checksum) {
-            return this.permissions.find(function (permission) {
-                return permission.checksum === checksum;
-            });
-        }
-    }, {
-        key: 'hasPermission',
-        value: function hasPermission(checksum) {
-            var fields = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      var fieldKeys = function fieldKeys() {
+        return Array.isArray(fields) ? fields : Object.keys(fields);
+      };
 
-            var fieldKeys = function fieldKeys() {
-                return Array.isArray(fields) ? fields : Object.keys(fields);
-            };
+      var permission = this.getPermission(checksum);
+      console.log('checksum', checksum, permission);
+      if (!permission) return false; // If no fields are supplied but permission exists | valid.
 
-            var permission = this.getPermission(checksum);
-            console.log('checksum', checksum, permission);
-            if (!permission) return false;
+      if (fields === null || !fieldKeys().length) return true;
+      var fieldsCloneA = Object.assign({}, fields);
+      var fieldsCloneB = Object.assign({}, permission.fields);
+      permission.mutableFields.map(function (field) {
+        delete fieldsCloneA[field];
+        delete fieldsCloneB[field];
+      });
+      return _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__["default"].deepEqual(fieldsCloneA, fieldsCloneB);
+    } // findIdentity(publicKey) {
+    //     return this.identities.find(id => id.publicKey === publicKey);
+    // }
+    // findIdentityFromDomain(domain) {
+    //     const idFromPermissions = this.permissions.find(permission => permission.isIdentityOnly() && permission.domain === domain);
+    //     if (idFromPermissions) return this.findIdentity(idFromPermissions.identity);
+    //     else return null;
+    // }
+    // updateOrPushIdentity(identity) {
+    //     this.identities.find(id => id.publicKey === identity.publicKey) ?
+    //         this.identities = this.identities.map(id => id.publicKey === identity.publicKey ? identity : id) :
+    //         this.identities.unshift(identity);
+    // }
+    // findAccountsWithPublicKey(publicKey) {
+    //     return this.identities.map(id => id.getAccountFromPublicKey(publicKey)).filter(acc => !!acc);
+    // }
 
-            // If no fields are supplied but permission exists | valid.
-            if (fields === null || !fieldKeys().length) return true;
+  }, {
+    key: "forBackup",
+    value: function forBackup() {
+      var clone = this.clone();
+      clone.keypairs = [];
+      clone.permissions = [];
+      return clone;
+    }
+  }, {
+    key: "getKeyPair",
+    value: function getKeyPair(keypair) {
+      return this.getKeyPairByPublicKey(keypair.publicKey); // return this.keypairs.find(key => key.publicKey.toLowerCase() === keypair.publicKey.toLowerCase())
+    }
+  }, {
+    key: "getKeyPairByName",
+    value: function getKeyPairByName(name) {
+      return this.keypairs.find(function (key) {
+        return key.name.toLowerCase() === name.toLowerCase();
+      });
+    }
+  }, {
+    key: "getKeyPairByPublicKey",
+    value: function getKeyPairByPublicKey(publicKey) {
+      return this.keypairs.find(function (key) {
+        return key.publicKey.toLowerCase() === publicKey.toLowerCase();
+      });
+    }
+  }, {
+    key: "removeKeyPair",
+    value: function removeKeyPair(keypair) {
+      this.keypairs = this.keypairs.filter(function (key) {
+        return key.unique() !== keypair.unique();
+      });
+    }
+  }], [{
+    key: "placeholder",
+    value: function placeholder() {
+      return new Keychain();
+    }
+  }, {
+    key: "fromJson",
+    value: function fromJson(json) {
+      var p = Object.assign(this.placeholder(), json);
+      if (json.hasOwnProperty('keypairs')) p.keypairs = json.keypairs; //.map(x => KeyPair.fromJson(x));
+      // if (json.hasOwnProperty('identities')) p.identities = json.identities.map(x => Identity.fromJson(x));
 
-            var fieldsCloneA = Object.assign({}, fields);
-            var fieldsCloneB = Object.assign({}, permission.fields);
-            permission.mutableFields.map(function (field) {
-                delete fieldsCloneA[field];
-                delete fieldsCloneB[field];
-            });
+      if (json.hasOwnProperty('permissions')) p.permissions = json.permissions; //.map(x => Permission.fromJson(x));
 
-            return _ObjectHelpers2.default.deepEqual(fieldsCloneA, fieldsCloneB);
-        }
+      return p;
+    }
+  }]);
 
-        // findIdentity(publicKey) {
-        //     return this.identities.find(id => id.publicKey === publicKey);
-        // }
-        // findIdentityFromDomain(domain) {
-        //     const idFromPermissions = this.permissions.find(permission => permission.isIdentityOnly() && permission.domain === domain);
-        //     if (idFromPermissions) return this.findIdentity(idFromPermissions.identity);
-        //     else return null;
-        // }
-        // updateOrPushIdentity(identity) {
-        //     this.identities.find(id => id.publicKey === identity.publicKey) ?
-        //         this.identities = this.identities.map(id => id.publicKey === identity.publicKey ? identity : id) :
-        //         this.identities.unshift(identity);
-        // }
-
-        // findAccountsWithPublicKey(publicKey) {
-        //     return this.identities.map(id => id.getAccountFromPublicKey(publicKey)).filter(acc => !!acc);
-        // }
-
-    }, {
-        key: 'forBackup',
-        value: function forBackup() {
-            var clone = this.clone();
-            clone.keypairs = [];
-            clone.permissions = [];
-            return clone;
-        }
-    }, {
-        key: 'getKeyPair',
-        value: function getKeyPair(keypair) {
-            return this.getKeyPairByPublicKey(keypair.publicKey);
-            // return this.keypairs.find(key => key.publicKey.toLowerCase() === keypair.publicKey.toLowerCase())
-        }
-    }, {
-        key: 'getKeyPairByName',
-        value: function getKeyPairByName(name) {
-            return this.keypairs.find(function (key) {
-                return key.name.toLowerCase() === name.toLowerCase();
-            });
-        }
-    }, {
-        key: 'getKeyPairByPublicKey',
-        value: function getKeyPairByPublicKey(publicKey) {
-            return this.keypairs.find(function (key) {
-                return key.publicKey.toLowerCase() === publicKey.toLowerCase();
-            });
-        }
-    }, {
-        key: 'removeKeyPair',
-        value: function removeKeyPair(keypair) {
-            this.keypairs = this.keypairs.filter(function (key) {
-                return key.unique() !== keypair.unique();
-            });
-        }
-    }], [{
-        key: 'placeholder',
-        value: function placeholder() {
-            return new Keychain();
-        }
-    }, {
-        key: 'fromJson',
-        value: function fromJson(json) {
-            var p = Object.assign(this.placeholder(), json);
-            if (json.hasOwnProperty('keypairs')) p.keypairs = json.keypairs; //.map(x => KeyPair.fromJson(x));
-            // if (json.hasOwnProperty('identities')) p.identities = json.identities.map(x => Identity.fromJson(x));
-            if (json.hasOwnProperty('permissions')) p.permissions = json.permissions; //.map(x => Permission.fromJson(x));
-            return p;
-        }
-    }]);
-
-    return Keychain;
+  return Keychain;
 }();
 
-exports.default = Keychain;
+
 
 /***/ }),
-/* 885 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 674 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ObjectHelpers; });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(276);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /***
  * A set of helpers for Objects/Arrays
  */
-var ObjectHelpers = function () {
-    function ObjectHelpers() {
-        _classCallCheck(this, ObjectHelpers);
+var ObjectHelpers =
+/*#__PURE__*/
+function () {
+  function ObjectHelpers() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, ObjectHelpers);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(ObjectHelpers, null, [{
+    key: "groupBy",
+
+    /***
+     * Groups an array by key
+     * @param array
+     * @param key
+     * @returns {*}
+     */
+    value: function groupBy(array, key) {
+      return array.reduce(function (acc, item) {
+        (acc[item[key]] = acc[item[key]] || []).push(item);
+        return acc;
+      }, {});
     }
+    /***
+     * Makes a single level array distinct
+     * @param array
+     * @returns {*}
+     */
 
-    _createClass(ObjectHelpers, null, [{
-        key: 'groupBy',
+  }, {
+    key: "distinct",
+    value: function distinct(array) {
+      return array.reduce(function (a, b) {
+        return a.includes(b) ? a : a.concat(b);
+      }, []);
+    }
+    /***
+     * Makes an object array distinct ( uses deep checking )
+     * @param array
+     * @returns {*}
+     */
 
+  }, {
+    key: "distinctObjectArray",
+    value: function distinctObjectArray(array) {
+      var _this = this;
 
-        /***
-         * Groups an array by key
-         * @param array
-         * @param key
-         * @returns {*}
-         */
-        value: function groupBy(array, key) {
-            return array.reduce(function (acc, item) {
-                (acc[item[key]] = acc[item[key]] || []).push(item);
-                return acc;
-            }, {});
-        }
+      return array.reduce(function (a, b) {
+        return !!a.find(function (x) {
+          return _this.deepEqual(x, b);
+        }) ? a : a.concat(b);
+      }, []);
+    }
+    /***
+     * Checks deep equality for objects
+     * @param objA
+     * @param objB
+     * @returns {boolean}
+     */
 
-        /***
-         * Makes a single level array distinct
-         * @param array
-         * @returns {*}
-         */
+  }, {
+    key: "deepEqual",
+    value: function deepEqual(objA, objB) {
+      var _this2 = this;
 
-    }, {
-        key: 'distinct',
-        value: function distinct(array) {
-            return array.reduce(function (a, b) {
-                return a.includes(b) ? a : a.concat(b);
-            }, []);
-        }
+      var keys = Object.keys,
+          typeA = _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(objA),
+          typeB = _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(objB);
 
-        /***
-         * Makes an object array distinct ( uses deep checking )
-         * @param array
-         * @returns {*}
-         */
+      return objA && objB && typeA === 'object' && typeA === typeB ? keys(objA).length === keys(objB).length && keys(objA).every(function (key) {
+        return _this2.deepEqual(objA[key], objB[key]);
+      }) : objA === objB;
+    }
+    /***
+     * Flattens an array into a single dimension
+     * @param array
+     * @returns {*}
+     */
 
-    }, {
-        key: 'distinctObjectArray',
-        value: function distinctObjectArray(array) {
-            var _this = this;
+  }, {
+    key: "flatten",
+    value: function flatten(array) {
+      var _this3 = this;
 
-            return array.reduce(function (a, b) {
-                return !!a.find(function (x) {
-                    return _this.deepEqual(x, b);
-                }) ? a : a.concat(b);
-            }, []);
-        }
+      return array.reduce(function (a, b) {
+        return a.concat(Array.isArray(b) ? _this3.flatten(b) : b);
+      }, []);
+    }
+    /***
+     * Flattens an objects keys into a single dimension
+     * @param object
+     * @returns {*}
+     */
 
-        /***
-         * Checks deep equality for objects
-         * @param objA
-         * @param objB
-         * @returns {boolean}
-         */
+  }, {
+    key: "objectToFlatKeys",
+    value: function objectToFlatKeys(object) {
+      var _this4 = this;
 
-    }, {
-        key: 'deepEqual',
-        value: function deepEqual(objA, objB) {
-            var _this2 = this;
+      return this.flatten(Object.keys(object).map(function (key) {
+        if (object[key] !== null && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(object[key]) === 'object') return _this4.objectToFlatKeys(object[key]);else return key;
+      }));
+    }
+    /***
+     * Gets a field from an object by string dot notation, such as `location.country.code`
+     * @param object
+     * @param dotNotation
+     * @returns {*}
+     */
 
-            var keys = Object.keys,
-                typeA = typeof objA === 'undefined' ? 'undefined' : _typeof(objA),
-                typeB = typeof objB === 'undefined' ? 'undefined' : _typeof(objB);
-            return objA && objB && typeA === 'object' && typeA === typeB ? keys(objA).length === keys(objB).length && keys(objA).every(function (key) {
-                return _this2.deepEqual(objA[key], objB[key]);
-            }) : objA === objB;
-        }
+  }, {
+    key: "getFieldFromObjectByDotNotation",
+    value: function getFieldFromObjectByDotNotation(object, dotNotation) {
+      var props = dotNotation.split(".");
+      return props.reduce(function (obj, key) {
+        return obj[key];
+      }, object);
+    }
+  }]);
 
-        /***
-         * Flattens an array into a single dimension
-         * @param array
-         * @returns {*}
-         */
-
-    }, {
-        key: 'flatten',
-        value: function flatten(array) {
-            var _this3 = this;
-
-            return array.reduce(function (a, b) {
-                return a.concat(Array.isArray(b) ? _this3.flatten(b) : b);
-            }, []);
-        }
-
-        /***
-         * Flattens an objects keys into a single dimension
-         * @param object
-         * @returns {*}
-         */
-
-    }, {
-        key: 'objectToFlatKeys',
-        value: function objectToFlatKeys(object) {
-            var _this4 = this;
-
-            return this.flatten(Object.keys(object).map(function (key) {
-                if (object[key] !== null && _typeof(object[key]) === 'object') return _this4.objectToFlatKeys(object[key]);else return key;
-            }));
-        }
-
-        /***
-         * Gets a field from an object by string dot notation, such as `location.country.code`
-         * @param object
-         * @param dotNotation
-         * @returns {*}
-         */
-
-    }, {
-        key: 'getFieldFromObjectByDotNotation',
-        value: function getFieldFromObjectByDotNotation(object, dotNotation) {
-            var props = dotNotation.split(".");
-            return props.reduce(function (obj, key) {
-                return obj[key];
-            }, object);
-        }
-    }]);
-
-    return ObjectHelpers;
+  return ObjectHelpers;
 }();
 
-exports.default = ObjectHelpers;
+
 
 /***/ }),
-/* 886 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 675 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return errorHandler; });
+/**
+ * @file utils/errorHandler.js
+ * @author huangzongzhe
+ */
+
+/**
+ * 1xxxxx try catch
+ * 2xxxxx handle
+ * 3xxxxx
+ * 4xxxxx input error
+ * 5xxxxx rpc error
+ */
+var errorMap = {
+  200001: 'payload is false.',
+  200002: 'Please set permission at first.',
+  200003: 'Please set permission at first.',
+  200004: 'No Wallet Info.',
+  200005: 'Night Elf is locked!',
+  200006: 'Decrypto Failed. Please unlock your wallet.',
+  200007: 'No Night Elf in storage.'
+};
+function errorHandler(code, error) {
+  var errorMessage = errorMap[code];
+  var output = {
+    error: code,
+    errorMessage: ''
+  };
+
+  if (code === 0) {} else if (error && error.constructor !== String) {
+    output.errorMessage = {
+      name: error.name,
+      message: error.message,
+      stack: error.stack
+    };
+  } else if (errorMessage) {
+    output.errorMessage = {
+      name: 'errorMap',
+      message: error || errorMessage
+    };
+  } else {
+    output.errorMessage = {
+      name: 'customeError',
+      message: error
+    };
+  }
+
+  return output;
+}
+
+/***/ }),
+/* 676 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NotificationService; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(677);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(680);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _models_errors_Error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(681);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(668);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(471);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(470);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Error = __webpack_require__(887);
 
-var _Error2 = _interopRequireDefault(_Error);
 
-var _BrowserApis = __webpack_require__(880);
 
-var _InternalMessage = __webpack_require__(693);
-
-var _InternalMessage2 = _interopRequireDefault(_InternalMessage);
-
-var _InternalMessageTypes = __webpack_require__(692);
-
-var InternalMessageTypes = _interopRequireWildcard(_InternalMessageTypes);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var openWindow = null;
 
-var NotificationService = function () {
-    function NotificationService() {
-        _classCallCheck(this, NotificationService);
-    }
+var NotificationService =
+/*#__PURE__*/
+function () {
+  function NotificationService() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, NotificationService);
+  }
 
-    _createClass(NotificationService, null, [{
-        key: 'open',
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(NotificationService, null, [{
+    key: "open",
 
-
-        /***
-         * Opens a prompt window outside of the extension
-         * @param notification
-         */
-        // static async open(notification) {
-        value: async function open(notification) {
-            if (openWindow) {
-                // For now we're just going to close the window to get rid of the error
-                // that is caused by already open windows swallowing all further requests
-                openWindow.close();
-                openWindow = null;
-
-                // Alternatively we could focus the old window, but this would cause
-                // urgent 1-time messages to be lost, such as after dying in a game and
-                // uploading a high-score. That message will be lost.
-                // openWindow.focus();
-                // return false;
-
-                // A third option would be to add a queue, but this could cause
-                // virus-like behavior as apps overflow the queue causing the user
-                // to have to quit the browser to regain control.
-            }
-
-            var height = 600;
-            var width = 700;
-            var middleX = window.screen.availWidth / 2 - width / 2;
-            var middleY = window.screen.availHeight / 2 - height / 2;
-
-            var getPopup = async function getPopup() {
-                try {
-                    var route = notification.route || '';
-                    var url = _BrowserApis.apis.runtime.getURL('/prompt.html' + route);
-
-                    // Notifications get bound differently depending on browser
-                    // as Firefox does not support opening windows from background.
-                    if (typeof browser !== 'undefined') {
-                        var created = await _BrowserApis.apis.windows.create({
-                            url: url,
-                            height: height,
-                            width: width,
-                            type: 'popup'
-                        });
-
-                        window.notification = notification;
-                        return created;
-                    } else {
-                        var win = window.open(url, 'NightElf Prompt', 'width=' + width + ',height=' + height + ',resizable=0,top=' + middleY + ',left=' + middleX + ',titlebar=0');
-                        win.data = notification;
-                        openWindow = win;
-                        return win;
-                    }
-                } catch (e) {
-                    console.log('notification error', e);
-                    return null;
+    /***
+     * Opens a prompt window outside of the extension
+     * @param notification
+     */
+    // static async open(notification) {
+    value: function () {
+      var _open = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(notification) {
+        var height, width, middleX, middleY, getPopup, popup;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (openWindow) {
+                  // For now we're just going to close the window to get rid of the error
+                  // that is caused by already open windows swallowing all further requests
+                  openWindow.close();
+                  openWindow = null; // Alternatively we could focus the old window, but this would cause
+                  // urgent 1-time messages to be lost, such as after dying in a game and
+                  // uploading a high-score. That message will be lost.
+                  // openWindow.focus();
+                  // return false;
+                  // A third option would be to add a queue, but this could cause
+                  // virus-like behavior as apps overflow the queue causing the user
+                  // to have to quit the browser to regain control.
                 }
-            };
 
-            await _InternalMessage2.default.payload(InternalMessageTypes.SET_PROMPT, JSON.stringify(notification)).send();
+                height = 600;
+                width = 700;
+                middleX = window.screen.availWidth / 2 - width / 2;
+                middleY = window.screen.availHeight / 2 - height / 2;
 
-            var popup = await getPopup();
+                getPopup =
+                /*#__PURE__*/
+                function () {
+                  var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+                  /*#__PURE__*/
+                  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+                    var route, url, created, win;
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            _context.prev = 0;
+                            route = notification.route || '';
+                            url = _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__["apis"].runtime.getURL('/prompt.html' + route); // Notifications get bound differently depending on browser
+                            // as Firefox does not support opening windows from background.
 
-            // Handles the user closing the popup without taking any action
-            if (popup) {
-                popup.onbeforeunload = function () {
+                            if (!(typeof browser !== 'undefined')) {
+                              _context.next = 11;
+                              break;
+                            }
+
+                            _context.next = 6;
+                            return _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__["apis"].windows.create({
+                              url: url,
+                              height: height,
+                              width: width,
+                              type: 'popup'
+                            });
+
+                          case 6:
+                            created = _context.sent;
+                            window.notification = notification;
+                            return _context.abrupt("return", created);
+
+                          case 11:
+                            win = window.open(url, 'NightElf Prompt', "width=".concat(width, ",height=").concat(height, ",resizable=0,top=").concat(middleY, ",left=").concat(middleX, ",titlebar=0"));
+                            win.data = notification;
+                            openWindow = win;
+                            return _context.abrupt("return", win);
+
+                          case 15:
+                            _context.next = 21;
+                            break;
+
+                          case 17:
+                            _context.prev = 17;
+                            _context.t0 = _context["catch"](0);
+                            console.log('notification error', _context.t0);
+                            return _context.abrupt("return", null);
+
+                          case 21:
+                          case "end":
+                            return _context.stop();
+                        }
+                      }
+                    }, _callee, this, [[0, 17]]);
+                  }));
+
+                  return function getPopup() {
+                    return _ref.apply(this, arguments);
+                  };
+                }();
+
+                _context2.next = 8;
+                return _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_6__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_7__["SET_PROMPT"], JSON.stringify(notification)).send();
+
+              case 8:
+                _context2.next = 10;
+                return getPopup();
+
+              case 10:
+                popup = _context2.sent;
+
+                // Handles the user closing the popup without taking any action
+                if (popup) {
+                  popup.onbeforeunload = function () {
                     // notification.responder(Error.promptClosedWithoutAction());
-                    notification.sendResponse(_Error2.default.promptClosedWithoutAction());
-
-                    // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+                    notification.sendResponse(_models_errors_Error__WEBPACK_IMPORTED_MODULE_4__["default"].promptClosedWithoutAction()); // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
                     // Must return undefined to bypass form protection
+
                     openWindow = null;
                     return undefined;
-                };
+                  };
+                }
+
+              case 12:
+              case "end":
+                return _context2.stop();
             }
-        }
+          }
+        }, _callee2, this);
+      }));
 
-        /***
-         * Always use this method for closing notification popups.
-         * Otherwise you will double send responses and one will always be null.
-         */
+      function open(_x) {
+        return _open.apply(this, arguments);
+      }
 
-    }, {
-        key: 'close',
-        value: async function close() {
-            if (typeof browser !== 'undefined') {
-                var _ref = await _BrowserApis.apis.windows.getCurrent(),
-                    windowId = _ref.id;
+      return open;
+    }()
+    /***
+     * Always use this method for closing notification popups.
+     * Otherwise you will double send responses and one will always be null.
+     */
 
-                _BrowserApis.apis.windows.remove(windowId);
-            } else {
+  }, {
+    key: "close",
+    value: function () {
+      var _close = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var _ref2, windowId;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!(typeof browser !== 'undefined')) {
+                  _context3.next = 8;
+                  break;
+                }
+
+                _context3.next = 3;
+                return _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__["apis"].windows.getCurrent();
+
+              case 3:
+                _ref2 = _context3.sent;
+                windowId = _ref2.id;
+                _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__["apis"].windows.remove(windowId);
+                _context3.next = 10;
+                break;
+
+              case 8:
                 window.onbeforeunload = function () {};
-                window.close();
-            }
-        }
-    }]);
 
-    return NotificationService;
+                window.close();
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function close() {
+        return _close.apply(this, arguments);
+      }
+
+      return close;
+    }()
+  }]);
+
+  return NotificationService;
 }();
 
-exports.default = NotificationService;
+
 
 /***/ }),
-/* 887 */
+/* 677 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+module.exports = __webpack_require__(678);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.ErrorCodes = undefined;
+/***/ }),
+/* 678 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-var _ErrorTypes = __webpack_require__(888);
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
 
-var ErrorTypes = _interopRequireWildcard(_ErrorTypes);
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
 
-var ErrorCodes = exports.ErrorCodes = {
-    NO_SIGNATURE: 402,
-    FORBIDDEN: 403,
-    TIMED_OUT: 408,
-    LOCKED: 423,
-    UPGRADE_REQUIRED: 426,
-    TOO_MANY_REQUESTS: 429
-};
+module.exports = __webpack_require__(679);
 
-var Error = function () {
-    function Error(_type, _message) {
-        var _code = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ErrorCodes.LOCKED;
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
 
-        _classCallCheck(this, Error);
 
-        this.type = _type;
-        this.message = _message;
-        this.code = _code;
-        this.isError = true;
+/***/ }),
+/* 679 */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
     }
 
-    _createClass(Error, null, [{
-        key: "locked",
-        value: function locked() {
-            return new Error(ErrorTypes.LOCKED, "The user's NightElf is locked. They have been notified and should unlock before continuing.");
-        }
-    }, {
-        key: "promptClosedWithoutAction",
-        value: function promptClosedWithoutAction() {
-            return new Error(ErrorTypes.PROMPT_CLOSED, "The user closed the prompt without any action.", ErrorCodes.TIMED_OUT);
-        }
-    }, {
-        key: "maliciousEvent",
-        value: function maliciousEvent() {
-            return new Error(ErrorTypes.MALICIOUS, "Malicious event discarded.", ErrorCodes.FORBIDDEN);
-        }
-    }, {
-        key: "signatureError",
-        value: function signatureError(_type, _message) {
-            return new Error(_type, _message, ErrorCodes.NO_SIGNATURE);
-        }
-    }, {
-        key: "requiresUpgrade",
-        value: function requiresUpgrade() {
-            return new Error(ErrorTypes.UPGRADE_REQUIRED, "The required version is newer than the User's NightElf", ErrorCodes.UPGRADE_REQUIRED);
-        }
-    }, {
-        key: "identityMissing",
-        value: function identityMissing() {
-            return this.signatureError("identity_missing", "Identity no longer exists on the user's keychain");
-        }
-    }, {
-        key: "signatureAccountMissing",
-        value: function signatureAccountMissing() {
-            return this.signatureError("account_missing", "Missing required accounts, repull the identity");
-        }
-    }, {
-        key: "malformedRequiredFields",
-        value: function malformedRequiredFields() {
-            return this.signatureError("malformed_requirements", "The requiredFields you passed in were malformed");
-        }
-    }, {
-        key: "noNetwork",
-        value: function noNetwork() {
-            return this.signatureError("no_network", "You must bind a network first");
-        }
-    }, {
-        key: "usedKeyProvider",
-        value: function usedKeyProvider() {
-            return new Error(ErrorTypes.MALICIOUS, "Do not use a `keyProvider` with a NightElf. Use a `signProvider` and return only signatures to this object. A malicious person could retrieve your keys otherwise.", ErrorCodes.NO_SIGNATURE);
-        }
-    }]);
+    var previousPromise;
 
-    return Error;
-}();
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
 
-exports.default = Error;
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
+
 
 /***/ }),
-/* 888 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 680 */
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+module.exports = _asyncToGenerator;
+
+/***/ }),
+/* 681 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorCodes", function() { return ErrorCodes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Error; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ErrorTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(682);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var MALICIOUS = exports.MALICIOUS = 'malicious';
-var LOCKED = exports.LOCKED = 'locked';
-var PROMPT_CLOSED = exports.PROMPT_CLOSED = 'prompt_closed';
-var UPGRADE_REQUIRED = exports.UPGRADE_REQUIRED = 'upgrade_required';
+
+var ErrorCodes = {
+  NO_SIGNATURE: 402,
+  FORBIDDEN: 403,
+  TIMED_OUT: 408,
+  LOCKED: 423,
+  UPGRADE_REQUIRED: 426,
+  TOO_MANY_REQUESTS: 429
+};
+
+var Error =
+/*#__PURE__*/
+function () {
+  function Error(_type, _message) {
+    var _code = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ErrorCodes.LOCKED;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Error);
+
+    this.type = _type;
+    this.message = _message;
+    this.code = _code;
+    this.isError = true;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Error, null, [{
+    key: "locked",
+    value: function locked() {
+      return new Error(_ErrorTypes__WEBPACK_IMPORTED_MODULE_2__["LOCKED"], "The user's NightElf is locked. They have been notified and should unlock before continuing.");
+    }
+  }, {
+    key: "promptClosedWithoutAction",
+    value: function promptClosedWithoutAction() {
+      return new Error(_ErrorTypes__WEBPACK_IMPORTED_MODULE_2__["PROMPT_CLOSED"], "The user closed the prompt without any action.", ErrorCodes.TIMED_OUT);
+    }
+  }, {
+    key: "maliciousEvent",
+    value: function maliciousEvent() {
+      return new Error(_ErrorTypes__WEBPACK_IMPORTED_MODULE_2__["MALICIOUS"], "Malicious event discarded.", ErrorCodes.FORBIDDEN);
+    }
+  }, {
+    key: "signatureError",
+    value: function signatureError(_type, _message) {
+      return new Error(_type, _message, ErrorCodes.NO_SIGNATURE);
+    }
+  }, {
+    key: "requiresUpgrade",
+    value: function requiresUpgrade() {
+      return new Error(_ErrorTypes__WEBPACK_IMPORTED_MODULE_2__["UPGRADE_REQUIRED"], "The required version is newer than the User's NightElf", ErrorCodes.UPGRADE_REQUIRED);
+    }
+  }, {
+    key: "identityMissing",
+    value: function identityMissing() {
+      return this.signatureError("identity_missing", "Identity no longer exists on the user's keychain");
+    }
+  }, {
+    key: "signatureAccountMissing",
+    value: function signatureAccountMissing() {
+      return this.signatureError("account_missing", "Missing required accounts, repull the identity");
+    }
+  }, {
+    key: "malformedRequiredFields",
+    value: function malformedRequiredFields() {
+      return this.signatureError("malformed_requirements", "The requiredFields you passed in were malformed");
+    }
+  }, {
+    key: "noNetwork",
+    value: function noNetwork() {
+      return this.signatureError("no_network", "You must bind a network first");
+    }
+  }, {
+    key: "usedKeyProvider",
+    value: function usedKeyProvider() {
+      return new Error(_ErrorTypes__WEBPACK_IMPORTED_MODULE_2__["MALICIOUS"], "Do not use a `keyProvider` with a NightElf. Use a `signProvider` and return only signatures to this object. A malicious person could retrieve your keys otherwise.", ErrorCodes.NO_SIGNATURE);
+    }
+  }]);
+
+  return Error;
+}();
+
+
+
+/***/ }),
+/* 682 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MALICIOUS", function() { return MALICIOUS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCKED", function() { return LOCKED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROMPT_CLOSED", function() { return PROMPT_CLOSED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPGRADE_REQUIRED", function() { return UPGRADE_REQUIRED; });
+var MALICIOUS = 'malicious';
+var LOCKED = 'locked';
+var PROMPT_CLOSED = 'prompt_closed';
+var UPGRADE_REQUIRED = 'upgrade_required';
 
 /***/ })
 /******/ ]));

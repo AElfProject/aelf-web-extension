@@ -60,7 +60,22 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['es2015', 'react']
+                    presets: [
+                        '@babel/preset-env',
+                        '@babel/react'
+                    ],
+                    plugins: [
+                        // If missing this one, will throw regeneratorRuntime is not defined
+                        // https://babeljs.io/docs/en/babel-plugin-transform-runtime
+                        ['@babel/plugin-transform-runtime'],
+                        [
+                            'import',
+                            {
+                                libraryName: 'antd-mobile',
+                                style: 'css'
+                            }
+                        ] // `style: true` 会加载 less 文件\
+                    ]
                 }
             }
         }, {
