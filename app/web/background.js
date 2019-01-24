@@ -195,9 +195,9 @@ export default class Background {
             const aelf = new Aelf(new Aelf.providers.HttpProvider(chainInfo.payload.httpProvider));
             aelf.chain.connectChain((error, result) => {
                 // console.log(error, result);
-                if (error || !result || !result.result) {
+                if (error || !result || !result.result || result.error) {
                     sendResponse({
-                        ...errorHandler(500001, error),
+                        ...errorHandler(500001, error || result.error),
                         result
                     });
                     return;
@@ -255,9 +255,9 @@ export default class Background {
                 } = callInfo.payload;
                 try {
                     dappAelfMeta.aelf.chain[method](...params, (error, result) => {
-                        if (error) {
+                        if (error || result.error) {
                             sendResponse({
-                                ...errorHandler(500001, error)
+                                ...errorHandler(500001, error || result.error)
                             });
                             return;
                         }
@@ -456,9 +456,9 @@ export default class Background {
             }, () => {
                 try {
                     extendContract.contractMethods[method](...params, (error, result) => {
-                        if (error) {
+                        if (error || result.error) {
                             sendResponse({
-                                ...errorHandler(500001, error)
+                                ...errorHandler(500001, error || result.error)
                             });
                         }
                         else {

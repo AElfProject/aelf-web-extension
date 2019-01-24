@@ -47411,8 +47411,8 @@ function () {
         var aelf = new aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a(new aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a.providers.HttpProvider(chainInfo.payload.httpProvider));
         aelf.chain.connectChain(function (error, result) {
           // console.log(error, result);
-          if (error || !result || !result.result) {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error), {
+          if (error || !result || !result.result || result.error) {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error || result.error), {
               result: result
             }));
             return;
@@ -47476,8 +47476,8 @@ function () {
             var _dappAelfMeta$aelf$ch;
 
             (_dappAelfMeta$aelf$ch = dappAelfMeta.aelf.chain)[method].apply(_dappAelfMeta$aelf$ch, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(params).concat([function (error, result) {
-              if (error) {
-                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error)));
+              if (error || result.error) {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error || result.error)));
                 return;
               }
 
@@ -47664,8 +47664,8 @@ function () {
             var _extendContract$contr;
 
             (_extendContract$contr = extendContract.contractMethods)[method].apply(_extendContract$contr, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(params).concat([function (error, result) {
-              if (error) {
-                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error)));
+              if (error || result.error) {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error || result.error)));
               } else {
                 sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0, error), {
                   result: result

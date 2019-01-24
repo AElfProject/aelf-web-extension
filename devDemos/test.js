@@ -307,4 +307,34 @@ document.addEventListener('NightElf', result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
         });
     };
+
+    const chainMissingParam = document.getElementById('error-chain-missing-param');
+    chainMissingParam.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CALL_AELF_CHAIN',
+            chainId: 'AELF',
+            payload: {
+                method: 'getMerklePath',
+                params: []
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    const errorGetTxResult = document.getElementById('error-get-tx-result');
+    errorGetTxResult.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'CALL_AELF_CHAIN',
+            chainId: 'AELF',
+            payload: {
+                method: 'getTxResult',
+                params: ['']
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
 });
