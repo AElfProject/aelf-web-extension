@@ -539,6 +539,8 @@ export default class Background {
     }
 
     static clearWallet(sendResponse, _seed) {
+        seed = _seed;
+        nightElf = null;
         this.checkSeed({sendResponse}, () => {
             apis.storage.local.clear(result => {
                 Background.lockWallet(sendResponse);
@@ -786,35 +788,36 @@ export default class Background {
             return;
         }
         if (typeof sendResponse === 'function') {
-            try {
-                apis.storage.local.get(['nightElfEncrypto'], result => {
-                    if (result.nightElfEncrypto) {
-                        const nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
-                        if (nightElfString) {
-                            const nightElfObject = JSON.parse(nightElfString);
-                            callback({
-                                ...errorHandler(0),
-                                nightElfObject
-                            });
-                        }
-                        else {
-                            sendResponse({
-                                ...errorHandler(200006, decryptoFailMsg)
-                            });
-                        }
+            apis.storage.local.get(['nightElfEncrypto'], result => {
+                if (result.nightElfEncrypto) {
+                    let nightElfString;
+                    try {
+                        nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
+                    }
+                    catch (e) {
+                        sendResponse({
+                            ...errorHandler(10000, 'Get Night Elf failed!')
+                        });
+                    }
+                    if (nightElfString) {
+                        const nightElfObject = JSON.parse(nightElfString);
+                        callback({
+                            ...errorHandler(0),
+                            nightElfObject
+                        });
                     }
                     else {
                         sendResponse({
-                            ...errorHandler(200007, noStorageMsg)
+                            ...errorHandler(200006, decryptoFailMsg)
                         });
                     }
-                });
-            }
-            catch (e) {
-                sendResponse({
-                    ...errorHandler(10000, 'Get Night Elf failed!')
-                });
-            }
+                }
+                else {
+                    sendResponse({
+                        ...errorHandler(200007, noStorageMsg)
+                    });
+                }
+            });
         }
         else {
             sendResponse({

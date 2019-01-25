@@ -41441,13 +41441,32 @@ function (_Component) {
   }, {
     key: "clearWallet",
     value: function clearWallet() {
+      var _this3 = this;
+
       var seed = getSeed(this.state.password);
 
       if (seed) {
         _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["CLEAR_WALLET"], seed).send().then(function (result) {
           console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["CLEAR_WALLET"], seed, result);
+
+          if (result.error) {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Clear failed!');
+
+            _this3.clearFailed = true;
+            return;
+          }
+
           location.href = '/popup.html';
         });
+      }
+    }
+  }, {
+    key: "backClick",
+    value: function backClick() {
+      if (this.clearFailed) {
+        this.checkWallet();
+      } else {
+        react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/home');
       }
     }
   }, {
@@ -41466,11 +41485,11 @@ function (_Component) {
   }, {
     key: "renderCreate",
     value: function renderCreate() {
-      var _this3 = this;
+      var _this4 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Password_Password__WEBPACK_IMPORTED_MODULE_17__["default"], {
         setPassword: function setPassword(password) {
-          return _this3.setPassword(password);
+          return _this4.setPassword(password);
         }
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: _Lock_scss__WEBPACK_IMPORTED_MODULE_14___default.a.bottom
@@ -41480,14 +41499,14 @@ function (_Component) {
         text: "Create Wallet",
         aelficon: "add_purple20",
         onClick: function onClick() {
-          return _this3.createWallet();
+          return _this4.createWallet();
         }
       })));
     }
   }, {
     key: "renderClear",
     value: function renderClear() {
-      var _this4 = this;
+      var _this5 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "aelf-input-container aelf-dash"
@@ -41500,7 +41519,7 @@ function (_Component) {
         type: "password",
         placeholder: "",
         onChange: function onChange(password) {
-          return _this4.setPassword(password);
+          return _this5.setPassword(password);
         },
         moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_16__["moneyKeyboardWrapProps"]
       }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -41511,14 +41530,14 @@ function (_Component) {
         text: "Clear Wallet",
         aelficon: "add_purple20",
         onClick: function onClick() {
-          return _this4.clearWallet();
+          return _this5.clearWallet();
         }
       })));
     }
   }, {
     key: "renderUnlock",
     value: function renderUnlock() {
-      var _this5 = this;
+      var _this6 = this;
 
       var _ref2 = this.state.walletStatus || {},
           nightElfEncrypto = _ref2.nightElfEncrypto,
@@ -41536,7 +41555,7 @@ function (_Component) {
           type: "password",
           placeholder: "",
           onChange: function onChange(password) {
-            return _this5.setPassword(password);
+            return _this6.setPassword(password);
           },
           moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_16__["moneyKeyboardWrapProps"]
         }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -41547,7 +41566,7 @@ function (_Component) {
           text: "Unlock Wallet",
           aelficon: "add_purple20",
           onClick: function onClick() {
-            return _this5.unlockWallet();
+            return _this6.unlockWallet();
           }
         })));
       }
@@ -41557,21 +41576,23 @@ function (_Component) {
   }, {
     key: "renderTestButtons",
     value: function renderTestButtons() {
-      var _this6 = this;
+      var _this7 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.checkWallet();
+          return _this7.checkWallet();
         }
       }, "checkWallet"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this6.updateWallet();
+          return _this7.updateWallet();
         }
       }, "updateWallet"));
     }
   }, {
     key: "render",
     value: function render() {
+      var _this8 = this;
+
       var titleText = 'Welcome';
       var buttonHTML = '';
       var navHTML = '';
@@ -41596,7 +41617,7 @@ function (_Component) {
               titleText = 'Delete';
               navHTML = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
                 onLeftClick: function onLeftClick() {
-                  return react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/home');
+                  return _this8.backClick();
                 }
               });
             }

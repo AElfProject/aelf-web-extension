@@ -47881,6 +47881,8 @@ function () {
   }, {
     key: "clearWallet",
     value: function clearWallet(sendResponse, _seed) {
+      seed = _seed;
+      nightElf = null;
       this.checkSeed({
         sendResponse: sendResponse
       }, function () {
@@ -48135,26 +48137,28 @@ function () {
       }
 
       if (typeof sendResponse === 'function') {
-        try {
-          _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.get(['nightElfEncrypto'], function (result) {
-            if (result.nightElfEncrypto) {
-              var nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
+        _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.get(['nightElfEncrypto'], function (result) {
+          if (result.nightElfEncrypto) {
+            var nightElfString;
 
-              if (nightElfString) {
-                var nightElfObject = JSON.parse(nightElfString);
-                callback(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
-                  nightElfObject: nightElfObject
-                }));
-              } else {
-                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200006, decryptoFailMsg)));
-              }
-            } else {
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200007, noStorageMsg)));
+            try {
+              nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
+            } catch (e) {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(10000, 'Get Night Elf failed!')));
             }
-          });
-        } catch (e) {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(10000, 'Get Night Elf failed!')));
-        }
+
+            if (nightElfString) {
+              var nightElfObject = JSON.parse(nightElfString);
+              callback(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                nightElfObject: nightElfObject
+              }));
+            } else {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200006, decryptoFailMsg)));
+            }
+          } else {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200007, noStorageMsg)));
+          }
+        });
       } else {
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Missing param sendResponse(function).')));
       }

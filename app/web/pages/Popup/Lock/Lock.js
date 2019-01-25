@@ -133,8 +133,22 @@ export default class Lock extends Component {
         if (seed) {
             InternalMessage.payload(InternalMessageTypes.CLEAR_WALLET, seed).send().then(result => {
                 console.log(InternalMessageTypes.CLEAR_WALLET, seed, result);
+                if (result.error) {
+                    Toast.fail('Clear failed!');
+                    this.clearFailed = true;
+                    return;
+                }
                 location.href = '/popup.html';
             });
+        }
+    }
+
+    backClick() {
+        if (this.clearFailed) {
+            this.checkWallet();
+        }
+        else {
+            hashHistory.push('/home');
         }
     }
 
@@ -262,7 +276,7 @@ export default class Lock extends Component {
                     buttonHTML = this.renderClear();
                     titleText = 'Delete';
                     navHTML = <NavNormal
-                            onLeftClick={() => hashHistory.push('/home')}
+                            onLeftClick={() => this.backClick()}
                         ></NavNormal>;
                 }
             }
