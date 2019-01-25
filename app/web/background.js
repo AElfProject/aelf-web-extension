@@ -379,7 +379,7 @@ export default class Background {
 
             const wallet = Aelf.wallet.getWalletByPrivateKey(keypair.privateKey);
             const contractMethods = dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet);
-            const contract = {
+            const contractNew = {
                 address,
                 contractName,
                 contractAddress,
@@ -394,10 +394,10 @@ export default class Background {
                 }
             });
             if (extendContractIndex > -1) {
-                dappAelfMeta.contracts[extendContractIndex] = contract;
+                dappAelfMeta.contracts[extendContractIndex] = contractNew;
             }
             else {
-                dappAelfMeta.contracts.push(contract);
+                dappAelfMeta.contracts.push(contractNew);
             }
 
             aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
@@ -413,7 +413,12 @@ export default class Background {
     static callAelfContract(sendResponse, contractInfo) {
         this.checkSeed({sendResponse}, () => {
             const {payload, chainId, hostname} = contractInfo;
-            const {contractName, method, params} = payload;
+            const {
+                contractName,
+                method,
+                params,
+                contractAddress
+            } = payload;
             const dappAelfMeta = aelfMeta.find(item => {
                 // const checkDomain = hostname.includes(item.hostname);
                 const checkDomain = hostname === item.hostname;
@@ -428,11 +433,11 @@ export default class Background {
             }
 
             const extendContract = dappAelfMeta.contracts.find(item => {
-                return contractName === item.contractName;
+                return contractAddress === item.contractAddress;
             });
             if (!extendContract) {
                 sendResponse({
-                    ...errorHandler(400001, `Please init contract ${contractName}.`)
+                    ...errorHandler(400001, `Please init contract ${contractName}: ${contractAddress}.`)
                 });
                 return;
             }

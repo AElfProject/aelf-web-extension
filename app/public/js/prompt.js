@@ -64629,27 +64629,29 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Permission; });
-/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(222);
-/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(233);
-/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(253);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(254);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(275);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(278);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(279);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(100);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(668);
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(113);
-/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(470);
-/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(471);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(174);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(671);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(222);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(233);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(275);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(279);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(100);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(668);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(675);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(470);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(471);
+
 
 
 
@@ -64665,29 +64667,23 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+ // import {hashHistory} from 'react-router';
 
 
-
-
+ // import {FormattedMessage} from 'react-intl';
 
 var Permission =
 /*#__PURE__*/
 function (_Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default()(Permission, _Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(Permission, _Component);
 
-  // lockWallet() {
-  //     InternalMessage.payload(InternalMessageTypes.LOCK_WALLET).send().then(result => {
-  //         console.log(InternalMessageTypes.LOCK_WALLET, result);
-  //         hashHistory.push('/');
-  //     });
-  // }
   function Permission() {
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Permission);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Permission);
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Permission).call(this));
-    var data = window.data || _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].extension.getBackgroundPage().notification || null;
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Permission).call(this));
+    var data = window.data || _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__["apis"].extension.getBackgroundPage().notification || null;
     var message = data.message;
     var appName = message.appName,
         hostname = message.hostname,
@@ -64701,31 +64697,30 @@ function (_Component) {
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Permission, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Permission, [{
     key: "setPermission",
     value: function setPermission() {
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_11__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_10__["SET_PERMISSION"], this.permission).send().then(function (result) {
-        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_10__["SET_PERMISSION"], result);
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_12__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["SET_PERMISSION"], this.permission).send().then(function (result) {
+        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["SET_PERMISSION"], result);
 
         if (result.error === 0) {
-          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_1___default.a.success('Bind Permisson Success');
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.success('Bind Permisson Success, after 3s close the window.');
 
-          window.data.sendResponse({
-            error: 0,
+          window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(0), {
             message: 'Bind Permisson Success'
-          });
+          }));
+          setTimeout(function () {
+            window.close();
+          }, 3000);
         } else {
-          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_1___default.a.fail(result.message, 3, function () {}, false);
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.fail(result.message, 3, function () {}, false);
         }
       });
     }
   }, {
     key: "refuse",
     value: function refuse() {
-      window.data.sendResponse({
-        error: 400001,
-        message: 'Refuse'
-      });
+      window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(400001, 'Refuse')));
       window.close();
     }
   }, {
@@ -64735,9 +64730,9 @@ function (_Component) {
           contractAddress = permission.contractAddress,
           contractName = permission.contractName,
           description = permission.description;
-      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         key: contractAddress + chainID
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "Chain ID: ", chainID), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "Contract Address: ", contractAddress), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "Contract Name: ", contractName), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "Description: ", description), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "--------"));
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Chain ID: ", chainID), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Contract Address: ", contractAddress), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Contract Name: ", contractName), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Description: ", description), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "--------"));
     }
   }, {
     key: "render",
@@ -64748,20 +64743,20 @@ function (_Component) {
       var contractsHTML = permission.contracts.map(function (item) {
         return _this2.renderPermissions(item);
       });
-      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", null, "Hello Permission Prompt!"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "APP NAME: ", permission.appName), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "DOMAIN: ", permission.domain), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "ADDRESS: ", permission.address), contractsHTML, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", null, "Hello Permission Prompt!"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "APP NAME: ", permission.appName), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "DOMAIN: ", permission.domain), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "ADDRESS: ", permission.address), contractsHTML, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.setPermission();
         }
-      }, "OK"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
+      }, "OK"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.refuse();
         }
-      }, "REFUSE"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, "Raw Data: "), JSON.stringify(permission));
+      }, "REFUSE"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Raw Data: "), JSON.stringify(permission));
     }
   }]);
 
   return Permission;
-}(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
+}(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
 
 
 
@@ -64869,6 +64864,102 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
 
 
+
+/***/ }),
+/* 670 */,
+/* 671 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var defineProperty = __webpack_require__(216);
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
+
+/***/ }),
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return errorHandler; });
+/**
+ * @file utils/errorHandler.js
+ * @author huangzongzhe
+ */
+
+/**
+ * 1xxxxx try catch
+ * 2xxxxx handle
+ * 3xxxxx
+ * 4xxxxx input error
+ * 5xxxxx rpc error
+ */
+// About Error Code. 冗余的设计。
+// https://www.zhihu.com/question/24091286
+// https://open.taobao.com/doc.htm?docId=114&docType=1
+// 统一格式：A-BB-CCC
+// A: 错误级别，如1代表系统级错误，2代表服务级错误；
+// // B: 项目或模块名称，一般公司不会超过99个项目；
+// // C: 具体错误编号，自增即可，一个项目999种错误应该够用；
+// B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
+// C 0，no Error
+var errorMap = {
+  200001: 'payload is false.',
+  200002: 'Please set permission at first.',
+  200003: 'Please set permission at first.',
+  200004: 'No Wallet Info.',
+  200005: 'Night Elf is locked!',
+  200006: 'Decrypto Failed. Please unlock your wallet.',
+  200007: 'No Night Elf in storage.'
+};
+function errorHandler(code, error) {
+  var errorMessage = errorMap[code];
+  var output = {
+    error: code,
+    errorMessage: ''
+  };
+
+  if (code === 0) {} else if (error && error.constructor !== String) {
+    output.errorMessage = {
+      name: error.name,
+      message: error.message,
+      stack: error.stack
+    };
+  } else if (errorMessage) {
+    output.errorMessage = {
+      name: 'errorMap',
+      message: error || errorMessage
+    };
+  } else {
+    output.errorMessage = {
+      name: 'customeError',
+      message: error
+    };
+  }
+
+  return output;
+}
 
 /***/ })
 /******/ ]);

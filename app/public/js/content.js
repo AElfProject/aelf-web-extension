@@ -216,7 +216,27 @@ module.exports = g;
 /* 213 */,
 /* 214 */,
 /* 215 */,
-/* 216 */,
+/* 216 */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
 /* 217 */,
 /* 218 */,
 /* 219 */,
@@ -23698,11 +23718,101 @@ var apis = new ApiGenerator();
 /***/ }),
 /* 669 */,
 /* 670 */,
-/* 671 */,
+/* 671 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var defineProperty = __webpack_require__(216);
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
+
+/***/ }),
 /* 672 */,
 /* 673 */,
 /* 674 */,
-/* 675 */,
+/* 675 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return errorHandler; });
+/**
+ * @file utils/errorHandler.js
+ * @author huangzongzhe
+ */
+
+/**
+ * 1xxxxx try catch
+ * 2xxxxx handle
+ * 3xxxxx
+ * 4xxxxx input error
+ * 5xxxxx rpc error
+ */
+// About Error Code. 冗余的设计。
+// https://www.zhihu.com/question/24091286
+// https://open.taobao.com/doc.htm?docId=114&docType=1
+// 统一格式：A-BB-CCC
+// A: 错误级别，如1代表系统级错误，2代表服务级错误；
+// // B: 项目或模块名称，一般公司不会超过99个项目；
+// // C: 具体错误编号，自增即可，一个项目999种错误应该够用；
+// B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
+// C 0，no Error
+var errorMap = {
+  200001: 'payload is false.',
+  200002: 'Please set permission at first.',
+  200003: 'Please set permission at first.',
+  200004: 'No Wallet Info.',
+  200005: 'Night Elf is locked!',
+  200006: 'Decrypto Failed. Please unlock your wallet.',
+  200007: 'No Night Elf in storage.'
+};
+function errorHandler(code, error) {
+  var errorMessage = errorMap[code];
+  var output = {
+    error: code,
+    errorMessage: ''
+  };
+
+  if (code === 0) {} else if (error && error.constructor !== String) {
+    output.errorMessage = {
+      name: error.name,
+      message: error.message,
+      stack: error.stack
+    };
+  } else if (errorMessage) {
+    output.errorMessage = {
+      name: 'errorMap',
+      message: error || errorMessage
+    };
+  } else {
+    output.errorMessage = {
+      name: 'customeError',
+      message: error
+    };
+  }
+
+  return output;
+}
+
+/***/ }),
 /* 676 */,
 /* 677 */,
 /* 678 */,
@@ -23716,17 +23826,21 @@ var apis = new ApiGenerator();
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(252);
-/* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(685);
-/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(686);
-/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(470);
-/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(471);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(668);
-/* harmony import */ var _utils_getHostname__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(687);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(671);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(252);
+/* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(685);
+/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(686);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(470);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(471);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(668);
+/* harmony import */ var _utils_getHostname__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(687);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(675);
+
 
 
 // import {
@@ -23743,6 +23857,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // import Error from './models/errors/Error'
+
 
 
  // import Hasher from './util/Hasher'
@@ -23765,20 +23880,20 @@ var Content =
 /*#__PURE__*/
 function () {
   function Content() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Content);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, Content);
 
     this.setupEncryptedStream();
     this.injectInteractionScript();
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Content, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(Content, [{
     key: "setupEncryptedStream",
     value: function setupEncryptedStream() {
       var _this = this;
 
       // Setting up a new encrypted stream for
       // interaction between the extension and the application
-      stream = new _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__["default"](_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["CONTENT_NIGHTELF"], _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_2__["default"].text(256));
+      stream = new _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_4__["default"](_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__["CONTENT_NIGHTELF"], _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_3__["default"].text(256));
       stream.addEventListener(function (result) {
         // console.log('setupEncryptedStream: ', result);
         _this.contentListener(result); // this.respond(result);
@@ -23789,7 +23904,7 @@ function () {
     key: "respond",
     value: function respond(payload) {
       // if (!isReady) return;
-      stream.send(payload, _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["PAGE_NIGHTELF"]);
+      stream.send(payload, _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__["PAGE_NIGHTELF"]);
     }
   }, {
     key: "getVersion",
@@ -23807,7 +23922,7 @@ function () {
     key: "injectInteractionScript",
     value: function injectInteractionScript() {
       var script = document.createElement('script');
-      script.src = _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_7__["apis"].extension.getURL(INJECTION_SCRIPT_FILENAME);
+      script.src = _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].extension.getURL(INJECTION_SCRIPT_FILENAME);
       (document.head || document.documentElement).appendChild(script);
 
       script.onload = function () {
@@ -23819,7 +23934,7 @@ function () {
     key: "contentListener",
     value: function contentListener(input) {
       var message = Object.assign({}, input, {
-        hostname: Object(_utils_getHostname__WEBPACK_IMPORTED_MODULE_8__["default"])()
+        hostname: Object(_utils_getHostname__WEBPACK_IMPORTED_MODULE_9__["default"])()
       }); // console.log('contentListener: ', message, location.host || location.hostname);
       // TODO: params check or use TS?
       // sid, method, appName, hostname,
@@ -23829,22 +23944,20 @@ function () {
       console.log('message: ', message);
 
       if (method === 'CHECK_CONTENT') {
-        this.respond({
-          sid: sid,
-          error: 0,
+        this.respond(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({
+          sid: sid
+        }, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(0, 'Refuse'), {
           message: 'NightElf is ready.'
-        });
+        }));
         return;
       }
 
       var methodWhiteList = ['CONNECT_AELF_CHAIN', 'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT', 'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS'];
 
       if (!methodWhiteList.includes(method)) {
-        this.respond({
-          sid: sid,
-          error: 200001,
-          message: "".concat(message.method, " is illegal method. ").concat(methodWhiteList.join(', '), " are legal.")
-        });
+        this.respond(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({
+          sid: sid
+        }, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(400001, "".concat(message.method, " is illegal method. ").concat(methodWhiteList.join(', '), " are legal."))));
         return;
       }
 
@@ -23855,10 +23968,10 @@ function () {
     value: function internalCommunicate(method, message) {
       var _this2 = this;
 
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_6__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_5__[method], message).send().then(function (result) {
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__[method], message).send().then(function (result) {
         result.sid = message.sid; // console.log(InternalMessageTypes[method], result);
 
-        _this2.respond(result);
+        _this2.respond(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(0), result));
       });
     }
   }]);

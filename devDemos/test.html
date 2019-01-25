@@ -8,6 +8,15 @@
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="main.js"></script> -->
 </head>
+<style>
+    .sub-title {
+        background: #2d0379;
+        color: #FFF;
+        height: 30px;
+        line-height: 30px;
+        text-indent: 8px;
+    }
+</style>
 <body>
     <h1>Hello Test.html</h1>
 
@@ -20,6 +29,8 @@
     <br>
     <button type="button" id="get-block-info">callAelfChain: getBlockInfo</button>
     <br>
+    <button type="button" id="get-contract-abi">callAelfChain: getContractAbi</button>
+    <br>
     <button type="button" id="send-transation">sendTransation: send-transation</button>
     <br>
     <button type="button" id="open-prompt">OPEN_PROMPT: bind permissions</button>
@@ -28,6 +39,9 @@
     <br>
     <button type="button" id="call-aelf-contract">CALL_AELF_CONTRACT</button>
     <br>
+    <button type="button" id="get-address">GET_ADDRESS</button>
+    <br>
+    <div class="sub-title">check permission</div>
     <button type="button" id="check-permission-address">CHECK_PERMISSION by address</button>
     <br>
     <button type="button" id="check-permission-contract">CHECK_PERMISSION by contract</button>
@@ -36,23 +50,27 @@
         CHECK_PERMISSION by hostname || defaut way
     </button>
     <br>
-    <button type="button" id="get-address">GET_ADDRESS</button>
-    <br>
 
+    <div class="sub-title">error demos</div>
     <button type="button" id="error-illegal-method">error: illegal method</button>
     <br>
-
     <button type="button" id="get-block-info-fail">callAelfChain: getBlockInfo - missing param</button>
     <br>
-
     <button type="button" id="error-token-missing-param">error: token BalanceO missing param</button>
     <br>
-
     <button type="button" id="error-chain-missing-param">error: call chain missing param</button>
     <br>
-
     <button type="button" id="error-get-tx-result">error: get-tx-result ['']</button>
     <br>
+
+    <div class="sub-title">init & call different contract</div>
+    <button type="button" id="bind-permission-01">permission</button>
+    <br>
+    <button type="button" id="init-aelf-contract-01">init01</button>
+    <button type="button" id="call-aelf-contract-01">call01</button>
+    <br>
+    <button type="button" id="init-aelf-contract-02">init02</button>
+    <button type="button" id="call-aelf-contract-02">call02</button>
 
     <script src="./test.js"></script>
 </body>

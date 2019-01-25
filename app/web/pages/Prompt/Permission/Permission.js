@@ -10,22 +10,16 @@ import React, {
 import {Toast} from 'antd-mobile';
 
 import {apis} from '../../../utils/BrowserApis';
-import {hashHistory} from 'react-router';
+import errorHandler from '../../../utils/errorHandler';
+// import {hashHistory} from 'react-router';
 
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 
-import {FormattedMessage} from 'react-intl';
-
+// import {FormattedMessage} from 'react-intl';
 
 export default class Permission extends Component {
 
-    // lockWallet() {
-    //     InternalMessage.payload(InternalMessageTypes.LOCK_WALLET).send().then(result => {
-    //         console.log(InternalMessageTypes.LOCK_WALLET, result);
-    //         hashHistory.push('/');
-    //     });
-    // }
     constructor() {
         super();
         const data = window.data || apis.extension.getBackgroundPage().notification || null;
@@ -49,11 +43,14 @@ export default class Permission extends Component {
             .then(result => {
                 console.log(InternalMessageTypes.SET_PERMISSION, result);
                 if (result.error === 0) {
-                    Toast.success('Bind Permisson Success');
+                    Toast.success('Bind Permisson Success, after 3s close the window.');
                     window.data.sendResponse({
-                        error: 0,
+                        ...errorHandler(0),
                         message: 'Bind Permisson Success'
                     });
+                    setTimeout(() => {
+                        window.close();
+                    }, 3000);
                 }
                 else {
                     Toast.fail(result.message, 3, () => {}, false);
@@ -63,8 +60,7 @@ export default class Permission extends Component {
 
     refuse() {
         window.data.sendResponse({
-            error: 400001,
-            message: 'Refuse'
+            ...errorHandler(400001, 'Refuse')
         });
         window.close();
     }

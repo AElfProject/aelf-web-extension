@@ -17,6 +17,7 @@ import {
     apis
 } from './utils/BrowserApis';
 import getHostname from './utils/getHostname';
+import errorHandler from './utils/errorHandler';
 // import Hasher from './util/Hasher'
 // import {
 //     strippedHost
@@ -92,7 +93,7 @@ class Content {
         if (method === 'CHECK_CONTENT') {
             this.respond({
                 sid,
-                error: 0,
+                ...errorHandler(0, 'Refuse'),
                 message: 'NightElf is ready.'
             });
             return;
@@ -105,8 +106,7 @@ class Content {
         if (!methodWhiteList.includes(method)) {
             this.respond({
                 sid,
-                error: 200001,
-                message: `${message.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`
+                ...errorHandler(400001, `${message.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`)
             });
             return;
         }
@@ -119,7 +119,10 @@ class Content {
             .then(result => {
                 result.sid = message.sid;
                 // console.log(InternalMessageTypes[method], result);
-                this.respond(result);
+                this.respond({
+                    ...errorHandler(0),
+                    ...result
+                });
             });
     }
 }

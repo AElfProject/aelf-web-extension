@@ -47582,7 +47582,7 @@ function () {
 
         var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a.wallet.getWalletByPrivateKey(keypair.privateKey);
         var contractMethods = dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet);
-        var contract = {
+        var contractNew = {
           address: address,
           contractName: contractName,
           contractAddress: contractAddress,
@@ -47597,9 +47597,9 @@ function () {
         });
 
         if (extendContractIndex > -1) {
-          dappAelfMeta.contracts[extendContractIndex] = contract;
+          dappAelfMeta.contracts[extendContractIndex] = contractNew;
         } else {
-          dappAelfMeta.contracts.push(contract);
+          dappAelfMeta.contracts.push(contractNew);
         }
 
         aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
@@ -47622,7 +47622,8 @@ function () {
             hostname = contractInfo.hostname;
         var contractName = payload.contractName,
             method = payload.method,
-            params = payload.params;
+            params = payload.params,
+            contractAddress = payload.contractAddress;
         var dappAelfMeta = aelfMeta.find(function (item) {
           // const checkDomain = hostname.includes(item.hostname);
           var checkDomain = hostname === item.hostname;
@@ -47636,11 +47637,11 @@ function () {
         }
 
         var extendContract = dappAelfMeta.contracts.find(function (item) {
-          return contractName === item.contractName;
+          return contractAddress === item.contractAddress;
         });
 
         if (!extendContract) {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "Please init contract ".concat(contractName, "."))));
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "Please init contract ".concat(contractName, ": ").concat(contractAddress, "."))));
           return;
         }
 
@@ -48783,6 +48784,15 @@ __webpack_require__.r(__webpack_exports__);
  * 4xxxxx input error
  * 5xxxxx rpc error
  */
+// About Error Code. 冗余的设计。
+// https://www.zhihu.com/question/24091286
+// https://open.taobao.com/doc.htm?docId=114&docType=1
+// 统一格式：A-BB-CCC
+// A: 错误级别，如1代表系统级错误，2代表服务级错误；
+// // B: 项目或模块名称，一般公司不会超过99个项目；
+// // C: 具体错误编号，自增即可，一个项目999种错误应该够用；
+// B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
+// C 0，no Error
 var errorMap = {
   200001: 'payload is false.',
   200002: 'Please set permission at first.',
