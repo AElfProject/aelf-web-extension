@@ -376,36 +376,42 @@ export default class Background {
                 });
                 return;
             }
-
             const wallet = Aelf.wallet.getWalletByPrivateKey(keypair.privateKey);
-            const contractMethods = dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet);
-            const contractNew = {
-                address,
-                contractName,
-                contractAddress,
-                contractMethods
-            };
-
-            let extendContractIndex = -1;
-            dappAelfMeta.contracts.find((item, index) => {
-                if (contractInfo.payload.contractAddress === item.contractAddress) {
-                    extendContractIndex = index;
-                    return true;
+            dappAelfMeta.aelf.chain.contractAtAsync(contractAddress, wallet, (error, contractMethods) => {
+                if (error) {
+                    sendResponse({
+                        ...errorHandler(500001, error)
+                    });
+                    return;
                 }
-            });
-            if (extendContractIndex > -1) {
-                dappAelfMeta.contracts[extendContractIndex] = contractNew;
-            }
-            else {
-                dappAelfMeta.contracts.push(contractNew);
-            }
+                const contractNew = {
+                    address,
+                    contractName,
+                    contractAddress,
+                    contractMethods
+                };
 
-            aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
+                let extendContractIndex = -1;
+                dappAelfMeta.contracts.find((item, index) => {
+                    if (contractInfo.payload.contractAddress === item.contractAddress) {
+                        extendContractIndex = index;
+                        return true;
+                    }
+                });
+                if (extendContractIndex > -1) {
+                    dappAelfMeta.contracts[extendContractIndex] = contractNew;
+                }
+                else {
+                    dappAelfMeta.contracts.push(contractNew);
+                }
 
-            sendResponse({
-                ...errorHandler(0),
-                message: JSON.stringify(contractMethods),
-                detail: JSON.stringify(dappAelfMeta)
+                aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
+
+                sendResponse({
+                    ...errorHandler(0),
+                    message: JSON.stringify(contractMethods),
+                    detail: JSON.stringify(dappAelfMeta)
+                });
             });
         });
     }
