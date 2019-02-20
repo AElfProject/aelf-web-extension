@@ -69352,7 +69352,7 @@ var version = __webpack_require__(598);
 var HttpProvider = __webpack_require__(599);
 var wallet = __webpack_require__(576);
 
-function Aelf (provider) {
+function Aelf(provider) {
     this._requestManager = new RequestManager(provider);
     this.currentProvider = provider;
     this.chain = new Chain(this);
@@ -69380,7 +69380,7 @@ Aelf.prototype.reset = function (keepIsSyncing) {
     this.settings = new Settings();
 };
 
-Aelf.prototype.isConnected = function(){
+Aelf.prototype.isConnected = function () {
     return (this.currentProvider && this.currentProvider.isConnected());
 };
 
@@ -83761,6 +83761,44 @@ ContractMethod.prototype.toPayload = function (args) {
     }
 };
 
+/**
+ * Should be used to create payload from arguments
+ *
+ * @method toPayloadAsync
+ * @param {Array} solidity function params
+ * @param {Object} optional payload options
+ */
+ContractMethod.prototype.toPayloadAsync = function (args) {
+    var rawtx = proto.getTransaction(
+        this._wallet.address,
+        this._address,
+        this._name,
+        coder.encodeParams(this._paramTypes, args)
+    );
+    return new Promise((resolve, reject) => {
+        this._chain.getBlockHeight((error, item) => {
+            var blockHeight = parseInt(item.result.block_height, 10);
+            this._chain.getBlockInfo(blockHeight, false, (error, item) => {
+                var blockInfo = item.result;
+
+                rawtx.RefBlockNumber = blockHeight;
+                var blockhash = blockInfo.Blockhash;
+                blockhash = blockhash.match(/^0x/) ? blockhash.substring(2) : blockhash;
+
+                rawtx.RefBlockPrefix = (new Buffer(blockhash, 'hex')).slice(0, 4);
+                var tx = wallet.signTransaction(rawtx, this._wallet.keyPair);
+                tx = proto.Transaction.encode(tx).finish();
+                if (tx.__proto__.constructor === Buffer) {
+                    resolve(tx.toString('hex'));
+                }
+                else {
+                    resolve(utils.uint8ArrayToHex(tx));
+                }
+            });
+        });
+    });
+};
+
 // ContractMethod.prototype.notSignedPayload = function (args) {
 //     var rawtx = proto.getTransaction(this._wallet.address, this._address, this._name, coder.encodeParams(this._paramTypes, args));
 //
@@ -83789,12 +83827,13 @@ ContractMethod.prototype.unpackOutput = function (output) {
 ContractMethod.prototype.sendTransaction = function () {
     var args = Array.prototype.slice.call(arguments).filter(function (a) {return a !== undefined; });
     var callback = this.extractCallback(args);
-    var payload = this.toPayload(args);
     if (!callback) {
+        var payload = this.toPayload(args);
         return this._chain.sendTransaction(payload);
     }
-
-    this._chain.sendTransaction(payload, callback);
+    this.toPayloadAsync(args).then(payload => {
+        this._chain.sendTransaction(payload, callback);
+    });
 };
 
 /**
@@ -83805,13 +83844,14 @@ ContractMethod.prototype.sendTransaction = function () {
 ContractMethod.prototype.callReadOnly = function () {
     var args = Array.prototype.slice.call(arguments).filter(function (a) {return a !== undefined; });
     var callback = this.extractCallback(args);
-    var payload = this.toPayload(args);
-
     if (!callback) {
+        var payload = this.toPayload(args);
         return this._chain.callReadOnly(payload);
     }
 
-    this._chain.callReadOnly(payload, callback);
+    this.toPayloadAsync(args).then(payload => {
+        this._chain.callReadOnly(payload, callback);
+    });
 };
 
 /**
@@ -83843,9 +83883,9 @@ ContractMethod.prototype.displayName = function () {
  * @method typeName
  * @return {String} type name of the function
  */
-ContractMethod.prototype.typeName = function () {
-    return "";
-};
+// ContractMethod.prototype.typeName = function () {
+//     return "";
+// };
 
 /**
  * Should be called to get rpc requests from solidity function
@@ -83895,7 +83935,7 @@ ContractMethod.prototype.attachToContract = function (contract) {
     if (!contract[displayName]) {
         contract[displayName] = execute;
     }
-    contract[displayName][this.typeName()] = execute; // circular!!!!
+    // contract[displayName][this.typeName()] = execute; // circular!!!!
 };
 
 module.exports = ContractMethod;
@@ -88723,7 +88763,7 @@ module.exports = Settings;
 /* 598 */
 /***/ (function(module) {
 
-module.exports = {"version":"1.1.14"};
+module.exports = {"version":"1.1.18"};
 
 /***/ }),
 /* 599 */

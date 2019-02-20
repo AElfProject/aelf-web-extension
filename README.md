@@ -6,6 +6,8 @@ download the code.
 
 open development mode, add the directory /public.
 
+webpack -w
+
 [TODO] publish to chrome.
 
 ## How to use

@@ -1,240 +1,68 @@
-const aelfMetaDemo = [{
-    "appName": "hzzTest",
-    "hostname": "OnlyForTest!!!",
-    "httpProvider": "http://192.168.197.70:8001/chain",
-    "chainId": "AELF",
-    "aelf": {
-        "_requestManager": {
-            "provider": {
-                "host": "http://192.168.197.70:8001/chain",
-                "timeout": 0
+const aelfMetaDemo = {
+    "keychain": {
+        "keypairs": [{
+                "name": "1111",
+                "address": "ELF_5E85xxqccciycENmu4azsX47pyszNm2eZRGpWMQjfASuSZv",
+                "mnemonic": "ten misery release transfer limit caught subway obvious axis meadow spare cake",
+                "privateKey": "4f49fb219d7b562063e1a251d8d1d07196aebbfdebdb7eb12a2de8de58f34361",
+                "publicKey": {
+                    "x": "727eae295373d2dd4c1fd8539353320c9761255659c525d9e53173c0f5b90400",
+                    "y": "301afb37e2424154fda05943be7b59ad3f8e005f72ccec91bc12dcc35df41203"
+                }
             },
-            "polls": {},
-            "timeout": null
-        },
-        "currentProvider": {
-            "host": "http://192.168.197.70:8001/chain",
-            "timeout": 0
-        },
-        "chain": {
-            "_requestManager": {
-                "provider": {
-                    "host": "http://192.168.197.70:8001/chain",
-                    "timeout": 0
-                },
-                "polls": {},
-                "timeout": null
-            },
-            "_initialized": false
-        },
-        "settings": {},
-        "version": {
-            "api": "1.1.14"
-        },
-        "providers": {}
-    },
-    "contracts": [{
-        "address": "ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK",
-        "contractName": "token",
-        "contractAddress": "ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx",
-        "contractMethods": {
-            "_chain": {
-                "_requestManager": {
-                    "provider": {
-                        "host": "http://192.168.197.70:8001/chain",
-                        "timeout": 0
-                    },
-                    "polls": {},
-                    "timeout": null
-                },
-                "_initialized": false
-            },
-            "transactionHash": null,
-            "address": "ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx",
-            "abi": {
-                "Name": "AElf.Contracts.Token.TokenContract",
-                "Methods": [{
-                    "Name": "Symbol",
-                    "ReturnType": "string",
-                    "IsView": true
-                }, {
-                    "Name": "TokenName",
-                    "ReturnType": "string",
-                    "IsView": true
-                }, {
-                    "Name": "TotalSupply",
-                    "ReturnType": "ulong",
-                    "IsView": true
-                }, {
-                    "Name": "Decimals",
-                    "ReturnType": "uint",
-                    "IsView": true
-                }, {
-                    "Name": "BalanceOf",
-                    "Params": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "owner"
-                    }],
-                    "ReturnType": "ulong",
-                    "IsView": true
-                }, {
-                    "Name": "Allowance",
-                    "Params": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "owner"
-                    }, {
-                        "Type": "AElf.Common.Address",
-                        "Name": "spender"
-                    }],
-                    "ReturnType": "ulong",
-                    "IsView": true
-                }, {
-                    "Name": "ChargedFees",
-                    "Params": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "address"
-                    }],
-                    "ReturnType": "ulong",
-                    "IsView": true
-                }, {
-                    "Name": "FeePoolAddress",
-                    "ReturnType": "AElf.Common.Address",
-                    "IsView": true
-                }, {
-                    "Name": "Initialize",
-                    "Params": [{
-                        "Type": "string",
-                        "Name": "symbol"
-                    }, {
-                        "Type": "string",
-                        "Name": "tokenName"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "totalSupply"
-                    }, {
-                        "Type": "uint",
-                        "Name": "decimals"
-                    }],
-                    "ReturnType": "void"
-                }, {
-                    "Name": "SetFeePoolAddress",
-                    "Params": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "address"
-                    }],
-                    "ReturnType": "void"
-                }, {
-                    "Name": "Transfer",
-                    "Params": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "to"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "amount"
-                    }],
-                    "ReturnType": "void"
-                }, {
-                    "Name": "TransferFrom",
-                    "Params": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "from"
-                    }, {
-                        "Type": "AElf.Common.Address",
-                        "Name": "to"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "amount"
-                    }],
-                    "ReturnType": "void"
-                }, {
-                    "Name": "Approve",
-                    "Params": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "spender"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "amount"
-                    }],
-                    "ReturnType": "void"
-                }, {
-                    "Name": "UnApprove",
-                    "Params": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "spender"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "amount"
-                    }],
-                    "ReturnType": "void"
-                }, {
-                    "Name": "Burn",
-                    "Params": [{
-                        "Type": "ulong",
-                        "Name": "amount"
-                    }],
-                    "ReturnType": "void"
-                }, {
-                    "Name": "ChargeTransactionFees",
-                    "Params": [{
-                        "Type": "ulong",
-                        "Name": "feeAmount"
-                    }],
-                    "ReturnType": "void"
-                }, {
-                    "Name": "ClaimTransactionFees",
-                    "Params": [{
-                        "Type": "ulong",
-                        "Name": "height"
-                    }],
-                    "ReturnType": "void"
-                }],
-                "Events": [{
-                    "Name": "AElf.Contracts.Token.Transfered",
-                    "NonIndexed": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "From"
-                    }, {
-                        "Type": "AElf.Common.Address",
-                        "Name": "To"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "Amount"
-                    }]
-                }, {
-                    "Name": "AElf.Contracts.Token.Approved",
-                    "NonIndexed": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "Owner"
-                    }, {
-                        "Type": "AElf.Common.Address",
-                        "Name": "Spender"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "Amount"
-                    }]
-                }, {
-                    "Name": "AElf.Contracts.Token.UnApproved",
-                    "NonIndexed": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "Owner"
-                    }, {
-                        "Type": "AElf.Common.Address",
-                        "Name": "Spender"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "Amount"
-                    }]
-                }, {
-                    "Name": "AElf.Contracts.Token.Burned",
-                    "NonIndexed": [{
-                        "Type": "AElf.Common.Address",
-                        "Name": "Burner"
-                    }, {
-                        "Type": "ulong",
-                        "Name": "Amount"
-                    }]
-                }]
+            {
+                "name": "Hzz",
+                "address": "ELF_34PXaE15ek534fMJT3fChx4R46BN5ppxjn9bvcHamT8SqiA",
+                "mnemonic": "warrior deposit long bacon modify spike diary margin sunny tip solution ignore",
+                "privateKey": "917b844c636ef92c6421d085ba2b1f41cee08f2a9ff76f91a610cd5040d9b7f8",
+                "publicKey": {
+                    "x": "a1fcc7e4e8f1919462a7d4095ec049ea59e26b4c2b185d102cd941f86cffc4c7",
+                    "y": "5dab6d42edaedc0646c083b6785fedf86b08cfbe33e66f3bcf502a5a01aa313c"
+                }
             }
-        }
-    }]
-}]
+        ],
+        "permissions": [{
+                "appName": "hzzTest",
+                "domain": "OnlyForTest!!!",
+                "address": "ELF_5E85xxqccciycENmu4azsX47pyszNm2eZRGpWMQjfASuSZv",
+                "contracts": [{
+                        "chainId": "AELF",
+                        "contractAddress": "ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9",
+                        "contractName": "token",
+                        "description": "token contract",
+                        "github": ""
+                    },
+                    {
+                        "chainId": "AELF",
+                        "contractAddress": "ELF_4CBbRKd6rkCzTX5aJ2mnGrwJiHLmGdJZinoaVfMvScTEoBR",
+                        "contractName": "resource",
+                        "description": "resource contract",
+                        "github": ""
+                    }
+                ]
+            },
+            {
+                "appName": "hzzTest",
+                "domain": "OnlyForTest!!!",
+                "address": "ELF_4yCJfobjm2YAdxGrwACQihpa3TMz1prDTdYiWTvFTvefQFs",
+                "contracts": [{
+                        "chainId": "AELF",
+                        "contractAddress": "ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx",
+                        "contractName": "token",
+                        "description": "token contract",
+                        "github": ""
+                    },
+                    {
+                        "chainId": "AELF TEST",
+                        "contractAddress": "TEST contractAddress",
+                        "contractName": "TEST contractName",
+                        "description": "contract description",
+                        "github": ""
+                    }
+                ]
+            }
+        ]
+    },
+    "histories": []
+};
+

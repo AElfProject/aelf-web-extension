@@ -92,7 +92,7 @@ export default class Background {
      * @param message - The message to be dispensed
      */
     dispenseMessage(sendResponse, message) {
-        // console.log('dispenseMessage: ', message);
+        console.log('dispenseMessage: ', message, JSON.stringify(nightElf));
         if (message.payload === false) {
             sendResponse({
                 ...errorHandler(200001)
@@ -490,6 +490,12 @@ export default class Background {
     }
 
     static createWallet(sendResponse, _seed) {
+        nightElf = NightElf.fromJson({});
+        seed = _seed;
+        Background.updateWallet(sendResponse);
+    }
+
+    static importWallet(sendResponse, _seed) {
         nightElf = NightElf.fromJson({});
         seed = _seed;
         Background.updateWallet(sendResponse);

@@ -1,0 +1,47 @@
+@startuml
+
+title example: connect aelf chain
+
+box "Application" #LightBlue
+participant webPage
+participant inject.js
+end box
+
+box "Extension" #LightGreen
+participant content.js
+participant background.js
+end box
+
+== Establish Encrypted Communication ==
+
+inject.js -> content.js : public key A of inject.js
+content.js -> inject.js : public key B of content.js / A encrypted AES password of content.js
+inject.js -> content.js : B encrypted AES password of inject.js
+content.js -> inject.js : crypto message channel ready
+
+== Notice Page ==
+
+inject.js -> webPage : extension is ready (customeEvent)
+
+== CONNECT CHAIN ==
+
+webPage -> inject.js : For example: CONNECT_AELF_CHAIN
+' activate webPage
+' activate inject.js
+
+inject.js -> content.js : CONNECT_AELF_CHAIN
+alt method whitelist check in content.js
+content.js -> background.js : passthrough request
+background.js -> content.js : return result
+content.js -> inject.js : result
+inject.js -> webPage : result
+else check failed
+content.js -> inject.js : illegal method
+inject.js -> webPage : result
+end
+
+newpage
+
+popup.js -> background.js
+
+@enduml

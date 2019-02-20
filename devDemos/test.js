@@ -48,7 +48,8 @@ b.check.then(item => {
 });
 
 // const httpProvider = 'http://localhost:1234/chain';
-const httpProvider = 'http://192.168.197.70:8001/chain';
+// const httpProvider = 'http://192.168.197.70:8001/chain';
+const httpProvider = 'http://192.168.199.210:5000/chain';
 console.log('window.NightElf: ', window.NightElf);
 document.addEventListener('NightElf', result => {
 
@@ -199,9 +200,9 @@ document.addEventListener('NightElf', result => {
             // hostname: 'aelf.io',
             chainId: 'AELF',
             payload: {
-                address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
+                address: 'ELF_5E85xxqccciycENmu4azsX47pyszNm2eZRGpWMQjfASuSZv',
                 contractName: 'token',
-                contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx'
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9'
             }
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
@@ -216,7 +217,7 @@ document.addEventListener('NightElf', result => {
             chainId: 'AELF',
             payload: {
                 contractName: 'token',
-                contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
                 method: 'BalanceOf',
                 params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB']
             }
@@ -334,18 +335,18 @@ document.addEventListener('NightElf', result => {
             payload: {
                 method: 'SET_PERMISSION',
                 payload: {
-                    address: 'ELF_4yCJfobjm2YAdxGrwACQihpa3TMz1prDTdYiWTvFTvefQFs',
+                    address: 'ELF_5E85xxqccciycENmu4azsX47pyszNm2eZRGpWMQjfASuSZv',
                     contracts: [{
                         chainId: 'AELF',
-                        contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
+                        contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
                         contractName: 'token',
                         description: 'token contract',
                         github: ''
                     }, {
                         chainId: 'AELF',
-                        contractAddress: 'ELF_47dpXA3aEuDj9yeq9Et2E4zjPrSs4uQpzdFkYuBZEEQmob',
-                        contractName: 'token',
-                        description: 'token contract',
+                        contractAddress: 'ELF_4CBbRKd6rkCzTX5aJ2mnGrwJiHLmGdJZinoaVfMvScTEoBR',
+                        contractName: 'resource',
+                        description: 'resource contract',
                         github: ''
                     }]
                 }
@@ -363,9 +364,9 @@ document.addEventListener('NightElf', result => {
             // hostname: 'aelf.io',
             chainId: 'AELF',
             payload: {
-                address: 'ELF_4yCJfobjm2YAdxGrwACQihpa3TMz1prDTdYiWTvFTvefQFs',
+                address: 'ELF_5E85xxqccciycENmu4azsX47pyszNm2eZRGpWMQjfASuSZv',
                 contractName: 'token',
-                contractAddress: 'ELF_47dpXA3aEuDj9yeq9Et2E4zjPrSs4uQpzdFkYuBZEEQmob'
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9'
             }
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
@@ -381,7 +382,7 @@ document.addEventListener('NightElf', result => {
             chainId: 'AELF',
             payload: {
                 contractName: 'token',
-                contractAddress: 'ELF_47dpXA3aEuDj9yeq9Et2E4zjPrSs4uQpzdFkYuBZEEQmob',
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
                 method: 'BalanceOf',
                 params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB']
             }
@@ -433,7 +434,7 @@ document.addEventListener('NightElf', result => {
             chainId: 'AELF',
             payload: {
                 method: 'getContractAbi',
-                params: ['ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx']
+                params: ['ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9']
             }
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);

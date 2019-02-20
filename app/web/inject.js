@@ -40,7 +40,8 @@ class Inject {
         // console.log('inject stream', stream);
 
         stream.addEventListener(result => {
-            // console.log('inject addEventListener: ', result);
+            console.log('inject addEventListener: ', result);
+            // TODO whitelist check
             handlePendingPromise(result);
         });
 

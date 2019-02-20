@@ -326,7 +326,8 @@ var Inject = function Inject() {
   var stream = new _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_2__["default"](_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_3__["PAGE_NIGHTELF"], _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_1__["default"].text(64)); // console.log('inject stream', stream);
 
   stream.addEventListener(function (result) {
-    // console.log('inject addEventListener: ', result);
+    console.log('inject addEventListener: ', result); // TODO whitelist check
+
     handlePendingPromise(result);
   });
 
