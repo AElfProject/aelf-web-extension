@@ -109,11 +109,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(201);
 /* harmony import */ var _Lock_Lock__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(258);
 /* harmony import */ var _Home_Home__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(480);
-/* harmony import */ var _Backup_Backup__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(486);
+/* harmony import */ var _CreateKeypairs_CreateKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(486);
 /* harmony import */ var _Keypairs_Keypairs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(642);
 /* harmony import */ var _Permissions_Permissions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(682);
 /* harmony import */ var _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(687);
 /* harmony import */ var _Import_Import__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(688);
+/* harmony import */ var _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(718);
 
 
 
@@ -138,6 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 Object(react_intl__WEBPACK_IMPORTED_MODULE_6__["addLocaleData"])([].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2___default()(react_intl_locale_data_zh__WEBPACK_IMPORTED_MODULE_7___default.a), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2___default()(react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8___default.a)));
 react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_6__["IntlProvider"], {
   locale: navigator.language,
@@ -153,8 +155,8 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
   path: "/home",
   component: _Home_Home__WEBPACK_IMPORTED_MODULE_11__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/backup",
-  component: _Backup_Backup__WEBPACK_IMPORTED_MODULE_12__["default"]
+  path: "/createKeypairs",
+  component: _CreateKeypairs_CreateKeypairs__WEBPACK_IMPORTED_MODULE_12__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/keypairs",
   component: _Keypairs_Keypairs__WEBPACK_IMPORTED_MODULE_13__["default"]
@@ -164,6 +166,9 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/import",
   component: _Import_Import__WEBPACK_IMPORTED_MODULE_16__["default"]
+}), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  path: "/backupKeypairs/:address",
+  component: _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/contracts",
   component: _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__["default"]
@@ -42790,6 +42795,8 @@ function (_Component) {
           if (result && result.error === 0) {
             react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/home');
           } else {
+            console.log(result.error);
+
             antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Unlock Wallet Failed.', 3, function () {}, false);
           }
         }).catch(function (error) {
@@ -69759,7 +69766,7 @@ exports.locals = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Backup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CreateKeypairs; });
 /* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(259);
 /* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(262);
@@ -69796,8 +69803,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(496);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_21__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(176);
-/* harmony import */ var _Backup_scss__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(640);
-/* harmony import */ var _Backup_scss__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_Backup_scss__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(640);
+/* harmony import */ var _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_23__);
 
 
 
@@ -69828,17 +69835,17 @@ __webpack_require__.r(__webpack_exports__);
 
  // React component
 
-var Backup =
+var CreateKeypairs =
 /*#__PURE__*/
 function (_Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default()(Backup, _Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default()(CreateKeypairs, _Component);
 
-  function Backup() {
+  function CreateKeypairs() {
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6___default()(this, Backup);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6___default()(this, CreateKeypairs);
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(Backup).call(this));
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(CreateKeypairs).call(this));
     _this.state = {
       name: '',
       // mnemonic: 'grocery jungle body action shop vast toilet fog prevent banner deliver indicate',
@@ -69848,7 +69855,7 @@ function (_Component) {
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7___default()(Backup, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7___default()(CreateKeypairs, [{
     key: "getPrivateKeyAndMnemonic",
     value: function getPrivateKeyAndMnemonic() {
       var password = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
@@ -69973,7 +69980,7 @@ function (_Component) {
         },
         moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_18__["default"]
       }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Backup_scss__WEBPACK_IMPORTED_MODULE_23___default.a.buttonContainer
+        className: _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_23___default.a.buttonContainer
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_17__["default"], {
         text: "Create Keypair",
         aelficon: "add_purple20",
@@ -69984,7 +69991,7 @@ function (_Component) {
     }
   }]);
 
-  return Backup;
+  return CreateKeypairs;
 }(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
 
 
@@ -70401,22 +70408,22 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Backup-pages-Mnemonic_page-HtMXX {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 999;\n  background: url(" + escape(__webpack_require__(491)) + ") no-repeat; }\n\n@media (min-width: 768px) {\n  .AELF-app-web-pages-Popup-Backup-pages-Mnemonic_page-HtMXX {\n    position: absolute;\n    top: 0;\n    z-index: 999;\n    -webkit-background-size: cover;\n    background-size: cover; } }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_container-1waL_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_confirmContainer-LYw_f {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 1001;\n  background: #FFF; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_privateContainer-sRbqN {\n  word-wrap: break-word;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  padding: 8px;\n  margin: 32px 24px 15px 24px;\n  background: #fefefe;\n  line-height: 1.5;\n  height: 88px; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_privateContainer-sRbqN.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_purple-2thcT {\n  margin-top: 0;\n  background: rgba(0, 0, 0, 0.2);\n  border: none; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_mnemonicListContainer-2nioq {\n  margin: 0 24px; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_whitespace-_NLnT {\n  height: 45px;\n  width: 10px; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_listItem-NgJhI {\n  display: inline-block;\n  border: 1px solid #eee;\n  border-radius: 3px;\n  margin: 5px;\n  padding: 5px 8px 5px 8px; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_listItem-NgJhI:active {\n  opacity: 0.5; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_listItem-NgJhI.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_selectd-1eV6D {\n  border: none;\n  color: #FFF;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_note-376_5 {\n  background-color: #ffd74e;\n  border-radius: 3px;\n  padding: 1px 15px 1px 15px;\n  color: #333; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_top-oEzge {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center; }\n\n.AELF-app-web-pages-Popup-Backup-pages-Mnemonic_bottom-12ASi {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_page-M4bY6 {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 999;\n  background: url(" + escape(__webpack_require__(491)) + ") no-repeat; }\n\n@media (min-width: 768px) {\n  .AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_page-M4bY6 {\n    position: absolute;\n    top: 0;\n    z-index: 999;\n    -webkit-background-size: cover;\n    background-size: cover; } }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_container-3aBWX {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_confirmContainer-2yQdA {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 1001;\n  background: #FFF; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_privateContainer-2Bzpc {\n  word-wrap: break-word;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  padding: 8px;\n  margin: 32px 24px 15px 24px;\n  background: #fefefe;\n  line-height: 1.5;\n  height: 88px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_privateContainer-2Bzpc.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_purple-2WJ8P {\n  margin-top: 0;\n  background: rgba(0, 0, 0, 0.2);\n  border: none; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_mnemonicListContainer-CDLrm {\n  margin: 0 24px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_whitespace-3K1XD {\n  height: 45px;\n  width: 10px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_listItem-1OgoW {\n  display: inline-block;\n  border: 1px solid #eee;\n  border-radius: 3px;\n  margin: 5px;\n  padding: 5px 8px 5px 8px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_listItem-1OgoW:active {\n  opacity: 0.5; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_listItem-1OgoW.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_selectd-1MQVX {\n  border: none;\n  color: #FFF;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_note-m9SN1 {\n  background-color: #ffd74e;\n  border-radius: 3px;\n  padding: 1px 15px 1px 15px;\n  color: #333; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_top-W9YlI {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_bottom-3-w3P {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
 
 // exports
 exports.locals = {
-	"page": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_page-HtMXX",
-	"container": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_container-1waL_",
-	"confirmContainer": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_confirmContainer-LYw_f",
-	"privateContainer": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_privateContainer-sRbqN",
-	"purple": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_purple-2thcT",
-	"mnemonicListContainer": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_mnemonicListContainer-2nioq",
-	"whitespace": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_whitespace-_NLnT",
-	"listItem": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_listItem-NgJhI",
-	"selectd": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_selectd-1eV6D",
-	"note": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_note-376_5",
-	"top": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_top-oEzge",
-	"bottom": "AELF-app-web-pages-Popup-Backup-pages-Mnemonic_bottom-12ASi"
+	"page": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_page-M4bY6",
+	"container": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_container-3aBWX",
+	"confirmContainer": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_confirmContainer-2yQdA",
+	"privateContainer": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_privateContainer-2Bzpc",
+	"purple": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_purple-2WJ8P",
+	"mnemonicListContainer": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_mnemonicListContainer-CDLrm",
+	"whitespace": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_whitespace-3K1XD",
+	"listItem": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_listItem-1OgoW",
+	"selectd": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_selectd-1MQVX",
+	"note": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_note-m9SN1",
+	"top": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_top-W9YlI",
+	"bottom": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_bottom-3-w3P"
 };
 
 /***/ }),
@@ -96745,22 +96752,22 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.AELF-app-web-pages-Popup-Backup-Backup_container-QQ3b_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_textContainer-2unsy {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_forbidden-2xHLi {\n  word-wrap: break-word;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  /*禁用页面内容选中和复制操作*/\n  -webkit-touch-callout: none;\n  /*禁用长按页面时的弹出菜单(iOS下有效)*/\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  /*去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)*/\n  color: #999;\n  font-size: 17px;\n  line-height: 25.5px;\n  padding: 11px 15px;\n  font-style: oblique; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_title-3o1bO {\n  padding: 0px 15px; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_text-8vJhC {\n  padding: 15px 15px 9px 15px;\n  font-size: 14px;\n  color: #888;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_textarea-3RSCH {\n  position: fixed;\n  top: -1250px;\n  left: -1250px; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_bottom-2rCq8 {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_pannelTitle-2Pvei {\n  height: 35px;\n  line-height: 35px;\n  text-align: left;\n  text-indent: 24px;\n  border-bottom: 0.5px solid #F2F2F2;\n  color: #ADAAB3;\n  font-size: 10px; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_pannelBtnPurple-14vN1 {\n  height: 50px;\n  line-height: 50px;\n  font-size: 14px;\n  color: #AC00E6;\n  border-top: 0.5px solid #F2F2F2;\n  border-bottom: 4px solid #F7F7F7;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_pannelBtnPurple-14vN1:active {\n  background: #DDD; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_pannerlBtnGrey-3QZaX {\n  color: #8F8A99;\n  border-bottom: 0; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_copyArea-2V7Sk {\n  height: 90px;\n  padding: 0 24px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  word-break: break-all;\n  text-align: left;\n  color: #14111A;\n  font-size: 12px; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_buttonContainer-3B8y7 {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_container-2aN4_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_textContainer-1negm {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_forbidden-1QHz5 {\n  word-wrap: break-word;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  /*禁用页面内容选中和复制操作*/\n  -webkit-touch-callout: none;\n  /*禁用长按页面时的弹出菜单(iOS下有效)*/\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  /*去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)*/\n  color: #999;\n  font-size: 17px;\n  line-height: 25.5px;\n  padding: 11px 15px;\n  font-style: oblique; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_title-1k6KD {\n  padding: 0px 15px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_text-3apKZ {\n  padding: 15px 15px 9px 15px;\n  font-size: 14px;\n  color: #888;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_textarea-31v9X {\n  position: fixed;\n  top: -1250px;\n  left: -1250px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_bottom-1Usp- {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelTitle-3JzPS {\n  height: 35px;\n  line-height: 35px;\n  text-align: left;\n  text-indent: 24px;\n  border-bottom: 0.5px solid #F2F2F2;\n  color: #ADAAB3;\n  font-size: 10px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelBtnPurple-2N7Jm {\n  height: 50px;\n  line-height: 50px;\n  font-size: 14px;\n  color: #AC00E6;\n  border-top: 0.5px solid #F2F2F2;\n  border-bottom: 4px solid #F7F7F7;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelBtnPurple-2N7Jm:active {\n  background: #DDD; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannerlBtnGrey-7iCnr {\n  color: #8F8A99;\n  border-bottom: 0; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_copyArea-1V__J {\n  height: 90px;\n  padding: 0 24px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  word-break: break-all;\n  text-align: left;\n  color: #14111A;\n  font-size: 12px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_buttonContainer-2H_5H {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
 
 // exports
 exports.locals = {
-	"container": "AELF-app-web-pages-Popup-Backup-Backup_container-QQ3b_",
-	"textContainer": "AELF-app-web-pages-Popup-Backup-Backup_textContainer-2unsy",
-	"forbidden": "AELF-app-web-pages-Popup-Backup-Backup_forbidden-2xHLi",
-	"title": "AELF-app-web-pages-Popup-Backup-Backup_title-3o1bO",
-	"text": "AELF-app-web-pages-Popup-Backup-Backup_text-8vJhC",
-	"textarea": "AELF-app-web-pages-Popup-Backup-Backup_textarea-3RSCH",
-	"bottom": "AELF-app-web-pages-Popup-Backup-Backup_bottom-2rCq8",
-	"pannelTitle": "AELF-app-web-pages-Popup-Backup-Backup_pannelTitle-2Pvei",
-	"pannelBtnPurple": "AELF-app-web-pages-Popup-Backup-Backup_pannelBtnPurple-14vN1",
-	"pannerlBtnGrey": "AELF-app-web-pages-Popup-Backup-Backup_pannerlBtnGrey-3QZaX",
-	"copyArea": "AELF-app-web-pages-Popup-Backup-Backup_copyArea-2V7Sk",
-	"buttonContainer": "AELF-app-web-pages-Popup-Backup-Backup_buttonContainer-3B8y7"
+	"container": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_container-2aN4_",
+	"textContainer": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_textContainer-1negm",
+	"forbidden": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_forbidden-1QHz5",
+	"title": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_title-1k6KD",
+	"text": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_text-3apKZ",
+	"textarea": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_textarea-31v9X",
+	"bottom": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_bottom-1Usp-",
+	"pannelTitle": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelTitle-3JzPS",
+	"pannelBtnPurple": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelBtnPurple-2N7Jm",
+	"pannerlBtnGrey": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannerlBtnGrey-7iCnr",
+	"copyArea": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_copyArea-1V__J",
+	"buttonContainer": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_buttonContainer-2H_5H"
 };
 
 /***/ }),
@@ -96934,6 +96941,14 @@ function (_Component) {
         value: address,
         readOnly: true
       })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.backup,
+        onClick: function onClick() {
+          return _this.backupKeyPairs(address);
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Backup",
+        defaultMessage: "Backup"
+      })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.operationList
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.keypairBtnContainer + ' ' + _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.removeBtn,
@@ -97003,12 +97018,17 @@ function (_Component) {
   }, {
     key: "createKeyPairs",
     value: function createKeyPairs() {
-      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/backup');
+      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/createKeypairs');
     }
   }, {
     key: "importKeyPairs",
     value: function importKeyPairs() {
       react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/import');
+    }
+  }, {
+    key: "backupKeyPairs",
+    value: function backupKeyPairs(address) {
+      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push("/backupKeypairs/".concat(address));
     }
   }, {
     key: "render",
@@ -97042,8 +97062,8 @@ function (_Component) {
           return _this3.createKeyPairs();
         }
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
-        id: "aelf.Create KeyPairs",
-        defaultMessage: "Create KeyPairs"
+        id: "aelf.Create Keypairs",
+        defaultMessage: "Create Keypairs"
       }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a.Item, {
         align: "center"
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
@@ -100363,7 +100383,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Keypairs-Keypairs_txList-3h_dC {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_txListMask-14lfP {\n  opacity: 0.3;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairNickname-2hUtY {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairAddress-1jZOr {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_logoContainer-3W6jx {\n  height: 36px;\n  width: 36px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_logoContainer-3W6jx img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF .AELF-app-web-pages-Popup-Keypairs-Keypairs_name-2FN_k {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF .AELF-app-web-pages-Popup-Keypairs-Keypairs_description-1zRyH {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN .AELF-app-web-pages-Popup-Keypairs-Keypairs_balance-9H5mA {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN .AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderValuation-1VYhL {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_txList-3h_dC:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_background-2N1ad {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_backgroundMask-2pbrF {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_container-2Z6WJ {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_walletInfo-KVBy5 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_balance-9H5mA {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_aelfValuation-3LQxC {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderValuation-1VYhL {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderUnit-1p7cE {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addressContainer-3VqAG {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_copyBtn-3Iqof {\n  background: url(" + escape(__webpack_require__(677)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_removeBtn-1jD6s {\n  background: url(" + escape(__webpack_require__(678)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairBtnContainer-jm8F7 {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_operationContainer-1UiMD {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_operationList-17ZDL {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_transactionList-2zGwo {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtnContainer-o6UW7 {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(679)) + ") no-repeat;\n  -webkit-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_textarea-1YFk1 {\n  position: fixed;\n  top: -250px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairButton-qBsMY {\n  background: #FFF;\n  display: inline-block;\n  width: 100%;\n  text-align: center;\n  height: 24px;\n  line-height: 24px;\n  font-size: 12px;\n  border-radius: 12px;\n  color: #3D55CC;\n  cursor: pointer; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-Keypairs-Keypairs_txList-3h_dC {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_txListMask-14lfP {\n  opacity: 0.3;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairNickname-2hUtY {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairAddress-1jZOr {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_logoContainer-3W6jx {\n  height: 36px;\n  width: 36px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_logoContainer-3W6jx img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF .AELF-app-web-pages-Popup-Keypairs-Keypairs_name-2FN_k {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF .AELF-app-web-pages-Popup-Keypairs-Keypairs_description-1zRyH {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN .AELF-app-web-pages-Popup-Keypairs-Keypairs_balance-9H5mA {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN .AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderValuation-1VYhL {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_txList-3h_dC:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_background-2N1ad {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_backgroundMask-2pbrF {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_container-2Z6WJ {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_walletInfo-KVBy5 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_balance-9H5mA {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_aelfValuation-3LQxC {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderValuation-1VYhL {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderUnit-1p7cE {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addressContainer-3VqAG {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_copyBtn-3Iqof {\n  background: url(" + escape(__webpack_require__(677)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_removeBtn-1jD6s {\n  background: url(" + escape(__webpack_require__(678)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairBtnContainer-jm8F7 {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_operationContainer-1UiMD {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_operationList-17ZDL {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_transactionList-2zGwo {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtnContainer-o6UW7 {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(679)) + ") no-repeat;\n  -webkit-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_textarea-1YFk1 {\n  position: fixed;\n  top: -250px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairButton-qBsMY {\n  background: #FFF;\n  display: inline-block;\n  width: 100%;\n  text-align: center;\n  height: 24px;\n  line-height: 24px;\n  font-size: 12px;\n  border-radius: 12px;\n  color: #3D55CC;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_backup-2MBWC {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -100394,7 +100414,8 @@ exports.locals = {
 	"addBtnContainer": "AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtnContainer-o6UW7",
 	"addBtn": "AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW",
 	"textarea": "AELF-app-web-pages-Popup-Keypairs-Keypairs_textarea-1YFk1",
-	"keypairButton": "AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairButton-qBsMY"
+	"keypairButton": "AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairButton-qBsMY",
+	"backup": "AELF-app-web-pages-Popup-Keypairs-Keypairs_backup-2MBWC"
 };
 
 /***/ }),
@@ -101816,6 +101837,879 @@ exports.push([module.i, ".AELF-app-web-pages-Popup-WalletName-WalletName_error-1
 // exports
 exports.locals = {
 	"error": "AELF-app-web-pages-Popup-WalletName-WalletName_error-1LgTg"
+};
+
+/***/ }),
+/* 695 */,
+/* 696 */,
+/* 697 */,
+/* 698 */,
+/* 699 */,
+/* 700 */,
+/* 701 */,
+/* 702 */,
+/* 703 */,
+/* 704 */,
+/* 705 */,
+/* 706 */,
+/* 707 */,
+/* 708 */,
+/* 709 */,
+/* 710 */,
+/* 711 */,
+/* 712 */,
+/* 713 */,
+/* 714 */,
+/* 715 */,
+/* 716 */,
+/* 717 */,
+/* 718 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BackupKeypairs; });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(219);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(257);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(281);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(282);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(225);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(236);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(662);
+/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(665);
+/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(102);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(115);
+/* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(719);
+/* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _pages_Mnemonic__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(721);
+/* harmony import */ var _utils_moneyKeyboardWrapProps__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(203);
+/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(495);
+/* harmony import */ var _utils_clipboard__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(224);
+/* harmony import */ var _utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(222);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(445);
+/* harmony import */ var _components_Svg_Svg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(451);
+/* harmony import */ var _components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(492);
+/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(466);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(496);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(176);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(473);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(474);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(284);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_26__);
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @file BackupKeypairs.js
+ * @author zhouminghui
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var prompt = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9___default.a.prompt;
+
+function getSeed(password) {
+  if (password) {
+    var hmac = Object(crypto__WEBPACK_IMPORTED_MODULE_26__["createHmac"])('sha512', password);
+    var seed = hmac.update(password).digest('hex');
+    return seed;
+  }
+
+  antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7___default.a.fail('Please input password', 3, function () {}, false);
+
+  return false;
+} // React component
+
+
+var BackupKeypairs =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(BackupKeypairs, _Component);
+
+  function BackupKeypairs(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, BackupKeypairs);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(BackupKeypairs).call(this, props));
+    _this.state = {
+      privateKey: '',
+      // mnemonic: 'grocery jungle body action shop vast toilet fog prevent banner deliver indicate',
+      mnemonic: '',
+      password: '',
+      mnemonicDisplay: false,
+      privateKeyModal: false,
+      passwordModal: false,
+      containerStyle: null,
+      address: _this.props.params.address || ''
+    };
+    Object(_utils_clipboard__WEBPACK_IMPORTED_MODULE_16__["default"])('#clipboard-backup');
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(BackupKeypairs, [{
+    key: "showModal",
+    value: function showModal(e, key) {
+      e.preventDefault(); // 修复 Android 上点击穿透
+
+      this.setState(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, key, true));
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var containerStyle = Object(_utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_17__["default"])();
+      this.setState({
+        containerStyle: containerStyle
+      });
+    }
+  }, {
+    key: "onClose",
+    value: function onClose(key) {
+      this.setState(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, key, false));
+    } // getPrivateKeyAndMnemonic(password = '') {
+    //     password = password || this.state.password;
+    //     let walletId = JSON.parse(localStorage.getItem('lastuse')).address;
+    //     let walletInfoList = JSON.parse(localStorage.getItem('walletInfoList'));
+    //     let walletInfo = walletInfoList[walletId];
+    //     let privateKey = '';
+    //     let mnemonic = '';
+    //     try {
+    //         privateKey = aelf.wallet.AESDecrypto(walletInfo.AESEncryptoPrivateKey, password);
+    //         mnemonic = aelf.wallet.AESDecrypto(walletInfo.AESEncryptoMnemonic, password);
+    //     } catch (e) {
+    //         // 因为封装了一层，解密错误时，转换成utf-8会抛出异常。
+    //         // let string = '[ERROR] Hey guy, your invalid password make the program crash.';
+    //         // privateKey = string;
+    //         // mnemonic = string;
+    //     }
+    //     if (privateKey || mnemonic) {
+    //         this.setState({'privateKey': privateKey});
+    //         this.setState({'mnemonic': mnemonic});
+    //         return true
+    //     } else {
+    //         Toast.fail('Wrong Password', 1, () => {}, false);
+    //     }
+    //     return false;
+    // }
+
+  }, {
+    key: "getPrivateKeyAndMnemonic",
+    value: function getPrivateKeyAndMnemonic() {
+      var _this2 = this;
+
+      var password = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var type = arguments.length > 1 ? arguments[1] : undefined;
+      var seed = getSeed(password);
+      var address = this.state.address;
+
+      if (seed) {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__["UNLOCK_WALLET"], seed).send().then(function (result) {
+          if (result && result.error === 0) {
+            _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__["GET_KEYPAIR"]).send().then(function (result) {
+              if (result && result.error === 0) {
+                result.keypairs.map(function (item) {
+                  if (item.address === address) {
+                    if (type === 'Mnemonic') {
+                      _this2.setState({
+                        mnemonic: item.mnemonic,
+                        mnemonicDisplay: !_this2.state.mnemonicDisplay
+                      });
+                    } else {
+                      _this2.setState({
+                        privateKey: item.privateKey,
+                        privateKeyModal: !_this2.state.privateKeyModal
+                      });
+                    }
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    }
+  }, {
+    key: "inputPassword",
+    value: function inputPassword(password) {
+      this.setState({
+        password: password
+      });
+    } // 子组件要用，要么this.toggleMnemonic = this.toggleMnemonic.bind(this);
+    // 要么在传递是使用箭头函数，比如: onLeftClick={() => this.toggleMnemonic()}
+
+  }, {
+    key: "toggleMnemonic",
+    value: function toggleMnemonic() {
+      this.setState({
+        mnemonicDisplay: !this.state.mnemonicDisplay
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this.state.mnemonicDisplay && !this.state.mnemonic) {
+        this.state.mnemonicDisplay = false; // Toast.fail('该钱包是由私钥导入，无助记词', 2, () => {}, false);
+
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7___default.a.fail('There is no Mnemonic because the wallet import by Private Key.', 2, function () {}, false);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var containerStyle = this.state.containerStyle;
+      var mnemonicHtml = '';
+
+      if (this.state.mnemonic) {
+        mnemonicHtml = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_pages_Mnemonic__WEBPACK_IMPORTED_MODULE_13__["default"], {
+          navTitle: "Mnemonic",
+          mnemonic: this.state.mnemonic,
+          display: this.state.mnemonicDisplay,
+          onLeftClick: function onLeftClick() {
+            return _this3.toggleMnemonic();
+          },
+          containerStyle: containerStyle
+        });
+      } // let containerStyle = getPageContainerStyle();
+
+
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "aelf-bg-light"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        onLeftClick: function onLeftClick() {
+          return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_15__["historyPush"])('/keypairs');
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,
+        style: containerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textContainer
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        mainTitle: react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Backup Wallet",
+          defaultMessage: "Backup Wallet"
+        }),
+        subTitle: [react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.AElf Wallet",
+          defaultMessage: "AElf Wallet"
+        }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Manage your wallet addresses",
+          defaultMessage: "Manage your wallet addresses"
+        })],
+        content: [// '请在安全的环境下备份助记词！',
+        // '没有妥善备份就无法保障资产安全；',
+        // '删除程序或钱包后，',
+        // '您需要通过备份的助记词来会恢复钱包！'
+        react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Becareful03",
+          defaultMessage: "Please backup your Mnemonic in a secure environment!"
+        }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Becareful04",
+          defaultMessage: "No secure Mnemonic backup means no secure wallet."
+        }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Becareful05",
+          defaultMessage: "In the case of wallet or App deletion,"
+        }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Becareful06",
+          defaultMessage: "you will need your Mnemonic to recover your wallet."
+        })]
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        text: "Mnemonic",
+        onClick: function onClick(e) {
+          return prompt('Password', 'Please make sure you are under safe enviroment.', [{
+            text: 'Cancel'
+          }, {
+            text: 'Submit',
+            onPress: function onPress(password) {
+              _this3.getPrivateKeyAndMnemonic(password, 'Mnemonic');
+            }
+          }], 'secure-text');
+        } // onClick={(e) => prompt(
+        //     '密码',
+        //     '请确保您处于安全的环境中',
+        //     [
+        //         { text: '取消' },
+        //         { text: '提交', onPress: password => {
+        //                 let boolean = this.getPrivateKeyAndMnemonic(password);
+        //                 boolean && this.toggleMnemonic();
+        //             }
+        //         },
+        //     ],
+        //     'secure-text',
+        // )}
+
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "aelf-blank12"
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        text: "Private Key",
+        onClick: function onClick(e) {
+          // be nullified after the event callback has been invoked,
+          // if dont e.persist(), we can't get e.preventDefault in this.showModal
+          // https://reactjs.org/docs/events.html#event-pooling
+          e.persist();
+          prompt('Password', 'Please make sure you are under safe enviroment.', [{
+            text: 'Cancel'
+          }, {
+            text: 'Submit',
+            onPress: function onPress(password) {
+              _this3.getPrivateKeyAndMnemonic(password, 'privateKey');
+            }
+          }], 'secure-text');
+        }
+      }))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9___default.a, {
+        popup: true,
+        visible: this.state.privateKeyModal,
+        onClose: function onClose() {
+          return _this3.onClose('privateKeyModal');
+        },
+        animationType: "slide-up"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannelTitle
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Copy Private Key",
+        defaultMessage: "Copy Private Key"
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.copyArea
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        style: {
+          width: '100%'
+        }
+      }, this.state.privateKey), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("textarea", {
+        id: "privateKeyBackUp",
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textarea,
+        defaultValue: this.state.privateKey
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannelBtnPurple,
+        onClick: function onClick() {
+          var btn = document.getElementById('clipboard-backup');
+          btn.click();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Copy",
+        defaultMessage: "Copy"
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannelBtnPurple + ' ' + _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannerlBtnGrey,
+        onClick: function onClick() {
+          return _this3.onClose('privateKeyModal');
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Close",
+        defaultMessage: "Close"
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
+        id: "clipboard-backup",
+        "data-clipboard-target": "#privateKeyBackUp",
+        style: {
+          display: 'none'
+        }
+      }, "copy"))), mnemonicHtml);
+    }
+  }]);
+
+  return BackupKeypairs;
+}(react__WEBPACK_IMPORTED_MODULE_10__["Component"]);
+
+
+
+/***/ }),
+/* 719 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(720);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 720 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_container-1JRu0 {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_textContainer-j-Csj {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_forbidden-1fIlq {\n  word-wrap: break-word;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  /*禁用页面内容选中和复制操作*/\n  -webkit-touch-callout: none;\n  /*禁用长按页面时的弹出菜单(iOS下有效)*/\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  /*去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)*/\n  color: #999;\n  font-size: 17px;\n  line-height: 25.5px;\n  padding: 11px 15px;\n  font-style: oblique; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_title-1CjcY {\n  padding: 0px 15px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_text-2TY7v {\n  padding: 15px 15px 9px 15px;\n  font-size: 14px;\n  color: #888;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_textarea-7YBIH {\n  position: fixed;\n  top: -1250px;\n  left: -1250px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_bottom-29_h7 {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelTitle-10tf3 {\n  height: 35px;\n  line-height: 35px;\n  text-align: left;\n  text-indent: 24px;\n  border-bottom: 0.5px solid #F2F2F2;\n  color: #ADAAB3;\n  font-size: 10px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelBtnPurple-3j8dO {\n  height: 50px;\n  line-height: 50px;\n  font-size: 14px;\n  color: #AC00E6;\n  border-top: 0.5px solid #F2F2F2;\n  border-bottom: 4px solid #F7F7F7;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelBtnPurple-3j8dO:active {\n  background: #DDD; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannerlBtnGrey-1CZjP {\n  color: #8F8A99;\n  border-bottom: 0; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_copyArea-2PLwP {\n  height: 90px;\n  padding: 0 24px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  word-break: break-all;\n  text-align: left;\n  color: #14111A;\n  font-size: 12px; }\n", ""]);
+
+// exports
+exports.locals = {
+	"container": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_container-1JRu0",
+	"textContainer": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_textContainer-j-Csj",
+	"forbidden": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_forbidden-1fIlq",
+	"title": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_title-1CjcY",
+	"text": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_text-2TY7v",
+	"textarea": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_textarea-7YBIH",
+	"bottom": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_bottom-29_h7",
+	"pannelTitle": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelTitle-10tf3",
+	"pannelBtnPurple": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelBtnPurple-3j8dO",
+	"pannerlBtnGrey": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannerlBtnGrey-1CZjP",
+	"copyArea": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_copyArea-2PLwP"
+};
+
+/***/ }),
+/* 721 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Mnemonic; });
+/* harmony import */ var antd_mobile_lib_nav_bar_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(467);
+/* harmony import */ var antd_mobile_lib_nav_bar_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_nav_bar_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(470);
+/* harmony import */ var antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(231);
+/* harmony import */ var antd_mobile_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(252);
+/* harmony import */ var antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(225);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(236);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(257);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(281);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(282);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(102);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(115);
+/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(722);
+/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_pages_scss__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(445);
+/* harmony import */ var _components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(492);
+/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(495);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(176);
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * huangzongzhe
+ * 2018.08.28
+ */
+// Demo
+// <Mnemonic 
+//    navTitle="备份助记词" 
+//    mnemonic={this.state.mnemonic} // [String]
+//    display={this.state.mnemonicDisplay} // [Bool]
+//    onLeftClick={() => this.toggleMnemonic()}>
+// </Mnemonic>;
+// toggleMnemonic() {
+//     this.setState({
+//         mnemonicDisplay: !this.state.mnemonicDisplay
+//     });
+// }
+
+
+
+
+ // import backupStatusChange from '../../../BackupNotice/backupStatusChange'
+
+
+
+var selectedStyle = '#AC00E6';
+var unSelectedStyle = '#FFF'; // const confirmSubTitle = '请按顺序点击助记词，以确认您正确备份。';
+// const confirmSubTitle = 'To confirm your backup, please click on the Mnemonic in order.';
+
+var confirmSubTitle = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+  id: "aelf.hint02",
+  defaultMessage: "To confirm your backup, please click on the Mnemonic in order."
+});
+
+var Mnemonic =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default()(Mnemonic, _Component);
+
+  function Mnemonic(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6___default()(this, Mnemonic);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(Mnemonic).call(this, props));
+    _this.state = {
+      confirmDisplay: false,
+      mnemonicConfirmed: [],
+      confirmSubNoticeShow: false,
+      confirmSubTitle: confirmSubTitle,
+      pageContainerStyle: _this.props.containerStyle
+    };
+
+    _this.setMnemonicDisorderedListStyle(); // 拿到助记词并打乱顺序。
+
+
+    _this.list = _this.props.mnemonic.split(' ').sort(function () {
+      return .5 - Math.random();
+    });
+    _this.itemCheck = [];
+    _this.mnemonicDisordered = [];
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7___default()(Mnemonic, [{
+    key: "setMnemonicDisorderedListStyle",
+    value: function setMnemonicDisorderedListStyle() {
+      var mnemonicDisorderedListStyle = [];
+
+      for (var i = 0; i < 12; i++) {
+        mnemonicDisorderedListStyle.push({
+          background: unSelectedStyle
+        });
+      }
+
+      this.state.mnemonicDisorderedListStyle = mnemonicDisorderedListStyle;
+    }
+  }, {
+    key: "toggleConfirm",
+    value: function toggleConfirm() {
+      this.setState({
+        confirmDisplay: !this.state.confirmDisplay
+      });
+    } // 选中助记词，并展示在面板中
+
+  }, {
+    key: "disorderedItemClick",
+    value: function disorderedItemClick(e) {
+      var _this2 = this;
+
+      var text = e.target.innerText;
+      var indexDisorderedItem = parseInt(e.target.getAttribute('index'), 10);
+      var index = this.state.mnemonicConfirmed.length;
+
+      if (this.itemCheck.indexOf(indexDisorderedItem) < 0) {
+        this.itemCheck.push(indexDisorderedItem);
+        this.state.mnemonicDisorderedListStyle[indexDisorderedItem] = {
+          background: selectedStyle,
+          borderColor: selectedStyle,
+          color: '#FFF'
+        };
+        var mnemonicConfirmed = this.state.mnemonicConfirmed;
+        mnemonicConfirmed.push(react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+          className: "".concat(_pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.listItem, " ").concat(_pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.selectd),
+          key: Math.random(),
+          index: index,
+          indexdisordereditem: indexDisorderedItem,
+          onClick: function onClick(e) {
+            return _this2.removeItem(e);
+          }
+        }, text));
+        this.setState({
+          mnemonicConfirmed: mnemonicConfirmed
+        });
+      }
+    }
+  }, {
+    key: "confirm",
+    value: function confirm() {
+      var _this3 = this;
+
+      // 确认是否OK
+      if (this.itemCheck.length === 12) {
+        var text = '';
+        this.itemCheck.map(function (item) {
+          text += _this3.mnemonicDisordered[item] + ' ';
+        });
+
+        if (text.trim() === this.props.mnemonic) {
+          // backupStatusChange();
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default.a.success('Success', 3, function () {
+            Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_16__["historyPush"])('/keypairs', false);
+          });
+
+          return;
+        }
+      } // Toast.fail('请重新温习助记词。', 2, () => {}, false);
+
+
+      antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default.a.fail('Please review the Mnemonic again.', 2, function () {}, false);
+
+      this.setState({
+        confirmSubNoticeShow: true,
+        confirmSubTitle: ''
+      });
+    } // 从确认框中点击单词并移除
+
+  }, {
+    key: "removeItem",
+    value: function removeItem(e) {
+      var indexDisorderedItem = parseInt(e.target.getAttribute('indexdisordereditem'), 10);
+      var index = parseInt(e.target.getAttribute('index'), 10);
+      var indexItemCheck = this.itemCheck.indexOf(indexDisorderedItem);
+
+      if (indexItemCheck >= 0) {
+        this.state.mnemonicDisorderedListStyle[indexDisorderedItem] = {
+          background: unSelectedStyle
+        };
+        this.itemCheck.splice(indexItemCheck, 1);
+        var mnemonicConfirmed = this.state.mnemonicConfirmed;
+        mnemonicConfirmed[index] = '';
+        this.setState({
+          mnemonicConfirmed: mnemonicConfirmed,
+          confirmSubNoticeShow: false,
+          confirmSubTitle: confirmSubTitle
+        });
+      }
+    }
+  }, {
+    key: "getMnemonicDisorderedHtml",
+    value: function getMnemonicDisorderedHtml() {
+      var _this4 = this;
+
+      var mnemonicDisorderedHtml = [];
+      var mnemonicDisordered = [];
+      this.list.map(function (item, index) {
+        mnemonicDisorderedHtml.push(react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+          className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.listItem,
+          key: Math.random(),
+          index: index,
+          style: _this4.state.mnemonicDisorderedListStyle[index],
+          onClick: function onClick(e) {
+            return _this4.disorderedItemClick(e);
+          }
+        }, item));
+        mnemonicDisordered.push(item);
+      });
+      this.mnemonicDisordered = mnemonicDisordered;
+      return mnemonicDisorderedHtml;
+    }
+  }, {
+    key: "getContainerStyle",
+    value: function getContainerStyle() {
+      var containerStyle = {
+        display: this.props.display ? 'block' : 'none'
+      };
+      var confirmContainerStyle = {
+        display: this.state.confirmDisplay ? 'block' : 'none'
+      };
+      return {
+        containerStyle: containerStyle,
+        confirmContainerStyle: confirmContainerStyle
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this5 = this;
+
+      var mnemonicDisorderedHtml = this.getMnemonicDisorderedHtml();
+
+      var _this$getContainerSty = this.getContainerStyle(),
+          containerStyle = _this$getContainerSty.containerStyle,
+          confirmContainerStyle = _this$getContainerSty.confirmContainerStyle;
+
+      var pageContainerStyle = this.state.pageContainerStyle; // let pageContainerStyle = getPageContainerStyle();
+
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.page,
+        style: containerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        icon: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
+          type: "left"
+        }),
+        onLeftClick: function onLeftClick() {
+          return _this5.props.onLeftClick();
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.container,
+        style: pageContainerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        mainTitle: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Backup Mnemonic"
+        }),
+        content: [// '助记词用于恢复钱包或者重置钱包密码，',
+        // '仔细抄写下助记词并放在安全的地方！',
+        // '请勿截图!',
+        // '如果有他人获取你的助记词，他将直接获取你的资产!'
+        // 'Mnemonic is used to restore your wallet or reset your password',
+        // 'Please write them down carefully and keep them in a secure location',
+        // 'Please DO NOT use screen capture!',
+        // 'If anyone obtains your Mnemonic, they WILL obtain your digital assets!',
+        react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Becareful07"
+        }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Becareful08"
+        }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Becareful09"
+        }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Becareful010"
+        })]
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.privateContainer
+      }, this.props.mnemonic)), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        text: "Next",
+        onClick: function onClick() {
+          return _this5.toggleConfirm();
+        }
+      }))))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.page,
+        style: confirmContainerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        icon: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
+          type: "left"
+        }),
+        onLeftClick: function onLeftClick() {
+          return _this5.toggleConfirm();
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.container,
+        style: pageContainerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        mainTitle: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.ConfirmMnemonic",
+          defaultMessage: "Confirm Mnemonic"
+        }),
+        subTitle: this.state.confirmSubTitle ? [this.state.confirmSubTitle] : '',
+        subNoticeShow: this.state.confirmSubNoticeShow,
+        subNotice: // '顺序不对，请校对！'
+        react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.hint01",
+          defaultMessage: "Mnemonic is not in the right sequence, please rearrange!"
+        }),
+        iconHidden: true
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "".concat(_pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.privateContainer, " ").concat(_pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.purple)
+      }, this.state.mnemonicConfirmed), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.mnemonicListContainer
+      }, mnemonicDisorderedHtml)), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        text: "Submit",
+        onClick: function onClick() {
+          return _this5.confirm();
+        }
+      }))))));
+    }
+  }]);
+
+  return Mnemonic;
+}(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
+
+
+
+/***/ }),
+/* 722 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(723);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 723 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(490);
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_page-2YpbA {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 999;\n  background: url(" + escape(__webpack_require__(491)) + ") no-repeat; }\n\n@media (min-width: 768px) {\n  .AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_page-2YpbA {\n    position: absolute;\n    top: 0;\n    z-index: 999;\n    -webkit-background-size: cover;\n    background-size: cover; } }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_container-3wcT_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_confirmContainer-1uZ28 {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 1001;\n  background: #FFF; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_privateContainer-intJb {\n  word-wrap: break-word;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  padding: 8px;\n  margin: 32px 24px 15px 24px;\n  background: #fefefe;\n  line-height: 1.5;\n  height: 88px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_privateContainer-intJb.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_purple-_JWek {\n  margin-top: 0;\n  background: rgba(0, 0, 0, 0.2);\n  border: none; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_mnemonicListContainer-24Nud {\n  margin: 0 24px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_whitespace-3Y3dB {\n  height: 45px;\n  width: 10px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_listItem-oHMWC {\n  display: inline-block;\n  border: 1px solid #eee;\n  border-radius: 3px;\n  margin: 5px;\n  padding: 5px 8px 5px 8px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_listItem-oHMWC:active {\n  opacity: 0.5; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_listItem-oHMWC.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_selectd-3Q58P {\n  border: none;\n  color: #FFF;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_note-3zwlI {\n  background-color: #ffd74e;\n  border-radius: 3px;\n  padding: 1px 15px 1px 15px;\n  color: #333; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_top-VjtxM {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_bottom-13f-A {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
+
+// exports
+exports.locals = {
+	"page": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_page-2YpbA",
+	"container": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_container-3wcT_",
+	"confirmContainer": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_confirmContainer-1uZ28",
+	"privateContainer": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_privateContainer-intJb",
+	"purple": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_purple-_JWek",
+	"mnemonicListContainer": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_mnemonicListContainer-24Nud",
+	"whitespace": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_whitespace-3Y3dB",
+	"listItem": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_listItem-oHMWC",
+	"selectd": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_selectd-3Q58P",
+	"note": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_note-3zwlI",
+	"top": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_top-VjtxM",
+	"bottom": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_bottom-13f-A"
 };
 
 /***/ })

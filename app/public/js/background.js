@@ -49943,6 +49943,10 @@ function () {
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_PROMPT"]:
           Background.getPrompt(sendResponse);
           break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CHECK_WALLET_SEED"]:
+          Background.checkWalletSeed(sendResponse);
+          break;
         // TODO:
         // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
         //     Background.releaseAELFContract(sendResponse);

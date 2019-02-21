@@ -44,6 +44,7 @@ function getKeypairs(callback) {
     });
 }
 
+
 function removeKeypairs(address, callback) {
     InternalMessage.payload(InternalMessageTypes.REMOVE_KEYPAIR, address).send().then(result => {
         console.log(InternalMessageTypes.REMOVE_KEYPAIR, result);
@@ -114,6 +115,12 @@ export default class Keypairs extends Component {
                                 readOnly
                             />
                         </div>
+                        <div className={style.backup} onClick={() => this.backupKeyPairs(address)}>
+                            <FormattedMessage
+                                id = 'aelf.Backup'
+                                defaultMessage = 'Backup'
+                            />
+                        </div>
                         <div className={style.operationList}>
                             <div
                                 className = {
@@ -171,17 +178,22 @@ export default class Keypairs extends Component {
         });
     }
 
+
     componentWillUnmount() {
         this.WillUnmount = true;
         this.setState = () => { };
     }
 
     createKeyPairs() {
-        hashHistory.push('/backup');
+        hashHistory.push('/createKeypairs');
     }
 
     importKeyPairs() {
         hashHistory.push('/import');
+    }
+
+    backupKeyPairs(address) {
+        hashHistory.push(`/backupKeypairs/${address}`);
     }
 
     render() {
@@ -205,8 +217,8 @@ export default class Keypairs extends Component {
                             onClick={() => this.createKeyPairs()}
                         >
                             <FormattedMessage
-                                id = 'aelf.Create KeyPairs'
-                                defaultMessage = 'Create KeyPairs'
+                                id = 'aelf.Create Keypairs'
+                                defaultMessage = 'Create Keypairs'
                             />
                         </div>
                     </Flex.Item>

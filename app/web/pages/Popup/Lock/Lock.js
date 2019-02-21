@@ -112,6 +112,7 @@ export default class Lock extends Component {
                     hashHistory.push('/home');
                 }
                 else {
+                    console.log(result.error);
                     Toast.fail('Unlock Wallet Failed.', 3, () => {}, false);
                 }
             }).catch(error => {

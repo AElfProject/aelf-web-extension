@@ -176,6 +176,9 @@ export default class Background {
             case InternalMessageTypes.GET_PROMPT:
                 Background.getPrompt(sendResponse);
                 break;
+            case InternalMessageTypes.CHECK_WALLET_SEED:
+                Background.checkWalletSeed(sendResponse);
+                break;
             // TODO:
             // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
             //     Background.releaseAELFContract(sendResponse);
@@ -590,7 +593,7 @@ export default class Background {
             } = nightElfObject;
             sendResponse({
                 ...errorHandler(0),
-                keypairs: keypairs
+                keypairs
             });
         });
     }
