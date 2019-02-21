@@ -16,6 +16,7 @@ const en_US = {
     'aelf.Copy Address': 'Copy Address',
     'aelf.Create Wallet': 'Create Wallet',
     'aelf.Create Keypair': 'Create Keypair',
+    'aelf.Import Keypair': 'Import Keypair',
     'aelf.Clear Wallet': 'Clear Wallet',
     'aelf.Unlock Wallet': 'Unlock Wallet',
     'aelf.Keypair Name': 'Keypair Name',

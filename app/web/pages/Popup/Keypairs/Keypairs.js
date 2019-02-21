@@ -9,7 +9,8 @@ import {hashHistory} from 'react-router';
 import {
     ListView,
     Toast,
-    Modal
+    Modal,
+    Flex
 } from 'antd-mobile';
 import {historyPush} from '../../../utils/historyChange';
 import {
@@ -19,10 +20,10 @@ import {
 } from '../../../utils/utils';
 import NavNormal from '../../../components/NavNormal/NavNormal';
 import ScrollFooter from '../../../components/ScrollFooter/ScrollFooter';
-
+import AelfButton from '../../../components/Button/Button';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
-
+import {FormattedMessage} from 'react-intl';
 import style from './Keypairs.scss';
 require('./Keypairs.css');
 
@@ -110,7 +111,8 @@ export default class Keypairs extends Component {
                                 type="text"
                                 className={style.textarea}
                                 value={address}
-                                readOnly/>
+                                readOnly
+                            />
                         </div>
                         <div className={style.operationList}>
                             <div
@@ -178,6 +180,10 @@ export default class Keypairs extends Component {
         hashHistory.push('/backup');
     }
 
+    importKeyPairs() {
+        hashHistory.push('/import');
+    }
+
     render() {
         let pageContainerStyle = getPageContainerStyle();
         pageContainerStyle.height -= 45;
@@ -190,11 +196,36 @@ export default class Keypairs extends Component {
                 <NavNormal
                     onLeftClick={() => historyPush('/home')}
                 ></NavNormal>
+                {/* <button onClick={() => this.createKeyPairs()}>createKeyPairs</button>
+                <button onClick={() => this.createKeyPairs()}>backupKeyPairs</button> */}
+                <Flex justify='center' align='center' style={{margin: '0 22px'}} >
+                    <Flex.Item align='center'>
+                        <div
+                            className={style.keypairButton}
+                            onClick={() => this.createKeyPairs()}
+                        >
+                            <FormattedMessage
+                                id = 'aelf.Create KeyPairs'
+                                defaultMessage = 'Create KeyPairs'
+                            />
+                        </div>
+                    </Flex.Item>
+                    <Flex.Item align='center'>
+                    <div
+                            className={style.keypairButton}
+                            onClick={() => this.importKeyPairs()}
+                        >
+                            <FormattedMessage
+                                id = 'aelf.Import Keypairs'
+                                defaultMessage = 'Import Keypairs'
+                            />
+                        </div>
+                    </Flex.Item>
+                </Flex>
                 <div className={style.background} style={backgroundStyle}>
                     <div className={style.backgroundMask}></div>
                     <div className={style.container} style={containerStyle}>
 
-                        <button onClick={() => this.createKeyPairs()}>createKeyPairs</button>
 
                         <div className={style.transactionList}>
                             <ListView

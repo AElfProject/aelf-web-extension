@@ -23,6 +23,7 @@ import Backup from './Backup/Backup';
 import Keypairs from './Keypairs/Keypairs';
 import Permissions from './Permissions/Permissions';
 import Contracts from './Contracts/Contracts';
+import Import from './Import/Import';
 
 addLocaleData([...zh, ...en]);
 
@@ -35,6 +36,7 @@ ReactDOM.render(
                 <Route path="/backup" component={Backup}></Route>
                 <Route path="/keypairs" component={Keypairs}></Route>
                 <Route path="/permissions" component={Permissions}></Route>
+                <Route path="/import" component={Import}></Route>
                 {/* TODO: contracts just for test */}
                 <Route path="/contracts" component={Contracts}></Route>
             </Router>

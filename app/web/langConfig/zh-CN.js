@@ -17,6 +17,7 @@ const zh_CN = {
     'aelf.Copy Address': '复制钱包地址',
     'aelf.Create Wallet': '创建钱包',
     'aelf.Create Keypair': '创建密钥',
+    'aelf.Import Keypair': '导入密钥',
     'aelf.Clear Wallet': '删除钱包',
     'aelf.Unlock Wallet': '解锁钱包',
     'aelf.Keypair Name': '密钥对别名',

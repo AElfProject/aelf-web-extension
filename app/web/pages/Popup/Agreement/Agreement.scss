@@ -1,0 +1,22 @@
+.center {
+	text-align: center;
+}
+
+.textContainer {
+	height: 300px;
+	color: #FFF;
+	padding: 11px 24px;
+	font-size: 14px;
+    line-height: 21px;
+    overflow: scroll;
+}
+
+.agreement {
+	max-width: 520px;
+	background: url("../../../assets/background/bg1_long.svg") no-repeat;
+	background-size: cover;
+    position: fixed;
+    top: 0;
+	color: #FFF;
+    z-index: 9999;
+}

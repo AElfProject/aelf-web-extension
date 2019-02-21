@@ -35,9 +35,9 @@ export default class personalCenterHome extends Component {
         return (
             <div className={style.container + ' ' + 'aelf-personal-pages aelf-solid'}>
 
+                {/* <div className={style.blank}></div>
                 <div className={style.blank}></div>
-                <div className={style.blank}></div>
-                <div className={style.blank}></div>
+                <div className={style.blank}></div> */}
 
                 <List className={'aelf-list'}>
                     <Item onClick={() => hashHistory.push('/keypairs')}>
@@ -52,7 +52,6 @@ export default class personalCenterHome extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-
                 <List className={'aelf-list'}>
                     <Item onClick={() => hashHistory.push('/permissions')}>
                         <ListContent
