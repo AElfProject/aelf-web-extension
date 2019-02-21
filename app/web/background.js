@@ -508,6 +508,7 @@ export default class Background {
         seed = _seed;
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             nightElf = NightElf.fromJson(nightElfObject);
+            console.log(nightElf);
             sendResponse({
                 ...errorHandler(0),
                 nightElf: !!nightElf
@@ -1162,7 +1163,6 @@ export default class Background {
     //         this.update(() => {}, scatter);
     //     })
     // }
-
 }
 
 new Background();

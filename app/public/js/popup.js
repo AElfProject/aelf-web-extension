@@ -102013,6 +102013,7 @@ function (_Component) {
       privateKeyModal: false,
       passwordModal: false,
       containerStyle: null,
+      isVerification: true,
       address: _this.props.params.address || ''
     };
     Object(_utils_clipboard__WEBPACK_IMPORTED_MODULE_16__["default"])('#clipboard-backup');
@@ -102071,11 +102072,14 @@ function (_Component) {
 
       var password = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
       var type = arguments.length > 1 ? arguments[1] : undefined;
+      console.log(password);
       var seed = getSeed(password);
       var address = this.state.address;
 
       if (seed) {
         _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__["UNLOCK_WALLET"], seed).send().then(function (result) {
+          console.log(result);
+
           if (result && result.error === 0) {
             _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__["GET_KEYPAIR"]).send().then(function (result) {
               if (result && result.error === 0) {
@@ -102084,18 +102088,26 @@ function (_Component) {
                     if (type === 'Mnemonic') {
                       _this2.setState({
                         mnemonic: item.mnemonic,
-                        mnemonicDisplay: !_this2.state.mnemonicDisplay
+                        mnemonicDisplay: !_this2.state.mnemonicDisplay,
+                        isVerification: true
                       });
                     } else {
                       _this2.setState({
                         privateKey: item.privateKey,
-                        privateKeyModal: !_this2.state.privateKeyModal
+                        privateKeyModal: !_this2.state.privateKeyModal,
+                        isVerification: true
                       });
                     }
                   }
                 });
               }
             });
+          } else {
+            _this2.setState({
+              isVerification: false
+            });
+
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7___default.a.fail('Password error', 3, function () {}, false);
           }
         });
       }
@@ -102126,11 +102138,26 @@ function (_Component) {
       }
     }
   }, {
+    key: "goNextPage",
+    value: function goNextPage() {
+      var isVerification = this.state.isVerification;
+
+      if (isVerification) {
+        react_router__WEBPACK_IMPORTED_MODULE_11__["hashHistory"].push('/keypairs');
+      } else {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__["LOCK_WALLET"]).send().then(function (result) {
+          react_router__WEBPACK_IMPORTED_MODULE_11__["hashHistory"].push('/');
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
-      var containerStyle = this.state.containerStyle;
+      var _this$state = this.state,
+          containerStyle = _this$state.containerStyle,
+          jumpPosition = _this$state.jumpPosition;
       var mnemonicHtml = '';
 
       if (this.state.mnemonic) {
@@ -102146,11 +102173,12 @@ function (_Component) {
       } // let containerStyle = getPageContainerStyle();
 
 
+      console.log(jumpPosition);
       return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
         className: "aelf-bg-light"
       }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_21__["default"], {
         onLeftClick: function onLeftClick() {
-          return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_15__["historyPush"])('/keypairs');
+          return _this3.goNextPage();
         }
       }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
         className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,

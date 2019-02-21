@@ -50265,6 +50265,7 @@ function () {
       }, function (_ref) {
         var nightElfObject = _ref.nightElfObject;
         nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+        console.log(nightElf);
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
           nightElf: !!nightElf
         }));

@@ -50,6 +50,7 @@ export default class BackupKeypairs extends Component {
             privateKeyModal: false,
             passwordModal: false,
             containerStyle: null,
+            isVerification: true,
             address: this.props.params.address || ''
         };
         clipboard('#clipboard-backup');
@@ -107,10 +108,12 @@ export default class BackupKeypairs extends Component {
     // }
 
     getPrivateKeyAndMnemonic(password = '', type) {
+        console.log(password);
         let seed = getSeed(password);
         const {address} = this.state;
         if (seed) {
             InternalMessage.payload(InternalMessageTypes.UNLOCK_WALLET, seed).send().then(result => {
+                console.log(result);
                 if (result && result.error === 0) {
                     InternalMessage.payload(InternalMessageTypes.GET_KEYPAIR).send().then(result => {
                         if (result && result.error === 0) {
@@ -119,19 +122,27 @@ export default class BackupKeypairs extends Component {
                                     if (type === 'Mnemonic') {
                                         this.setState({
                                             mnemonic: item.mnemonic,
-                                            mnemonicDisplay: !this.state.mnemonicDisplay
+                                            mnemonicDisplay: !this.state.mnemonicDisplay,
+                                            isVerification: true
                                         });
                                     }
                                     else {
                                         this.setState({
                                             privateKey: item.privateKey,
-                                            privateKeyModal: !this.state.privateKeyModal
+                                            privateKeyModal: !this.state.privateKeyModal,
+                                            isVerification: true
                                         });
                                     }
                                 }
                             });
                         }
                     });
+                }
+                else {
+                    this.setState({
+                        isVerification: false
+                    });
+                    Toast.fail('Password error', 3, () => {}, false);
                 }
             });
         }
@@ -158,11 +169,24 @@ export default class BackupKeypairs extends Component {
         }
     }
 
+
+    goNextPage() {
+        const {isVerification} = this.state;
+        if (isVerification) {
+            hashHistory.push('/keypairs');
+        }
+        else {
+            InternalMessage.payload(InternalMessageTypes.LOCK_WALLET).send().then(result => {
+                hashHistory.push('/');
+            });
+        }
+    }
+
     render() {
-        const {containerStyle} = this.state;
+        const {containerStyle, jumpPosition} = this.state;
         let mnemonicHtml = '';
         if (this.state.mnemonic) {
-            mnemonicHtml =  <Mnemonic
+            mnemonicHtml = <Mnemonic
                                 navTitle="Mnemonic"
                                 mnemonic={this.state.mnemonic}
                                 display={this.state.mnemonicDisplay}
@@ -172,13 +196,13 @@ export default class BackupKeypairs extends Component {
                             </Mnemonic>;
         }
         // let containerStyle = getPageContainerStyle();
-        
+        console.log(jumpPosition);
         return (
             <div className='aelf-bg-light'>
 
                 {/*<NavNormal navTitle="导入钱包" */}
                 <NavNormal
-                    onLeftClick={() => historyPush('/keypairs')}
+                    onLeftClick={() => this.goNextPage()}
                 ></NavNormal>
 
                 <div className={style.container} style={containerStyle}>
