@@ -39089,6 +39089,7 @@ var zh_CN = (_zh_CN = {
   'aelf.Clear Wallet': '删除钱包',
   'aelf.Unlock Wallet': '解锁钱包',
   'aelf.Keypair Name': '密钥对别名',
+  'aelf.Extend Manager': '扩展管理',
   'aelf.Key Pairs': '密钥对',
   'aelf.Receive': '钱包地址',
   'aelf.Home': '首页',
@@ -39194,6 +39195,7 @@ var en_US = (_en_US = {
   'aelf.Clear Wallet': 'Clear Wallet',
   'aelf.Unlock Wallet': 'Unlock Wallet',
   'aelf.Keypair Name': 'Keypair Name',
+  'aelf.Extend Manager': 'Extend Manager',
   'aelf.Key Pairs': 'Key Pairs',
   'aelf.Receive': 'Receive',
   'aelf.Home': 'Home',
@@ -69553,6 +69555,18 @@ function (_Component) {
         text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
           id: "aelf.Permissions",
           defaultMessage: "Permissions"
+        })
+      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
+        className: 'aelf-list'
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
+        onClick: function onClick() {
+          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/?action=clear_wallet');
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        icon: "about16",
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+          id: "aelf.Keypairs Manager",
+          defaultMessage: "Keypairs Manager"
         })
       }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
         className: 'aelf-list'
@@ -101350,6 +101364,8 @@ function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(Import, [{
     key: "createAndGO",
     value: function createAndGO() {
+      var _this2 = this;
+
       // let password = this.state.password;
       // if (!password) {
       //     Toast.fail('No password', 2);
@@ -101410,8 +101426,21 @@ function (_Component) {
           y: publicKey.y.toString('hex')
         }
       };
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["INSERT_KEYPAIR"], setWalletInfo).send().then(function (result) {
-        react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/keypairs');
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["GET_KEYPAIR"]).send().then(function (result) {
+        // Users may import multiple times with a private key or mnemonic
+        if (result || result.error === 0) {
+          if (JSON.stringify(result.keypairs).indexOf(JSON.stringify(setWalletInfo.address)) === -1) {
+            _this2.insertKeypair(setWalletInfo);
+          } else {
+            _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["REMOVE_KEYPAIR"], setWalletInfo.address).send().then(function (result) {
+              if (result || result.error === 0) {
+                _this2.insertKeypair(setWalletInfo);
+              } else {
+                antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.fail(result.message, 3, function () {}, false);
+              }
+            });
+          }
+        }
       });
     }
   }, {
@@ -101420,6 +101449,13 @@ function (_Component) {
       this.setState({
         mnemonic: mnemonic.target.value,
         mnemonicError: ''
+      });
+    }
+  }, {
+    key: "insertKeypair",
+    value: function insertKeypair(walletInfo) {
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["INSERT_KEYPAIR"], walletInfo).send().then(function (result) {
+        react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/keypairs');
       });
     }
   }, {
@@ -101464,7 +101500,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var createButtonText = 'Submit';
       var createButton = react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -101479,7 +101515,7 @@ function (_Component) {
         createButton = react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
           text: createButtonText,
           onClick: function onClick() {
-            return _this2.createAndGO();
+            return _this3.createAndGO();
           },
           style: {
             margin: '0 0 20px 0'
@@ -101504,7 +101540,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
         className: this.state.tabNClass,
         onClick: function onClick() {
-          return _this2.tabClickN();
+          return _this3.tabClickN();
         }
       }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
         id: "aelf.Mnemonic",
@@ -101514,7 +101550,7 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
         className: this.state.tabPClass,
         onClick: function onClick() {
-          return _this2.tabClickP();
+          return _this3.tabClickP();
         }
       }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
         id: "aelf.Private Key",
@@ -101529,7 +101565,7 @@ function (_Component) {
         rows: "6",
         value: this.state.mnemonic,
         onChange: function onChange(mnemonic) {
-          return _this2.inputMnemonic(mnemonic);
+          return _this3.inputMnemonic(mnemonic);
         } // placeholder="此处填写助记词, 用空格分隔"
         ,
         className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textarea
@@ -101541,7 +101577,7 @@ function (_Component) {
         rows: "6",
         value: this.state.privateKey,
         onChange: function onChange(privateKey) {
-          return _this2.inputPrivateKey(privateKey);
+          return _this3.inputPrivateKey(privateKey);
         } // placeholder="此处填写私钥"
         ,
         className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textarea
@@ -101552,7 +101588,7 @@ function (_Component) {
         defaultMessage: "In this wallet, there is no Mnemonic when import Private Key. But we can get Private Key when we import Mnemonic."
       })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_WalletName_WalletName__WEBPACK_IMPORTED_MODULE_16__["default"], {
         setWalletName: function setWalletName(walletName) {
-          return _this2.setWalletName(walletName);
+          return _this3.setWalletName(walletName);
         }
       }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd_mobile_lib_white_space__WEBPACK_IMPORTED_MODULE_1___default.a, null)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
         className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom

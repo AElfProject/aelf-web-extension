@@ -21,6 +21,7 @@ const zh_CN = {
     'aelf.Clear Wallet': '删除钱包',
     'aelf.Unlock Wallet': '解锁钱包',
     'aelf.Keypair Name': '密钥对别名',
+    'aelf.Extend Manager': '扩展管理',
     'aelf.Key Pairs': '密钥对',
     'aelf.Receive': '钱包地址',
     'aelf.Home': '首页',

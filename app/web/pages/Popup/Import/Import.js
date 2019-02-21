@@ -58,7 +58,7 @@ export default class Import extends Component {
 
         let mnemonicWallet = aelf.wallet.getWalletByMnemonic(this.state.mnemonic.trim() || '');
         let privateKeyWallet = aelf.wallet.getWalletByPrivateKey(this.state.privateKey.trim() || '');
-        
+
         // if (!privateKeyWallet && !mnemonicWallet) {
         if (!mnemonicWallet) {
             this.setState({mnemonicError: 'invalid mnemonic'});
@@ -92,8 +92,26 @@ export default class Import extends Component {
                 y: publicKey.y.toString('hex')
             }
         };
-        InternalMessage.payload(InternalMessageTypes.INSERT_KEYPAIR, setWalletInfo).send().then(result => {
-            hashHistory.push('/keypairs');
+
+        InternalMessage.payload(InternalMessageTypes.GET_KEYPAIR).send().then(result => {
+            // Users may import multiple times with a private key or mnemonic
+            if (result || result.error === 0) {
+                if (JSON.stringify(result.keypairs).indexOf(JSON.stringify(setWalletInfo.address)) === -1) {
+                    this.insertKeypair(setWalletInfo);
+                }
+                else {
+                    InternalMessage.payload(InternalMessageTypes.REMOVE_KEYPAIR, setWalletInfo.address)
+                    .send()
+                    .then(result => {
+                        if (result || result.error === 0) {
+                            this.insertKeypair(setWalletInfo);
+                        }
+                        else {
+                            Toast.fail(result.message, 3, () => {}, false);
+                        }
+                    });
+                }
+            }
         });
     }
 
@@ -101,6 +119,12 @@ export default class Import extends Component {
         this.setState({
             mnemonic: mnemonic.target.value,
             mnemonicError: ''
+        });
+    }
+
+    insertKeypair(walletInfo) {
+        InternalMessage.payload(InternalMessageTypes.INSERT_KEYPAIR, walletInfo).send().then(result => {
+            hashHistory.push('/keypairs');
         });
     }
 

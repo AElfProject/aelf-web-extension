@@ -20,6 +20,7 @@ const en_US = {
     'aelf.Clear Wallet': 'Clear Wallet',
     'aelf.Unlock Wallet': 'Unlock Wallet',
     'aelf.Keypair Name': 'Keypair Name',
+    'aelf.Extend Manager': 'Extend Manager',
     'aelf.Key Pairs': 'Key Pairs',
     'aelf.Receive': 'Receive',
     'aelf.Home': 'Home',

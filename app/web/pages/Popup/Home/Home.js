@@ -65,7 +65,19 @@ export default class personalCenterHome extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-
+                <List className={'aelf-list'}>
+                    <Item onClick={() => hashHistory.push('/?action=clear_wallet')}>
+                        <ListContent
+                            icon="about16"
+                            text={
+                                <FormattedMessage
+                                    id = 'aelf.Keypairs Manager'
+                                    defaultMessage = "Keypairs Manager"
+                                />
+                            }
+                        ></ListContent>
+                    </Item>
+                </List>
                 <List className={'aelf-list'}>
                     <Item onClick={() => this.lockWallet()}>
                         <ListContent
@@ -79,7 +91,6 @@ export default class personalCenterHome extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-
                 <List className={'aelf-list'}>
                     <Item onClick={() => hashHistory.push('/?action=clear_wallet')}>
                         <ListContent
