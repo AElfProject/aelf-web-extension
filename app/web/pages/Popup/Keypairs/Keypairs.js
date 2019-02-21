@@ -217,7 +217,7 @@ export default class Keypairs extends Component {
                             onClick={() => this.createKeyPairs()}
                         >
                             <FormattedMessage
-                                id = 'aelf.Create Keypairs'
+                                id = 'aelf.Create Keypair'
                                 defaultMessage = 'Create Keypairs'
                             />
                         </div>
@@ -228,7 +228,7 @@ export default class Keypairs extends Component {
                             onClick={() => this.importKeyPairs()}
                         >
                             <FormattedMessage
-                                id = 'aelf.Import Keypairs'
+                                id = 'aelf.Import Keypair'
                                 defaultMessage = 'Import Keypairs'
                             />
                         </div>

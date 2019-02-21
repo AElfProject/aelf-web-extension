@@ -97062,7 +97062,7 @@ function (_Component) {
           return _this3.createKeyPairs();
         }
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
-        id: "aelf.Create Keypairs",
+        id: "aelf.Create Keypair",
         defaultMessage: "Create Keypairs"
       }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a.Item, {
         align: "center"
@@ -97072,7 +97072,7 @@ function (_Component) {
           return _this3.importKeyPairs();
         }
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
-        id: "aelf.Import Keypairs",
+        id: "aelf.Import Keypair",
         defaultMessage: "Import Keypairs"
       })))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.background,
