@@ -4,6 +4,7 @@
  */
 import IdGenerator from './utils/IdGenerator';
 import EncryptedStream from './utils/EncryptedStream';
+import logger from './utils/logger';
 // import {
 //     EncryptedStream
 // } from 'extension-streams';
@@ -24,78 +25,69 @@ const handlePendingPromise = function (eventMessage) {
             item.resolve(eventMessage);
             return false;
         }
-        else {
-            return true;
-        }
+        return true;
     });
 };
+
+let stream = new WeakMap();
 
 class Inject {
 
     constructor() {
         // Injecting an encrypted stream into the
         // web application.
-        // const key = IdGenerator.text(64);
-        const stream = new EncryptedStream(PageContentTags.PAGE_NIGHTELF, IdGenerator.text(64));
-        // console.log('inject stream', stream);
+        this.aesKey = IdGenerator.text(256);
+        this.setupEncryptedStream();
+    }
 
+    setupEncryptedStream() {
+        stream = new EncryptedStream(PageContentTags.PAGE_NIGHTELF, this.aesKey);
+        // logger.log('inject stream', stream);
         stream.addEventListener(result => {
-            console.log('inject addEventListener: ', result);
-            // TODO whitelist check
+            // logger.log('inject addEventListener: ', result);
             handlePendingPromise(result);
         });
 
-        function promiseSend(input) {
-            return new Promise((resolve, reject) => {
-                const data = Object.assign({}, input, {sid: IdGenerator.numeric(24)});
-                promisePendingList.push({
-                    sid: data.sid,
-                    resolve,
-                    reject
-                });
-                stream.send(data, PageContentTags.CONTENT_NIGHTELF);
+        stream.setupEestablishEncryptedCommunication(PageContentTags.CONTENT_NIGHTELF).then(ready => {
+            this.initNightElf();
+        });
+        stream.sendPublicKey(PageContentTags.CONTENT_NIGHTELF);
+    }
+
+    promiseSend(input) {
+        return new Promise((resolve, reject) => {
+            const data = Object.assign({}, input, {
+                sid: IdGenerator.numeric(24)
             });
-        }
+            promisePendingList.push({
+                sid: data.sid,
+                resolve,
+                reject
+            });
+            stream.send(data, PageContentTags.CONTENT_NIGHTELF);
+        });
+    }
 
-        console.log('inject init ready2333!!!');
-
-        // let dirtyCheckInterval = null;
-        // function dirtyCheck(
-        //     dirtyCheckInterval = setInterval(() => {
-        //         clearInterval(dirtyCheckInterval);
-        //     }, 100)
-        // );
-        let intervalTimer = null;
-        function check() {
-            intervalTimer = setInterval(() => {
-                console.log(2333);
-                clearInterval(intervalTimer);
-            }, 500);
-        }
-
+    initNightElf() {
         window.NightElf = {
-            api: promiseSend
+            api: this.promiseSend
         };
 
-        document.dispatchEvent(new CustomEvent('NightElf'), {
-            error: 0,
-            message: 'Night Elf is ready.'
-        });
+        document.dispatchEvent(new CustomEvent('NightElf', {
+            detail: {
+                error: 0,
+                message: 'Night Elf is ready.'
+            }
+        }));
+    }
 
-        // Waiting for scatter to push itself onto the application
-        // stream.listenWith(msg => {
-        //     console.log('inject listenWith msg: ', msg);
-        //     window.nightElf = {
-        //         send: stream.send
-        //     };
-        //     // if (msg && msg.hasOwnProperty('type') && msg.type === NetworkMessageTypes.PUSH_SCATTER) {
-        //         // window.scatter = new Scatterdapp(stream, msg.payload);
-        //     // }
-        // });
-
-        // Syncing the streams between the
-        // extension and the web application
-        // stream.sync(PageContentTags.SCATTER, stream.key);
+    initNightELFFailed() {
+        document.dispatchEvent(new CustomEvent('NightElf', {
+            detail: {
+                error: 1,
+                message: 'init Night ELF failed.'
+            }
+        }));
     }
 }
 

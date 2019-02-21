@@ -22,6 +22,7 @@ class NightElfCheck {
             resovleTemp = resolve;
         });
         document.addEventListener('NightElf', result => {
+            console.log('test.js check the status of extension named nightElf: ', result);
             resovleTemp(true);
         });
     }
