@@ -149,7 +149,7 @@ export default class Lock extends Component {
             this.checkWallet();
         }
         else {
-            hashHistory.push('/home');
+            hashHistory.push('/extensionManager');
         }
     }
 

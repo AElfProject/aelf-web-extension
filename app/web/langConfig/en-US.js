@@ -159,7 +159,11 @@ const en_US = {
     'aelf.BackUpCon04':'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.',
     'aelf.Backup now':'Backup now',
     'aelf.The passwords confirmed error.': 'The passwords confirmed error.',
-    'aelf.The passwords is not strong.': 'The passwords is not strong.'
+    'aelf.The passwords is not strong.': 'The passwords is not strong.',
+    'aelf.Extension Manager': 'Extension Manager',
+    'aelf.Backup NightELF': 'Backup NightELF',
+    'aelf.Delete NightELF': 'Delete NightELF',
+    'aelf.Timer Locks': 'Timer Locks'
 };
 
 export default en_US;

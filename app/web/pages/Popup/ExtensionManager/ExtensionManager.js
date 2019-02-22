@@ -1,7 +1,6 @@
 /**
- * @file Home.js
- * @author huangzongzhe
- * 2019.01
+ * @file BackupExtension.js
+ * @author zhouminghui
  */
 import React, {
 	Component
@@ -10,11 +9,11 @@ import React, {
 import {List} from 'antd-mobile';
 import {hashHistory} from 'react-router';
 
-import style from './Home.scss';
+import style from './ExtensionManager.scss';
 
 import ListContent from '../../../components/ListContent/ListContent';
-import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
-import InternalMessage from '../../../messages/InternalMessage';
+import NavNormal from '../../../components/NavNormal/NavNormal';
+import {historyPush} from '../../../utils/historyChange';
 
 import {FormattedMessage} from 'react-intl';
 
@@ -22,14 +21,7 @@ import {FormattedMessage} from 'react-intl';
 
 const Item = List.Item;
 
-export default class personalCenterHome extends Component {
-
-    lockWallet() {
-        InternalMessage.payload(InternalMessageTypes.LOCK_WALLET).send().then(result => {
-            console.log(InternalMessageTypes.LOCK_WALLET, result);
-            hashHistory.push('/');
-        });
-    }
+export default class ExtensionManager extends Component {
 
     render() {
         return (
@@ -38,54 +30,43 @@ export default class personalCenterHome extends Component {
                 {/* <div className={style.blank}></div>
                 <div className={style.blank}></div>
                 <div className={style.blank}></div> */}
-
+                <NavNormal
+                    onLeftClick={() => historyPush('/home')}
+                ></NavNormal>
                 <List className={'aelf-list'}>
                     <Item onClick={() => hashHistory.push('/keypairs')}>
                         <ListContent
                             icon="wallet16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Key Pairs'
-                                    defaultMessage = 'Key Pairs'
+                                    id = 'aelf.Backup NightELF'
+                                    defaultMessage = 'Backup NightELF'
                                 />
                             }
                         ></ListContent>
                     </Item>
                 </List>
                 <List className={'aelf-list'}>
-                    <Item onClick={() => hashHistory.push('/permissions')}>
+                    <Item onClick={() => hashHistory.push('/?action=clear_wallet')}>
                         <ListContent
                             icon="tx_history16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Permissions'
-                                    defaultMessage = 'Permissions'
+                                    id = 'aelf.Delete NightELF'
+                                    defaultMessage = 'Delete NightELF'
                                 />
                             }
                         ></ListContent>
                     </Item>
                 </List>
                 <List className={'aelf-list'}>
-                    <Item onClick={() => hashHistory.push('/extensionManager')}>
+                    <Item onClick={() => hashHistory.push('/home')}>
                         <ListContent
                             icon="about16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Extension Manager'
-                                    defaultMessage = "Keypairs Manager"
-                                />
-                            }
-                        ></ListContent>
-                    </Item>
-                </List>
-                <List className={'aelf-list'}>
-                    <Item onClick={() => this.lockWallet()}>
-                        <ListContent
-                            icon="about16"
-                            text={
-                                <FormattedMessage
-                                    id = 'aelf.Lock'
-                                    defaultMessage = "Lock"
+                                    id = 'aelf.Timer Locks'
+                                    defaultMessage = "Timer Locks"
                                 />
                             }
                         ></ListContent>

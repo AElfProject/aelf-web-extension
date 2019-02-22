@@ -151,7 +151,11 @@ const zh_CN = {
     'aelf.BackUpCon04': '备份助记词在您丢失钱包或忘记密码时，能帮助您恢复钱包。',
     'aelf.Backup now': '立即备份助记词',
     'aelf.The passwords confirmed error.': '两次输入不一致',
-    'aelf.The passwords is not strong.': '密码强度不够'
+    'aelf.The passwords is not strong.': '密码强度不够',
+    'aelf.Extension Manager': '管理',
+    'aelf.Backup NightELF': '备份 NightELF',
+    'aelf.Delete NightELF': '删除 NightELF',
+    'aelf.Timer Locks': '定时锁定'
 };
 
 export default zh_CN;

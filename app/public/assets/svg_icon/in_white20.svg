@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/转入白20</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/转入白20" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" opacity="0" transform="translate(0.833333, 0.833333)" stroke-width="0.5">
+            <circle id="Oval-2" stroke="#979797" cx="9.16666667" cy="9.16666667" r="8.91666667"></circle>
+            <rect id="Rectangle" stroke="#D0021B" x="1.08333333" y="1.08333333" width="16.1666667" height="16.1666667" rx="0.833333333"></rect>
+            <rect id="Rectangle" stroke="#979797" x="1.91666667" y="0.25" width="14.5" height="17.8333333" rx="0.833333333"></rect>
+            <rect id="Rectangle" stroke="#979797" x="0.25" y="1.91666667" width="17.8333333" height="14.5" rx="0.833333333"></rect>
+        </g>
+        <path d="M9.09517797,10.8333333 L14.5833333,10.8333333 L14.5833333,9.16666667 L9.09517797,9.16666667 L11.1785113,7.08333333 L10,5.90482203 L5.90482203,10 L10,14.095178 L11.1785113,12.9166667 L9.09517797,10.8333333 Z M10,19.1666667 C4.93738979,19.1666667 0.833333333,15.0626102 0.833333333,10 C0.833333333,4.93738979 4.93738979,0.833333333 10,0.833333333 C15.0626102,0.833333333 19.1666667,4.93738979 19.1666667,10 C19.1666667,15.0626102 15.0626102,19.1666667 10,19.1666667 Z" id="Combined-Shape" fill="#FFFFFF" transform="translate(10.000000, 10.000000) scale(-1, 1) rotate(90.000000) translate(-10.000000, -10.000000) "></path>
+    </g>
+</svg>

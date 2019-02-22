@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/警示32</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/警示32" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M18.6088224,5.12453563 L29.6636412,23.9412484 C30.409666,25.2110779 29.9850384,26.8452507 28.7152089,27.5912755 C28.3056991,27.8318625 27.8393644,27.9587125 27.3644114,27.9587125 L4.78435617,27.9587125 C3.31159684,27.9587125 2.1176895,26.7648051 2.1176895,25.2920458 C2.1176895,24.800451 2.25357849,24.3184232 2.5103444,23.8992136 L14.0355809,5.08250088 C14.8048209,3.82659886 16.4465229,3.43208133 17.7024249,4.20132132 C18.0757611,4.42998974 18.3870551,4.74705928 18.6088224,5.12453563 Z" id="Triangle" fill="#FFAA00"></path>
+        <rect id="Rectangle-6" fill="#FFFFFF" x="15" y="11.3333333" width="2.66666667" height="8" rx="1.33333333"></rect>
+        <circle id="Oval" fill="#FFFFFF" cx="16.3333333" cy="22.6666667" r="1.33333333"></circle>
+    </g>
+</svg>

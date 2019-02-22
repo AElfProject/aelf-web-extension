@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/我的/联系人16</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/我的/联系人16" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" opacity="0" transform="translate(0.666667, 0.666667)" stroke-width="0.5">
+            <circle id="Oval-2" stroke="#979797" cx="7.33333333" cy="7.33333333" r="7.08333333"></circle>
+            <rect id="Rectangle" stroke="#D0021B" x="0.916666667" y="0.916666667" width="12.8333333" height="12.8333333" rx="0.666666667"></rect>
+            <rect id="Rectangle" stroke="#979797" x="1.58333333" y="0.25" width="11.5" height="14.1666667" rx="0.666666667"></rect>
+            <rect id="Rectangle" stroke="#979797" x="0.25" y="1.58333333" width="14.1666667" height="11.5" rx="0.666666667"></rect>
+        </g>
+        <circle id="Oval-11" stroke="#FFFFFF" stroke-width="0.666666667" cx="10.3333333" cy="5.33333333" r="3"></circle>
+        <path d="M6.86107582,3.48072545 C6.42839674,3.17776626 5.9016248,3 5.33333333,3 C3.860574,3 2.66666667,4.19390733 2.66666667,5.66666667 C2.66666667,7.139426 3.860574,8.33333333 5.33333333,8.33333333" id="Oval-11-Copy-2" stroke="#FFFFFF" stroke-width="0.666666667" stroke-linecap="round"></path>
+        <path d="M15.3333333,13.3333333 C15.3333333,10.5719096 13.0947571,8.33333333 10.3333333,8.33333333 C7.57190958,8.33333333 5.33333333,10.5719096 5.33333333,13.3333333" id="Oval-11-Copy" stroke="#FFFFFF" stroke-width="0.666666667" stroke-linecap="round"></path>
+        <path d="M5.33333333,8.33333333 C2.7560045,8.33333333 0.666666667,10.4226712 0.666666667,13" id="Oval-11-Copy-3" stroke="#FFFFFF" stroke-width="0.666666667" stroke-linecap="round"></path>
+    </g>
+</svg>
