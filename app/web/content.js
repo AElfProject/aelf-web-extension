@@ -18,6 +18,8 @@ import {
 } from './utils/BrowserApis';
 import getHostname from './utils/getHostname';
 import errorHandler from './utils/errorHandler';
+
+import logger from './utils/logger';
 // import Hasher from './util/Hasher'
 // import {
 //     strippedHost
@@ -30,8 +32,6 @@ let stream = new WeakMap();
 // The filename of the injected communication script.
 let INJECTION_SCRIPT_FILENAME = 'js/inject.js';
 
-let isReady = false;
-
 /***
  * The content script is what gets run on the application.
  * It also injects and instance of Scatterdapp
@@ -39,6 +39,9 @@ let isReady = false;
 class Content {
 
     constructor() {
+        this.aesKey = IdGenerator.text(256);
+        this.aesKeyOfInject;
+
         this.setupEncryptedStream();
         this.injectInteractionScript();
     }
@@ -46,13 +49,16 @@ class Content {
     setupEncryptedStream() {
         // Setting up a new encrypted stream for
         // interaction between the extension and the application
-        stream = new EncryptedStream(PageContentTags.CONTENT_NIGHTELF, IdGenerator.text(256));
+        stream = new EncryptedStream(PageContentTags.CONTENT_NIGHTELF, this.aesKey);
 
         stream.addEventListener(result => {
-            // console.log('setupEncryptedStream: ', result);
+            logger.log('setupEncryptedStream: ', result);
             this.contentListener(result);
             // this.respond(result);
         });
+
+        stream.setupEestablishEncryptedCommunication(PageContentTags.PAGE_NIGHTELF);
+        // stream.sendPublicKey(PageContentTags.PAGE_NIGHTELF);
     }
 
     respond(payload) {
@@ -76,7 +82,7 @@ class Content {
         script.src = apis.extension.getURL(INJECTION_SCRIPT_FILENAME);
         (document.head || document.documentElement).appendChild(script);
         script.onload = () => {
-            console.log('inject.js onload!!!');
+            logger.log('inject.js onload!!!');
             script.remove();
         };
     }
@@ -85,11 +91,12 @@ class Content {
         let message = Object.assign({}, input, {
             hostname: getHostname()
         });
-        // console.log('contentListener: ', message, location.host || location.hostname);
+        logger.log('contentListener: ', message, location.host || location.hostname);
         // TODO: params check or use TS?
         // sid, method, appName, hostname,
         const {method, sid} = message;
-        console.log('message: ', message);
+        logger.log('message: ', message);
+
         if (method === 'CHECK_CONTENT') {
             this.respond({
                 sid,
@@ -103,6 +110,7 @@ class Content {
             'CONNECT_AELF_CHAIN', 'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT',
             'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS'
         ];
+
         if (!methodWhiteList.includes(method)) {
             this.respond({
                 sid,
@@ -118,7 +126,7 @@ class Content {
             .send()
             .then(result => {
                 result.sid = message.sid;
-                // console.log(InternalMessageTypes[method], result);
+                logger.log(InternalMessageTypes[method], result);
                 this.respond({
                     ...errorHandler(0),
                     ...result
