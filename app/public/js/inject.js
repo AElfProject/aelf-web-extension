@@ -26054,11 +26054,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(708);
-/* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(709);
-/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(690);
-/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(eccrypto__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(281);
-/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(690);
+/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(eccrypto__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(281);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -26091,7 +26090,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var EncryptoStream =
 /*#__PURE__*/
 function () {
@@ -26100,8 +26098,8 @@ function () {
 
     this._eventName = eventName;
     this._aesKey = aesKey;
-    this.privateKey = crypto__WEBPACK_IMPORTED_MODULE_5___default.a.randomBytes(32);
-    this.publicKey = eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.getPublic(this.privateKey);
+    this.privateKey = crypto__WEBPACK_IMPORTED_MODULE_4___default.a.randomBytes(32);
+    this.publicKey = eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.getPublic(this.privateKey);
     this.publicKeyHasSent;
     this.publicKeyOfTheOtherParty;
     this.aesKeyOfTheOtherParty;
@@ -26121,7 +26119,7 @@ function () {
           message = JSON.parse(event.detail);
         }
 
-        _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in::::', _this._eventName, event, message);
+        console.log('in::::', _this._eventName, event, message);
         callback(message);
       });
     } // EEC: EestablishEncryptedCommunication
@@ -26142,7 +26140,7 @@ function () {
 
               _this2.sendPublicKey(to);
 
-              _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: publicKey ::', _this2._eventName);
+              console.log('in addEventListenerOfEEC:: publicKey ::', _this2._eventName);
             }
 
             _this2.sendEncryptedAESKey(to);
@@ -26151,7 +26149,7 @@ function () {
           }
 
           if (method === 'aesKey') {
-            _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: aesKey ::', _this2._eventName, event, message);
+            console.log('in addEventListenerOfEEC:: aesKey ::', _this2._eventName, event, message);
             var aesKeyEncrypted = message.aesKey;
             var aesKeyEncryptedJSON = JSON.parse(aesKeyEncrypted);
             var aesKeyEncryptedBuffer = {};
@@ -26160,8 +26158,8 @@ function () {
               aesKeyEncryptedBuffer[each] = Buffer.from(aesKeyEncryptedJSON[each], 'hex');
             }
 
-            eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.decrypt(_this2.privateKey, aesKeyEncryptedBuffer).then(function (decryptAESKey) {
-              _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: decryptAESKey ::', _this2._eventName, decryptAESKey.toString());
+            eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.decrypt(_this2.privateKey, aesKeyEncryptedBuffer).then(function (decryptAESKey) {
+              console.log('in addEventListenerOfEEC:: decryptAESKey ::', _this2._eventName, decryptAESKey.toString());
               _this2.aesKeyOfTheOtherParty = decryptAESKey.toString();
               resolve(true);
             });
@@ -26175,7 +26173,7 @@ function () {
     value: function sendEncryptedAESKey(to) {
       var _this3 = this;
 
-      eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.encrypt(Buffer.from(this.publicKeyOfTheOtherParty, 'hex'), Buffer.from(this._aesKey)).then(function (encryptedAESKey) {
+      eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.encrypt(Buffer.from(this.publicKeyOfTheOtherParty, 'hex'), Buffer.from(this._aesKey)).then(function (encryptedAESKey) {
         var encryptedAESKeyStringify = {};
 
         for (var each in encryptedAESKey) {
@@ -26250,30 +26248,27 @@ var CONTENT_NIGHTELF = 'contentNightElf';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Inject; });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(252);
 /* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(686);
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(709);
-/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(687);
+/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(687);
 
 
 
 /**
  * @file inject.js
  * @author huangzongzhe
+ * only for browser
  */
 
 
- // import {
-//     EncryptedStream
-// } from 'extension-streams';
-
  // import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
 
-/***
+/**
  * This is the javascript which gets injected into
  * the application and facilitates communication between
  * NightElf and the web application.
@@ -26293,7 +26288,169 @@ var handlePendingPromise = function handlePendingPromise(eventMessage) {
   });
 };
 
-var stream = new WeakMap();
+var stream = new WeakMap(); // Just a wrap of the api of the extension for developers.
+
+var NightAElf =
+/*#__PURE__*/
+function () {
+  function NightAElf(options) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, NightAElf);
+
+    this.httpProvider = options.httpProvider;
+    this.appName = options.appName;
+    this.chain = this.chain();
+    this.chainId;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(NightAElf, [{
+    key: "callbackWrap",
+    value: function callbackWrap(result, callback) {
+      if (result.error) {
+        callback(true, result, result);
+        return;
+      }
+
+      callback(null, result.result, result);
+    }
+  }, {
+    key: "callAElfChain",
+    value: function callAElfChain(methodName, params, callback) {
+      var _this = this;
+
+      window.NightElf.api({
+        appName: this.appName,
+        method: 'CALL_AELF_CHAIN',
+        chainId: this.chainId,
+        payload: {
+          method: methodName,
+          params: params // Array
+
+        }
+      }).then(function (result) {
+        _this.callbackWrap(result, callback);
+      });
+    }
+  }, {
+    key: "chain",
+    value: function chain() {
+      var _this2 = this;
+
+      var connectChain = function connectChain(callback) {
+        window.NightElf.api({
+          appName: _this2.appName,
+          method: 'CONNECT_AELF_CHAIN',
+          payload: {
+            httpProvider: _this2.httpProvider
+          }
+        }).then(function (result) {
+          _this2.callbackWrap(result, callback);
+
+          if (!result.error) {
+            _this2.chainId = result.result.result.chain_id;
+          }
+        });
+      };
+
+      var getContractAbi = function getContractAbi(address, callback) {
+        _this2.callAElfChain('getContractAbi', [address], callback);
+      };
+
+      var getBlockHeight = function getBlockHeight(callback) {
+        _this2.callAElfChain('getBlockHeight', [], callback);
+      };
+
+      var getBlockInfo = function getBlockInfo(blockHeight, includeTxs, callback) {
+        _this2.callAElfChain('getBlockInfo', [blockHeight, includeTxs], callback);
+      };
+
+      var getTxResult = function getTxResult(txhash, callback) {
+        _this2.callAElfChain('getTxResult', [txhash], callback);
+      };
+
+      var getTxsResult = function getTxsResult(blockhash, offset, num, callback) {
+        _this2.callAElfChain('getTxsResult', [blockhash, offset, num], callback);
+      };
+
+      var getMerklePath = function getMerklePath(txid, callback) {
+        _this2.callAElfChain('getMerklePath', [txid], callback);
+      };
+
+      var sendTransaction = function sendTransaction(rawtx, callback) {
+        _this2.callAElfChain('sendTransaction', [rawtx], callback);
+      };
+
+      var checkProposal = function checkProposal(proposalId, callback) {
+        _this2.callAElfChain('checkProposal', [proposalId], callback);
+      };
+
+      var callReadOnly = function callReadOnly(rawtx, callback) {
+        _this2.callAElfChain('callReadOnly', [rawtx], callback);
+      };
+
+      var contractAtAsync = function contractAtAsync(contractAddress, wallet, callback) {
+        window.NightElf.api({
+          appName: _this2.appName,
+          method: 'INIT_AELF_CONTRACT',
+          chainId: _this2.chainId,
+          payload: {
+            address: wallet.address,
+            contractName: 'EXTENSION',
+            contractAddress: contractAddress
+          }
+        }).then(function (result) {
+          var message = JSON.parse(result.message);
+          var methods = message.abi.Methods;
+          var contractMethods = {};
+          methods.map(function (item) {
+            contractMethods[item.Name] = function () {
+              for (var _len = arguments.length, params = new Array(_len), _key = 0; _key < _len; _key++) {
+                params[_key] = arguments[_key];
+              }
+
+              var paramsTemp = [].concat(params);
+              var callback = paramsTemp.pop();
+
+              if (typeof callback !== 'function') {
+                throw Error('last param must be callback function');
+              } else {
+                window.NightElf.api({
+                  appName: _this2.appName,
+                  method: 'CALL_AELF_CONTRACT',
+                  chainId: _this2.chainId,
+                  payload: {
+                    contractName: 'From Extension',
+                    contractAddress: contractAddress,
+                    method: item.Name,
+                    params: paramsTemp
+                  }
+                }).then(function (result) {
+                  _this2.callbackWrap(result, callback);
+                });
+              }
+            };
+          });
+          callback(null, contractMethods); // console.log('>>>>>>>>> contractAtAsync >>>>>>>>>>', result);
+        });
+      };
+
+      return {
+        connectChain: connectChain,
+        getContractAbi: getContractAbi,
+        getBlockHeight: getBlockHeight,
+        getBlockInfo: getBlockInfo,
+        getTxResult: getTxResult,
+        getTxsResult: getTxsResult,
+        getMerklePath: getMerklePath,
+        sendTransaction: sendTransaction,
+        checkProposal: checkProposal,
+        callReadOnly: callReadOnly,
+        contractAtAsync: contractAtAsync
+      };
+    }
+  }]);
+
+  return NightAElf;
+}();
 
 var Inject =
 /*#__PURE__*/
@@ -26310,18 +26467,16 @@ function () {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Inject, [{
     key: "setupEncryptedStream",
     value: function setupEncryptedStream() {
-      var _this = this;
+      var _this3 = this;
 
-      stream = new _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__["default"](_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__["PAGE_NIGHTELF"], this.aesKey); // logger.log('inject stream', stream);
-
+      stream = new _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__["default"](_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["PAGE_NIGHTELF"], this.aesKey);
       stream.addEventListener(function (result) {
-        // logger.log('inject addEventListener: ', result);
         handlePendingPromise(result);
       });
-      stream.setupEestablishEncryptedCommunication(_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__["CONTENT_NIGHTELF"]).then(function (ready) {
-        _this.initNightElf();
+      stream.setupEestablishEncryptedCommunication(_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["CONTENT_NIGHTELF"]).then(function (ready) {
+        _this3.initNightElf();
       });
-      stream.sendPublicKey(_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__["CONTENT_NIGHTELF"]);
+      stream.sendPublicKey(_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["CONTENT_NIGHTELF"]);
     }
   }, {
     key: "promiseSend",
@@ -26335,14 +26490,16 @@ function () {
           resolve: resolve,
           reject: reject
         });
-        stream.send(data, _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__["CONTENT_NIGHTELF"]);
+        stream.send(data, _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["CONTENT_NIGHTELF"]);
       });
     }
   }, {
     key: "initNightElf",
     value: function initNightElf() {
       window.NightElf = {
-        api: this.promiseSend
+        // ...window.NightElf,
+        api: this.promiseSend,
+        AElf: NightAElf
       };
       document.dispatchEvent(new CustomEvent('NightElf', {
         detail: {
@@ -26351,22 +26508,15 @@ function () {
         }
       }));
     }
-  }, {
-    key: "initNightELFFailed",
-    value: function initNightELFFailed() {
-      document.dispatchEvent(new CustomEvent('NightElf', {
-        detail: {
-          error: 1,
-          message: 'init Night ELF failed.'
-        }
-      }));
-    }
   }]);
 
   return Inject;
 }();
 
-new Inject();
+
+new Inject(); // window.NightElf = {
+//     Inject
+// };
 
 /***/ }),
 /* 690 */
@@ -30661,45 +30811,6 @@ function () {
   }]);
 
   return AESUtils;
-}();
-
-
-
-/***/ }),
-/* 709 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return logger; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-/**
- * @file logger.js
- * @author huangzongzhe
- */
-var logger =
-/*#__PURE__*/
-function () {
-  function logger() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, logger);
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(logger, null, [{
-    key: "log",
-    value: function log() {
-      var _console;
-
-      (_console = console).log.apply(_console, arguments);
-    }
-  }]);
-
-  return logger;
 }();
 
 

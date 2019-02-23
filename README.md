@@ -16,34 +16,27 @@ webpack -w
 
 You can see the demo ./devDemos/test.html. [demo.js just a draft]
 
+The Methods calls are almost identical to the methods call of the aelf-sdk.js
+
 ```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'CONNECT_AELF_CHAIN',
-    hostname: 'aelf.io', // TODO: 这个需要content.js 主动获取
-    payload: {
-        httpProvider: 'http://localhost:1234/chain'
-    }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+const aelf = new window.NightElf.AElf({
+    httpProvider: 'http://192.168.199.210:5000/chain',
+    appName: 'Test'
+});
+aelf.chain.connectChain((error, result) => {
+    console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
+    console.log(error, result);
+});
 ```
 
 ### 2.CALL_AELF_CHAIN
 
 ```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'CALL_AELF_CHAIN',
-    chainId: 'AELF',
-    hostname: 'aelf.io',
-    payload: {
-        method: 'getTxResult',
-        params: ['5feb4d3175b4144e54f5f4d0a12b19559633a2aede0e87dc42322efe1aac12c9']
-    }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+const txid = 'c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768';
+aelf.chain.getTxResult(txid, (err, result) => {
+    console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
+    console.log(err, result);
+});
 ```
 
 ### 3.OPEN_PROMPT -> other method
@@ -104,73 +97,35 @@ NightElf.api({
 ### 5.INIT_AELF_CONTRACT
 
 ```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'INIT_AELF_CONTRACT',
-    // hostname: 'aelf.io',
-    chainId: 'AELF',
-    payload: {
-        address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
-        contractName: 'token',
-        contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx'
+// In aelf-sdk.js wallet is the realy wallet.
+// But in extension sdk, we just need the address of the wallet.
+const tokenC;
+const wallet = {
+    address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs'
+};
+// It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
+// There is only one value named address;
+aelf.chain.contractAtAsync(
+    'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+    wallet,
+    (error, result) => {
+        console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
+        console.log(error, result);
+        tokenC = result;
     }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
-```
-
-### 5.INIT_AELF_CONTRACT Wrong
-
-```javascript
-NightElf.api({
-    appName: 'hzzTest', // do not
-    method: 'INIT_AELF_CONTRACT',
-    // hostname: 'aelf.io',
-    chainId: 'AELF11',
-    payload: {
-        address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
-        contractName: 'token',
-        contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx'
-    }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+);
 ```
 
 ### 6.CALL_AELF_CONTRACT
 
 ```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'CALL_AELF_CONTRACT',
-    hostname: 'aelf.io',
-    chainId: 'AELF',
-    payload: {
-        contractName: 'token',
-        method: 'BalanceOf',
-        params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB']
+// tokenC from the contractAsync
+tokenC.BalanceOf(
+    'ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB',
+    (err, result) => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
     }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
-```
-
-### 6.CALL_AELF_CONTRACT Wrong
-
-```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'CALL_AELF_CONTRACT',
-    hostname: 'aelf.io',
-    chainId: 'AELF',
-    payload: {
-        contractName: 'token',
-        method: 'BalanceOf1111',
-        params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB']
-    }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+);
 ```
 
 ### 7.CHECK_PERMISSION

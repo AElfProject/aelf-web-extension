@@ -47640,6 +47640,11 @@ function () {
   }, {
     key: "callAelfChain",
     value: function callAelfChain(sendResponse, callInfo) {
+      if (callInfo.payload.method === 'sendTransaction') {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Forbidden')));
+        return;
+      }
+
       this.lockGuard(sendResponse, function () {
         console.log('callAelfChain: ', callInfo);
         var dappAelfMeta = aelfMeta.find(function (item) {

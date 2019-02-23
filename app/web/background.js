@@ -238,6 +238,13 @@ export default class Background {
     }
 
     static callAelfChain(sendResponse, callInfo) {
+        if (callInfo.payload.method === 'sendTransaction') {
+            sendResponse({
+                ...errorHandler(400001, 'Forbidden')
+            });
+            return;
+        }
+
         this.lockGuard(sendResponse, () => {
             console.log('callAelfChain: ', callInfo);
             const dappAelfMeta = aelfMeta.find(item => {
