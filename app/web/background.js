@@ -596,11 +596,9 @@ export default class Background {
             let nightElfString;
             if (nightElfEncrypto) {
                 try {
-                    console.log('sssssss');
                     nightElfString = AESDecrypto(nightElfEncrypto, seed);
                 }
                 catch (e) {
-                    console.log('aaaaaa');
                     sendResponse({
                         ...errorHandler(10000, 'Get Night Elf failed!')
                     });
@@ -610,7 +608,7 @@ export default class Background {
                     apis.storage.local.set({
                         nightElfEncrypto
                     }, result => {
-                        console.log('adasdadadsa: ', nightElfEncrypto, nightElf);
+                        Background.unlockWallet(sendResponse, seed);
                         sendResponse({
                             ...errorHandler(0),
                             result

@@ -100701,9 +100701,7 @@ function (_Component) {
           fileValue: fileValue
         }).send().then(function (result) {
           if (result && result.error === 0) {
-            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.success('Load successful...', 3, function () {
-              react_router__WEBPACK_IMPORTED_MODULE_16__["hashHistory"].push('/home');
-            }, false);
+            react_router__WEBPACK_IMPORTED_MODULE_16__["hashHistory"].push('/home');
           } else {
             antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail(result.errorMessage.message, 3, function () {}, false);
           }

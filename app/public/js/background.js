@@ -48021,10 +48021,8 @@ function () {
 
         if (nightElfEncrypto) {
           try {
-            console.log('sssssss');
             nightElfString = AESDecrypto(nightElfEncrypto, seed);
           } catch (e) {
-            console.log('aaaaaa');
             sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(10000, 'Get Night Elf failed!')));
           }
 
@@ -48032,7 +48030,7 @@ function () {
             _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.set({
               nightElfEncrypto: nightElfEncrypto
             }, function (result) {
-              console.log('adasdadadsa: ', nightElfEncrypto, nightElf);
+              Background.unlockWallet(sendResponse, seed);
               sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
                 result: result
               }));

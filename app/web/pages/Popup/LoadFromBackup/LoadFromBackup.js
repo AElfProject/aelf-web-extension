@@ -56,9 +56,7 @@ export default class LoadFromBackup extends Component {
         if (seed) {
             InternalMessage.payload(InternalMessageTypes.IMPORT_WALLET, {seed, fileValue}).send().then(result => {
                 if (result && result.error === 0) {
-                    Toast.success('Load successful...', 3, () => {
-                        hashHistory.push('/home');
-                    }, false);
+                    hashHistory.push('/home');
                 }
                 else {
                     Toast.fail(result.errorMessage.message, 3, () => {}, false);
