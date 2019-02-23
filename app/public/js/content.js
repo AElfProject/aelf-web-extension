@@ -23168,6 +23168,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNLOCK_WALLET", function() { return UNLOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCK_WALLET", function() { return LOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_WALLET", function() { return UPDATE_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BACKUP_WALLET", function() { return BACKUP_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMPORT_WALLET", function() { return IMPORT_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INSERT_KEYPAIR", function() { return INSERT_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_KEYPAIR", function() { return REMOVE_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_KEYPAIR", function() { return GET_KEYPAIR; });
@@ -23195,7 +23197,10 @@ var CHECK_WALLET = 'checkWallet';
 var CLEAR_WALLET = 'clearWallet';
 var UNLOCK_WALLET = 'unlockWallet';
 var LOCK_WALLET = 'lockWallet';
-var UPDATE_WALLET = 'updateWallet';
+var UPDATE_WALLET = 'updateWallet'; // backup wallet
+
+var BACKUP_WALLET = 'backupWallet';
+var IMPORT_WALLET = 'importWallet';
 var INSERT_KEYPAIR = 'insertKeypair';
 var REMOVE_KEYPAIR = 'removeKeypair';
 var GET_KEYPAIR = 'getKeypair';
@@ -26691,11 +26696,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(708);
-/* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(709);
-/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(690);
-/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(eccrypto__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(281);
-/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(690);
+/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(eccrypto__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(281);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -26728,7 +26732,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var EncryptoStream =
 /*#__PURE__*/
 function () {
@@ -26737,8 +26740,8 @@ function () {
 
     this._eventName = eventName;
     this._aesKey = aesKey;
-    this.privateKey = crypto__WEBPACK_IMPORTED_MODULE_5___default.a.randomBytes(32);
-    this.publicKey = eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.getPublic(this.privateKey);
+    this.privateKey = crypto__WEBPACK_IMPORTED_MODULE_4___default.a.randomBytes(32);
+    this.publicKey = eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.getPublic(this.privateKey);
     this.publicKeyHasSent;
     this.publicKeyOfTheOtherParty;
     this.aesKeyOfTheOtherParty;
@@ -26758,7 +26761,7 @@ function () {
           message = JSON.parse(event.detail);
         }
 
-        _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in::::', _this._eventName, event, message);
+        console.log('in::::', _this._eventName, event, message);
         callback(message);
       });
     } // EEC: EestablishEncryptedCommunication
@@ -26779,7 +26782,7 @@ function () {
 
               _this2.sendPublicKey(to);
 
-              _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: publicKey ::', _this2._eventName);
+              console.log('in addEventListenerOfEEC:: publicKey ::', _this2._eventName);
             }
 
             _this2.sendEncryptedAESKey(to);
@@ -26788,7 +26791,7 @@ function () {
           }
 
           if (method === 'aesKey') {
-            _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: aesKey ::', _this2._eventName, event, message);
+            console.log('in addEventListenerOfEEC:: aesKey ::', _this2._eventName, event, message);
             var aesKeyEncrypted = message.aesKey;
             var aesKeyEncryptedJSON = JSON.parse(aesKeyEncrypted);
             var aesKeyEncryptedBuffer = {};
@@ -26797,8 +26800,8 @@ function () {
               aesKeyEncryptedBuffer[each] = Buffer.from(aesKeyEncryptedJSON[each], 'hex');
             }
 
-            eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.decrypt(_this2.privateKey, aesKeyEncryptedBuffer).then(function (decryptAESKey) {
-              _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: decryptAESKey ::', _this2._eventName, decryptAESKey.toString());
+            eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.decrypt(_this2.privateKey, aesKeyEncryptedBuffer).then(function (decryptAESKey) {
+              console.log('in addEventListenerOfEEC:: decryptAESKey ::', _this2._eventName, decryptAESKey.toString());
               _this2.aesKeyOfTheOtherParty = decryptAESKey.toString();
               resolve(true);
             });
@@ -26812,7 +26815,7 @@ function () {
     value: function sendEncryptedAESKey(to) {
       var _this3 = this;
 
-      eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.encrypt(Buffer.from(this.publicKeyOfTheOtherParty, 'hex'), Buffer.from(this._aesKey)).then(function (encryptedAESKey) {
+      eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.encrypt(Buffer.from(this.publicKeyOfTheOtherParty, 'hex'), Buffer.from(this._aesKey)).then(function (encryptedAESKey) {
         var encryptedAESKeyStringify = {};
 
         for (var each in encryptedAESKey) {

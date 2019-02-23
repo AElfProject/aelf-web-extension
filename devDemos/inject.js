@@ -26054,10 +26054,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(708);
-/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(690);
-/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(eccrypto__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(281);
-/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(709);
+/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(690);
+/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(eccrypto__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(281);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -26090,6 +26091,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var EncryptoStream =
 /*#__PURE__*/
 function () {
@@ -26098,8 +26100,8 @@ function () {
 
     this._eventName = eventName;
     this._aesKey = aesKey;
-    this.privateKey = crypto__WEBPACK_IMPORTED_MODULE_4___default.a.randomBytes(32);
-    this.publicKey = eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.getPublic(this.privateKey);
+    this.privateKey = crypto__WEBPACK_IMPORTED_MODULE_5___default.a.randomBytes(32);
+    this.publicKey = eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.getPublic(this.privateKey);
     this.publicKeyHasSent;
     this.publicKeyOfTheOtherParty;
     this.aesKeyOfTheOtherParty;
@@ -26119,7 +26121,7 @@ function () {
           message = JSON.parse(event.detail);
         }
 
-        console.log('in::::', _this._eventName, event, message);
+        _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in::::', _this._eventName, event, message);
         callback(message);
       });
     } // EEC: EestablishEncryptedCommunication
@@ -26140,7 +26142,7 @@ function () {
 
               _this2.sendPublicKey(to);
 
-              console.log('in addEventListenerOfEEC:: publicKey ::', _this2._eventName);
+              _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: publicKey ::', _this2._eventName);
             }
 
             _this2.sendEncryptedAESKey(to);
@@ -26149,7 +26151,7 @@ function () {
           }
 
           if (method === 'aesKey') {
-            console.log('in addEventListenerOfEEC:: aesKey ::', _this2._eventName, event, message);
+            _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: aesKey ::', _this2._eventName, event, message);
             var aesKeyEncrypted = message.aesKey;
             var aesKeyEncryptedJSON = JSON.parse(aesKeyEncrypted);
             var aesKeyEncryptedBuffer = {};
@@ -26158,8 +26160,8 @@ function () {
               aesKeyEncryptedBuffer[each] = Buffer.from(aesKeyEncryptedJSON[each], 'hex');
             }
 
-            eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.decrypt(_this2.privateKey, aesKeyEncryptedBuffer).then(function (decryptAESKey) {
-              console.log('in addEventListenerOfEEC:: decryptAESKey ::', _this2._eventName, decryptAESKey.toString());
+            eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.decrypt(_this2.privateKey, aesKeyEncryptedBuffer).then(function (decryptAESKey) {
+              _logger__WEBPACK_IMPORTED_MODULE_3__["default"].log('in addEventListenerOfEEC:: decryptAESKey ::', _this2._eventName, decryptAESKey.toString());
               _this2.aesKeyOfTheOtherParty = decryptAESKey.toString();
               resolve(true);
             });
@@ -26173,7 +26175,7 @@ function () {
     value: function sendEncryptedAESKey(to) {
       var _this3 = this;
 
-      eccrypto__WEBPACK_IMPORTED_MODULE_3___default.a.encrypt(Buffer.from(this.publicKeyOfTheOtherParty, 'hex'), Buffer.from(this._aesKey)).then(function (encryptedAESKey) {
+      eccrypto__WEBPACK_IMPORTED_MODULE_4___default.a.encrypt(Buffer.from(this.publicKeyOfTheOtherParty, 'hex'), Buffer.from(this._aesKey)).then(function (encryptedAESKey) {
         var encryptedAESKeyStringify = {};
 
         for (var each in encryptedAESKey) {
@@ -26248,7 +26250,6 @@ var CONTENT_NIGHTELF = 'contentNightElf';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Inject; });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
@@ -26262,13 +26263,12 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * @file inject.js
  * @author huangzongzhe
- * only for browser
  */
 
 
  // import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
 
-/**
+/***
  * This is the javascript which gets injected into
  * the application and facilitates communication between
  * NightElf and the web application.
@@ -26288,7 +26288,7 @@ var handlePendingPromise = function handlePendingPromise(eventMessage) {
   });
 };
 
-var stream = new WeakMap(); // Just a wrap of the api of the extension for developers.
+var stream = new WeakMap();
 
 var NightAElf =
 /*#__PURE__*/
@@ -26345,9 +26345,7 @@ function () {
         }).then(function (result) {
           _this2.callbackWrap(result, callback);
 
-          if (!result.error) {
-            _this2.chainId = result.result.result.chain_id;
-          }
+          _this2.chainId = result.result.result.chain_id;
         });
       };
 
@@ -26469,8 +26467,10 @@ function () {
     value: function setupEncryptedStream() {
       var _this3 = this;
 
-      stream = new _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__["default"](_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["PAGE_NIGHTELF"], this.aesKey);
+      stream = new _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__["default"](_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["PAGE_NIGHTELF"], this.aesKey); // logger.log('inject stream', stream);
+
       stream.addEventListener(function (result) {
+        // logger.log('inject addEventListener: ', result);
         handlePendingPromise(result);
       });
       stream.setupEestablishEncryptedCommunication(_messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__["CONTENT_NIGHTELF"]).then(function (ready) {
@@ -26497,7 +26497,6 @@ function () {
     key: "initNightElf",
     value: function initNightElf() {
       window.NightElf = {
-        // ...window.NightElf,
         api: this.promiseSend,
         AElf: NightAElf
       };
@@ -26508,15 +26507,22 @@ function () {
         }
       }));
     }
+  }, {
+    key: "initNightELFFailed",
+    value: function initNightELFFailed() {
+      document.dispatchEvent(new CustomEvent('NightElf', {
+        detail: {
+          error: 1,
+          message: 'init Night ELF failed.'
+        }
+      }));
+    }
   }]);
 
   return Inject;
 }();
 
-
-new Inject(); // window.NightElf = {
-//     Inject
-// };
+new Inject();
 
 /***/ }),
 /* 690 */
@@ -30811,6 +30817,45 @@ function () {
   }]);
 
   return AESUtils;
+}();
+
+
+
+/***/ }),
+/* 709 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return logger; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/**
+ * @file logger.js
+ * @author huangzongzhe
+ */
+var logger =
+/*#__PURE__*/
+function () {
+  function logger() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, logger);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(logger, null, [{
+    key: "log",
+    value: function log() {
+      var _console;
+
+      (_console = console).log.apply(_console, arguments);
+    }
+  }]);
+
+  return logger;
 }();
 
 

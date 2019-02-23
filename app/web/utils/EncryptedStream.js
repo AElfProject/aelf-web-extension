@@ -27,7 +27,6 @@
 
 
 import AESUtils from './AESUtils';
-import logger from './logger';
 
 import eccrypto from 'eccrypto';
 import crypto from 'crypto';
@@ -56,7 +55,7 @@ export default class EncryptoStream {
                 message = JSON.parse(event.detail);
             }
 
-            logger.log('in::::', this._eventName, event, message);
+            console.log('in::::', this._eventName, event, message);
             callback(message);
         });
     }
@@ -73,14 +72,14 @@ export default class EncryptoStream {
                     if (!this.publicKeyHasSent) {
                         this.publicKeyOfTheOtherParty = message.publicKey;
                         this.sendPublicKey(to);
-                        logger.log('in addEventListenerOfEEC:: publicKey ::', this._eventName);
+                        console.log('in addEventListenerOfEEC:: publicKey ::', this._eventName);
                     }
                     this.sendEncryptedAESKey(to);
                     return;
                 }
 
                 if (method === 'aesKey') {
-                    logger.log('in addEventListenerOfEEC:: aesKey ::', this._eventName, event, message);
+                    console.log('in addEventListenerOfEEC:: aesKey ::', this._eventName, event, message);
 
                     const aesKeyEncrypted = message.aesKey;
                     let aesKeyEncryptedJSON = JSON.parse(aesKeyEncrypted);
@@ -90,7 +89,7 @@ export default class EncryptoStream {
                     }
 
                     eccrypto.decrypt(this.privateKey, aesKeyEncryptedBuffer).then(decryptAESKey => {
-                        logger.log(
+                        console.log(
                             'in addEventListenerOfEEC:: decryptAESKey ::',
                             this._eventName, decryptAESKey.toString()
                         );

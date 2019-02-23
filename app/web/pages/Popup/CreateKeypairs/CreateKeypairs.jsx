@@ -23,9 +23,10 @@ import InternalMessage from '../../../messages/InternalMessage';
 
 import aelf from 'aelf-sdk';
 import {FormattedMessage} from 'react-intl';
-import style from './Backup.scss';
+import style from './CreateKeypairs.scss';
 // React component
-export default class Backup extends Component {
+
+export default class CreateKeypairs extends Component {
     constructor() {
         super();
         this.state = {

@@ -20,7 +20,7 @@ import React, {
     Component
 } from 'react';
 import {NavBar, Icon, Toast} from 'antd-mobile';
-import style from './pages.scss';
+import style from './Mnemonic.scss';
 
 import AelfButton from '../../../../components/Button/Button';
 import NoticePanel from '../../../../components/NoticePanel/NoticePanel';

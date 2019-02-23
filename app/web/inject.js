@@ -1,17 +1,14 @@
 /**
  * @file inject.js
  * @author huangzongzhe
+ * only for browser
  */
 import IdGenerator from './utils/IdGenerator';
 import EncryptedStream from './utils/EncryptedStream';
-import logger from './utils/logger';
-// import {
-//     EncryptedStream
-// } from 'extension-streams';
 import * as PageContentTags from './messages/PageContentTags';
 // import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
 
-/***
+/**
  * This is the javascript which gets injected into
  * the application and facilitates communication between
  * NightElf and the web application.
@@ -31,7 +28,148 @@ const handlePendingPromise = function (eventMessage) {
 
 let stream = new WeakMap();
 
-class Inject {
+// Just a wrap of the api of the extension for developers.
+class NightAElf {
+    constructor(options) {
+        this.httpProvider = options.httpProvider;
+        this.appName = options.appName;
+        this.chain = this.chain();
+        this.chainId;
+    }
+
+    callbackWrap(result, callback) {
+        if (result.error) {
+            callback(true, result, result);
+            return;
+        }
+        callback(null, result.result, result);
+    }
+
+    callAElfChain(methodName, params, callback) {
+        window.NightElf.api({
+            appName: this.appName,
+            method: 'CALL_AELF_CHAIN',
+            chainId: this.chainId,
+            payload: {
+                method: methodName,
+                params: params // Array
+            }
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+    chain() {
+        const connectChain = callback => {
+            window.NightElf.api({
+                appName: this.appName,
+                method: 'CONNECT_AELF_CHAIN',
+                payload: {
+                    httpProvider: this.httpProvider
+                }
+            }).then(result => {
+                this.callbackWrap(result, callback);
+                if (!result.error) {
+                    this.chainId = result.result.result.chain_id;
+                }
+            });
+        };
+        const getContractAbi = (address, callback) => {
+            this.callAElfChain('getContractAbi', [address], callback);
+        };
+        const getBlockHeight = callback => {
+            this.callAElfChain('getBlockHeight', [], callback);
+        };
+        const getBlockInfo = (blockHeight, includeTxs, callback) => {
+            this.callAElfChain(
+                'getBlockInfo',
+                [blockHeight, includeTxs],
+                callback
+            );
+        };
+        const getTxResult = (txhash, callback) => {
+            this.callAElfChain('getTxResult', [txhash], callback);
+        };
+        const getTxsResult = (blockhash, offset, num, callback) => {
+            this.callAElfChain(
+                'getTxsResult',
+                [blockhash, offset, num],
+                callback
+            );
+        };
+        const getMerklePath = (txid, callback) => {
+            this.callAElfChain('getMerklePath', [txid], callback);
+        };
+        const sendTransaction = (rawtx, callback) => {
+            this.callAElfChain('sendTransaction', [rawtx], callback);
+        };
+        const checkProposal = (proposalId, callback) => {
+            this.callAElfChain('checkProposal', [proposalId], callback);
+        };
+        const callReadOnly = (rawtx, callback) => {
+            this.callAElfChain('callReadOnly', [rawtx], callback);
+        };
+
+        const contractAtAsync = (contractAddress, wallet, callback) => {
+            window.NightElf.api({
+                appName: this.appName,
+                method: 'INIT_AELF_CONTRACT',
+                chainId: this.chainId,
+                payload: {
+                    address: wallet.address,
+                    contractName: 'EXTENSION',
+                    contractAddress: contractAddress
+                }
+            }).then(result => {
+                const message = JSON.parse(result.message);
+                const methods = message.abi.Methods;
+                let contractMethods = {};
+                methods.map(item => {
+                    contractMethods[item.Name] = (...params) => {
+                        let paramsTemp = [...params];
+                        const callback = paramsTemp.pop();
+                        if (typeof callback !== 'function') {
+                            throw Error('last param must be callback function');
+                        }
+                        else {
+                            window.NightElf.api({
+                                appName: this.appName,
+                                method: 'CALL_AELF_CONTRACT',
+                                chainId: this.chainId,
+                                payload: {
+                                    contractName: 'From Extension',
+                                    contractAddress: contractAddress,
+                                    method: item.Name,
+                                    params: paramsTemp
+                                }
+                            }).then(result => {
+                                this.callbackWrap(result, callback);
+                            });
+                        }
+                    };
+                });
+                callback(null, contractMethods);
+                // console.log('>>>>>>>>> contractAtAsync >>>>>>>>>>', result);
+            });
+        };
+
+        return {
+            connectChain,
+            getContractAbi,
+            getBlockHeight,
+            getBlockInfo,
+            getTxResult,
+            getTxsResult,
+            getMerklePath,
+            sendTransaction,
+            checkProposal,
+            callReadOnly,
+            contractAtAsync
+        };
+    }
+}
+
+export default class Inject {
 
     constructor() {
         // Injecting an encrypted stream into the
@@ -42,9 +180,7 @@ class Inject {
 
     setupEncryptedStream() {
         stream = new EncryptedStream(PageContentTags.PAGE_NIGHTELF, this.aesKey);
-        // logger.log('inject stream', stream);
         stream.addEventListener(result => {
-            // logger.log('inject addEventListener: ', result);
             handlePendingPromise(result);
         });
 
@@ -70,7 +206,9 @@ class Inject {
 
     initNightElf() {
         window.NightElf = {
-            api: this.promiseSend
+            // ...window.NightElf,
+            api: this.promiseSend,
+            AElf: NightAElf
         };
 
         document.dispatchEvent(new CustomEvent('NightElf', {
@@ -80,15 +218,9 @@ class Inject {
             }
         }));
     }
-
-    initNightELFFailed() {
-        document.dispatchEvent(new CustomEvent('NightElf', {
-            detail: {
-                error: 1,
-                message: 'init Night ELF failed.'
-            }
-        }));
-    }
 }
 
 new Inject();
+// window.NightElf = {
+//     Inject
+// };

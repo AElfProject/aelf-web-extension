@@ -19,10 +19,15 @@ import {antdChooseLocale, chooseLocale} from '../../utils/utils';
 // import style from '../style/index.scss';
 import Lock from './Lock/Lock';
 import Home from './Home/Home';
-import Backup from './Backup/Backup';
+import CreateKeypairs from './CreateKeypairs/CreateKeypairs';
 import Keypairs from './Keypairs/Keypairs';
 import Permissions from './Permissions/Permissions';
 import Contracts from './Contracts/Contracts';
+import Import from './Import/Import';
+import BackupKeypairs from './BackupKeypairs/BackupKeypairs';
+import ExtensionManager from './ExtensionManager/ExtensionManager';
+import LoadFromBackup from './LoadFromBackup/LoadFromBackup';
+
 
 addLocaleData([...zh, ...en]);
 
@@ -32,9 +37,13 @@ ReactDOM.render(
             <Router history={hashHistory}>
                 <Route path="/" component={Lock}></Route>
                 <Route path="/home" component={Home}></Route>
-                <Route path="/backup" component={Backup}></Route>
+                <Route path="/createKeypairs" component={CreateKeypairs}></Route>
                 <Route path="/keypairs" component={Keypairs}></Route>
                 <Route path="/permissions" component={Permissions}></Route>
+                <Route path="/import" component={Import}></Route>
+                <Route path="/backupKeypairs/:address" component={BackupKeypairs}></Route>
+                <Route path="/extensionManager" component={ExtensionManager}></Route>
+                <Route path="/loadFromBackup" component={LoadFromBackup}></Route>
                 {/* TODO: contracts just for test */}
                 <Route path="/contracts" component={Contracts}></Route>
             </Router>
