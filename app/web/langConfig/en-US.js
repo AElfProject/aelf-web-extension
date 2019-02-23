@@ -153,17 +153,20 @@ const en_US = {
     'aelf.error page': 'error page',
     'aelf.cannot connect chain': 'cannot connect chain',
     'aelf.PleaseBackUp': 'NOTE! Please Back Up!',
-    'aelf.BackUpCon01':'Aelf reminds you again that the blockchain wallet is different from the traditional website account, which is a cryptographic-based decentralized account system.',
-    'aelf.BackUpCon02':"You must save the wallet's private key and transaction password, and any accidents will result in the loss of assets.",
-    'aelf.BackUpCon03':'Aelf prompts you to make a backup, conduct a small transaction test, and start the journey of use.',
-    'aelf.BackUpCon04':'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.',
-    'aelf.Backup now':'Backup now',
+    'aelf.BackUpCon01': 'Aelf reminds you again that the blockchain wallet is different from the traditional website account, which is a cryptographic-based decentralized account system.',
+    'aelf.BackUpCon02': "You must save the wallet's private key and transaction password, and any accidents will result in the loss of assets.",
+    'aelf.BackUpCon03': 'Aelf prompts you to make a backup, conduct a small transaction test, and start the journey of use.',
+    'aelf.BackUpCon04': 'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.',
+    'aelf.Backup now': 'Backup now',
     'aelf.The passwords confirmed error.': 'The passwords confirmed error.',
     'aelf.The passwords is not strong.': 'The passwords is not strong.',
     'aelf.Extension Manager': 'Extension Manager',
     'aelf.Backup NightELF': 'Backup NightELF',
     'aelf.Delete NightELF': 'Delete NightELF',
-    'aelf.Timer Locks': 'Timer Locks'
+    'aelf.Timer Locks': 'Timer Locks',
+    'aelf.Load From Backup': 'Load From Backup',
+    'aelf.Please select the file': 'Please select the file',
+    'aelf.Click here': 'Click here'
 };
 
 export default en_US;

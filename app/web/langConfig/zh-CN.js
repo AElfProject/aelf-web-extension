@@ -155,7 +155,10 @@ const zh_CN = {
     'aelf.Extension Manager': '管理',
     'aelf.Backup NightELF': '备份 NightELF',
     'aelf.Delete NightELF': '删除 NightELF',
-    'aelf.Timer Locks': '定时锁定'
+    'aelf.Timer Locks': '定时锁定',
+    'aelf.Load From Backup': '导入加密备份',
+    'aelf.Please select the file': '请选择备份文件',
+    'aelf.Click here': '点击这里'
 };
 
 export default zh_CN;

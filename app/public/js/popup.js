@@ -115,7 +115,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(673);
 /* harmony import */ var _Import_Import__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(674);
 /* harmony import */ var _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(681);
-/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(730);
+/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(687);
+/* harmony import */ var _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(690);
 
 
 
@@ -132,6 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 
  // import TransactionDetail from './pages/Asset/TransactionDetail/TransactionDetail';
 // import style from '../style/index.scss';
+
 
 
 
@@ -172,11 +174,14 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
   path: "/backupKeypairs/:address",
   component: _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/contracts",
-  component: _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__["default"]
-}), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/extensionManager",
   component: _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__["default"]
+}), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  path: "/loadFromBackup",
+  component: _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__["default"]
+}), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  path: "/contracts",
+  component: _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__["default"]
 })))), document.getElementById('root'));
 
 /***/ }),
@@ -39070,7 +39075,7 @@ var zh_CN = (_zh_CN = {
   'aelf.Backup': '备份',
   'aelf.Change Password': '修改密码',
   'aelf.Transaction List': '交易记录'
-}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Contact", '联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Commit', '提交'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New contacts', '新建联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Name', '姓名'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Payee wallet address', '钱包地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Old password', '旧密码'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Forget your password', '忘记密码？导入助记符或私钥可以重置。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Immediately import', '立即导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.hint03', '在这个钱包中，导入私钥时没有助记词。但是，当我们导入助记词时，我们可以得到私钥。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Import', '导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.System Setting', '系统设置'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Network', '网络'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon01', '当前钱包服务的URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon02', '该服务做了什么？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon03', '1、在将Token转让给他人时，广播您的交易。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon04', '2、在打开显示交易细节的页面时提供信息。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon05', '如何变更服务？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon06', '1、点击上方 URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon07', '2、然后，你可以更改它。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon08', '默认提供的为:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Language', '语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Help Center', '帮助中心'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle01', '什么是助记词？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle02', '什么是keystore？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle03', '什么是公钥私钥？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle04', 'AElf钱包介绍'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle05', '如何修改密码？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle06', '如果我忘记密码了怎么办？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon01', '助记词相当于传统金融机构的银行卡+密码。请把它放在安全的地方。助记词是明文私钥的另一种表现形式，它被设计成帮助用户记住复杂的私钥（64位散列）。' + '记忆法一般由12, 15, 18个单词和21个单词组成。这些词是从固定的词汇中提取出来的。生成顺序也是基于一定的算法。助记词是一个未加密的私钥。任何人得到你的助记词后，就可以不费吹灰之力夺走你的资产。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon02', '因此，用户在备份助记符时必须注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon03', '1、尽可能采用物理介质，例如把助记词写在纸上，尽可能不要采用截屏或者拍照之后放在联网设备上，以防被黑客窃取。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon04', '2、多次验证备份的助记词是否正确，一旦抄错一个字母或单词，那么将对后续找回正确的助记词带来巨大苦难。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon05', '3、将备份后的助记词妥善保管，做好防盗防丢措施。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon01', 'Keystore 文件是存储私钥的一种文件格式（JSON）。它使用用户自定义密码加密，以起到一定程度的保护作用，而保护的程度取决于用' + '户加密该钱包的密码强度，如果类似于123456这样的密码，是极为不安全的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon02', '所以用户在备份助记词时一定要注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon03', '1、使用不常用，并且尽可能复杂的密码加密Keystore文件。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon04', '2、一定要记住加密Keystore的密码，一旦忘记密码，那么你就失去了Keystore的使用权，并且aelf无法帮你找回密码。所以请妥善保管。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon05', 'Keystore密码样式：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon01', '钱包中资金的控制取决于相应私钥的所有权和控制权。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon02', '在区块链交易中，私钥用于生成支付货币所必须的签名，以证明资金的所有权。私钥必须始终保持机密，因为一旦泄露给第三方，相当于该私钥保护下的资产也拱手相让了。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon03', '它不同于keystore，keystore是加密过后的私钥文件，只要密码强度足够强，即使黑客攻击，破译难度也很高。私' + '钥实际上并不是存储在网络中，而是由用户生成并储存在一个文件或者简单的数据库中，称为钱包。用户的钱包地址就是由私钥通过椭圆曲线加密生成公钥，进而生成以0x开头的42位地址。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon04', '私钥的样式为64位16进制哈希值字符串。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon01', 'AElf钱包是一款全新的数字货币钱包，为用户提供更安全、高效、便捷的服务。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon02', 'AElf钱包支持AElf智能合约数字货币。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon03', '目前暂不支持BTC和ETH，但是符合AElf标准的代币我们都支持。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changepasswordCon01', '密码可以在钱包管理界面上修改。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon01', '在去中心化钱包中，所有用户的用户身份验证内容，如交易密码、私钥、助记词等都保存在用户手机本地，并不是' + '保存在中心化服务器中，所以用户如果忘记密码是没有办法通过第三方团队来重置密码的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon02', '唯一的解决办法是通过重新导入助记词或者私钥来设置新的密码。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.About AElf Official Wallet', '关于 AELF 钱包'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Use Agreement', '使用协议'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Privacy Policy', '隐私政策'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changelanguage', '选择语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.languageSelect', '请选择'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Record', '交易记录'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Send', '发送'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Receive", '接收'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Copy URL', '复制链接'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Details', '交易细节'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.To Address', '发送地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction', '交易'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Amount to send', '发送值/价值'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Balance', '等量'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New Provider', '新供应商'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.slow', '慢'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.fast', '快'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltips', '密码错误，您还有'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltimes', '次机会'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Back Home', '返回'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.error page', '错误页'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.cannot connect chain', '无法连接到链'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.PleaseBackUp', '注意!请立即备份钱包!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon01', 'aelf在此提示您，区块链钱包不同于传统网站账户，它是基于密码学的去中心化账户系统。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon02', '你必须保存好钱包和私钥和交易密码，任何意外发生将导致资产丢失。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon03', 'aelf提示您做好备份，在进行小额交易测试后，再开启使用之旅。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon04', '备份助记词在您丢失钱包或忘记密码时，能帮助您恢复钱包。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup now', '立即备份助记词'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords confirmed error.', '两次输入不一致'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords is not strong.', '密码强度不够'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Extension Manager', '管理'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup NightELF', '备份 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete NightELF', '删除 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Timer Locks', '定时锁定'), _zh_CN);
+}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Contact", '联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Commit', '提交'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New contacts', '新建联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Name', '姓名'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Payee wallet address', '钱包地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Old password', '旧密码'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Forget your password', '忘记密码？导入助记符或私钥可以重置。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Immediately import', '立即导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.hint03', '在这个钱包中，导入私钥时没有助记词。但是，当我们导入助记词时，我们可以得到私钥。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Import', '导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.System Setting', '系统设置'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Network', '网络'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon01', '当前钱包服务的URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon02', '该服务做了什么？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon03', '1、在将Token转让给他人时，广播您的交易。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon04', '2、在打开显示交易细节的页面时提供信息。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon05', '如何变更服务？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon06', '1、点击上方 URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon07', '2、然后，你可以更改它。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon08', '默认提供的为:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Language', '语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Help Center', '帮助中心'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle01', '什么是助记词？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle02', '什么是keystore？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle03', '什么是公钥私钥？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle04', 'AElf钱包介绍'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle05', '如何修改密码？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle06', '如果我忘记密码了怎么办？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon01', '助记词相当于传统金融机构的银行卡+密码。请把它放在安全的地方。助记词是明文私钥的另一种表现形式，它被设计成帮助用户记住复杂的私钥（64位散列）。' + '记忆法一般由12, 15, 18个单词和21个单词组成。这些词是从固定的词汇中提取出来的。生成顺序也是基于一定的算法。助记词是一个未加密的私钥。任何人得到你的助记词后，就可以不费吹灰之力夺走你的资产。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon02', '因此，用户在备份助记符时必须注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon03', '1、尽可能采用物理介质，例如把助记词写在纸上，尽可能不要采用截屏或者拍照之后放在联网设备上，以防被黑客窃取。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon04', '2、多次验证备份的助记词是否正确，一旦抄错一个字母或单词，那么将对后续找回正确的助记词带来巨大苦难。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon05', '3、将备份后的助记词妥善保管，做好防盗防丢措施。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon01', 'Keystore 文件是存储私钥的一种文件格式（JSON）。它使用用户自定义密码加密，以起到一定程度的保护作用，而保护的程度取决于用' + '户加密该钱包的密码强度，如果类似于123456这样的密码，是极为不安全的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon02', '所以用户在备份助记词时一定要注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon03', '1、使用不常用，并且尽可能复杂的密码加密Keystore文件。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon04', '2、一定要记住加密Keystore的密码，一旦忘记密码，那么你就失去了Keystore的使用权，并且aelf无法帮你找回密码。所以请妥善保管。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon05', 'Keystore密码样式：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon01', '钱包中资金的控制取决于相应私钥的所有权和控制权。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon02', '在区块链交易中，私钥用于生成支付货币所必须的签名，以证明资金的所有权。私钥必须始终保持机密，因为一旦泄露给第三方，相当于该私钥保护下的资产也拱手相让了。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon03', '它不同于keystore，keystore是加密过后的私钥文件，只要密码强度足够强，即使黑客攻击，破译难度也很高。私' + '钥实际上并不是存储在网络中，而是由用户生成并储存在一个文件或者简单的数据库中，称为钱包。用户的钱包地址就是由私钥通过椭圆曲线加密生成公钥，进而生成以0x开头的42位地址。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon04', '私钥的样式为64位16进制哈希值字符串。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon01', 'AElf钱包是一款全新的数字货币钱包，为用户提供更安全、高效、便捷的服务。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon02', 'AElf钱包支持AElf智能合约数字货币。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon03', '目前暂不支持BTC和ETH，但是符合AElf标准的代币我们都支持。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changepasswordCon01', '密码可以在钱包管理界面上修改。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon01', '在去中心化钱包中，所有用户的用户身份验证内容，如交易密码、私钥、助记词等都保存在用户手机本地，并不是' + '保存在中心化服务器中，所以用户如果忘记密码是没有办法通过第三方团队来重置密码的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon02', '唯一的解决办法是通过重新导入助记词或者私钥来设置新的密码。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.About AElf Official Wallet', '关于 AELF 钱包'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Use Agreement', '使用协议'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Privacy Policy', '隐私政策'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changelanguage', '选择语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.languageSelect', '请选择'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Record', '交易记录'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Send', '发送'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Receive", '接收'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Copy URL', '复制链接'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Details', '交易细节'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.To Address', '发送地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction', '交易'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Amount to send', '发送值/价值'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Balance', '等量'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New Provider', '新供应商'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.slow', '慢'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.fast', '快'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltips', '密码错误，您还有'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltimes', '次机会'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Back Home', '返回'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.error page', '错误页'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.cannot connect chain', '无法连接到链'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.PleaseBackUp', '注意!请立即备份钱包!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon01', 'aelf在此提示您，区块链钱包不同于传统网站账户，它是基于密码学的去中心化账户系统。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon02', '你必须保存好钱包和私钥和交易密码，任何意外发生将导致资产丢失。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon03', 'aelf提示您做好备份，在进行小额交易测试后，再开启使用之旅。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon04', '备份助记词在您丢失钱包或忘记密码时，能帮助您恢复钱包。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup now', '立即备份助记词'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords confirmed error.', '两次输入不一致'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords is not strong.', '密码强度不够'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Extension Manager', '管理'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup NightELF', '备份 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete NightELF', '删除 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Timer Locks', '定时锁定'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Load From Backup', '导入加密备份'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Please select the file', '请选择备份文件'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Click here', '点击这里'), _zh_CN);
 /* harmony default export */ __webpack_exports__["default"] = (zh_CN);
 
 /***/ }),
@@ -39177,7 +39182,7 @@ var en_US = (_en_US = {
   'aelf.Backup': 'Backup',
   'aelf.Change Password': 'Change Password',
   'aelf.Transaction List': 'Transaction List'
-}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Contact", 'Contact'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Commit', 'Commit'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New contacts', 'New contacts'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Name', 'Name'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Payee wallet address', 'Payee wallet address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Old password', 'Old password'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Forget your password', 'Forget your password? Importing mnemonic or private key can be reset.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Immediately import', 'Immediately import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.hint03', 'In this wallet, there is no Mnemonic when import Private Key. But we can get ' + 'Private Key when we import Mnemonic.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Import', 'Import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.System Setting', 'System Setting'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Network', 'Network'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon01', 'Current Wallet Service URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon02', 'What did the service provider do?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon03', '1.Broadcast your transaction when you transfer tokens to others.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon04', '2.Provide information when you open the page which shows transaction detail.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon05', 'How to change the service provider?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon06', '1.Click the URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon07', '2.Then, you can change it.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon08', 'Default provider is'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Language', 'Language'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Help Center', 'Help Center'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle01', 'What is a mnemonic?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle02', 'What is a keystore?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle03', 'What are public key and private key?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle04', 'What is the AElf Wallet?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle05', 'How to change the password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle06', 'What if I forget my password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon01', 'The Mnemonics is equivalent to the bank card + ' + 'password of a traditional financial institution. ' + 'Please keep it in a safe place. A Mnemonics is another manifestation of a plaintext private' + ' key that is designed to help users remember' + ' complex private keys (64-bit hashes). Mnemonicss are generally composed of 12, 15, 18, and 21 words. These' + ' words are taken from a fixed vocabulary. The order of generation ' + 'is also based on a certain algorithm. The Mnemonics is an unencrypted private ' + 'key. When people get your Mnemonics, you can take away your assets with little effort.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon02', 'Therefore, users must pay attention to three points when backing up the Mnemonics:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon03', '1. Use physical media as much as possible. For example, write Mnemonicss on paper. ' + 'Do not use screenshots or photos on networked devices as much as possible to prevent hackers from stealing.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon04', '2. Verify that the backup Mnemonics is correct multiple times.' + ' Once you have misread a letter or word, it will bring great suffering to the sub' + 'sequent retrieval of the correct Mnemonics.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon05', '3. Keep the Mnemonics after the backup in a safe place, and do a good job of anti-theft and anti-lost measures.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon01', 'The Keystore file is a file format (JSON) for storing the private key. It uses user-defined password encryption to protect the wallet to a certain extent, and the degree of protection depends on the password strength of the wallet. If the password is similar to 123456, it is extremely unsafe.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon02', 'So users must pay attention to three points when backing up Keystore:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon03', '1. use encrypted Keystore files that are not commonly used and as complex as possible.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon04', "2. Be sure to remember the password to encrypt Keystore. Once you forget the password, you lose the right to use Keystore, and aelf can't help you retrieve the password. So please keep it safe."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon05', 'Keystore Demo:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon01', 'The control of funds in a wallet depends on the ownership and control of the private key.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon02', 'In block-chain transactions, the private key is used to generate the signature necessary for the payment currency to prove the ownership of the fund. Private keys must always be kept confidential, because once they are disclosed to a third party, assets protected by the private key are also compromised.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon03', "It is different from keystore, which is a private key file after encryption. As long as the password strength is strong enough, even hackers attack, it is very difficult to decipher. The private key is not actually stored in the network, but is generated and stored by the user in a file or a simple database, called a wallet. The user's wallet address is generated by the private key through the elliptic curve encryption to generate the public key, and then generate the 36-bit address."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon04', 'The style of the private key is a 64 bit 16 binary hash value string.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon01', 'AElf Wallet is a new digital money wallet, providing users with safer, more efficient and convenient services.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon02', 'AElf Wallet supports AElf intelligent contract digital currency.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon03', 'At present, BTC and ETH are not supported at the moment, but we are in support of the AElf standard token.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changepasswordCon01', 'Passwords can be modified at the wallet management interface.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon01', "In the decentralized wallet, all users'user authentication content, such as transaction password, private key, mnemonic and so on, are stored locally in the user's mobile phone, not in the centralized server, so if the user forgets the password, it is impossible to reset the password through a third-party team."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon02', 'The only solution is to set up new passwords by re importing mnemonic or private keys.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.About AElf Official Wallet', 'About AElf Official Wallet'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Use Agreement', 'Use Agreement'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Privacy Policy', 'Privacy Policy'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changelanguage', 'Language change'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.languageSelect', 'Select'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Record', 'Transaction Record'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Receive", 'Receive'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Send', 'Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Copy URL', 'Copy URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Details', 'Transaction Details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.To Address', 'To Address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction', 'Transaction'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Amount to send', 'Value / Amount to Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Balance', 'Balance'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New Provider', 'New Provider'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.slow', 'Slow'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.fast', 'Fast'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltips', 'Password error, you have'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltimes', 'more chances'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Back Home', 'Back Home'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.error page', 'error page'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.cannot connect chain', 'cannot connect chain'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.PleaseBackUp', 'NOTE! Please Back Up!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon01', 'Aelf reminds you again that the blockchain wallet is different from the traditional website account, which is a cryptographic-based decentralized account system.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon02', "You must save the wallet's private key and transaction password, and any accidents will result in the loss of assets."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon03', 'Aelf prompts you to make a backup, conduct a small transaction test, and start the journey of use.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon04', 'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup now', 'Backup now'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords confirmed error.', 'The passwords confirmed error.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords is not strong.', 'The passwords is not strong.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Extension Manager', 'Extension Manager'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup NightELF', 'Backup NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete NightELF', 'Delete NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Timer Locks', 'Timer Locks'), _en_US);
+}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Contact", 'Contact'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Commit', 'Commit'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New contacts', 'New contacts'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Name', 'Name'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Payee wallet address', 'Payee wallet address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Old password', 'Old password'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Forget your password', 'Forget your password? Importing mnemonic or private key can be reset.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Immediately import', 'Immediately import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.hint03', 'In this wallet, there is no Mnemonic when import Private Key. But we can get ' + 'Private Key when we import Mnemonic.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Import', 'Import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.System Setting', 'System Setting'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Network', 'Network'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon01', 'Current Wallet Service URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon02', 'What did the service provider do?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon03', '1.Broadcast your transaction when you transfer tokens to others.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon04', '2.Provide information when you open the page which shows transaction detail.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon05', 'How to change the service provider?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon06', '1.Click the URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon07', '2.Then, you can change it.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon08', 'Default provider is'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Language', 'Language'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Help Center', 'Help Center'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle01', 'What is a mnemonic?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle02', 'What is a keystore?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle03', 'What are public key and private key?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle04', 'What is the AElf Wallet?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle05', 'How to change the password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle06', 'What if I forget my password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon01', 'The Mnemonics is equivalent to the bank card + ' + 'password of a traditional financial institution. ' + 'Please keep it in a safe place. A Mnemonics is another manifestation of a plaintext private' + ' key that is designed to help users remember' + ' complex private keys (64-bit hashes). Mnemonicss are generally composed of 12, 15, 18, and 21 words. These' + ' words are taken from a fixed vocabulary. The order of generation ' + 'is also based on a certain algorithm. The Mnemonics is an unencrypted private ' + 'key. When people get your Mnemonics, you can take away your assets with little effort.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon02', 'Therefore, users must pay attention to three points when backing up the Mnemonics:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon03', '1. Use physical media as much as possible. For example, write Mnemonicss on paper. ' + 'Do not use screenshots or photos on networked devices as much as possible to prevent hackers from stealing.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon04', '2. Verify that the backup Mnemonics is correct multiple times.' + ' Once you have misread a letter or word, it will bring great suffering to the sub' + 'sequent retrieval of the correct Mnemonics.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon05', '3. Keep the Mnemonics after the backup in a safe place, and do a good job of anti-theft and anti-lost measures.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon01', 'The Keystore file is a file format (JSON) for storing the private key. It uses user-defined password encryption to protect the wallet to a certain extent, and the degree of protection depends on the password strength of the wallet. If the password is similar to 123456, it is extremely unsafe.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon02', 'So users must pay attention to three points when backing up Keystore:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon03', '1. use encrypted Keystore files that are not commonly used and as complex as possible.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon04', "2. Be sure to remember the password to encrypt Keystore. Once you forget the password, you lose the right to use Keystore, and aelf can't help you retrieve the password. So please keep it safe."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon05', 'Keystore Demo:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon01', 'The control of funds in a wallet depends on the ownership and control of the private key.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon02', 'In block-chain transactions, the private key is used to generate the signature necessary for the payment currency to prove the ownership of the fund. Private keys must always be kept confidential, because once they are disclosed to a third party, assets protected by the private key are also compromised.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon03', "It is different from keystore, which is a private key file after encryption. As long as the password strength is strong enough, even hackers attack, it is very difficult to decipher. The private key is not actually stored in the network, but is generated and stored by the user in a file or a simple database, called a wallet. The user's wallet address is generated by the private key through the elliptic curve encryption to generate the public key, and then generate the 36-bit address."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon04', 'The style of the private key is a 64 bit 16 binary hash value string.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon01', 'AElf Wallet is a new digital money wallet, providing users with safer, more efficient and convenient services.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon02', 'AElf Wallet supports AElf intelligent contract digital currency.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon03', 'At present, BTC and ETH are not supported at the moment, but we are in support of the AElf standard token.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changepasswordCon01', 'Passwords can be modified at the wallet management interface.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon01', "In the decentralized wallet, all users'user authentication content, such as transaction password, private key, mnemonic and so on, are stored locally in the user's mobile phone, not in the centralized server, so if the user forgets the password, it is impossible to reset the password through a third-party team."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon02', 'The only solution is to set up new passwords by re importing mnemonic or private keys.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.About AElf Official Wallet', 'About AElf Official Wallet'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Use Agreement', 'Use Agreement'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Privacy Policy', 'Privacy Policy'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changelanguage', 'Language change'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.languageSelect', 'Select'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Record', 'Transaction Record'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Receive", 'Receive'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Send', 'Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Copy URL', 'Copy URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Details', 'Transaction Details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.To Address', 'To Address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction', 'Transaction'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Amount to send', 'Value / Amount to Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Balance', 'Balance'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New Provider', 'New Provider'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.slow', 'Slow'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.fast', 'Fast'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltips', 'Password error, you have'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltimes', 'more chances'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Back Home', 'Back Home'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.error page', 'error page'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.cannot connect chain', 'cannot connect chain'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.PleaseBackUp', 'NOTE! Please Back Up!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon01', 'Aelf reminds you again that the blockchain wallet is different from the traditional website account, which is a cryptographic-based decentralized account system.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon02', "You must save the wallet's private key and transaction password, and any accidents will result in the loss of assets."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon03', 'Aelf prompts you to make a backup, conduct a small transaction test, and start the journey of use.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon04', 'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup now', 'Backup now'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords confirmed error.', 'The passwords confirmed error.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords is not strong.', 'The passwords is not strong.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Extension Manager', 'Extension Manager'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup NightELF', 'Backup NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete NightELF', 'Delete NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Timer Locks', 'Timer Locks'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Load From Backup', 'Load From Backup'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Please select the file', 'Please select the file'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Click here', 'Click here'), _en_US);
 /* harmony default export */ __webpack_exports__["default"] = (en_US);
 
 /***/ }),
@@ -42653,7 +42658,9 @@ function (_Component) {
     };
     var action = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_16__["getParam"])('action', location.href);
     var isClear = action === 'clear_wallet';
+    var isBackup = action === 'backup_wallet';
     _this.isClear = isClear;
+    _this.isBackup = isBackup;
     return _this;
   }
 
@@ -42672,7 +42679,7 @@ function (_Component) {
           nightElfEncrypto = _ref.nightElfEncrypto,
           nightElf = _ref.nightElf;
 
-      if (nightElfEncrypto && nightElf && !this.isClear) {
+      if (nightElfEncrypto && nightElf && !this.isClear && !this.isBackup) {
         react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/home');
       } else {
         callback();
@@ -42684,8 +42691,6 @@ function (_Component) {
       var _this2 = this;
 
       _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["CHECK_WALLET"]).send().then(function (result) {
-        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["CHECK_WALLET"], result);
-
         _this2.turnToHomePage(result, function () {
           _this2.setState({
             walletStatus: result
@@ -42787,34 +42792,76 @@ function (_Component) {
           console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["UPDATE_WALLET"], seed, result);
         });
       }
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >         Backup  wallet        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  }, {
+    key: "backupWallet",
+    value: function backupWallet() {
+      var _this4 = this;
+
+      var seed = getSeed(this.state.password);
+
+      if (seed) {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["BACKUP_WALLET"], seed).send().then(function (result) {
+          if (result && result.error === 0) {
+            react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/extensionManager');
+          } else {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Backup failed!');
+
+            _this4.backupFailed = true;
+            return;
+          }
+        }).catch(function (error) {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Backup Wallet Failed.', 3, function () {}, false);
+        });
+      }
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >      Load From Backupt        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  }, {
+    key: "loadFromBackup",
+    value: function loadFromBackup() {
+      react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/loadFromBackup');
     } // if there is no wallet in browser.storage [chrome.storage]
     // We need create a wallet and insert it into storage.
 
   }, {
     key: "renderCreate",
     value: function renderCreate() {
-      var _this4 = this;
+      var _this5 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Password_Password__WEBPACK_IMPORTED_MODULE_17__["default"], {
         setPassword: function setPassword(password) {
-          return _this4.setPassword(password);
+          return _this5.setPassword(password);
         }
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Lock_scss__WEBPACK_IMPORTED_MODULE_14___default.a.bottom
+        className: _Lock_scss__WEBPACK_IMPORTED_MODULE_14___default.a.createBottom
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "aelf-blank12"
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_15__["default"], {
         text: "Create Wallet",
         aelficon: "add_purple20",
         onClick: function onClick() {
-          return _this4.createWallet();
+          return _this5.createWallet();
+        },
+        style: {
+          marginBottom: '10px'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        text: "Load From Backup",
+        aelficon: "add_purple20",
+        onClick: function onClick() {
+          return _this5.loadFromBackup();
         }
       })));
     }
   }, {
     key: "renderClear",
     value: function renderClear() {
-      var _this5 = this;
+      var _this6 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "aelf-input-container aelf-dash"
@@ -42827,7 +42874,7 @@ function (_Component) {
         type: "password",
         placeholder: "",
         onChange: function onChange(password) {
-          return _this5.setPassword(password);
+          return _this6.setPassword(password);
         },
         moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_16__["moneyKeyboardWrapProps"]
       }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -42838,14 +42885,14 @@ function (_Component) {
         text: "Clear Wallet",
         aelficon: "add_purple20",
         onClick: function onClick() {
-          return _this5.clearWallet();
+          return _this6.clearWallet();
         }
       })));
     }
   }, {
     key: "renderUnlock",
     value: function renderUnlock() {
-      var _this6 = this;
+      var _this7 = this;
 
       var _ref2 = this.state.walletStatus || {},
           nightElfEncrypto = _ref2.nightElfEncrypto,
@@ -42863,7 +42910,7 @@ function (_Component) {
           type: "password",
           placeholder: "",
           onChange: function onChange(password) {
-            return _this6.setPassword(password);
+            return _this7.setPassword(password);
           },
           moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_16__["moneyKeyboardWrapProps"]
         }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -42874,32 +42921,66 @@ function (_Component) {
           text: "Unlock Wallet",
           aelficon: "add_purple20",
           onClick: function onClick() {
-            return _this6.unlockWallet();
+            return _this7.unlockWallet();
           }
         })));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null);
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >         Backup  wallet        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  }, {
+    key: "renderBackup",
+    value: function renderBackup() {
+      var _this8 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-input-container aelf-dash"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-input-title"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_21__["FormattedMessage"], {
+        id: "aelf.Password"
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        value: this.state.password,
+        type: "password",
+        placeholder: "",
+        onChange: function onChange(password) {
+          return _this8.setPassword(password);
+        },
+        moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_16__["moneyKeyboardWrapProps"]
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _Lock_scss__WEBPACK_IMPORTED_MODULE_14___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-blank12"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        text: "Backup NightELF",
+        aelficon: "add_purple20",
+        onClick: function onClick() {
+          return _this8.backupWallet();
+        }
+      })));
     }
   }, {
     key: "renderTestButtons",
     value: function renderTestButtons() {
-      var _this7 = this;
+      var _this9 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this7.checkWallet();
+          return _this9.checkWallet();
         }
       }, "checkWallet"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this7.updateWallet();
+          return _this9.updateWallet();
         }
       }, "updateWallet"));
     }
   }, {
     key: "render",
     value: function render() {
-      var _this8 = this;
+      var _this10 = this;
 
       var titleText = 'Welcome';
       var buttonHTML = '';
@@ -42925,7 +43006,15 @@ function (_Component) {
               titleText = 'Delete';
               navHTML = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
                 onLeftClick: function onLeftClick() {
-                  return _this8.backClick();
+                  return _this10.backClick();
+                }
+              });
+            } else if (this.isBackup) {
+              buttonHTML = this.renderBackup();
+              titleText = 'Backup';
+              navHTML = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
+                onLeftClick: function onLeftClick() {
+                  return _this10.backClick();
                 }
               });
             }
@@ -59290,7 +59379,7 @@ elliptic.eddsa = __webpack_require__(407);
 /* 381 */
 /***/ (function(module) {
 
-module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Fri Feb 22 2019 14:51:56 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
+module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Fri Feb 22 2019 16:33:36 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
 
 /***/ }),
 /* 382 */
@@ -67661,7 +67750,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Lock-Lock_container-3suqa {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_top-2Hte1 {\n  padding: 0 24px 0 24px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank-O9mgl {\n  margin: 58px 0 0 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank12-3Z6ft {\n  height: 12px;\n  width: 12px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_welcome-1qIvs {\n  font-weight: 100;\n  font-size: 36px;\n  margin: 62px 0 0px 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_wallet-xuqmT {\n  font-size: 36px;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7 {\n  border-radius: 100px; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-Lock-Lock_container-3suqa {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_top-2Hte1 {\n  padding: 0 24px 0 24px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank-O9mgl {\n  margin: 58px 0 0 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank12-3Z6ft {\n  height: 12px;\n  width: 12px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_welcome-1qIvs {\n  font-weight: 100;\n  font-size: 36px;\n  margin: 62px 0 0px 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_wallet-xuqmT {\n  font-size: 36px;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7 {\n  border-radius: 100px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_createBottom-1oMo2 {\n  width: 80%;\n  margin: 0 auto 0px 10%; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -67673,7 +67762,8 @@ exports.locals = {
 	"wallet": "AELF-app-web-pages-Popup-Lock-Lock_wallet-xuqmT",
 	"description": "AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq",
 	"bottom": "AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv",
-	"btn": "AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7"
+	"btn": "AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7",
+	"createBottom": "AELF-app-web-pages-Popup-Lock-Lock_createBottom-1oMo2"
 };
 
 /***/ }),
@@ -69059,6 +69149,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNLOCK_WALLET", function() { return UNLOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCK_WALLET", function() { return LOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_WALLET", function() { return UPDATE_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BACKUP_WALLET", function() { return BACKUP_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMPORT_WALLET", function() { return IMPORT_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INSERT_KEYPAIR", function() { return INSERT_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_KEYPAIR", function() { return REMOVE_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_KEYPAIR", function() { return GET_KEYPAIR; });
@@ -69086,7 +69178,10 @@ var CHECK_WALLET = 'checkWallet';
 var CLEAR_WALLET = 'clearWallet';
 var UNLOCK_WALLET = 'unlockWallet';
 var LOCK_WALLET = 'lockWallet';
-var UPDATE_WALLET = 'updateWallet';
+var UPDATE_WALLET = 'updateWallet'; // backup wallet
+
+var BACKUP_WALLET = 'backupWallet';
+var IMPORT_WALLET = 'importWallet';
 var INSERT_KEYPAIR = 'insertKeypair';
 var REMOVE_KEYPAIR = 'removeKeypair';
 var GET_KEYPAIR = 'getKeypair';
@@ -100325,50 +100420,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 687 */,
-/* 688 */,
-/* 689 */,
-/* 690 */,
-/* 691 */,
-/* 692 */,
-/* 693 */,
-/* 694 */,
-/* 695 */,
-/* 696 */,
-/* 697 */,
-/* 698 */,
-/* 699 */,
-/* 700 */,
-/* 701 */,
-/* 702 */,
-/* 703 */,
-/* 704 */,
-/* 705 */,
-/* 706 */,
-/* 707 */,
-/* 708 */,
-/* 709 */,
-/* 710 */,
-/* 711 */,
-/* 712 */,
-/* 713 */,
-/* 714 */,
-/* 715 */,
-/* 716 */,
-/* 717 */,
-/* 718 */,
-/* 719 */,
-/* 720 */,
-/* 721 */,
-/* 722 */,
-/* 723 */,
-/* 724 */,
-/* 725 */,
-/* 726 */,
-/* 727 */,
-/* 728 */,
-/* 729 */,
-/* 730 */
+/* 687 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100391,7 +100443,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(115);
-/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(731);
+/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(688);
 /* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(481);
 /* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(464);
@@ -100443,7 +100495,7 @@ function (_Component) {
         className: 'aelf-list'
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
         onClick: function onClick() {
-          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/keypairs');
+          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/?action=backup_wallet');
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "wallet16",
@@ -100485,11 +100537,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 731 */
+/* 688 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(732);
+var content = __webpack_require__(689);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -100510,7 +100562,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 732 */
+/* 689 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -100524,6 +100576,302 @@ exports.push([module.i, ".AELF-app-web-pages-Popup-ExtensionManager-ExtensionMan
 exports.locals = {
 	"container": "AELF-app-web-pages-Popup-ExtensionManager-ExtensionManager_container-3Nm3x",
 	"blank": "AELF-app-web-pages-Popup-ExtensionManager-ExtensionManager_blank-19a7s"
+};
+
+/***/ }),
+/* 690 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LoadFromBackup; });
+/* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(258);
+/* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(261);
+/* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(265);
+/* harmony import */ var antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(268);
+/* harmony import */ var antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(255);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(277);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(280);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(281);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(224);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(235);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(102);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(443);
+/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(464);
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(200);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(176);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(115);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(283);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(471);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(472);
+/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(691);
+/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__);
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @file LoadFromBackup.js
+ * @author zhouminghui
+*/
+
+
+
+
+
+
+
+
+
+
+
+function getSeed(password) {
+  if (password) {
+    var hmac = Object(crypto__WEBPACK_IMPORTED_MODULE_17__["createHmac"])('sha512', password);
+    var seed = hmac.update(password).digest('hex');
+    return seed;
+  }
+
+  antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Please input password', 3, function () {}, false);
+
+  return false;
+}
+
+var LoadFromBackup =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(LoadFromBackup, _Component);
+
+  function LoadFromBackup(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, LoadFromBackup);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(LoadFromBackup).call(this, props));
+    _this.state = {
+      password: '',
+      fileName: ''
+    };
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(LoadFromBackup, [{
+    key: "getReturn",
+    value: function getReturn() {
+      location.href = '/popup.html';
+    }
+  }, {
+    key: "setPassword",
+    value: function setPassword(password) {
+      this.setState({
+        password: password
+      });
+    }
+  }, {
+    key: "importBackup",
+    value: function importBackup() {
+      var seed = getSeed(this.state.password);
+      var fileValue = this.state.fileValue;
+
+      if (seed) {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["IMPORT_WALLET"], {
+          seed: seed,
+          fileValue: fileValue
+        }).send().then(function (result) {
+          if (result && result.error === 0) {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.success('Load successful...', 3, function () {
+              react_router__WEBPACK_IMPORTED_MODULE_16__["hashHistory"].push('/home');
+            }, false);
+          } else {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail(result.errorMessage.message, 3, function () {}, false);
+          }
+        });
+      }
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(event) {
+      var _this2 = this;
+
+      event.persist();
+      var reader = new FileReader();
+      reader.readAsText(event.target.files[0], 'utf-8');
+
+      reader.onloadstart = function (result) {
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.loading('Loading...', 999, function () {});
+
+        _this2.setState({
+          fileName: event.target.files[0].name
+        });
+      };
+
+      reader.onload = function (result) {
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.hide();
+
+        _this2.setState({
+          fileValue: result.currentTarget.result
+        });
+      };
+    }
+  }, {
+    key: "getFileNameHTML",
+    value: function getFileNameHTML() {
+      var fileName = this.state.fileName;
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-file-name"
+      }, fileName);
+    }
+  }, {
+    key: "renderBackup",
+    value: function renderBackup() {
+      var _this3 = this;
+
+      var fileName = this.state.fileName;
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-input-container aelf-dash"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-import-file"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        id: "aelf.Please select the file"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.updateFile
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        id: "aelf.Click here"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("input", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.update,
+        type: "file",
+        accept: ".txt",
+        name: "import-file",
+        onChange: this.onChange.bind(this)
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.fileName
+      }, fileName), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-input-title"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        id: "aelf.Password"
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        value: this.state.password,
+        type: "password",
+        placeholder: "",
+        onChange: function onChange(password) {
+          return _this3.setPassword(password);
+        },
+        moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_14__["moneyKeyboardWrapProps"]
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-blank12"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        text: "Commit",
+        aelficon: "add_purple20",
+        onClick: function onClick() {
+          return _this3.importBackup();
+        }
+      })));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var confirmHTML = this.renderBackup();
+      var titleText = 'Import';
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.container
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        onLeftClick: function onLeftClick() {
+          return _this4.getReturn();
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.blank
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.welcome
+      }, titleText), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.wallet
+      }, "Night ELF")), confirmHTML);
+    }
+  }]);
+
+  return LoadFromBackup;
+}(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
+
+
+
+/***/ }),
+/* 691 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(692);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 692 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_container-2MVf2 {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_top-zGZ6- {\n  padding: 0 24px 0 24px; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_blank-2mm26 {\n  margin: 58px 0 0 0; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_blank12-AQCAY {\n  height: 12px;\n  width: 12px; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_welcome-2w8xP {\n  font-weight: 100;\n  font-size: 36px;\n  margin: 62px 0 0px 0; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_wallet-BOcHo {\n  font-size: 36px;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_description-2JckS {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_bottom-IjGfi {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_btn-1G3dC {\n  border-radius: 100px; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_createBottom-31NNx {\n  width: 80%;\n  margin: 0 auto 0px 10%; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_updateFile-3zENe {\n  cursor: pointer;\n  color: dodgerblue;\n  display: inline-block;\n  position: relative; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_update-1RboZ {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  opacity: 0; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_fileName-wpEAm {\n  word-break: break-all;\n  word-wrap: break-word; }\n", ""]);
+
+// exports
+exports.locals = {
+	"container": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_container-2MVf2",
+	"top": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_top-zGZ6-",
+	"blank": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_blank-2mm26",
+	"blank12": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_blank12-AQCAY",
+	"welcome": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_welcome-2w8xP",
+	"wallet": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_wallet-BOcHo",
+	"description": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_description-2JckS",
+	"bottom": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_bottom-IjGfi",
+	"btn": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_btn-1G3dC",
+	"createBottom": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_createBottom-31NNx",
+	"updateFile": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_updateFile-3zENe",
+	"update": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_update-1RboZ",
+	"fileName": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_fileName-wpEAm"
 };
 
 /***/ })

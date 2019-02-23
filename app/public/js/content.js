@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 705);
+/******/ 	return __webpack_require__(__webpack_require__.s = 712);
 /******/ })
 /************************************************************************/
 /******/ (Array(112).concat([
@@ -14789,7 +14789,7 @@ elliptic.eddsa = __webpack_require__(407);
 /* 381 */
 /***/ (function(module) {
 
-module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Fri Feb 22 2019 14:51:56 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
+module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Fri Feb 22 2019 16:33:36 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
 
 /***/ }),
 /* 382 */
@@ -23169,6 +23169,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNLOCK_WALLET", function() { return UNLOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCK_WALLET", function() { return LOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_WALLET", function() { return UPDATE_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BACKUP_WALLET", function() { return BACKUP_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMPORT_WALLET", function() { return IMPORT_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INSERT_KEYPAIR", function() { return INSERT_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_KEYPAIR", function() { return REMOVE_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_KEYPAIR", function() { return GET_KEYPAIR; });
@@ -23196,7 +23198,10 @@ var CHECK_WALLET = 'checkWallet';
 var CLEAR_WALLET = 'clearWallet';
 var UNLOCK_WALLET = 'unlockWallet';
 var LOCK_WALLET = 'lockWallet';
-var UPDATE_WALLET = 'updateWallet';
+var UPDATE_WALLET = 'updateWallet'; // backup wallet
+
+var BACKUP_WALLET = 'backupWallet';
+var IMPORT_WALLET = 'importWallet';
 var INSERT_KEYPAIR = 'insertKeypair';
 var REMOVE_KEYPAIR = 'removeKeypair';
 var GET_KEYPAIR = 'getKeypair';
@@ -26387,7 +26392,13 @@ exports.default = LocalStream;
 /* 686 */,
 /* 687 */,
 /* 688 */,
-/* 689 */
+/* 689 */,
+/* 690 */,
+/* 691 */,
+/* 692 */,
+/* 693 */,
+/* 694 */,
+/* 695 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(218);
@@ -26414,7 +26425,7 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 690 */
+/* 696 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26455,7 +26466,7 @@ var ApiGenerator = function ApiGenerator() {
 var apis = new ApiGenerator();
 
 /***/ }),
-/* 691 */
+/* 697 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26520,12 +26531,6 @@ function errorHandler(code, error) {
 }
 
 /***/ }),
-/* 692 */,
-/* 693 */,
-/* 694 */,
-/* 695 */,
-/* 696 */,
-/* 697 */,
 /* 698 */,
 /* 699 */,
 /* 700 */,
@@ -26533,26 +26538,33 @@ function errorHandler(code, error) {
 /* 702 */,
 /* 703 */,
 /* 704 */,
-/* 705 */
+/* 705 */,
+/* 706 */,
+/* 707 */,
+/* 708 */,
+/* 709 */,
+/* 710 */,
+/* 711 */,
+/* 712 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(689);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(695);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(254);
-/* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(706);
-/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(727);
+/* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(713);
+/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(734);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(471);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(472);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(690);
-/* harmony import */ var _utils_getHostname__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(728);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(691);
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(708);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(696);
+/* harmony import */ var _utils_getHostname__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(735);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(697);
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(715);
 
 
 
@@ -26700,7 +26712,7 @@ function () {
 new Content();
 
 /***/ }),
-/* 706 */
+/* 713 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26710,9 +26722,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(707);
-/* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(708);
-/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(709);
+/* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(714);
+/* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(715);
+/* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(716);
 /* harmony import */ var eccrypto__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(eccrypto__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(283);
 /* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_5__);
@@ -26886,7 +26898,7 @@ function () {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(287).Buffer))
 
 /***/ }),
-/* 707 */
+/* 714 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26938,7 +26950,7 @@ function () {
 
 
 /***/ }),
-/* 708 */
+/* 715 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26977,13 +26989,13 @@ function () {
 
 
 /***/ }),
-/* 709 */
+/* 716 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, Buffer) {
 
-var EC = __webpack_require__(710).ec;
+var EC = __webpack_require__(717).ec;
 
 var ec = new EC("secp256k1");
 var browserCrypto = global.crypto || global.msCrypto || {};
@@ -27233,7 +27245,7 @@ exports.decrypt = function(privateKey, opts) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(112), __webpack_require__(287).Buffer))
 
 /***/ }),
-/* 710 */
+/* 717 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27241,26 +27253,26 @@ exports.decrypt = function(privateKey, opts) {
 
 var elliptic = exports;
 
-elliptic.version = __webpack_require__(711).version;
-elliptic.utils = __webpack_require__(712);
+elliptic.version = __webpack_require__(718).version;
+elliptic.utils = __webpack_require__(719);
 elliptic.rand = __webpack_require__(373);
-elliptic.hmacDRBG = __webpack_require__(713);
-elliptic.curve = __webpack_require__(714);
-elliptic.curves = __webpack_require__(719);
+elliptic.hmacDRBG = __webpack_require__(720);
+elliptic.curve = __webpack_require__(721);
+elliptic.curves = __webpack_require__(726);
 
 // Protocols
-elliptic.ec = __webpack_require__(721);
-elliptic.eddsa = __webpack_require__(724);
+elliptic.ec = __webpack_require__(728);
+elliptic.eddsa = __webpack_require__(731);
 
 
 /***/ }),
-/* 711 */
+/* 718 */
 /***/ (function(module) {
 
-module.exports = {"name":"elliptic","version":"6.0.2","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"test":"make lint && istanbul test _mocha --reporter=spec test/*-test.js","coveralls":"cat ./coverage/lcov.info | coveralls"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"browserify":"^3.44.2","coveralls":"^2.11.3","istanbul":"^0.3.17","jscs":"^1.11.3","jshint":"^2.6.0","mocha":"^2.1.0","uglify-js":"^2.4.13"},"dependencies":{"bn.js":"^4.0.0","brorand":"^1.0.1","hash.js":"^1.0.0","inherits":"^2.0.1"},"__npminstall_done":"Fri Feb 22 2019 14:51:55 GMT+0800 (GMT+08:00)","_from":"elliptic@6.0.2","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.0.2.tgz"};
+module.exports = {"name":"elliptic","version":"6.0.2","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"test":"make lint && istanbul test _mocha --reporter=spec test/*-test.js","coveralls":"cat ./coverage/lcov.info | coveralls"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"browserify":"^3.44.2","coveralls":"^2.11.3","istanbul":"^0.3.17","jscs":"^1.11.3","jshint":"^2.6.0","mocha":"^2.1.0","uglify-js":"^2.4.13"},"dependencies":{"bn.js":"^4.0.0","brorand":"^1.0.1","hash.js":"^1.0.0","inherits":"^2.0.1"},"__npminstall_done":"Fri Feb 22 2019 16:33:36 GMT+0800 (GMT+08:00)","_from":"elliptic@6.0.2","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.0.2.tgz"};
 
 /***/ }),
-/* 712 */
+/* 719 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27440,14 +27452,14 @@ utils.intFromLE = intFromLE;
 
 
 /***/ }),
-/* 713 */
+/* 720 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var hash = __webpack_require__(390);
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 var utils = elliptic.utils;
 var assert = utils.assert;
 
@@ -27561,7 +27573,7 @@ HmacDRBG.prototype.generate = function generate(len, enc, add, addEnc) {
 
 
 /***/ }),
-/* 714 */
+/* 721 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27569,21 +27581,21 @@ HmacDRBG.prototype.generate = function generate(len, enc, add, addEnc) {
 
 var curve = exports;
 
-curve.base = __webpack_require__(715);
-curve.short = __webpack_require__(716);
-curve.mont = __webpack_require__(717);
-curve.edwards = __webpack_require__(718);
+curve.base = __webpack_require__(722);
+curve.short = __webpack_require__(723);
+curve.mont = __webpack_require__(724);
+curve.edwards = __webpack_require__(725);
 
 
 /***/ }),
-/* 715 */
+/* 722 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var bn = __webpack_require__(369);
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 var utils = elliptic.utils;
 var getNAF = utils.getNAF;
 var getJSF = utils.getJSF;
@@ -27934,14 +27946,14 @@ BasePoint.prototype.dblp = function dblp(k) {
 
 
 /***/ }),
-/* 716 */
+/* 723 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var curve = __webpack_require__(714);
-var elliptic = __webpack_require__(710);
+var curve = __webpack_require__(721);
+var elliptic = __webpack_require__(717);
 var bn = __webpack_require__(369);
 var inherits = __webpack_require__(292);
 var Base = curve.base;
@@ -28848,18 +28860,18 @@ JPoint.prototype.isInfinity = function isInfinity() {
 
 
 /***/ }),
-/* 717 */
+/* 724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var curve = __webpack_require__(714);
+var curve = __webpack_require__(721);
 var bn = __webpack_require__(369);
 var inherits = __webpack_require__(292);
 var Base = curve.base;
 
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 var utils = elliptic.utils;
 
 function MontCurve(conf) {
@@ -29031,14 +29043,14 @@ Point.prototype.getX = function getX() {
 
 
 /***/ }),
-/* 718 */
+/* 725 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var curve = __webpack_require__(714);
-var elliptic = __webpack_require__(710);
+var curve = __webpack_require__(721);
+var elliptic = __webpack_require__(717);
 var bn = __webpack_require__(369);
 var inherits = __webpack_require__(292);
 var Base = curve.base;
@@ -29444,7 +29456,7 @@ Point.prototype.mixedAdd = Point.prototype.add;
 
 
 /***/ }),
-/* 719 */
+/* 726 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29453,7 +29465,7 @@ Point.prototype.mixedAdd = Point.prototype.add;
 var curves = exports;
 
 var hash = __webpack_require__(390);
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 
 var assert = elliptic.utils.assert;
 
@@ -29617,7 +29629,7 @@ defineCurve('ed25519', {
 
 var pre;
 try {
-  pre = __webpack_require__(720);
+  pre = __webpack_require__(727);
 } catch (e) {
   pre = undefined;
 }
@@ -29656,7 +29668,7 @@ defineCurve('secp256k1', {
 
 
 /***/ }),
-/* 720 */
+/* 727 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -30442,19 +30454,19 @@ module.exports = {
 
 
 /***/ }),
-/* 721 */
+/* 728 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var bn = __webpack_require__(369);
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 var utils = elliptic.utils;
 var assert = utils.assert;
 
-var KeyPair = __webpack_require__(722);
-var Signature = __webpack_require__(723);
+var KeyPair = __webpack_require__(729);
+var Signature = __webpack_require__(730);
 
 function EC(options) {
   if (!(this instanceof EC))
@@ -30665,7 +30677,7 @@ EC.prototype.getKeyRecoveryParam = function(e, signature, Q, enc) {
 
 
 /***/ }),
-/* 722 */
+/* 729 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30779,7 +30791,7 @@ KeyPair.prototype.inspect = function inspect() {
 
 
 /***/ }),
-/* 723 */
+/* 730 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30787,7 +30799,7 @@ KeyPair.prototype.inspect = function inspect() {
 
 var bn = __webpack_require__(369);
 
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 var utils = elliptic.utils;
 var assert = utils.assert;
 
@@ -30921,19 +30933,19 @@ Signature.prototype.toDER = function toDER(enc) {
 
 
 /***/ }),
-/* 724 */
+/* 731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var hash = __webpack_require__(390);
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 var utils = elliptic.utils;
 var assert = utils.assert;
 var parseBytes = utils.parseBytes;
-var KeyPair = __webpack_require__(725);
-var Signature = __webpack_require__(726);
+var KeyPair = __webpack_require__(732);
+var Signature = __webpack_require__(733);
 
 function EDDSA(curve) {
   assert(curve === 'ed25519', 'only tested with ed25519 so far');
@@ -31046,13 +31058,13 @@ EDDSA.prototype.isPoint = function isPoint(val) {
 
 
 /***/ }),
-/* 725 */
+/* 732 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 var utils = elliptic.utils;
 var assert = utils.assert;
 var parseBytes = utils.parseBytes;
@@ -31149,14 +31161,14 @@ module.exports = KeyPair;
 
 
 /***/ }),
-/* 726 */
+/* 733 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var bn = __webpack_require__(369);
-var elliptic = __webpack_require__(710);
+var elliptic = __webpack_require__(717);
 var utils = elliptic.utils;
 var assert = utils.assert;
 var cachedProperty = utils.cachedProperty;
@@ -31222,7 +31234,7 @@ module.exports = Signature;
 
 
 /***/ }),
-/* 727 */
+/* 734 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31237,7 +31249,7 @@ var PAGE_NIGHTELF = 'pageNightElf';
 var CONTENT_NIGHTELF = 'contentNightElf';
 
 /***/ }),
-/* 728 */
+/* 735 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

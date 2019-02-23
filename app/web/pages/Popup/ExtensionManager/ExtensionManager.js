@@ -34,7 +34,7 @@ export default class ExtensionManager extends Component {
                     onLeftClick={() => historyPush('/home')}
                 ></NavNormal>
                 <List className={'aelf-list'}>
-                    <Item onClick={() => hashHistory.push('/keypairs')}>
+                    <Item onClick={() => hashHistory.push('/?action=backup_wallet')}>
                         <ListContent
                             icon="wallet16"
                             text={
