@@ -12,6 +12,10 @@ export const UNLOCK_WALLET = 'unlockWallet';
 export const LOCK_WALLET = 'lockWallet';
 export const UPDATE_WALLET = 'updateWallet';
 
+// backup wallet
+export const BACKUP_WALLET = 'backupWallet';
+export const IMPORT_WALLET = 'importWallet';
+
 export const INSERT_KEYPAIR = 'insertKeypair';
 export const REMOVE_KEYPAIR = 'removeKeypair';
 export const GET_KEYPAIR = 'getKeypair';
@@ -34,3 +38,6 @@ export const GET_ADDRESS = 'getAddress';
 export const OPEN_PROMPT = 'openPrompt';
 export const SET_PROMPT = 'setPrompt';
 export const GET_PROMPT = 'getPrompt';
+
+
+

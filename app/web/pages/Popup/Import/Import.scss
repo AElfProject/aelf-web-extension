@@ -1,0 +1,75 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.tabTitleContainer {
+	height: 37px;
+	//margin-bottom: 24px;
+	margin: 0 0 12px 0;
+	font-size: 20px;
+	line-height: 24px;
+	color: #FFF;
+}
+.tabSelected {
+	font-size: 24px;
+}
+.tabSelected .tabSelectedLine {
+	display: block;
+}
+.tabTitle {
+	float: left;
+	text-align: center;
+	margin-right: 32px;
+}
+.tabSelectedLine {
+	display: none;
+	width: 24px;
+	height: 4px;
+	background: #FFF;
+	margin: 9px auto 0 auto;
+}
+
+.textareaContainer {
+	display: none;
+	background: rgba(0, 0, 0, 0.2);
+	border: none;
+	border-radius: 4px;
+	padding: 14px;
+}
+.textSelected {
+	display: block;
+}
+.textarea {
+	width: 100%;
+	color: #FFF;
+	//background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0);
+	border: none;
+	//border-radius: 4px;
+	-webkit-appearance: none;
+	resize: none;
+}
+
+.title {
+	padding: 0px 24px;
+	margin: 24px 0 0 0;
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.error {
+	color: #f50;
+	padding: 0px 15px;
+}
+
+.textareaItem {
+	width: 100%;
+	border: 0px;
+}
+
+.bottom {
+	width: 80%;
+	margin: 30px 0 0 10%;
+}

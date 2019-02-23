@@ -109,10 +109,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(198);
 /* harmony import */ var _Lock_Lock__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(255);
 /* harmony import */ var _Home_Home__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(477);
-/* harmony import */ var _Backup_Backup__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(483);
+/* harmony import */ var _CreateKeypairs_CreateKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(483);
 /* harmony import */ var _Keypairs_Keypairs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(627);
 /* harmony import */ var _Permissions_Permissions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(661);
 /* harmony import */ var _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(666);
+/* harmony import */ var _Import_Import__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(716);
+/* harmony import */ var _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(723);
+/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(729);
+/* harmony import */ var _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(732);
 
 
 
@@ -136,6 +140,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 Object(react_intl__WEBPACK_IMPORTED_MODULE_6__["addLocaleData"])([].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2___default()(react_intl_locale_data_zh__WEBPACK_IMPORTED_MODULE_7___default.a), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2___default()(react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8___default.a)));
 react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_6__["IntlProvider"], {
   locale: navigator.language,
@@ -151,14 +159,26 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
   path: "/home",
   component: _Home_Home__WEBPACK_IMPORTED_MODULE_11__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/backup",
-  component: _Backup_Backup__WEBPACK_IMPORTED_MODULE_12__["default"]
+  path: "/createKeypairs",
+  component: _CreateKeypairs_CreateKeypairs__WEBPACK_IMPORTED_MODULE_12__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/keypairs",
   component: _Keypairs_Keypairs__WEBPACK_IMPORTED_MODULE_13__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/permissions",
   component: _Permissions_Permissions__WEBPACK_IMPORTED_MODULE_14__["default"]
+}), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  path: "/import",
+  component: _Import_Import__WEBPACK_IMPORTED_MODULE_16__["default"]
+}), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  path: "/backupKeypairs/:address",
+  component: _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__["default"]
+}), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  path: "/extensionManager",
+  component: _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__["default"]
+}), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  path: "/loadFromBackup",
+  component: _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/contracts",
   component: _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__["default"]
@@ -37715,9 +37735,11 @@ var zh_CN = (_zh_CN = {
   'aelf.Copy Address': '复制钱包地址',
   'aelf.Create Wallet': '创建钱包',
   'aelf.Create Keypair': '创建密钥',
+  'aelf.Import Keypair': '导入密钥',
   'aelf.Clear Wallet': '删除钱包',
   'aelf.Unlock Wallet': '解锁钱包',
   'aelf.Keypair Name': '密钥对别名',
+  'aelf.Extend Manager': '扩展管理',
   'aelf.Key Pairs': '密钥对',
   'aelf.Receive': '钱包地址',
   'aelf.Home': '首页',
@@ -37766,7 +37788,7 @@ var zh_CN = (_zh_CN = {
   'aelf.Backup': '备份',
   'aelf.Change Password': '修改密码',
   'aelf.Transaction List': '交易记录'
-}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Contact", '联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Commit', '提交'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New contacts', '新建联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Name', '姓名'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Payee wallet address', '钱包地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Old password', '旧密码'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Forget your password', '忘记密码？导入助记符或私钥可以重置。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Immediately import', '立即导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.hint03', '在这个钱包中，导入私钥时没有助记词。但是，当我们导入助记词时，我们可以得到私钥。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Import', '导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.System Setting', '系统设置'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Network', '网络'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon01', '当前钱包服务的URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon02', '该服务做了什么？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon03', '1、在将Token转让给他人时，广播您的交易。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon04', '2、在打开显示交易细节的页面时提供信息。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon05', '如何变更服务？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon06', '1、点击上方 URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon07', '2、然后，你可以更改它。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon08', '默认提供的为:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Language', '语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Help Center', '帮助中心'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle01', '什么是助记词？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle02', '什么是keystore？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle03', '什么是公钥私钥？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle04', 'AElf钱包介绍'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle05', '如何修改密码？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle06', '如果我忘记密码了怎么办？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon01', '助记词相当于传统金融机构的银行卡+密码。请把它放在安全的地方。助记词是明文私钥的另一种表现形式，它被设计成帮助用户记住复杂的私钥（64位散列）。' + '记忆法一般由12, 15, 18个单词和21个单词组成。这些词是从固定的词汇中提取出来的。生成顺序也是基于一定的算法。助记词是一个未加密的私钥。任何人得到你的助记词后，就可以不费吹灰之力夺走你的资产。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon02', '因此，用户在备份助记符时必须注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon03', '1、尽可能采用物理介质，例如把助记词写在纸上，尽可能不要采用截屏或者拍照之后放在联网设备上，以防被黑客窃取。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon04', '2、多次验证备份的助记词是否正确，一旦抄错一个字母或单词，那么将对后续找回正确的助记词带来巨大苦难。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon05', '3、将备份后的助记词妥善保管，做好防盗防丢措施。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon01', 'Keystore 文件是存储私钥的一种文件格式（JSON）。它使用用户自定义密码加密，以起到一定程度的保护作用，而保护的程度取决于用' + '户加密该钱包的密码强度，如果类似于123456这样的密码，是极为不安全的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon02', '所以用户在备份助记词时一定要注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon03', '1、使用不常用，并且尽可能复杂的密码加密Keystore文件。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon04', '2、一定要记住加密Keystore的密码，一旦忘记密码，那么你就失去了Keystore的使用权，并且aelf无法帮你找回密码。所以请妥善保管。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon05', 'Keystore密码样式：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon01', '钱包中资金的控制取决于相应私钥的所有权和控制权。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon02', '在区块链交易中，私钥用于生成支付货币所必须的签名，以证明资金的所有权。私钥必须始终保持机密，因为一旦泄露给第三方，相当于该私钥保护下的资产也拱手相让了。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon03', '它不同于keystore，keystore是加密过后的私钥文件，只要密码强度足够强，即使黑客攻击，破译难度也很高。私' + '钥实际上并不是存储在网络中，而是由用户生成并储存在一个文件或者简单的数据库中，称为钱包。用户的钱包地址就是由私钥通过椭圆曲线加密生成公钥，进而生成以0x开头的42位地址。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon04', '私钥的样式为64位16进制哈希值字符串。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon01', 'AElf钱包是一款全新的数字货币钱包，为用户提供更安全、高效、便捷的服务。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon02', 'AElf钱包支持AElf智能合约数字货币。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon03', '目前暂不支持BTC和ETH，但是符合AElf标准的代币我们都支持。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changepasswordCon01', '密码可以在钱包管理界面上修改。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon01', '在去中心化钱包中，所有用户的用户身份验证内容，如交易密码、私钥、助记词等都保存在用户手机本地，并不是' + '保存在中心化服务器中，所以用户如果忘记密码是没有办法通过第三方团队来重置密码的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon02', '唯一的解决办法是通过重新导入助记词或者私钥来设置新的密码。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.About AElf Official Wallet', '关于 AELF 钱包'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Use Agreement', '使用协议'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Privacy Policy', '隐私政策'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changelanguage', '选择语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.languageSelect', '请选择'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Record', '交易记录'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Send', '发送'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Receive", '接收'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Copy URL', '复制链接'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Details', '交易细节'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.To Address', '发送地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction', '交易'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Amount to send', '发送值/价值'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Balance', '等量'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New Provider', '新供应商'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.slow', '慢'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.fast', '快'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltips', '密码错误，您还有'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltimes', '次机会'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Back Home', '返回'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.error page', '错误页'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.cannot connect chain', '无法连接到链'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.PleaseBackUp', '注意!请立即备份钱包!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon01', 'aelf在此提示您，区块链钱包不同于传统网站账户，它是基于密码学的去中心化账户系统。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon02', '你必须保存好钱包和私钥和交易密码，任何意外发生将导致资产丢失。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon03', 'aelf提示您做好备份，在进行小额交易测试后，再开启使用之旅。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon04', '备份助记词在您丢失钱包或忘记密码时，能帮助您恢复钱包。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup now', '立即备份助记词'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords confirmed error.', '两次输入不一致'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords is not strong.', '密码强度不够'), _zh_CN);
+}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Contact", '联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Commit', '提交'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New contacts', '新建联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Name', '姓名'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Payee wallet address', '钱包地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Old password', '旧密码'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Forget your password', '忘记密码？导入助记符或私钥可以重置。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Immediately import', '立即导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.hint03', '在这个钱包中，导入私钥时没有助记词。但是，当我们导入助记词时，我们可以得到私钥。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Import', '导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.System Setting', '系统设置'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Network', '网络'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon01', '当前钱包服务的URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon02', '该服务做了什么？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon03', '1、在将Token转让给他人时，广播您的交易。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon04', '2、在打开显示交易细节的页面时提供信息。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon05', '如何变更服务？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon06', '1、点击上方 URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon07', '2、然后，你可以更改它。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon08', '默认提供的为:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Language', '语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Help Center', '帮助中心'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle01', '什么是助记词？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle02', '什么是keystore？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle03', '什么是公钥私钥？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle04', 'AElf钱包介绍'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle05', '如何修改密码？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle06', '如果我忘记密码了怎么办？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon01', '助记词相当于传统金融机构的银行卡+密码。请把它放在安全的地方。助记词是明文私钥的另一种表现形式，它被设计成帮助用户记住复杂的私钥（64位散列）。' + '记忆法一般由12, 15, 18个单词和21个单词组成。这些词是从固定的词汇中提取出来的。生成顺序也是基于一定的算法。助记词是一个未加密的私钥。任何人得到你的助记词后，就可以不费吹灰之力夺走你的资产。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon02', '因此，用户在备份助记符时必须注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon03', '1、尽可能采用物理介质，例如把助记词写在纸上，尽可能不要采用截屏或者拍照之后放在联网设备上，以防被黑客窃取。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon04', '2、多次验证备份的助记词是否正确，一旦抄错一个字母或单词，那么将对后续找回正确的助记词带来巨大苦难。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon05', '3、将备份后的助记词妥善保管，做好防盗防丢措施。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon01', 'Keystore 文件是存储私钥的一种文件格式（JSON）。它使用用户自定义密码加密，以起到一定程度的保护作用，而保护的程度取决于用' + '户加密该钱包的密码强度，如果类似于123456这样的密码，是极为不安全的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon02', '所以用户在备份助记词时一定要注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon03', '1、使用不常用，并且尽可能复杂的密码加密Keystore文件。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon04', '2、一定要记住加密Keystore的密码，一旦忘记密码，那么你就失去了Keystore的使用权，并且aelf无法帮你找回密码。所以请妥善保管。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon05', 'Keystore密码样式：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon01', '钱包中资金的控制取决于相应私钥的所有权和控制权。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon02', '在区块链交易中，私钥用于生成支付货币所必须的签名，以证明资金的所有权。私钥必须始终保持机密，因为一旦泄露给第三方，相当于该私钥保护下的资产也拱手相让了。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon03', '它不同于keystore，keystore是加密过后的私钥文件，只要密码强度足够强，即使黑客攻击，破译难度也很高。私' + '钥实际上并不是存储在网络中，而是由用户生成并储存在一个文件或者简单的数据库中，称为钱包。用户的钱包地址就是由私钥通过椭圆曲线加密生成公钥，进而生成以0x开头的42位地址。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon04', '私钥的样式为64位16进制哈希值字符串。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon01', 'AElf钱包是一款全新的数字货币钱包，为用户提供更安全、高效、便捷的服务。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon02', 'AElf钱包支持AElf智能合约数字货币。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon03', '目前暂不支持BTC和ETH，但是符合AElf标准的代币我们都支持。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changepasswordCon01', '密码可以在钱包管理界面上修改。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon01', '在去中心化钱包中，所有用户的用户身份验证内容，如交易密码、私钥、助记词等都保存在用户手机本地，并不是' + '保存在中心化服务器中，所以用户如果忘记密码是没有办法通过第三方团队来重置密码的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon02', '唯一的解决办法是通过重新导入助记词或者私钥来设置新的密码。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.About AElf Official Wallet', '关于 AELF 钱包'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Use Agreement', '使用协议'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Privacy Policy', '隐私政策'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changelanguage', '选择语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.languageSelect', '请选择'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Record', '交易记录'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Send', '发送'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Receive", '接收'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Copy URL', '复制链接'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Details', '交易细节'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.To Address', '发送地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction', '交易'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Amount to send', '发送值/价值'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Balance', '等量'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New Provider', '新供应商'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.slow', '慢'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.fast', '快'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltips', '密码错误，您还有'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltimes', '次机会'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Back Home', '返回'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.error page', '错误页'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.cannot connect chain', '无法连接到链'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.PleaseBackUp', '注意!请立即备份钱包!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon01', 'aelf在此提示您，区块链钱包不同于传统网站账户，它是基于密码学的去中心化账户系统。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon02', '你必须保存好钱包和私钥和交易密码，任何意外发生将导致资产丢失。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon03', 'aelf提示您做好备份，在进行小额交易测试后，再开启使用之旅。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon04', '备份助记词在您丢失钱包或忘记密码时，能帮助您恢复钱包。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup now', '立即备份助记词'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords confirmed error.', '两次输入不一致'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords is not strong.', '密码强度不够'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Extension Manager', '管理'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup NightELF', '备份 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete NightELF', '删除 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Timer Locks', '定时锁定'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Load From Backup', '导入加密备份'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Please select the file', '请选择备份文件'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Click here', '点击这里'), _zh_CN);
 /* harmony default export */ __webpack_exports__["default"] = (zh_CN);
 
 /***/ }),
@@ -37819,9 +37841,11 @@ var en_US = (_en_US = {
   'aelf.Copy Address': 'Copy Address',
   'aelf.Create Wallet': 'Create Wallet',
   'aelf.Create Keypair': 'Create Keypair',
+  'aelf.Import Keypair': 'Import Keypair',
   'aelf.Clear Wallet': 'Clear Wallet',
   'aelf.Unlock Wallet': 'Unlock Wallet',
   'aelf.Keypair Name': 'Keypair Name',
+  'aelf.Extend Manager': 'Extend Manager',
   'aelf.Key Pairs': 'Key Pairs',
   'aelf.Receive': 'Receive',
   'aelf.Home': 'Home',
@@ -37871,7 +37895,7 @@ var en_US = (_en_US = {
   'aelf.Backup': 'Backup',
   'aelf.Change Password': 'Change Password',
   'aelf.Transaction List': 'Transaction List'
-}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Contact", 'Contact'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Commit', 'Commit'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New contacts', 'New contacts'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Name', 'Name'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Payee wallet address', 'Payee wallet address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Old password', 'Old password'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Forget your password', 'Forget your password? Importing mnemonic or private key can be reset.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Immediately import', 'Immediately import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.hint03', 'In this wallet, there is no Mnemonic when import Private Key. But we can get ' + 'Private Key when we import Mnemonic.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Import', 'Import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.System Setting', 'System Setting'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Network', 'Network'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon01', 'Current Wallet Service URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon02', 'What did the service provider do?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon03', '1.Broadcast your transaction when you transfer tokens to others.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon04', '2.Provide information when you open the page which shows transaction detail.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon05', 'How to change the service provider?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon06', '1.Click the URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon07', '2.Then, you can change it.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon08', 'Default provider is'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Language', 'Language'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Help Center', 'Help Center'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle01', 'What is a mnemonic?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle02', 'What is a keystore?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle03', 'What are public key and private key?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle04', 'What is the AElf Wallet?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle05', 'How to change the password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle06', 'What if I forget my password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon01', 'The Mnemonics is equivalent to the bank card + ' + 'password of a traditional financial institution. ' + 'Please keep it in a safe place. A Mnemonics is another manifestation of a plaintext private' + ' key that is designed to help users remember' + ' complex private keys (64-bit hashes). Mnemonicss are generally composed of 12, 15, 18, and 21 words. These' + ' words are taken from a fixed vocabulary. The order of generation ' + 'is also based on a certain algorithm. The Mnemonics is an unencrypted private ' + 'key. When people get your Mnemonics, you can take away your assets with little effort.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon02', 'Therefore, users must pay attention to three points when backing up the Mnemonics:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon03', '1. Use physical media as much as possible. For example, write Mnemonicss on paper. ' + 'Do not use screenshots or photos on networked devices as much as possible to prevent hackers from stealing.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon04', '2. Verify that the backup Mnemonics is correct multiple times.' + ' Once you have misread a letter or word, it will bring great suffering to the sub' + 'sequent retrieval of the correct Mnemonics.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon05', '3. Keep the Mnemonics after the backup in a safe place, and do a good job of anti-theft and anti-lost measures.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon01', 'The Keystore file is a file format (JSON) for storing the private key. It uses user-defined password encryption to protect the wallet to a certain extent, and the degree of protection depends on the password strength of the wallet. If the password is similar to 123456, it is extremely unsafe.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon02', 'So users must pay attention to three points when backing up Keystore:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon03', '1. use encrypted Keystore files that are not commonly used and as complex as possible.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon04', "2. Be sure to remember the password to encrypt Keystore. Once you forget the password, you lose the right to use Keystore, and aelf can't help you retrieve the password. So please keep it safe."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon05', 'Keystore Demo:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon01', 'The control of funds in a wallet depends on the ownership and control of the private key.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon02', 'In block-chain transactions, the private key is used to generate the signature necessary for the payment currency to prove the ownership of the fund. Private keys must always be kept confidential, because once they are disclosed to a third party, assets protected by the private key are also compromised.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon03', "It is different from keystore, which is a private key file after encryption. As long as the password strength is strong enough, even hackers attack, it is very difficult to decipher. The private key is not actually stored in the network, but is generated and stored by the user in a file or a simple database, called a wallet. The user's wallet address is generated by the private key through the elliptic curve encryption to generate the public key, and then generate the 36-bit address."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon04', 'The style of the private key is a 64 bit 16 binary hash value string.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon01', 'AElf Wallet is a new digital money wallet, providing users with safer, more efficient and convenient services.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon02', 'AElf Wallet supports AElf intelligent contract digital currency.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon03', 'At present, BTC and ETH are not supported at the moment, but we are in support of the AElf standard token.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changepasswordCon01', 'Passwords can be modified at the wallet management interface.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon01', "In the decentralized wallet, all users'user authentication content, such as transaction password, private key, mnemonic and so on, are stored locally in the user's mobile phone, not in the centralized server, so if the user forgets the password, it is impossible to reset the password through a third-party team."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon02', 'The only solution is to set up new passwords by re importing mnemonic or private keys.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.About AElf Official Wallet', 'About AElf Official Wallet'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Use Agreement', 'Use Agreement'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Privacy Policy', 'Privacy Policy'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changelanguage', 'Language change'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.languageSelect', 'Select'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Record', 'Transaction Record'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Receive", 'Receive'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Send', 'Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Copy URL', 'Copy URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Details', 'Transaction Details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.To Address', 'To Address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction', 'Transaction'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Amount to send', 'Value / Amount to Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Balance', 'Balance'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New Provider', 'New Provider'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.slow', 'Slow'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.fast', 'Fast'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltips', 'Password error, you have'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltimes', 'more chances'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Back Home', 'Back Home'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.error page', 'error page'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.cannot connect chain', 'cannot connect chain'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.PleaseBackUp', 'NOTE! Please Back Up!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon01', 'Aelf reminds you again that the blockchain wallet is different from the traditional website account, which is a cryptographic-based decentralized account system.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon02', "You must save the wallet's private key and transaction password, and any accidents will result in the loss of assets."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon03', 'Aelf prompts you to make a backup, conduct a small transaction test, and start the journey of use.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon04', 'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup now', 'Backup now'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords confirmed error.', 'The passwords confirmed error.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords is not strong.', 'The passwords is not strong.'), _en_US);
+}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Contact", 'Contact'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Commit', 'Commit'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New contacts', 'New contacts'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Name', 'Name'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Payee wallet address', 'Payee wallet address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Old password', 'Old password'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Forget your password', 'Forget your password? Importing mnemonic or private key can be reset.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Immediately import', 'Immediately import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.hint03', 'In this wallet, there is no Mnemonic when import Private Key. But we can get ' + 'Private Key when we import Mnemonic.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Import', 'Import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.System Setting', 'System Setting'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Network', 'Network'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon01', 'Current Wallet Service URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon02', 'What did the service provider do?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon03', '1.Broadcast your transaction when you transfer tokens to others.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon04', '2.Provide information when you open the page which shows transaction detail.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon05', 'How to change the service provider?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon06', '1.Click the URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon07', '2.Then, you can change it.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon08', 'Default provider is'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Language', 'Language'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Help Center', 'Help Center'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle01', 'What is a mnemonic?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle02', 'What is a keystore?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle03', 'What are public key and private key?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle04', 'What is the AElf Wallet?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle05', 'How to change the password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle06', 'What if I forget my password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon01', 'The Mnemonics is equivalent to the bank card + ' + 'password of a traditional financial institution. ' + 'Please keep it in a safe place. A Mnemonics is another manifestation of a plaintext private' + ' key that is designed to help users remember' + ' complex private keys (64-bit hashes). Mnemonicss are generally composed of 12, 15, 18, and 21 words. These' + ' words are taken from a fixed vocabulary. The order of generation ' + 'is also based on a certain algorithm. The Mnemonics is an unencrypted private ' + 'key. When people get your Mnemonics, you can take away your assets with little effort.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon02', 'Therefore, users must pay attention to three points when backing up the Mnemonics:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon03', '1. Use physical media as much as possible. For example, write Mnemonicss on paper. ' + 'Do not use screenshots or photos on networked devices as much as possible to prevent hackers from stealing.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon04', '2. Verify that the backup Mnemonics is correct multiple times.' + ' Once you have misread a letter or word, it will bring great suffering to the sub' + 'sequent retrieval of the correct Mnemonics.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon05', '3. Keep the Mnemonics after the backup in a safe place, and do a good job of anti-theft and anti-lost measures.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon01', 'The Keystore file is a file format (JSON) for storing the private key. It uses user-defined password encryption to protect the wallet to a certain extent, and the degree of protection depends on the password strength of the wallet. If the password is similar to 123456, it is extremely unsafe.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon02', 'So users must pay attention to three points when backing up Keystore:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon03', '1. use encrypted Keystore files that are not commonly used and as complex as possible.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon04', "2. Be sure to remember the password to encrypt Keystore. Once you forget the password, you lose the right to use Keystore, and aelf can't help you retrieve the password. So please keep it safe."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon05', 'Keystore Demo:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon01', 'The control of funds in a wallet depends on the ownership and control of the private key.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon02', 'In block-chain transactions, the private key is used to generate the signature necessary for the payment currency to prove the ownership of the fund. Private keys must always be kept confidential, because once they are disclosed to a third party, assets protected by the private key are also compromised.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon03', "It is different from keystore, which is a private key file after encryption. As long as the password strength is strong enough, even hackers attack, it is very difficult to decipher. The private key is not actually stored in the network, but is generated and stored by the user in a file or a simple database, called a wallet. The user's wallet address is generated by the private key through the elliptic curve encryption to generate the public key, and then generate the 36-bit address."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon04', 'The style of the private key is a 64 bit 16 binary hash value string.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon01', 'AElf Wallet is a new digital money wallet, providing users with safer, more efficient and convenient services.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon02', 'AElf Wallet supports AElf intelligent contract digital currency.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon03', 'At present, BTC and ETH are not supported at the moment, but we are in support of the AElf standard token.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changepasswordCon01', 'Passwords can be modified at the wallet management interface.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon01', "In the decentralized wallet, all users'user authentication content, such as transaction password, private key, mnemonic and so on, are stored locally in the user's mobile phone, not in the centralized server, so if the user forgets the password, it is impossible to reset the password through a third-party team."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon02', 'The only solution is to set up new passwords by re importing mnemonic or private keys.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.About AElf Official Wallet', 'About AElf Official Wallet'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Use Agreement', 'Use Agreement'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Privacy Policy', 'Privacy Policy'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changelanguage', 'Language change'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.languageSelect', 'Select'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Record', 'Transaction Record'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Receive", 'Receive'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Send', 'Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Copy URL', 'Copy URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Details', 'Transaction Details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.To Address', 'To Address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction', 'Transaction'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Amount to send', 'Value / Amount to Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Balance', 'Balance'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New Provider', 'New Provider'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.slow', 'Slow'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.fast', 'Fast'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltips', 'Password error, you have'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltimes', 'more chances'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Back Home', 'Back Home'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.error page', 'error page'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.cannot connect chain', 'cannot connect chain'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.PleaseBackUp', 'NOTE! Please Back Up!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon01', 'Aelf reminds you again that the blockchain wallet is different from the traditional website account, which is a cryptographic-based decentralized account system.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon02', "You must save the wallet's private key and transaction password, and any accidents will result in the loss of assets."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon03', 'Aelf prompts you to make a backup, conduct a small transaction test, and start the journey of use.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon04', 'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup now', 'Backup now'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords confirmed error.', 'The passwords confirmed error.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords is not strong.', 'The passwords is not strong.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Extension Manager', 'Extension Manager'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup NightELF', 'Backup NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete NightELF', 'Delete NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Timer Locks', 'Timer Locks'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Load From Backup', 'Load From Backup'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Please select the file', 'Please select the file'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Click here', 'Click here'), _en_US);
 /* harmony default export */ __webpack_exports__["default"] = (en_US);
 
 /***/ }),
@@ -41347,7 +41371,9 @@ function (_Component) {
     };
     var action = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_16__["getParam"])('action', location.href);
     var isClear = action === 'clear_wallet';
+    var isBackup = action === 'backup_wallet';
     _this.isClear = isClear;
+    _this.isBackup = isBackup;
     return _this;
   }
 
@@ -41366,7 +41392,7 @@ function (_Component) {
           nightElfEncrypto = _ref.nightElfEncrypto,
           nightElf = _ref.nightElf;
 
-      if (nightElfEncrypto && nightElf && !this.isClear) {
+      if (nightElfEncrypto && nightElf && !this.isClear && !this.isBackup) {
         react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/home');
       } else {
         callback();
@@ -41378,8 +41404,6 @@ function (_Component) {
       var _this2 = this;
 
       _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["CHECK_WALLET"]).send().then(function (result) {
-        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["CHECK_WALLET"], result);
-
         _this2.turnToHomePage(result, function () {
           _this2.setState({
             walletStatus: result
@@ -41423,6 +41447,8 @@ function (_Component) {
           if (result && result.error === 0) {
             react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/home');
           } else {
+            console.log(result.error);
+
             antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Unlock Wallet Failed.', 3, function () {}, false);
           }
         }).catch(function (error) {
@@ -41466,7 +41492,7 @@ function (_Component) {
       if (this.clearFailed) {
         this.checkWallet();
       } else {
-        react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/home');
+        react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/extensionManager');
       }
     }
   }, {
@@ -41479,34 +41505,76 @@ function (_Component) {
           console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["UPDATE_WALLET"], seed, result);
         });
       }
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >         Backup  wallet        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  }, {
+    key: "backupWallet",
+    value: function backupWallet() {
+      var _this4 = this;
+
+      var seed = getSeed(this.state.password);
+
+      if (seed) {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["BACKUP_WALLET"], seed).send().then(function (result) {
+          if (result && result.error === 0) {
+            react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/extensionManager');
+          } else {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Backup failed!');
+
+            _this4.backupFailed = true;
+            return;
+          }
+        }).catch(function (error) {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Backup Wallet Failed.', 3, function () {}, false);
+        });
+      }
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >      Load From Backupt        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  }, {
+    key: "loadFromBackup",
+    value: function loadFromBackup() {
+      react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/loadFromBackup');
     } // if there is no wallet in browser.storage [chrome.storage]
     // We need create a wallet and insert it into storage.
 
   }, {
     key: "renderCreate",
     value: function renderCreate() {
-      var _this4 = this;
+      var _this5 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Password_Password__WEBPACK_IMPORTED_MODULE_17__["default"], {
         setPassword: function setPassword(password) {
-          return _this4.setPassword(password);
+          return _this5.setPassword(password);
         }
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Lock_scss__WEBPACK_IMPORTED_MODULE_14___default.a.bottom
+        className: _Lock_scss__WEBPACK_IMPORTED_MODULE_14___default.a.createBottom
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "aelf-blank12"
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_15__["default"], {
         text: "Create Wallet",
         aelficon: "add_purple20",
         onClick: function onClick() {
-          return _this4.createWallet();
+          return _this5.createWallet();
+        },
+        style: {
+          marginBottom: '10px'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        text: "Load From Backup",
+        aelficon: "add_purple20",
+        onClick: function onClick() {
+          return _this5.loadFromBackup();
         }
       })));
     }
   }, {
     key: "renderClear",
     value: function renderClear() {
-      var _this5 = this;
+      var _this6 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "aelf-input-container aelf-dash"
@@ -41519,7 +41587,7 @@ function (_Component) {
         type: "password",
         placeholder: "",
         onChange: function onChange(password) {
-          return _this5.setPassword(password);
+          return _this6.setPassword(password);
         },
         moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_16__["moneyKeyboardWrapProps"]
       }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -41530,14 +41598,14 @@ function (_Component) {
         text: "Clear Wallet",
         aelficon: "add_purple20",
         onClick: function onClick() {
-          return _this5.clearWallet();
+          return _this6.clearWallet();
         }
       })));
     }
   }, {
     key: "renderUnlock",
     value: function renderUnlock() {
-      var _this6 = this;
+      var _this7 = this;
 
       var _ref2 = this.state.walletStatus || {},
           nightElfEncrypto = _ref2.nightElfEncrypto,
@@ -41555,7 +41623,7 @@ function (_Component) {
           type: "password",
           placeholder: "",
           onChange: function onChange(password) {
-            return _this6.setPassword(password);
+            return _this7.setPassword(password);
           },
           moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_16__["moneyKeyboardWrapProps"]
         }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -41566,32 +41634,66 @@ function (_Component) {
           text: "Unlock Wallet",
           aelficon: "add_purple20",
           onClick: function onClick() {
-            return _this6.unlockWallet();
+            return _this7.unlockWallet();
           }
         })));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null);
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >         Backup  wallet        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  }, {
+    key: "renderBackup",
+    value: function renderBackup() {
+      var _this8 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-input-container aelf-dash"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-input-title"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_21__["FormattedMessage"], {
+        id: "aelf.Password"
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        value: this.state.password,
+        type: "password",
+        placeholder: "",
+        onChange: function onChange(password) {
+          return _this8.setPassword(password);
+        },
+        moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_16__["moneyKeyboardWrapProps"]
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _Lock_scss__WEBPACK_IMPORTED_MODULE_14___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-blank12"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        text: "Backup NightELF",
+        aelficon: "add_purple20",
+        onClick: function onClick() {
+          return _this8.backupWallet();
+        }
+      })));
     }
   }, {
     key: "renderTestButtons",
     value: function renderTestButtons() {
-      var _this7 = this;
+      var _this9 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this7.checkWallet();
+          return _this9.checkWallet();
         }
       }, "checkWallet"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this7.updateWallet();
+          return _this9.updateWallet();
         }
       }, "updateWallet"));
     }
   }, {
     key: "render",
     value: function render() {
-      var _this8 = this;
+      var _this10 = this;
 
       var titleText = 'Welcome';
       var buttonHTML = '';
@@ -41617,7 +41719,15 @@ function (_Component) {
               titleText = 'Delete';
               navHTML = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
                 onLeftClick: function onLeftClick() {
-                  return _this8.backClick();
+                  return _this10.backClick();
+                }
+              });
+            } else if (this.isBackup) {
+              buttonHTML = this.renderBackup();
+              titleText = 'Backup';
+              navHTML = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
+                onLeftClick: function onLeftClick() {
+                  return _this10.backClick();
                 }
               });
             }
@@ -66335,7 +66445,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Lock-Lock_container-3suqa {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_top-2Hte1 {\n  padding: 0 24px 0 24px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank-O9mgl {\n  margin: 58px 0 0 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank12-3Z6ft {\n  height: 12px;\n  width: 12px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_welcome-1qIvs {\n  font-weight: 100;\n  font-size: 36px;\n  margin: 62px 0 0px 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_wallet-xuqmT {\n  font-size: 36px;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7 {\n  -moz-border-radius: 100px;\n  border-radius: 100px; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-Lock-Lock_container-3suqa {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_top-2Hte1 {\n  padding: 0 24px 0 24px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank-O9mgl {\n  margin: 58px 0 0 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank12-3Z6ft {\n  height: 12px;\n  width: 12px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_welcome-1qIvs {\n  font-weight: 100;\n  font-size: 36px;\n  margin: 62px 0 0px 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_wallet-xuqmT {\n  font-size: 36px;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7 {\n  -moz-border-radius: 100px;\n  border-radius: 100px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_createBottom-1oMo2 {\n  width: 80%;\n  margin: 0 auto 0px 10%; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -66347,7 +66457,8 @@ exports.locals = {
 	"wallet": "AELF-app-web-pages-Popup-Lock-Lock_wallet-xuqmT",
 	"description": "AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq",
 	"bottom": "AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv",
-	"btn": "AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7"
+	"btn": "AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7",
+	"createBottom": "AELF-app-web-pages-Popup-Lock-Lock_createBottom-1oMo2"
 };
 
 /***/ }),
@@ -67733,6 +67844,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNLOCK_WALLET", function() { return UNLOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCK_WALLET", function() { return LOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_WALLET", function() { return UPDATE_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BACKUP_WALLET", function() { return BACKUP_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMPORT_WALLET", function() { return IMPORT_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INSERT_KEYPAIR", function() { return INSERT_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_KEYPAIR", function() { return REMOVE_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_KEYPAIR", function() { return GET_KEYPAIR; });
@@ -67760,7 +67873,10 @@ var CHECK_WALLET = 'checkWallet';
 var CLEAR_WALLET = 'clearWallet';
 var UNLOCK_WALLET = 'unlockWallet';
 var LOCK_WALLET = 'lockWallet';
-var UPDATE_WALLET = 'updateWallet';
+var UPDATE_WALLET = 'updateWallet'; // backup wallet
+
+var BACKUP_WALLET = 'backupWallet';
+var IMPORT_WALLET = 'importWallet';
 var INSERT_KEYPAIR = 'insertKeypair';
 var REMOVE_KEYPAIR = 'removeKeypair';
 var GET_KEYPAIR = 'getKeypair';
@@ -68127,13 +68243,7 @@ function (_Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         className: _Home_scss__WEBPACK_IMPORTED_MODULE_9___default.a.container + ' ' + 'aelf-personal-pages aelf-solid'
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: _Home_scss__WEBPACK_IMPORTED_MODULE_9___default.a.blank
-      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: _Home_scss__WEBPACK_IMPORTED_MODULE_9___default.a.blank
-      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: _Home_scss__WEBPACK_IMPORTED_MODULE_9___default.a.blank
-      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
         className: 'aelf-list'
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
         onClick: function onClick() {
@@ -68161,6 +68271,18 @@ function (_Component) {
         className: 'aelf-list'
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
         onClick: function onClick() {
+          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/extensionManager');
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        icon: "about16",
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+          id: "aelf.Extension Manager",
+          defaultMessage: "Keypairs Manager"
+        })
+      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
+        className: 'aelf-list'
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
+        onClick: function onClick() {
           return _this.lockWallet();
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -68168,18 +68290,6 @@ function (_Component) {
         text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
           id: "aelf.Lock",
           defaultMessage: "Lock"
-        })
-      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
-        className: 'aelf-list'
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
-        onClick: function onClick() {
-          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/?action=clear_wallet');
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
-        icon: "about16",
-        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
-          id: "aelf.Clear",
-          defaultMessage: "Clear Wallet"
         })
       }))));
     }
@@ -68369,7 +68479,7 @@ exports.locals = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Backup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CreateKeypairs; });
 /* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(256);
 /* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(259);
@@ -68406,8 +68516,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(493);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_21__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(174);
-/* harmony import */ var _Backup_scss__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(625);
-/* harmony import */ var _Backup_scss__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_Backup_scss__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(625);
+/* harmony import */ var _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_23__);
 
 
 
@@ -68438,17 +68548,17 @@ __webpack_require__.r(__webpack_exports__);
 
  // React component
 
-var Backup =
+var CreateKeypairs =
 /*#__PURE__*/
 function (_Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default()(Backup, _Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default()(CreateKeypairs, _Component);
 
-  function Backup() {
+  function CreateKeypairs() {
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6___default()(this, Backup);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6___default()(this, CreateKeypairs);
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(Backup).call(this));
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(CreateKeypairs).call(this));
     _this.state = {
       name: '',
       // mnemonic: 'grocery jungle body action shop vast toilet fog prevent banner deliver indicate',
@@ -68458,7 +68568,7 @@ function (_Component) {
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7___default()(Backup, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7___default()(CreateKeypairs, [{
     key: "getPrivateKeyAndMnemonic",
     value: function getPrivateKeyAndMnemonic() {
       var password = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
@@ -68583,7 +68693,7 @@ function (_Component) {
         },
         moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_18__["default"]
       }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Backup_scss__WEBPACK_IMPORTED_MODULE_23___default.a.buttonContainer
+        className: _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_23___default.a.buttonContainer
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_17__["default"], {
         text: "Create Keypair",
         aelficon: "add_purple20",
@@ -68594,7 +68704,7 @@ function (_Component) {
     }
   }]);
 
-  return Backup;
+  return CreateKeypairs;
 }(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
 
 
@@ -68630,8 +68740,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(100);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(485);
-/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_pages_scss__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(485);
+/* harmony import */ var _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(442);
 /* harmony import */ var _components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(489);
 /* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(492);
@@ -68751,7 +68861,7 @@ function (_Component) {
         };
         var mnemonicConfirmed = this.state.mnemonicConfirmed;
         mnemonicConfirmed.push(react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-          className: "".concat(_pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.listItem, " ").concat(_pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.selectd),
+          className: "".concat(_Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.listItem, " ").concat(_Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.selectd),
           key: Math.random(),
           index: index,
           indexdisordereditem: indexDisorderedItem,
@@ -68825,7 +68935,7 @@ function (_Component) {
       var mnemonicDisorderedHtml = [];
       this.state.mnemonicDisorderedList.map(function (item, index) {
         mnemonicDisorderedHtml.push(react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-          className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.listItem,
+          className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.listItem,
           key: Math.random(),
           index: index,
           style: _this4.state.mnemonicDisorderedListStyle[index],
@@ -68863,7 +68973,7 @@ function (_Component) {
 
       var pageContainerStyle = Object(_utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_16__["default"])();
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.page,
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.page,
         style: containerStyle
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1___default.a, {
         icon: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -68873,10 +68983,10 @@ function (_Component) {
           return _this5.props.onLeftClick();
         }
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,
         style: pageContainerStyle
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.top
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.top
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_14__["default"], {
         mainTitle: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
           id: "aelf.Backup Mnemonic"
@@ -68899,16 +69009,16 @@ function (_Component) {
           id: "aelf.Becareful010"
         })]
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.privateContainer
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.privateContainer
       }, this.props.mnemonic)), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_13__["default"], {
         text: "Next",
         onClick: function onClick() {
           return _this5.toggleConfirm();
         }
       }))))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.page,
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.page,
         style: confirmContainerStyle
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1___default.a, {
         icon: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -68918,10 +69028,10 @@ function (_Component) {
           return _this5.toggleConfirm();
         }
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,
         style: pageContainerStyle
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.top
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.top
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_14__["default"], {
         mainTitle: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
           id: "aelf.ConfirmMnemonic",
@@ -68936,11 +69046,11 @@ function (_Component) {
         }),
         iconHidden: true
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: "".concat(_pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.privateContainer, " ").concat(_pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.purple)
+        className: "".concat(_Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.privateContainer, " ").concat(_Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.purple)
       }, this.state.mnemonicConfirmed), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.mnemonicListContainer
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.mnemonicListContainer
       }, mnemonicDisorderedHtml)), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _pages_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom
+        className: _Mnemonic_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_13__["default"], {
         text: "Submit",
         onClick: function onClick() {
@@ -69011,22 +69121,22 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Backup-pages-pages_page-3N6Rm {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 999;\n  background: url(" + escape(__webpack_require__(488)) + ") no-repeat; }\n\n@media (min-width: 768px) {\n  .AELF-app-web-pages-Popup-Backup-pages-pages_page-3N6Rm {\n    position: absolute;\n    top: 0;\n    z-index: 999;\n    -webkit-background-size: cover;\n    -moz-background-size: cover;\n    background-size: cover; } }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_container-2Jzms {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_confirmContainer-1nTll {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 1001;\n  background: #FFF; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_privateContainer-1lnHc {\n  word-wrap: break-word;\n  border: 1px solid #ccc;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  padding: 8px;\n  margin: 32px 24px 15px 24px;\n  background: #fefefe;\n  line-height: 1.5;\n  height: 88px; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_privateContainer-1lnHc.AELF-app-web-pages-Popup-Backup-pages-pages_purple-3a3en {\n  margin-top: 0;\n  background: rgba(0, 0, 0, 0.2);\n  border: none; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_mnemonicListContainer-oYsvl {\n  margin: 0 24px; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_whitespace-RzP3j {\n  height: 45px;\n  width: 10px; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_listItem-QGNo6 {\n  display: inline-block;\n  border: 1px solid #eee;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  margin: 5px;\n  padding: 5px 8px 5px 8px; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_listItem-QGNo6:active {\n  opacity: 0.5; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_listItem-QGNo6.AELF-app-web-pages-Popup-Backup-pages-pages_selectd-CpXAk {\n  border: none;\n  color: #FFF;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_note-2i58L {\n  background-color: #ffd74e;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  padding: 1px 15px 1px 15px;\n  color: #333; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_top-CVCUf {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center; }\n\n.AELF-app-web-pages-Popup-Backup-pages-pages_bottom-1z4oF {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_page-M4bY6 {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 999;\n  background: url(" + escape(__webpack_require__(488)) + ") no-repeat; }\n\n@media (min-width: 768px) {\n  .AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_page-M4bY6 {\n    position: absolute;\n    top: 0;\n    z-index: 999;\n    -webkit-background-size: cover;\n    -moz-background-size: cover;\n    background-size: cover; } }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_container-3aBWX {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_confirmContainer-2yQdA {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 1001;\n  background: #FFF; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_privateContainer-2Bzpc {\n  word-wrap: break-word;\n  border: 1px solid #ccc;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  padding: 8px;\n  margin: 32px 24px 15px 24px;\n  background: #fefefe;\n  line-height: 1.5;\n  height: 88px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_privateContainer-2Bzpc.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_purple-2WJ8P {\n  margin-top: 0;\n  background: rgba(0, 0, 0, 0.2);\n  border: none; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_mnemonicListContainer-CDLrm {\n  margin: 0 24px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_whitespace-3K1XD {\n  height: 45px;\n  width: 10px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_listItem-1OgoW {\n  display: inline-block;\n  border: 1px solid #eee;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  margin: 5px;\n  padding: 5px 8px 5px 8px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_listItem-1OgoW:active {\n  opacity: 0.5; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_listItem-1OgoW.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_selectd-1MQVX {\n  border: none;\n  color: #FFF;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_note-m9SN1 {\n  background-color: #ffd74e;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  padding: 1px 15px 1px 15px;\n  color: #333; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_top-W9YlI {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_bottom-3-w3P {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
 
 // exports
 exports.locals = {
-	"page": "AELF-app-web-pages-Popup-Backup-pages-pages_page-3N6Rm",
-	"container": "AELF-app-web-pages-Popup-Backup-pages-pages_container-2Jzms",
-	"confirmContainer": "AELF-app-web-pages-Popup-Backup-pages-pages_confirmContainer-1nTll",
-	"privateContainer": "AELF-app-web-pages-Popup-Backup-pages-pages_privateContainer-1lnHc",
-	"purple": "AELF-app-web-pages-Popup-Backup-pages-pages_purple-3a3en",
-	"mnemonicListContainer": "AELF-app-web-pages-Popup-Backup-pages-pages_mnemonicListContainer-oYsvl",
-	"whitespace": "AELF-app-web-pages-Popup-Backup-pages-pages_whitespace-RzP3j",
-	"listItem": "AELF-app-web-pages-Popup-Backup-pages-pages_listItem-QGNo6",
-	"selectd": "AELF-app-web-pages-Popup-Backup-pages-pages_selectd-CpXAk",
-	"note": "AELF-app-web-pages-Popup-Backup-pages-pages_note-2i58L",
-	"top": "AELF-app-web-pages-Popup-Backup-pages-pages_top-CVCUf",
-	"bottom": "AELF-app-web-pages-Popup-Backup-pages-pages_bottom-1z4oF"
+	"page": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_page-M4bY6",
+	"container": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_container-3aBWX",
+	"confirmContainer": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_confirmContainer-2yQdA",
+	"privateContainer": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_privateContainer-2Bzpc",
+	"purple": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_purple-2WJ8P",
+	"mnemonicListContainer": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_mnemonicListContainer-CDLrm",
+	"whitespace": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_whitespace-3K1XD",
+	"listItem": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_listItem-1OgoW",
+	"selectd": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_selectd-1MQVX",
+	"note": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_note-m9SN1",
+	"top": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_top-W9YlI",
+	"bottom": "AELF-app-web-pages-Popup-CreateKeypairs-pages-Mnemonic_bottom-3-w3P"
 };
 
 /***/ }),
@@ -93012,22 +93122,22 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.AELF-app-web-pages-Popup-Backup-Backup_container-QQ3b_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_textContainer-2unsy {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_forbidden-2xHLi {\n  word-wrap: break-word;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  /*禁用页面内容选中和复制操作*/\n  -webkit-touch-callout: none;\n  /*禁用长按页面时的弹出菜单(iOS下有效)*/\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  /*去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)*/\n  color: #999;\n  font-size: 17px;\n  line-height: 25.5px;\n  padding: 11px 15px;\n  font-style: oblique; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_title-3o1bO {\n  padding: 0px 15px; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_text-8vJhC {\n  padding: 15px 15px 9px 15px;\n  font-size: 14px;\n  color: #888;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_textarea-3RSCH {\n  position: fixed;\n  top: -1250px;\n  left: -1250px; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_bottom-2rCq8 {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_pannelTitle-2Pvei {\n  height: 35px;\n  line-height: 35px;\n  text-align: left;\n  text-indent: 24px;\n  border-bottom: 0.5px solid #F2F2F2;\n  color: #ADAAB3;\n  font-size: 10px; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_pannelBtnPurple-14vN1 {\n  height: 50px;\n  line-height: 50px;\n  font-size: 14px;\n  color: #AC00E6;\n  border-top: 0.5px solid #F2F2F2;\n  border-bottom: 4px solid #F7F7F7;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_pannelBtnPurple-14vN1:active {\n  background: #DDD; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_pannerlBtnGrey-3QZaX {\n  color: #8F8A99;\n  border-bottom: 0; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_copyArea-2V7Sk {\n  height: 90px;\n  padding: 0 24px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  word-break: break-all;\n  text-align: left;\n  color: #14111A;\n  font-size: 12px; }\n\n.AELF-app-web-pages-Popup-Backup-Backup_buttonContainer-3B8y7 {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_container-2aN4_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_textContainer-1negm {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_forbidden-1QHz5 {\n  word-wrap: break-word;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  /*禁用页面内容选中和复制操作*/\n  -webkit-touch-callout: none;\n  /*禁用长按页面时的弹出菜单(iOS下有效)*/\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  /*去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)*/\n  color: #999;\n  font-size: 17px;\n  line-height: 25.5px;\n  padding: 11px 15px;\n  font-style: oblique; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_title-1k6KD {\n  padding: 0px 15px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_text-3apKZ {\n  padding: 15px 15px 9px 15px;\n  font-size: 14px;\n  color: #888;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_textarea-31v9X {\n  position: fixed;\n  top: -1250px;\n  left: -1250px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_bottom-1Usp- {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelTitle-3JzPS {\n  height: 35px;\n  line-height: 35px;\n  text-align: left;\n  text-indent: 24px;\n  border-bottom: 0.5px solid #F2F2F2;\n  color: #ADAAB3;\n  font-size: 10px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelBtnPurple-2N7Jm {\n  height: 50px;\n  line-height: 50px;\n  font-size: 14px;\n  color: #AC00E6;\n  border-top: 0.5px solid #F2F2F2;\n  border-bottom: 4px solid #F7F7F7;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelBtnPurple-2N7Jm:active {\n  background: #DDD; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannerlBtnGrey-7iCnr {\n  color: #8F8A99;\n  border-bottom: 0; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_copyArea-1V__J {\n  height: 90px;\n  padding: 0 24px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  word-break: break-all;\n  text-align: left;\n  color: #14111A;\n  font-size: 12px; }\n\n.AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_buttonContainer-2H_5H {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
 
 // exports
 exports.locals = {
-	"container": "AELF-app-web-pages-Popup-Backup-Backup_container-QQ3b_",
-	"textContainer": "AELF-app-web-pages-Popup-Backup-Backup_textContainer-2unsy",
-	"forbidden": "AELF-app-web-pages-Popup-Backup-Backup_forbidden-2xHLi",
-	"title": "AELF-app-web-pages-Popup-Backup-Backup_title-3o1bO",
-	"text": "AELF-app-web-pages-Popup-Backup-Backup_text-8vJhC",
-	"textarea": "AELF-app-web-pages-Popup-Backup-Backup_textarea-3RSCH",
-	"bottom": "AELF-app-web-pages-Popup-Backup-Backup_bottom-2rCq8",
-	"pannelTitle": "AELF-app-web-pages-Popup-Backup-Backup_pannelTitle-2Pvei",
-	"pannelBtnPurple": "AELF-app-web-pages-Popup-Backup-Backup_pannelBtnPurple-14vN1",
-	"pannerlBtnGrey": "AELF-app-web-pages-Popup-Backup-Backup_pannerlBtnGrey-3QZaX",
-	"copyArea": "AELF-app-web-pages-Popup-Backup-Backup_copyArea-2V7Sk",
-	"buttonContainer": "AELF-app-web-pages-Popup-Backup-Backup_buttonContainer-3B8y7"
+	"container": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_container-2aN4_",
+	"textContainer": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_textContainer-1negm",
+	"forbidden": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_forbidden-1QHz5",
+	"title": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_title-1k6KD",
+	"text": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_text-3apKZ",
+	"textarea": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_textarea-31v9X",
+	"bottom": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_bottom-1Usp-",
+	"pannelTitle": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelTitle-3JzPS",
+	"pannelBtnPurple": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannelBtnPurple-2N7Jm",
+	"pannerlBtnGrey": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_pannerlBtnGrey-7iCnr",
+	"copyArea": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_copyArea-1V__J",
+	"buttonContainer": "AELF-app-web-pages-Popup-CreateKeypairs-CreateKeypairs_buttonContainer-2H_5H"
 };
 
 /***/ }),
@@ -93037,41 +93147,49 @@ exports.locals = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Keypairs; });
-/* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(628);
-/* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(631);
-/* harmony import */ var antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(253);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(254);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(275);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(278);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(279);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(222);
-/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(233);
-/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(641);
-/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(644);
-/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(100);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(106);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(113);
-/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(492);
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(198);
-/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(463);
-/* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(653);
-/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(470);
-/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(471);
-/* harmony import */ var _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(654);
-/* harmony import */ var _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_Keypairs_scss__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(710);
+/* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(713);
+/* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(628);
+/* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(631);
+/* harmony import */ var antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(275);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(279);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(222);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(233);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(641);
+/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(644);
+/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(100);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(106);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(113);
+/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(492);
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(198);
+/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(463);
+/* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(653);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(442);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(470);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(471);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(174);
+/* harmony import */ var _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(654);
+/* harmony import */ var _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(_Keypairs_scss__WEBPACK_IMPORTED_MODULE_24__);
+
+
 
 
 
@@ -93100,32 +93218,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 __webpack_require__(659);
 
-var alert = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10___default.a.alert;
+var alert = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_12___default.a.alert;
 var NUM_ROWS = 9999;
 var pageSize = 9999;
 
 function getKeypairs(callback) {
-  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["GET_KEYPAIR"]).send().then(function (result) {
-    console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["GET_KEYPAIR"], result);
+  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_22__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_21__["GET_KEYPAIR"]).send().then(function (result) {
+    console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_21__["GET_KEYPAIR"], result);
 
     if (result.error === 0 && result.keypairs) {
       callback(result.keypairs);
     } else {
-      antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_8___default.a.fail('No Keypair in Wallet.', 3, function () {}, false);
+      antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('No Keypair in Wallet.', 3, function () {}, false);
     }
   });
 }
 
 function removeKeypairs(address, callback) {
-  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["REMOVE_KEYPAIR"], address).send().then(function (result) {
-    console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["REMOVE_KEYPAIR"], result);
+  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_22__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_21__["REMOVE_KEYPAIR"], address).send().then(function (result) {
+    console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_21__["REMOVE_KEYPAIR"], result);
 
     if (result.error === 0) {
       callback();
     } else {
-      antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_8___default.a.fail(result.message, 3, function () {}, false);
+      antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail(result.message, 3, function () {}, false);
     }
   });
 } // React component
@@ -93136,15 +93256,15 @@ function removeKeypairs(address, callback) {
 var Keypairs =
 /*#__PURE__*/
 function (_Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default()(Keypairs, _Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(Keypairs, _Component);
 
   function Keypairs(props) {
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Keypairs);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, Keypairs);
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Keypairs).call(this, props));
-    var dataSource = new antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_1___default.a.DataSource({
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(Keypairs).call(this, props));
+    var dataSource = new antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_3___default.a.DataSource({
       rowHasChanged: function rowHasChanged(row1, row2) {
         return row1 !== row2;
       }
@@ -93163,37 +93283,45 @@ function (_Component) {
       var keypairAddressText = 'keypair-text-' + rowID;
       var address = item.address;
       setTimeout(function () {
-        Object(_utils_utils__WEBPACK_IMPORTED_MODULE_15__["clipboard"])("#".concat(clipboardID), Object(_utils_utils__WEBPACK_IMPORTED_MODULE_15__["addressOmit"])(address, 15, 56));
+        Object(_utils_utils__WEBPACK_IMPORTED_MODULE_17__["clipboard"])("#".concat(clipboardID), Object(_utils_utils__WEBPACK_IMPORTED_MODULE_17__["addressOmit"])(address, 15, 56));
       }, 10);
-      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         key: rowID,
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.txList
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.txListMask
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.operationContainer
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.operationList
-      }, item.name, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.keypairBtnContainer + ' ' + _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.copyBtn,
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.txList
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.txListMask
+      }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.operationContainer
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.operationList
+      }, item.name, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.keypairBtnContainer + ' ' + _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.copyBtn,
         onClick: function onClick() {
           var btn = document.getElementById(clipboardID);
           btn.click();
         }
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("button", {
         id: clipboardID,
         "data-clipboard-target": "#".concat(keypairAddressText),
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.textarea
-      }, "copy"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("input", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.textarea
+      }, "copy"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("input", {
         id: keypairAddressText,
         type: "text",
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.textarea,
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.textarea,
         value: address,
         readOnly: true
-      })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.operationList
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.keypairBtnContainer + ' ' + _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.removeBtn,
+      })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.backup,
+        onClick: function onClick() {
+          return _this.backupKeyPairs(address);
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Backup",
+        defaultMessage: "Backup"
+      })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.operationList
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.keypairBtnContainer + ' ' + _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.removeBtn,
         onClick: function onClick() {
           return alert('Delete Keypairs', 'Are you sure???', [{
             text: 'Cancel',
@@ -93215,8 +93343,8 @@ function (_Component) {
             }
           }]);
         }
-      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.keypairsAddress
+      }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.keypairsAddress
       }, address));
     };
 
@@ -93224,7 +93352,7 @@ function (_Component) {
   } // PullToRefresh start
 
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Keypairs, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(Keypairs, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
       if (this.state.useBodyScroll) {
@@ -93238,7 +93366,7 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var hei = this.state.height - react_dom__WEBPACK_IMPORTED_MODULE_12___default.a.findDOMNode(this.lv).offsetTop;
+      var hei = this.state.height - react_dom__WEBPACK_IMPORTED_MODULE_14___default.a.findDOMNode(this.lv).offsetTop;
       getKeypairs(function (result) {
         _this2.rData = result;
 
@@ -93260,41 +93388,73 @@ function (_Component) {
   }, {
     key: "createKeyPairs",
     value: function createKeyPairs() {
-      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/backup');
+      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/createKeypairs');
+    }
+  }, {
+    key: "importKeyPairs",
+    value: function importKeyPairs() {
+      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/import');
+    }
+  }, {
+    key: "backupKeyPairs",
+    value: function backupKeyPairs(address) {
+      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push("/backupKeypairs/".concat(address));
     }
   }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
-      var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_15__["getPageContainerStyle"])();
+      var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_17__["getPageContainerStyle"])();
       pageContainerStyle.height -= 45;
       var backgroundStyle = Object.assign({}, pageContainerStyle); // backgroundStyle.height -= 14; // remove padding 7px * 2
 
       var containerStyle = Object.assign({}, backgroundStyle); // containerStyle.height -= 2; // remove border 2px
 
-      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         style: pageContainerStyle,
         className: "asstes-container"
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
         onLeftClick: function onLeftClick() {
-          return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_14__["historyPush"])('/home');
+          return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_16__["historyPush"])('/home');
         }
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.background,
-        style: backgroundStyle
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.backgroundMask
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.container,
-        style: containerStyle
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        justify: "center",
+        align: "center",
+        style: {
+          margin: '0 22px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a.Item, {
+        align: "center"
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.keypairButton,
         onClick: function onClick() {
           return _this3.createKeyPairs();
         }
-      }, "createKeyPairs"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_20___default.a.transactionList
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Create Keypair",
+        defaultMessage: "Create Keypairs"
+      }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a.Item, {
+        align: "center"
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.keypairButton,
+        onClick: function onClick() {
+          return _this3.importKeyPairs();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Import Keypair",
+        defaultMessage: "Import Keypairs"
+      })))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.background,
+        style: backgroundStyle
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.backgroundMask
+      }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.container,
+        style: containerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.transactionList
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_3___default.a, {
         initialListSize: NUM_ROWS,
         key: this.state.useBodyScroll ? '0' : '1',
         ref: function ref(el) {
@@ -93302,7 +93462,7 @@ function (_Component) {
         },
         dataSource: this.state.dataSource,
         renderFooter: function renderFooter() {
-          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_17__["default"])(_this3.state.isLoading, _this3.state.hasMore);
+          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_19__["default"])(_this3.state.isLoading, _this3.state.hasMore);
         },
         renderRow: this.renderRow,
         useBodyScroll: this.state.useBodyScroll,
@@ -93316,7 +93476,7 @@ function (_Component) {
   }]);
 
   return Keypairs;
-}(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
+}(react__WEBPACK_IMPORTED_MODULE_13__["Component"]);
 
 
 
@@ -96336,7 +96496,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Keypairs-Keypairs_txList-3h_dC {\n  padding: 8px 16px 16px 16px;\n  /* Mask Copy: */\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  -moz-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  -moz-border-radius: 8px 8px 0 0;\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_txListMask-14lfP {\n  /* Rectangle 2 Copy: */\n  opacity: 0.3;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  -moz-border-radius: 8px 0 0 0;\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairNickname-2hUtY {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairAddress-1jZOr {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_logoContainer-3W6jx {\n  height: 36px;\n  width: 36px;\n  -moz-border-radius: 8px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_logoContainer-3W6jx img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF .AELF-app-web-pages-Popup-Keypairs-Keypairs_name-2FN_k {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF .AELF-app-web-pages-Popup-Keypairs-Keypairs_description-1zRyH {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN .AELF-app-web-pages-Popup-Keypairs-Keypairs_balance-9H5mA {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN .AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderValuation-1VYhL {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_txList-3h_dC:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_background-2N1ad {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  -moz-border-radius: 16px;\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_backgroundMask-2pbrF {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  /* Mask: */\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  -moz-border-radius: 16px 16px 0 0;\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_container-2Z6WJ {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  -moz-border-radius: 16px;\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_walletInfo-KVBy5 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_balance-9H5mA {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_aelfValuation-3LQxC {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderValuation-1VYhL {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderUnit-1p7cE {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addressContainer-3VqAG {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_copyBtn-3Iqof {\n  background: url(" + escape(__webpack_require__(656)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_removeBtn-1jD6s {\n  background: url(" + escape(__webpack_require__(657)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairBtnContainer-jm8F7 {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_operationContainer-1UiMD {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_operationList-17ZDL {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_transactionList-2zGwo {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtnContainer-o6UW7 {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(658)) + ") no-repeat;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_textarea-1YFk1 {\n  position: fixed;\n  top: -250px; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-Keypairs-Keypairs_txList-3h_dC {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  -moz-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  -moz-border-radius: 8px 8px 0 0;\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_txListMask-14lfP {\n  opacity: 0.3;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  -moz-border-radius: 8px 0 0 0;\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairNickname-2hUtY {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairAddress-1jZOr {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_logoContainer-3W6jx {\n  height: 36px;\n  width: 36px;\n  -moz-border-radius: 8px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_logoContainer-3W6jx img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF .AELF-app-web-pages-Popup-Keypairs-Keypairs_name-2FN_k {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listLeft-1NHMF .AELF-app-web-pages-Popup-Keypairs-Keypairs_description-1zRyH {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN .AELF-app-web-pages-Popup-Keypairs-Keypairs_balance-9H5mA {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_listRight-1yoPN .AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderValuation-1VYhL {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_txList-3h_dC:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_background-2N1ad {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  -moz-border-radius: 16px;\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_backgroundMask-2pbrF {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  -moz-border-radius: 16px 16px 0 0;\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_container-2Z6WJ {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  -moz-border-radius: 16px;\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_walletInfo-KVBy5 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_balance-9H5mA {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_aelfValuation-3LQxC {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderValuation-1VYhL {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_tenderUnit-1p7cE {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addressContainer-3VqAG {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_copyBtn-3Iqof {\n  background: url(" + escape(__webpack_require__(656)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_removeBtn-1jD6s {\n  background: url(" + escape(__webpack_require__(657)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairBtnContainer-jm8F7 {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_operationContainer-1UiMD {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_operationList-17ZDL {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_transactionList-2zGwo {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtnContainer-o6UW7 {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(658)) + ") no-repeat;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_textarea-1YFk1 {\n  position: fixed;\n  top: -250px; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairButton-qBsMY {\n  background: #FFF;\n  display: inline-block;\n  width: 100%;\n  text-align: center;\n  height: 24px;\n  line-height: 24px;\n  font-size: 12px;\n  -moz-border-radius: 12px;\n  border-radius: 12px;\n  color: #3D55CC;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-Keypairs-Keypairs_backup-2MBWC {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -96366,7 +96526,9 @@ exports.locals = {
 	"transactionList": "AELF-app-web-pages-Popup-Keypairs-Keypairs_transactionList-2zGwo",
 	"addBtnContainer": "AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtnContainer-o6UW7",
 	"addBtn": "AELF-app-web-pages-Popup-Keypairs-Keypairs_addBtn-2qlvW",
-	"textarea": "AELF-app-web-pages-Popup-Keypairs-Keypairs_textarea-1YFk1"
+	"textarea": "AELF-app-web-pages-Popup-Keypairs-Keypairs_textarea-1YFk1",
+	"keypairButton": "AELF-app-web-pages-Popup-Keypairs-Keypairs_keypairButton-qBsMY",
+	"backup": "AELF-app-web-pages-Popup-Keypairs-Keypairs_backup-2MBWC"
 };
 
 /***/ }),
@@ -96844,7 +97006,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7 {\n  padding: 8px 16px 16px 16px;\n  /* Mask Copy: */\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  -moz-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  -moz-border-radius: 8px 8px 0 0;\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txListMask-3Bjju {\n  /* Rectangle 2 Copy: */\n  opacity: 0.3;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  -moz-border-radius: 8px 0 0 0;\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairNickname-2XsyN {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairAddress-3BYhu {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_permissionOption-3qWWt {\n  padding: 8px 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_logoContainer-1On0- {\n  height: 36px;\n  width: 36px;\n  -moz-border-radius: 8px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_logoContainer-1On0- img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS .AELF-app-web-pages-Popup-Permissions-Permissions_name-1onuv {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS .AELF-app-web-pages-Popup-Permissions-Permissions_description-13vp0 {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e .AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8 {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e .AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_background-2cn7o {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  -moz-border-radius: 16px;\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_backgroundMask-lKtpH {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  /* Mask: */\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  -moz-border-radius: 16px 16px 0 0;\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_container-1TejP {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  -moz-border-radius: 16px;\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_walletInfo-1ub71 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8 {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_aelfValuation-1uKlr {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_tenderUnit-Vg7k5 {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addressContainer-29Hv9 {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_copyBtn-2cU6I {\n  background: url(" + escape(__webpack_require__(656)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_removeBtn-1Cgzu {\n  background: url(" + escape(__webpack_require__(657)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairBtnContainer-1X52s {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_operationContainer-3wovV {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_operationList-1kOid {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_transactionList-36rDC {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtnContainer-1VimY {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtn-qoCx2 {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(658)) + ") no-repeat;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtn-qoCx2:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_textarea-3c70T {\n  position: fixed;\n  top: -250px; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7 {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  -moz-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  -moz-border-radius: 8px 8px 0 0;\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txListMask-3Bjju {\n  /* Rectangle 2 Copy: */\n  opacity: 0.3;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  -moz-border-radius: 8px 0 0 0;\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairNickname-2XsyN {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairAddress-3BYhu {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_permissionOption-3qWWt {\n  padding: 8px 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_logoContainer-1On0- {\n  height: 36px;\n  width: 36px;\n  -moz-border-radius: 8px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_logoContainer-1On0- img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS .AELF-app-web-pages-Popup-Permissions-Permissions_name-1onuv {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS .AELF-app-web-pages-Popup-Permissions-Permissions_description-13vp0 {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e .AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8 {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e .AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_background-2cn7o {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  -moz-border-radius: 16px;\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_backgroundMask-lKtpH {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  -moz-border-radius: 16px 16px 0 0;\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_container-1TejP {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  -moz-border-radius: 16px;\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_walletInfo-1ub71 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8 {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_aelfValuation-1uKlr {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_tenderUnit-Vg7k5 {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addressContainer-29Hv9 {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_copyBtn-2cU6I {\n  background: url(" + escape(__webpack_require__(656)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_removeBtn-1Cgzu {\n  background: url(" + escape(__webpack_require__(657)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairBtnContainer-1X52s {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_operationContainer-3wovV {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_operationList-1kOid {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_transactionList-36rDC {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtnContainer-1VimY {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtn-qoCx2 {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(658)) + ") no-repeat;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtn-qoCx2:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_textarea-3c70T {\n  position: fixed;\n  top: -250px; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -97198,6 +97360,2250 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
 
 
+
+/***/ }),
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */,
+/* 687 */,
+/* 688 */,
+/* 689 */,
+/* 690 */,
+/* 691 */,
+/* 692 */,
+/* 693 */,
+/* 694 */,
+/* 695 */,
+/* 696 */,
+/* 697 */,
+/* 698 */,
+/* 699 */,
+/* 700 */,
+/* 701 */,
+/* 702 */,
+/* 703 */,
+/* 704 */,
+/* 705 */,
+/* 706 */,
+/* 707 */,
+/* 708 */,
+/* 709 */,
+/* 710 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(223);
+
+__webpack_require__(711);
+
+/***/ }),
+/* 711 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(712);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 712 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* flexbox */\n.am-flexbox {\n  text-align: left;\n  overflow: hidden;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: -moz-box;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          -moz-box-align: center;\n       align-items: center;\n}\n.am-flexbox.am-flexbox-dir-row {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: row;\n      -ms-flex-direction: row;\n          -moz-box-orient: horizontal;\n          -moz-box-direction: normal;\n       flex-direction: row;\n}\n.am-flexbox.am-flexbox-dir-row-reverse {\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n  -webkit-flex-direction: row-reverse;\n      -ms-flex-direction: row-reverse;\n          -moz-box-orient: horizontal;\n          -moz-box-direction: reverse;\n       flex-direction: row-reverse;\n}\n.am-flexbox.am-flexbox-dir-column {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n      -ms-flex-direction: column;\n          -moz-box-orient: vertical;\n          -moz-box-direction: normal;\n       flex-direction: column;\n}\n.am-flexbox.am-flexbox-dir-column .am-flexbox-item {\n  margin-left: 0;\n}\n.am-flexbox.am-flexbox-dir-column-reverse {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: reverse;\n  -webkit-flex-direction: column-reverse;\n      -ms-flex-direction: column-reverse;\n          -moz-box-orient: vertical;\n          -moz-box-direction: reverse;\n       flex-direction: column-reverse;\n}\n.am-flexbox.am-flexbox-dir-column-reverse .am-flexbox-item {\n  margin-left: 0;\n}\n.am-flexbox.am-flexbox-nowrap {\n  -webkit-flex-wrap: nowrap;\n      -ms-flex-wrap: nowrap;\n          flex-wrap: nowrap;\n}\n.am-flexbox.am-flexbox-wrap {\n  -webkit-flex-wrap: wrap;\n      -ms-flex-wrap: wrap;\n          flex-wrap: wrap;\n}\n.am-flexbox.am-flexbox-wrap-reverse {\n  -webkit-flex-wrap: wrap-reverse;\n      -ms-flex-wrap: wrap-reverse;\n          flex-wrap: wrap-reverse;\n}\n.am-flexbox.am-flexbox-justify-start {\n  -webkit-box-pack: start;\n  -webkit-justify-content: flex-start;\n      -ms-flex-pack: start;\n          -moz-box-pack: start;\n       justify-content: flex-start;\n}\n.am-flexbox.am-flexbox-justify-end {\n  -webkit-box-pack: end;\n  -webkit-justify-content: flex-end;\n      -ms-flex-pack: end;\n          -moz-box-pack: end;\n       justify-content: flex-end;\n}\n.am-flexbox.am-flexbox-justify-center {\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n      -ms-flex-pack: center;\n          -moz-box-pack: center;\n       justify-content: center;\n}\n.am-flexbox.am-flexbox-justify-between {\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n      -ms-flex-pack: justify;\n          -moz-box-pack: justify;\n       justify-content: space-between;\n}\n.am-flexbox.am-flexbox-justify-around {\n  -webkit-justify-content: space-around;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n}\n.am-flexbox.am-flexbox-align-start {\n  -webkit-box-align: start;\n  -webkit-align-items: flex-start;\n      -ms-flex-align: start;\n          -moz-box-align: start;\n       align-items: flex-start;\n}\n.am-flexbox.am-flexbox-align-end {\n  -webkit-box-align: end;\n  -webkit-align-items: flex-end;\n      -ms-flex-align: end;\n          -moz-box-align: end;\n       align-items: flex-end;\n}\n.am-flexbox.am-flexbox-align-center {\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          -moz-box-align: center;\n       align-items: center;\n}\n.am-flexbox.am-flexbox-align-stretch {\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n      -ms-flex-align: stretch;\n          -moz-box-align: stretch;\n       align-items: stretch;\n}\n.am-flexbox.am-flexbox-align-baseline {\n  -webkit-box-align: baseline;\n  -webkit-align-items: baseline;\n      -ms-flex-align: baseline;\n          -moz-box-align: baseline;\n       align-items: baseline;\n}\n.am-flexbox.am-flexbox-align-content-start {\n  -webkit-align-content: flex-start;\n      -ms-flex-line-pack: start;\n          align-content: flex-start;\n}\n.am-flexbox.am-flexbox-align-content-end {\n  -webkit-box-align: end;\n  -webkit-align-items: flex-end;\n      -ms-flex-align: end;\n          -moz-box-align: end;\n       align-items: flex-end;\n}\n.am-flexbox.am-flexbox-align-content-center {\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          -moz-box-align: center;\n       align-items: center;\n}\n.am-flexbox.am-flexbox-align-content-between {\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n      -ms-flex-align: stretch;\n          -moz-box-align: stretch;\n       align-items: stretch;\n}\n.am-flexbox.am-flexbox-align-content-around {\n  -webkit-box-align: baseline;\n  -webkit-align-items: baseline;\n      -ms-flex-align: baseline;\n          -moz-box-align: baseline;\n       align-items: baseline;\n}\n.am-flexbox.am-flexbox-align-content-stretch {\n  -webkit-box-align: baseline;\n  -webkit-align-items: baseline;\n      -ms-flex-align: baseline;\n          -moz-box-align: baseline;\n       align-items: baseline;\n}\n.am-flexbox .am-flexbox-item {\n  -webkit-box-sizing: border-box;\n          -moz-box-sizing: border-box;\n       box-sizing: border-box;\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n      -ms-flex: 1;\n          -moz-box-flex: 1;\n       flex: 1;\n  margin-left: 8px;\n  min-width: 10px;\n}\n.am-flexbox .am-flexbox-item:first-child {\n  margin-left: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 713 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Flex = __webpack_require__(714);
+
+var _Flex2 = _interopRequireDefault(_Flex);
+
+var _FlexItem = __webpack_require__(715);
+
+var _FlexItem2 = _interopRequireDefault(_FlexItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+_Flex2['default'].Item = _FlexItem2['default'];
+exports['default'] = _Flex2['default'];
+module.exports = exports['default'];
+
+/***/ }),
+/* 714 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(9);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(234);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(48);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(49);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(53);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(87);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _classnames2 = __webpack_require__(235);
+
+var _classnames3 = _interopRequireDefault(_classnames2);
+
+var _react = __webpack_require__(100);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+    var t = {};
+    for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    }if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+        if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    }return t;
+};
+
+var Flex = function (_React$Component) {
+    (0, _inherits3['default'])(Flex, _React$Component);
+
+    function Flex() {
+        (0, _classCallCheck3['default'])(this, Flex);
+        return (0, _possibleConstructorReturn3['default'])(this, (Flex.__proto__ || Object.getPrototypeOf(Flex)).apply(this, arguments));
+    }
+
+    (0, _createClass3['default'])(Flex, [{
+        key: 'render',
+        value: function render() {
+            var _classnames;
+
+            var _a = this.props,
+                direction = _a.direction,
+                wrap = _a.wrap,
+                justify = _a.justify,
+                align = _a.align,
+                alignContent = _a.alignContent,
+                className = _a.className,
+                children = _a.children,
+                prefixCls = _a.prefixCls,
+                style = _a.style,
+                restProps = __rest(_a, ["direction", "wrap", "justify", "align", "alignContent", "className", "children", "prefixCls", "style"]);
+            var wrapCls = (0, _classnames3['default'])(prefixCls, className, (_classnames = {}, (0, _defineProperty3['default'])(_classnames, prefixCls + '-dir-row', direction === 'row'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-dir-row-reverse', direction === 'row-reverse'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-dir-column', direction === 'column'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-dir-column-reverse', direction === 'column-reverse'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-nowrap', wrap === 'nowrap'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-wrap', wrap === 'wrap'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-wrap-reverse', wrap === 'wrap-reverse'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-justify-start', justify === 'start'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-justify-end', justify === 'end'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-justify-center', justify === 'center'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-justify-between', justify === 'between'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-justify-around', justify === 'around'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-start', align === 'start'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-center', align === 'center'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-end', align === 'end'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-baseline', align === 'baseline'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-stretch', align === 'stretch'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-content-start', alignContent === 'start'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-content-end', alignContent === 'end'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-content-center', alignContent === 'center'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-content-between', alignContent === 'between'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-content-around', alignContent === 'around'), (0, _defineProperty3['default'])(_classnames, prefixCls + '-align-content-stretch', alignContent === 'stretch'), _classnames));
+            return _react2['default'].createElement(
+                'div',
+                (0, _extends3['default'])({ className: wrapCls, style: style }, restProps),
+                children
+            );
+        }
+    }]);
+    return Flex;
+}(_react2['default'].Component);
+
+exports['default'] = Flex;
+
+Flex.defaultProps = {
+    prefixCls: 'am-flexbox',
+    align: 'center'
+};
+module.exports = exports['default'];
+
+/***/ }),
+/* 715 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(9);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = __webpack_require__(48);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(49);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(53);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(87);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _classnames = __webpack_require__(235);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _react = __webpack_require__(100);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+    var t = {};
+    for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    }if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+        if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    }return t;
+};
+
+var FlexItem = function (_React$Component) {
+    (0, _inherits3['default'])(FlexItem, _React$Component);
+
+    function FlexItem() {
+        (0, _classCallCheck3['default'])(this, FlexItem);
+        return (0, _possibleConstructorReturn3['default'])(this, (FlexItem.__proto__ || Object.getPrototypeOf(FlexItem)).apply(this, arguments));
+    }
+
+    (0, _createClass3['default'])(FlexItem, [{
+        key: 'render',
+        value: function render() {
+            var _a = this.props,
+                children = _a.children,
+                className = _a.className,
+                prefixCls = _a.prefixCls,
+                style = _a.style,
+                restProps = __rest(_a, ["children", "className", "prefixCls", "style"]);
+            var wrapCls = (0, _classnames2['default'])(prefixCls + '-item', className);
+            return _react2['default'].createElement(
+                'div',
+                (0, _extends3['default'])({ className: wrapCls, style: style }, restProps),
+                children
+            );
+        }
+    }]);
+    return FlexItem;
+}(_react2['default'].Component);
+
+exports['default'] = FlexItem;
+
+FlexItem.defaultProps = {
+    prefixCls: 'am-flexbox'
+};
+module.exports = exports['default'];
+
+/***/ }),
+/* 716 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Import; });
+/* harmony import */ var antd_mobile_lib_white_space_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(455);
+/* harmony import */ var antd_mobile_lib_white_space_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_white_space_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_white_space__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(458);
+/* harmony import */ var antd_mobile_lib_white_space__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_white_space__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(222);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(233);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(275);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(279);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(100);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(442);
+/* harmony import */ var _components_Svg_Svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(448);
+/* harmony import */ var _Import_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(717);
+/* harmony import */ var _Import_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_Import_scss__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(113);
+/* harmony import */ var _utils_walletStorage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(719);
+/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(492);
+/* harmony import */ var _WalletName_WalletName__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(720);
+/* harmony import */ var _utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(219);
+/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(463);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(470);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(471);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(493);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(174);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var tabs = [// { title: '助记词' },
+{
+  title: 'mnemonic'
+}, // { title: '私钥' }
+{
+  title: 'private'
+}]; // React component
+
+var Import =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(Import, _Component);
+
+  function Import() {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, Import);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(Import).call(this));
+    _this.state = {
+      mnemonic: '',
+      privateKey: '',
+      agreementDisplay: false,
+      tabNClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabTitle + ' ' + _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabSelected,
+      tabPClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabTitle,
+      textNClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textareaContainer + ' ' + _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textSelected,
+      textPClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textareaContainer,
+      walletName: null
+    };
+    _this.failMessage = 'Please input your privateKey or mnemonic'; // 请填入助记词或者私钥
+
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(Import, [{
+    key: "createAndGO",
+    value: function createAndGO() {
+      var _this2 = this;
+
+      // let password = this.state.password;
+      // if (!password) {
+      //     Toast.fail('No password', 2);
+      //     return;
+      // }
+      if (!this.state.walletName) {
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.fail('No walletName', 2);
+
+        return;
+      }
+
+      if (!this.state.mnemonic && !this.state.privateKey) {
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.fail('Please input your privateKey or mnemonic', 3);
+
+        return;
+      }
+
+      var mnemonicWallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_21___default.a.wallet.getWalletByMnemonic(this.state.mnemonic.trim() || '');
+      var privateKeyWallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_21___default.a.wallet.getWalletByPrivateKey(this.state.privateKey.trim() || ''); // if (!privateKeyWallet && !mnemonicWallet) {
+
+      if (!mnemonicWallet) {
+        this.setState({
+          mnemonicError: 'invalid mnemonic'
+        });
+      } else {
+        this.setState({
+          mnemonicError: ''
+        });
+      } // if (!mnemonicWallet && !privateKeyWallet) {
+
+
+      if (!privateKeyWallet) {
+        this.setState({
+          privateKeyError: 'invalid privateKey'
+        });
+      } else {
+        this.setState({
+          privateKeyError: ''
+        });
+      }
+
+      if (!privateKeyWallet && !mnemonicWallet) {
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.fail('Import Failed');
+
+        return;
+      }
+
+      var walletInfo = mnemonicWallet || privateKeyWallet; // 助记词钱包优先
+
+      var publicKey = walletInfo.keyPair.getPublic();
+      var setWalletInfo = {
+        name: this.state.walletName,
+        address: walletInfo.address,
+        mnemonic: walletInfo.mnemonic,
+        privateKey: walletInfo.privateKey,
+        publicKey: {
+          x: publicKey.x.toString('hex'),
+          y: publicKey.y.toString('hex')
+        }
+      };
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["GET_KEYPAIR"]).send().then(function (result) {
+        // Users may import multiple times with a private key or mnemonic
+        if (result || result.error === 0) {
+          if (JSON.stringify(result.keypairs).indexOf(JSON.stringify(setWalletInfo.address)) === -1) {
+            _this2.insertKeypair(setWalletInfo);
+          } else {
+            _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["REMOVE_KEYPAIR"], setWalletInfo.address).send().then(function (result) {
+              if (result || result.error === 0) {
+                _this2.insertKeypair(setWalletInfo);
+              } else {
+                antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.fail(result.message, 3, function () {}, false);
+              }
+            });
+          }
+        }
+      });
+    }
+  }, {
+    key: "inputMnemonic",
+    value: function inputMnemonic(mnemonic) {
+      this.setState({
+        mnemonic: mnemonic.target.value,
+        mnemonicError: ''
+      });
+    }
+  }, {
+    key: "insertKeypair",
+    value: function insertKeypair(walletInfo) {
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["INSERT_KEYPAIR"], walletInfo).send().then(function (result) {
+        react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/keypairs');
+      });
+    }
+  }, {
+    key: "inputPrivateKey",
+    value: function inputPrivateKey(privateKey) {
+      this.setState({
+        privateKey: privateKey.target.value,
+        privateKeyError: ''
+      });
+    }
+  }, {
+    key: "setWalletName",
+    value: function setWalletName(walletName) {
+      this.setState({
+        walletName: walletName
+      });
+    }
+  }, {
+    key: "tabClickN",
+    value: function tabClickN() {
+      this.setState({
+        tabNClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabTitle + ' ' + _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabSelected,
+        tabPClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabTitle,
+        textNClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textareaContainer + ' ' + _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textSelected,
+        textPClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textareaContainer,
+        privateKey: ''
+      });
+      this.failMessage = 'Please input Mnemonic'; // 请填入助记词';
+    }
+  }, {
+    key: "tabClickP",
+    value: function tabClickP() {
+      this.setState({
+        tabPClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabTitle + ' ' + _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabSelected,
+        tabNClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabTitle,
+        textPClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textareaContainer + ' ' + _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textSelected,
+        textNClass: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textareaContainer,
+        mnemonic: ''
+      });
+      this.failMessage = 'Please input Private Key'; // '请填入私钥';
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var createButtonText = 'Submit';
+      var createButton = react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        text: createButtonText,
+        style: {
+          opacity: 0.5,
+          margin: '0 0 20px 0'
+        }
+      });
+
+      if (this.state.walletName) {
+        createButton = react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          text: createButtonText,
+          onClick: function onClick() {
+            return _this3.createAndGO();
+          },
+          style: {
+            margin: '0 0 20px 0'
+          }
+        });
+      }
+
+      var containerStyle = Object(_utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_17__["default"])();
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,
+        style: containerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        onLeftClick: function onLeftClick() {
+          return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_15__["historyPush"])('/keypairs');
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        style: {
+          padding: '0 24px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabTitleContainer
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: this.state.tabNClass,
+        onClick: function onClick() {
+          return _this3.tabClickN();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
+        id: "aelf.Mnemonic",
+        defaultMessage: "Mnemonic"
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabSelectedLine
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: this.state.tabPClass,
+        onClick: function onClick() {
+          return _this3.tabClickP();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
+        id: "aelf.Private Key",
+        defaultMessage: "Private Key"
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.tabSelectedLine
+      }))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: this.state.textNClass
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("textarea", {
+        name: "",
+        id: "",
+        rows: "6",
+        value: this.state.mnemonic,
+        onChange: function onChange(mnemonic) {
+          return _this3.inputMnemonic(mnemonic);
+        } // placeholder="此处填写助记词, 用空格分隔"
+        ,
+        className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textarea
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: this.state.textPClass
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("textarea", {
+        name: "",
+        id: "",
+        rows: "6",
+        value: this.state.privateKey,
+        onChange: function onChange(privateKey) {
+          return _this3.inputPrivateKey(privateKey);
+        } // placeholder="此处填写私钥"
+        ,
+        className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textarea
+      })))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("p", {
+        className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.title
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
+        id: "aelf.hint03",
+        defaultMessage: "In this wallet, there is no Mnemonic when import Private Key. But we can get Private Key when we import Mnemonic."
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_WalletName_WalletName__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        setWalletName: function setWalletName(walletName) {
+          return _this3.setWalletName(walletName);
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd_mobile_lib_white_space__WEBPACK_IMPORTED_MODULE_1___default.a, null)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom
+      }, createButton));
+    }
+  }]);
+
+  return Import;
+}(react__WEBPACK_IMPORTED_MODULE_9__["Component"]);
+
+
+
+/***/ }),
+/* 717 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(718);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 718 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Popup-Import-Import_container-2v3Pp {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between; }\n\n.AELF-app-web-pages-Popup-Import-Import_tabTitleContainer-1XZGu {\n  height: 37px;\n  margin: 0 0 12px 0;\n  font-size: 20px;\n  line-height: 24px;\n  color: #FFF; }\n\n.AELF-app-web-pages-Popup-Import-Import_tabSelected-1EULH {\n  font-size: 24px; }\n\n.AELF-app-web-pages-Popup-Import-Import_tabSelected-1EULH .AELF-app-web-pages-Popup-Import-Import_tabSelectedLine-2NojU {\n  display: block; }\n\n.AELF-app-web-pages-Popup-Import-Import_tabTitle-1wR2b {\n  float: left;\n  text-align: center;\n  margin-right: 32px; }\n\n.AELF-app-web-pages-Popup-Import-Import_tabSelectedLine-2NojU {\n  display: none;\n  width: 24px;\n  height: 4px;\n  background: #FFF;\n  margin: 9px auto 0 auto; }\n\n.AELF-app-web-pages-Popup-Import-Import_textareaContainer-NlJYw {\n  display: none;\n  background: rgba(0, 0, 0, 0.2);\n  border: none;\n  -moz-border-radius: 4px;\n  border-radius: 4px;\n  padding: 14px; }\n\n.AELF-app-web-pages-Popup-Import-Import_textSelected-SVcVy {\n  display: block; }\n\n.AELF-app-web-pages-Popup-Import-Import_textarea-3Nhkq {\n  width: 100%;\n  color: #FFF;\n  background: rgba(0, 0, 0, 0);\n  border: none;\n  -webkit-appearance: none;\n  resize: none; }\n\n.AELF-app-web-pages-Popup-Import-Import_title-2GLf7 {\n  padding: 0px 24px;\n  margin: 24px 0 0 0;\n  font-size: 12px;\n  color: rgba(255, 255, 255, 0.7); }\n\n.AELF-app-web-pages-Popup-Import-Import_error-3aY91 {\n  color: #f50;\n  padding: 0px 15px; }\n\n.AELF-app-web-pages-Popup-Import-Import_textareaItem--dI_b {\n  width: 100%;\n  border: 0px; }\n\n.AELF-app-web-pages-Popup-Import-Import_bottom-3SjAn {\n  width: 80%;\n  margin: 30px 0 0 10%; }\n", ""]);
+
+// exports
+exports.locals = {
+	"container": "AELF-app-web-pages-Popup-Import-Import_container-2v3Pp",
+	"tabTitleContainer": "AELF-app-web-pages-Popup-Import-Import_tabTitleContainer-1XZGu",
+	"tabSelected": "AELF-app-web-pages-Popup-Import-Import_tabSelected-1EULH",
+	"tabSelectedLine": "AELF-app-web-pages-Popup-Import-Import_tabSelectedLine-2NojU",
+	"tabTitle": "AELF-app-web-pages-Popup-Import-Import_tabTitle-1wR2b",
+	"textareaContainer": "AELF-app-web-pages-Popup-Import-Import_textareaContainer-NlJYw",
+	"textSelected": "AELF-app-web-pages-Popup-Import-Import_textSelected-SVcVy",
+	"textarea": "AELF-app-web-pages-Popup-Import-Import_textarea-3Nhkq",
+	"title": "AELF-app-web-pages-Popup-Import-Import_title-2GLf7",
+	"error": "AELF-app-web-pages-Popup-Import-Import_error-3aY91",
+	"textareaItem": "AELF-app-web-pages-Popup-Import-Import_textareaItem--dI_b",
+	"bottom": "AELF-app-web-pages-Popup-Import-Import_bottom-3SjAn"
+};
+
+/***/ }),
+/* 719 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(493);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_0__);
+/*
+ * huangzongzhe,hzz780
+ * 2018.07.25
+ * Beijing IFC
+ */
+// Immutability Is Important
+// https://reactjs.org/tutorial/tutorial.html#why-immutability-is-important
+ // TODO: 将localStorage部分封装到aelf-sdk中去，
+// node部分使用file（json）存储，RN使用AsyncStorage.
+
+function insertWalletInfo(walletInfoInput, password) {
+  if (!walletInfoInput || walletInfoInput.privateKey && !password) {
+    return false;
+  }
+
+  var walletInfo = Object.assign({}, walletInfoInput); // let walletInfo = mnemonicWallet || privateKeyWallet; // 助记词钱包优先
+
+  if (password) {
+    walletInfo.AESEncryptoPrivateKey = aelf_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.wallet.AESEncrypto(walletInfo.privateKey, password);
+    walletInfo.AESEncryptoMnemonic = aelf_sdk__WEBPACK_IMPORTED_MODULE_0___default.a.wallet.AESEncrypto(walletInfo.mnemonic, password);
+
+    if (!walletInfo.publicKey) {
+      var publicKey = walletInfo.keyPair.getPublic();
+      walletInfo.publicKey = {
+        x: publicKey.x.toString('hex'),
+        y: publicKey.y.toString('hex')
+      };
+      walletInfo.signedAddress = walletInfo.keyPair.sign(walletInfo.address);
+    }
+
+    delete walletInfo.privateKey;
+    delete walletInfo.mnemonic;
+    delete walletInfo.xPrivateKey;
+    delete walletInfo.keyPair;
+  } // console.log('window decrypto: ', window.Aelf.wallet.AESDecrypto(walletInfo.AESEncryptoPrivateKey, password));
+  // console.log('aelf decrypto: ', aelf.wallet.AESDecrypto(walletInfo.AESEncryptoMnemonic, password));
+  // console.log('wallet info: ', walletInfo);
+
+
+  var walletInfoList = JSON.parse(localStorage.getItem('walletInfoList')) || {}; // 日哦, 哪里配错了？不让我用。。。babel?
+  // walletInfoList[walletInfo.address] = {
+  //     ...walletInfo,
+  //     walletId: walletInfo.address,
+  //     assets: [{
+  //         contractAddress: '',
+  //         tokenName: '',
+  //         // balance 从服务器再取
+  //     }]
+  // };
+
+  walletInfoList[walletInfo.address] = Object.assign({
+    walletId: walletInfo.address,
+    assets: [{
+      contractAddress: '',
+      tokenName: '' // balance 从服务器再取
+
+    }]
+  }, walletInfo);
+  localStorage.setItem('walletInfoList', JSON.stringify(walletInfoList));
+  localStorage.setItem('agreement', true);
+  localStorage.setItem('lastuse', JSON.stringify({
+    address: walletInfo.address,
+    walletName: walletInfo.walletName
+  }));
+  return walletInfo; // return true;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (insertWalletInfo);
+
+/***/ }),
+/* 720 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return WalletName; });
+/* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(256);
+/* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(259);
+/* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(263);
+/* harmony import */ var antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(266);
+/* harmony import */ var antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(275);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(279);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(100);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _WalletName_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(721);
+/* harmony import */ var _WalletName_scss__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_WalletName_scss__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(198);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(174);
+
+
+
+
+
+
+
+
+
+
+/*
+ * huangzongzhe
+ * 2018.07.25
+ */
+
+
+
+ // 目前重写antd-mobile inputItem的样式在Password.css里面
+
+var WalletName =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(WalletName, _Component);
+
+  function WalletName(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, WalletName);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(WalletName).call(this, props));
+    _this.state = {
+      walletName: ''
+    };
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(WalletName, [{
+    key: "inputWalletName",
+    value: function inputWalletName(walletName) {
+      this.props.setWalletName(walletName);
+      this.setState({
+        walletName: walletName
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: "aelf-input-container aelf-dash"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        className: "aelf-input-title"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_12__["FormattedMessage"], {
+        id: "aelf.Keypair Name",
+        defaultMessage: "Keypair Name"
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        value: this.state.walletName,
+        type: "text",
+        placeholder: "",
+        onChange: function onChange(walletName) {
+          return _this2.inputWalletName(walletName);
+        },
+        moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_11__["moneyKeyboardWrapProps"]
+      })));
+    }
+  }]);
+
+  return WalletName;
+}(react__WEBPACK_IMPORTED_MODULE_9__["Component"]);
+
+
+
+/***/ }),
+/* 721 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(722);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 722 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Popup-WalletName-WalletName_error-1LgTg {\n  color: #f50;\n  padding: 0px 15px; }\n", ""]);
+
+// exports
+exports.locals = {
+	"error": "AELF-app-web-pages-Popup-WalletName-WalletName_error-1LgTg"
+};
+
+/***/ }),
+/* 723 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BackupKeypairs; });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(216);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(275);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(279);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(222);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(233);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(641);
+/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(644);
+/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(100);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(113);
+/* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(724);
+/* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _pages_Mnemonic__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(726);
+/* harmony import */ var _utils_moneyKeyboardWrapProps__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(200);
+/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(492);
+/* harmony import */ var _utils_clipboard__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(221);
+/* harmony import */ var _utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(219);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(442);
+/* harmony import */ var _components_Svg_Svg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(448);
+/* harmony import */ var _components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(489);
+/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(463);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(493);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(174);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(470);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(471);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(281);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_26__);
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @file BackupKeypairs.js
+ * @author zhouminghui
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var prompt = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9___default.a.prompt;
+
+function getSeed(password) {
+  if (password) {
+    var hmac = Object(crypto__WEBPACK_IMPORTED_MODULE_26__["createHmac"])('sha512', password);
+    var seed = hmac.update(password).digest('hex');
+    return seed;
+  }
+
+  antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7___default.a.fail('Please input password', 3, function () {}, false);
+
+  return false;
+} // React component
+
+
+var BackupKeypairs =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(BackupKeypairs, _Component);
+
+  function BackupKeypairs(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, BackupKeypairs);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(BackupKeypairs).call(this, props));
+    _this.state = {
+      privateKey: '',
+      // mnemonic: 'grocery jungle body action shop vast toilet fog prevent banner deliver indicate',
+      mnemonic: '',
+      password: '',
+      mnemonicDisplay: false,
+      privateKeyModal: false,
+      passwordModal: false,
+      containerStyle: null,
+      isVerification: true,
+      address: _this.props.params.address || ''
+    };
+    Object(_utils_clipboard__WEBPACK_IMPORTED_MODULE_16__["default"])('#clipboard-backup');
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(BackupKeypairs, [{
+    key: "showModal",
+    value: function showModal(e, key) {
+      e.preventDefault(); // 修复 Android 上点击穿透
+
+      this.setState(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, key, true));
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var containerStyle = Object(_utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_17__["default"])();
+      this.setState({
+        containerStyle: containerStyle
+      });
+    }
+  }, {
+    key: "onClose",
+    value: function onClose(key) {
+      this.setState(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, key, false));
+    } // getPrivateKeyAndMnemonic(password = '') {
+    //     password = password || this.state.password;
+    //     let walletId = JSON.parse(localStorage.getItem('lastuse')).address;
+    //     let walletInfoList = JSON.parse(localStorage.getItem('walletInfoList'));
+    //     let walletInfo = walletInfoList[walletId];
+    //     let privateKey = '';
+    //     let mnemonic = '';
+    //     try {
+    //         privateKey = aelf.wallet.AESDecrypto(walletInfo.AESEncryptoPrivateKey, password);
+    //         mnemonic = aelf.wallet.AESDecrypto(walletInfo.AESEncryptoMnemonic, password);
+    //     } catch (e) {
+    //         // 因为封装了一层，解密错误时，转换成utf-8会抛出异常。
+    //         // let string = '[ERROR] Hey guy, your invalid password make the program crash.';
+    //         // privateKey = string;
+    //         // mnemonic = string;
+    //     }
+    //     if (privateKey || mnemonic) {
+    //         this.setState({'privateKey': privateKey});
+    //         this.setState({'mnemonic': mnemonic});
+    //         return true
+    //     } else {
+    //         Toast.fail('Wrong Password', 1, () => {}, false);
+    //     }
+    //     return false;
+    // }
+
+  }, {
+    key: "getPrivateKeyAndMnemonic",
+    value: function getPrivateKeyAndMnemonic() {
+      var _this2 = this;
+
+      var password = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var type = arguments.length > 1 ? arguments[1] : undefined;
+      console.log(password);
+      var seed = getSeed(password);
+      var address = this.state.address;
+
+      if (seed) {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__["UNLOCK_WALLET"], seed).send().then(function (result) {
+          console.log(result);
+
+          if (result && result.error === 0) {
+            _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__["GET_KEYPAIR"]).send().then(function (result) {
+              if (result && result.error === 0) {
+                result.keypairs.map(function (item) {
+                  if (item.address === address) {
+                    if (type === 'Mnemonic') {
+                      _this2.setState({
+                        mnemonic: item.mnemonic,
+                        mnemonicDisplay: !_this2.state.mnemonicDisplay,
+                        isVerification: true
+                      });
+                    } else {
+                      _this2.setState({
+                        privateKey: item.privateKey,
+                        privateKeyModal: !_this2.state.privateKeyModal,
+                        isVerification: true
+                      });
+                    }
+                  }
+                });
+              }
+            });
+          } else {
+            _this2.setState({
+              isVerification: false
+            });
+
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7___default.a.fail('Password error', 3, function () {}, false);
+          }
+        });
+      }
+    }
+  }, {
+    key: "inputPassword",
+    value: function inputPassword(password) {
+      this.setState({
+        password: password
+      });
+    } // 子组件要用，要么this.toggleMnemonic = this.toggleMnemonic.bind(this);
+    // 要么在传递是使用箭头函数，比如: onLeftClick={() => this.toggleMnemonic()}
+
+  }, {
+    key: "toggleMnemonic",
+    value: function toggleMnemonic() {
+      this.setState({
+        mnemonicDisplay: !this.state.mnemonicDisplay
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this.state.mnemonicDisplay && !this.state.mnemonic) {
+        this.state.mnemonicDisplay = false; // Toast.fail('该钱包是由私钥导入，无助记词', 2, () => {}, false);
+
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_7___default.a.fail('There is no Mnemonic because the wallet import by Private Key.', 2, function () {}, false);
+      }
+    }
+  }, {
+    key: "goNextPage",
+    value: function goNextPage() {
+      var isVerification = this.state.isVerification;
+
+      if (isVerification) {
+        react_router__WEBPACK_IMPORTED_MODULE_11__["hashHistory"].push('/keypairs');
+      } else {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_25__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_24__["LOCK_WALLET"]).send().then(function (result) {
+          react_router__WEBPACK_IMPORTED_MODULE_11__["hashHistory"].push('/');
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var _this$state = this.state,
+          containerStyle = _this$state.containerStyle,
+          jumpPosition = _this$state.jumpPosition;
+      var mnemonicHtml = '';
+
+      if (this.state.mnemonic) {
+        mnemonicHtml = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_pages_Mnemonic__WEBPACK_IMPORTED_MODULE_13__["default"], {
+          navTitle: "Mnemonic",
+          mnemonic: this.state.mnemonic,
+          display: this.state.mnemonicDisplay,
+          onLeftClick: function onLeftClick() {
+            return _this3.toggleMnemonic();
+          },
+          containerStyle: containerStyle
+        });
+      } // let containerStyle = getPageContainerStyle();
+
+
+      console.log(jumpPosition);
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "aelf-bg-light"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        onLeftClick: function onLeftClick() {
+          return _this3.goNextPage();
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,
+        style: containerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textContainer
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_20__["default"], {
+        mainTitle: react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Backup Wallet",
+          defaultMessage: "Backup Wallet"
+        }),
+        subTitle: [react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.AElf Wallet",
+          defaultMessage: "AElf Wallet"
+        }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Manage your wallet addresses",
+          defaultMessage: "Manage your wallet addresses"
+        })],
+        content: [// '请在安全的环境下备份助记词！',
+        // '没有妥善备份就无法保障资产安全；',
+        // '删除程序或钱包后，',
+        // '您需要通过备份的助记词来会恢复钱包！'
+        react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Becareful03",
+          defaultMessage: "Please backup your Mnemonic in a secure environment!"
+        }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Becareful04",
+          defaultMessage: "No secure Mnemonic backup means no secure wallet."
+        }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Becareful05",
+          defaultMessage: "In the case of wallet or App deletion,"
+        }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+          id: "aelf.Becareful06",
+          defaultMessage: "you will need your Mnemonic to recover your wallet."
+        })]
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        text: "Mnemonic",
+        onClick: function onClick(e) {
+          return prompt('Password', 'Please make sure you are under safe enviroment.', [{
+            text: 'Cancel'
+          }, {
+            text: 'Submit',
+            onPress: function onPress(password) {
+              _this3.getPrivateKeyAndMnemonic(password, 'Mnemonic');
+            }
+          }], 'secure-text');
+        } // onClick={(e) => prompt(
+        //     '密码',
+        //     '请确保您处于安全的环境中',
+        //     [
+        //         { text: '取消' },
+        //         { text: '提交', onPress: password => {
+        //                 let boolean = this.getPrivateKeyAndMnemonic(password);
+        //                 boolean && this.toggleMnemonic();
+        //             }
+        //         },
+        //     ],
+        //     'secure-text',
+        // )}
+
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "aelf-blank12"
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        text: "Private Key",
+        onClick: function onClick(e) {
+          // be nullified after the event callback has been invoked,
+          // if dont e.persist(), we can't get e.preventDefault in this.showModal
+          // https://reactjs.org/docs/events.html#event-pooling
+          e.persist();
+          prompt('Password', 'Please make sure you are under safe enviroment.', [{
+            text: 'Cancel'
+          }, {
+            text: 'Submit',
+            onPress: function onPress(password) {
+              _this3.getPrivateKeyAndMnemonic(password, 'privateKey');
+            }
+          }], 'secure-text');
+        }
+      }))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9___default.a, {
+        popup: true,
+        visible: this.state.privateKeyModal,
+        onClose: function onClose() {
+          return _this3.onClose('privateKeyModal');
+        },
+        animationType: "slide-up"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannelTitle
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Copy Private Key",
+        defaultMessage: "Copy Private Key"
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.copyArea
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        style: {
+          width: '100%'
+        }
+      }, this.state.privateKey), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("textarea", {
+        id: "privateKeyBackUp",
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textarea,
+        defaultValue: this.state.privateKey
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannelBtnPurple,
+        onClick: function onClick() {
+          var btn = document.getElementById('clipboard-backup');
+          btn.click();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Copy",
+        defaultMessage: "Copy"
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannelBtnPurple + ' ' + _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannerlBtnGrey,
+        onClick: function onClick() {
+          return _this3.onClose('privateKeyModal');
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
+        id: "aelf.Close",
+        defaultMessage: "Close"
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
+        id: "clipboard-backup",
+        "data-clipboard-target": "#privateKeyBackUp",
+        style: {
+          display: 'none'
+        }
+      }, "copy"))), mnemonicHtml);
+    }
+  }]);
+
+  return BackupKeypairs;
+}(react__WEBPACK_IMPORTED_MODULE_10__["Component"]);
+
+
+
+/***/ }),
+/* 724 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(725);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 725 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_container-1JRu0 {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_textContainer-j-Csj {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_forbidden-1fIlq {\n  word-wrap: break-word;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  /*禁用页面内容选中和复制操作*/\n  -webkit-touch-callout: none;\n  /*禁用长按页面时的弹出菜单(iOS下有效)*/\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  /*去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)*/\n  color: #999;\n  font-size: 17px;\n  line-height: 25.5px;\n  padding: 11px 15px;\n  font-style: oblique; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_title-1CjcY {\n  padding: 0px 15px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_text-2TY7v {\n  padding: 15px 15px 9px 15px;\n  font-size: 14px;\n  color: #888;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_textarea-7YBIH {\n  position: fixed;\n  top: -1250px;\n  left: -1250px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_bottom-29_h7 {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelTitle-10tf3 {\n  height: 35px;\n  line-height: 35px;\n  text-align: left;\n  text-indent: 24px;\n  border-bottom: 0.5px solid #F2F2F2;\n  color: #ADAAB3;\n  font-size: 10px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelBtnPurple-3j8dO {\n  height: 50px;\n  line-height: 50px;\n  font-size: 14px;\n  color: #AC00E6;\n  border-top: 0.5px solid #F2F2F2;\n  border-bottom: 4px solid #F7F7F7;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelBtnPurple-3j8dO:active {\n  background: #DDD; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannerlBtnGrey-1CZjP {\n  color: #8F8A99;\n  border-bottom: 0; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_copyArea-2PLwP {\n  height: 90px;\n  padding: 0 24px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  word-break: break-all;\n  text-align: left;\n  color: #14111A;\n  font-size: 12px; }\n", ""]);
+
+// exports
+exports.locals = {
+	"container": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_container-1JRu0",
+	"textContainer": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_textContainer-j-Csj",
+	"forbidden": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_forbidden-1fIlq",
+	"title": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_title-1CjcY",
+	"text": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_text-2TY7v",
+	"textarea": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_textarea-7YBIH",
+	"bottom": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_bottom-29_h7",
+	"pannelTitle": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelTitle-10tf3",
+	"pannelBtnPurple": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannelBtnPurple-3j8dO",
+	"pannerlBtnGrey": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_pannerlBtnGrey-1CZjP",
+	"copyArea": "AELF-app-web-pages-Popup-BackupKeypairs-BackupKeypairs_copyArea-2PLwP"
+};
+
+/***/ }),
+/* 726 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Mnemonic; });
+/* harmony import */ var antd_mobile_lib_nav_bar_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(464);
+/* harmony import */ var antd_mobile_lib_nav_bar_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_nav_bar_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(467);
+/* harmony import */ var antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(228);
+/* harmony import */ var antd_mobile_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(249);
+/* harmony import */ var antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(222);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(233);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(275);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(279);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(100);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(113);
+/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(727);
+/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_pages_scss__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(442);
+/* harmony import */ var _components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(489);
+/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(492);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(174);
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * huangzongzhe
+ * 2018.08.28
+ */
+// Demo
+// <Mnemonic 
+//    navTitle="备份助记词" 
+//    mnemonic={this.state.mnemonic} // [String]
+//    display={this.state.mnemonicDisplay} // [Bool]
+//    onLeftClick={() => this.toggleMnemonic()}>
+// </Mnemonic>;
+// toggleMnemonic() {
+//     this.setState({
+//         mnemonicDisplay: !this.state.mnemonicDisplay
+//     });
+// }
+
+
+
+
+ // import backupStatusChange from '../../../BackupNotice/backupStatusChange'
+
+
+
+var selectedStyle = '#AC00E6';
+var unSelectedStyle = '#FFF'; // const confirmSubTitle = '请按顺序点击助记词，以确认您正确备份。';
+// const confirmSubTitle = 'To confirm your backup, please click on the Mnemonic in order.';
+
+var confirmSubTitle = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+  id: "aelf.hint02",
+  defaultMessage: "To confirm your backup, please click on the Mnemonic in order."
+});
+
+var Mnemonic =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default()(Mnemonic, _Component);
+
+  function Mnemonic(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6___default()(this, Mnemonic);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_8___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(Mnemonic).call(this, props));
+    _this.state = {
+      confirmDisplay: false,
+      mnemonicConfirmed: [],
+      confirmSubNoticeShow: false,
+      confirmSubTitle: confirmSubTitle,
+      pageContainerStyle: _this.props.containerStyle
+    };
+
+    _this.setMnemonicDisorderedListStyle(); // 拿到助记词并打乱顺序。
+
+
+    _this.list = _this.props.mnemonic.split(' ').sort(function () {
+      return .5 - Math.random();
+    });
+    _this.itemCheck = [];
+    _this.mnemonicDisordered = [];
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7___default()(Mnemonic, [{
+    key: "setMnemonicDisorderedListStyle",
+    value: function setMnemonicDisorderedListStyle() {
+      var mnemonicDisorderedListStyle = [];
+
+      for (var i = 0; i < 12; i++) {
+        mnemonicDisorderedListStyle.push({
+          background: unSelectedStyle
+        });
+      }
+
+      this.state.mnemonicDisorderedListStyle = mnemonicDisorderedListStyle;
+    }
+  }, {
+    key: "toggleConfirm",
+    value: function toggleConfirm() {
+      this.setState({
+        confirmDisplay: !this.state.confirmDisplay
+      });
+    } // 选中助记词，并展示在面板中
+
+  }, {
+    key: "disorderedItemClick",
+    value: function disorderedItemClick(e) {
+      var _this2 = this;
+
+      var text = e.target.innerText;
+      var indexDisorderedItem = parseInt(e.target.getAttribute('index'), 10);
+      var index = this.state.mnemonicConfirmed.length;
+
+      if (this.itemCheck.indexOf(indexDisorderedItem) < 0) {
+        this.itemCheck.push(indexDisorderedItem);
+        this.state.mnemonicDisorderedListStyle[indexDisorderedItem] = {
+          background: selectedStyle,
+          borderColor: selectedStyle,
+          color: '#FFF'
+        };
+        var mnemonicConfirmed = this.state.mnemonicConfirmed;
+        mnemonicConfirmed.push(react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+          className: "".concat(_pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.listItem, " ").concat(_pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.selectd),
+          key: Math.random(),
+          index: index,
+          indexdisordereditem: indexDisorderedItem,
+          onClick: function onClick(e) {
+            return _this2.removeItem(e);
+          }
+        }, text));
+        this.setState({
+          mnemonicConfirmed: mnemonicConfirmed
+        });
+      }
+    }
+  }, {
+    key: "confirm",
+    value: function confirm() {
+      var _this3 = this;
+
+      // 确认是否OK
+      if (this.itemCheck.length === 12) {
+        var text = '';
+        this.itemCheck.map(function (item) {
+          text += _this3.mnemonicDisordered[item] + ' ';
+        });
+
+        if (text.trim() === this.props.mnemonic) {
+          // backupStatusChange();
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default.a.success('Success', 3, function () {
+            Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_16__["historyPush"])('/keypairs', false);
+          });
+
+          return;
+        }
+      } // Toast.fail('请重新温习助记词。', 2, () => {}, false);
+
+
+      antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default.a.fail('Please review the Mnemonic again.', 2, function () {}, false);
+
+      this.setState({
+        confirmSubNoticeShow: true,
+        confirmSubTitle: ''
+      });
+    } // 从确认框中点击单词并移除
+
+  }, {
+    key: "removeItem",
+    value: function removeItem(e) {
+      var indexDisorderedItem = parseInt(e.target.getAttribute('indexdisordereditem'), 10);
+      var index = parseInt(e.target.getAttribute('index'), 10);
+      var indexItemCheck = this.itemCheck.indexOf(indexDisorderedItem);
+
+      if (indexItemCheck >= 0) {
+        this.state.mnemonicDisorderedListStyle[indexDisorderedItem] = {
+          background: unSelectedStyle
+        };
+        this.itemCheck.splice(indexItemCheck, 1);
+        var mnemonicConfirmed = this.state.mnemonicConfirmed;
+        mnemonicConfirmed[index] = '';
+        this.setState({
+          mnemonicConfirmed: mnemonicConfirmed,
+          confirmSubNoticeShow: false,
+          confirmSubTitle: confirmSubTitle
+        });
+      }
+    }
+  }, {
+    key: "getMnemonicDisorderedHtml",
+    value: function getMnemonicDisorderedHtml() {
+      var _this4 = this;
+
+      var mnemonicDisorderedHtml = [];
+      var mnemonicDisordered = [];
+      this.list.map(function (item, index) {
+        mnemonicDisorderedHtml.push(react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+          className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.listItem,
+          key: Math.random(),
+          index: index,
+          style: _this4.state.mnemonicDisorderedListStyle[index],
+          onClick: function onClick(e) {
+            return _this4.disorderedItemClick(e);
+          }
+        }, item));
+        mnemonicDisordered.push(item);
+      });
+      this.mnemonicDisordered = mnemonicDisordered;
+      return mnemonicDisorderedHtml;
+    }
+  }, {
+    key: "getContainerStyle",
+    value: function getContainerStyle() {
+      var containerStyle = {
+        display: this.props.display ? 'block' : 'none'
+      };
+      var confirmContainerStyle = {
+        display: this.state.confirmDisplay ? 'block' : 'none'
+      };
+      return {
+        containerStyle: containerStyle,
+        confirmContainerStyle: confirmContainerStyle
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this5 = this;
+
+      var mnemonicDisorderedHtml = this.getMnemonicDisorderedHtml();
+
+      var _this$getContainerSty = this.getContainerStyle(),
+          containerStyle = _this$getContainerSty.containerStyle,
+          confirmContainerStyle = _this$getContainerSty.confirmContainerStyle;
+
+      var pageContainerStyle = this.state.pageContainerStyle; // let pageContainerStyle = getPageContainerStyle();
+
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.page,
+        style: containerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        icon: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
+          type: "left"
+        }),
+        onLeftClick: function onLeftClick() {
+          return _this5.props.onLeftClick();
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.container,
+        style: pageContainerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        mainTitle: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Backup Mnemonic"
+        }),
+        content: [// '助记词用于恢复钱包或者重置钱包密码，',
+        // '仔细抄写下助记词并放在安全的地方！',
+        // '请勿截图!',
+        // '如果有他人获取你的助记词，他将直接获取你的资产!'
+        // 'Mnemonic is used to restore your wallet or reset your password',
+        // 'Please write them down carefully and keep them in a secure location',
+        // 'Please DO NOT use screen capture!',
+        // 'If anyone obtains your Mnemonic, they WILL obtain your digital assets!',
+        react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Becareful07"
+        }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Becareful08"
+        }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Becareful09"
+        }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.Becareful010"
+        })]
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.privateContainer
+      }, this.props.mnemonic)), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        text: "Next",
+        onClick: function onClick() {
+          return _this5.toggleConfirm();
+        }
+      }))))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.page,
+        style: confirmContainerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_nav_bar__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        icon: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
+          type: "left"
+        }),
+        onLeftClick: function onLeftClick() {
+          return _this5.toggleConfirm();
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.container,
+        style: pageContainerStyle
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        mainTitle: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.ConfirmMnemonic",
+          defaultMessage: "Confirm Mnemonic"
+        }),
+        subTitle: this.state.confirmSubTitle ? [this.state.confirmSubTitle] : '',
+        subNoticeShow: this.state.confirmSubNoticeShow,
+        subNotice: // '顺序不对，请校对！'
+        react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
+          id: "aelf.hint01",
+          defaultMessage: "Mnemonic is not in the right sequence, please rearrange!"
+        }),
+        iconHidden: true
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "".concat(_pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.privateContainer, " ").concat(_pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.purple)
+      }, this.state.mnemonicConfirmed), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.mnemonicListContainer
+      }, mnemonicDisorderedHtml)), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _pages_scss__WEBPACK_IMPORTED_MODULE_13___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        text: "Submit",
+        onClick: function onClick() {
+          return _this5.confirm();
+        }
+      }))))));
+    }
+  }]);
+
+  return Mnemonic;
+}(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
+
+
+
+/***/ }),
+/* 727 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(728);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 728 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(487);
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_page-2YpbA {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 999;\n  background: url(" + escape(__webpack_require__(488)) + ") no-repeat; }\n\n@media (min-width: 768px) {\n  .AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_page-2YpbA {\n    position: absolute;\n    top: 0;\n    z-index: 999;\n    -webkit-background-size: cover;\n    -moz-background-size: cover;\n    background-size: cover; } }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_container-3wcT_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_confirmContainer-1uZ28 {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 1001;\n  background: #FFF; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_privateContainer-intJb {\n  word-wrap: break-word;\n  border: 1px solid #ccc;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  padding: 8px;\n  margin: 32px 24px 15px 24px;\n  background: #fefefe;\n  line-height: 1.5;\n  height: 88px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_privateContainer-intJb.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_purple-_JWek {\n  margin-top: 0;\n  background: rgba(0, 0, 0, 0.2);\n  border: none; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_mnemonicListContainer-24Nud {\n  margin: 0 24px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_whitespace-3Y3dB {\n  height: 45px;\n  width: 10px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_listItem-oHMWC {\n  display: inline-block;\n  border: 1px solid #eee;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  margin: 5px;\n  padding: 5px 8px 5px 8px; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_listItem-oHMWC:active {\n  opacity: 0.5; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_listItem-oHMWC.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_selectd-3Q58P {\n  border: none;\n  color: #FFF;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_note-3zwlI {\n  background-color: #ffd74e;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  padding: 1px 15px 1px 15px;\n  color: #333; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_top-VjtxM {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center; }\n\n.AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_bottom-13f-A {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n", ""]);
+
+// exports
+exports.locals = {
+	"page": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_page-2YpbA",
+	"container": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_container-3wcT_",
+	"confirmContainer": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_confirmContainer-1uZ28",
+	"privateContainer": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_privateContainer-intJb",
+	"purple": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_purple-_JWek",
+	"mnemonicListContainer": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_mnemonicListContainer-24Nud",
+	"whitespace": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_whitespace-3Y3dB",
+	"listItem": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_listItem-oHMWC",
+	"selectd": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_selectd-3Q58P",
+	"note": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_note-3zwlI",
+	"top": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_top-VjtxM",
+	"bottom": "AELF-app-web-pages-Popup-BackupKeypairs-pages-pages_bottom-13f-A"
+};
+
+/***/ }),
+/* 729 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ExtensionManager; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(275);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(279);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(256);
+/* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(259);
+/* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(100);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(113);
+/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(730);
+/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(480);
+/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(463);
+/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(492);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(174);
+
+
+
+
+
+
+
+
+/**
+ * @file BackupExtension.js
+ * @author zhouminghui
+ */
+
+
+
+
+
+
+ // import aelf from 'aelf-sdk';
+
+var Item = antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a.Item;
+
+var ExtensionManager =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(ExtensionManager, _Component);
+
+  function ExtensionManager() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, ExtensionManager);
+
+    return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(ExtensionManager).apply(this, arguments));
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ExtensionManager, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9___default.a.container + ' ' + 'aelf-personal-pages aelf-solid'
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        onLeftClick: function onLeftClick() {
+          return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_12__["historyPush"])('/home');
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
+        className: 'aelf-list'
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
+        onClick: function onClick() {
+          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/?action=backup_wallet');
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        icon: "wallet16",
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+          id: "aelf.Backup NightELF",
+          defaultMessage: "Backup NightELF"
+        })
+      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
+        className: 'aelf-list'
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
+        onClick: function onClick() {
+          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/?action=clear_wallet');
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        icon: "tx_history16",
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+          id: "aelf.Delete NightELF",
+          defaultMessage: "Delete NightELF"
+        })
+      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a, {
+        className: 'aelf-list'
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
+        onClick: function onClick() {
+          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/home');
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        icon: "about16",
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+          id: "aelf.Timer Locks",
+          defaultMessage: "Timer Locks"
+        })
+      }))));
+    }
+  }]);
+
+  return ExtensionManager;
+}(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
+
+
+
+/***/ }),
+/* 730 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(731);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 731 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Popup-ExtensionManager-ExtensionManager_container-3Nm3x {\n  color: #FFF; }\n\n.AELF-app-web-pages-Popup-ExtensionManager-ExtensionManager_blank-19a7s {\n  height: 35px;\n  width: 35px; }\n", ""]);
+
+// exports
+exports.locals = {
+	"container": "AELF-app-web-pages-Popup-ExtensionManager-ExtensionManager_container-3Nm3x",
+	"blank": "AELF-app-web-pages-Popup-ExtensionManager-ExtensionManager_blank-19a7s"
+};
+
+/***/ }),
+/* 732 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LoadFromBackup; });
+/* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(256);
+/* harmony import */ var antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(259);
+/* harmony import */ var antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(263);
+/* harmony import */ var antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_input_item_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(266);
+/* harmony import */ var antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(275);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(278);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(279);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(222);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(233);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(100);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(442);
+/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(463);
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(198);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(174);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(113);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(281);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(470);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(471);
+/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(733);
+/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__);
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @file LoadFromBackup.js
+ * @author zhouminghui
+*/
+
+
+
+
+
+
+
+
+
+
+
+function getSeed(password) {
+  if (password) {
+    var hmac = Object(crypto__WEBPACK_IMPORTED_MODULE_17__["createHmac"])('sha512', password);
+    var seed = hmac.update(password).digest('hex');
+    return seed;
+  }
+
+  antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Please input password', 3, function () {}, false);
+
+  return false;
+}
+
+var LoadFromBackup =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(LoadFromBackup, _Component);
+
+  function LoadFromBackup(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, LoadFromBackup);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(LoadFromBackup).call(this, props));
+    _this.state = {
+      password: '',
+      fileName: ''
+    };
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(LoadFromBackup, [{
+    key: "getReturn",
+    value: function getReturn() {
+      location.href = '/popup.html';
+    }
+  }, {
+    key: "setPassword",
+    value: function setPassword(password) {
+      this.setState({
+        password: password
+      });
+    }
+  }, {
+    key: "importBackup",
+    value: function importBackup() {
+      var seed = getSeed(this.state.password);
+      var fileValue = this.state.fileValue;
+
+      if (seed) {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["IMPORT_WALLET"], {
+          seed: seed,
+          fileValue: fileValue
+        }).send().then(function (result) {
+          if (result && result.error === 0) {
+            react_router__WEBPACK_IMPORTED_MODULE_16__["hashHistory"].push('/home');
+          } else {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail(result.errorMessage.message, 3, function () {}, false);
+          }
+        });
+      }
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(event) {
+      var _this2 = this;
+
+      event.persist();
+      var reader = new FileReader();
+      reader.readAsText(event.target.files[0], 'utf-8');
+
+      reader.onloadstart = function (result) {
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.loading('Loading...', 999, function () {});
+
+        _this2.setState({
+          fileName: event.target.files[0].name
+        });
+      };
+
+      reader.onload = function (result) {
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.hide();
+
+        _this2.setState({
+          fileValue: result.currentTarget.result
+        });
+      };
+    }
+  }, {
+    key: "getFileNameHTML",
+    value: function getFileNameHTML() {
+      var fileName = this.state.fileName;
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-file-name"
+      }, fileName);
+    }
+  }, {
+    key: "renderBackup",
+    value: function renderBackup() {
+      var _this3 = this;
+
+      var fileName = this.state.fileName;
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-input-container aelf-dash"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-import-file"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        id: "aelf.Please select the file"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.updateFile
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        id: "aelf.Click here"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("input", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.update,
+        type: "file",
+        accept: ".txt",
+        name: "import-file",
+        onChange: this.onChange.bind(this)
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.fileName
+      }, fileName), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-input-title"
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        id: "aelf.Password"
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        value: this.state.password,
+        type: "password",
+        placeholder: "",
+        onChange: function onChange(password) {
+          return _this3.setPassword(password);
+        },
+        moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_14__["moneyKeyboardWrapProps"]
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.bottom
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: "aelf-blank12"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        text: "Commit",
+        aelficon: "add_purple20",
+        onClick: function onClick() {
+          return _this3.importBackup();
+        }
+      })));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var confirmHTML = this.renderBackup();
+      var titleText = 'Import';
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.container
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        onLeftClick: function onLeftClick() {
+          return _this4.getReturn();
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.blank
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.welcome
+      }, titleText), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
+        className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.wallet
+      }, "Night ELF")), confirmHTML);
+    }
+  }]);
+
+  return LoadFromBackup;
+}(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
+
+
+
+/***/ }),
+/* 733 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(734);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 734 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_container-2MVf2 {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_top-zGZ6- {\n  padding: 0 24px 0 24px; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_blank-2mm26 {\n  margin: 58px 0 0 0; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_blank12-AQCAY {\n  height: 12px;\n  width: 12px; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_welcome-2w8xP {\n  font-weight: 100;\n  font-size: 36px;\n  margin: 62px 0 0px 0; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_wallet-BOcHo {\n  font-size: 36px;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_description-2JckS {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_bottom-IjGfi {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_btn-1G3dC {\n  -moz-border-radius: 100px;\n  border-radius: 100px; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_createBottom-31NNx {\n  width: 80%;\n  margin: 0 auto 0px 10%; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_updateFile-3zENe {\n  cursor: pointer;\n  color: dodgerblue;\n  display: inline-block;\n  position: relative; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_update-1RboZ {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  opacity: 0; }\n\n.AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_fileName-wpEAm {\n  word-break: break-all;\n  word-wrap: break-word; }\n", ""]);
+
+// exports
+exports.locals = {
+	"container": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_container-2MVf2",
+	"top": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_top-zGZ6-",
+	"blank": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_blank-2mm26",
+	"blank12": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_blank12-AQCAY",
+	"welcome": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_welcome-2w8xP",
+	"wallet": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_wallet-BOcHo",
+	"description": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_description-2JckS",
+	"bottom": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_bottom-IjGfi",
+	"btn": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_btn-1G3dC",
+	"createBottom": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_createBottom-31NNx",
+	"updateFile": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_updateFile-3zENe",
+	"update": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_update-1RboZ",
+	"fileName": "AELF-app-web-pages-Popup-LoadFromBackup-LoadFromBackup_fileName-wpEAm"
+};
 
 /***/ })
 /******/ ]);

@@ -12,6 +12,8 @@ import NightElf from './models/NightElf';
 import {apis} from './utils/BrowserApis';
 import errorHandler from './utils/errorHandler';
 import NotificationService from './service/NotificationService';
+import {saveAs} from 'file-saver';
+import SparkMD5 from 'spark-md5';
 
 import Aelf from 'aelf-sdk';
 // import { resolve } from 'url';
@@ -122,6 +124,14 @@ export default class Background {
             case InternalMessageTypes.UPDATE_WALLET:
                 Background.updateWallet(sendResponse, message.payload);
                 break;
+            // update: backup wallet  start
+            case InternalMessageTypes.BACKUP_WALLET:
+                Background.backupWallet(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.IMPORT_WALLET:
+                Background.importWallet(sendResponse, message.payload);
+                break;
+            // update: backup wallet  end
 
             case InternalMessageTypes.INSERT_KEYPAIR:
                 Background.insertKeypair(sendResponse, message.payload);
@@ -502,12 +512,6 @@ export default class Background {
         Background.updateWallet(sendResponse);
     }
 
-    static importWallet(sendResponse, _seed) {
-        nightElf = NightElf.fromJson({});
-        seed = _seed;
-        Background.updateWallet(sendResponse);
-    }
-
     static unlockWallet(sendResponse, _seed) {
         seed = _seed;
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
@@ -561,6 +565,82 @@ export default class Background {
         });
     }
 
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >  backup wallet start  >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+    static backupWallet(sendResponse, _seed) {
+        seed = _seed;
+        this.checkSeed({sendResponse}, () => {
+            const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
+            let file = new File(
+                [nightElfEncrypto],
+                'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt',
+                {type: 'text/plain;charset=utf-8'}
+            );
+            saveAs(file);
+            sendResponse({
+                ...errorHandler(0)
+            });
+        });
+    }
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >   backup wallet end   >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >  import wallet start  >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+    static importWallet(sendResponse, values) {
+        const nightElfEncrypto = values.fileValue || null;
+        seed = values.seed || null;
+        let noStorageMsg = '';
+        let decryptoFailMsg = '';
+        if (seed) {
+            let nightElfString;
+            if (nightElfEncrypto) {
+                try {
+                    nightElfString = AESDecrypto(nightElfEncrypto, seed);
+                }
+                catch (e) {
+                    sendResponse({
+                        ...errorHandler(10000, 'Get Night Elf failed!')
+                    });
+                }
+
+                if (nightElfString) {
+                    apis.storage.local.set({
+                        nightElfEncrypto
+                    }, result => {
+                        Background.unlockWallet(sendResponse, seed);
+                        sendResponse({
+                            ...errorHandler(0),
+                            result
+                        });
+                    });
+                }
+                else {
+                    sendResponse({
+                        ...errorHandler(200006, decryptoFailMsg)
+                    });
+                }
+            }
+            else {
+                sendResponse({
+                    ...errorHandler(200007, noStorageMsg)
+                });
+            }
+        }
+    }
+
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >  import wallet end  >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
     static lockWallet(sendResponse) {
         seed = null;
         nightElf = null;
@@ -597,7 +677,7 @@ export default class Background {
             } = nightElfObject;
             sendResponse({
                 ...errorHandler(0),
-                keypairs: keypairs
+                keypairs
             });
         });
     }
@@ -1166,7 +1246,6 @@ export default class Background {
     //         this.update(() => {}, scatter);
     //     })
     // }
-
 }
 
 new Background();

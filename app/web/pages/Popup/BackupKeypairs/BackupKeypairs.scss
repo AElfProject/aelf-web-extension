@@ -1,0 +1,94 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.textContainer {
+    flex: 1;
+    align-items: center;
+    display: flex;
+}
+
+.forbidden {
+	word-wrap: break-word;
+    -webkit-user-select:none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select:none;/*禁用页面内容选中和复制操作*/
+    -webkit-touch-callout:none;/*禁用长按页面时的弹出菜单(iOS下有效)*/
+    -webkit-tap-highlight-color:rgba(0,0,0,0);/*去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)*/
+    color: #999;
+    font-size: 17px;
+    line-height: 25.5px;
+    padding: 11px 15px;
+    font-style: oblique;
+}
+
+.title {
+	padding: 0px 15px;
+}
+
+.text {
+	padding: 15px 15px 9px 15px;
+    font-size: 14px;
+    color: #888;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.textarea {
+    position: fixed;
+    top: -1250px;
+    left: -1250px;
+}
+
+.bottom {
+    width: 80%;
+    margin: 0 auto 50px 10%;
+}
+
+// pannel
+.pannelTitle {
+    height: 35px;
+    line-height: 35px;
+    text-align: left;
+    text-indent: 24px;
+    border-bottom: 0.5px solid #F2F2F2;
+    color: #ADAAB3;
+    font-size: 10px;
+}
+
+.pannelBtnPurple {
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #AC00E6;
+    border-top: 0.5px solid #F2F2F2;
+    border-bottom: 4px solid #F7F7F7;
+    cursor: pointer;
+}
+
+.pannelBtnPurple:active {
+    background: #DDD;
+}
+
+.pannerlBtnGrey {
+    color: #8F8A99;
+    border-bottom: 0;
+}
+
+
+.copyArea {
+    height: 90px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: break-all;
+    text-align: left;
+    color: #14111A;
+    font-size: 12px;
+}

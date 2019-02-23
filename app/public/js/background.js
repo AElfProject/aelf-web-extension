@@ -23168,6 +23168,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNLOCK_WALLET", function() { return UNLOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCK_WALLET", function() { return LOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_WALLET", function() { return UPDATE_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BACKUP_WALLET", function() { return BACKUP_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMPORT_WALLET", function() { return IMPORT_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INSERT_KEYPAIR", function() { return INSERT_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_KEYPAIR", function() { return REMOVE_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_KEYPAIR", function() { return GET_KEYPAIR; });
@@ -23195,7 +23197,10 @@ var CHECK_WALLET = 'checkWallet';
 var CLEAR_WALLET = 'clearWallet';
 var UNLOCK_WALLET = 'unlockWallet';
 var LOCK_WALLET = 'lockWallet';
-var UPDATE_WALLET = 'updateWallet';
+var UPDATE_WALLET = 'updateWallet'; // backup wallet
+
+var BACKUP_WALLET = 'backupWallet';
+var IMPORT_WALLET = 'importWallet';
 var INSERT_KEYPAIR = 'insertKeypair';
 var REMOVE_KEYPAIR = 'removeKeypair';
 var GET_KEYPAIR = 'getKeypair';
@@ -47370,8 +47375,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(670);
 /* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(671);
 /* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(677);
-/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(493);
-/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_11__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'file-saver'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'spark-md5'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(493);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_12__);
 
 
 
@@ -47388,9 +47395,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
  // import { resolve } from 'url';
 
-var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a.wallet;
+var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_12___default.a.wallet;
 var AESEncrypto = wallet.AESEncrypto,
     AESDecrypto = wallet.AESDecrypto; // import AES from 'aes-oop';
 // import * as InternalMessageTypes from './messages/InternalMessageTypes';
@@ -47510,6 +47519,16 @@ function () {
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["UPDATE_WALLET"]:
           Background.updateWallet(sendResponse, message.payload);
           break;
+        // update: backup wallet  start
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["BACKUP_WALLET"]:
+          Background.backupWallet(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["IMPORT_WALLET"]:
+          Background.importWallet(sendResponse, message.payload);
+          break;
+        // update: backup wallet  end
 
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["INSERT_KEYPAIR"]:
           Background.insertKeypair(sendResponse, message.payload);
@@ -47592,7 +47611,7 @@ function () {
     key: "connectAelfChain",
     value: function connectAelfChain(sendResponse, chainInfo) {
       this.lockGuard(sendResponse, function () {
-        var aelf = new aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a(new aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a.providers.HttpProvider(chainInfo.payload.httpProvider));
+        var aelf = new aelf_sdk__WEBPACK_IMPORTED_MODULE_12___default.a(new aelf_sdk__WEBPACK_IMPORTED_MODULE_12___default.a.providers.HttpProvider(chainInfo.payload.httpProvider));
         aelf.chain.connectChain(function (error, result) {
           // console.log(error, result);
           if (error || !result || !result.result || result.error) {
@@ -47769,7 +47788,7 @@ function () {
           return;
         }
 
-        var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_11___default.a.wallet.getWalletByPrivateKey(keypair.privateKey);
+        var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_12___default.a.wallet.getWalletByPrivateKey(keypair.privateKey);
         dappAelfMeta.aelf.chain.contractAtAsync(contractAddress, wallet, function (error, contractMethods) {
           if (error) {
             sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error)));
@@ -47882,13 +47901,6 @@ function () {
       Background.updateWallet(sendResponse);
     }
   }, {
-    key: "importWallet",
-    value: function importWallet(sendResponse, _seed) {
-      nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson({});
-      seed = _seed;
-      Background.updateWallet(sendResponse);
-    }
-  }, {
     key: "unlockWallet",
     value: function unlockWallet(sendResponse, _seed) {
       seed = _seed;
@@ -47943,7 +47955,69 @@ function () {
           Background.lockWallet(sendResponse);
         });
       });
-    }
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >  backup wallet start  >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+  }, {
+    key: "backupWallet",
+    value: function backupWallet(sendResponse, _seed) {
+      seed = _seed;
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function () {
+        var nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
+        var file = new File([nightElfEncrypto], 'NightELF_backup_file_' + !(function webpackMissingModule() { var e = new Error("Cannot find module 'spark-md5'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).hash(nightElfEncrypto) + '.txt', {
+          type: 'text/plain;charset=utf-8'
+        });
+        !(function webpackMissingModule() { var e = new Error("Cannot find module 'file-saver'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(file);
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0)));
+      });
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >   backup wallet end   >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >  import wallet start  >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+  }, {
+    key: "importWallet",
+    value: function importWallet(sendResponse, values) {
+      var nightElfEncrypto = values.fileValue || null;
+      seed = values.seed || null;
+      var noStorageMsg = '';
+      var decryptoFailMsg = '';
+
+      if (seed) {
+        var nightElfString;
+
+        if (nightElfEncrypto) {
+          try {
+            nightElfString = AESDecrypto(nightElfEncrypto, seed);
+          } catch (e) {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(10000, 'Get Night Elf failed!')));
+          }
+
+          if (nightElfString) {
+            _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.set({
+              nightElfEncrypto: nightElfEncrypto
+            }, function (result) {
+              Background.unlockWallet(sendResponse, seed);
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                result: result
+              }));
+            });
+          } else {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200006, decryptoFailMsg)));
+          }
+        } else {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200007, noStorageMsg)));
+        }
+      }
+    } // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >  import wallet end  >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
   }, {
     key: "lockWallet",
     value: function lockWallet(sendResponse) {

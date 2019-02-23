@@ -17,9 +17,11 @@ const zh_CN = {
     'aelf.Copy Address': '复制钱包地址',
     'aelf.Create Wallet': '创建钱包',
     'aelf.Create Keypair': '创建密钥',
+    'aelf.Import Keypair': '导入密钥',
     'aelf.Clear Wallet': '删除钱包',
     'aelf.Unlock Wallet': '解锁钱包',
     'aelf.Keypair Name': '密钥对别名',
+    'aelf.Extend Manager': '扩展管理',
     'aelf.Key Pairs': '密钥对',
     'aelf.Receive': '钱包地址',
     'aelf.Home': '首页',
@@ -149,7 +151,14 @@ const zh_CN = {
     'aelf.BackUpCon04': '备份助记词在您丢失钱包或忘记密码时，能帮助您恢复钱包。',
     'aelf.Backup now': '立即备份助记词',
     'aelf.The passwords confirmed error.': '两次输入不一致',
-    'aelf.The passwords is not strong.': '密码强度不够'
+    'aelf.The passwords is not strong.': '密码强度不够',
+    'aelf.Extension Manager': '管理',
+    'aelf.Backup NightELF': '备份 NightELF',
+    'aelf.Delete NightELF': '删除 NightELF',
+    'aelf.Timer Locks': '定时锁定',
+    'aelf.Load From Backup': '导入加密备份',
+    'aelf.Please select the file': '请选择备份文件',
+    'aelf.Click here': '点击这里'
 };
 
 export default zh_CN;

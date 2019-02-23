@@ -47,7 +47,9 @@ export default class Lock extends Component {
         };
         const action = getParam('action', location.href);
         const isClear = action === 'clear_wallet';
+        const isBackup = action === 'backup_wallet';
         this.isClear = isClear;
+        this.isBackup = isBackup;
     }
 
     setPassword(password) {
@@ -63,7 +65,7 @@ export default class Lock extends Component {
             nightElf
         } = walletStatus || {};
 
-        if (nightElfEncrypto && nightElf && !this.isClear) {
+        if (nightElfEncrypto && nightElf && !this.isClear && !this.isBackup) {
             hashHistory.push('/home');
         }
         else {
@@ -73,7 +75,6 @@ export default class Lock extends Component {
 
     checkWallet() {
         InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            console.log(InternalMessageTypes.CHECK_WALLET, result);
             this.turnToHomePage(result, () => {
                 this.setState({
                     walletStatus: result
@@ -112,6 +113,7 @@ export default class Lock extends Component {
                     hashHistory.push('/home');
                 }
                 else {
+                    console.log(result.error);
                     Toast.fail('Unlock Wallet Failed.', 3, () => {}, false);
                 }
             }).catch(error => {
@@ -148,7 +150,7 @@ export default class Lock extends Component {
             this.checkWallet();
         }
         else {
-            hashHistory.push('/home');
+            hashHistory.push('/extensionManager');
         }
     }
 
@@ -161,6 +163,38 @@ export default class Lock extends Component {
         }
     }
 
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >         Backup  wallet        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    backupWallet() {
+        const seed = getSeed(this.state.password);
+        if (seed) {
+            InternalMessage.payload(InternalMessageTypes.BACKUP_WALLET, seed).send().then(result => {
+                if (result && result.error === 0) {
+                    hashHistory.push('/extensionManager');
+                }
+                else {
+                    Toast.fail('Backup failed!');
+                    this.backupFailed = true;
+                    return;
+                }
+            }).catch(error => {
+                Toast.fail('Backup Wallet Failed.', 3, () => {}, false);
+            });
+        }
+    }
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >      Load From Backupt        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    loadFromBackup() {
+        hashHistory.push('/loadFromBackup');
+    }
+
+
+
     // if there is no wallet in browser.storage [chrome.storage]
     // We need create a wallet and insert it into storage.
     renderCreate() {
@@ -168,12 +202,19 @@ export default class Lock extends Component {
             <Password
                 setPassword={password => this.setPassword(password)}
             ></Password>
-            <div className={style.bottom}>
+            <div className={style.createBottom}>
                 <div className='aelf-blank12'></div>
                 <AelfButton
                     text='Create Wallet'
                     aelficon='add_purple20'
-                    onClick={() => this.createWallet()}>
+                    onClick={() => this.createWallet()}
+                    style={{marginBottom: '10px'}}
+                >
+                </AelfButton>
+                <AelfButton
+                    text='Load From Backup'
+                    aelficon='add_purple20'
+                    onClick={() => this.loadFromBackup()}>
                 </AelfButton>
             </div>
         </div>;
@@ -241,6 +282,37 @@ export default class Lock extends Component {
         return <div></div>;
     }
 
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >         Backup  wallet        >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    renderBackup() {
+        return <div>
+            <div className="aelf-input-container aelf-dash">
+                <List>
+                    <div className="aelf-input-title">
+                        <div><FormattedMessage id = 'aelf.Password' /></div>
+                    </div>
+                    <InputItem
+                        value={this.state.password}
+                        type="password"
+                        placeholder=""
+                        onChange={password => this.setPassword(password)}
+                        moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                    ></InputItem>
+                </List>
+            </div>
+            <div className={style.bottom}>
+                <div className='aelf-blank12'></div>
+                <AelfButton
+                    text='Backup NightELF'
+                    aelficon='add_purple20'
+                    onClick={() => this.backupWallet()}>
+                </AelfButton>
+            </div>
+        </div>;
+    }
+
     renderTestButtons() {
         return <div>
             <button onClick={() => this.checkWallet()}>checkWallet</button>
@@ -279,6 +351,13 @@ export default class Lock extends Component {
                             onLeftClick={() => this.backClick()}
                         ></NavNormal>;
                 }
+                else if (this.isBackup) {
+                    buttonHTML = this.renderBackup();
+                    titleText = 'Backup';
+                    navHTML = <NavNormal
+                            onLeftClick={() => this.backClick()}
+                        ></NavNormal>;
+                }
             }
         }
 
@@ -287,14 +366,12 @@ export default class Lock extends Component {
         return (
             <div className={style.container} style={containerStyle}>
                 {navHTML}
-
                 <div className={style.top}>
                     <div className={style.blank}></div>
                     <p className={style.welcome}>{titleText}</p>
                     <p className={style.wallet}>Night ELF</p>
                     {/* <p className={style.description}>offcial</p> */}
                 </div>
-
                 {buttonHTML}
                 {/* {testHTML} */}
             </div>

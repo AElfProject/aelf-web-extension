@@ -23168,6 +23168,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNLOCK_WALLET", function() { return UNLOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCK_WALLET", function() { return LOCK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_WALLET", function() { return UPDATE_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BACKUP_WALLET", function() { return BACKUP_WALLET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMPORT_WALLET", function() { return IMPORT_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INSERT_KEYPAIR", function() { return INSERT_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_KEYPAIR", function() { return REMOVE_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_KEYPAIR", function() { return GET_KEYPAIR; });
@@ -23195,7 +23197,10 @@ var CHECK_WALLET = 'checkWallet';
 var CLEAR_WALLET = 'clearWallet';
 var UNLOCK_WALLET = 'unlockWallet';
 var LOCK_WALLET = 'lockWallet';
-var UPDATE_WALLET = 'updateWallet';
+var UPDATE_WALLET = 'updateWallet'; // backup wallet
+
+var BACKUP_WALLET = 'backupWallet';
+var IMPORT_WALLET = 'importWallet';
 var INSERT_KEYPAIR = 'insertKeypair';
 var REMOVE_KEYPAIR = 'removeKeypair';
 var GET_KEYPAIR = 'getKeypair';
