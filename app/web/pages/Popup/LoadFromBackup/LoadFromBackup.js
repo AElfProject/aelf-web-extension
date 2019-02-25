@@ -132,7 +132,7 @@ export default class LoadFromBackup extends Component {
 
     render() {
         let confirmHTML = this.renderBackup();
-        let titleText = 'Import'
+        let titleText = 'Import';
         return (
             <div className={style.container}>
                 <NavNormal

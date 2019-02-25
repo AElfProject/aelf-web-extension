@@ -12,7 +12,7 @@ import NightElf from './models/NightElf';
 import {apis} from './utils/BrowserApis';
 import errorHandler from './utils/errorHandler';
 import NotificationService from './service/NotificationService';
-import {saveAs} from 'file-saver';
+import FileSaver from 'file-saver';
 import SparkMD5 from 'spark-md5';
 
 import Aelf from 'aelf-sdk';
@@ -573,12 +573,13 @@ export default class Background {
         seed = _seed;
         this.checkSeed({sendResponse}, () => {
             const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
-            let file = new File(
-                [nightElfEncrypto],
-                'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt',
-                {type: 'text/plain;charset=utf-8'}
-            );
-            saveAs(file);
+            let blob = new Blob([nightElfEncrypto], {type: 'text/plain;charset=utf-8'});
+            // let file = new File(
+            //     [nightElfEncrypto],
+            //     'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt',
+            //     {type: 'text/plain;charset=utf-8'}
+            // );
+            FileSaver.saveAs(blob, 'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt');
             sendResponse({
                 ...errorHandler(0)
             });
@@ -596,7 +597,7 @@ export default class Background {
 
     static importWallet(sendResponse, values) {
         const nightElfEncrypto = values.fileValue || null;
-        seed = values.seed || null;
+        let seed = values.seed || null;
         let noStorageMsg = '';
         let decryptoFailMsg = '';
         if (seed) {

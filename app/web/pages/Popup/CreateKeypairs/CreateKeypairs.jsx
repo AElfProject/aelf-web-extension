@@ -14,10 +14,10 @@ import Mnemonic from './pages/Mnemonic';
 
 import {historyPush} from '../../../utils/historyChange';
 import NavNormal from '../../../components/NavNormal/NavNormal';
-import NoticePanel from '../../../components/NoticePanel/NoticePanel';
+// import NoticePanel from '../../../components/NoticePanel/NoticePanel';
 import AelfButton from '../../../components/Button/Button';
 
-import moneyKeyboardWrapProps from '../../../utils/utils';
+import {moneyKeyboardWrapProps} from '../../../utils/utils';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 
