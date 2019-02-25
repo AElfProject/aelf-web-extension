@@ -571,7 +571,7 @@ export default class Background {
 
     static backupWallet(sendResponse, _seed) {
         seed = _seed;
-        this.checkSeed({sendResponse}, () => {
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
             let blob = new Blob([nightElfEncrypto], {type: 'text/plain;charset=utf-8'});
             // let file = new File(
@@ -599,12 +599,12 @@ export default class Background {
         const nightElfEncrypto = values.fileValue || null;
         let seed = values.seed || null;
         let noStorageMsg = '';
-        let decryptoFailMsg = '';
+        let decryptoFailMsg = 'Document error or damaged';
         if (seed) {
             let nightElfString;
             if (nightElfEncrypto) {
                 try {
-                    nightElfString = AESDecrypto(nightElfEncrypto, seed);
+                    nightElfString = JSON.parse(AESDecrypto(nightElfEncrypto, seed));
                 }
                 catch (e) {
                     sendResponse({
@@ -639,7 +639,7 @@ export default class Background {
 
 
     // >>>>>>>>>>>>>>>>>>>>>>>>>
-    // >  import wallet end  >
+    // >   import wallet end   >
     // >>>>>>>>>>>>>>>>>>>>>>>>>
 
     static lockWallet(sendResponse) {

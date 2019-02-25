@@ -149,6 +149,9 @@ export default class Lock extends Component {
         if (this.clearFailed) {
             this.checkWallet();
         }
+        else if (this.backupFailed) {
+            this.checkWallet();
+        }
         else {
             hashHistory.push('/extensionManager');
         }
@@ -176,7 +179,9 @@ export default class Lock extends Component {
                 }
                 else {
                     Toast.fail('Backup failed!');
-                    this.backupFailed = true;
+                    InternalMessage.payload(InternalMessageTypes.LOCK_WALLET).send().then(result => {
+                        this.backupFailed = true;
+                    });
                     return;
                 }
             }).catch(error => {
@@ -331,7 +336,6 @@ export default class Lock extends Component {
             nightElfEncrypto,
             nightElf
         } = walletStatus || {};
-
         if (walletStatus) {
             if (!nightElfEncrypto) {
                 buttonHTML = this.renderCreate();

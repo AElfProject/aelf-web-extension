@@ -28,7 +28,7 @@ document.addEventListener('NightElf', result => {
     };
 
     const aelf = new window.NightElf.AElf({
-        httpProvider: 'http://192.168.199.210:5000/chain',
+        httpProvider: 'http://192.168.197.70:8000/chain',
         appName: 'Test'
     });
 
@@ -88,7 +88,7 @@ document.addEventListener('NightElf', result => {
                 payload: {
                     // appName: message.appName,
                     // domain: message.hostname
-                    address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs',
+                    address: 'ELF_6WZNJgU5MHWsvzZmPpC7cW6g3qciniQhDKRLCvbQcTCcVFH',
                     contracts: [{
                         chainId: 'AELF',
                         contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
@@ -112,7 +112,7 @@ document.addEventListener('NightElf', result => {
     let tokenC;
     initAelfContract.onclick = function () {
         const wallet = {
-            address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs'
+            address: 'ELF_6WZNJgU5MHWsvzZmPpC7cW6g3qciniQhDKRLCvbQcTCcVFH'
         };
         // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
         // There is only one value named address;

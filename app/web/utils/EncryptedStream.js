@@ -87,7 +87,6 @@ export default class EncryptoStream {
                     for (const each in aesKeyEncryptedJSON) {
                         aesKeyEncryptedBuffer[each] = Buffer.from(aesKeyEncryptedJSON[each], 'hex');
                     }
-
                     eccrypto.decrypt(this.privateKey, aesKeyEncryptedBuffer).then(decryptAESKey => {
                         console.log(
                             'in addEventListenerOfEEC:: decryptAESKey ::',

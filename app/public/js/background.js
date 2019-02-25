@@ -14789,7 +14789,7 @@ elliptic.eddsa = __webpack_require__(407);
 /* 381 */
 /***/ (function(module) {
 
-module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Sat Feb 23 2019 15:43:39 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
+module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Mon Feb 25 2019 11:33:10 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
 
 /***/ }),
 /* 382 */
@@ -47998,7 +47998,8 @@ function () {
       seed = _seed;
       this.checkSeed({
         sendResponse: sendResponse
-      }, function () {
+      }, function (_ref2) {
+        var nightElfObject = _ref2.nightElfObject;
         var nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
         var blob = new Blob([nightElfEncrypto], {
           type: 'text/plain;charset=utf-8'
@@ -48024,14 +48025,14 @@ function () {
       var nightElfEncrypto = values.fileValue || null;
       var seed = values.seed || null;
       var noStorageMsg = '';
-      var decryptoFailMsg = '';
+      var decryptoFailMsg = 'Document error or damaged';
 
       if (seed) {
         var nightElfString;
 
         if (nightElfEncrypto) {
           try {
-            nightElfString = AESDecrypto(nightElfEncrypto, seed);
+            nightElfString = JSON.parse(AESDecrypto(nightElfEncrypto, seed));
           } catch (e) {
             sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(10000, 'Get Night Elf failed!')));
           }
@@ -48053,7 +48054,7 @@ function () {
         }
       }
     } // >>>>>>>>>>>>>>>>>>>>>>>>>
-    // >  import wallet end  >
+    // >   import wallet end   >
     // >>>>>>>>>>>>>>>>>>>>>>>>>
 
   }, {
@@ -48068,8 +48069,8 @@ function () {
     value: function insertKeypair(sendResponse, keypair) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref2) {
-        var nightElfObject = _ref2.nightElfObject;
+      }, function (_ref3) {
+        var nightElfObject = _ref3.nightElfObject;
         nightElfObject.keychain.keypairs.unshift(keypair);
         nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
         Background.updateWallet(sendResponse);
@@ -48080,8 +48081,8 @@ function () {
     value: function removeKeypair(sendResponse, address) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref3) {
-        var nightElfObject = _ref3.nightElfObject;
+      }, function (_ref4) {
+        var nightElfObject = _ref4.nightElfObject;
         nightElfObject.keychain.keypairs = nightElfObject.keychain.keypairs.filter(function (item) {
           return address !== item.address;
         });
@@ -48094,8 +48095,8 @@ function () {
     value: function getKeypair(sendResponse) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref4) {
-        var nightElfObject = _ref4.nightElfObject;
+      }, function (_ref5) {
+        var nightElfObject = _ref5.nightElfObject;
         var _nightElfObject$keych = nightElfObject.keychain.keypairs,
             keypairs = _nightElfObject$keych === void 0 ? [] : _nightElfObject$keych;
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
@@ -48135,8 +48136,8 @@ function () {
       };
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref5) {
-        var nightElfObject = _ref5.nightElfObject;
+      }, function (_ref6) {
+        var nightElfObject = _ref6.nightElfObject;
         var _nightElfObject$keych2 = nightElfObject.keychain.permissions,
             permissions = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2;
         var permissionIndex = [];
@@ -48172,8 +48173,8 @@ function () {
       // it means, we need declare static checkSeed.
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref6) {
-        var nightElfObject = _ref6.nightElfObject;
+      }, function (_ref7) {
+        var nightElfObject = _ref7.nightElfObject;
         var _nightElfObject$keych3 = nightElfObject.keychain.permissions,
             permissions = _nightElfObject$keych3 === void 0 ? [] : _nightElfObject$keych3;
 
@@ -48250,8 +48251,8 @@ function () {
     value: function getAllPermissions(sendResponse) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref7) {
-        var nightElfObject = _ref7.nightElfObject;
+      }, function (_ref8) {
+        var nightElfObject = _ref8.nightElfObject;
         var _nightElfObject$keych4 = nightElfObject.keychain.permissions,
             permissions = _nightElfObject$keych4 === void 0 ? [] : _nightElfObject$keych4;
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
@@ -48265,8 +48266,8 @@ function () {
     value: function removePermission(sendResponse, removeInfo) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref8) {
-        var nightElfObject = _ref8.nightElfObject;
+      }, function (_ref9) {
+        var nightElfObject = _ref9.nightElfObject;
         var _nightElfObject$keych5 = nightElfObject.keychain.permissions,
             permissions = _nightElfObject$keych5 === void 0 ? [] : _nightElfObject$keych5;
         nightElfObject.keychain.permissions = permissions.filter(function (item) {
@@ -48342,8 +48343,8 @@ function () {
     value: function getAddress(sendResponse) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref9) {
-        var nightElfObject = _ref9.nightElfObject;
+      }, function (_ref10) {
+        var nightElfObject = _ref10.nightElfObject;
         var _nightElfObject$keych6 = nightElfObject.keychain.keypairs,
             keypairs = _nightElfObject$keych6 === void 0 ? [] : _nightElfObject$keych6;
         var addressList = keypairs.map(function (item) {

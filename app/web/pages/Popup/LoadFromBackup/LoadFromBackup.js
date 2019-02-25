@@ -59,6 +59,7 @@ export default class LoadFromBackup extends Component {
                     hashHistory.push('/home');
                 }
                 else {
+                    console.log(result);
                     Toast.fail(result.errorMessage.message, 3, () => {}, false);
                 }
             });
