@@ -69923,7 +69923,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Lock-Lock_container-3suqa {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_top-2Hte1 {\n  padding: 0 24px 0 24px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank-O9mgl {\n  margin: 58px 0 0 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank12-3Z6ft {\n  height: 12px;\n  width: 12px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_welcome-1qIvs {\n  font-weight: 100;\n  font-size: 36px;\n  margin: 62px 0 0px 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_wallet-xuqmT {\n  font-size: 36px;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7 {\n  border-radius: 100px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_createBottom-1oMo2 {\n  width: 80%;\n  margin: 0 auto 0px 10%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_am-list-item-2V4N4 .AELF-app-web-pages-Popup-Lock-Lock_am-list-line-ESeiS .AELF-app-web-pages-Popup-Lock-Lock_am-list-extra-ekyH- {\n  color: #FFF !important; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_am-list-item-2V4N4 .AELF-app-web-pages-Popup-Lock-Lock_am-list-line-ESeiS .AELF-app-web-pages-Popup-Lock-Lock_am-list-content-1VAY5 {\n  color: #FFF !important; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-Lock-Lock_container-3suqa {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_top-2Hte1 {\n  padding: 0 24px 0 24px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank-O9mgl {\n  margin: 58px 0 0 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_blank12-3Z6ft {\n  height: 12px;\n  width: 12px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_welcome-1qIvs {\n  font-weight: 100;\n  font-size: 36px;\n  margin: 62px 0 0px 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_wallet-xuqmT {\n  font-size: 36px;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv {\n  width: 80%;\n  margin: 0 auto 50px 10%; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7 {\n  border-radius: 100px; }\n\n.AELF-app-web-pages-Popup-Lock-Lock_createBottom-1oMo2 {\n  width: 80%;\n  margin: 0 auto 0px 10%; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -69936,11 +69936,7 @@ exports.locals = {
 	"description": "AELF-app-web-pages-Popup-Lock-Lock_description-YmYXq",
 	"bottom": "AELF-app-web-pages-Popup-Lock-Lock_bottom-1fhDv",
 	"btn": "AELF-app-web-pages-Popup-Lock-Lock_btn-22Oy7",
-	"createBottom": "AELF-app-web-pages-Popup-Lock-Lock_createBottom-1oMo2",
-	"am-list-item": "AELF-app-web-pages-Popup-Lock-Lock_am-list-item-2V4N4",
-	"am-list-line": "AELF-app-web-pages-Popup-Lock-Lock_am-list-line-ESeiS",
-	"am-list-extra": "AELF-app-web-pages-Popup-Lock-Lock_am-list-extra-ekyH-",
-	"am-list-content": "AELF-app-web-pages-Popup-Lock-Lock_am-list-content-1VAY5"
+	"createBottom": "AELF-app-web-pages-Popup-Lock-Lock_createBottom-1oMo2"
 };
 
 /***/ }),
@@ -102645,30 +102641,6 @@ function (_Component) {
       });
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.checkWallet();
-    }
-  }, {
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref = walletStatus || {},
-          nightElf = _ref.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_16__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this2 = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["CHECK_WALLET"]).send().then(function (result) {
-        _this2.turnToHomePage(result);
-      });
-    }
-  }, {
     key: "importBackup",
     value: function importBackup() {
       var seed = getSeed(this.state.password);
@@ -102692,7 +102664,7 @@ function (_Component) {
   }, {
     key: "onChange",
     value: function onChange(event) {
-      var _this3 = this;
+      var _this2 = this;
 
       event.persist();
       var reader = new FileReader();
@@ -102701,7 +102673,7 @@ function (_Component) {
       reader.onloadstart = function (result) {
         antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.loading('Loading...', 999, function () {});
 
-        _this3.setState({
+        _this2.setState({
           fileName: event.target.files[0].name
         });
       };
@@ -102709,7 +102681,7 @@ function (_Component) {
       reader.onload = function (result) {
         antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.hide();
 
-        _this3.setState({
+        _this2.setState({
           fileValue: result.currentTarget.result
         });
       };
@@ -102725,7 +102697,7 @@ function (_Component) {
   }, {
     key: "renderBackup",
     value: function renderBackup() {
-      var _this4 = this;
+      var _this3 = this;
 
       var fileName = this.state.fileName;
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -102755,7 +102727,7 @@ function (_Component) {
         type: "password",
         placeholder: "",
         onChange: function onChange(password) {
-          return _this4.setPassword(password);
+          return _this3.setPassword(password);
         },
         moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_14__["moneyKeyboardWrapProps"]
       }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -102766,14 +102738,14 @@ function (_Component) {
         text: "Commit",
         aelficon: "add_purple20",
         onClick: function onClick() {
-          return _this4.importBackup();
+          return _this3.importBackup();
         }
       })));
     }
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       var confirmHTML = this.renderBackup();
       var titleText = 'Import';
@@ -102781,7 +102753,7 @@ function (_Component) {
         className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.container
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_13__["default"], {
         onLeftClick: function onLeftClick() {
-          return _this5.getReturn();
+          return _this4.getReturn();
         }
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default.a.top

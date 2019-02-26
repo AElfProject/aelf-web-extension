@@ -50,25 +50,6 @@ export default class LoadFromBackup extends Component {
         });
     }
 
-    componentDidMount() {
-        this.checkWallet();
-    }
-
-    turnToHomePage(walletStatus) {
-        const {
-            nightElf
-        } = walletStatus || {};
-        if (!nightElf) {
-            hashHistory.push('/');
-        }
-    }
-
-    checkWallet() {
-        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            this.turnToHomePage(result);
-        });
-    }
-
     importBackup() {
         const seed = getSeed(this.state.password);
         const {fileValue} = this.state;
