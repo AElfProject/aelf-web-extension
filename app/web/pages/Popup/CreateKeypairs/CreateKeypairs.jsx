@@ -43,6 +43,25 @@ export default class CreateKeypairs extends Component {
         });
     }
 
+    componentDidMount() {
+        this.checkWallet();
+    }
+
+    turnToHomePage(walletStatus) {
+        const {
+            nightElf
+        } = walletStatus || {};
+        if (!nightElf) {
+            hashHistory.push('/');
+        }
+    }
+
+    checkWallet() {
+        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+            this.turnToHomePage(result);
+        });
+    }
+
     // 子组件要用，要么this.toggleMnemonic = this.toggleMnemonic.bind(this);
     // 要么在传递是使用箭头函数，比如: onLeftClick={() => this.toggleMnemonic()}
     toggleMnemonic() {

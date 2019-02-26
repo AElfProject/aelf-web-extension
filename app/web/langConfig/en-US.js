@@ -166,7 +166,8 @@ const en_US = {
     'aelf.Timer Locks': 'Timer Locks',
     'aelf.Load From Backup': 'Load From Backup',
     'aelf.Please select the file': 'Please select the file',
-    'aelf.Click here': 'Click here'
+    'aelf.Click here': 'Click here',
+    'aelf.Timing Lock Settings': 'Timing Lock Settings'
 };
 
 export default en_US;

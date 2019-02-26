@@ -16,6 +16,10 @@ export const UPDATE_WALLET = 'updateWallet';
 export const BACKUP_WALLET = 'backupWallet';
 export const IMPORT_WALLET = 'importWallet';
 
+// Timing Lock
+export const GET_TIMING_LOCK = 'getTimingLock';
+export const CHECK_INACTIVITY_INTERVAL =  'checkInactivityInterval';
+
 export const INSERT_KEYPAIR = 'insertKeypair';
 export const REMOVE_KEYPAIR = 'removeKeypair';
 export const GET_KEYPAIR = 'getKeypair';

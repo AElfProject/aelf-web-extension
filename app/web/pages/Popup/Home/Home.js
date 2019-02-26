@@ -31,6 +31,26 @@ export default class personalCenterHome extends Component {
         });
     }
 
+    componentDidMount() {
+        this.checkWallet();
+    }
+
+    turnToHomePage(walletStatus) {
+        const {
+            nightElf
+        } = walletStatus || {};
+        if (!nightElf) {
+            hashHistory.push('/');
+        }
+    }
+
+    checkWallet() {
+        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+            this.turnToHomePage(result);
+        });
+    }
+
+
     render() {
         return (
             <div className={style.container + ' ' + 'aelf-personal-pages aelf-solid'}>

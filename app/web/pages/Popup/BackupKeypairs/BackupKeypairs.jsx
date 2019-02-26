@@ -4,21 +4,17 @@
 */
 import React, {Component} from 'react';
 import {hashHistory} from 'react-router';
-import {Modal, Button, WhiteSpace, List, InputItem, Toast, Result} from 'antd-mobile';
+import {Modal, Toast} from 'antd-mobile';
 import style from './BackupKeypairs.scss';
 import Mnemonic from './pages/Mnemonic';
-import moneyKeyboardWrapProps from '../../../utils/moneyKeyboardWrapProps';
-import {historyPush} from '../../../utils/historyChange';
 import clipboard from '../../../utils/clipboard';
 import getPageContainerStyle from '../../../utils/getPageContainerStyle';
 
 import AelfButton from '../../../components/Button/Button';
-import Svg from '../../../components/Svg/Svg';
 import NoticePanel from '../../../components/NoticePanel/NoticePanel';
 
 import NavNormal from '../../../components/NavNormal/NavNormal';
 
-import aelf from 'aelf-sdk';
 import {FormattedMessage} from 'react-intl';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
@@ -49,6 +45,7 @@ export default class BackupKeypairs extends Component {
             mnemonicDisplay: false,
             privateKeyModal: false,
             passwordModal: false,
+            walletStatus: false,
             containerStyle: null,
             isVerification: true,
             address: this.props.params.address || ''
@@ -63,7 +60,23 @@ export default class BackupKeypairs extends Component {
         });
     }
 
+    turnToHomePage(walletStatus) {
+        const {
+            nightElf
+        } = walletStatus || {};
+        if (!nightElf) {
+            hashHistory.push('/');
+        }
+    }
+
+    checkWallet() {
+        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+            this.turnToHomePage(result);
+        });
+    }
+
     componentDidMount() {
+        this.checkWallet();
         let containerStyle = getPageContainerStyle();
         this.setState({
             containerStyle

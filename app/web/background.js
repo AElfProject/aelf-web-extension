@@ -55,8 +55,8 @@ const {
 let seed = '';
 let nightElf = null;
 
-// let inactivityInterval = 0;
-// let timeoutLocker = null;
+let inactivityInterval = 0;
+let timeoutLocker = null;
 
 let prompt = null;
 
@@ -82,8 +82,8 @@ export default class Background {
     // Watches the internal messaging system ( LocalStream )
     setupInternalMessaging() {
         LocalStream.watch((request, sendResponse) => {
-            console.log(request, sendResponse);
             const message = InternalMessage.fromJson(request);
+            console.log(sendResponse);
             this.dispenseMessage(sendResponse, message);
         });
     }
@@ -101,7 +101,14 @@ export default class Background {
             });
             return;
         }
+
+        apis.storage.local.get({
+            inactivityInterval
+        }, result => {
+            inactivityInterval = result.inactivityInterval;
+        });
         // sendResponse(true);
+        Background.checkTimingLock();
         switch (message.type) {
             case InternalMessageTypes.SET_SEED:
                 Background.setSeed(sendResponse, message.payload);
@@ -185,6 +192,13 @@ export default class Background {
                 break;
             case InternalMessageTypes.GET_PROMPT:
                 Background.getPrompt(sendResponse);
+                break;
+
+            case InternalMessageTypes.GET_TIMING_LOCK:
+                Background.getTimingLock(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CHECK_INACTIVITY_INTERVAL:
+                Background.checkInactivityInterval(sendResponse);
                 break;
             // TODO:
             // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
@@ -305,7 +319,6 @@ export default class Background {
      * 1. hostname: a.aelf.io(page) -> aelf.io is OK;
      * 2. chainId: must be the same;
      * 3. contractAddress: must be the same;
-     *
      */
 
     static checkDappContractStatus(options, callback) {
@@ -516,6 +529,7 @@ export default class Background {
         seed = _seed;
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             nightElf = NightElf.fromJson(nightElfObject);
+            Background.checkTimingLock();
             sendResponse({
                 ...errorHandler(0),
                 nightElf: !!nightElf
@@ -641,6 +655,53 @@ export default class Background {
     // >>>>>>>>>>>>>>>>>>>>>>>>>
     // >   import wallet end   >
     // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >   timing lock start   >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+    static checkTimingLock() {
+        console.log(inactivityInterval);
+        if (inactivityInterval === 0) {
+            return false;
+        }
+        if (timeoutLocker) {
+            clearTimeout(timeoutLocker);
+        }
+        if (seed && nightElf) {
+            timeoutLocker = setTimeout(() => {
+                seed = null;
+                nightElf = null;
+            }, inactivityInterval);
+        }
+    }
+
+    static getTimingLock(sendResponse, time) {
+        inactivityInterval = time || 0;
+        apis.storage.local.set({
+            inactivityInterval
+        }, result => {
+            sendResponse({
+                ...errorHandler(0),
+                result
+            });
+        });
+    }
+
+    static checkInactivityInterval(sendResponse) {
+        apis.storage.local.get({
+            inactivityInterval
+        }, result => {
+            sendResponse({
+                ...errorHandler(0),
+                result
+            });
+        });
+    }
+
+
+
+
 
     static lockWallet(sendResponse) {
         seed = null;

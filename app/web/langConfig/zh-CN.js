@@ -158,7 +158,8 @@ const zh_CN = {
     'aelf.Timer Locks': '定时锁定',
     'aelf.Load From Backup': '导入加密备份',
     'aelf.Please select the file': '请选择备份文件',
-    'aelf.Click here': '点击这里'
+    'aelf.Click here': '点击这里',
+    'aelf.Timing Lock Settings': '定时锁定设置'
 };
 
 export default zh_CN;

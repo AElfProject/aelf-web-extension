@@ -10,6 +10,7 @@ import {
     Toast,
     Modal
 } from 'antd-mobile';
+import {hashHistory} from 'react-router';
 import {historyPush} from '../../../utils/historyChange';
 import {
     getPageContainerStyle
@@ -77,13 +78,23 @@ function removePermission(permissionNeedRemove, callback) {
     //     address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + randomName(),
     //     contracts: ['ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t0']
     // };
-    InternalMessage.payload(InternalMessageTypes.REMOVE_PERMISSION, permissionNeedRemove).send().then(result => {
-        console.log(InternalMessageTypes.REMOVE_PERMISSION, result);
-        if (result.error === 0) {
-            callback();
+    InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+        const {
+            nightElf
+        } = result || {};
+        if (!nightElf) {
+            InternalMessage.payload(InternalMessageTypes.REMOVE_PERMISSION, permissionNeedRemove).send().then(result => {
+                console.log(InternalMessageTypes.REMOVE_PERMISSION, result);
+                if (result.error === 0) {
+                    callback();
+                }
+                else {
+                    Toast.fail(result.message, 3, () => { }, false);
+                }
+            });
         }
         else {
-            Toast.fail(result.message, 3, () => { }, false);
+            hashHistory.push('/');
         }
     });
 }
@@ -104,6 +115,7 @@ function removePermission(permissionNeedRemove, callback) {
 // }
 
 function getAllPermissions(callback) {
+    
     InternalMessage.payload(InternalMessageTypes.GET_ALLPERMISSIONS).send().then(result => {
         // console.log(InternalMessageTypes.GET_ALLPERMISSIONS, result);
         if (result.error === 0) {
@@ -200,6 +212,20 @@ export default class Permissions extends Component {
         };
     }
 
+    turnToHomePage(walletStatus) {
+        const {
+            nightElf
+        } = walletStatus || {};
+        if (!nightElf) {
+            hashHistory.push('/');
+        }
+    }
+
+    checkWallet() {
+        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+            this.turnToHomePage(result);
+        });
+    }
     // PullToRefresh start
     componentDidUpdate() {
         if (this.state.useBodyScroll) {
@@ -211,6 +237,7 @@ export default class Permissions extends Component {
     }
 
     componentDidMount() {
+        this.checkWallet();
         const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
 
         getAllPermissions(result => {

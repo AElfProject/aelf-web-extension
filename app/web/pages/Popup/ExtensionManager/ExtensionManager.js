@@ -14,7 +14,8 @@ import style from './ExtensionManager.scss';
 import ListContent from '../../../components/ListContent/ListContent';
 import NavNormal from '../../../components/NavNormal/NavNormal';
 import {historyPush} from '../../../utils/historyChange';
-
+import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
+import InternalMessage from '../../../messages/InternalMessage';
 import {FormattedMessage} from 'react-intl';
 
 // import aelf from 'aelf-sdk';
@@ -22,6 +23,25 @@ import {FormattedMessage} from 'react-intl';
 const Item = List.Item;
 
 export default class ExtensionManager extends Component {
+
+    componentDidMount() {
+        this.checkWallet();
+    }
+
+    turnToHomePage(walletStatus) {
+        const {
+            nightElf
+        } = walletStatus || {};
+        if (!nightElf) {
+            hashHistory.push('/');
+        }
+    }
+
+    checkWallet() {
+        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+            this.turnToHomePage(result);
+        });
+    }
 
     render() {
         return (
@@ -60,7 +80,7 @@ export default class ExtensionManager extends Component {
                     </Item>
                 </List>
                 <List className={'aelf-list'}>
-                    <Item onClick={() => hashHistory.push('/home')}>
+                    <Item onClick={() => hashHistory.push('/?action=timing_lock')}>
                         <ListContent
                             icon="about16"
                             text={

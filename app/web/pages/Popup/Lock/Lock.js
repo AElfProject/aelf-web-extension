@@ -1,6 +1,6 @@
 /**
  * @file Lock.js
- * @author huangzongzhe
+ * @author huangzongzhe, zhouminghui
  */
 
 import React, {
@@ -11,10 +11,13 @@ import {createHmac} from 'crypto';
 import {
     Toast,
     List,
-    InputItem
+    InputItem,
+    Picker
 } from 'antd-mobile';
 
 import style from './Lock.scss';
+// Replace antd style
+import './TimingLock.css';
 import AelfButton from '../../../components/Button/Button';
 import {getPageContainerStyle, moneyKeyboardWrapProps, getParam} from '../../../utils/utils';
 import Password from '../../../components/Password/Password';
@@ -43,14 +46,48 @@ export default class Lock extends Component {
         super();
         this.state = {
             password: '',
-            walletStatus: false
+            walletStatus: false,
+            timingLockTimes: [0]
         };
         const action = getParam('action', location.href);
         const isClear = action === 'clear_wallet';
         const isBackup = action === 'backup_wallet';
+        const isTimingLock = action === 'timing_lock';
         this.isClear = isClear;
         this.isBackup = isBackup;
+        this.isTimingLock = isTimingLock;
+        this.timingLockData = [
+            {
+                label: 'never lock',
+                value: 0
+            },
+            {
+                label: '1 minutes',
+                value: 60000
+            },
+            {
+                label: '5 minutes',
+                value: 300000
+            },
+            {
+                label: '15 minutes',
+                value: 900000
+            },
+            {
+                label: '1 hour',
+                value: 3600000
+            },
+            {
+                label: '2 hours',
+                value: 7200000
+            },
+            {
+                label: '4 hours',
+                value: 14400000
+            }
+        ];
     }
+
 
     setPassword(password) {
         console.log(password);
@@ -65,7 +102,7 @@ export default class Lock extends Component {
             nightElf
         } = walletStatus || {};
 
-        if (nightElfEncrypto && nightElf && !this.isClear && !this.isBackup) {
+        if (nightElfEncrypto && nightElf && !this.isClear && !this.isBackup && !this.isTimingLock) {
             hashHistory.push('/home');
         }
         else {
@@ -85,6 +122,7 @@ export default class Lock extends Component {
 
     componentDidMount() {
         this.checkWallet();
+        this.checkTime();
     }
 
     createWallet() {
@@ -199,6 +237,36 @@ export default class Lock extends Component {
     }
 
 
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >         Timing  lock          >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+    getLockTime(value) {
+        console.log(value);
+        this.setState({
+            timingLockTimes: value
+        });
+    }
+
+    getTimingLock() {
+        const {timingLockTimes} = this.state;
+        let time = timingLockTimes[0];
+        InternalMessage.payload(InternalMessageTypes.GET_TIMING_LOCK, time).send().then(result => {
+            console.log(InternalMessageTypes.GET_TIMING_LOCK, time, result);
+        });
+    }
+
+    checkTime() {
+        InternalMessage.payload(InternalMessageTypes.CHECK_INACTIVITY_INTERVAL).send().then(result => {
+            if (result) {
+                this.setState({
+                    timingLockTimes: [result.result.inactivityInterval]
+                });
+            }
+        });
+    }
 
     // if there is no wallet in browser.storage [chrome.storage]
     // We need create a wallet and insert it into storage.
@@ -318,6 +386,40 @@ export default class Lock extends Component {
         </div>;
     }
 
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // >      Timing  lock  render     >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    renderTimingLock() {
+        return <div>
+            <div className="aelf-input-container aelf-dash">
+                <List>
+                    <Picker
+                        data={this.timingLockData}
+                        cols={1}
+                        onChange={e => this.getLockTime(e)}
+                        value={this.state.timingLockTimes}
+                    >
+                        <List.Item arrow='horizontal' >
+                            <FormattedMessage
+                                id='aelf.Timing Lock Settings'
+                            />>
+                        </List.Item>
+                    </Picker>
+                </List>
+            </div>
+            <div className={style.bottom}>
+                <div className='aelf-blank12'></div>
+                <AelfButton
+                    text='Commit'
+                    aelficon='add_purple20'
+                    onClick={() => this.getTimingLock()}>
+                </AelfButton>
+            </div>
+        </div>;
+    }
+
     renderTestButtons() {
         return <div>
             <button onClick={() => this.checkWallet()}>checkWallet</button>
@@ -358,6 +460,13 @@ export default class Lock extends Component {
                 else if (this.isBackup) {
                     buttonHTML = this.renderBackup();
                     titleText = 'Backup';
+                    navHTML = <NavNormal
+                            onLeftClick={() => this.backClick()}
+                        ></NavNormal>;
+                }
+                else if (this.isTimingLock) {
+                    buttonHTML = this.renderTimingLock();
+                    titleText = 'Timing Lock';
                     navHTML = <NavNormal
                             onLeftClick={() => this.backClick()}
                         ></NavNormal>;

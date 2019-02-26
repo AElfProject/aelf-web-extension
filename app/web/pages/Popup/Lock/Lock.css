@@ -1,0 +1,59 @@
+.container {
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+}
+
+.top {
+  padding: 0 24px 0 24px;
+}
+
+.blank {
+  margin: 58px 0 0 0;
+}
+
+.blank12 {
+  height: 12px;
+  width: 12px;
+}
+
+.welcome {
+  font-weight: 100;
+  font-size: 36px;
+  margin: 62px 0 0px 0;
+}
+
+.wallet {
+  font-size: 36px;
+  margin: 8px 0 8px 0;
+  font-weight: 700;
+}
+
+.description {
+  font-size: 14px;
+  margin: 0;
+}
+
+.bottom {
+  width: 80%;
+  margin: 0 auto 50px 10%;
+}
+
+.btn {
+  border-radius: 100px;
+}
+
+.createBottom {
+  width: 80%;
+  margin: 0 auto 0px 10%;
+}
+
+.am-list-item .am-list-line .am-list-extra {
+  color: #FFF !important;
+}
+
+.am-list-item .am-list-line .am-list-content {
+  color: #FFF !important;
+}

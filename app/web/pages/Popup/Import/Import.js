@@ -40,6 +40,25 @@ export default class Import extends Component {
         this.failMessage = 'Please input your privateKey or mnemonic'; // 请填入助记词或者私钥
     }
 
+    componentDidMount() {
+        this.checkWallet();
+    }
+
+    turnToHomePage(walletStatus) {
+        const {
+            nightElf
+        } = walletStatus || {};
+        if (!nightElf) {
+            hashHistory.push('/');
+        }
+    }
+
+    checkWallet() {
+        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+            this.turnToHomePage(result);
+        });
+    }
+
     createAndGO() {
         // let password = this.state.password;
         // if (!password) {

@@ -20,7 +20,6 @@ import {
 } from '../../../utils/utils';
 import NavNormal from '../../../components/NavNormal/NavNormal';
 import ScrollFooter from '../../../components/ScrollFooter/ScrollFooter';
-import AelfButton from '../../../components/Button/Button';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 import {FormattedMessage} from 'react-intl';
@@ -34,25 +33,38 @@ const pageSize = 9999;
 
 function getKeypairs(callback) {
     InternalMessage.payload(InternalMessageTypes.GET_KEYPAIR).send().then(result => {
-        console.log(InternalMessageTypes.GET_KEYPAIR, result);
         if (result.error === 0 && result.keypairs) {
             callback(result.keypairs);
         }
         else {
-            Toast.fail('No Keypair in Wallet.', 3, () => {}, false);
+            if (result.error === 200005) {
+                Toast.fail(result.errorMessage.message, 3, () => {}, false);
+            }
+            else {
+                Toast.fail('No Keypair in Wallet.', 3, () => {}, false);
+            }
         }
     });
 }
 
-
 function removeKeypairs(address, callback) {
-    InternalMessage.payload(InternalMessageTypes.REMOVE_KEYPAIR, address).send().then(result => {
-        console.log(InternalMessageTypes.REMOVE_KEYPAIR, result);
-        if (result.error === 0) {
-            callback();
+    InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+        const {
+            nightElf
+        } = result || {};
+        if (!nightElf) {
+            InternalMessage.payload(InternalMessageTypes.REMOVE_KEYPAIR, address).send().then(result => {
+                console.log(InternalMessageTypes.REMOVE_KEYPAIR, result);
+                if (result.error === 0) {
+                    callback();
+                }
+                else {
+                    Toast.fail(result.message, 3, () => {}, false);
+                }
+            });
         }
         else {
-            Toast.fail(result.message, 3, () => {}, false);
+            hashHistory.push('/');
         }
     });
 }
@@ -153,6 +165,21 @@ export default class Keypairs extends Component {
         };
     }
 
+    turnToHomePage(walletStatus) {
+        const {
+            nightElf
+        } = walletStatus || {};
+        if (!nightElf) {
+            hashHistory.push('/');
+        }
+    }
+
+    checkWallet() {
+        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+            this.turnToHomePage(result);
+        });
+    }
+
     // PullToRefresh start
     componentDidUpdate() {
         if (this.state.useBodyScroll) {
@@ -163,9 +190,10 @@ export default class Keypairs extends Component {
         }
     }
 
+
     componentDidMount() {
         const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
-
+        this.checkWallet();
         getKeypairs(result => {
             this.rData = result;
 
