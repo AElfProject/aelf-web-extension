@@ -155,6 +155,4 @@ NightElf.api({
 
 ## Project Information
 
-We use [eccryto](https://github.com/bitchan/eccrypto) to use public key to  encryt data and private key to decrypt data.
-
-The eccryto wrap the elliptic.
+We use [ECDH](https://github.com/indutny/elliptic) to use public key to  encryt data and private key to decrypt data.
