@@ -42884,6 +42884,12 @@ function (_Component) {
       var time = timingLockTimes[0];
       _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_23__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_22__["GET_TIMING_LOCK"], time).send().then(function (result) {
         console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_22__["GET_TIMING_LOCK"], time, result);
+
+        if (result.error !== 0) {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_12___default.a.fail('Timing Lock Setting Failed.', 3, function () {}, false);
+        } else {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_12___default.a.success('Timing Lock Setting Success.', 3, function () {}, false);
+        }
       });
     }
   }, {

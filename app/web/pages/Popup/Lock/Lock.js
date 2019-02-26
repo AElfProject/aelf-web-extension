@@ -255,6 +255,12 @@ export default class Lock extends Component {
         let time = timingLockTimes[0];
         InternalMessage.payload(InternalMessageTypes.GET_TIMING_LOCK, time).send().then(result => {
             console.log(InternalMessageTypes.GET_TIMING_LOCK, time, result);
+            if (result.error !== 0) {
+                Toast.fail('Timing Lock Setting Failed.', 3, () => {}, false);
+            }
+            else {
+                Toast.success('Timing Lock Setting Success.', 3, () => {}, false);
+            }
         });
     }
 
