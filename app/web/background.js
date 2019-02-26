@@ -889,7 +889,7 @@ export default class Background {
                     }
                     catch (e) {
                         sendResponse({
-                            ...errorHandler(10000, 'Get Night Elf failed!')
+                            ...errorHandler(400001, 'Get Night Elf failed!')
                         });
                     }
                     if (nightElfString) {

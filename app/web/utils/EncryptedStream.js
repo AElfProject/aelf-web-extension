@@ -28,34 +28,42 @@
 
 import AESUtils from './AESUtils';
 
-import eccrypto from 'eccrypto';
-import crypto from 'crypto';
-
+import elliptic from 'elliptic';
+const EC = elliptic.ec;
+const ec = new EC('curve25519');
 export default class EncryptoStream {
     constructor(eventName, aesKey) {
         this._eventName = eventName;
         this._aesKey = aesKey;
 
-        this.privateKey = crypto.randomBytes(32);
-        this.publicKey = eccrypto.getPublic(this.privateKey);
-
         this.publicKeyHasSent;
         this.publicKeyOfTheOtherParty;
         this.aesKeyOfTheOtherParty;
+
+        this.keyPair = ec.genKeyPair();
+        this.publicKeyHex = this.keyPair.getPublic().encode('hex');
+    }
+
+    getDecodePublicKeyFromHex(publicKeyHex) {
+        return ec.keyFromPublic(publicKeyHex, 'hex').getPublic();
+    }
+
+    getSharedKey(publicKeyHex) {
+        const publicKey = this.getDecodePublicKeyFromHex(publicKeyHex);
+        return this.keyPair.derive(publicKey).toString();
     }
 
     addEventListener(callback) {
         document.addEventListener(this._eventName, event => {
             let message;
-
+            // console.log('-------- addEventListener -----------', message);
             if (this.aesKeyOfTheOtherParty) {
                 message = JSON.parse(AESUtils.decrypt(event.detail, this.aesKeyOfTheOtherParty));
             }
             else {
                 message = JSON.parse(event.detail);
             }
-
-            console.log('in::::', this._eventName, event, message);
+            // console.log('in::::', this._eventName, event, message);
             callback(message);
         });
     }
@@ -72,32 +80,20 @@ export default class EncryptoStream {
                     if (!this.publicKeyHasSent) {
                         this.publicKeyOfTheOtherParty = message.publicKey;
                         this.sendPublicKey(to);
-                        console.log('in addEventListenerOfEEC:: publicKey ::', this._eventName);
+                        // console.log('in addEventListenerOfEEC:: publicKey ::', this._eventName);
                     }
                     this.sendEncryptedAESKey(to);
                     return;
                 }
-
                 if (method === 'aesKey') {
-                    console.log('in addEventListenerOfEEC:: aesKey ::', this._eventName, event, message);
-
-                    const aesKeyEncrypted = message.aesKey;
-                    let aesKeyEncryptedJSON = JSON.parse(aesKeyEncrypted);
-                    let aesKeyEncryptedBuffer = {};
-                    for (const each in aesKeyEncryptedJSON) {
-                        aesKeyEncryptedBuffer[each] = Buffer.from(aesKeyEncryptedJSON[each], 'hex');
-                    }
-
-                    eccrypto.decrypt(this.privateKey, aesKeyEncryptedBuffer).then(decryptAESKey => {
-                        console.log(
-                            'in addEventListenerOfEEC:: decryptAESKey ::',
-                            this._eventName, decryptAESKey.toString()
-                        );
-                        this.aesKeyOfTheOtherParty = decryptAESKey.toString();
-
-                        resolve(true);
-                    });
-                    return;
+                    // console.log('in addEventListenerOfEEC:: aesKey ::', this._eventName, event, message);
+                    const sharedKey = this.getSharedKey(this.publicKeyOfTheOtherParty);
+                    const decryptAESKey = AESUtils.decrypt(message.aesKey, sharedKey);
+                    this.aesKeyOfTheOtherParty = decryptAESKey;
+                    resolve(true);
+                    // console.log('------------------');
+                    // console.log('decryptAESKey: ', decryptAESKey);
+                    // console.log('aesKey: ', this._aesKey);
                 }
             });
         });
@@ -105,19 +101,12 @@ export default class EncryptoStream {
     }
 
     sendEncryptedAESKey(to) {
-        eccrypto.encrypt(
-            Buffer.from(this.publicKeyOfTheOtherParty, 'hex'),
-            Buffer.from(this._aesKey)
-        ).then(encryptedAESKey => {
-            let encryptedAESKeyStringify = {};
-            for (const each in encryptedAESKey) {
-                encryptedAESKeyStringify[each] = encryptedAESKey[each].toString('hex');
-            }
-            this.sendOfEEC({
-                method: 'aesKey',
-                aesKey: JSON.stringify(encryptedAESKeyStringify)
-            }, to);
-        });
+        const sharedKey = this.getSharedKey(this.publicKeyOfTheOtherParty);
+        const encryptedAESKey = AESUtils.encrypt(this._aesKey, sharedKey);
+        this.sendOfEEC({
+            method: 'aesKey',
+            aesKey: encryptedAESKey
+        }, to);
     }
 
     sendOfEEC(data, to) {
@@ -130,7 +119,8 @@ export default class EncryptoStream {
     sendPublicKey(to) {
         this.sendOfEEC({
             method: 'publicKey',
-            publicKey: this.publicKey.toString('hex')
+            // publicKey: this.publicKey.toString('hex')
+            publicKey: this.publicKeyHex
         }, to);
         this.publicKeyHasSent = true;
     }
