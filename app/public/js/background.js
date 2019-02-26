@@ -48310,7 +48310,7 @@ function () {
             try {
               nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
             } catch (e) {
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(10000, 'Get Night Elf failed!')));
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Get Night Elf failed!')));
             }
 
             if (nightElfString) {
