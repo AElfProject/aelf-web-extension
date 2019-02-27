@@ -94,6 +94,21 @@ function getApplicationPermssions(permissions, domain) {
     };
 }
 
+function contractsCompare(contractA, contractB) {
+    const contractATemp = JSON.parse(JSON.stringify(contractA));
+    const contractBTemp = JSON.parse(JSON.stringify(contractB));
+    for (let ai = 0, aj = contractATemp.length; ai < aj; ai++) {
+        for (let bi = 0, bj = contractBTemp.length; bi < bj; bi++) {
+            const chainIdChecked = contractBTemp[bi].chainId === contractATemp[ai].chainId;
+            const contractAddressChecked = contractBTemp[bi].contractAddress === contractATemp[ai].contractAddress;
+            if (chainIdChecked && contractAddressChecked) {
+                contractBTemp.splice(bi, 1);
+            }
+        }
+    }
+    return !contractBTemp.length;
+}
+
 let aelfMeta = [];
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
@@ -174,6 +189,9 @@ export default class Background {
 
             case InternalMessageTypes.SET_LOGIN_PERMISSION:
                 Background.setLoginPermission(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.SET_PERMISSION:
+                Background.setPermission(sendResponse, message.payload);
                 break;
             case InternalMessageTypes.SET_CONTRACT_PERMISSION:
                 Background.setContractPermission(sendResponse, message.payload);
@@ -283,14 +301,77 @@ export default class Background {
     }
 
     static login(sendResponse, loginInfo) {
-        this.checkSeed({sendResponse}, () => {
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
+
+            // 如果permissions下有对应的
+            const {
+                keychain: {
+                    permissions = []
+                }
+            } = nightElfObject;
+
+            const {appName, chainId, payload} = loginInfo;
+            const domain = loginInfo.domain || loginInfo.hostname;
+            const appPermissons = getApplicationPermssions(permissions, domain);
+
+            if (appPermissons.permissions.length) {
+                const appPermission = appPermissons.permissions[0];
+
+                const appNameBinded = appPermission.appName;
+                const domainBinded = appPermission.domain;
+                const addressBinded = appPermission.address;
+                const contractsBinded = appPermission.contracts;
+
+                const nameChecked = appName === appNameBinded;
+                const domainChecked = domain === domainBinded;
+
+                const isLoginAndSetPermission = loginInfo.payload
+                    && loginInfo.payload.method === 'SET_PERMISSION'
+                    && loginInfo.payload.payload
+                    && loginInfo.payload.payload.contracts
+                    && appPermissons;
+
+                if (isLoginAndSetPermission) {
+                    const address = loginInfo.payload.payload.address;
+                    const contracts = loginInfo.payload.payload.contracts;
+
+                    const addressChecked = address === addressBinded;
+
+                    const contractChecked = contractsCompare(contracts, contractsBinded);
+
+                    if (nameChecked && domainChecked && addressChecked && contractChecked) {
+                        sendResponse({
+                            ...errorHandler(0),
+                            message: '',
+                            detail: JSON.stringify({
+                                address: addressBinded
+                            })
+                        });
+                        return;
+                    }
+                    // const domainCheck = domain === domainBinded;
+                }
+                else {
+                    if (nameChecked && domainChecked) {
+                        sendResponse({
+                            ...errorHandler(0),
+                            message: '',
+                            detail: JSON.stringify({
+                                address: addressBinded
+                            })
+                        });
+                        return;
+                    }
+                }
+            }
+
             const input = {
-                appName: loginInfo.appName,
+                appName,
                 method: 'OPEN_PROMPT',
                 router: '#/login',
-                chainId: loginInfo.chainId,
-                hostname: loginInfo.hostname,
-                payload: loginInfo.payload
+                chainId,
+                hostname: domain,
+                payload
             };
             this.openPrompt(sendResponse, input);
         });
