@@ -4,6 +4,8 @@
  */
 
 export const SET_SEED = 'setSeed';
+export const LOGIN = 'login';
+
 
 export const CREAT_WALLET = 'createWallet';
 export const CHECK_WALLET = 'checkWallet';
@@ -25,9 +27,13 @@ export const REMOVE_KEYPAIR = 'removeKeypair';
 export const GET_KEYPAIR = 'getKeypair';
 
 export const SET_PERMISSION = 'setPermission';
+export const SET_LOGIN_PERMISSION = 'setLoginPermission';
+export const SET_CONTRACT_PERMISSION = 'setContractPermission';
 export const CHECK_PERMISSION = 'checkPermission';
 export const GET_ALLPERMISSIONS = 'getAllPermissions';
 export const REMOVE_PERMISSION = 'removePermission';
+
+export const SET_WHITELIST = 'setWhitelist';
 
 export const CONNECT_AELF_CHAIN = 'connectAelfChain';
 export const CALL_AELF_CHAIN = 'callAelfChain';

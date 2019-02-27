@@ -68,6 +68,32 @@ let prompt = null;
 //     }
 // });
 
+function getPromptRoute(message) {
+    const method = message.payload.method;
+    const routMap = {
+        SET_PERMISSION: '',
+        LOGIN: '#/login',
+        CALL_AELF_CONTRACT: '#/examine-approve'
+    };
+    return message.router || routMap[method] || '';
+}
+
+function getApplicationPermssions(permissions, domain) {
+    const indexList = [];
+    const permissionsTemp = permissions.filter((permission, index) => {
+        const domainCheck = permission.domain === domain;
+        if (domainCheck) {
+            indexList.push(index);
+            return true;
+        }
+        return false;
+    });
+    return {
+        permissions: JSON.parse(JSON.stringify(permissionsTemp)),
+        indexList
+    };
+}
+
 let aelfMeta = [];
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
@@ -113,6 +139,9 @@ export default class Background {
             case InternalMessageTypes.SET_SEED:
                 Background.setSeed(sendResponse, message.payload);
                 break;
+            case InternalMessageTypes.LOGIN:
+                Background.login(sendResponse, message.payload);
+                break;
             case InternalMessageTypes.CREAT_WALLET:
                 Background.createWallet(sendResponse, message.payload);
                 break;
@@ -150,8 +179,14 @@ export default class Background {
                 Background.removeKeypair(sendResponse, message.payload);
                 break;
 
-            case InternalMessageTypes.SET_PERMISSION:
-                Background.setPermission(sendResponse, message.payload);
+            case InternalMessageTypes.SET_LOGIN_PERMISSION:
+                Background.setLoginPermission(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.SET_CONTRACT_PERMISSION:
+                Background.setContractPermission(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.SET_WHITELIST:
+                Background.setWhitelist(sendResponse, message.payload);
                 break;
             case InternalMessageTypes.CHECK_PERMISSION:
                 Background.getPermission(sendResponse, message.payload);
@@ -262,6 +297,20 @@ export default class Background {
             });
         });
 
+    }
+
+    static login(sendResponse, loginInfo) {
+        this.checkSeed({sendResponse}, () => {
+            const input = {
+                appName: loginInfo.appName,
+                method: 'OPEN_PROMPT',
+                router: '#/login',
+                chainId: loginInfo.chainId,
+                hostname: loginInfo.hostname,
+                payload: loginInfo.payload
+            };
+            this.openPrompt(sendResponse, input);
+        });
     }
 
     static callAelfChain(sendResponse, callInfo) {
@@ -744,8 +793,34 @@ export default class Background {
     }
 
     // Depend on the hostname of the app and the address of user.
+    // One Application - One Keypair
     // TODO: set permisions
-    static setPermission(sendResponse, permissionInput) {
+    // when login
+    // setPermission(sendResponse, permissionInput, true);
+    // when set contract permissions
+    // setPermission(sendResponse, permissionInput);
+    // data demo
+    // {
+    //     "appName": {
+    //         default: 'hzzTest',
+    //         'zh-CN': 'xxx'
+    //     },
+    //     "domain": "OnlyForTest!!!",
+    //     // address对应 登录权限。
+    //     // 如果address为空，则无登录权限。
+    //     "address": "ELF_5E85xxqccciycENmu4azsX47pyszNm2eZRGpWMQjfASuSZv",
+    //     "contracts": []
+    // }
+
+    static setLoginPermission(sendResponse, permissionInput) {
+        this.setPermission(sendResponse, permissionInput, true);
+    }
+
+    static setContractPermission(sendResponse, permissionInput) {
+        this.setPermission(sendResponse, permissionInput, false);
+    }
+
+    setPermission(sendResponse, permissionInput, bindKeypair = false) {
         // permission example
         // {
         //     appName: 'hzz Test',
@@ -760,36 +835,137 @@ export default class Background {
         //         description_en: ''
         //     }]
         // }
-        const {appName, domain, hostname, address, contracts} = permissionInput;
-        const permissionNeedAdd = {
-            appName,
-            domain: domain || hostname,
-            address,
-            contracts
-        };
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            const {
+                appName,
+                domain,
+                hostname,
+                address,
+                contracts
+            } = permissionInput;
+            // ignore other values like whitelist
+            const {
+                chainId,
+                contractAddress,
+                contractName,
+                description,
+                github
+            } = contracts;
+            const permissionNeedAdd = {
+                appName,
+                domain: domain || hostname,
+                // address,
+                contracts: {
+                    chainId,
+                    contractAddress,
+                    contractName,
+                    description,
+                    github
+                }
+            };
             const {
                 keychain: {
                     permissions = []
                 }
             } = nightElfObject;
 
-            let permissionIndex = [];
-            const permissionsTemp = permissions.filter((permission, index) => {
-                const domainCheck = permission.domain === domain;
-                const addressCheck = permission.address === address;
-                if (domainCheck && addressCheck) {
-                    permissionIndex.push(index);
-                    return true;
-                }
-                return false;
-            });
+            const appPermissons = getApplicationPermssions(permissions, domain);
 
+            let permissionIndex = appPermissons.indexList;
+            const permissionsTemp = appPermissons.permissions;
+
+            // set contract permission
             if (permissionsTemp.length) {
+                permissionNeedAdd.address = permissionsTemp.address;
                 nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
             }
-            else {
+            // Login
+            else if (bindKeypair) {
+                permissionNeedAdd.address = address;
                 nightElfObject.keychain.permissions.unshift(permissionNeedAdd);
+            }
+            else {
+                sendResponse({
+                    ...errorHandler(200008)
+                });
+                return;
+            }
+            nightElf = NightElf.fromJson(nightElfObject);
+            Background.updateWallet(sendResponse);
+        });
+    }
+
+    static setWhitelist(sendResponse, whitelistInput) {
+        // setPermission first.
+        // {
+        //     appName: 'hzzTest',
+        //     method: 'SET_WHITELIST',
+        //     hostname: 'aelf.io',
+        //     chainId: 'AELF',
+        //     payload: {
+        //         contractName: 'token',
+        //         contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+        //         method: 'BalanceOf',
+        //         params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB'],
+        //         whitelist: {
+        //             // transfer(a, b, c)
+        //             // transfer(a, b, c, d) is not ok
+        //             transfer: [{
+        //                 value: 'a',
+        //                 variable: true
+        //             }, {
+        //                 value: 'b',
+        //                 variable: false
+        //             }, {
+        //                 value: 'c',
+        //                 variable: true
+        //             }]
+        //         }
+        //     }
+        // }
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            const {domain, hostname, payload} = whitelistInput;
+            const {
+                contractAddress,
+                whitelist
+            } = payload;
+            const domainTemp = domain || hostname;
+
+            const {
+                keychain: {
+                    permissions = []
+                }
+            } = nightElfObject;
+
+            const appPermissons = getApplicationPermssions(permissions, domainTemp);
+
+            const appPermissionIndex = appPermissons.indexList;
+            const appPermissionsTemp = appPermissons.permissions;
+
+            if (appPermissionsTemp.length && appPermissionIndex.length) {
+                const permission = appPermissionsTemp[appPermissionIndex[0]];
+                const {contracts} = permission;
+                let indexTemp;
+                const contract = contracts.filter((item, index) => {
+                    if (item.contractAddress === contractAddress) {
+                        indexTemp = index;
+                        return true;
+                    }
+                    return false;
+                })[0];
+                contract.whitelist = {
+                    ...contract.whitelist,
+                    ...whitelist
+                };
+                contracts[indexTemp] = contract;
+                permission.contracts = contracts;
+                nightElfObject.keychain.permissions[appPermissionIndex[0]] = permission;
+            }
+            else {
+                sendResponse({
+                    ...errorHandler(200009)
+                });
+                return;
             }
             nightElf = NightElf.fromJson(nightElfObject);
             Background.updateWallet(sendResponse);
@@ -1019,7 +1195,7 @@ export default class Background {
      */
     static openPrompt(sendResponse, message) {
         // TODO: NightElf lock notice.
-        const route = message.route === '#/prompt' ? '#/prompt' : '';
+        const route = getPromptRoute(message);
         NotificationService.open({
             sendResponse,
             route,
