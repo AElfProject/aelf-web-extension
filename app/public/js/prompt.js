@@ -64050,6 +64050,7 @@ function randomFillSync (buf, offset, size) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SEED", function() { return SET_SEED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN", function() { return LOGIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREAT_WALLET", function() { return CREAT_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHECK_WALLET", function() { return CHECK_WALLET; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_WALLET", function() { return CLEAR_WALLET; });
@@ -64062,9 +64063,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_KEYPAIR", function() { return REMOVE_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_KEYPAIR", function() { return GET_KEYPAIR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PERMISSION", function() { return SET_PERMISSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_LOGIN_PERMISSION", function() { return SET_LOGIN_PERMISSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CONTRACT_PERMISSION", function() { return SET_CONTRACT_PERMISSION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHECK_PERMISSION", function() { return CHECK_PERMISSION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ALLPERMISSIONS", function() { return GET_ALLPERMISSIONS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_PERMISSION", function() { return REMOVE_PERMISSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_WHITELIST", function() { return SET_WHITELIST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONNECT_AELF_CHAIN", function() { return CONNECT_AELF_CHAIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CHAIN", function() { return CALL_AELF_CHAIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CHAIN", function() { return RELEASE_AELF_CHAIN; });
@@ -64080,6 +64084,7 @@ __webpack_require__.r(__webpack_exports__);
  * @author huangzongzhe
  */
 var SET_SEED = 'setSeed';
+var LOGIN = 'login';
 var CREAT_WALLET = 'createWallet';
 var CHECK_WALLET = 'checkWallet';
 var CLEAR_WALLET = 'clearWallet';
@@ -64093,9 +64098,12 @@ var INSERT_KEYPAIR = 'insertKeypair';
 var REMOVE_KEYPAIR = 'removeKeypair';
 var GET_KEYPAIR = 'getKeypair';
 var SET_PERMISSION = 'setPermission';
+var SET_LOGIN_PERMISSION = 'setLoginPermission';
+var SET_CONTRACT_PERMISSION = 'setContractPermission';
 var CHECK_PERMISSION = 'checkPermission';
 var GET_ALLPERMISSIONS = 'getAllPermissions';
 var REMOVE_PERMISSION = 'removePermission';
+var SET_WHITELIST = 'setWhitelist';
 var CONNECT_AELF_CHAIN = 'connectAelfChain';
 var CALL_AELF_CHAIN = 'callAelfChain';
 var RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
@@ -64873,7 +64881,9 @@ var errorMap = {
   200004: 'No Wallet Info.',
   200005: 'Night Elf is locked!',
   200006: 'Decrypto Failed. Please unlock your wallet.',
-  200007: 'No Night Elf in storage.'
+  200007: 'No Night Elf in storage.',
+  200008: 'Please login first.',
+  200009: 'No permission, can not set whitelist.'
 };
 function errorHandler(code, error) {
   var errorMessage = errorMap[code];

@@ -17,6 +17,18 @@ document.addEventListener('NightElf', result => {
     const checkPermissionContractAddress = document.getElementById('check-permission-contract');
     const getAddress = document.getElementById('get-address');
 
+
+    NightElf.api({
+        appName: 'hzzTest',
+        method: 'LOGIN',
+        payload: {
+
+        }
+    }).then(result => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    });
+
+
     const checkContent = document.getElementById('check-content');
     checkContent.onclick = function () {
         NightElf.api({
@@ -76,6 +88,44 @@ document.addEventListener('NightElf', result => {
         NightElf.api({
             appName: 'hzzTest',
             method: 'OPEN_PROMPT',
+            chainId: 'AELF',
+            hostname: 'aelf.io',
+            payload: {
+                method: 'SET_PERMISSION',
+                // 在中间层会补齐
+                // appName: 'hzzTest',
+                // method 使用payload的
+                // chainId: 'AELF',
+                // hostname: 'aelf.io',
+                payload: {
+                    // appName: message.appName,
+                    // domain: message.hostname
+                    address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs',
+                    contracts: [{
+                        chainId: 'AELF',
+                        contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                        contractName: 'token',
+                        description: 'token contract',
+                        github: ''
+                    }, {
+                        chainId: 'AELF TEST',
+                        contractAddress: 'TEST contractAddress',
+                        contractName: 'TEST contractName',
+                        description: 'contract description',
+                        github: ''
+                    }]
+                }
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    const loginBtn = document.getElementById('login-btn');
+    loginBtn.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'LOGIN',
             chainId: 'AELF',
             hostname: 'aelf.io',
             payload: {
@@ -192,6 +242,62 @@ document.addEventListener('NightElf', result => {
     errorGetTxResult.onclick = function () {
         aelf.chain.getTxResult('');
     };
+
+    // can not use
+    const setWhitelist = document.getElementById('set-whitelist');
+    setWhitelist.onclick = function () {
+        // 必须先登录并且授权合约使用。
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'SET_WHITELIST',
+            hostname: 'aelf.io',
+            chainId: 'AELF',
+            payload: {
+                contractName: 'token',
+                contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
+                method: 'BalanceOf',
+                params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB'],
+                whitelist: {
+                    // transfer(a, b, c)
+                    // transfer(a, b, c, d) is not ok
+                    transfer: [{
+                        value: 'a',
+                        variable: true
+                    }, {
+                        value: 'b',
+                        variable: false
+                    }, {
+                        value: 'c',
+                        variable: true
+                    }]
+                }
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+    // For test
+    // const permissionIndex = [0];
+    // const permissionsTemp = [{
+    //     "appName": "hzzTest",
+    //     "domain": "OnlyForTest!!!",
+    //     "address": "ELF_4yCJfobjm2YAdxGrwACQihpa3TMz1prDTdYiWTvFTvefQFs",
+    //     "contracts": [{
+    //             "chainId": "AELF",
+    //             "contractAddress": "ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx",
+    //             "contractName": "token",
+    //             "description": "token contract",
+    //             "github": ""
+    //         },
+    //         {
+    //             "chainId": "AELF TEST",
+    //             "contractAddress": "TEST contractAddress",
+    //             "contractName": "TEST contractName",
+    //             "description": "contract description",
+    //             "github": ""
+    //         }
+    //     ]
+    // }];
 
 });
 if (false) {
