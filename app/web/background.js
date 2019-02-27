@@ -200,6 +200,9 @@ export default class Background {
             case InternalMessageTypes.CHECK_INACTIVITY_INTERVAL:
                 Background.checkInactivityInterval(sendResponse);
                 break;
+            case InternalMessageTypes.OPEN_LOGIN_KEYPAIR:
+                Background.openLoginKeypairs(sendResponse, message.payload);
+                break;
             // TODO:
             // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
             //     Background.releaseAELFContract(sendResponse);
@@ -699,10 +702,6 @@ export default class Background {
         });
     }
 
-
-
-
-
     static lockWallet(sendResponse) {
         seed = null;
         nightElf = null;
@@ -895,7 +894,7 @@ export default class Background {
 
             sendResponse({
                 ...errorHandler(0),
-                permissions: permissions
+                permissions
             });
         });
     }
@@ -1035,6 +1034,16 @@ export default class Background {
 
     static getPrompt(sendResponse) {
         sendResponse(prompt);
+    }
+
+
+    static openLoginKeypairs(sendResponse, message) {
+        const route = '#/loginKeypairs';
+        NotificationService.open({
+            sendResponse,
+            route,
+            message
+        });
     }
 
     /********************************************/

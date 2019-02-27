@@ -44,6 +44,7 @@ ReactDOM.render(
                 <Route path="/backupKeypairs/:address" component={BackupKeypairs}></Route>
                 <Route path="/extensionManager" component={ExtensionManager}></Route>
                 <Route path="/loadFromBackup" component={LoadFromBackup}></Route>
+                <Route pat='/' component={Lock}></Route>
                 {/* TODO: contracts just for test */}
                 <Route path="/contracts" component={Contracts}></Route>
             </Router>

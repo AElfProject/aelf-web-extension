@@ -82,7 +82,7 @@ function removePermission(permissionNeedRemove, callback) {
         const {
             nightElf
         } = result || {};
-        if (!nightElf) {
+        if (nightElf) {
             InternalMessage.payload(InternalMessageTypes.REMOVE_PERMISSION, permissionNeedRemove).send().then(result => {
                 console.log(InternalMessageTypes.REMOVE_PERMISSION, result);
                 if (result.error === 0) {
@@ -178,6 +178,9 @@ export default class Permissions extends Component {
                         </div>
                         <div className={style.operationList}>
                             <div
+                                onClick={() => console.log('aaaa')}
+                            >查看详情</div>
+                            <div
                                 className = {
                                     style.keypairBtnContainer + ' ' + style.removeBtn
                                 }
@@ -210,6 +213,10 @@ export default class Permissions extends Component {
                 </div>
             );
         };
+    }
+
+    getDetails() {
+        hashHistory.push('/');
     }
 
     turnToHomePage(walletStatus) {

@@ -65,8 +65,8 @@ export default class personalCenterHome extends Component {
                             icon="wallet16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Key Pairs'
-                                    defaultMessage = 'Key Pairs'
+                                    id = 'aelf.Key Pairs Management'
+                                    defaultMessage = 'Key Pairs Management'
                                 />
                             }
                         ></ListContent>
@@ -78,8 +78,8 @@ export default class personalCenterHome extends Component {
                             icon="tx_history16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Permissions'
-                                    defaultMessage = 'Permissions'
+                                    id = 'aelf.Application Management'
+                                    defaultMessage = 'Application Management'
                                 />
                             }
                         ></ListContent>
@@ -91,8 +91,8 @@ export default class personalCenterHome extends Component {
                             icon="about16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Extension Manager'
-                                    defaultMessage = "Keypairs Manager"
+                                    id = 'aelf.Extension Management'
+                                    defaultMessage = "Keypairs Management"
                                 />
                             }
                         ></ListContent>

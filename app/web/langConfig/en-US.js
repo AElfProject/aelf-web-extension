@@ -20,8 +20,9 @@ const en_US = {
     'aelf.Clear Wallet': 'Clear Wallet',
     'aelf.Unlock Wallet': 'Unlock Wallet',
     'aelf.Keypair Name': 'Keypair Name',
-    'aelf.Extend Manager': 'Extend Manager',
-    'aelf.Key Pairs': 'Key Pairs',
+    'aelf.Extend Management': 'Extend Management',
+    'aelf.Key Pairs Management': 'Key Pairs Management',
+    'aelf.Application Management': 'Application Management',
     'aelf.Receive': 'Receive',
     'aelf.Home': 'Home',
     'aelf.Permissions': 'Permissions',
@@ -42,6 +43,7 @@ const en_US = {
     'aelf.Strong': 'Strong',
     'aelf.Confirm Password': 'Confirm Password',
     'aelf.Agree': 'Agree',
+    'aelf.Refuse': 'Refuse',
     'aelf.Service and Privacy Policy': 'Service and Privacy Policy',
     'aelf.Backup Wallet': 'Backup Wallet',
     'aelf.AElf Wallet': 'AELF Wallet',
@@ -160,14 +162,16 @@ const en_US = {
     'aelf.Backup now': 'Backup now',
     'aelf.The passwords confirmed error.': 'The passwords confirmed error.',
     'aelf.The passwords is not strong.': 'The passwords is not strong.',
-    'aelf.Extension Manager': 'Extension Manager',
+    'aelf.Extension Management': 'Extension Management',
     'aelf.Backup NightELF': 'Backup NightELF',
     'aelf.Delete NightELF': 'Delete NightELF',
     'aelf.Timer Locks': 'Timer Locks',
     'aelf.Load From Backup': 'Load From Backup',
     'aelf.Please select the file': 'Please select the file',
     'aelf.Click here': 'Click here',
-    'aelf.Timing Lock Settings': 'Timing Lock Settings'
+    'aelf.Timing Lock Settings': 'Timing Lock Settings',
+    'aelf.Application': 'Application',
+    'aelf.Login': 'Login'
 };
 
 export default en_US;

@@ -25,6 +25,7 @@ import {antdChooseLocale, chooseLocale} from '../../utils/utils';
 // import Contracts from './Contracts/Contracts';
 import Permission from './Permission/Permission';
 import Prompt from './Prompt/Prompt';
+import LoginKeypairs from './LoginKeypairs/LoginKeypairs';
 
 addLocaleData([...zh, ...en]);
 
@@ -34,6 +35,7 @@ ReactDOM.render(
             <Router history={hashHistory}>
                 <Route path="/" component={Permission}></Route>
                 <Route path="/prompt" component={Prompt}></Route>
+                <Route path="/loginKeypairs" component={LoginKeypairs}></Route>
             </Router>
         </LocaleProvider>
     </IntlProvider>,

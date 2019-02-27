@@ -21,8 +21,9 @@ const zh_CN = {
     'aelf.Clear Wallet': '删除钱包',
     'aelf.Unlock Wallet': '解锁钱包',
     'aelf.Keypair Name': '密钥对别名',
-    'aelf.Extend Manager': '扩展管理',
-    'aelf.Key Pairs': '密钥对',
+    'aelf.Extend Management': '扩展管理',
+    'aelf.Key Pairs Management': '密钥对管理',
+    'aelf.Application Management': '应用管理',
     'aelf.Receive': '钱包地址',
     'aelf.Home': '首页',
     'aelf.Permissions': '权限',
@@ -42,6 +43,7 @@ const zh_CN = {
     'aelf.Strong': '安全',
     'aelf.Confirm Password': '确认密码',
     'aelf.Agree': '同意',
+    'aelf.Refuse': '拒绝',
     'aelf.Service and Privacy Policy': '服务与政策',
     'aelf.Backup Wallet': '备份钱包',
     'aelf.AElf Wallet': 'AELF 钱包',
@@ -152,14 +154,16 @@ const zh_CN = {
     'aelf.Backup now': '立即备份助记词',
     'aelf.The passwords confirmed error.': '两次输入不一致',
     'aelf.The passwords is not strong.': '密码强度不够',
-    'aelf.Extension Manager': '管理',
+    'aelf.Extension Management': '管理',
     'aelf.Backup NightELF': '备份 NightELF',
     'aelf.Delete NightELF': '删除 NightELF',
     'aelf.Timer Locks': '定时锁定',
     'aelf.Load From Backup': '导入加密备份',
     'aelf.Please select the file': '请选择备份文件',
     'aelf.Click here': '点击这里',
-    'aelf.Timing Lock Settings': '定时锁定设置'
+    'aelf.Timing Lock Settings': '定时锁定设置',
+    'aelf.Application': '应用',
+    'aelf.Login': '登录'
 };
 
 export default zh_CN;

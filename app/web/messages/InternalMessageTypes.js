@@ -43,5 +43,7 @@ export const OPEN_PROMPT = 'openPrompt';
 export const SET_PROMPT = 'setPrompt';
 export const GET_PROMPT = 'getPrompt';
 
+export const OPEN_LOGIN_KEYPAIR = 'openLoginKeypairs';
+
 
 

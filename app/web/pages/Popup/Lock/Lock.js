@@ -47,7 +47,8 @@ export default class Lock extends Component {
         this.state = {
             password: '',
             walletStatus: false,
-            timingLockTimes: [0]
+            timingLockTimes: [0],
+            agreement: false
         };
         const action = getParam('action', location.href);
         const isClear = action === 'clear_wallet';
@@ -125,6 +126,10 @@ export default class Lock extends Component {
         this.checkTime();
     }
 
+    componentWillUnmount() {
+        this.setState = () => {};
+    }
+
     createWallet() {
         const seed = getSeed(this.state.password);
         if (seed) {
@@ -132,6 +137,9 @@ export default class Lock extends Component {
                 console.log(InternalMessageTypes.SET_SEED, seed, result);
                 if (result && result.error === 0) {
                     Toast.success('Create Success', 1, () => {
+                        this.setState({
+                            agreement: false
+                        });
                         hashHistory.push('/home');
                     });
                 }
@@ -240,7 +248,7 @@ export default class Lock extends Component {
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     // >         Timing  lock          >
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+    
 
 
     getLockTime(value) {
@@ -274,6 +282,19 @@ export default class Lock extends Component {
         });
     }
 
+
+    getAgreement() {
+        const {password} = this.state;
+        if (password) {
+            this.setState({
+                agreement: true
+            });
+        }
+        else {
+            Toast.fail('Please re-enter your password and confirm it.', 3, () => {}, false);
+        }
+    }
+
     // if there is no wallet in browser.storage [chrome.storage]
     // We need create a wallet and insert it into storage.
     renderCreate() {
@@ -286,7 +307,7 @@ export default class Lock extends Component {
                 <AelfButton
                     text='Create Wallet'
                     aelficon='add_purple20'
-                    onClick={() => this.createWallet()}
+                    onClick={() => this.getAgreement()}
                     style={{marginBottom: '10px'}}
                 >
                 </AelfButton>
@@ -435,10 +456,47 @@ export default class Lock extends Component {
         </div>;
     }
 
+    renderAgreement() {
+        let titleText = 'Agreement';
+        return <div>
+                    <div className={style.top}>
+                        <div className={style.blank}></div>
+                        <p className={style.welcome}>{titleText}</p>
+                        <p className={style.wallet}>Night ELF</p>
+                        <p className={style.agreementContent}>
+                            balabalabalabalabalabalabalabalabalabalabalabalabalabalabala
+                        </p>
+                        <p className={style.agreementContent}>
+                            balabalabalabalabalabalabalabalabalabalabalabalabalabalabala
+                        </p>
+                        <p className={style.agreementContent}>
+                            balabalabalabalabalabalabalabalabalabalabalabalabalabalabala
+                        </p>
+                        <div className={style.bottom}>
+                            <div className='aelf-blank12'></div>
+                            <AelfButton
+                                text='Agree'
+                                aelficon='add_purple20'
+                                onClick={() => this.createWallet()}>
+                            </AelfButton>
+                            <div className='aelf-blank12'></div>
+                            <AelfButton
+                                text='Refuse'
+                                aelficon='add_purple20'
+                                onClick={() => this.setState({agreement: false})}>
+                            </AelfButton>
+                        </div>
+                        {/* <p className={style.description}>offcial</p> */}
+                    </div>
+                </div>;
+    }
+
     render() {
+        const {agreement} = this.state;
         let titleText = 'Welcome';
         let buttonHTML = '';
         let navHTML = '';
+        let bodyHTML = '';
         const walletStatus = this.state.walletStatus;
         const {
             nightElfEncrypto,
@@ -480,19 +538,28 @@ export default class Lock extends Component {
             }
         }
 
-        // const testHTML = this.renderTestButtons();
         const containerStyle = getPageContainerStyle();
+        if (agreement) {
+            bodyHTML = this.renderAgreement();
+        }
+        else {
+            bodyHTML = <div>
+                            {navHTML}
+                            <div className={style.top}>
+                                <div className={style.blank}></div>
+                                <p className={style.welcome}>{titleText}</p>
+                                <p className={style.wallet}>Night ELF</p>
+                                {/* <p className={style.description}>offcial</p> */}
+                            </div>
+                            {buttonHTML}
+                            {/* {testHTML} */}
+                        </div>;
+        }
+
+        // const testHTML = this.renderTestButtons();
         return (
             <div className={style.container} style={containerStyle}>
-                {navHTML}
-                <div className={style.top}>
-                    <div className={style.blank}></div>
-                    <p className={style.welcome}>{titleText}</p>
-                    <p className={style.wallet}>Night ELF</p>
-                    {/* <p className={style.description}>offcial</p> */}
-                </div>
-                {buttonHTML}
-                {/* {testHTML} */}
+                {bodyHTML}
             </div>
         );
     }

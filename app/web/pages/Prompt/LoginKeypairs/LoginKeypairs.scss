@@ -1,0 +1,27 @@
+.container {
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 478px;
+    min-width: 100%;
+    background: rgb(151, 17, 218);
+}
+
+.appName {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 900;
+    color: #FFF;
+    padding: 24px 20px 0 20px;
+
+    .loginTip {
+        font-size: 20px;
+        padding-top: 20px;
+    }
+
+}
+
+.keypairsSearch {
+    padding: 20px;
+}

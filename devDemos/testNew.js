@@ -193,6 +193,23 @@ document.addEventListener('NightElf', result => {
         aelf.chain.getTxResult('');
     };
 
+
+    const applicationLogin = document.getElementById('application-login');
+    applicationLogin.onclick = function () {
+        NightElf.api({
+            appName: 'AELF-VOTE',
+            method: 'OPEN_LOGIN_KEYPAIR',
+            chainId: 'AELF',
+            hostname: 'aelf.io'
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+            console.log('=======================');
+            console.log('      虽然很不想承认      ');
+            console.log('  但是这个功能怎的没做完   ');
+            console.log('=======================');
+        });
+    };
+
 });
 if (false) {
     const aelf = new window.NightElf.AElf({

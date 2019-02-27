@@ -195,6 +195,7 @@ export default class CreateKeypairs extends Component {
                         ></InputItem>
                     </List>
                 </div>
+                <div style={{height: '50px'}}></div>
                 <div className={style.buttonContainer}>
                     <AelfButton
                         text='Create Keypair'

@@ -52,7 +52,7 @@ function removeKeypairs(address, callback) {
         const {
             nightElf
         } = result || {};
-        if (!nightElf) {
+        if (nightElf) {
             InternalMessage.payload(InternalMessageTypes.REMOVE_KEYPAIR, address).send().then(result => {
                 console.log(InternalMessageTypes.REMOVE_KEYPAIR, result);
                 if (result.error === 0) {
