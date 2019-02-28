@@ -47807,7 +47807,7 @@ function () {
         var appName = loginInfo.appName,
             chainId = loginInfo.chainId,
             payload = loginInfo.payload;
-        var domain = loginInfo.domain || loginInfo.hostname;
+        var domain = loginInfo.hostname || loginInfo.domain;
         var appPermissons = getApplicationPermssions(permissions, domain);
 
         if (appPermissons.permissions.length) {

@@ -368,7 +368,7 @@ export default class Background {
             } = nightElfObject;
 
             const {appName, chainId, payload} = loginInfo;
-            const domain = loginInfo.domain || loginInfo.hostname;
+            const domain = loginInfo.hostname || loginInfo.domain;
             const appPermissons = getApplicationPermssions(permissions, domain);
 
             if (appPermissons.permissions.length) {
