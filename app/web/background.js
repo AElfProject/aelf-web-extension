@@ -131,6 +131,35 @@ function formatContracts(contractsInput) {
     return contractsFormated;
 }
 
+<<<<<<< HEAD
+=======
+function contractWhitelistCheck(options) {
+    const {
+        sendResponse,
+        permissions,
+        hostname,
+        contractAddress,
+        contractInfo,
+        method
+    } = options;
+    const appPermissions = getApplicationPermssions(permissions, hostname);
+    const contractMatch = appPermissions.permissions[0].contracts.find(item => {
+        if (item.contractAddress === contractAddress) {
+            return true;
+        }
+        return false;
+    });
+    if (contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method)) {
+
+    }
+    else {
+        Background.openPrompt(sendResponse, contractInfo);
+        return false;
+    }
+    return true;
+}
+
+>>>>>>> 70b13a0463f8cd5319cb3a7e39839d5968ff22f7
 let aelfMeta = [];
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
@@ -228,11 +257,17 @@ export default class Background {
             case InternalMessageTypes.SET_WHITELIST:
                 Background.setWhitelist(sendResponse, message.payload);
                 break;
+            case InternalMessageTypes.REMOVE_METHODS_WHITELIST:
+                Background.removeMethodsOfWhitelist(sendResponse, message.payload);
+                break;
             case InternalMessageTypes.CHECK_PERMISSION:
                 Background.getPermission(sendResponse, message.payload);
                 break;
             case InternalMessageTypes.REMOVE_PERMISSION:
                 Background.removePermission(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.REMOVE_CONTRACT_PERMISSION:
+                Background.removeContractOfPermission(sendResponse, message.payload);
                 break;
             case InternalMessageTypes.GET_ALLPERMISSIONS:
                 Background.getAllPermissions(sendResponse);
@@ -253,6 +288,9 @@ export default class Background {
                 break;
             case InternalMessageTypes.CALL_AELF_CONTRACT:
                 Background.callAelfContract(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
+                Background.callAelfContractWithoutCheck(sendResponse, message.payload);
                 break;
 
             case InternalMessageTypes.GET_ADDRESS:
@@ -598,8 +636,16 @@ export default class Background {
         });
     }
 
+<<<<<<< HEAD
     static callAelfContract(sendResponse, contractInfo) {
 
+=======
+    static callAelfContractWithoutCheck(sendResponse, contractInfo) {
+        Background.callAelfContract(sendResponse, contractInfo, false);
+    }
+
+    static callAelfContract(sendResponse, contractInfo, checkWhitelist = true) {
+>>>>>>> 70b13a0463f8cd5319cb3a7e39839d5968ff22f7
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const {payload, chainId, hostname} = contractInfo;
@@ -616,7 +662,20 @@ export default class Background {
                 }
             } = nightElfObject;
 
+<<<<<<< HEAD
             // const appPermissions = getApplicationPermssions(permissions, hostname);
+=======
+            if (checkWhitelist && !contractWhitelistCheck({
+                    sendResponse,
+                    permissions,
+                    hostname,
+                    contractAddress,
+                    contractInfo,
+                    method
+                })) {
+                return;
+            }
+>>>>>>> 70b13a0463f8cd5319cb3a7e39839d5968ff22f7
 
             const dappAelfMeta = aelfMeta.find(item => {
                 // const checkDomain = hostname.includes(item.hostname);
@@ -1066,6 +1125,45 @@ export default class Background {
         });
     }
 
+    static removeMethodsOfWhitelist(sendResponse, removeInfo) {
+        // appName: 'hzzTest',
+        // method: 'REMOVE_CONTRACT_PERMISSION',
+        // chainId: 'AELF',
+        // payload: {
+        //     contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+        //     methods: ['BalanceOf', 'Transfer']
+        // }
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            const {
+                keychain: {
+                    permissions = []
+                }
+            } = nightElfObject;
+
+            const {domain, hostname, payload} = removeInfo;
+            const {contractAddress, methods} = payload;
+            const appPermissions = getApplicationPermssions(permissions, domain || hostname);
+            {
+                const {permissions, indexList} = appPermissions;
+
+                const contractsNew = permissions[0].contracts.map(contract => {
+                    if (contract.contractAddress === contractAddress
+                        && !!contract.whitelist) {
+                        methods.map(method => {
+                            delete contract.whitelist[method];
+                        });
+                    }
+                    return contract;
+                });
+
+                nightElfObject.keychain.permissions[indexList[0]].contracts = contractsNew;
+            }
+
+            nightElf = NightElf.fromJson(nightElfObject);
+            Background.updateWallet(sendResponse);
+        });
+    }
+
     // 3 Way to get Permisions
     // by address,contranctAddress,domain(default way)
     static getPermission(sendResponse, queryInfo) {
@@ -1169,7 +1267,6 @@ export default class Background {
         });
     }
 
-    // TODO: remove Single contract permission.
     static removePermission(sendResponse, removeInfo) {
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const {
@@ -1183,6 +1280,40 @@ export default class Background {
                 const addressCheck = removeInfo.address === item.address;
                 return !(domainCheck && addressCheck);
             });
+
+            nightElf = NightElf.fromJson(nightElfObject);
+            Background.updateWallet(sendResponse);
+        });
+    }
+
+    static removeContractOfPermission(sendResponse, removeInfo, onlyWhitlist = false) {
+        // {
+        //     "appName": "hzzTest",
+        //     "domain": "OnlyForTest!!!",
+        //     "address": "ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs",
+        //     "contractAddress": "xxxx"
+        // }
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            const {
+                keychain: {
+                    permissions = []
+                }
+            } = nightElfObject;
+
+            const {domain, hostname, payload} = removeInfo;
+            const {contractAddress} = payload;
+            const appPermissions = getApplicationPermssions(permissions, domain || hostname);
+            {
+                const {permissions, indexList} = appPermissions;
+                // permissions[0]
+                const contractsNew = permissions[0].contracts.filter(item => {
+                    if (item.contractAddress === contractAddress) {
+                        return false;
+                    }
+                    return true;
+                });
+                nightElfObject.keychain.permissions[indexList[0]].contracts = contractsNew;
+            }
 
             nightElf = NightElf.fromJson(nightElfObject);
             Background.updateWallet(sendResponse);
