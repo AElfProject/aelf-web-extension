@@ -109,6 +109,28 @@ function contractsCompare(contractA, contractB) {
     return !contractBTemp.length;
 }
 
+// ignore other values like whitelist
+function formatContracts(contractsInput) {
+    const contracts = JSON.parse(JSON.stringify(contractsInput));
+    const contractsFormated = contracts.map(item => {
+        const {
+            chainId,
+            contractAddress,
+            contractName,
+            description,
+            github
+        } = item;
+        return {
+            chainId,
+            contractAddress,
+            contractName,
+            description,
+            github
+        };
+    });
+    return contractsFormated;
+}
+
 let aelfMeta = [];
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
@@ -368,7 +390,7 @@ export default class Background {
             const input = {
                 appName,
                 method: 'OPEN_PROMPT',
-                router: '#/login',
+                // router: '#/login',
                 chainId,
                 hostname: domain,
                 payload
@@ -564,7 +586,9 @@ export default class Background {
     }
 
     static callAelfContract(sendResponse, contractInfo) {
-        this.checkSeed({sendResponse}, () => {
+
+
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const {payload, chainId, hostname} = contractInfo;
             const {
                 contractName,
@@ -572,6 +596,15 @@ export default class Background {
                 params,
                 contractAddress
             } = payload;
+
+            const {
+                keychain: {
+                    permissions = []
+                }
+            } = nightElfObject;
+
+            // const appPermissions = getApplicationPermssions(permissions, hostname);
+
             const dappAelfMeta = aelfMeta.find(item => {
                 // const checkDomain = hostname.includes(item.hostname);
                 const checkDomain = hostname === item.hostname;
@@ -833,14 +866,14 @@ export default class Background {
     // }
 
     static setLoginPermission(sendResponse, permissionInput) {
-        this.setPermission(sendResponse, permissionInput, true);
+        Background.setPermission(sendResponse, permissionInput, true);
     }
 
     static setContractPermission(sendResponse, permissionInput) {
-        this.setPermission(sendResponse, permissionInput, false);
+        Background.setPermission(sendResponse, permissionInput, false);
     }
 
-    setPermission(sendResponse, permissionInput, bindKeypair = false) {
+    static setPermission(sendResponse, permissionInput, bindKeypair = false) {
         // permission example
         // {
         //     appName: 'hzz Test',
@@ -863,25 +896,11 @@ export default class Background {
                 address,
                 contracts
             } = permissionInput;
-            // ignore other values like whitelist
-            const {
-                chainId,
-                contractAddress,
-                contractName,
-                description,
-                github
-            } = contracts;
             const permissionNeedAdd = {
                 appName,
                 domain: domain || hostname,
                 // address,
-                contracts: {
-                    chainId,
-                    contractAddress,
-                    contractName,
-                    description,
-                    github
-                }
+                contracts: formatContracts(contracts)
             };
             const {
                 keychain: {

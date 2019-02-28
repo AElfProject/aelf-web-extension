@@ -47500,6 +47500,26 @@ function contractsCompare(contractA, contractB) {
   }
 
   return !contractBTemp.length;
+} // ignore other values like whitelist
+
+
+function formatContracts(contractsInput) {
+  var contracts = JSON.parse(JSON.stringify(contractsInput));
+  var contractsFormated = contracts.map(function (item) {
+    var chainId = item.chainId,
+        contractAddress = item.contractAddress,
+        contractName = item.contractName,
+        description = item.description,
+        github = item.github;
+    return {
+      chainId: chainId,
+      contractAddress: contractAddress,
+      contractName: contractName,
+      description: description,
+      github: github
+    };
+  });
+  return contractsFormated;
 }
 
 var aelfMeta = []; // This is the script that runs in the extension's background ( singleton )
@@ -47681,73 +47701,6 @@ function () {
      * @param {Object} chainInfo from content.js
      */
 
-  }, {
-    key: "setPermission",
-    value: function setPermission(sendResponse, permissionInput) {
-      var bindKeypair = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      // permission example
-      // {
-      //     appName: 'hzz Test',
-      //     domain: 'aelf.io',
-      //     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
-      //     contracts: [{
-      //         chainId: 'AELF',
-      //         contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
-      //         contractName: 'token',
-      //         description: 'token contract',
-      //         description_zh: '',
-      //         description_en: ''
-      //     }]
-      // }
-      this.checkSeed({
-        sendResponse: sendResponse
-      }, function (_ref) {
-        var nightElfObject = _ref.nightElfObject;
-        var appName = permissionInput.appName,
-            domain = permissionInput.domain,
-            hostname = permissionInput.hostname,
-            address = permissionInput.address,
-            contracts = permissionInput.contracts; // ignore other values like whitelist
-
-        var chainId = contracts.chainId,
-            contractAddress = contracts.contractAddress,
-            contractName = contracts.contractName,
-            description = contracts.description,
-            github = contracts.github;
-        var permissionNeedAdd = {
-          appName: appName,
-          domain: domain || hostname,
-          // address,
-          contracts: {
-            chainId: chainId,
-            contractAddress: contractAddress,
-            contractName: contractName,
-            description: description,
-            github: github
-          }
-        };
-        var _nightElfObject$keych = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych === void 0 ? [] : _nightElfObject$keych;
-        var appPermissons = getApplicationPermssions(permissions, domain);
-        var permissionIndex = appPermissons.indexList;
-        var permissionsTemp = appPermissons.permissions; // set contract permission
-
-        if (permissionsTemp.length) {
-          permissionNeedAdd.address = permissionsTemp.address;
-          nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
-        } // Login
-        else if (bindKeypair) {
-            permissionNeedAdd.address = address;
-            nightElfObject.keychain.permissions.unshift(permissionNeedAdd);
-          } else {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200008)));
-            return;
-          }
-
-        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
-        Background.updateWallet(sendResponse);
-      });
-    }
   }], [{
     key: "connectAelfChain",
     value: function connectAelfChain(sendResponse, chainInfo) {
@@ -47804,11 +47757,11 @@ function () {
 
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref2) {
-        var nightElfObject = _ref2.nightElfObject;
+      }, function (_ref) {
+        var nightElfObject = _ref.nightElfObject;
         // 如果permissions下有对应的
-        var _nightElfObject$keych2 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2;
+        var _nightElfObject$keych = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych === void 0 ? [] : _nightElfObject$keych;
         var appName = loginInfo.appName,
             chainId = loginInfo.chainId,
             payload = loginInfo.payload;
@@ -47857,7 +47810,7 @@ function () {
         var input = {
           appName: appName,
           method: 'OPEN_PROMPT',
-          router: '#/login',
+          // router: '#/login',
           chainId: chainId,
           hostname: domain,
           payload: payload
@@ -48040,7 +47993,8 @@ function () {
 
       this.checkSeed({
         sendResponse: sendResponse
-      }, function () {
+      }, function (_ref2) {
+        var nightElfObject = _ref2.nightElfObject;
         var payload = contractInfo.payload,
             chainId = contractInfo.chainId,
             hostname = contractInfo.hostname;
@@ -48048,6 +48002,9 @@ function () {
             method = payload.method,
             params = payload.params,
             contractAddress = payload.contractAddress;
+        var _nightElfObject$keych2 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2; // const appPermissions = getApplicationPermssions(permissions, hostname);
+
         var dappAelfMeta = aelfMeta.find(function (item) {
           // const checkDomain = hostname.includes(item.hostname);
           var checkDomain = hostname === item.hostname;
@@ -48297,12 +48254,67 @@ function () {
   }, {
     key: "setLoginPermission",
     value: function setLoginPermission(sendResponse, permissionInput) {
-      this.setPermission(sendResponse, permissionInput, true);
+      Background.setPermission(sendResponse, permissionInput, true);
     }
   }, {
     key: "setContractPermission",
     value: function setContractPermission(sendResponse, permissionInput) {
-      this.setPermission(sendResponse, permissionInput, false);
+      Background.setPermission(sendResponse, permissionInput, false);
+    }
+  }, {
+    key: "setPermission",
+    value: function setPermission(sendResponse, permissionInput) {
+      var bindKeypair = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      // permission example
+      // {
+      //     appName: 'hzz Test',
+      //     domain: 'aelf.io',
+      //     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
+      //     contracts: [{
+      //         chainId: 'AELF',
+      //         contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
+      //         contractName: 'token',
+      //         description: 'token contract',
+      //         description_zh: '',
+      //         description_en: ''
+      //     }]
+      // }
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref7) {
+        var nightElfObject = _ref7.nightElfObject;
+        var appName = permissionInput.appName,
+            domain = permissionInput.domain,
+            hostname = permissionInput.hostname,
+            address = permissionInput.address,
+            contracts = permissionInput.contracts;
+        var permissionNeedAdd = {
+          appName: appName,
+          domain: domain || hostname,
+          // address,
+          contracts: formatContracts(contracts)
+        };
+        var _nightElfObject$keych4 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych4 === void 0 ? [] : _nightElfObject$keych4;
+        var appPermissons = getApplicationPermssions(permissions, domain);
+        var permissionIndex = appPermissons.indexList;
+        var permissionsTemp = appPermissons.permissions; // set contract permission
+
+        if (permissionsTemp.length) {
+          permissionNeedAdd.address = permissionsTemp.address;
+          nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
+        } // Login
+        else if (bindKeypair) {
+            permissionNeedAdd.address = address;
+            nightElfObject.keychain.permissions.unshift(permissionNeedAdd);
+          } else {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200008)));
+            return;
+          }
+
+        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+        Background.updateWallet(sendResponse);
+      });
     }
   }, {
     key: "setWhitelist",
@@ -48336,16 +48348,16 @@ function () {
       // }
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref7) {
-        var nightElfObject = _ref7.nightElfObject;
+      }, function (_ref8) {
+        var nightElfObject = _ref8.nightElfObject;
         var domain = whitelistInput.domain,
             hostname = whitelistInput.hostname,
             payload = whitelistInput.payload;
         var contractAddress = payload.contractAddress,
             whitelist = payload.whitelist;
         var domainTemp = domain || hostname;
-        var _nightElfObject$keych4 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych4 === void 0 ? [] : _nightElfObject$keych4;
+        var _nightElfObject$keych5 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych5 === void 0 ? [] : _nightElfObject$keych5;
         var appPermissons = getApplicationPermssions(permissions, domainTemp);
         var appPermissionIndex = appPermissons.indexList;
         var appPermissionsTemp = appPermissons.permissions;
@@ -48385,10 +48397,10 @@ function () {
       // it means, we need declare static checkSeed.
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref8) {
-        var nightElfObject = _ref8.nightElfObject;
-        var _nightElfObject$keych5 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych5 === void 0 ? [] : _nightElfObject$keych5;
+      }, function (_ref9) {
+        var nightElfObject = _ref9.nightElfObject;
+        var _nightElfObject$keych6 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych6 === void 0 ? [] : _nightElfObject$keych6;
 
         switch (queryInfo.type) {
           case 'address':
@@ -48463,10 +48475,10 @@ function () {
     value: function getAllPermissions(sendResponse) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref9) {
-        var nightElfObject = _ref9.nightElfObject;
-        var _nightElfObject$keych6 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych6 === void 0 ? [] : _nightElfObject$keych6;
+      }, function (_ref10) {
+        var nightElfObject = _ref10.nightElfObject;
+        var _nightElfObject$keych7 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych7 === void 0 ? [] : _nightElfObject$keych7;
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
           permissions: permissions
         }));
@@ -48478,10 +48490,10 @@ function () {
     value: function removePermission(sendResponse, removeInfo) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref10) {
-        var nightElfObject = _ref10.nightElfObject;
-        var _nightElfObject$keych7 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych7 === void 0 ? [] : _nightElfObject$keych7;
+      }, function (_ref11) {
+        var nightElfObject = _ref11.nightElfObject;
+        var _nightElfObject$keych8 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych8 === void 0 ? [] : _nightElfObject$keych8;
         nightElfObject.keychain.permissions = permissions.filter(function (item) {
           var domainCheck = removeInfo.domain === item.domain;
           var addressCheck = removeInfo.address === item.address;
@@ -48555,10 +48567,10 @@ function () {
     value: function getAddress(sendResponse) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref11) {
-        var nightElfObject = _ref11.nightElfObject;
-        var _nightElfObject$keych8 = nightElfObject.keychain.keypairs,
-            keypairs = _nightElfObject$keych8 === void 0 ? [] : _nightElfObject$keych8;
+      }, function (_ref12) {
+        var nightElfObject = _ref12.nightElfObject;
+        var _nightElfObject$keych9 = nightElfObject.keychain.keypairs,
+            keypairs = _nightElfObject$keych9 === void 0 ? [] : _nightElfObject$keych9;
         var addressList = keypairs.map(function (item) {
           return {
             name: item.name,
