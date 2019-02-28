@@ -189,10 +189,6 @@
     background: url("../../../assets/svg_icon/copy12.svg") no-repeat;
 }
 
-.removeBtn {
-    background: url("../../../assets/svg_icon/move22.svg") no-repeat;
-}
-
 .keypairBtnContainer {
     margin: 0 0 0 8px;
     width: 24px;
@@ -268,4 +264,10 @@
 
 .noKeypairsTips {
     padding: 0 24px;
+}
+
+.login {
+    width: 40px;
+    text-align: center;
+    cursor: pointer;
 }

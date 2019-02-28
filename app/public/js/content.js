@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 744);
+/******/ 	return __webpack_require__(__webpack_require__.s = 746);
 /******/ })
 /************************************************************************/
 /******/ (Array(112).concat([
@@ -26594,7 +26594,9 @@ function errorHandler(code, error) {
 /* 741 */,
 /* 742 */,
 /* 743 */,
-/* 744 */
+/* 744 */,
+/* 745 */,
+/* 746 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26606,14 +26608,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(254);
-/* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(745);
-/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(747);
+/* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(747);
+/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(749);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(496);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(717);
-/* harmony import */ var _utils_getHostname__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(748);
+/* harmony import */ var _utils_getHostname__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(750);
 /* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(718);
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(749);
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(751);
 
 
 
@@ -26761,7 +26763,7 @@ function () {
 new Content();
 
 /***/ }),
-/* 745 */
+/* 747 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26771,7 +26773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(746);
+/* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(748);
 /* harmony import */ var elliptic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(402);
 /* harmony import */ var elliptic__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(elliptic__WEBPACK_IMPORTED_MODULE_3__);
 
@@ -26939,7 +26941,7 @@ function () {
 
 
 /***/ }),
-/* 746 */
+/* 748 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26991,7 +26993,7 @@ function () {
 
 
 /***/ }),
-/* 747 */
+/* 749 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27006,7 +27008,7 @@ var PAGE_NIGHTELF = 'pageNightElf';
 var CONTENT_NIGHTELF = 'contentNightElf';
 
 /***/ }),
-/* 748 */
+/* 750 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27033,7 +27035,7 @@ function getHostname() {
 }
 
 /***/ }),
-/* 749 */
+/* 751 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

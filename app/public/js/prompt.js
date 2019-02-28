@@ -68615,12 +68615,7 @@ var SCROLLLIST = {
 module.exports = __webpack_require__.p + "assets/output/e6207205c1a4064ec49c41a228aff00b.svg";
 
 /***/ }),
-/* 685 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "assets/output/558e8530d417f12d6246f3511925a725.svg";
-
-/***/ }),
+/* 685 */,
 /* 686 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -68751,8 +68746,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(717);
 /* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(718);
-/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(495);
-/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(496);
+/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(753);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(495);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(496);
 
 
 
@@ -68769,6 +68765,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
  // import {hashHistory} from 'react-router';
 
 
@@ -68779,12 +68776,12 @@ var Permission =
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(Permission, _Component);
 
-  function Permission() {
+  function Permission(props) {
     var _this;
 
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Permission);
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Permission).call(this));
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Permission).call(this, props));
     var data = window.data || _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__["apis"].extension.getBackgroundPage().notification || null;
     var message = data.message;
     var appName = message.appName,
@@ -68793,17 +68790,21 @@ function (_Component) {
     _this.permission = {
       appName: appName,
       domain: hostname,
-      address: payload.payload.address,
+      // Why do we do this?
+      // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
+      address: _this.props.location.state,
       contracts: payload.payload.contracts
     };
+    console.log(_this.props.location);
     return _this;
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Permission, [{
     key: "setPermission",
     value: function setPermission() {
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_12__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["SET_PERMISSION"], this.permission).send().then(function (result) {
-        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["SET_PERMISSION"], result);
+      // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_13__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_12__["SET_LOGIN_PERMISSION"], this.permission).send().then(function (result) {
+        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_12__["SET_CONTRACT_PERMISSION"], result);
 
         if (result.error === 0) {
           antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.success('Bind Permisson Success, after 3s close the window.');
@@ -68826,26 +68827,14 @@ function (_Component) {
       window.close();
     }
   }, {
-    key: "renderPermissions",
-    value: function renderPermissions(permission) {
-      var chainID = permission.chainID,
-          contractAddress = permission.contractAddress,
-          contractName = permission.contractName,
-          description = permission.description;
-      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        key: contractAddress + chainID
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Chain ID: ", chainID), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Contract Address: ", contractAddress), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Contract Name: ", contractName), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "Description: ", description), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "--------"));
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
       var permission = this.permission;
-      var contractsHTML = permission.contracts.map(function (item) {
-        return _this2.renderPermissions(item);
-      });
-      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", null, "Hello Permission Prompt!"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "APP NAME: ", permission.appName), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "DOMAIN: ", permission.domain), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "ADDRESS: ", permission.address), contractsHTML, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", null, "Hello Permission Prompt!"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "APP NAME: ", permission.appName), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "DOMAIN: ", permission.domain), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "ADDRESS: ", permission.address), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        permission: permission
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, "--------"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.setPermission();
         }
@@ -69072,14 +69061,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(656);
 /* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(224);
-/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(235);
-/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(721);
-/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(724);
-/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(721);
+/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(724);
+/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(224);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(235);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(659);
 /* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(662);
@@ -69096,16 +69085,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(108);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(115);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(176);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(200);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(717);
 /* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(681);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(496);
-/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(728);
-/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(753);
+/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(728);
+/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__);
 
 
 
@@ -69134,7 +69123,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-__webpack_require__(751);
+
+__webpack_require__(730);
 
 var NUM_ROWS = 9999;
 var pageSize = 9999;
@@ -69152,7 +69142,17 @@ function (_Component) {
     _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_10___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_11___default()(LoginKeypairs).call(this, props));
     var data = window.data || _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_17__["apis"].extension.getBackgroundPage().notification || null;
     var message = data.message;
-    var appName = message.appName;
+    var appName = message.appName,
+        payload = message.payload,
+        domain = message.domain,
+        chainId = message.chainId,
+        hostname = message.hostname;
+    _this.permission = {
+      appName: appName,
+      domain: hostname,
+      address: payload.payload.address,
+      contracts: payload.payload.contracts
+    };
     var dataSource = new antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_7___default.a.DataSource({
       rowHasChanged: function rowHasChanged(row1, row2) {
         return row1 !== row2;
@@ -69161,6 +69161,10 @@ function (_Component) {
     _this.rData = [];
     _this.state = {
       appName: appName,
+      hostname: hostname,
+      domain: domain,
+      chainId: chainId,
+      payload: payload,
       searchValue: '',
       dataSource: dataSource,
       refreshing: true,
@@ -69180,15 +69184,15 @@ function (_Component) {
       }, 10);
       return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         key: rowID,
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.txList
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.txList
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.txListMask
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.txListMask
       }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.operationContainer
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.operationContainer
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.operationList
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.operationList
       }, item.name, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.keypairBtnContainer + ' ' + _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.copyBtn,
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.keypairBtnContainer + ' ' + _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.copyBtn,
         onClick: function onClick() {
           var btn = document.getElementById(clipboardID);
           btn.click();
@@ -69196,15 +69200,22 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("button", {
         id: clipboardID,
         "data-clipboard-target": "#".concat(keypairAddressText),
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.textarea
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.textarea
       }, "copy"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("input", {
         id: keypairAddressText,
         type: "text",
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.textarea,
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.textarea,
         value: address,
         readOnly: true
+      })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.login,
+        onClick: function onClick() {
+          return _this.setPermission(address);
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        id: "aelf.Login"
       }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.keypairsAddress
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.keypairsAddress
       }, address));
     };
 
@@ -69212,17 +69223,53 @@ function (_Component) {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_9___default()(LoginKeypairs, [{
-    key: "renderSearch",
-    value: function renderSearch() {
+    key: "setPermission",
+    value: function setPermission(address) {
+      // Why do we do this?
+      // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
+      if (address) {
+        this.checkWallet(address);
+      }
+    }
+  }, {
+    key: "turnToPermissionPage",
+    value: function turnToPermissionPage(walletStatus, address) {
+      var _ref = walletStatus || {},
+          nightElf = _ref.nightElf;
+
+      if (!nightElf) {
+        antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default.a.fail('Night Elf is locked!', 3);
+
+        return;
+      } else {
+        var path = {
+          pathname: '/',
+          state: address
+        };
+        react_router__WEBPACK_IMPORTED_MODULE_14__["hashHistory"].push(path);
+      }
+    }
+  }, {
+    key: "checkWallet",
+    value: function checkWallet(address) {
       var _this2 = this;
 
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["CHECK_WALLET"]).send().then(function (result) {
+        _this2.turnToPermissionPage(result, address);
+      });
+    }
+  }, {
+    key: "renderSearch",
+    value: function renderSearch() {
+      var _this3 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.keypairsSearch
-      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_5___default.a, {
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.keypairsSearch
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3___default.a, {
         placeholder: "Search",
         cancelText: "Cancel",
         onChange: function onChange(e) {
-          return _this2.setSearch(e);
+          return _this3.setSearch(e);
         }
       }));
     }
@@ -69236,25 +69283,24 @@ function (_Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this3 = this;
+      var _this4 = this;
 
       var hei = this.state.height - 142;
       this.getKeypairs(function (result) {
-        console.log(result);
-        _this3.rData = result;
+        _this4.rData = result;
 
         if (result.length > 0) {
-          _this3.setState({
+          _this4.setState({
             hasKeypairs: true
           });
         } else {
-          _this3.setState({
+          _this4.setState({
             hasKeypairs: false
           });
         }
 
-        _this3.setState({
-          dataSource: _this3.state.dataSource.cloneWithRows(_this3.rData),
+        _this4.setState({
+          dataSource: _this4.state.dataSource.cloneWithRows(_this4.rData),
           height: hei,
           refreshing: false,
           isLoading: false
@@ -69269,9 +69315,9 @@ function (_Component) {
           callback(result.keypairs);
         } else {
           if (result.error === 200005) {
-            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.fail(result.errorMessage.message, 3, function () {}, false);
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default.a.fail(result.errorMessage.message, 3, function () {}, false);
           } else {
-            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.fail('No Keypair in Wallet.', 3, function () {}, false);
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_5___default.a.fail('No Keypair in Wallet.', 3, function () {}, false);
           }
         }
       });
@@ -69280,13 +69326,13 @@ function (_Component) {
     key: "noKeypairs",
     value: function noKeypairs() {
       return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.noKeypairsTips
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.noKeypairsTips
       }, "\u4F60\u8FD8\u6CA1\u6709\u53EF\u7528\u7684 keypair \u8BF7\u5230\u6269\u5C55\u4E2D\u521B\u5EFA\u4F60\u7684 ELF Keypair ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", null), "\u901A\u8FC7\u5237\u65B0\u9875\u9762\u6765\u91CD\u65B0\u83B7\u53D6\u6388\u6743\u9875\uFF01");
     }
   }, {
     key: "hasKeypairs",
     value: function hasKeypairs() {
-      var _this4 = this;
+      var _this5 = this;
 
       var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_16__["getPageContainerStyle"])();
       pageContainerStyle.height -= 166;
@@ -69294,24 +69340,24 @@ function (_Component) {
 
       var containerStyle = Object.assign({}, backgroundStyle);
       return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.background,
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.background,
         style: backgroundStyle
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.backgroundMask
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.backgroundMask
       }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.scrollContainer,
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.scrollContainer,
         style: containerStyle
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.transactionList
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.transactionList
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_7___default.a, {
         initialListSize: NUM_ROWS,
         key: this.state.useBodyScroll ? '0' : '1',
         ref: function ref(el) {
-          return _this4.lv = el;
+          return _this5.lv = el;
         },
         dataSource: this.state.dataSource,
         renderFooter: function renderFooter() {
-          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_18__["default"])(_this4.state.isLoading, _this4.state.hasMore);
+          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_18__["default"])(_this5.state.isLoading, _this5.state.hasMore);
         },
         renderRow: this.renderRow,
         useBodyScroll: this.state.useBodyScroll,
@@ -69328,6 +69374,7 @@ function (_Component) {
       var _this$state = this.state,
           appName = _this$state.appName,
           hasKeypairs = _this$state.hasKeypairs;
+      var permission = this.permission;
       var keypairsHTML = '';
 
       if (hasKeypairs) {
@@ -69338,16 +69385,18 @@ function (_Component) {
 
 
       return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.container
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.container
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a.Item, null, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.appLogin
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.appLogin
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.appName
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.appName
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", null, appName), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default.a.loginTip
+        className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.loginTip
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
         id: "aelf.Login"
-      }))), keypairsHTML)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a.Item, null, this.state.appName)));
+      }))), keypairsHTML)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a.Item, null, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", null, "----------------------------------------"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", null, "Welcome to ", appName), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(_components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        permission: permission
+      }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", null, "----------------------------------------"))));
     }
   }]);
 
@@ -69813,7 +69862,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_container-1-yL2 {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  min-height: 478px;\n  min-width: 100%;\n  background: #9711da; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_appName-1j1fJ {\n  text-align: center;\n  font-size: 24px;\n  font-weight: 900;\n  color: #FFF;\n  padding: 24px 20px; }\n  .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_appName-1j1fJ .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_loginTip-uxPm1 {\n    font-size: 20px;\n    padding-top: 20px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairsSearch-P6aAg {\n  padding: 20px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_txList-1UhDB {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_txListMask-36rR3 {\n  opacity: 0.4;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairNickname-3-1RB {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairAddress-2-JRz {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listLeft-3XoDR {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_logoContainer-3bYni {\n  height: 36px;\n  width: 36px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_logoContainer-3bYni img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listLeft-3XoDR .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_name-1OmO9 {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listLeft-3XoDR .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_description-28rCm {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listRight-2bxo8 {\n  text-align: right; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listRight-2bxo8 .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_balance-3zR1H {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listRight-2bxo8 .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_tenderValuation-3q_us {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_txList-1UhDB:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_background-2NCmu {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_backgroundMask-4sUtR {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_scrollContainer-f1hEj {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_walletInfo-2dLA5 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_balance-3zR1H {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_aelfValuation-3A3AI {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_tenderValuation-3q_us {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_tenderUnit--V7Up {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addressContainer-HJbtI {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_copyBtn-2kw0E {\n  background: url(" + escape(__webpack_require__(684)) + ") no-repeat; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_removeBtn-2Zbre {\n  background: url(" + escape(__webpack_require__(685)) + ") no-repeat; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairBtnContainer-1z8-k {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_operationContainer-214ZC {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_operationList-19Apq {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_transactionList-1X6Aq {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addBtnContainer-38YMh {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addBtn-1pf2a {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(686)) + ") no-repeat;\n  -webkit-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addBtn-1pf2a:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_textarea-3Z0PM {\n  position: fixed;\n  top: -250px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairButton-2D26j {\n  background: #FFF;\n  display: inline-block;\n  width: 100%;\n  text-align: center;\n  height: 24px;\n  line-height: 24px;\n  font-size: 12px;\n  border-radius: 12px;\n  color: #3D55CC;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_backup-1zU9_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_noKeypairsTips-2XcoX {\n  padding: 0 24px; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_container-1-yL2 {\n  color: #FFF;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  min-height: 478px;\n  min-width: 100%;\n  background: #9711da; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_appName-1j1fJ {\n  text-align: center;\n  font-size: 24px;\n  font-weight: 900;\n  color: #FFF;\n  padding: 24px 20px; }\n  .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_appName-1j1fJ .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_loginTip-uxPm1 {\n    font-size: 20px;\n    padding-top: 20px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairsSearch-P6aAg {\n  padding: 20px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_txList-1UhDB {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_txListMask-36rR3 {\n  opacity: 0.4;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairNickname-3-1RB {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairAddress-2-JRz {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listLeft-3XoDR {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_logoContainer-3bYni {\n  height: 36px;\n  width: 36px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_logoContainer-3bYni img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listLeft-3XoDR .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_name-1OmO9 {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listLeft-3XoDR .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_description-28rCm {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listRight-2bxo8 {\n  text-align: right; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listRight-2bxo8 .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_balance-3zR1H {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_listRight-2bxo8 .AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_tenderValuation-3q_us {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_txList-1UhDB:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_background-2NCmu {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_backgroundMask-4sUtR {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_scrollContainer-f1hEj {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_walletInfo-2dLA5 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_balance-3zR1H {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_aelfValuation-3A3AI {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_tenderValuation-3q_us {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_tenderUnit--V7Up {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addressContainer-HJbtI {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_copyBtn-2kw0E {\n  background: url(" + escape(__webpack_require__(684)) + ") no-repeat; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairBtnContainer-1z8-k {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_operationContainer-214ZC {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_operationList-19Apq {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_transactionList-1X6Aq {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addBtnContainer-38YMh {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addBtn-1pf2a {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(686)) + ") no-repeat;\n  -webkit-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addBtn-1pf2a:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_textarea-3Z0PM {\n  position: fixed;\n  top: -250px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairButton-2D26j {\n  background: #FFF;\n  display: inline-block;\n  width: 100%;\n  text-align: center;\n  height: 24px;\n  line-height: 24px;\n  font-size: 12px;\n  border-radius: 12px;\n  color: #3D55CC;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_backup-1zU9_ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_noKeypairsTips-2XcoX {\n  padding: 0 24px; }\n\n.AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_login-3Nyde {\n  width: 40px;\n  text-align: center;\n  cursor: pointer; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -69840,7 +69889,6 @@ exports.locals = {
 	"tenderUnit": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_tenderUnit--V7Up",
 	"addressContainer": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_addressContainer-HJbtI",
 	"copyBtn": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_copyBtn-2kw0E",
-	"removeBtn": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_removeBtn-2Zbre",
 	"keypairBtnContainer": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairBtnContainer-1z8-k",
 	"operationContainer": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_operationContainer-214ZC",
 	"operationList": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_operationList-19Apq",
@@ -69850,36 +69898,16 @@ exports.locals = {
 	"textarea": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_textarea-3Z0PM",
 	"keypairButton": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_keypairButton-2D26j",
 	"backup": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_backup-1zU9_",
-	"noKeypairsTips": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_noKeypairsTips-2XcoX"
+	"noKeypairsTips": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_noKeypairsTips-2XcoX",
+	"login": "AELF-app-web-pages-Prompt-LoginKeypairs-LoginKeypairs_login-3Nyde"
 };
 
 /***/ }),
-/* 730 */,
-/* 731 */,
-/* 732 */,
-/* 733 */,
-/* 734 */,
-/* 735 */,
-/* 736 */,
-/* 737 */,
-/* 738 */,
-/* 739 */,
-/* 740 */,
-/* 741 */,
-/* 742 */,
-/* 743 */,
-/* 744 */,
-/* 745 */,
-/* 746 */,
-/* 747 */,
-/* 748 */,
-/* 749 */,
-/* 750 */,
-/* 751 */
+/* 730 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(752);
+var content = __webpack_require__(731);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -69900,7 +69928,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 752 */
+/* 731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -69912,6 +69940,147 @@ exports.push([module.i, ".am-list-body {\n    border: none;\n    background: tra
 
 // exports
 
+
+/***/ }),
+/* 732 */,
+/* 733 */,
+/* 734 */,
+/* 735 */,
+/* 736 */,
+/* 737 */,
+/* 738 */,
+/* 739 */,
+/* 740 */,
+/* 741 */,
+/* 742 */,
+/* 743 */,
+/* 744 */,
+/* 745 */,
+/* 746 */,
+/* 747 */,
+/* 748 */,
+/* 749 */,
+/* 750 */,
+/* 751 */,
+/* 752 */,
+/* 753 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ContractInfo; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(255);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(299);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(302);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(303);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(102);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(754);
+/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+/**
+ * @file ContractInfo.js
+ * @author zhouminghui
+*/
+
+
+
+var ContractInfo =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(ContractInfo, _Component);
+
+  function ContractInfo(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, ContractInfo);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(ContractInfo).call(this, props));
+    _this.permission = _this.props.permission;
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ContractInfo, [{
+    key: "renderPermissions",
+    value: function renderPermissions(permission) {
+      var chainID = permission.chainID,
+          contractAddress = permission.contractAddress,
+          contractName = permission.contractName,
+          description = permission.description;
+      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        key: contractAddress + chainID,
+        className: _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default.a.contractInfo
+      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "----------------------------------------"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Chain ID: ", chainID), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Contract Address: ", contractAddress), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Contract Name: ", contractName), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Description: ", description));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var permission = this.permission;
+      var contractsHTML = permission.contracts.map(function (item) {
+        return _this2.renderPermissions(item);
+      });
+      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, contractsHTML);
+    }
+  }]);
+
+  return ContractInfo;
+}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
+
+
+
+/***/ }),
+/* 754 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(755);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 755 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-components-ContractInfo-ContractInfo_contractInfo-17sLn {\n  word-break: break-all;\n  word-wrap: break-word; }\n", ""]);
+
+// exports
+exports.locals = {
+	"contractInfo": "AELF-app-web-components-ContractInfo-ContractInfo_contractInfo-17sLn"
+};
 
 /***/ })
 /******/ ]);

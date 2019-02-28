@@ -4,7 +4,7 @@
 */
 
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import {hashHistory} from 'react-router';
 import {Toast, Flex, SearchBar, ListView} from 'antd-mobile';
 import {FormattedMessage} from 'react-intl';
 import {
@@ -16,7 +16,7 @@ import {apis} from '../../../utils/BrowserApis';
 import ScrollFooter from '../../../components/ScrollFooter/ScrollFooter';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
-
+import ContractInfo from '../../../components/ContractInfo/ContractInfo';
 import style from './LoginKeypairs.scss';
 require('./LoginKeypairs.css');
 
@@ -27,15 +27,34 @@ export default class LoginKeypairs extends Component {
         super(props);
         const data = window.data || apis.extension.getBackgroundPage().notification || null;
         const message = data.message;
+
         const {
-            appName
+            appName,
+            payload,
+            domain,
+            chainId,
+            hostname
         } = message;
+
+        this.permission = {
+            appName,
+            domain: hostname,
+            address: payload.payload.address,
+            contracts: payload.payload.contracts
+        };
+
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2
         });
+
         this.rData = [];
+
         this.state = {
             appName,
+            hostname,
+            domain,
+            chainId,
+            payload,
             searchValue: '',
             dataSource,
             refreshing: true,
@@ -59,7 +78,6 @@ export default class LoginKeypairs extends Component {
                 >
                     <div className={style.txListMask}></div>
                     {/* <div className={style.keypairsNickname}>{item.name}</div> */}
-    
                     <div className={style.operationContainer}>
                         <div className={style.operationList}>
                             {item.name}
@@ -83,6 +101,11 @@ export default class LoginKeypairs extends Component {
                                 readOnly
                             />
                         </div>
+                        <div className={style.login} onClick={() => this.setPermission(address)}>
+                                <FormattedMessage
+                                    id='aelf.Login'
+                                />
+                            </div>
                     </div>
                     <div className={style.keypairsAddress}>{address}</div>
                 </div>
@@ -90,6 +113,37 @@ export default class LoginKeypairs extends Component {
         };
     }
 
+
+    setPermission(address) {
+        // Why do we do this?
+        // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
+        if (address) {
+            this.checkWallet(address);
+        }
+    }
+
+    turnToPermissionPage(walletStatus, address) {
+        const {
+            nightElf
+        } = walletStatus || {};
+        if (!nightElf) {
+            Toast.fail('Night Elf is locked!', 3);
+            return;
+        }
+        else {
+            const path = {
+                pathname: '/',
+                state: address
+            };
+            hashHistory.push(path);
+        }
+    }
+
+    checkWallet(address) {
+        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
+            this.turnToPermissionPage(result, address);
+        });
+    }
 
     renderSearch() {
         return <div className={style.keypairsSearch}>
@@ -111,7 +165,6 @@ export default class LoginKeypairs extends Component {
     componentDidMount() {
         const hei = this.state.height - 142;
         this.getKeypairs(result => {
-            console.log(result);
             this.rData = result;
             if (result.length > 0) {
                 this.setState({
@@ -147,8 +200,6 @@ export default class LoginKeypairs extends Component {
             }
         });
     }
-
-    
 
     noKeypairs() {
         return <div className={style.noKeypairsTips}>
@@ -188,6 +239,7 @@ export default class LoginKeypairs extends Component {
 
     render() {
         const {appName, hasKeypairs} = this.state;
+        const permission = this.permission;
         let keypairsHTML = '';
         if (hasKeypairs) {
             keypairsHTML = this.hasKeypairs();
@@ -215,7 +267,12 @@ export default class LoginKeypairs extends Component {
                         </div>
                     </Flex.Item>
                     <Flex.Item>
-                        {this.state.appName}
+                        <div>----------------------------------------</div>
+                        <div>Welcome to {appName}</div>
+                        <ContractInfo
+                            permission={permission}
+                        />
+                        <div>----------------------------------------</div>
                     </Flex.Item>
                 </Flex>
             </div>

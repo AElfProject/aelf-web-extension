@@ -1,3 +1,8 @@
+/**
+ * @file Service
+ * @author huangzongzhe
+*/
+
 import Error from '../models/errors/Error';
 import {
     apis

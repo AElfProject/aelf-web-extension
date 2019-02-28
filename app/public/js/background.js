@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 730);
+/******/ 	return __webpack_require__(__webpack_require__.s = 732);
 /******/ })
 /************************************************************************/
 /******/ (Array(104).concat([
@@ -47432,7 +47432,9 @@ function errorHandler(code, error) {
 /* 727 */,
 /* 728 */,
 /* 729 */,
-/* 730 */
+/* 730 */,
+/* 731 */,
+/* 732 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47450,13 +47452,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(extension_streams__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(496);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(495);
-/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(731);
+/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(733);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(717);
 /* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(718);
-/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(734);
-/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(741);
+/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(736);
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(743);
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(742);
+/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(744);
 /* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(spark_md5__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(518);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_13__);
@@ -47526,10 +47528,10 @@ var prompt = null; // // TODO: release single contract
 // });
 
 function getPromptRoute(message) {
-  var method = message.payload.method;
+  var method = message.payload.payload.method;
   var routMap = {
     SET_PERMISSION: '',
-    LOGIN: '#/login',
+    LOGIN: '#/loginKeypairs',
     CALL_AELF_CONTRACT: '#/examine-approve'
   };
   return message.router || routMap[method] || '';
@@ -47551,6 +47553,44 @@ function getApplicationPermssions(permissions, domain) {
     permissions: JSON.parse(JSON.stringify(permissionsTemp)),
     indexList: indexList
   };
+}
+
+function contractsCompare(contractA, contractB) {
+  var contractATemp = JSON.parse(JSON.stringify(contractA));
+  var contractBTemp = JSON.parse(JSON.stringify(contractB));
+
+  for (var ai = 0, aj = contractATemp.length; ai < aj; ai++) {
+    for (var bi = 0, bj = contractBTemp.length; bi < bj; bi++) {
+      var chainIdChecked = contractBTemp[bi].chainId === contractATemp[ai].chainId;
+      var contractAddressChecked = contractBTemp[bi].contractAddress === contractATemp[ai].contractAddress;
+
+      if (chainIdChecked && contractAddressChecked) {
+        contractBTemp.splice(bi, 1);
+      }
+    }
+  }
+
+  return !contractBTemp.length;
+} // ignore other values like whitelist
+
+
+function formatContracts(contractsInput) {
+  var contracts = JSON.parse(JSON.stringify(contractsInput));
+  var contractsFormated = contracts.map(function (item) {
+    var chainId = item.chainId,
+        contractAddress = item.contractAddress,
+        contractName = item.contractName,
+        description = item.description,
+        github = item.github;
+    return {
+      chainId: chainId,
+      contractAddress: contractAddress,
+      contractName: contractName,
+      description: description,
+      github: github
+    };
+  });
+  return contractsFormated;
 }
 
 var aelfMeta = []; // This is the script that runs in the extension's background ( singleton )
@@ -47666,6 +47706,10 @@ function () {
           Background.setLoginPermission(sendResponse, message.payload);
           break;
 
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_PERMISSION"]:
+          Background.setPermission(sendResponse, message.payload);
+          break;
+
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_CONTRACT_PERMISSION"]:
           Background.setContractPermission(sendResponse, message.payload);
           break;
@@ -47729,10 +47773,6 @@ function () {
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CHECK_INACTIVITY_INTERVAL"]:
           Background.checkInactivityInterval(sendResponse);
           break;
-
-        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["OPEN_LOGIN_KEYPAIR"]:
-          Background.openLoginKeypairs(sendResponse, message.payload);
-          break;
         // TODO:
         // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
         //     Background.releaseAELFContract(sendResponse);
@@ -47747,73 +47787,6 @@ function () {
      * @param {Object} chainInfo from content.js
      */
 
-  }, {
-    key: "setPermission",
-    value: function setPermission(sendResponse, permissionInput) {
-      var bindKeypair = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      // permission example
-      // {
-      //     appName: 'hzz Test',
-      //     domain: 'aelf.io',
-      //     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
-      //     contracts: [{
-      //         chainId: 'AELF',
-      //         contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
-      //         contractName: 'token',
-      //         description: 'token contract',
-      //         description_zh: '',
-      //         description_en: ''
-      //     }]
-      // }
-      this.checkSeed({
-        sendResponse: sendResponse
-      }, function (_ref) {
-        var nightElfObject = _ref.nightElfObject;
-        var appName = permissionInput.appName,
-            domain = permissionInput.domain,
-            hostname = permissionInput.hostname,
-            address = permissionInput.address,
-            contracts = permissionInput.contracts; // ignore other values like whitelist
-
-        var chainId = contracts.chainId,
-            contractAddress = contracts.contractAddress,
-            contractName = contracts.contractName,
-            description = contracts.description,
-            github = contracts.github;
-        var permissionNeedAdd = {
-          appName: appName,
-          domain: domain || hostname,
-          // address,
-          contracts: {
-            chainId: chainId,
-            contractAddress: contractAddress,
-            contractName: contractName,
-            description: description,
-            github: github
-          }
-        };
-        var _nightElfObject$keych = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych === void 0 ? [] : _nightElfObject$keych;
-        var appPermissons = getApplicationPermssions(permissions, domain);
-        var permissionIndex = appPermissons.indexList;
-        var permissionsTemp = appPermissons.permissions; // set contract permission
-
-        if (permissionsTemp.length) {
-          permissionNeedAdd.address = permissionsTemp.address;
-          nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
-        } // Login
-        else if (bindKeypair) {
-            permissionNeedAdd.address = address;
-            nightElfObject.keychain.permissions.unshift(permissionNeedAdd);
-          } else {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200008)));
-            return;
-          }
-
-        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
-        Background.updateWallet(sendResponse);
-      });
-    }
   }], [{
     key: "connectAelfChain",
     value: function connectAelfChain(sendResponse, chainInfo) {
@@ -47870,14 +47843,63 @@ function () {
 
       this.checkSeed({
         sendResponse: sendResponse
-      }, function () {
+      }, function (_ref) {
+        var nightElfObject = _ref.nightElfObject;
+        // 如果permissions下有对应的
+        var _nightElfObject$keych = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych === void 0 ? [] : _nightElfObject$keych;
+        var appName = loginInfo.appName,
+            chainId = loginInfo.chainId,
+            payload = loginInfo.payload;
+        var domain = loginInfo.hostname || loginInfo.domain;
+        var appPermissons = getApplicationPermssions(permissions, domain);
+
+        if (appPermissons.permissions.length) {
+          var appPermission = appPermissons.permissions[0];
+          var appNameBinded = appPermission.appName;
+          var domainBinded = appPermission.domain;
+          var addressBinded = appPermission.address;
+          var contractsBinded = appPermission.contracts;
+          var nameChecked = appName === appNameBinded;
+          var domainChecked = domain === domainBinded;
+          var isLoginAndSetPermission = loginInfo.payload && loginInfo.payload.method === 'SET_PERMISSION' && loginInfo.payload.payload && loginInfo.payload.payload.contracts && appPermissons;
+
+          if (isLoginAndSetPermission) {
+            var address = loginInfo.payload.payload.address;
+            var contracts = loginInfo.payload.payload.contracts;
+            var addressChecked = address === addressBinded;
+            var contractChecked = contractsCompare(contracts, contractsBinded);
+
+            if (nameChecked && domainChecked && addressChecked && contractChecked) {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                message: '',
+                detail: JSON.stringify({
+                  address: addressBinded
+                })
+              }));
+              return;
+            } // const domainCheck = domain === domainBinded;
+
+          } else {
+            if (nameChecked && domainChecked) {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+                message: '',
+                detail: JSON.stringify({
+                  address: addressBinded
+                })
+              }));
+              return;
+            }
+          }
+        }
+
         var input = {
-          appName: loginInfo.appName,
+          appName: appName,
           method: 'OPEN_PROMPT',
-          router: '#/loginKeypairs',
-          chainId: loginInfo.chainId,
-          hostname: loginInfo.hostname,
-          payload: loginInfo.payload
+          // router: '#/login',
+          chainId: chainId,
+          hostname: domain,
+          payload: payload
         };
 
         _this2.openPrompt(sendResponse, input);
@@ -48056,7 +48078,8 @@ function () {
 
       this.checkSeed({
         sendResponse: sendResponse
-      }, function () {
+      }, function (_ref2) {
+        var nightElfObject = _ref2.nightElfObject;
         var payload = contractInfo.payload,
             chainId = contractInfo.chainId,
             hostname = contractInfo.hostname;
@@ -48064,6 +48087,9 @@ function () {
             method = payload.method,
             params = payload.params,
             contractAddress = payload.contractAddress;
+        var _nightElfObject$keych2 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2; // const appPermissions = getApplicationPermssions(permissions, hostname);
+
         var dappAelfMeta = aelfMeta.find(function (item) {
           // const checkDomain = hostname.includes(item.hostname);
           var checkDomain = hostname === item.hostname;
@@ -48132,8 +48158,8 @@ function () {
       seed = _seed;
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref2) {
-        var nightElfObject = _ref2.nightElfObject;
+      }, function (_ref3) {
+        var nightElfObject = _ref3.nightElfObject;
         nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
         Background.checkTimingLock();
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
@@ -48192,8 +48218,8 @@ function () {
       seed = _seed;
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref3) {
-        var nightElfObject = _ref3.nightElfObject;
+      }, function (_ref4) {
+        var nightElfObject = _ref4.nightElfObject;
         var nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
         var blob = new Blob([nightElfEncrypto], {
           type: 'text/plain;charset=utf-8'
@@ -48306,8 +48332,8 @@ function () {
     value: function insertKeypair(sendResponse, keypair) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref4) {
-        var nightElfObject = _ref4.nightElfObject;
+      }, function (_ref5) {
+        var nightElfObject = _ref5.nightElfObject;
         nightElfObject.keychain.keypairs.unshift(keypair);
         nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
         Background.updateWallet(sendResponse);
@@ -48318,8 +48344,8 @@ function () {
     value: function removeKeypair(sendResponse, address) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref5) {
-        var nightElfObject = _ref5.nightElfObject;
+      }, function (_ref6) {
+        var nightElfObject = _ref6.nightElfObject;
         nightElfObject.keychain.keypairs = nightElfObject.keychain.keypairs.filter(function (item) {
           return address !== item.address;
         });
@@ -48332,10 +48358,10 @@ function () {
     value: function getKeypair(sendResponse) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref6) {
-        var nightElfObject = _ref6.nightElfObject;
-        var _nightElfObject$keych2 = nightElfObject.keychain.keypairs,
-            keypairs = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2;
+      }, function (_ref7) {
+        var nightElfObject = _ref7.nightElfObject;
+        var _nightElfObject$keych3 = nightElfObject.keychain.keypairs,
+            keypairs = _nightElfObject$keych3 === void 0 ? [] : _nightElfObject$keych3;
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
           keypairs: keypairs
         }));
@@ -48363,12 +48389,67 @@ function () {
   }, {
     key: "setLoginPermission",
     value: function setLoginPermission(sendResponse, permissionInput) {
-      this.setPermission(sendResponse, permissionInput, true);
+      Background.setPermission(sendResponse, permissionInput, true);
     }
   }, {
     key: "setContractPermission",
     value: function setContractPermission(sendResponse, permissionInput) {
-      this.setPermission(sendResponse, permissionInput, false);
+      Background.setPermission(sendResponse, permissionInput, false);
+    }
+  }, {
+    key: "setPermission",
+    value: function setPermission(sendResponse, permissionInput) {
+      var bindKeypair = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      // permission example
+      // {
+      //     appName: 'hzz Test',
+      //     domain: 'aelf.io',
+      //     address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
+      //     contracts: [{
+      //         chainId: 'AELF',
+      //         contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
+      //         contractName: 'token',
+      //         description: 'token contract',
+      //         description_zh: '',
+      //         description_en: ''
+      //     }]
+      // }
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function (_ref8) {
+        var nightElfObject = _ref8.nightElfObject;
+        var appName = permissionInput.appName,
+            domain = permissionInput.domain,
+            hostname = permissionInput.hostname,
+            address = permissionInput.address,
+            contracts = permissionInput.contracts;
+        var permissionNeedAdd = {
+          appName: appName,
+          domain: domain || hostname,
+          // address,
+          contracts: formatContracts(contracts)
+        };
+        var _nightElfObject$keych4 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych4 === void 0 ? [] : _nightElfObject$keych4;
+        var appPermissons = getApplicationPermssions(permissions, domain);
+        var permissionIndex = appPermissons.indexList;
+        var permissionsTemp = appPermissons.permissions; // set contract permission
+
+        if (permissionsTemp.length) {
+          permissionNeedAdd.address = permissionsTemp.address;
+          nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
+        } // Login
+        else if (bindKeypair) {
+            permissionNeedAdd.address = address;
+            nightElfObject.keychain.permissions.unshift(permissionNeedAdd);
+          } else {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200008)));
+            return;
+          }
+
+        nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+        Background.updateWallet(sendResponse);
+      });
     }
   }, {
     key: "setWhitelist",
@@ -48402,16 +48483,16 @@ function () {
       // }
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref7) {
-        var nightElfObject = _ref7.nightElfObject;
+      }, function (_ref9) {
+        var nightElfObject = _ref9.nightElfObject;
         var domain = whitelistInput.domain,
             hostname = whitelistInput.hostname,
             payload = whitelistInput.payload;
         var contractAddress = payload.contractAddress,
             whitelist = payload.whitelist;
         var domainTemp = domain || hostname;
-        var _nightElfObject$keych3 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych3 === void 0 ? [] : _nightElfObject$keych3;
+        var _nightElfObject$keych5 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych5 === void 0 ? [] : _nightElfObject$keych5;
         var appPermissons = getApplicationPermssions(permissions, domainTemp);
         var appPermissionIndex = appPermissons.indexList;
         var appPermissionsTemp = appPermissons.permissions;
@@ -48451,10 +48532,10 @@ function () {
       // it means, we need declare static checkSeed.
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref8) {
-        var nightElfObject = _ref8.nightElfObject;
-        var _nightElfObject$keych4 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych4 === void 0 ? [] : _nightElfObject$keych4;
+      }, function (_ref10) {
+        var nightElfObject = _ref10.nightElfObject;
+        var _nightElfObject$keych6 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych6 === void 0 ? [] : _nightElfObject$keych6;
 
         switch (queryInfo.type) {
           case 'address':
@@ -48529,10 +48610,10 @@ function () {
     value: function getAllPermissions(sendResponse) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref9) {
-        var nightElfObject = _ref9.nightElfObject;
-        var _nightElfObject$keych5 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych5 === void 0 ? [] : _nightElfObject$keych5;
+      }, function (_ref11) {
+        var nightElfObject = _ref11.nightElfObject;
+        var _nightElfObject$keych7 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych7 === void 0 ? [] : _nightElfObject$keych7;
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
           permissions: permissions
         }));
@@ -48544,10 +48625,10 @@ function () {
     value: function removePermission(sendResponse, removeInfo) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref10) {
-        var nightElfObject = _ref10.nightElfObject;
-        var _nightElfObject$keych6 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych6 === void 0 ? [] : _nightElfObject$keych6;
+      }, function (_ref12) {
+        var nightElfObject = _ref12.nightElfObject;
+        var _nightElfObject$keych8 = nightElfObject.keychain.permissions,
+            permissions = _nightElfObject$keych8 === void 0 ? [] : _nightElfObject$keych8;
         nightElfObject.keychain.permissions = permissions.filter(function (item) {
           var domainCheck = removeInfo.domain === item.domain;
           var addressCheck = removeInfo.address === item.address;
@@ -48621,10 +48702,10 @@ function () {
     value: function getAddress(sendResponse) {
       this.checkSeed({
         sendResponse: sendResponse
-      }, function (_ref11) {
-        var nightElfObject = _ref11.nightElfObject;
-        var _nightElfObject$keych7 = nightElfObject.keychain.keypairs,
-            keypairs = _nightElfObject$keych7 === void 0 ? [] : _nightElfObject$keych7;
+      }, function (_ref13) {
+        var nightElfObject = _ref13.nightElfObject;
+        var _nightElfObject$keych9 = nightElfObject.keychain.keypairs,
+            keypairs = _nightElfObject$keych9 === void 0 ? [] : _nightElfObject$keych9;
         var addressList = keypairs.map(function (item) {
           return {
             name: item.name,
@@ -48666,16 +48747,6 @@ function () {
     key: "getPrompt",
     value: function getPrompt(sendResponse) {
       sendResponse(prompt);
-    }
-  }, {
-    key: "openLoginKeypairs",
-    value: function openLoginKeypairs(sendResponse, message) {
-      var route = '#/loginKeypairs';
-      _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__["default"].open({
-        sendResponse: sendResponse,
-        route: route,
-        message: message
-      });
     }
     /********************************************/
 
@@ -48935,7 +49006,7 @@ function () {
 new Background();
 
 /***/ }),
-/* 731 */
+/* 733 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48947,7 +49018,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(732);
+/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(734);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(518);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -49040,7 +49111,7 @@ function () {
 
 
 /***/ }),
-/* 732 */
+/* 734 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49050,7 +49121,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(733);
+/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(735);
 
 
 
@@ -49202,7 +49273,7 @@ function () {
 
 
 /***/ }),
-/* 733 */
+/* 735 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49346,21 +49417,21 @@ function () {
 
 
 /***/ }),
-/* 734 */
+/* 736 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NotificationService; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(735);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(737);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(738);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(740);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _models_errors_Error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(739);
+/* harmony import */ var _models_errors_Error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(741);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(717);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(496);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(495);
@@ -49368,6 +49439,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+/**
+ * @file Service
+ * @author huangzongzhe
+*/
 
 
 
@@ -49575,14 +49651,14 @@ function () {
 
 
 /***/ }),
-/* 735 */
+/* 737 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(736);
+module.exports = __webpack_require__(738);
 
 
 /***/ }),
-/* 736 */
+/* 738 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -49609,7 +49685,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(737);
+module.exports = __webpack_require__(739);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -49625,7 +49701,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 737 */
+/* 739 */
 /***/ (function(module, exports) {
 
 /**
@@ -50352,7 +50428,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 738 */
+/* 740 */
 /***/ (function(module, exports) {
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -50394,7 +50470,7 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator;
 
 /***/ }),
-/* 739 */
+/* 741 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50405,7 +50481,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ErrorTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(740);
+/* harmony import */ var _ErrorTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(742);
 
 
 
@@ -50490,7 +50566,7 @@ function () {
 
 
 /***/ }),
-/* 740 */
+/* 742 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50505,7 +50581,7 @@ var PROMPT_CLOSED = 'prompt_closed';
 var UPGRADE_REQUIRED = 'upgrade_required';
 
 /***/ }),
-/* 741 */
+/* 743 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
@@ -50517,7 +50593,7 @@ var UPGRADE_REQUIRED = 'upgrade_required';
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(112)))
 
 /***/ }),
-/* 742 */
+/* 744 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (factory) {
