@@ -131,6 +131,32 @@ function formatContracts(contractsInput) {
     return contractsFormated;
 }
 
+function contractWhitelistCheck(options) {
+    const {
+        sendResponse,
+        permissions,
+        hostname,
+        contractAddress,
+        contractInfo,
+        method
+    } = options;
+    const appPermissions = getApplicationPermssions(permissions, hostname);
+    const contractMatch = appPermissions.permissions[0].contracts.find(item => {
+        if (item.contractAddress === contractAddress) {
+            return true;
+        }
+        return false;
+    });
+    if (contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method)) {
+
+    }
+    else {
+        Background.openPrompt(sendResponse, contractInfo);
+        return false;
+    }
+    return true;
+}
+
 let aelfMeta = [];
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
@@ -246,6 +272,9 @@ export default class Background {
                 break;
             case InternalMessageTypes.CALL_AELF_CONTRACT:
                 Background.callAelfContract(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
+                Background.callAelfContractWithoutCheck(sendResponse, message.payload);
                 break;
 
             case InternalMessageTypes.GET_ADDRESS:
@@ -585,8 +614,11 @@ export default class Background {
         });
     }
 
-    static callAelfContract(sendResponse, contractInfo) {
+    static callAelfContractWithoutCheck(sendResponse, contractInfo) {
+        Background.callAelfContract(sendResponse, contractInfo, false);
+    }
 
+    static callAelfContract(sendResponse, contractInfo, checkWhitelist = true) {
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const {payload, chainId, hostname} = contractInfo;
@@ -603,7 +635,16 @@ export default class Background {
                 }
             } = nightElfObject;
 
-            // const appPermissions = getApplicationPermssions(permissions, hostname);
+            if (checkWhitelist && !contractWhitelistCheck({
+                    sendResponse,
+                    permissions,
+                    hostname,
+                    contractAddress,
+                    contractInfo,
+                    method
+                })) {
+                return;
+            }
 
             const dappAelfMeta = aelfMeta.find(item => {
                 // const checkDomain = hostname.includes(item.hostname);

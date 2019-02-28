@@ -109,7 +109,7 @@ class Content {
         const methodWhiteList = [
             'CONNECT_AELF_CHAIN', 'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT',
             'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS', 'LOGIN',
-            'SET_WHITELIST'
+            // 'SET_WHITELIST', 'CALL_AELF_CONTRACT_WITHOUT_CHECK'
         ];
 
         if (!methodWhiteList.includes(method)) {

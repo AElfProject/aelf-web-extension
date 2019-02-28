@@ -40,7 +40,8 @@ document.addEventListener('NightElf', result => {
     };
 
     const aelf = new window.NightElf.AElf({
-        httpProvider: 'http://192.168.199.210:5000/chain',
+        // httpProvider: 'http://192.168.199.210:5000/chain',
+        httpProvider: 'http://192.168.199.128:5000/chain',
         appName: 'Test'
     });
 
@@ -298,6 +299,23 @@ document.addEventListener('NightElf', result => {
     //         }
     //     ]
     // }];
+
+    // CALL_AELF_CONTRACT_WITHOUT_CHECK
+    // NightElf.api({
+    //     appName: 'hzzTest',
+    //     // method: 'CALL_AELF_CONTRACT',
+    //     method: 'CALL_AELF_CONTRACT_WITHOUT_CHECK',
+    //     hostname: 'aelf.io',
+    //     chainId: 'AELF',
+    //     payload: {
+    //         contractName: 'token',
+    //         contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+    //         method: 'BalanceOf',
+    //         params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB']
+    //     }
+    // }).then(result => {
+    //     console.log('>>>>>>>>>>>>>>>>>>>', result);
+    // });
 
 });
 if (false) {

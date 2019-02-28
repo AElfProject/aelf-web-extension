@@ -23186,6 +23186,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CHAIN", function() { return RELEASE_AELF_CHAIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT_AELF_CONTRACT", function() { return INIT_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT", function() { return CALL_AELF_CONTRACT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT_WITHOUT_CHECK", function() { return CALL_AELF_CONTRACT_WITHOUT_CHECK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CONTRACT", function() { return RELEASE_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ADDRESS", function() { return GET_ADDRESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_PROMPT", function() { return OPEN_PROMPT; });
@@ -23222,6 +23223,7 @@ var RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
 
 var INIT_AELF_CONTRACT = 'initAelfContract';
 var CALL_AELF_CONTRACT = 'callAelfContract';
+var CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
 var RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
 var GET_ADDRESS = 'getAddress';
@@ -26664,7 +26666,7 @@ function () {
         return;
       }
 
-      var methodWhiteList = ['CONNECT_AELF_CHAIN', 'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT', 'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS', 'LOGIN', 'SET_WHITELIST'];
+      var methodWhiteList = ['CONNECT_AELF_CHAIN', 'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT', 'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS', 'LOGIN'];
 
       if (!methodWhiteList.includes(method)) {
         this.respond(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({

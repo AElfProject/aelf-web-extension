@@ -23186,6 +23186,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CHAIN", function() { return RELEASE_AELF_CHAIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT_AELF_CONTRACT", function() { return INIT_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT", function() { return CALL_AELF_CONTRACT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT_WITHOUT_CHECK", function() { return CALL_AELF_CONTRACT_WITHOUT_CHECK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CONTRACT", function() { return RELEASE_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ADDRESS", function() { return GET_ADDRESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_PROMPT", function() { return OPEN_PROMPT; });
@@ -23222,6 +23223,7 @@ var RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
 
 var INIT_AELF_CONTRACT = 'initAelfContract';
 var CALL_AELF_CONTRACT = 'callAelfContract';
+var CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
 var RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
 var GET_ADDRESS = 'getAddress';
@@ -47522,6 +47524,30 @@ function formatContracts(contractsInput) {
   return contractsFormated;
 }
 
+function contractWhitelistCheck(options) {
+  var sendResponse = options.sendResponse,
+      permissions = options.permissions,
+      hostname = options.hostname,
+      contractAddress = options.contractAddress,
+      contractInfo = options.contractInfo,
+      method = options.method;
+  var appPermissions = getApplicationPermssions(permissions, hostname);
+  var contractMatch = appPermissions.permissions[0].contracts.find(function (item) {
+    if (item.contractAddress === contractAddress) {
+      return true;
+    }
+
+    return false;
+  });
+
+  if (contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method)) {} else {
+    Background.openPrompt(sendResponse, contractInfo);
+    return false;
+  }
+
+  return true;
+}
+
 var aelfMeta = []; // This is the script that runs in the extension's background ( singleton )
 
 var Background =
@@ -47670,6 +47696,10 @@ function () {
 
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CALL_AELF_CONTRACT"]:
           Background.callAelfContract(sendResponse, message.payload);
+          break;
+
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["CALL_AELF_CONTRACT_WITHOUT_CHECK"]:
+          Background.callAelfContractWithoutCheck(sendResponse, message.payload);
           break;
 
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_ADDRESS"]:
@@ -47987,10 +48017,16 @@ function () {
       });
     }
   }, {
+    key: "callAelfContractWithoutCheck",
+    value: function callAelfContractWithoutCheck(sendResponse, contractInfo) {
+      Background.callAelfContract(sendResponse, contractInfo, false);
+    }
+  }, {
     key: "callAelfContract",
     value: function callAelfContract(sendResponse, contractInfo) {
       var _this3 = this;
 
+      var checkWhitelist = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       this.checkSeed({
         sendResponse: sendResponse
       }, function (_ref2) {
@@ -48003,7 +48039,18 @@ function () {
             params = payload.params,
             contractAddress = payload.contractAddress;
         var _nightElfObject$keych2 = nightElfObject.keychain.permissions,
-            permissions = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2; // const appPermissions = getApplicationPermssions(permissions, hostname);
+            permissions = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2;
+
+        if (checkWhitelist && !contractWhitelistCheck({
+          sendResponse: sendResponse,
+          permissions: permissions,
+          hostname: hostname,
+          contractAddress: contractAddress,
+          contractInfo: contractInfo,
+          method: method
+        })) {
+          return;
+        }
 
         var dappAelfMeta = aelfMeta.find(function (item) {
           // const checkDomain = hostname.includes(item.hostname);
