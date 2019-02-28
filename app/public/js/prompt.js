@@ -68678,8 +68678,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(200);
 /* harmony import */ var _Permission_Permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(715);
-/* harmony import */ var _Prompt_Prompt__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(719);
-/* harmony import */ var _LoginKeypairs_LoginKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(720);
+/* harmony import */ var _Prompt_Prompt__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(722);
+/* harmony import */ var _LoginKeypairs_LoginKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(723);
 
 
 
@@ -68752,7 +68752,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(717);
 /* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(718);
-/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(753);
+/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(719);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(496);
 
@@ -68998,6 +68998,126 @@ function errorHandler(code, error) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ContractInfo; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(255);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(299);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(302);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(303);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(102);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(720);
+/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+/**
+ * @file ContractInfo.js
+ * @author zhouminghui
+*/
+
+
+
+var ContractInfo =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(ContractInfo, _Component);
+
+  function ContractInfo(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, ContractInfo);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(ContractInfo).call(this, props));
+    _this.permission = _this.props.permission;
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ContractInfo, [{
+    key: "renderPermissions",
+    value: function renderPermissions(permission) {
+      var chainID = permission.chainID,
+          contractAddress = permission.contractAddress,
+          contractName = permission.contractName,
+          description = permission.description;
+      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        key: contractAddress + chainID,
+        className: _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default.a.contractInfo
+      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "----------------------------------------"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Chain ID: ", chainID), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Contract Address: ", contractAddress), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Contract Name: ", contractName), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Description: ", description));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var permission = this.permission;
+      var contractsHTML = permission.contracts.map(function (item) {
+        return _this2.renderPermissions(item);
+      });
+      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, contractsHTML);
+    }
+  }]);
+
+  return ContractInfo;
+}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
+
+
+
+/***/ }),
+/* 720 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(721);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 721 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-components-ContractInfo-ContractInfo_contractInfo-17sLn {\n  word-break: break-all;\n  word-wrap: break-word; }\n", ""]);
+
+// exports
+exports.locals = {
+	"contractInfo": "AELF-app-web-components-ContractInfo-ContractInfo_contractInfo-17sLn"
+};
+
+/***/ }),
+/* 722 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Prompt; });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
@@ -69057,7 +69177,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 720 */
+/* 723 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -69067,9 +69187,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(656);
 /* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(721);
+/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(724);
 /* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(724);
+/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(727);
 /* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(224);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__);
@@ -69098,8 +69218,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(681);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(496);
-/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(753);
-/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(728);
+/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(719);
+/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(731);
 /* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__);
 
 
@@ -69130,7 +69250,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-__webpack_require__(730);
+__webpack_require__(733);
 
 var NUM_ROWS = 9999;
 var pageSize = 9999;
@@ -69412,7 +69532,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 721 */
+/* 724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69420,14 +69540,14 @@ function (_Component) {
 
 __webpack_require__(225);
 
-__webpack_require__(722);
+__webpack_require__(725);
 
 /***/ }),
-/* 722 */
+/* 725 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(723);
+var content = __webpack_require__(726);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -69448,7 +69568,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 723 */
+/* 726 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -69462,7 +69582,7 @@ exports.push([module.i, "/* 默认搜索bar */\n.am-search {\n  position: relati
 
 
 /***/ }),
-/* 724 */
+/* 727 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69512,13 +69632,13 @@ var _rmcFeedback = __webpack_require__(278);
 
 var _rmcFeedback2 = _interopRequireDefault(_rmcFeedback);
 
-var _getDataAttr = __webpack_require__(725);
+var _getDataAttr = __webpack_require__(728);
 
 var _getDataAttr2 = _interopRequireDefault(_getDataAttr);
 
 var _getLocale = __webpack_require__(280);
 
-var _PropsType = __webpack_require__(726);
+var _PropsType = __webpack_require__(729);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -69703,7 +69823,7 @@ var SearchBar = function (_React$Component) {
             // tslint:disable-next-line:variable-name
 
             var _locale = (0, _getLocale.getComponentLocale)(this.props, this.context, 'SearchBar', function () {
-                return __webpack_require__(727);
+                return __webpack_require__(730);
             });
             var cancelText = _locale.cancelText;
             var _state = this.state,
@@ -69774,7 +69894,7 @@ SearchBar.contextTypes = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 725 */
+/* 728 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69796,7 +69916,7 @@ exports['default'] = function (props) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 726 */
+/* 729 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69819,7 +69939,7 @@ var defaultProps = exports.defaultProps = {
 };
 
 /***/ }),
-/* 727 */
+/* 730 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69834,11 +69954,11 @@ exports['default'] = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 728 */
+/* 731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(729);
+var content = __webpack_require__(732);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -69859,7 +69979,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 729 */
+/* 732 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(512);
@@ -69909,11 +70029,11 @@ exports.locals = {
 };
 
 /***/ }),
-/* 730 */
+/* 733 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(731);
+var content = __webpack_require__(734);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -69934,7 +70054,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 731 */
+/* 734 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -69946,147 +70066,6 @@ exports.push([module.i, ".am-list-body {\n    border: none;\n    background: tra
 
 // exports
 
-
-/***/ }),
-/* 732 */,
-/* 733 */,
-/* 734 */,
-/* 735 */,
-/* 736 */,
-/* 737 */,
-/* 738 */,
-/* 739 */,
-/* 740 */,
-/* 741 */,
-/* 742 */,
-/* 743 */,
-/* 744 */,
-/* 745 */,
-/* 746 */,
-/* 747 */,
-/* 748 */,
-/* 749 */,
-/* 750 */,
-/* 751 */,
-/* 752 */,
-/* 753 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ContractInfo; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(255);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(299);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(302);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(303);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(102);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(754);
-/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__);
-
-
-
-
-
-
-/**
- * @file ContractInfo.js
- * @author zhouminghui
-*/
-
-
-
-var ContractInfo =
-/*#__PURE__*/
-function (_Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(ContractInfo, _Component);
-
-  function ContractInfo(props) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, ContractInfo);
-
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(ContractInfo).call(this, props));
-    _this.permission = _this.props.permission;
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ContractInfo, [{
-    key: "renderPermissions",
-    value: function renderPermissions(permission) {
-      var chainID = permission.chainID,
-          contractAddress = permission.contractAddress,
-          contractName = permission.contractName,
-          description = permission.description;
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        key: contractAddress + chainID,
-        className: _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default.a.contractInfo
-      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "----------------------------------------"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Chain ID: ", chainID), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Contract Address: ", contractAddress), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Contract Name: ", contractName), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "Description: ", description));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var permission = this.permission;
-      var contractsHTML = permission.contracts.map(function (item) {
-        return _this2.renderPermissions(item);
-      });
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, contractsHTML);
-    }
-  }]);
-
-  return ContractInfo;
-}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
-
-
-
-/***/ }),
-/* 754 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(755);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(5)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-/* 755 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".AELF-app-web-components-ContractInfo-ContractInfo_contractInfo-17sLn {\n  word-break: break-all;\n  word-wrap: break-word; }\n", ""]);
-
-// exports
-exports.locals = {
-	"contractInfo": "AELF-app-web-components-ContractInfo-ContractInfo_contractInfo-17sLn"
-};
 
 /***/ })
 /******/ ]);

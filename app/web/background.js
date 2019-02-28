@@ -131,8 +131,6 @@ function formatContracts(contractsInput) {
     return contractsFormated;
 }
 
-<<<<<<< HEAD
-=======
 function contractWhitelistCheck(options) {
     const {
         sendResponse,
@@ -159,7 +157,6 @@ function contractWhitelistCheck(options) {
     return true;
 }
 
->>>>>>> 70b13a0463f8cd5319cb3a7e39839d5968ff22f7
 let aelfMeta = [];
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
@@ -636,16 +633,11 @@ export default class Background {
         });
     }
 
-<<<<<<< HEAD
-    static callAelfContract(sendResponse, contractInfo) {
-
-=======
     static callAelfContractWithoutCheck(sendResponse, contractInfo) {
         Background.callAelfContract(sendResponse, contractInfo, false);
     }
 
     static callAelfContract(sendResponse, contractInfo, checkWhitelist = true) {
->>>>>>> 70b13a0463f8cd5319cb3a7e39839d5968ff22f7
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const {payload, chainId, hostname} = contractInfo;
@@ -662,9 +654,6 @@ export default class Background {
                 }
             } = nightElfObject;
 
-<<<<<<< HEAD
-            // const appPermissions = getApplicationPermssions(permissions, hostname);
-=======
             if (checkWhitelist && !contractWhitelistCheck({
                     sendResponse,
                     permissions,
@@ -675,7 +664,6 @@ export default class Background {
                 })) {
                 return;
             }
->>>>>>> 70b13a0463f8cd5319cb3a7e39839d5968ff22f7
 
             const dappAelfMeta = aelfMeta.find(item => {
                 // const checkDomain = hostname.includes(item.hostname);
