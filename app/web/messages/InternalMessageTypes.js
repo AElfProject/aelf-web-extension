@@ -28,8 +28,10 @@ export const SET_CONTRACT_PERMISSION = 'setContractPermission';
 export const CHECK_PERMISSION = 'checkPermission';
 export const GET_ALLPERMISSIONS = 'getAllPermissions';
 export const REMOVE_PERMISSION = 'removePermission';
+export const REMOVE_CONTRACT_PERMISSION = 'removeContractInPermission';
 
 export const SET_WHITELIST = 'setWhitelist';
+export const REMOVE_METHODS_WHITELIST = 'removeMethodsOfWhitelist';
 
 export const CONNECT_AELF_CHAIN = 'connectAelfChain';
 export const CALL_AELF_CHAIN = 'callAelfChain';
