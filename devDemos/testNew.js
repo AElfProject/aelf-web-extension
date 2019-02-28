@@ -40,7 +40,8 @@ document.addEventListener('NightElf', result => {
     };
 
     const aelf = new window.NightElf.AElf({
-        httpProvider: 'http://192.168.199.210:5000/chain',
+        // httpProvider: 'http://192.168.199.210:5000/chain',
+        httpProvider: 'http://192.168.199.128:5000/chain',
         appName: 'Test'
     });
 
@@ -243,39 +244,6 @@ document.addEventListener('NightElf', result => {
         aelf.chain.getTxResult('');
     };
 
-    // can not use
-    const setWhitelist = document.getElementById('set-whitelist');
-    setWhitelist.onclick = function () {
-        // 必须先登录并且授权合约使用。
-        NightElf.api({
-            appName: 'hzzTest',
-            method: 'SET_WHITELIST',
-            hostname: 'aelf.io',
-            chainId: 'AELF',
-            payload: {
-                contractName: 'token',
-                contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
-                method: 'BalanceOf',
-                params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB'],
-                whitelist: {
-                    // transfer(a, b, c)
-                    // transfer(a, b, c, d) is not ok
-                    transfer: [{
-                        value: 'a',
-                        variable: true
-                    }, {
-                        value: 'b',
-                        variable: false
-                    }, {
-                        value: 'c',
-                        variable: true
-                    }]
-                }
-            }
-        }).then(result => {
-            console.log('>>>>>>>>>>>>>>>>>>>', result);
-        });
-    };
     // For test
     // const permissionIndex = [0];
     // const permissionsTemp = [{
@@ -298,6 +266,78 @@ document.addEventListener('NightElf', result => {
     //         }
     //     ]
     // }];
+
+    // CALL_AELF_CONTRACT_WITHOUT_CHECK
+    // NightElf.api({
+    //     appName: 'hzzTest',
+    //     // method: 'CALL_AELF_CONTRACT',
+    //     method: 'CALL_AELF_CONTRACT_WITHOUT_CHECK',
+    //     hostname: 'aelf.io',
+    //     chainId: 'AELF',
+    //     payload: {
+    //         contractName: 'token',
+    //         contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+    //         method: 'BalanceOf',
+    //         params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB']
+    //     }
+    // }).then(result => {
+    //     console.log('>>>>>>>>>>>>>>>>>>>', result);
+    // });
+
+    NightElf.api({
+        appName: 'hzzTest',
+        method: 'REMOVE_CONTRACT_PERMISSION',
+        chainId: 'AELF',
+        payload: {
+            contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+            removeList: ['xxx', 'xxx']
+        }
+    }).then(result => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    });
+
+    NightElf.api({
+        appName: 'hzzTest',
+        method: 'SET_WHITELIST',
+        hostname: 'aelf.io',
+        chainId: 'AELF',
+        payload: {
+            contractName: 'token',
+            contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+            method: 'BalanceOf',
+            params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB'],
+            whitelist: {
+                // transfer(a, b, c)
+                // transfer(a, b, c, d) is not ok
+                transfer: [{
+                    value: 'a',
+                    variable: true
+                }, {
+                    value: 'b',
+                    variable: false
+                }, {
+                    value: 'c',
+                    variable: true
+                }],
+                test: [{}],
+                hzz780: [{}]
+            }
+        }
+    }).then(result => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    });
+
+    NightElf.api({
+        appName: 'hzzTest',
+        method: 'REMOVE_METHODS_WHITELIST',
+        chainId: 'AELF',
+        payload: {
+            contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+            methods: ['test', 'hzz780']
+        }
+    }).then(result => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    });
 
 });
 if (false) {

@@ -28,8 +28,10 @@ export const SET_CONTRACT_PERMISSION = 'setContractPermission';
 export const CHECK_PERMISSION = 'checkPermission';
 export const GET_ALLPERMISSIONS = 'getAllPermissions';
 export const REMOVE_PERMISSION = 'removePermission';
+export const REMOVE_CONTRACT_PERMISSION = 'removeContractInPermission';
 
 export const SET_WHITELIST = 'setWhitelist';
+export const REMOVE_METHODS_WHITELIST = 'removeMethodsOfWhitelist';
 
 export const CONNECT_AELF_CHAIN = 'connectAelfChain';
 export const CALL_AELF_CHAIN = 'callAelfChain';
@@ -37,6 +39,7 @@ export const RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
 
 export const INIT_AELF_CONTRACT = 'initAelfContract';
 export const CALL_AELF_CONTRACT = 'callAelfContract';
+export const CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
 export const RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
 export const GET_ADDRESS = 'getAddress';
