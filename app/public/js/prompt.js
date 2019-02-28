@@ -64718,8 +64718,9 @@ function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Permission, [{
     key: "setPermission",
     value: function setPermission() {
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_12__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["SET_PERMISSION"], this.permission).send().then(function (result) {
-        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["SET_PERMISSION"], result);
+      // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_12__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["SET_LOGIN_PERMISSION"], this.permission).send().then(function (result) {
+        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["SET_CONTRACT_PERMISSION"], result);
 
         if (result.error === 0) {
           antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.success('Bind Permisson Success, after 3s close the window.');

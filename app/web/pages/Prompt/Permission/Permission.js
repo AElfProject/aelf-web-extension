@@ -38,10 +38,11 @@ export default class Permission extends Component {
     }
 
     setPermission() {
-        InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
+        // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
+        InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission)
             .send()
             .then(result => {
-                console.log(InternalMessageTypes.SET_PERMISSION, result);
+                console.log(InternalMessageTypes.SET_CONTRACT_PERMISSION, result);
                 if (result.error === 0) {
                     Toast.success('Bind Permisson Success, after 3s close the window.');
                     window.data.sendResponse({
