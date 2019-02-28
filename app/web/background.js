@@ -304,7 +304,7 @@ export default class Background {
             const input = {
                 appName: loginInfo.appName,
                 method: 'OPEN_PROMPT',
-                router: '#/login',
+                router: '#/loginKeypairs',
                 chainId: loginInfo.chainId,
                 hostname: loginInfo.hostname,
                 payload: loginInfo.payload
@@ -713,7 +713,6 @@ export default class Background {
     // >>>>>>>>>>>>>>>>>>>>>>>>>
 
     static checkTimingLock() {
-        console.log(inactivityInterval);
         if (inactivityInterval === 0) {
             return false;
         }
@@ -722,8 +721,7 @@ export default class Background {
         }
         if (seed && nightElf) {
             timeoutLocker = setTimeout(() => {
-                seed = null;
-                nightElf = null;
+                Background.lockWallet();
             }, inactivityInterval);
         }
     }

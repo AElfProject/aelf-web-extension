@@ -13,7 +13,7 @@
     font-size: 24px;
     font-weight: 900;
     color: #FFF;
-    padding: 24px 20px 0 20px;
+    padding: 24px 20px;
 
     .loginTip {
         font-size: 20px;
@@ -24,4 +24,248 @@
 
 .keypairsSearch {
     padding: 20px;
+}
+
+.txList {
+    padding: 8px 16px 16px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.20), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 8px 8px 0 0;
+    margin: 0 7px;
+    color: #FFF;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.txListMask {
+    opacity: 0.4;
+    background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 8px 0 0 0;
+    position: absolute;
+    left: -5%;
+    top: -28%;
+    transform: rotate(15deg);
+    width: 116px;
+    height: 64px;
+}
+
+.keypairNickname {
+    font-size: 14px;
+}
+.keypairAddress {
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.listLeft {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.logoContainer {
+    height: 36px;
+    width: 36px;
+    border-radius: 8px;
+    background: #FFF;
+    overflow: hidden;
+    margin: 0 12px 0 0;
+}
+
+.logoContainer img {
+    height: 100%;
+    width: 100%;
+}
+
+.listLeft .name {
+    font-size: 14px;
+}
+
+.listLeft .description {
+    font-size: 10px;
+    font-weight: 100;
+}
+
+.listRight {
+    text-align: right;
+}
+
+.listRight .balance {
+    font-size: 14px;
+    margin: 0;
+}
+
+.listRight .tenderValuation {
+    font-size: 10px;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.txList:last-child {
+    border: none;
+}
+
+
+.background {
+    background: linear-gradient(to right bottom, #D649F2, #3D55CC);
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.50), inset 0 1px 3px 0 rgba(0, 0, 0, 0.50), inset 0 1px 3px 0 rgba(0, 0, 0, 0.50);
+    border-radius: 16px;
+
+    margin: 0 22px;
+    padding: 7px;
+
+    height: 100%;
+    overflow: hidden;
+
+    position: relative;
+    z-index: 0;
+}
+
+.backgroundMask {
+    position: absolute;
+    left: -5%;
+    top: -5%;
+    transform: rotate(-6deg);
+    height: 195px;
+    width: 120%;
+    opacity: 0.2;
+    background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.30) 97%);
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 16px 16px 0 0;
+}
+
+.scrollContainer {
+    position: relative;
+    z-index: 3;
+    border: 1px dashed rgba(219, 184, 255, 0.5);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+// >>>>>>>>>>>>>>>>>>>>>
+.walletInfo {
+    height: 188px;
+    color: #FFF;
+    text-align: left;
+    text-indent: 20px;
+}
+
+.balance {
+    margin: 34px 0 0 0;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: nowrap;
+}
+
+.aelfValuation {
+    //font-size: 44px;
+    font-size: 40px;
+}
+
+.tenderValuation {
+    margin: 12px 0 0 0;
+    //font-size: 24px;
+    font-size: 22px;
+    font-weight: 100;
+}
+
+.tenderUnit {
+    font-size: 14px;
+}
+
+.addressContainer {
+    font-size: 12px;
+    margin: 24px 0 0 0;
+    display: flex;
+    height: 14px;
+    line-height: 14px;
+}
+
+.copyBtn {
+    background: url("../../../assets/svg_icon/copy12.svg") no-repeat;
+}
+
+.removeBtn {
+    background: url("../../../assets/svg_icon/move22.svg") no-repeat;
+}
+
+.keypairBtnContainer {
+    margin: 0 0 0 8px;
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-size: cover;
+}
+
+.operationContainer {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+}
+.operationList {
+    display: flex;
+    line-height: 24px;
+    height: 24px;
+    margin: 0 0 8px 0;
+}
+
+// >>>>>>>>>>>>>>>>>>>>>
+.transactionList {
+    flex: 1;
+}
+
+// >>>>>>>>>>>>>>>>>>>>>
+.addBtnContainer {
+    height: 60px;
+    width: 100%;
+}
+
+.addBtn {
+    display: inline-block;
+    float: right;
+    height: 24px;
+    width: 24px;
+    background: url("../../../assets/svg_icon/add40.svg") no-repeat;
+    background-size: cover;
+    margin-right: 20px;
+}
+
+.addBtn:active {
+    opacity: 0.7;
+}
+
+.textarea {
+    position: fixed;
+    top: -250px;
+}
+
+// >>>>>>>>>>>>>>>>>>>>
+
+.keypairButton {
+    background: #FFF;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    border-radius: 12px;
+    color: #3D55CC;
+    cursor: pointer;
+}
+
+.backup {
+    display: flex;
+    line-height: 24px;
+    height: 24px;
+    margin: 0 0 8px 0;
+}
+
+.noKeypairsTips {
+    padding: 0 24px;
 }

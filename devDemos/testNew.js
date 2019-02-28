@@ -243,24 +243,6 @@ document.addEventListener('NightElf', result => {
         aelf.chain.getTxResult('');
     };
 
-<<<<<<< HEAD
-
-    const applicationLogin = document.getElementById('application-login');
-    applicationLogin.onclick = function () {
-        NightElf.api({
-            appName: 'AELF-VOTE',
-            method: 'OPEN_LOGIN_KEYPAIR',
-            chainId: 'AELF',
-            hostname: 'aelf.io'
-        }).then(result => {
-            console.log('>>>>>>>>>>>>>>>>>>>', result);
-            console.log('=======================');
-            console.log('      虽然很不想承认      ');
-            console.log('  但是这个功能怎的没做完   ');
-            console.log('=======================');
-        });
-    };
-=======
     // can not use
     const setWhitelist = document.getElementById('set-whitelist');
     setWhitelist.onclick = function () {
@@ -316,7 +298,6 @@ document.addEventListener('NightElf', result => {
     //         }
     //     ]
     // }];
->>>>>>> 5d7898bfc809b235e264ec77e4d644a79f11a48d
 
 });
 if (false) {

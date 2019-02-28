@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 720);
+/******/ 	return __webpack_require__(__webpack_require__.s = 730);
 /******/ })
 /************************************************************************/
 /******/ (Array(104).concat([
@@ -47422,7 +47422,17 @@ function errorHandler(code, error) {
 
 /***/ }),
 /* 719 */,
-/* 720 */
+/* 720 */,
+/* 721 */,
+/* 722 */,
+/* 723 */,
+/* 724 */,
+/* 725 */,
+/* 726 */,
+/* 727 */,
+/* 728 */,
+/* 729 */,
+/* 730 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47440,13 +47450,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(extension_streams__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(496);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(495);
-/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(741);
+/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(731);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(717);
 /* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(718);
-/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(724);
-/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(731);
+/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(734);
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(741);
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(732);
+/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(742);
 /* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(spark_md5__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(518);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_13__);
@@ -47864,7 +47874,7 @@ function () {
         var input = {
           appName: loginInfo.appName,
           method: 'OPEN_PROMPT',
-          router: '#/login',
+          router: '#/loginKeypairs',
           chainId: loginInfo.chainId,
           hostname: loginInfo.hostname,
           payload: loginInfo.payload
@@ -48247,8 +48257,6 @@ function () {
   }, {
     key: "checkTimingLock",
     value: function checkTimingLock() {
-      console.log(inactivityInterval);
-
       if (inactivityInterval === 0) {
         return false;
       }
@@ -48259,8 +48267,7 @@ function () {
 
       if (seed && nightElf) {
         timeoutLocker = setTimeout(function () {
-          seed = null;
-          nightElf = null;
+          Background.lockWallet();
         }, inactivityInterval);
       }
     }
@@ -48928,24 +48935,432 @@ function () {
 new Background();
 
 /***/ }),
-/* 721 */,
-/* 722 */,
-/* 723 */,
-/* 724 */
+/* 731 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NightElf; });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(300);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(255);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(732);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(518);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+// import Meta from './Meta';
+ // import Settings from './Settings';
+
+
+var AESEncrypto = aelf_sdk__WEBPACK_IMPORTED_MODULE_4__["wallet"].AESEncrypto,
+    AESDecrypto = aelf_sdk__WEBPACK_IMPORTED_MODULE_4__["wallet"].AESDecrypto; // import Hasher from '../util/Hasher'
+// import IdGenerator from '../util/IdGenerator'
+
+/* eslint-disable fecs-camelcase */
+
+var NightElf =
+/*#__PURE__*/
+function () {
+  function NightElf() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, NightElf);
+
+    // this.meta = Meta.placeholder();
+    this.keychain = _Keychain__WEBPACK_IMPORTED_MODULE_3__["default"].placeholder(); // this.settings = Settings.placeholder();
+
+    this.histories = []; // this.hash = Hasher.insecureHash(IdGenerator.text(2048));
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(NightElf, [{
+    key: "clone",
+    value: function clone() {
+      return NightElf.fromJson(JSON.parse(JSON.stringify(this)));
+    }
+  }, {
+    key: "isEncrypted",
+    value: function isEncrypted() {
+      return _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(this.keychain) !== 'object';
+    }
+    /***
+     * Encrypts the entire keychain
+     * @param seed - The seed to encrypt with
+     */
+
+  }, {
+    key: "decrypt",
+    value: function decrypt(seed) {
+      if (this.isEncrypted()) {
+        this.keychain = _Keychain__WEBPACK_IMPORTED_MODULE_3__["default"].fromJson(AESDecrypto(this.keychain, seed));
+      }
+    }
+    /***
+     * Decrypts the entire keychain
+     * @param seed - The seed to decrypt with
+     */
+
+  }, {
+    key: "encrypt",
+    value: function encrypt(seed) {
+      if (!this.isEncrypted()) this.keychain = AESEncrypto(this.keychain, seed);
+    }
+  }, {
+    key: "forBackup",
+    value: function forBackup() {
+      var clone = this.clone();
+      clone.histories = [];
+      return clone;
+    }
+  }], [{
+    key: "placeholder",
+    value: function placeholder() {
+      return new NightElf();
+    }
+  }, {
+    key: "fromJson",
+    value: function fromJson(json) {
+      var p = Object.assign(this.placeholder(), json); // if (json.hasOwnProperty('meta')) p.meta = Meta.fromJson(json.meta);
+      // if (json.hasOwnProperty('settings')) p.settings = Settings.fromJson(json.settings);
+      // if (json.hasOwnProperty('keychain')) {
+      //     p.keychain
+      //         = (typeof json.keychain === 'string')
+      //         ? json.keychain : Keychain.fromJson(json.keychain);
+      // }
+
+      return p;
+    }
+  }]);
+
+  return NightElf;
+}();
+
+
+
+/***/ }),
+/* 732 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Keychain; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(255);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(733);
+
+
+
+/**
+ * @file Keychain.js
+ * @author huangzongzhe; Scatter;
+ */
+// import Identity from './Identity';
+// import Permission from './Permission';
+// import KeyPair from './KeyPair';
+
+
+var Keychain =
+/*#__PURE__*/
+function () {
+  function Keychain() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Keychain);
+
+    // {name,address,mnemonic, privateKey}
+    this.keypairs = []; // this.identities = [];
+    // {
+    //     domain,
+    //     address,
+    //     contracts: [...contractIDList]
+    // }
+
+    this.permissions = [];
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Keychain, [{
+    key: "clone",
+    value: function clone() {
+      return Keychain.fromJson(JSON.parse(JSON.stringify(this)));
+    }
+  }, {
+    key: "removePermissionsByKeypair",
+    value: function removePermissionsByKeypair(keypair) {
+      this.permissions = this.permissions.filter(function (perm) {
+        return perm.keypair !== keypair.unique();
+      });
+    }
+  }, {
+    key: "removePermission",
+    value: function removePermission(permission) {
+      this.permissions = this.permissions.filter(function (perm) {
+        return perm.checksum !== permission.checksum;
+      });
+    }
+  }, {
+    key: "getPermission",
+    value: function getPermission(checksum) {
+      return this.permissions.find(function (permission) {
+        return permission.checksum === checksum;
+      });
+    }
+  }, {
+    key: "hasPermission",
+    value: function hasPermission(checksum) {
+      var fields = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+      var fieldKeys = function fieldKeys() {
+        return Array.isArray(fields) ? fields : Object.keys(fields);
+      };
+
+      var permission = this.getPermission(checksum);
+      console.log('checksum', checksum, permission);
+      if (!permission) return false; // If no fields are supplied but permission exists | valid.
+
+      if (fields === null || !fieldKeys().length) return true;
+      var fieldsCloneA = Object.assign({}, fields);
+      var fieldsCloneB = Object.assign({}, permission.fields);
+      permission.mutableFields.map(function (field) {
+        delete fieldsCloneA[field];
+        delete fieldsCloneB[field];
+      });
+      return _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__["default"].deepEqual(fieldsCloneA, fieldsCloneB);
+    } // findIdentity(publicKey) {
+    //     return this.identities.find(id => id.publicKey === publicKey);
+    // }
+    // findIdentityFromDomain(domain) {
+    //     const idFromPermissions = this.permissions.find(permission => permission.isIdentityOnly() && permission.domain === domain);
+    //     if (idFromPermissions) return this.findIdentity(idFromPermissions.identity);
+    //     else return null;
+    // }
+    // updateOrPushIdentity(identity) {
+    //     this.identities.find(id => id.publicKey === identity.publicKey) ?
+    //         this.identities = this.identities.map(id => id.publicKey === identity.publicKey ? identity : id) :
+    //         this.identities.unshift(identity);
+    // }
+    // findAccountsWithPublicKey(publicKey) {
+    //     return this.identities.map(id => id.getAccountFromPublicKey(publicKey)).filter(acc => !!acc);
+    // }
+
+  }, {
+    key: "forBackup",
+    value: function forBackup() {
+      var clone = this.clone();
+      clone.keypairs = [];
+      clone.permissions = [];
+      return clone;
+    }
+  }, {
+    key: "getKeyPair",
+    value: function getKeyPair(keypair) {
+      return this.getKeyPairByPublicKey(keypair.publicKey); // return this.keypairs.find(key => key.publicKey.toLowerCase() === keypair.publicKey.toLowerCase())
+    }
+  }, {
+    key: "getKeyPairByName",
+    value: function getKeyPairByName(name) {
+      return this.keypairs.find(function (key) {
+        return key.name.toLowerCase() === name.toLowerCase();
+      });
+    }
+  }, {
+    key: "getKeyPairByPublicKey",
+    value: function getKeyPairByPublicKey(publicKey) {
+      return this.keypairs.find(function (key) {
+        return key.publicKey.toLowerCase() === publicKey.toLowerCase();
+      });
+    }
+  }, {
+    key: "removeKeyPair",
+    value: function removeKeyPair(keypair) {
+      this.keypairs = this.keypairs.filter(function (key) {
+        return key.unique() !== keypair.unique();
+      });
+    }
+  }], [{
+    key: "placeholder",
+    value: function placeholder() {
+      return new Keychain();
+    }
+  }, {
+    key: "fromJson",
+    value: function fromJson(json) {
+      var p = Object.assign(this.placeholder(), json);
+      if (json.hasOwnProperty('keypairs')) p.keypairs = json.keypairs; //.map(x => KeyPair.fromJson(x));
+      // if (json.hasOwnProperty('identities')) p.identities = json.identities.map(x => Identity.fromJson(x));
+
+      if (json.hasOwnProperty('permissions')) p.permissions = json.permissions; //.map(x => Permission.fromJson(x));
+
+      return p;
+    }
+  }]);
+
+  return Keychain;
+}();
+
+
+
+/***/ }),
+/* 733 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ObjectHelpers; });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(300);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(255);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+/***
+ * A set of helpers for Objects/Arrays
+ */
+var ObjectHelpers =
+/*#__PURE__*/
+function () {
+  function ObjectHelpers() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, ObjectHelpers);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(ObjectHelpers, null, [{
+    key: "groupBy",
+
+    /***
+     * Groups an array by key
+     * @param array
+     * @param key
+     * @returns {*}
+     */
+    value: function groupBy(array, key) {
+      return array.reduce(function (acc, item) {
+        (acc[item[key]] = acc[item[key]] || []).push(item);
+        return acc;
+      }, {});
+    }
+    /***
+     * Makes a single level array distinct
+     * @param array
+     * @returns {*}
+     */
+
+  }, {
+    key: "distinct",
+    value: function distinct(array) {
+      return array.reduce(function (a, b) {
+        return a.includes(b) ? a : a.concat(b);
+      }, []);
+    }
+    /***
+     * Makes an object array distinct ( uses deep checking )
+     * @param array
+     * @returns {*}
+     */
+
+  }, {
+    key: "distinctObjectArray",
+    value: function distinctObjectArray(array) {
+      var _this = this;
+
+      return array.reduce(function (a, b) {
+        return !!a.find(function (x) {
+          return _this.deepEqual(x, b);
+        }) ? a : a.concat(b);
+      }, []);
+    }
+    /***
+     * Checks deep equality for objects
+     * @param objA
+     * @param objB
+     * @returns {boolean}
+     */
+
+  }, {
+    key: "deepEqual",
+    value: function deepEqual(objA, objB) {
+      var _this2 = this;
+
+      var keys = Object.keys,
+          typeA = _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(objA),
+          typeB = _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(objB);
+
+      return objA && objB && typeA === 'object' && typeA === typeB ? keys(objA).length === keys(objB).length && keys(objA).every(function (key) {
+        return _this2.deepEqual(objA[key], objB[key]);
+      }) : objA === objB;
+    }
+    /***
+     * Flattens an array into a single dimension
+     * @param array
+     * @returns {*}
+     */
+
+  }, {
+    key: "flatten",
+    value: function flatten(array) {
+      var _this3 = this;
+
+      return array.reduce(function (a, b) {
+        return a.concat(Array.isArray(b) ? _this3.flatten(b) : b);
+      }, []);
+    }
+    /***
+     * Flattens an objects keys into a single dimension
+     * @param object
+     * @returns {*}
+     */
+
+  }, {
+    key: "objectToFlatKeys",
+    value: function objectToFlatKeys(object) {
+      var _this4 = this;
+
+      return this.flatten(Object.keys(object).map(function (key) {
+        if (object[key] !== null && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(object[key]) === 'object') return _this4.objectToFlatKeys(object[key]);else return key;
+      }));
+    }
+    /***
+     * Gets a field from an object by string dot notation, such as `location.country.code`
+     * @param object
+     * @param dotNotation
+     * @returns {*}
+     */
+
+  }, {
+    key: "getFieldFromObjectByDotNotation",
+    value: function getFieldFromObjectByDotNotation(object, dotNotation) {
+      var props = dotNotation.split(".");
+      return props.reduce(function (obj, key) {
+        return obj[key];
+      }, object);
+    }
+  }]);
+
+  return ObjectHelpers;
+}();
+
+
+
+/***/ }),
+/* 734 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NotificationService; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(725);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(735);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(728);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(738);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _models_errors_Error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(729);
+/* harmony import */ var _models_errors_Error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(739);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(717);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(496);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(495);
@@ -49160,14 +49575,14 @@ function () {
 
 
 /***/ }),
-/* 725 */
+/* 735 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(726);
+module.exports = __webpack_require__(736);
 
 
 /***/ }),
-/* 726 */
+/* 736 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -49194,7 +49609,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(727);
+module.exports = __webpack_require__(737);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -49210,7 +49625,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 727 */
+/* 737 */
 /***/ (function(module, exports) {
 
 /**
@@ -49937,7 +50352,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 728 */
+/* 738 */
 /***/ (function(module, exports) {
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -49979,7 +50394,7 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator;
 
 /***/ }),
-/* 729 */
+/* 739 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49990,7 +50405,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ErrorTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(730);
+/* harmony import */ var _ErrorTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(740);
 
 
 
@@ -50075,7 +50490,7 @@ function () {
 
 
 /***/ }),
-/* 730 */
+/* 740 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50090,7 +50505,7 @@ var PROMPT_CLOSED = 'prompt_closed';
 var UPGRADE_REQUIRED = 'upgrade_required';
 
 /***/ }),
-/* 731 */
+/* 741 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
@@ -50102,7 +50517,7 @@ var UPGRADE_REQUIRED = 'upgrade_required';
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(112)))
 
 /***/ }),
-/* 732 */
+/* 742 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (factory) {
@@ -50842,425 +51257,6 @@ var UPGRADE_REQUIRED = 'upgrade_required';
 
     return SparkMD5;
 }));
-
-
-/***/ }),
-/* 733 */,
-/* 734 */,
-/* 735 */,
-/* 736 */,
-/* 737 */,
-/* 738 */,
-/* 739 */,
-/* 740 */,
-/* 741 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NightElf; });
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(300);
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(255);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(742);
-/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(518);
-/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_4__);
-
-
-
-// import Meta from './Meta';
- // import Settings from './Settings';
-
-
-var AESEncrypto = aelf_sdk__WEBPACK_IMPORTED_MODULE_4__["wallet"].AESEncrypto,
-    AESDecrypto = aelf_sdk__WEBPACK_IMPORTED_MODULE_4__["wallet"].AESDecrypto; // import Hasher from '../util/Hasher'
-// import IdGenerator from '../util/IdGenerator'
-
-/* eslint-disable fecs-camelcase */
-
-var NightElf =
-/*#__PURE__*/
-function () {
-  function NightElf() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, NightElf);
-
-    // this.meta = Meta.placeholder();
-    this.keychain = _Keychain__WEBPACK_IMPORTED_MODULE_3__["default"].placeholder(); // this.settings = Settings.placeholder();
-
-    this.histories = []; // this.hash = Hasher.insecureHash(IdGenerator.text(2048));
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(NightElf, [{
-    key: "clone",
-    value: function clone() {
-      return NightElf.fromJson(JSON.parse(JSON.stringify(this)));
-    }
-  }, {
-    key: "isEncrypted",
-    value: function isEncrypted() {
-      return _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(this.keychain) !== 'object';
-    }
-    /***
-     * Encrypts the entire keychain
-     * @param seed - The seed to encrypt with
-     */
-
-  }, {
-    key: "decrypt",
-    value: function decrypt(seed) {
-      if (this.isEncrypted()) {
-        this.keychain = _Keychain__WEBPACK_IMPORTED_MODULE_3__["default"].fromJson(AESDecrypto(this.keychain, seed));
-      }
-    }
-    /***
-     * Decrypts the entire keychain
-     * @param seed - The seed to decrypt with
-     */
-
-  }, {
-    key: "encrypt",
-    value: function encrypt(seed) {
-      if (!this.isEncrypted()) this.keychain = AESEncrypto(this.keychain, seed);
-    }
-  }, {
-    key: "forBackup",
-    value: function forBackup() {
-      var clone = this.clone();
-      clone.histories = [];
-      return clone;
-    }
-  }], [{
-    key: "placeholder",
-    value: function placeholder() {
-      return new NightElf();
-    }
-  }, {
-    key: "fromJson",
-    value: function fromJson(json) {
-      var p = Object.assign(this.placeholder(), json); // if (json.hasOwnProperty('meta')) p.meta = Meta.fromJson(json.meta);
-      // if (json.hasOwnProperty('settings')) p.settings = Settings.fromJson(json.settings);
-      // if (json.hasOwnProperty('keychain')) {
-      //     p.keychain
-      //         = (typeof json.keychain === 'string')
-      //         ? json.keychain : Keychain.fromJson(json.keychain);
-      // }
-
-      return p;
-    }
-  }]);
-
-  return NightElf;
-}();
-
-
-
-/***/ }),
-/* 742 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Keychain; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(255);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(743);
-
-
-
-/**
- * @file Keychain.js
- * @author huangzongzhe; Scatter;
- */
-// import Identity from './Identity';
-// import Permission from './Permission';
-// import KeyPair from './KeyPair';
-
-
-var Keychain =
-/*#__PURE__*/
-function () {
-  function Keychain() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Keychain);
-
-    // {name,address,mnemonic, privateKey}
-    this.keypairs = []; // this.identities = [];
-    // {
-    //     domain,
-    //     address,
-    //     contracts: [...contractIDList]
-    // }
-
-    this.permissions = [];
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Keychain, [{
-    key: "clone",
-    value: function clone() {
-      return Keychain.fromJson(JSON.parse(JSON.stringify(this)));
-    }
-  }, {
-    key: "removePermissionsByKeypair",
-    value: function removePermissionsByKeypair(keypair) {
-      this.permissions = this.permissions.filter(function (perm) {
-        return perm.keypair !== keypair.unique();
-      });
-    }
-  }, {
-    key: "removePermission",
-    value: function removePermission(permission) {
-      this.permissions = this.permissions.filter(function (perm) {
-        return perm.checksum !== permission.checksum;
-      });
-    }
-  }, {
-    key: "getPermission",
-    value: function getPermission(checksum) {
-      return this.permissions.find(function (permission) {
-        return permission.checksum === checksum;
-      });
-    }
-  }, {
-    key: "hasPermission",
-    value: function hasPermission(checksum) {
-      var fields = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-
-      var fieldKeys = function fieldKeys() {
-        return Array.isArray(fields) ? fields : Object.keys(fields);
-      };
-
-      var permission = this.getPermission(checksum);
-      console.log('checksum', checksum, permission);
-      if (!permission) return false; // If no fields are supplied but permission exists | valid.
-
-      if (fields === null || !fieldKeys().length) return true;
-      var fieldsCloneA = Object.assign({}, fields);
-      var fieldsCloneB = Object.assign({}, permission.fields);
-      permission.mutableFields.map(function (field) {
-        delete fieldsCloneA[field];
-        delete fieldsCloneB[field];
-      });
-      return _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__["default"].deepEqual(fieldsCloneA, fieldsCloneB);
-    } // findIdentity(publicKey) {
-    //     return this.identities.find(id => id.publicKey === publicKey);
-    // }
-    // findIdentityFromDomain(domain) {
-    //     const idFromPermissions = this.permissions.find(permission => permission.isIdentityOnly() && permission.domain === domain);
-    //     if (idFromPermissions) return this.findIdentity(idFromPermissions.identity);
-    //     else return null;
-    // }
-    // updateOrPushIdentity(identity) {
-    //     this.identities.find(id => id.publicKey === identity.publicKey) ?
-    //         this.identities = this.identities.map(id => id.publicKey === identity.publicKey ? identity : id) :
-    //         this.identities.unshift(identity);
-    // }
-    // findAccountsWithPublicKey(publicKey) {
-    //     return this.identities.map(id => id.getAccountFromPublicKey(publicKey)).filter(acc => !!acc);
-    // }
-
-  }, {
-    key: "forBackup",
-    value: function forBackup() {
-      var clone = this.clone();
-      clone.keypairs = [];
-      clone.permissions = [];
-      return clone;
-    }
-  }, {
-    key: "getKeyPair",
-    value: function getKeyPair(keypair) {
-      return this.getKeyPairByPublicKey(keypair.publicKey); // return this.keypairs.find(key => key.publicKey.toLowerCase() === keypair.publicKey.toLowerCase())
-    }
-  }, {
-    key: "getKeyPairByName",
-    value: function getKeyPairByName(name) {
-      return this.keypairs.find(function (key) {
-        return key.name.toLowerCase() === name.toLowerCase();
-      });
-    }
-  }, {
-    key: "getKeyPairByPublicKey",
-    value: function getKeyPairByPublicKey(publicKey) {
-      return this.keypairs.find(function (key) {
-        return key.publicKey.toLowerCase() === publicKey.toLowerCase();
-      });
-    }
-  }, {
-    key: "removeKeyPair",
-    value: function removeKeyPair(keypair) {
-      this.keypairs = this.keypairs.filter(function (key) {
-        return key.unique() !== keypair.unique();
-      });
-    }
-  }], [{
-    key: "placeholder",
-    value: function placeholder() {
-      return new Keychain();
-    }
-  }, {
-    key: "fromJson",
-    value: function fromJson(json) {
-      var p = Object.assign(this.placeholder(), json);
-      if (json.hasOwnProperty('keypairs')) p.keypairs = json.keypairs; //.map(x => KeyPair.fromJson(x));
-      // if (json.hasOwnProperty('identities')) p.identities = json.identities.map(x => Identity.fromJson(x));
-
-      if (json.hasOwnProperty('permissions')) p.permissions = json.permissions; //.map(x => Permission.fromJson(x));
-
-      return p;
-    }
-  }]);
-
-  return Keychain;
-}();
-
-
-
-/***/ }),
-/* 743 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ObjectHelpers; });
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(300);
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(255);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-/***
- * A set of helpers for Objects/Arrays
- */
-var ObjectHelpers =
-/*#__PURE__*/
-function () {
-  function ObjectHelpers() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, ObjectHelpers);
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(ObjectHelpers, null, [{
-    key: "groupBy",
-
-    /***
-     * Groups an array by key
-     * @param array
-     * @param key
-     * @returns {*}
-     */
-    value: function groupBy(array, key) {
-      return array.reduce(function (acc, item) {
-        (acc[item[key]] = acc[item[key]] || []).push(item);
-        return acc;
-      }, {});
-    }
-    /***
-     * Makes a single level array distinct
-     * @param array
-     * @returns {*}
-     */
-
-  }, {
-    key: "distinct",
-    value: function distinct(array) {
-      return array.reduce(function (a, b) {
-        return a.includes(b) ? a : a.concat(b);
-      }, []);
-    }
-    /***
-     * Makes an object array distinct ( uses deep checking )
-     * @param array
-     * @returns {*}
-     */
-
-  }, {
-    key: "distinctObjectArray",
-    value: function distinctObjectArray(array) {
-      var _this = this;
-
-      return array.reduce(function (a, b) {
-        return !!a.find(function (x) {
-          return _this.deepEqual(x, b);
-        }) ? a : a.concat(b);
-      }, []);
-    }
-    /***
-     * Checks deep equality for objects
-     * @param objA
-     * @param objB
-     * @returns {boolean}
-     */
-
-  }, {
-    key: "deepEqual",
-    value: function deepEqual(objA, objB) {
-      var _this2 = this;
-
-      var keys = Object.keys,
-          typeA = _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(objA),
-          typeB = _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(objB);
-
-      return objA && objB && typeA === 'object' && typeA === typeB ? keys(objA).length === keys(objB).length && keys(objA).every(function (key) {
-        return _this2.deepEqual(objA[key], objB[key]);
-      }) : objA === objB;
-    }
-    /***
-     * Flattens an array into a single dimension
-     * @param array
-     * @returns {*}
-     */
-
-  }, {
-    key: "flatten",
-    value: function flatten(array) {
-      var _this3 = this;
-
-      return array.reduce(function (a, b) {
-        return a.concat(Array.isArray(b) ? _this3.flatten(b) : b);
-      }, []);
-    }
-    /***
-     * Flattens an objects keys into a single dimension
-     * @param object
-     * @returns {*}
-     */
-
-  }, {
-    key: "objectToFlatKeys",
-    value: function objectToFlatKeys(object) {
-      var _this4 = this;
-
-      return this.flatten(Object.keys(object).map(function (key) {
-        if (object[key] !== null && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(object[key]) === 'object') return _this4.objectToFlatKeys(object[key]);else return key;
-      }));
-    }
-    /***
-     * Gets a field from an object by string dot notation, such as `location.country.code`
-     * @param object
-     * @param dotNotation
-     * @returns {*}
-     */
-
-  }, {
-    key: "getFieldFromObjectByDotNotation",
-    value: function getFieldFromObjectByDotNotation(object, dotNotation) {
-      var props = dotNotation.split(".");
-      return props.reduce(function (obj, key) {
-        return obj[key];
-      }, object);
-    }
-  }]);
-
-  return ObjectHelpers;
-}();
-
 
 
 /***/ })
