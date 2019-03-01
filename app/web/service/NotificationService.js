@@ -1,17 +1,9 @@
 /**
-<<<<<<< HEAD
- * @file Service
- * @author huangzongzhe
-*/
-
-import Error from '../models/errors/Error';
-=======
  * @file NotificationService.js
  * @author huangzongzhe
  */
 
 import errorHandler from '../utils/errorHandler';
->>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 import {
     apis
 } from '../utils/BrowserApis';

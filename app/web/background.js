@@ -1319,14 +1319,6 @@ export default class Background {
         sendResponse(prompt);
     }
 
-<<<<<<< HEAD
-
-    /********************************************/
-    /*                 Handlers                 */
-    /********************************************/
-
-=======
->>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
     /***
      * Sets the seed on scope to use from decryption
      * @param sendResponse - Delegating response handler
