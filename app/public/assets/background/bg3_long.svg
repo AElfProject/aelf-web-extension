@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="375px" height="1000px" viewBox="0 0 375 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>背景3-长</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="98.4375%" y2="98.4375%" id="linearGradient-1">
+            <stop stop-color="#AC00E6" offset="0%"></stop>
+            <stop stop-color="#2A0080" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-37.0%" y="-37.0%" width="174.1%" height="174.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="20.251116" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-50.6%" y="-50.6%" width="201.3%" height="201.3%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="20.251116" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-83.2%" y="-83.2%" width="266.4%" height="266.4%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="15.251116" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-45.8%" y="-45.8%" width="191.5%" height="191.5%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="15.251116" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="背景3-长" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Rectangle-5" fill="url(#linearGradient-1)" points="0 0 375 0 375 1000 0 1000"></polygon>
+        <polygon id="Rectangle-5" fill="#11151A" opacity="0.802790202" points="0 0 375 0 375 1000 0 1000"></polygon>
+        <g id="Group-Copy-2" opacity="0.300000012" transform="translate(-71.000000, 20.000000)" fill="#D580FF">
+            <circle id="Oval-4" opacity="0.203962054" filter="url(#filter-2)" cx="82" cy="82" r="82"></circle>
+            <circle id="Oval-4-Copy" opacity="0.200000003" filter="url(#filter-3)" cx="386" cy="142" r="60"></circle>
+            <circle id="Oval-4-Copy-2" opacity="0.200000003" filter="url(#filter-4)" cx="244.5" cy="423.5" r="27.5"></circle>
+            <circle id="Oval-4-Copy-3" opacity="0.200000003" filter="url(#filter-5)" cx="323" cy="554" r="50"></circle>
+        </g>
+    </g>
+</svg>

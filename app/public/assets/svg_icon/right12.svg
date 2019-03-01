@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/右方向12</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/右方向12" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" opacity="0" transform="translate(0.500000, 0.500000)" stroke-width="0.5">
+            <circle id="Oval-2" stroke="#979797" cx="5.5" cy="5.5" r="5.25"></circle>
+            <rect id="Rectangle" stroke="#D0021B" x="0.75" y="0.75" width="9.5" height="9.5" rx="0.5"></rect>
+            <rect id="Rectangle" stroke="#979797" x="1.25" y="0.25" width="8.5" height="10.5" rx="0.5"></rect>
+            <rect id="Rectangle" stroke="#979797" x="0.25" y="1.25" width="10.5" height="8.5" rx="0.5"></rect>
+        </g>
+        <path d="M8.5,1 L4.20710678,5.29289322 C3.81658249,5.68341751 3.81658249,6.31658249 4.20710678,6.70710678 L8.5,11" id="Path-2" stroke="#FFFFFF" opacity="0.200000003" stroke-linecap="round" stroke-linejoin="round" transform="translate(6.000000, 6.000000) scale(-1, 1) translate(-6.000000, -6.000000) "></path>
+    </g>
+</svg>
