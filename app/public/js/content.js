@@ -26515,7 +26515,8 @@ var errorMap = {
   200006: 'Decrypto Failed. Please unlock your wallet.',
   200007: 'No Night Elf in storage.',
   200008: 'Please login first.',
-  200009: 'No permission, can not set whitelist.'
+  200009: 'No permission, can not set whitelist.',
+  200010: 'The user closed the prompt without any action.'
 };
 function errorHandler(code, error) {
   var errorMessage = errorMap[code];
@@ -26597,7 +26598,6 @@ __webpack_require__.r(__webpack_exports__);
 // import * as InternalMessageTypes from './messages/InternalMessageTypes'
 
 
- // import Error from './models/errors/Error'
 
 
 

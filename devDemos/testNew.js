@@ -41,7 +41,8 @@ document.addEventListener('NightElf', result => {
 
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
-        httpProvider: 'http://192.168.199.128:5000/chain',
+        // httpProvider: 'http://192.168.199.128:5000/chain',
+        httpProvider: 'http://192.168.199.109:5000/chain',
         appName: 'Test'
     });
 
@@ -101,7 +102,7 @@ document.addEventListener('NightElf', result => {
                 payload: {
                     // appName: message.appName,
                     // domain: message.hostname
-                    address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs',
+                    address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY',
                     contracts: [{
                         chainId: 'AELF',
                         contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
@@ -139,7 +140,7 @@ document.addEventListener('NightElf', result => {
                 payload: {
                     // appName: message.appName,
                     // domain: message.hostname
-                    address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs',
+                    address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY',
                     contracts: [{
                         chainId: 'AELF',
                         contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
@@ -163,7 +164,7 @@ document.addEventListener('NightElf', result => {
     let tokenC;
     initAelfContract.onclick = function () {
         const wallet = {
-            address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs'
+            address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY'
         };
         // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
         // There is only one value named address;
@@ -283,61 +284,62 @@ document.addEventListener('NightElf', result => {
     // }).then(result => {
     //     console.log('>>>>>>>>>>>>>>>>>>>', result);
     // });
-
-    NightElf.api({
-        appName: 'hzzTest',
-        method: 'REMOVE_CONTRACT_PERMISSION',
-        chainId: 'AELF',
-        payload: {
-            contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
-            removeList: ['xxx', 'xxx']
-        }
-    }).then(result => {
-        console.log('>>>>>>>>>>>>>>>>>>>', result);
-    });
-
-    NightElf.api({
-        appName: 'hzzTest',
-        method: 'SET_WHITELIST',
-        hostname: 'aelf.io',
-        chainId: 'AELF',
-        payload: {
-            contractName: 'token',
-            contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
-            method: 'BalanceOf',
-            params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB'],
-            whitelist: {
-                // transfer(a, b, c)
-                // transfer(a, b, c, d) is not ok
-                transfer: [{
-                    value: 'a',
-                    variable: true
-                }, {
-                    value: 'b',
-                    variable: false
-                }, {
-                    value: 'c',
-                    variable: true
-                }],
-                test: [{}],
-                hzz780: [{}]
+    if (false) {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'REMOVE_CONTRACT_PERMISSION',
+            chainId: 'AELF',
+            payload: {
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                removeList: ['xxx', 'xxx']
             }
-        }
-    }).then(result => {
-        console.log('>>>>>>>>>>>>>>>>>>>', result);
-    });
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
 
-    NightElf.api({
-        appName: 'hzzTest',
-        method: 'REMOVE_METHODS_WHITELIST',
-        chainId: 'AELF',
-        payload: {
-            contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
-            methods: ['test', 'hzz780']
-        }
-    }).then(result => {
-        console.log('>>>>>>>>>>>>>>>>>>>', result);
-    });
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'SET_WHITELIST',
+            hostname: 'aelf.io',
+            chainId: 'AELF',
+            payload: {
+                contractName: 'token',
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                method: 'BalanceOf',
+                params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB'],
+                whitelist: {
+                    // transfer(a, b, c)
+                    // transfer(a, b, c, d) is not ok
+                    transfer: [{
+                        value: 'a',
+                        variable: true
+                    }, {
+                        value: 'b',
+                        variable: false
+                    }, {
+                        value: 'c',
+                        variable: true
+                    }],
+                    test: [{}],
+                    hzz780: [{}]
+                }
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'REMOVE_METHODS_WHITELIST',
+            chainId: 'AELF',
+            payload: {
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                methods: ['test', 'hzz780']
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    }
 
 });
 if (false) {

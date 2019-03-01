@@ -12,7 +12,7 @@ import * as PageContentTags from './messages/PageContentTags';
 // import * as InternalMessageTypes from './messages/InternalMessageTypes'
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
 import InternalMessage from './messages/InternalMessage';
-// import Error from './models/errors/Error'
+
 import {
     apis
 } from './utils/BrowserApis';
