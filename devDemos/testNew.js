@@ -339,6 +339,23 @@ document.addEventListener('NightElf', result => {
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
         });
+
+        // CALL_AELF_CONTRACT_WITHOUT_CHECK
+        NightElf.api({
+            appName: 'hzzTest',
+            // method: 'CALL_AELF_CONTRACT',
+            method: 'GET_CONTRACT_ABI',
+            hostname: 'aelf.io',
+            chainId: 'AELF',
+            payload: {
+                contractName: 'token',
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                method: 'BalanceOf',
+                params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB']
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
     }
 
 });

@@ -23189,6 +23189,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT_AELF_CONTRACT", function() { return INIT_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT", function() { return CALL_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT_WITHOUT_CHECK", function() { return CALL_AELF_CONTRACT_WITHOUT_CHECK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_CONTRACT_ABI", function() { return GET_CONTRACT_ABI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CONTRACT", function() { return RELEASE_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ADDRESS", function() { return GET_ADDRESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_PROMPT", function() { return OPEN_PROMPT; });
@@ -23228,6 +23229,7 @@ var RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
 var INIT_AELF_CONTRACT = 'initAelfContract';
 var CALL_AELF_CONTRACT = 'callAelfContract';
 var CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
+var GET_CONTRACT_ABI = 'getExistContractAbi';
 var RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
 var GET_ADDRESS = 'getAddress';
@@ -47628,6 +47630,10 @@ function () {
           Background.callAelfContractWithoutCheck(sendResponse, message.payload);
           break;
 
+        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_CONTRACT_ABI"]:
+          Background.getExistContractAbi(sendResponse, message.payload);
+          break;
+
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_ADDRESS"]:
           Background.getAddress(sendResponse);
           break;
@@ -47946,11 +47952,69 @@ function () {
     key: "callAelfContractWithoutCheck",
     value: function callAelfContractWithoutCheck(sendResponse, contractInfo) {
       Background.callAelfContract(sendResponse, contractInfo, false);
+    } // After initContract
+
+  }, {
+    key: "getExistContractAbi",
+    value: function getExistContractAbi(sendResponse, contractInfo) {
+      var _this3 = this;
+
+      this.checkSeed({
+        sendResponse: sendResponse
+      }, function () {
+        var payload = contractInfo.payload,
+            chainId = contractInfo.chainId,
+            hostname = contractInfo.hostname;
+        var contractName = payload.contractName,
+            method = payload.method,
+            contractAddress = payload.contractAddress;
+        var dappAelfMeta = aelfMeta.find(function (item) {
+          var checkDomain = hostname === item.hostname;
+          var checkChainId = item.chainId === chainId;
+          return checkDomain && checkChainId;
+        });
+
+        if (!dappAelfMeta) {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200003)));
+          return;
+        }
+
+        var extendContract = dappAelfMeta.contracts.find(function (item) {
+          return contractAddress === item.contractAddress;
+        });
+
+        if (!extendContract) {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, "Please init contract ".concat(contractName, ": ").concat(contractAddress, "."))));
+          return;
+        }
+
+        if (!extendContract.contractMethods[method]) {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, "Mehtod ".concat(method, " is not exist in the contract."))));
+          return;
+        }
+
+        var contractInfoTemp = Object.assign({}, contractInfo, {
+          payload: {
+            address: extendContract.address,
+            contractAddress: extendContract.contractAddress
+          }
+        }); // If the user remove the permission after the dapp initialized the contract
+
+        _this3.checkDappContractStatus({
+          sendResponse: sendResponse,
+          contractInfo: contractInfoTemp
+        }, function () {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
+            message: '',
+            detail: JSON.stringify(extendContract.contractMethods.abi)
+          }));
+        });
+      });
     }
   }, {
     key: "callAelfContract",
     value: function callAelfContract(sendResponse, contractInfo) {
-      var _this3 = this;
+      var _this4 = this;
 
       var checkWhitelist = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       this.checkSeed({
@@ -48015,7 +48079,7 @@ function () {
           }
         }); // If the user remove the permission after the dapp initialized the contract
 
-        _this3.checkDappContractStatus({
+        _this4.checkDappContractStatus({
           sendResponse: sendResponse,
           contractInfo: contractInfoTemp
         }, function () {
