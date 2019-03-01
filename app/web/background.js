@@ -187,6 +187,9 @@ export default class Background {
             case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
                 Background.callAelfContractWithoutCheck(sendResponse, message.payload);
                 break;
+            case InternalMessageTypes.GET_CONTRACT_ABI:
+                Background.getExistContractAbi(sendResponse, message.payload);
+                break;
 
             case InternalMessageTypes.GET_ADDRESS:
                 Background.getAddress(sendResponse);
@@ -533,6 +536,64 @@ export default class Background {
 
     static callAelfContractWithoutCheck(sendResponse, contractInfo) {
         Background.callAelfContract(sendResponse, contractInfo, false);
+    }
+
+    // After initContract
+    static getExistContractAbi(sendResponse, contractInfo) {
+        this.checkSeed({sendResponse}, () => {
+            const {payload, chainId, hostname} = contractInfo;
+            const {
+                contractName,
+                method,
+                contractAddress
+            } = payload;
+
+            const dappAelfMeta = aelfMeta.find(item => {
+                const checkDomain = hostname === item.hostname;
+                const checkChainId = item.chainId === chainId;
+                return checkDomain && checkChainId;
+            });
+            if (!dappAelfMeta) {
+                sendResponse({
+                    ...errorHandler(200003)
+                });
+                return;
+            }
+
+            const extendContract = dappAelfMeta.contracts.find(item => {
+                return contractAddress === item.contractAddress;
+            });
+            if (!extendContract) {
+                sendResponse({
+                    ...errorHandler(400001, `Please init contract ${contractName}: ${contractAddress}.`)
+                });
+                return;
+            }
+            if (!extendContract.contractMethods[method]) {
+                sendResponse({
+                    ...errorHandler(400001, `Mehtod ${method} is not exist in the contract.`)
+                });
+                return;
+            }
+
+            const contractInfoTemp = Object.assign({}, contractInfo, {
+                payload: {
+                    address: extendContract.address,
+                    contractAddress: extendContract.contractAddress
+                }
+            });
+            // If the user remove the permission after the dapp initialized the contract
+            this.checkDappContractStatus({
+                sendResponse,
+                contractInfo: contractInfoTemp
+            }, () => {
+                sendResponse({
+                    ...errorHandler(0),
+                    message: '',
+                    detail: JSON.stringify(extendContract.contractMethods.abi)
+                });
+            });
+        });
     }
 
     static callAelfContract(sendResponse, contractInfo, checkWhitelist = true) {

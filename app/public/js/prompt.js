@@ -65965,6 +65965,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT_AELF_CONTRACT", function() { return INIT_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT", function() { return CALL_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALL_AELF_CONTRACT_WITHOUT_CHECK", function() { return CALL_AELF_CONTRACT_WITHOUT_CHECK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_CONTRACT_ABI", function() { return GET_CONTRACT_ABI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CONTRACT", function() { return RELEASE_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ADDRESS", function() { return GET_ADDRESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_PROMPT", function() { return OPEN_PROMPT; });
@@ -66008,6 +66009,7 @@ var RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
 var INIT_AELF_CONTRACT = 'initAelfContract';
 var CALL_AELF_CONTRACT = 'callAelfContract';
 var CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
+var GET_CONTRACT_ABI = 'getExistContractAbi';
 var RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
 var GET_ADDRESS = 'getAddress';
