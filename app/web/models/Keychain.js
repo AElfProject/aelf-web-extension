@@ -26,9 +26,12 @@ export default class Keychain {
     }
     static fromJson(json) {
         let p = Object.assign(this.placeholder(), json);
-        if (json.hasOwnProperty('keypairs')) p.keypairs = json.keypairs; //.map(x => KeyPair.fromJson(x));
-        // if (json.hasOwnProperty('identities')) p.identities = json.identities.map(x => Identity.fromJson(x));
-        if (json.hasOwnProperty('permissions')) p.permissions = json.permissions; //.map(x => Permission.fromJson(x));
+        if (json.hasOwnProperty('keypairs')) {
+            p.keypairs = json.keypairs;
+        }
+        if (json.hasOwnProperty('permissions')) {
+            p.permissions = json.permissions;
+        }
         return p;
     }
 
@@ -50,10 +53,14 @@ export default class Keychain {
 
         const permission = this.getPermission(checksum);
         console.log('checksum', checksum, permission);
-        if (!permission) return false;
+        if (!permission) {
+            return false;
+        }
 
         // If no fields are supplied but permission exists | valid.
-        if (fields === null || !fieldKeys().length) return true;
+        if (fields === null || !fieldKeys().length) {
+            return true;
+        }
 
         let fieldsCloneA = Object.assign({}, fields);
         let fieldsCloneB = Object.assign({}, permission.fields);
@@ -65,24 +72,6 @@ export default class Keychain {
         return ObjectHelpers.deepEqual(fieldsCloneA, fieldsCloneB);
 
     }
-
-    // findIdentity(publicKey) {
-    //     return this.identities.find(id => id.publicKey === publicKey);
-    // }
-    // findIdentityFromDomain(domain) {
-    //     const idFromPermissions = this.permissions.find(permission => permission.isIdentityOnly() && permission.domain === domain);
-    //     if (idFromPermissions) return this.findIdentity(idFromPermissions.identity);
-    //     else return null;
-    // }
-    // updateOrPushIdentity(identity) {
-    //     this.identities.find(id => id.publicKey === identity.publicKey) ?
-    //         this.identities = this.identities.map(id => id.publicKey === identity.publicKey ? identity : id) :
-    //         this.identities.unshift(identity);
-    // }
-
-    // findAccountsWithPublicKey(publicKey) {
-    //     return this.identities.map(id => id.getAccountFromPublicKey(publicKey)).filter(acc => !!acc);
-    // }
 
     forBackup() {
         const clone = this.clone();
@@ -98,11 +87,11 @@ export default class Keychain {
     }
 
     getKeyPairByName(name) {
-        return this.keypairs.find(key => key.name.toLowerCase() === name.toLowerCase())
+        return this.keypairs.find(key => key.name.toLowerCase() === name.toLowerCase());
     }
 
     getKeyPairByPublicKey(publicKey) {
-        return this.keypairs.find(key => key.publicKey.toLowerCase() === publicKey.toLowerCase())
+        return this.keypairs.find(key => key.publicKey.toLowerCase() === publicKey.toLowerCase());
     }
 
     removeKeyPair(keypair) {

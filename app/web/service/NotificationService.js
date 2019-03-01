@@ -1,4 +1,9 @@
-import Error from '../models/errors/Error';
+/**
+ * @file NotificationService.js
+ * @author huangzongzhe
+ */
+
+import errorHandler from '../utils/errorHandler';
 import {
     apis
 } from '../utils/BrowserApis';
@@ -79,7 +84,9 @@ export default class NotificationService {
         if (popup) {
             popup.onbeforeunload = () => {
                 // notification.responder(Error.promptClosedWithoutAction());
-                notification.sendResponse(Error.promptClosedWithoutAction());
+                notification.sendResponse({
+                    ...errorHandler(200010)
+                });
 
                 // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
                 // Must return undefined to bypass form protection

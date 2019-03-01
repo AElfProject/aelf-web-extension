@@ -2,13 +2,19 @@
 
 ## How to add Extension
 
-download the code.
+### Normal user
 
-open development mode, add the directory /public.
+https://chrome.google.com/webstore/category/extensions
+
+search: aelf-web-extension or Night Elf
+
+### Developers
+
+download the code.
 
 webpack -w
 
-[TODO] publish to chrome.
+open development mode, add the directory /public.
 
 ## How to use
 

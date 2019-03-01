@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 689);
+/******/ 	return __webpack_require__(__webpack_require__.s = 718);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -11949,7 +11949,7 @@ module.exports = Signature;
 
 /***/ }),
 
-/***/ 686:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11959,7 +11959,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(708);
+/* harmony import */ var _AESUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(714);
 /* harmony import */ var elliptic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(379);
 /* harmony import */ var elliptic__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(elliptic__WEBPACK_IMPORTED_MODULE_3__);
 
@@ -12128,7 +12128,60 @@ function () {
 
 /***/ }),
 
-/***/ 687:
+/***/ 714:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AESUtils; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var crypto_js_aes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(587);
+/* harmony import */ var crypto_js_aes__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(crypto_js_aes__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var crypto_js_enc_utf8__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(595);
+/* harmony import */ var crypto_js_enc_utf8__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(crypto_js_enc_utf8__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+/**
+ * @file utils/AESUtils.js
+ * @author huangzongzhe
+ */
+
+
+
+var AESUtils =
+/*#__PURE__*/
+function () {
+  function AESUtils() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, AESUtils);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(AESUtils, null, [{
+    key: "encrypt",
+    value: function encrypt(input, password) {
+      var ciphertext = crypto_js_aes__WEBPACK_IMPORTED_MODULE_2___default.a.encrypt(input, password); // no encUtf8 here.
+
+      return ciphertext.toString();
+    }
+  }, {
+    key: "decrypt",
+    value: function decrypt(input, password) {
+      var bytes = crypto_js_aes__WEBPACK_IMPORTED_MODULE_2___default.a.decrypt(input, password);
+      return bytes.toString(crypto_js_enc_utf8__WEBPACK_IMPORTED_MODULE_3___default.a);
+    }
+  }]);
+
+  return AESUtils;
+}();
+
+
+
+/***/ }),
+
+/***/ 715:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12144,7 +12197,7 @@ var CONTENT_NIGHTELF = 'contentNightElf';
 
 /***/ }),
 
-/***/ 689:
+/***/ 718:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12155,8 +12208,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_IdGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(252);
-/* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(686);
-/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(687);
+/* harmony import */ var _utils_EncryptedStream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(713);
+/* harmony import */ var _messages_PageContentTags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(715);
 
 
 
@@ -12418,59 +12471,6 @@ function () {
 new Inject(); // window.NightElf = {
 //     Inject
 // };
-
-/***/ }),
-
-/***/ 708:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AESUtils; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(253);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(254);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var crypto_js_aes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(587);
-/* harmony import */ var crypto_js_aes__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(crypto_js_aes__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var crypto_js_enc_utf8__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(595);
-/* harmony import */ var crypto_js_enc_utf8__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(crypto_js_enc_utf8__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-/**
- * @file utils/AESUtils.js
- * @author huangzongzhe
- */
-
-
-
-var AESUtils =
-/*#__PURE__*/
-function () {
-  function AESUtils() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, AESUtils);
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(AESUtils, null, [{
-    key: "encrypt",
-    value: function encrypt(input, password) {
-      var ciphertext = crypto_js_aes__WEBPACK_IMPORTED_MODULE_2___default.a.encrypt(input, password); // no encUtf8 here.
-
-      return ciphertext.toString();
-    }
-  }, {
-    key: "decrypt",
-    value: function decrypt(input, password) {
-      var bytes = crypto_js_aes__WEBPACK_IMPORTED_MODULE_2___default.a.decrypt(input, password);
-      return bytes.toString(crypto_js_enc_utf8__WEBPACK_IMPORTED_MODULE_3___default.a);
-    }
-  }]);
-
-  return AESUtils;
-}();
-
-
 
 /***/ })
 
