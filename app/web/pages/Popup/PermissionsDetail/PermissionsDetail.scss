@@ -1,3 +1,28 @@
+.containerBody {
+    color: #FFF;
+}
+
+.head{
+    width: 26%;
+    margin: 2%;
+}
+
+.headPortrait{
+    color: #000;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #FFF;
+}
+
+.permissionInfo {
+    width: 66%;
+    margin: 2%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+
 .txList {
     padding: 8px 16px 16px 16px;
     background: rgba(255, 255, 255, 0.15);
@@ -12,8 +37,7 @@
 }
 
 .txListMask {
-    /* Rectangle 2 Copy: */
-    opacity: 0.3;
+    opacity: 0.4;
     background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
     border-radius: 8px 0 0 0;
     position: absolute;
@@ -27,14 +51,9 @@
 .keypairNickname {
     font-size: 14px;
 }
-
 .keypairAddress {
     font-size: 12px;
     word-break: break-all;
-}
-
-.permissionOption {
-    padding: 8px 0 8px 0;
 }
 
 .listLeft {
@@ -180,18 +199,13 @@
 }
 
 .operationContainer {
-    display: flex;
-    justify-content: space-between;
     position: relative;
     z-index: 100;
 }
-
 .operationList {
     display: flex;
-    line-height: 24px;
-    height: 24px;
+    justify-content: space-between;
     margin: 0 0 8px 0;
-    cursor: pointer;
 }
 
 // >>>>>>>>>>>>>>>>>>>>>
@@ -222,4 +236,26 @@
 .textarea {
     position: fixed;
     top: -250px;
+}
+
+// >>>>>>>>>>>>>>>>>>>>
+
+.keypairButton {
+    background: #FFF;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    border-radius: 12px;
+    color: #3D55CC;
+    cursor: pointer;
+}
+
+.backup {
+    display: flex;
+    line-height: 24px;
+    height: 24px;
+    margin: 0 0 8px 0;
 }

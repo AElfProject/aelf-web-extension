@@ -1215,8 +1215,11 @@ export default class Background {
                     break;
                 default: // defaut to check domain;
                     {
+                        console.log(queryInfo);
                         const permissionsTemp = permissions.filter(permission => {
+                            console.log(permission.domain, queryInfo.hostname);
                             const domainCheck = permission.domain === queryInfo.hostname;
+                            console.log(domainCheck);
                             return domainCheck;
                         });
 

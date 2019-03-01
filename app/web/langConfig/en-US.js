@@ -171,7 +171,8 @@ const en_US = {
     'aelf.Click here': 'Click here',
     'aelf.Timing Lock Settings': 'Timing Lock Settings',
     'aelf.Application': 'Application',
-    'aelf.Login': 'Login'
+    'aelf.Login': 'Login',
+    'aelf.Details': 'Details'
 };
 
 export default en_US;

@@ -22,6 +22,7 @@ import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 
 import style from './Permissions.scss';
+import {FormattedMessage} from 'react-intl';
 require('./Permissions.css');
 
 const alert = Modal.alert;
@@ -178,8 +179,13 @@ export default class Permissions extends Component {
                         </div>
                         <div className={style.operationList}>
                             <div
-                                onClick={() => console.log('aaaa')}
-                            >查看详情</div>
+                                onClick={() => this.getDetails(domain, address)}
+                            >
+                                <FormattedMessage
+                                    id='aelf.Details'
+                                    defaultMessage = 'Details'
+                                />
+                            </div>
                             <div
                                 className = {
                                     style.keypairBtnContainer + ' ' + style.removeBtn
@@ -215,8 +221,18 @@ export default class Permissions extends Component {
         };
     }
 
-    getDetails() {
-        hashHistory.push('/');
+    getDetails(domain, address) {
+        const data = JSON.stringify({
+            domain,
+            address
+        });
+        // const path = {
+        //     pathname: '/permissionsDetail',
+        //     state: {
+                
+        //     }
+        // };
+        hashHistory.push(`/permissionsDetail/${data}`);
     }
 
     turnToHomePage(walletStatus) {

@@ -27,7 +27,7 @@ import Import from './Import/Import';
 import BackupKeypairs from './BackupKeypairs/BackupKeypairs';
 import ExtensionManager from './ExtensionManager/ExtensionManager';
 import LoadFromBackup from './LoadFromBackup/LoadFromBackup';
-
+import PermissionsDetail from './PermissionsDetail/PermissionsDetail';
 
 addLocaleData([...zh, ...en]);
 
@@ -40,11 +40,11 @@ ReactDOM.render(
                 <Route path="/createKeypairs" component={CreateKeypairs}></Route>
                 <Route path="/keypairs" component={Keypairs}></Route>
                 <Route path="/permissions" component={Permissions}></Route>
+                <Route path='/permissionsDetail/:data' component={PermissionsDetail}></Route>
                 <Route path="/import" component={Import}></Route>
                 <Route path="/backupKeypairs/:address" component={BackupKeypairs}></Route>
                 <Route path="/extensionManager" component={ExtensionManager}></Route>
                 <Route path="/loadFromBackup" component={LoadFromBackup}></Route>
-                <Route pat='/' component={Lock}></Route>
                 {/* TODO: contracts just for test */}
                 <Route path="/contracts" component={Contracts}></Route>
             </Router>

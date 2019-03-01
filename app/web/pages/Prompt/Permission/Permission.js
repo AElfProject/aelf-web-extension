@@ -38,11 +38,15 @@ export default class Permission extends Component {
             address: this.props.location.state,
             contracts: payload.payload.contracts
         };
-
+        this.state = {
+            address: this.props.location.state
+        };
         console.log(this.props.location);
     }
 
     setPermission() {
+        const {address} = this.state;
+        const detail = JSON.stringify({address});
         // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
         InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission)
             .send()
@@ -52,6 +56,7 @@ export default class Permission extends Component {
                     Toast.success('Bind Permisson Success, after 3s close the window.');
                     window.data.sendResponse({
                         ...errorHandler(0),
+                        detail,
                         message: 'Bind Permisson Success'
                     });
                     setTimeout(() => {

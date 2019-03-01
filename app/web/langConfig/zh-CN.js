@@ -163,7 +163,8 @@ const zh_CN = {
     'aelf.Click here': '点击这里',
     'aelf.Timing Lock Settings': '定时锁定设置',
     'aelf.Application': '应用',
-    'aelf.Login': '登录'
+    'aelf.Login': '登录',
+    'aelf.Details': '查看详情'
 };
 
 export default zh_CN;
