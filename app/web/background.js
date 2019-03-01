@@ -10,46 +10,26 @@ import InternalMessage from './messages/InternalMessage';
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
 import NightElf from './models/NightElf';
 import {apis} from './utils/BrowserApis';
+import {
+    contractsCompare,
+    formatContracts,
+    contractWhitelistCheck
+} from './utils/contracts/contracts';
+import {
+    getApplicationPermssions
+} from './utils/permission/permission';
 import errorHandler from './utils/errorHandler';
 import NotificationService from './service/NotificationService';
 import FileSaver from 'file-saver';
 import SparkMD5 from 'spark-md5';
 
 import Aelf from 'aelf-sdk';
-// import { resolve } from 'url';
+
 const {wallet} = Aelf;
 const {
     AESEncrypto,
     AESDecrypto
 } = wallet;
-// import AES from 'aes-oop';
-// import * as InternalMessageTypes from './messages/InternalMessageTypes';
-// import InternalMessage from './messages/InternalMessage';
-// import StorageService from './services/StorageService'
-// import SignatureService from './services/SignatureService'
-// import Scatter from './models/Scatter'
-// import Network from './models/Network'
-// import IdentityService from './services/IdentityService'
-// import NotificationService from './services/NotificationService'
-// import HistoricEvent from './models/histories/HistoricEvent'
-// import * as HistoricEventTypes from './models/histories/HistoricEventTypes'
-// import Prompt from './models/prompts/Prompt';
-// import * as PromptTypes from './models/prompts/PromptTypes'
-// import Permission from './models/Permission'
-// import TimingHelpers from './util/TimingHelpers';
-// import Error from './models/errors/Error'
-// import PluginRepository from './plugins/PluginRepository'
-// import {
-//     Blockchains,
-//     BlockchainsArray
-// } from './models/Blockchains'
-// import {
-//     apis
-// } from './util/BrowserApis';
-// import migrate from './migrations/migrator'
-// Gets bound when a user logs into scatter
-// and unbound when they log out
-// Is not on the Background's scope to keep it private
 
 /* eslint-disable fecs-camelcase */
 let seed = '';
@@ -60,7 +40,7 @@ let timeoutLocker = null;
 
 let prompt = null;
 
-// // TODO: release single contract
+// TODO: release single contract
 // NightElf.action({
 //     appName: 'Your app',
 //     method: 'RELEASE',
@@ -78,85 +58,6 @@ function getPromptRoute(message) {
     return message.router || routMap[method] || '';
 }
 
-function getApplicationPermssions(permissions, domain) {
-    const indexList = [];
-    const permissionsTemp = permissions.filter((permission, index) => {
-        const domainCheck = permission.domain === domain;
-        if (domainCheck) {
-            indexList.push(index);
-            return true;
-        }
-        return false;
-    });
-    return {
-        permissions: JSON.parse(JSON.stringify(permissionsTemp)),
-        indexList
-    };
-}
-
-function contractsCompare(contractA, contractB) {
-    const contractATemp = JSON.parse(JSON.stringify(contractA));
-    const contractBTemp = JSON.parse(JSON.stringify(contractB));
-    for (let ai = 0, aj = contractATemp.length; ai < aj; ai++) {
-        for (let bi = 0, bj = contractBTemp.length; bi < bj; bi++) {
-            const chainIdChecked = contractBTemp[bi].chainId === contractATemp[ai].chainId;
-            const contractAddressChecked = contractBTemp[bi].contractAddress === contractATemp[ai].contractAddress;
-            if (chainIdChecked && contractAddressChecked) {
-                contractBTemp.splice(bi, 1);
-            }
-        }
-    }
-    return !contractBTemp.length;
-}
-
-// ignore other values like whitelist
-function formatContracts(contractsInput) {
-    const contracts = JSON.parse(JSON.stringify(contractsInput));
-    const contractsFormated = contracts.map(item => {
-        const {
-            chainId,
-            contractAddress,
-            contractName,
-            description,
-            github
-        } = item;
-        return {
-            chainId,
-            contractAddress,
-            contractName,
-            description,
-            github
-        };
-    });
-    return contractsFormated;
-}
-
-function contractWhitelistCheck(options) {
-    const {
-        sendResponse,
-        permissions,
-        hostname,
-        contractAddress,
-        contractInfo,
-        method
-    } = options;
-    const appPermissions = getApplicationPermssions(permissions, hostname);
-    const contractMatch = appPermissions.permissions[0].contracts.find(item => {
-        if (item.contractAddress === contractAddress) {
-            return true;
-        }
-        return false;
-    });
-    if (contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method)) {
-
-    }
-    else {
-        Background.openPrompt(sendResponse, contractInfo);
-        return false;
-    }
-    return true;
-}
-
 let aelfMeta = [];
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
@@ -164,9 +65,6 @@ export default class Background {
     constructor() {
         this.setupInternalMessaging();
     }
-    /********************************************/
-    /*               VueInitializer             */
-    /********************************************/
 
     // Watches the internal messaging system ( LocalStream )
     setupInternalMessaging() {
@@ -177,7 +75,7 @@ export default class Background {
         });
     }
 
-    /***
+    /**
      * Delegates message processing to methods by message type
      * @param sendResponse - Delegating response handler
      * @param message - The message to be dispensed
@@ -245,9 +143,9 @@ export default class Background {
             case InternalMessageTypes.SET_LOGIN_PERMISSION:
                 Background.setLoginPermission(sendResponse, message.payload);
                 break;
-            case InternalMessageTypes.SET_PERMISSION:
-                Background.setPermission(sendResponse, message.payload);
-                break;
+            // case InternalMessageTypes.SET_PERMISSION:
+            //     Background.setPermission(sendResponse, message.payload);
+            //     break;
             case InternalMessageTypes.SET_CONTRACT_PERMISSION:
                 Background.setContractPermission(sendResponse, message.payload);
                 break;
@@ -654,15 +552,18 @@ export default class Background {
                 }
             } = nightElfObject;
 
-            if (checkWhitelist && !contractWhitelistCheck({
-                    sendResponse,
-                    permissions,
-                    hostname,
-                    contractAddress,
-                    contractInfo,
-                    method
-                })) {
-                return;
+            if (checkWhitelist) {
+                const appPermissions = getApplicationPermssions(permissions, hostname);
+                if (appPermissions.permissions.length && !contractWhitelistCheck({
+                        sendResponse,
+                        appPermissions,
+                        contractAddress,
+                        contractInfo,
+                        method
+                    })) {
+                    Background.openPrompt(sendResponse, contractInfo);
+                    return;
+                }
             }
 
             const dappAelfMeta = aelfMeta.find(item => {
@@ -950,11 +851,10 @@ export default class Background {
 
     // Depend on the hostname of the app and the address of user.
     // One Application - One Keypair
-    // TODO: set permisions
     // when login
-    // setPermission(sendResponse, permissionInput, true);
+    // setLoginPermission(sendResponse, permissionInput);
     // when set contract permissions
-    // setPermission(sendResponse, permissionInput);
+    // setContractPermission(sendResponse, permissionInput);
     // data demo
     // {
     //     "appName": {
@@ -1311,15 +1211,6 @@ export default class Background {
         });
     }
 
-    // About Error Code. 冗余的设计。
-    // https://www.zhihu.com/question/24091286
-    // https://open.taobao.com/doc.htm?docId=114&docType=1
-    // 统一格式：A-BB-CCC
-    // A: 错误级别，如1代表系统级错误，2代表服务级错误；
-    // // B: 项目或模块名称，一般公司不会超过99个项目；
-    // // C: 具体错误编号，自增即可，一个项目999种错误应该够用；
-    // B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
-    // C 0，no Error
     static checkSeed(options, callback) {
         const {
             sendResponse,
@@ -1428,11 +1319,14 @@ export default class Background {
         sendResponse(prompt);
     }
 
+<<<<<<< HEAD
 
     /********************************************/
     /*                 Handlers                 */
     /********************************************/
 
+=======
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
     /***
      * Sets the seed on scope to use from decryption
      * @param sendResponse - Delegating response handler
@@ -1473,233 +1367,6 @@ export default class Background {
             });
         }
     }
-
-
-    /***
-     * Checks whether Scatter is locked
-     * @param sendResponse - Delegating response handler
-     * @returns {boolean}
-     */
-    // static isUnlocked(sendResponse) {
-    //     // Even if a seed is set, that doesn't mean that the seed is correct.
-    //     if (seed.length) StorageService.get().then(scatter => {
-    //         try {
-    //             scatter.decrypt(seed);
-    //             sendResponse(!scatter.isEncrypted());
-    //         } catch (e) {
-    //             seed = '';
-    //             sendResponse(false);
-    //         }
-    //     });
-    //     // If no seed is set, Scatter is definitely locked
-    //     else sendResponse(false);
-    // }
-
-    /***
-     * Returns the saved instance of Scatter from the storage
-     * @param sendResponse - Delegating response handler
-     * @returns {Scatter}
-     */
-    // static load(sendResponse) {
-    //     StorageService.get().then(async scatter => {
-    //         // sync the timeout inactivity interval
-    //         inactivityInterval = scatter.settings.inactivityInterval;
-
-    //         if (!seed.length) return sendResponse(scatter);
-
-    //         scatter.decrypt(seed);
-    //         const migrated = await migrate(scatter);
-    //         if (migrated) this.update(() => {}, scatter);
-    //         sendResponse(scatter)
-    //     })
-    // }
-
-    /***
-     * Updates the Scatter instance inside persistent storage
-     * @param sendResponse - Delegating response handler
-     * @param scatter - The updated cleartext Scatter instance
-     * @returns {boolean}
-     */
-    // static update(sendResponse, scatter) {
-    //     this.lockGuard(sendResponse, () => {
-    //         scatter = Scatter.fromJson(scatter);
-
-    //         // Private Keys are always separately encrypted
-    //         scatter.keychain.keypairs.map(keypair => keypair.encrypt(seed));
-    //         scatter.keychain.identities.map(id => id.encrypt(seed));
-
-    //         // Keychain is always stored encrypted.
-    //         scatter.encrypt(seed);
-
-    //         StorageService.save(scatter).then(saved => {
-    //             scatter.decrypt(seed);
-    //             sendResponse(scatter)
-    //         })
-    //     })
-    // }
-
-    /***
-     * Retrieves a Private Key from a Public Key
-     * @param sendResponse - Delegating response handler
-     * @param publicKey - The Public Key to search for
-     * @returns {privateKey:string | null}
-     */
-    // static publicToPrivate(sendResponse, publicKey) {
-    //     this.lockGuard(sendResponse, () => {
-    //         StorageService.get().then(scatter => {
-    //             scatter.decrypt(seed);
-    //             let keypair = scatter.keychain.keypairs.find(keypair => keypair.publicKey === publicKey);
-    //             if (!keypair) keypair = scatter.keychain.identities.find(id => id.publicKey === publicKey);
-    //             sendResponse((keypair) ? AES.decrypt(keypair.privateKey, seed) : null);
-    //         })
-    //     })
-    // }
-
-    /***
-     * Destroys this instance of Scatter
-     * @param sendResponse
-     */
-    // static destroy(sendResponse) {
-    //     // TODO: Mock
-    //     this.lockGuard(sendResponse, () => {
-    //         console.log("Destroying");
-    //         seed = '';
-    //         apis.storage.local.clear();
-    //         sendResponse(true);
-    //     })
-    // }
-
-    /***
-     * Sets the timeout interval on scope to determine the lockout time
-     * @param sendResponse - Delegating response handler
-     * @param _timeoutMinutes - The timeout minutes to set
-     */
-    // static setTimeout(sendResponse, _timeoutMinutes) {
-    //     this.load(scatter => {
-    //         inactivityInterval = TimingHelpers.minutes(_timeoutMinutes);
-    //         scatter.settings.inactivityInterval = inactivityInterval;
-    //         this.update(() => {}, scatter);
-    //     });
-
-    //     sendResponse(true);
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /********************************************/
-    /*              Web Application             */
-    /********************************************/
-
-    // static identityFromPermissions(sendResponse, payload) {
-    //     if (!seed.length) {
-    //         sendResponse(null);
-    //         return false;
-    //     }
-
-    //     Background.load(scatter => {
-    //         const domain = payload.domain;
-    //         const permission = IdentityService.identityPermission(domain, scatter);
-    //         if (!permission) {
-    //             sendResponse(null);
-    //             return false;
-    //         }
-    //         const identity = permission.getIdentity(scatter.keychain);
-    //         sendResponse(identity.asOnlyRequiredFields(permission.fields));
-    //     });
-    // }
-
-    // /***
-    //  * Authenticates the Identity by returning a signed passphrase using the
-    //  * private key associated with the Identity
-    //  * @param sendResponse
-    //  * @param payload
-    //  */
-    // static authenticate(sendResponse, payload) {
-    //     this.lockGuard(sendResponse, () => {
-    //         Background.load(scatter => {
-    //             const identity = scatter.keychain.findIdentity(payload.publicKey);
-    //             if (!identity) return sendResponse(Error.identityMissing());
-    //             identity.decrypt(seed);
-
-    //             const plugin = PluginRepository.plugin(Blockchains.EOS);
-    //             plugin.signer(this, {
-    //                 data: payload.domain
-    //             }, identity.publicKey, sendResponse, true);
-    //         })
-    //     })
-    // }
-
-    // static abiCache(sendResponse, payload) {
-    //     this.lockGuard(sendResponse, async () => {
-    //         sendResponse(payload.abiGet ?
-    //             await StorageService.getABI(payload.abiContractName, payload.chainId) :
-    //             await StorageService.cacheABI(payload.abiContractName, payload.chainId, payload.abi));
-    //     })
-    // }
-
-    /***
-     * Prompts a request for a transaction signature
-     * @param sendResponse
-     * @param payload
-     */
-    // static requestSignature(sendResponse, payload) {
-    //     this.lockGuard(sendResponse, () => {
-    //         Background.load(scatter => {
-    //             SignatureService.requestSignature(payload, scatter, this, sendResponse);
-    //         })
-    //     })
-    // }
-
-    /***
-     * Prompts a request for an arbitrary signature
-     * @param sendResponse
-     * @param payload
-     */
-    // static requestArbitrarySignature(sendResponse, payload) {
-    //     this.lockGuard(sendResponse, () => {
-    //         Background.load(scatter => {
-    //             SignatureService.requestArbitrarySignature(payload, scatter, this, sendResponse);
-    //         })
-    //     })
-    // }
-
-
-
-    /***
-     * Adds a historic event to the keychain
-     * @param type
-     * @param data
-     */
-    // static addHistory(type, data) {
-    //     this.load(scatter => {
-    //         // scatter.histories.unshift(new HistoricEvent(type, data));
-    //         // this.update(() => {}, scatter);
-    //     })
-    // }
-
-    /***
-     * Adds a permission to the keychain
-     * @param permissions
-     */
-    // static addPermissions(permissions) {
-    //     this.load(scatter => {
-    //         permissions.map(permission => {
-    //             if (!scatter.keychain.hasPermission(permission.checksum, permission.fields))
-    //                 scatter.keychain.permissions.unshift(permission);
-    //         });
-    //         this.update(() => {}, scatter);
-    //     })
-    // }
 }
 
 new Background();

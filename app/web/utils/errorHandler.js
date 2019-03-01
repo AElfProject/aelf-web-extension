@@ -28,7 +28,8 @@ const errorMap = {
     200006: 'Decrypto Failed. Please unlock your wallet.',
     200007: 'No Night Elf in storage.',
     200008: 'Please login first.',
-    200009: 'No permission, can not set whitelist.'
+    200009: 'No permission, can not set whitelist.',
+    200010: 'The user closed the prompt without any action.'
 };
 
 export default function errorHandler(code, error) {

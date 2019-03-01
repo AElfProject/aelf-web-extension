@@ -27,6 +27,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 //     watch: true
 // };
 
+const outputDir = 'public';
+
 // TODO: 热更新，浏览器同步组件
 module.exports = {
     // When mode is production or not defined, minimize is enabled. This option automatically adds Uglify plugin.
@@ -47,7 +49,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'app'), // equal to __diname + '/build'
         // filename: 'public/js/[name].[hash:5].js'
-        filename: 'public/js/[name].js'
+        filename: `${outputDir}/js/[name].js`
     },
 
     resolve: {
@@ -111,7 +113,10 @@ module.exports = {
             use: [{
                 loader: 'file-loader',
                 options: {
-                    outputPath: './assets/output'
+                    // file output path
+                    outputPath: `${outputDir}/assets/output`,
+                    // path in css
+                    publicPath: './assets/output'
                 }
             }]
         }]
@@ -124,41 +129,41 @@ module.exports = {
         new HtmlWebpackPlugin({
             chunks: [''],
             template: './app/web/popup.html',
-            filename: './public/popup.html'
+            filename: `./${outputDir}/popup.html`
         }),
         new HtmlWebpackPlugin({
             chunks: [''],
             template: './app/web/background.html',
-            filename: './public/background.html'
+            filename: `./${outputDir}/background.html`
         }),
         new HtmlWebpackPlugin({
             chunks: [''],
             template: './app/web/options.html',
-            filename: './public/options.html'
+            filename: `./${outputDir}/options.html`
         }),
         new HtmlWebpackPlugin({
             chunks: [''],
             template: './app/web/prompt.html',
-            filename: './public/prompt.html'
+            filename: `./${outputDir}/prompt.html`
         }),
         new CopyWebpackPlugin([{
                 from: './app/web/manifest.json',
-                to: './public/manifest.json',
+                to: `./${outputDir}/manifest.json`,
                 toType: 'file'
             },
             {
                 from: './app/web/assets',
-                to: './public/assets',
+                to: `./${outputDir}/assets`,
                 toType: 'dir'
             },
             {
                 from: './app/web/style',
-                to: './public/style',
+                to: `./${outputDir}/style`,
                 toType: 'dir'
             },
             {
                 from: './app/web/_locales',
-                to: './public/_locales',
+                to: `./${outputDir}/_locales`,
                 toType: 'dir'
             }
         ])
@@ -168,18 +173,5 @@ module.exports = {
         //     filename: './view/transactionDetail.tpl'
         // }),
         // new CleanWebpackPlugin(pathsToClean, cleanOptions)
-        // ,
-        // new BundleAnalyzerPlugin({
-        // 	analyzerMode: 'server',
-        // 	analyzerHost: '127.0.0.1',
-        // 	analyzerPort: 8889,
-        // 	reportFilename: 'report.html',
-        // 	defaultSizes: 'parsed',
-        // 	openAnalyzer: true,
-        // 	generateStatsFile: false,
-        // 	statsFilename: 'stats.json',
-        // 	statsOptions: null,
-        // 	logLevel: 'info'
-        // })
     ]
 };

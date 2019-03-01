@@ -81,12 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
+<<<<<<< HEAD
 /******/ 	return __webpack_require__(__webpack_require__.s = 751);
+=======
+/******/ 	return __webpack_require__(__webpack_require__.s = 711);
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /******/ })
 /************************************************************************/
 /******/ ({
 
+<<<<<<< HEAD
 /***/ 751:
+=======
+/***/ 711:
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, exports) {
 
 console.log('Hello World!');

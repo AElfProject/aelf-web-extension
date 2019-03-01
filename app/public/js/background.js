@@ -81,7 +81,11 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
+<<<<<<< HEAD
 /******/ 	return __webpack_require__(__webpack_require__.s = 738);
+=======
+/******/ 	return __webpack_require__(__webpack_require__.s = 698);
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /******/ })
 /************************************************************************/
 /******/ (Array(104).concat([
@@ -47270,6 +47274,7 @@ exports.XMLHttpRequestUpload = XMLHttpRequestUpload;
 /* 691 */,
 /* 692 */,
 /* 693 */,
+<<<<<<< HEAD
 /* 694 */,
 /* 695 */,
 /* 696 */,
@@ -47296,6 +47301,9 @@ exports.XMLHttpRequestUpload = XMLHttpRequestUpload;
 /* 717 */,
 /* 718 */,
 /* 719 */
+=======
+/* 694 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(218);
@@ -47322,7 +47330,11 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
+<<<<<<< HEAD
 /* 720 */
+=======
+/* 695 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47363,7 +47375,11 @@ var ApiGenerator = function ApiGenerator() {
 var apis = new ApiGenerator();
 
 /***/ }),
+<<<<<<< HEAD
 /* 721 */
+=======
+/* 696 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47399,7 +47415,8 @@ var errorMap = {
   200006: 'Decrypto Failed. Please unlock your wallet.',
   200007: 'No Night Elf in storage.',
   200008: 'Please login first.',
-  200009: 'No permission, can not set whitelist.'
+  200009: 'No permission, can not set whitelist.',
+  200010: 'The user closed the prompt without any action.'
 };
 function errorHandler(code, error) {
   var errorMessage = errorMap[code];
@@ -47430,6 +47447,7 @@ function errorHandler(code, error) {
 }
 
 /***/ }),
+<<<<<<< HEAD
 /* 722 */,
 /* 723 */,
 /* 724 */,
@@ -47447,6 +47465,10 @@ function errorHandler(code, error) {
 /* 736 */,
 /* 737 */,
 /* 738 */
+=======
+/* 697 */,
+/* 698 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47454,7 +47476,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Background; });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(104);
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+<<<<<<< HEAD
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(719);
+=======
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(694);
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
@@ -47462,6 +47488,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(497);
 /* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(extension_streams__WEBPACK_IMPORTED_MODULE_4__);
+<<<<<<< HEAD
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(496);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(495);
 /* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(739);
@@ -47474,6 +47501,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(spark_md5__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(518);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_13__);
+=======
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(471);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(470);
+/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(699);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(695);
+/* harmony import */ var _utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(702);
+/* harmony import */ var _utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(703);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(696);
+/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(704);
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(709);
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(710);
+/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(spark_md5__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(493);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_15__);
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 
 
 
@@ -47492,46 +47535,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import { resolve } from 'url';
 
-var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_13___default.a.wallet;
+
+
+var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default.a.wallet;
 var AESEncrypto = wallet.AESEncrypto,
-    AESDecrypto = wallet.AESDecrypto; // import AES from 'aes-oop';
-// import * as InternalMessageTypes from './messages/InternalMessageTypes';
-// import InternalMessage from './messages/InternalMessage';
-// import StorageService from './services/StorageService'
-// import SignatureService from './services/SignatureService'
-// import Scatter from './models/Scatter'
-// import Network from './models/Network'
-// import IdentityService from './services/IdentityService'
-// import NotificationService from './services/NotificationService'
-// import HistoricEvent from './models/histories/HistoricEvent'
-// import * as HistoricEventTypes from './models/histories/HistoricEventTypes'
-// import Prompt from './models/prompts/Prompt';
-// import * as PromptTypes from './models/prompts/PromptTypes'
-// import Permission from './models/Permission'
-// import TimingHelpers from './util/TimingHelpers';
-// import Error from './models/errors/Error'
-// import PluginRepository from './plugins/PluginRepository'
-// import {
-//     Blockchains,
-//     BlockchainsArray
-// } from './models/Blockchains'
-// import {
-//     apis
-// } from './util/BrowserApis';
-// import migrate from './migrations/migrator'
-// Gets bound when a user logs into scatter
-// and unbound when they log out
-// Is not on the Background's scope to keep it private
-
+    AESDecrypto = wallet.AESDecrypto;
 /* eslint-disable fecs-camelcase */
 
 var seed = '';
+<<<<<<< HEAD
 var nightElf = null;
 var inactivityInterval = 0;
 var timeoutLocker = null;
 var prompt = null; // // TODO: release single contract
+=======
+var nightElf = null; // let inactivityInterval = 0;
+// let timeoutLocker = null;
+
+var prompt = null; // TODO: release single contract
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 // NightElf.action({
 //     appName: 'Your app',
 //     method: 'RELEASE',
@@ -47549,86 +47572,6 @@ function getPromptRoute(message) {
   return message.router || routMap[method] || '';
 }
 
-function getApplicationPermssions(permissions, domain) {
-  var indexList = [];
-  var permissionsTemp = permissions.filter(function (permission, index) {
-    var domainCheck = permission.domain === domain;
-
-    if (domainCheck) {
-      indexList.push(index);
-      return true;
-    }
-
-    return false;
-  });
-  return {
-    permissions: JSON.parse(JSON.stringify(permissionsTemp)),
-    indexList: indexList
-  };
-}
-
-function contractsCompare(contractA, contractB) {
-  var contractATemp = JSON.parse(JSON.stringify(contractA));
-  var contractBTemp = JSON.parse(JSON.stringify(contractB));
-
-  for (var ai = 0, aj = contractATemp.length; ai < aj; ai++) {
-    for (var bi = 0, bj = contractBTemp.length; bi < bj; bi++) {
-      var chainIdChecked = contractBTemp[bi].chainId === contractATemp[ai].chainId;
-      var contractAddressChecked = contractBTemp[bi].contractAddress === contractATemp[ai].contractAddress;
-
-      if (chainIdChecked && contractAddressChecked) {
-        contractBTemp.splice(bi, 1);
-      }
-    }
-  }
-
-  return !contractBTemp.length;
-} // ignore other values like whitelist
-
-
-function formatContracts(contractsInput) {
-  var contracts = JSON.parse(JSON.stringify(contractsInput));
-  var contractsFormated = contracts.map(function (item) {
-    var chainId = item.chainId,
-        contractAddress = item.contractAddress,
-        contractName = item.contractName,
-        description = item.description,
-        github = item.github;
-    return {
-      chainId: chainId,
-      contractAddress: contractAddress,
-      contractName: contractName,
-      description: description,
-      github: github
-    };
-  });
-  return contractsFormated;
-}
-
-function contractWhitelistCheck(options) {
-  var sendResponse = options.sendResponse,
-      permissions = options.permissions,
-      hostname = options.hostname,
-      contractAddress = options.contractAddress,
-      contractInfo = options.contractInfo,
-      method = options.method;
-  var appPermissions = getApplicationPermssions(permissions, hostname);
-  var contractMatch = appPermissions.permissions[0].contracts.find(function (item) {
-    if (item.contractAddress === contractAddress) {
-      return true;
-    }
-
-    return false;
-  });
-
-  if (contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method)) {} else {
-    Background.openPrompt(sendResponse, contractInfo);
-    return false;
-  }
-
-  return true;
-}
-
 var aelfMeta = []; // This is the script that runs in the extension's background ( singleton )
 
 var Background =
@@ -47638,13 +47581,7 @@ function () {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Background);
 
     this.setupInternalMessaging();
-  }
-  /********************************************/
-
-  /*               VueInitializer             */
-
-  /********************************************/
-  // Watches the internal messaging system ( LocalStream )
+  } // Watches the internal messaging system ( LocalStream )
 
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Background, [{
@@ -47659,7 +47596,7 @@ function () {
         _this.dispenseMessage(sendResponse, message);
       });
     }
-    /***
+    /**
      * Delegates message processing to methods by message type
      * @param sendResponse - Delegating response handler
      * @param message - The message to be dispensed
@@ -47671,7 +47608,7 @@ function () {
       console.log('dispenseMessage: ', message, JSON.stringify(nightElf));
 
       if (message.payload === false) {
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200001)));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200001)));
         return;
       }
 
@@ -47741,10 +47678,9 @@ function () {
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_LOGIN_PERMISSION"]:
           Background.setLoginPermission(sendResponse, message.payload);
           break;
-
-        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_PERMISSION"]:
-          Background.setPermission(sendResponse, message.payload);
-          break;
+        // case InternalMessageTypes.SET_PERMISSION:
+        //     Background.setPermission(sendResponse, message.payload);
+        //     break;
 
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_CONTRACT_PERMISSION"]:
           Background.setContractPermission(sendResponse, message.payload);
@@ -47839,11 +47775,11 @@ function () {
     key: "connectAelfChain",
     value: function connectAelfChain(sendResponse, chainInfo) {
       this.lockGuard(sendResponse, function () {
-        var aelf = new aelf_sdk__WEBPACK_IMPORTED_MODULE_13___default.a(new aelf_sdk__WEBPACK_IMPORTED_MODULE_13___default.a.providers.HttpProvider(chainInfo.payload.httpProvider));
+        var aelf = new aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default.a(new aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default.a.providers.HttpProvider(chainInfo.payload.httpProvider));
         aelf.chain.connectChain(function (error, result) {
           // console.log(error, result);
           if (error || !result || !result.result || result.error) {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error || result.error), {
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(500001, error || result.error), {
               result: result
             }));
             return;
@@ -47876,7 +47812,7 @@ function () {
             aelfMeta.push(aelfMetaTemp);
           }
 
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
             result: result // ,
             // aelfMeta: JSON.stringify(aelfMeta)
 
@@ -47900,7 +47836,7 @@ function () {
             chainId = loginInfo.chainId,
             payload = loginInfo.payload;
         var domain = loginInfo.hostname || loginInfo.domain;
-        var appPermissons = getApplicationPermssions(permissions, domain);
+        var appPermissons = Object(_utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__["getApplicationPermssions"])(permissions, domain);
 
         if (appPermissons.permissions.length) {
           var appPermission = appPermissons.permissions[0];
@@ -47916,10 +47852,10 @@ function () {
             var address = loginInfo.payload.payload.address;
             var contracts = loginInfo.payload.payload.contracts;
             var addressChecked = address === addressBinded;
-            var contractChecked = contractsCompare(contracts, contractsBinded);
+            var contractChecked = Object(_utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__["contractsCompare"])(contracts, contractsBinded);
 
             if (nameChecked && domainChecked && addressChecked && contractChecked) {
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
                 message: '',
                 detail: JSON.stringify({
                   address: addressBinded
@@ -47930,7 +47866,7 @@ function () {
 
           } else {
             if (nameChecked && domainChecked) {
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
                 message: '',
                 detail: JSON.stringify({
                   address: addressBinded
@@ -47957,7 +47893,7 @@ function () {
     key: "callAelfChain",
     value: function callAelfChain(sendResponse, callInfo) {
       if (callInfo.payload.method === 'sendTransaction') {
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Forbidden')));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'Forbidden')));
         return;
       }
 
@@ -47982,19 +47918,19 @@ function () {
 
             (_dappAelfMeta$aelf$ch = dappAelfMeta.aelf.chain)[method].apply(_dappAelfMeta$aelf$ch, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(params).concat([function (error, result) {
               if (error || result.error) {
-                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error || result.error)));
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(500001, error || result.error)));
                 return;
               }
 
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
                 result: result
               }));
             }]));
           } catch (error) {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(100001, error)));
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(100001, error)));
           }
         } else {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Please connect the chain at first. ' + "".concat(callInfo.hostname, " have not connect the chain named ").concat(callInfo.chainId, ". ") + ' [Notice]www.aelf.io !== aelf.io ')));
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'Please connect the chain at first. ' + "".concat(callInfo.hostname, " have not connect the chain named ").concat(callInfo.chainId, ". ") + ' [Notice]www.aelf.io !== aelf.io ')));
         }
       });
     }
@@ -48027,7 +47963,7 @@ function () {
       });
 
       if (!dappAelfMeta) {
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "Please connect the chain: ".concat(chainId, "."))));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, "Please connect the chain: ".concat(chainId, "."))));
         return;
       }
 
@@ -48038,7 +47974,7 @@ function () {
       });
 
       if (!dappPermission) {
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200002)));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200002)));
         return;
       }
 
@@ -48049,7 +47985,7 @@ function () {
       });
 
       if (!dappContractPermission) {
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "There is no permission of this contract: ".concat(contractAddress, "."))));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, "There is no permission of this contract: ".concat(contractAddress, "."))));
         return;
       }
 
@@ -48080,14 +48016,14 @@ function () {
         });
 
         if (!keypair) {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Missing keypair of' + address)));
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'Missing keypair of' + address)));
           return;
         }
 
-        var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_13___default.a.wallet.getWalletByPrivateKey(keypair.privateKey);
+        var wallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default.a.wallet.getWalletByPrivateKey(keypair.privateKey);
         dappAelfMeta.aelf.chain.contractAtAsync(contractAddress, wallet, function (error, contractMethods) {
           if (error) {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error)));
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(500001, error)));
             return;
           }
 
@@ -48112,7 +48048,7 @@ function () {
           }
 
           aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
             message: JSON.stringify(contractMethods),
             detail: JSON.stringify(dappAelfMeta)
           }));
@@ -48144,15 +48080,19 @@ function () {
         var _nightElfObject$keych2 = nightElfObject.keychain.permissions,
             permissions = _nightElfObject$keych2 === void 0 ? [] : _nightElfObject$keych2;
 
-        if (checkWhitelist && !contractWhitelistCheck({
-          sendResponse: sendResponse,
-          permissions: permissions,
-          hostname: hostname,
-          contractAddress: contractAddress,
-          contractInfo: contractInfo,
-          method: method
-        })) {
-          return;
+        if (checkWhitelist) {
+          var appPermissions = Object(_utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__["getApplicationPermssions"])(permissions, hostname);
+
+          if (appPermissions.permissions.length && !Object(_utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__["contractWhitelistCheck"])({
+            sendResponse: sendResponse,
+            appPermissions: appPermissions,
+            contractAddress: contractAddress,
+            contractInfo: contractInfo,
+            method: method
+          })) {
+            Background.openPrompt(sendResponse, contractInfo);
+            return;
+          }
         }
 
         var dappAelfMeta = aelfMeta.find(function (item) {
@@ -48163,7 +48103,7 @@ function () {
         });
 
         if (!dappAelfMeta) {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200003)));
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200003)));
           return;
         }
 
@@ -48172,12 +48112,12 @@ function () {
         });
 
         if (!extendContract) {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "Please init contract ".concat(contractName, ": ").concat(contractAddress, "."))));
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, "Please init contract ".concat(contractName, ": ").concat(contractAddress, "."))));
           return;
         }
 
         if (!extendContract.contractMethods[method]) {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, "Mehtod ".concat(method, " is not exist in the contract."))));
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, "Mehtod ".concat(method, " is not exist in the contract."))));
           return;
         }
 
@@ -48197,15 +48137,15 @@ function () {
 
             (_extendContract$contr = extendContract.contractMethods)[method].apply(_extendContract$contr, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(params).concat([function (error, result) {
               if (error || result.error) {
-                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(500001, error || result.error)));
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(500001, error || result.error)));
               } else {
-                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0, error), {
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0, error), {
                   result: result
                 }));
               }
             }]));
           } catch (error) {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(100001, error)));
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(100001, error)));
           }
         });
       });
@@ -48226,8 +48166,12 @@ function () {
       }, function (_ref3) {
         var nightElfObject = _ref3.nightElfObject;
         nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
+<<<<<<< HEAD
         Background.checkTimingLock();
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+=======
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
           nightElf: !!nightElf
         }));
       });
@@ -48242,12 +48186,12 @@ function () {
           nightElfEncrypto: nightElfEncrypto
         }, function (result) {
           console.log('updateWallet: ', nightElfEncrypto, nightElf);
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
             result: result
           }));
         });
       } else {
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200004)));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200004)));
       }
     }
   }, {
@@ -48255,7 +48199,7 @@ function () {
     value: function checkWallet(sendResponse) {
       _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__["apis"].storage.local.get(['nightElfEncrypto'], function (result) {
         // console.log(result.nightElfEncrypto);
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
           nightElfEncrypto: !!result.nightElfEncrypto,
           nightElf: nightElf
         }));
@@ -48286,6 +48230,7 @@ function () {
       }, function (_ref4) {
         var nightElfObject = _ref4.nightElfObject;
         var nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
+<<<<<<< HEAD
         var blob = new Blob([nightElfEncrypto], {
           type: 'text/plain;charset=utf-8'
         }); // let file = new File(
@@ -48296,6 +48241,13 @@ function () {
 
         file_saver__WEBPACK_IMPORTED_MODULE_11___default.a.saveAs(blob, 'NightELF_backup_file_' + spark_md5__WEBPACK_IMPORTED_MODULE_12___default.a.hash(nightElfEncrypto) + '.txt');
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0)));
+=======
+        var file = new File([nightElfEncrypto], 'NightELF_backup_file_' + spark_md5__WEBPACK_IMPORTED_MODULE_14___default.a.hash(nightElfEncrypto) + '.txt', {
+          type: 'text/plain;charset=utf-8'
+        });
+        Object(file_saver__WEBPACK_IMPORTED_MODULE_13__["saveAs"])(file);
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0)));
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
       });
     } // >>>>>>>>>>>>>>>>>>>>>>>>>
     // >   backup wallet end   >
@@ -48319,7 +48271,7 @@ function () {
           try {
             nightElfString = JSON.parse(AESDecrypto(nightElfEncrypto, seed));
           } catch (e) {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(10000, 'Get Night Elf failed!')));
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(10000, 'Get Night Elf failed!')));
           }
 
           if (nightElfString) {
@@ -48327,15 +48279,15 @@ function () {
               nightElfEncrypto: nightElfEncrypto
             }, function (result) {
               Background.unlockWallet(sendResponse, seed);
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
                 result: result
               }));
             });
           } else {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200006, decryptoFailMsg)));
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200006, decryptoFailMsg)));
           }
         } else {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200007, noStorageMsg)));
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200007, noStorageMsg)));
         }
       }
     } // >>>>>>>>>>>>>>>>>>>>>>>>>
@@ -48390,7 +48342,7 @@ function () {
     value: function lockWallet(sendResponse) {
       seed = null;
       nightElf = null;
-      sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0)));
+      sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0)));
     }
   }, {
     key: "insertKeypair",
@@ -48427,17 +48379,16 @@ function () {
         var nightElfObject = _ref7.nightElfObject;
         var _nightElfObject$keych3 = nightElfObject.keychain.keypairs,
             keypairs = _nightElfObject$keych3 === void 0 ? [] : _nightElfObject$keych3;
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
           keypairs: keypairs
         }));
       });
     } // Depend on the hostname of the app and the address of user.
     // One Application - One Keypair
-    // TODO: set permisions
     // when login
-    // setPermission(sendResponse, permissionInput, true);
+    // setLoginPermission(sendResponse, permissionInput);
     // when set contract permissions
-    // setPermission(sendResponse, permissionInput);
+    // setContractPermission(sendResponse, permissionInput);
     // data demo
     // {
     //     "appName": {
@@ -48492,11 +48443,11 @@ function () {
           appName: appName,
           domain: domain || hostname,
           // address,
-          contracts: formatContracts(contracts)
+          contracts: Object(_utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__["formatContracts"])(contracts)
         };
         var _nightElfObject$keych4 = nightElfObject.keychain.permissions,
             permissions = _nightElfObject$keych4 === void 0 ? [] : _nightElfObject$keych4;
-        var appPermissons = getApplicationPermssions(permissions, domain);
+        var appPermissons = Object(_utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__["getApplicationPermssions"])(permissions, domain);
         var permissionIndex = appPermissons.indexList;
         var permissionsTemp = appPermissons.permissions; // set contract permission
 
@@ -48508,7 +48459,7 @@ function () {
             permissionNeedAdd.address = address;
             nightElfObject.keychain.permissions.unshift(permissionNeedAdd);
           } else {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200008)));
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200008)));
             return;
           }
 
@@ -48558,7 +48509,7 @@ function () {
         var domainTemp = domain || hostname;
         var _nightElfObject$keych5 = nightElfObject.keychain.permissions,
             permissions = _nightElfObject$keych5 === void 0 ? [] : _nightElfObject$keych5;
-        var appPermissons = getApplicationPermssions(permissions, domainTemp);
+        var appPermissons = Object(_utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__["getApplicationPermssions"])(permissions, domainTemp);
         var appPermissionIndex = appPermissons.indexList;
         var appPermissionsTemp = appPermissons.permissions;
 
@@ -48579,7 +48530,7 @@ function () {
           permission.contracts = contracts;
           nightElfObject.keychain.permissions[appPermissionIndex[0]] = permission;
         } else {
-          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200009)));
+          sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200009)));
           return;
         }
 
@@ -48608,7 +48559,7 @@ function () {
             payload = removeInfo.payload;
         var contractAddress = payload.contractAddress,
             methods = payload.methods;
-        var appPermissions = getApplicationPermssions(permissions, domain || hostname);
+        var appPermissions = Object(_utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__["getApplicationPermssions"])(permissions, domain || hostname);
         {
           var _permissions = appPermissions.permissions,
               indexList = appPermissions.indexList;
@@ -48648,7 +48599,7 @@ function () {
           case 'address':
             {
               if (!queryInfo.address) {
-                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'missing param address.')));
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'missing param address.')));
                 return;
               }
 
@@ -48658,7 +48609,7 @@ function () {
                 return domainCheck && addressCheck;
               });
 
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
                 permissions: _permissionsTemp
               }));
             }
@@ -48668,7 +48619,7 @@ function () {
           case 'contract':
             {
               if (!queryInfo.contractAddress) {
-                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'missing param contractAddress.')));
+                sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'missing param contractAddress.')));
                 return;
               }
 
@@ -48682,7 +48633,7 @@ function () {
                 });
                 return contractMatch && contractMatch.length;
               });
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
                 permissions: permissionsByContract
               }));
             }
@@ -48700,7 +48651,7 @@ function () {
                 return domainCheck;
               });
 
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
                 permissions: _permissionsTemp2
               }));
             }
@@ -48711,7 +48662,7 @@ function () {
           var addressCheck = permission.address === queryInfo.address;
           return domainCheck && addressCheck;
         });
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
           permissions: permissionsTemp
         }));
       });
@@ -48725,7 +48676,7 @@ function () {
         var nightElfObject = _ref12.nightElfObject;
         var _nightElfObject$keych8 = nightElfObject.keychain.permissions,
             permissions = _nightElfObject$keych8 === void 0 ? [] : _nightElfObject$keych8;
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
           permissions: permissions
         }));
       });
@@ -48768,7 +48719,7 @@ function () {
             hostname = removeInfo.hostname,
             payload = removeInfo.payload;
         var contractAddress = payload.contractAddress;
-        var appPermissions = getApplicationPermssions(permissions, domain || hostname);
+        var appPermissions = Object(_utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__["getApplicationPermssions"])(permissions, domain || hostname);
         {
           var _permissions2 = appPermissions.permissions,
               indexList = appPermissions.indexList; // permissions[0]
@@ -48786,16 +48737,7 @@ function () {
         nightElf = _models_NightElf__WEBPACK_IMPORTED_MODULE_7__["default"].fromJson(nightElfObject);
         Background.updateWallet(sendResponse);
       });
-    } // About Error Code. 冗余的设计。
-    // https://www.zhihu.com/question/24091286
-    // https://open.taobao.com/doc.htm?docId=114&docType=1
-    // 统一格式：A-BB-CCC
-    // A: 错误级别，如1代表系统级错误，2代表服务级错误；
-    // // B: 项目或模块名称，一般公司不会超过99个项目；
-    // // C: 具体错误编号，自增即可，一个项目999种错误应该够用；
-    // B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
-    // C 0，no Error
-
+    }
   }, {
     key: "checkSeed",
     value: function checkSeed(options, callback) {
@@ -48806,7 +48748,7 @@ function () {
           noStorageMsg = _options$noStorageMsg === void 0 ? '' : _options$noStorageMsg; // TODO: sendResponse & resolve/reject
 
       if (!seed) {
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200005)));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200005)));
         return;
       }
 
@@ -48818,23 +48760,23 @@ function () {
             try {
               nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
             } catch (e) {
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Get Night Elf failed!')));
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'Get Night Elf failed!')));
             }
 
             if (nightElfString) {
               var nightElfObject = JSON.parse(nightElfString);
-              callback(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+              callback(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
                 nightElfObject: nightElfObject
               }));
             } else {
-              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200006, decryptoFailMsg)));
+              sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200006, decryptoFailMsg)));
             }
           } else {
-            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200007, noStorageMsg)));
+            sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200007, noStorageMsg)));
           }
         });
       } else {
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(400001, 'Missing param sendResponse(function).')));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'Missing param sendResponse(function).')));
       }
     } // Lock the user due to inactivity
 
@@ -48862,7 +48804,7 @@ function () {
             publicKey: item.publicKey
           };
         });
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0), {
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0), {
           addressList: addressList
         }));
       });
@@ -48880,7 +48822,7 @@ function () {
     value: function openPrompt(sendResponse, message) {
       // TODO: NightElf lock notice.
       var route = getPromptRoute(message);
-      _service_NotificationService__WEBPACK_IMPORTED_MODULE_10__["default"].open({
+      _service_NotificationService__WEBPACK_IMPORTED_MODULE_12__["default"].open({
         sendResponse: sendResponse,
         route: route,
         message: message
@@ -48897,12 +48839,6 @@ function () {
     value: function getPrompt(sendResponse) {
       sendResponse(prompt);
     }
-    /********************************************/
-
-    /*                 Handlers                 */
-
-    /********************************************/
-
     /***
      * Sets the seed on scope to use from decryption
      * @param sendResponse - Delegating response handler
@@ -48938,214 +48874,11 @@ function () {
         //         }
         //     }
         // });
-        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(200005)));
+        sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(200005)));
       } else {
-        callback(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_9__["default"])(0)));
+        callback(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(0)));
       }
     }
-    /***
-     * Checks whether Scatter is locked
-     * @param sendResponse - Delegating response handler
-     * @returns {boolean}
-     */
-    // static isUnlocked(sendResponse) {
-    //     // Even if a seed is set, that doesn't mean that the seed is correct.
-    //     if (seed.length) StorageService.get().then(scatter => {
-    //         try {
-    //             scatter.decrypt(seed);
-    //             sendResponse(!scatter.isEncrypted());
-    //         } catch (e) {
-    //             seed = '';
-    //             sendResponse(false);
-    //         }
-    //     });
-    //     // If no seed is set, Scatter is definitely locked
-    //     else sendResponse(false);
-    // }
-
-    /***
-     * Returns the saved instance of Scatter from the storage
-     * @param sendResponse - Delegating response handler
-     * @returns {Scatter}
-     */
-    // static load(sendResponse) {
-    //     StorageService.get().then(async scatter => {
-    //         // sync the timeout inactivity interval
-    //         inactivityInterval = scatter.settings.inactivityInterval;
-    //         if (!seed.length) return sendResponse(scatter);
-    //         scatter.decrypt(seed);
-    //         const migrated = await migrate(scatter);
-    //         if (migrated) this.update(() => {}, scatter);
-    //         sendResponse(scatter)
-    //     })
-    // }
-
-    /***
-     * Updates the Scatter instance inside persistent storage
-     * @param sendResponse - Delegating response handler
-     * @param scatter - The updated cleartext Scatter instance
-     * @returns {boolean}
-     */
-    // static update(sendResponse, scatter) {
-    //     this.lockGuard(sendResponse, () => {
-    //         scatter = Scatter.fromJson(scatter);
-    //         // Private Keys are always separately encrypted
-    //         scatter.keychain.keypairs.map(keypair => keypair.encrypt(seed));
-    //         scatter.keychain.identities.map(id => id.encrypt(seed));
-    //         // Keychain is always stored encrypted.
-    //         scatter.encrypt(seed);
-    //         StorageService.save(scatter).then(saved => {
-    //             scatter.decrypt(seed);
-    //             sendResponse(scatter)
-    //         })
-    //     })
-    // }
-
-    /***
-     * Retrieves a Private Key from a Public Key
-     * @param sendResponse - Delegating response handler
-     * @param publicKey - The Public Key to search for
-     * @returns {privateKey:string | null}
-     */
-    // static publicToPrivate(sendResponse, publicKey) {
-    //     this.lockGuard(sendResponse, () => {
-    //         StorageService.get().then(scatter => {
-    //             scatter.decrypt(seed);
-    //             let keypair = scatter.keychain.keypairs.find(keypair => keypair.publicKey === publicKey);
-    //             if (!keypair) keypair = scatter.keychain.identities.find(id => id.publicKey === publicKey);
-    //             sendResponse((keypair) ? AES.decrypt(keypair.privateKey, seed) : null);
-    //         })
-    //     })
-    // }
-
-    /***
-     * Destroys this instance of Scatter
-     * @param sendResponse
-     */
-    // static destroy(sendResponse) {
-    //     // TODO: Mock
-    //     this.lockGuard(sendResponse, () => {
-    //         console.log("Destroying");
-    //         seed = '';
-    //         apis.storage.local.clear();
-    //         sendResponse(true);
-    //     })
-    // }
-
-    /***
-     * Sets the timeout interval on scope to determine the lockout time
-     * @param sendResponse - Delegating response handler
-     * @param _timeoutMinutes - The timeout minutes to set
-     */
-    // static setTimeout(sendResponse, _timeoutMinutes) {
-    //     this.load(scatter => {
-    //         inactivityInterval = TimingHelpers.minutes(_timeoutMinutes);
-    //         scatter.settings.inactivityInterval = inactivityInterval;
-    //         this.update(() => {}, scatter);
-    //     });
-    //     sendResponse(true);
-    // }
-
-    /********************************************/
-
-    /*              Web Application             */
-
-    /********************************************/
-    // static identityFromPermissions(sendResponse, payload) {
-    //     if (!seed.length) {
-    //         sendResponse(null);
-    //         return false;
-    //     }
-    //     Background.load(scatter => {
-    //         const domain = payload.domain;
-    //         const permission = IdentityService.identityPermission(domain, scatter);
-    //         if (!permission) {
-    //             sendResponse(null);
-    //             return false;
-    //         }
-    //         const identity = permission.getIdentity(scatter.keychain);
-    //         sendResponse(identity.asOnlyRequiredFields(permission.fields));
-    //     });
-    // }
-    // /***
-    //  * Authenticates the Identity by returning a signed passphrase using the
-    //  * private key associated with the Identity
-    //  * @param sendResponse
-    //  * @param payload
-    //  */
-    // static authenticate(sendResponse, payload) {
-    //     this.lockGuard(sendResponse, () => {
-    //         Background.load(scatter => {
-    //             const identity = scatter.keychain.findIdentity(payload.publicKey);
-    //             if (!identity) return sendResponse(Error.identityMissing());
-    //             identity.decrypt(seed);
-    //             const plugin = PluginRepository.plugin(Blockchains.EOS);
-    //             plugin.signer(this, {
-    //                 data: payload.domain
-    //             }, identity.publicKey, sendResponse, true);
-    //         })
-    //     })
-    // }
-    // static abiCache(sendResponse, payload) {
-    //     this.lockGuard(sendResponse, async () => {
-    //         sendResponse(payload.abiGet ?
-    //             await StorageService.getABI(payload.abiContractName, payload.chainId) :
-    //             await StorageService.cacheABI(payload.abiContractName, payload.chainId, payload.abi));
-    //     })
-    // }
-
-    /***
-     * Prompts a request for a transaction signature
-     * @param sendResponse
-     * @param payload
-     */
-    // static requestSignature(sendResponse, payload) {
-    //     this.lockGuard(sendResponse, () => {
-    //         Background.load(scatter => {
-    //             SignatureService.requestSignature(payload, scatter, this, sendResponse);
-    //         })
-    //     })
-    // }
-
-    /***
-     * Prompts a request for an arbitrary signature
-     * @param sendResponse
-     * @param payload
-     */
-    // static requestArbitrarySignature(sendResponse, payload) {
-    //     this.lockGuard(sendResponse, () => {
-    //         Background.load(scatter => {
-    //             SignatureService.requestArbitrarySignature(payload, scatter, this, sendResponse);
-    //         })
-    //     })
-    // }
-
-    /***
-     * Adds a historic event to the keychain
-     * @param type
-     * @param data
-     */
-    // static addHistory(type, data) {
-    //     this.load(scatter => {
-    //         // scatter.histories.unshift(new HistoricEvent(type, data));
-    //         // this.update(() => {}, scatter);
-    //     })
-    // }
-
-    /***
-     * Adds a permission to the keychain
-     * @param permissions
-     */
-    // static addPermissions(permissions) {
-    //     this.load(scatter => {
-    //         permissions.map(permission => {
-    //             if (!scatter.keychain.hasPermission(permission.checksum, permission.fields))
-    //                 scatter.keychain.permissions.unshift(permission);
-    //         });
-    //         this.update(() => {}, scatter);
-    //     })
-    // }
-
   }]);
 
   return Background;
@@ -49155,7 +48888,11 @@ function () {
 new Background();
 
 /***/ }),
+<<<<<<< HEAD
 /* 739 */
+=======
+/* 699 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49167,8 +48904,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+<<<<<<< HEAD
 /* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(740);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(518);
+=======
+/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(700);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(493);
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_4__);
 
 
@@ -49260,7 +49002,11 @@ function () {
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 740 */
+=======
+/* 700 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49270,7 +49016,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+<<<<<<< HEAD
 /* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(741);
+=======
+/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(701);
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 
 
 
@@ -49337,9 +49087,16 @@ function () {
 
       var permission = this.getPermission(checksum);
       console.log('checksum', checksum, permission);
-      if (!permission) return false; // If no fields are supplied but permission exists | valid.
 
-      if (fields === null || !fieldKeys().length) return true;
+      if (!permission) {
+        return false;
+      } // If no fields are supplied but permission exists | valid.
+
+
+      if (fields === null || !fieldKeys().length) {
+        return true;
+      }
+
       var fieldsCloneA = Object.assign({}, fields);
       var fieldsCloneB = Object.assign({}, permission.fields);
       permission.mutableFields.map(function (field) {
@@ -49347,23 +49104,7 @@ function () {
         delete fieldsCloneB[field];
       });
       return _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__["default"].deepEqual(fieldsCloneA, fieldsCloneB);
-    } // findIdentity(publicKey) {
-    //     return this.identities.find(id => id.publicKey === publicKey);
-    // }
-    // findIdentityFromDomain(domain) {
-    //     const idFromPermissions = this.permissions.find(permission => permission.isIdentityOnly() && permission.domain === domain);
-    //     if (idFromPermissions) return this.findIdentity(idFromPermissions.identity);
-    //     else return null;
-    // }
-    // updateOrPushIdentity(identity) {
-    //     this.identities.find(id => id.publicKey === identity.publicKey) ?
-    //         this.identities = this.identities.map(id => id.publicKey === identity.publicKey ? identity : id) :
-    //         this.identities.unshift(identity);
-    // }
-    // findAccountsWithPublicKey(publicKey) {
-    //     return this.identities.map(id => id.getAccountFromPublicKey(publicKey)).filter(acc => !!acc);
-    // }
-
+    }
   }, {
     key: "forBackup",
     value: function forBackup() {
@@ -49407,10 +49148,14 @@ function () {
     key: "fromJson",
     value: function fromJson(json) {
       var p = Object.assign(this.placeholder(), json);
-      if (json.hasOwnProperty('keypairs')) p.keypairs = json.keypairs; //.map(x => KeyPair.fromJson(x));
-      // if (json.hasOwnProperty('identities')) p.identities = json.identities.map(x => Identity.fromJson(x));
 
-      if (json.hasOwnProperty('permissions')) p.permissions = json.permissions; //.map(x => Permission.fromJson(x));
+      if (json.hasOwnProperty('keypairs')) {
+        p.keypairs = json.keypairs;
+      }
+
+      if (json.hasOwnProperty('permissions')) {
+        p.permissions = json.permissions;
+      }
 
       return p;
     }
@@ -49422,7 +49167,11 @@ function () {
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 741 */
+=======
+/* 701 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49566,12 +49315,118 @@ function () {
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 742 */
+=======
+/* 702 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contractsCompare", function() { return contractsCompare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatContracts", function() { return formatContracts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contractWhitelistCheck", function() { return contractWhitelistCheck; });
+/**
+ * @file contracts.js
+ * @author huangzongzhe
+ * @description
+ * 0.for background.js
+ * 1.basic methods for key: contracts
+ */
+function contractsCompare(contractA, contractB) {
+  var contractATemp = JSON.parse(JSON.stringify(contractA));
+  var contractBTemp = JSON.parse(JSON.stringify(contractB));
+  var contractCTemp = JSON.parse(JSON.stringify(contractB));
+
+  for (var ai = 0, aj = contractATemp.length; ai < aj; ai++) {
+    for (var bi = 0, bj = contractBTemp.length; bi < bj; bi++) {
+      var chainIdChecked = contractBTemp[bi].chainId === contractATemp[ai].chainId;
+      var contractAddressChecked = contractBTemp[bi].contractAddress === contractATemp[ai].contractAddress;
+
+      if (chainIdChecked && contractAddressChecked) {
+        contractCTemp.splice(bi, 1);
+      }
+    }
+  }
+
+  return !contractCTemp.length;
+} // ignore other values like whitelist
+
+function formatContracts(contractsInput) {
+  var contracts = JSON.parse(JSON.stringify(contractsInput));
+  var contractsFormated = contracts.map(function (item) {
+    var chainId = item.chainId,
+        contractAddress = item.contractAddress,
+        contractName = item.contractName,
+        description = item.description,
+        github = item.github;
+    return {
+      chainId: chainId,
+      contractAddress: contractAddress,
+      contractName: contractName,
+      description: description,
+      github: github
+    };
+  });
+  return contractsFormated;
+}
+function contractWhitelistCheck(options) {
+  var appPermissions = options.appPermissions,
+      contractAddress = options.contractAddress,
+      method = options.method;
+  var contractMatch = appPermissions.permissions[0].contracts.find(function (item) {
+    if (item.contractAddress === contractAddress) {
+      return true;
+    }
+
+    return false;
+  });
+
+  if (contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method)) {
+    return true;
+  }
+
+  return false;
+}
+
+/***/ }),
+/* 703 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getApplicationPermssions", function() { return getApplicationPermssions; });
+/**
+ * @file permission.js
+ * @author huangzongzhe
+ */
+function getApplicationPermssions(permissions, domain) {
+  var indexList = [];
+  var permissionsTemp = permissions.filter(function (permission, index) {
+    var domainCheck = permission.domain === domain;
+
+    if (domainCheck) {
+      indexList.push(index);
+      return true;
+    }
+
+    return false;
+  });
+  return {
+    permissions: JSON.parse(JSON.stringify(permissionsTemp)),
+    indexList: indexList
+  };
+}
+
+/***/ }),
+/* 704 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NotificationService; });
+<<<<<<< HEAD
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(743);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(746);
@@ -49584,6 +49439,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(720);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(496);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(495);
+=======
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(694);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(705);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(708);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(253);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(254);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(696);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(695);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(471);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(470);
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 
 
 
@@ -49595,6 +49466,12 @@ __webpack_require__.r(__webpack_exports__);
 */
 
 
+/**
+ * @file NotificationService.js
+ * @author huangzongzhe
+ */
+
+
 
 
 var openWindow = null;
@@ -49603,10 +49480,10 @@ var NotificationService =
 /*#__PURE__*/
 function () {
   function NotificationService() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, NotificationService);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, NotificationService);
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(NotificationService, null, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(NotificationService, null, [{
     key: "open",
 
     /***
@@ -49615,11 +49492,11 @@ function () {
      */
     // static async open(notification) {
     value: function () {
-      var _open = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+      var _open = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(notification) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2(notification) {
         var height, width, middleX, middleY, getPopup, popup;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
@@ -49645,17 +49522,17 @@ function () {
                 getPopup =
                 /*#__PURE__*/
                 function () {
-                  var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+                  var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
                   /*#__PURE__*/
-                  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+                  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee() {
                     var route, url, created, win;
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
                       while (1) {
                         switch (_context.prev = _context.next) {
                           case 0:
                             _context.prev = 0;
                             route = notification.route || '';
-                            url = _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__["apis"].runtime.getURL('/prompt.html' + route); // Notifications get bound differently depending on browser
+                            url = _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__["apis"].runtime.getURL('/prompt.html' + route); // Notifications get bound differently depending on browser
                             // as Firefox does not support opening windows from background.
 
                             if (!(typeof browser !== 'undefined')) {
@@ -49664,7 +49541,7 @@ function () {
                             }
 
                             _context.next = 6;
-                            return _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__["apis"].windows.create({
+                            return _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__["apis"].windows.create({
                               url: url,
                               height: height,
                               width: width,
@@ -49706,7 +49583,7 @@ function () {
                 }();
 
                 _context2.next = 8;
-                return _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_6__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_7__["SET_PROMPT"], JSON.stringify(notification)).send();
+                return _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_8__["SET_PROMPT"], JSON.stringify(notification)).send();
 
               case 8:
                 _context2.next = 10;
@@ -49719,7 +49596,7 @@ function () {
                 if (popup) {
                   popup.onbeforeunload = function () {
                     // notification.responder(Error.promptClosedWithoutAction());
-                    notification.sendResponse(_models_errors_Error__WEBPACK_IMPORTED_MODULE_4__["default"].promptClosedWithoutAction()); // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+                    notification.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_5__["default"])(200010))); // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
                     // Must return undefined to bypass form protection
 
                     openWindow = null;
@@ -49749,12 +49626,12 @@ function () {
   }, {
     key: "close",
     value: function () {
-      var _close = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+      var _close = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3() {
         var _ref2, windowId;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
@@ -49764,12 +49641,12 @@ function () {
                 }
 
                 _context3.next = 3;
-                return _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__["apis"].windows.getCurrent();
+                return _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__["apis"].windows.getCurrent();
 
               case 3:
                 _ref2 = _context3.sent;
                 windowId = _ref2.id;
-                _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_5__["apis"].windows.remove(windowId);
+                _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__["apis"].windows.remove(windowId);
                 _context3.next = 10;
                 break;
 
@@ -49800,6 +49677,7 @@ function () {
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 743 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49808,6 +49686,16 @@ module.exports = __webpack_require__(744);
 
 /***/ }),
 /* 744 */
+=======
+/* 705 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(706);
+
+
+/***/ }),
+/* 706 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -49834,7 +49722,11 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(745);
+=======
+module.exports = __webpack_require__(707);
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -49850,7 +49742,11 @@ if (hadRuntime) {
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 745 */
+=======
+/* 707 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, exports) {
 
 /**
@@ -50577,7 +50473,11 @@ if (hadRuntime) {
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 746 */
+=======
+/* 708 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, exports) {
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -50619,6 +50519,7 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator;
 
 /***/ }),
+<<<<<<< HEAD
 /* 747 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -50731,6 +50632,9 @@ var UPGRADE_REQUIRED = 'upgrade_required';
 
 /***/ }),
 /* 749 */
+=======
+/* 709 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
@@ -50742,7 +50646,11 @@ var UPGRADE_REQUIRED = 'upgrade_required';
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(112)))
 
 /***/ }),
+<<<<<<< HEAD
 /* 750 */
+=======
+/* 710 */
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (factory) {

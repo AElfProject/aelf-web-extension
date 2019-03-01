@@ -84,7 +84,8 @@ document.addEventListener('NightElf', result => {
 
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
-        httpProvider: 'http://192.168.199.128:5000/chain',
+        // httpProvider: 'http://192.168.199.128:5000/chain',
+        httpProvider: 'http://192.168.199.109:5000/chain',
         appName: 'Test'
     });
 
@@ -144,7 +145,11 @@ document.addEventListener('NightElf', result => {
                 payload: {
                     // appName: message.appName,
                     // domain: message.hostname
+<<<<<<< HEAD
                     address: 'ELF_6WZNJgU5MHWsvzZmPpC7cW6g3qciniQhDKRLCvbQcTCcVFH',
+=======
+                    address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY',
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
                     contracts: [{
                         chainId: 'AELF',
                         contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
@@ -182,7 +187,7 @@ document.addEventListener('NightElf', result => {
                 payload: {
                     // appName: message.appName,
                     // domain: message.hostname
-                    address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs',
+                    address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY',
                     contracts: [{
                         chainId: 'AELF',
                         contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
@@ -206,7 +211,11 @@ document.addEventListener('NightElf', result => {
     let tokenC;
     initAelfContract.onclick = function () {
         const wallet = {
+<<<<<<< HEAD
             address: 'ELF_6WZNJgU5MHWsvzZmPpC7cW6g3qciniQhDKRLCvbQcTCcVFH'
+=======
+            address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY'
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
         };
         // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
         // There is only one value named address;
@@ -326,7 +335,20 @@ document.addEventListener('NightElf', result => {
     // }).then(result => {
     //     console.log('>>>>>>>>>>>>>>>>>>>', result);
     // });
+    if (false) {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'REMOVE_CONTRACT_PERMISSION',
+            chainId: 'AELF',
+            payload: {
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                removeList: ['xxx', 'xxx']
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
 
+<<<<<<< HEAD
     // NightElf.api({
     //     appName: 'hzzTest',
     //     method: 'REMOVE_CONTRACT_PERMISSION',
@@ -341,6 +363,8 @@ document.addEventListener('NightElf', result => {
     const setWhitelist = document.getElementById('set-whitelist');
     setWhitelist.onclick = function () {
         console.log('aaaaa');
+=======
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
         NightElf.api({
             appName: 'hzzTest',
             method: 'SET_WHITELIST',
@@ -369,6 +393,7 @@ document.addEventListener('NightElf', result => {
                 }
             }
         }).then(result => {
+<<<<<<< HEAD
             console.log('>>>>>>>>>>>>>>>>>>>SET_WHITELIST', result);
         });
     };
@@ -384,6 +409,23 @@ document.addEventListener('NightElf', result => {
     // }).then(result => {
     //     console.log('>>>>>>>>>>>>>>>>>>>', result);
     // });
+=======
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'REMOVE_METHODS_WHITELIST',
+            chainId: 'AELF',
+            payload: {
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                methods: ['test', 'hzz780']
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    }
+>>>>>>> d3098570d1e743f17c58ec64c95b18739ab63b36
 
 });
 if (false) {
