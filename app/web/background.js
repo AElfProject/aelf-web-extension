@@ -198,28 +198,12 @@ export default class Background {
             case InternalMessageTypes.OPEN_PROMPT:
                 Background.openPrompt(sendResponse, message.payload);
                 break;
-<<<<<<< HEAD
-            case InternalMessageTypes.SET_PROMPT:
-                Background.setPrompt(sendResponse, message.payload);
-                break;
-            case InternalMessageTypes.GET_PROMPT:
-                Background.getPrompt(sendResponse);
-                break;
-
-            case InternalMessageTypes.GET_TIMING_LOCK:
-                Background.getTimingLock(sendResponse, message.payload);
-                break;
-            case InternalMessageTypes.CHECK_INACTIVITY_INTERVAL:
-                Background.checkInactivityInterval(sendResponse);
-                break;
-=======
             // case InternalMessageTypes.SET_PROMPT:
             //     Background.setPrompt(sendResponse, message.payload);
             //     break;
             // case InternalMessageTypes.GET_PROMPT:
             //     Background.getPrompt(sendResponse);
             //     break;
->>>>>>> f3ae98e2fb15960b972aad928cda9c8d2146f2e8
             // TODO:
             // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
             //     Background.releaseAELFContract(sendResponse);
