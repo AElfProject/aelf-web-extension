@@ -103114,7 +103114,6 @@ function removeWhiteContarct(contractAddress, methods, domain, callback) {
           methods: [methods]
         }
       };
-      console.log(payload);
       _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["REMOVE_METHODS_WHITELIST"], payload).send().then(function (result) {
         if (result && result.error === 0) {
           callback();
@@ -103157,6 +103156,7 @@ function (_Component) {
     _this.renderRow = function (rowData, sectionID, rowID) {
       var item = _this.rData[rowID];
       var whiteListHTML = null;
+      console.log(item.whitelist);
 
       if (JSON.stringify(item.whitelist) !== '{}' && item.whitelist) {
         whiteListHTML = _this.renderWhiteList(item.whitelist, item.contractAddress, rowID);

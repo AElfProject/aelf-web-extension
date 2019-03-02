@@ -60,7 +60,6 @@ function removeWhiteContarct(contractAddress, methods, domain, callback) {
                     methods: [methods]
                 }
             };
-            console.log(payload);
             InternalMessage.payload(InternalMessageTypes.REMOVE_METHODS_WHITELIST, payload).send().then(result => {
                 if (result && result.error === 0) {
                     callback();
@@ -97,6 +96,7 @@ export default class PermissionsDetail extends Component {
         this.renderRow = (rowData, sectionID, rowID) => {
             let item = this.rData[rowID];
             let whiteListHTML = null;
+            console.log(item.whitelist);
             if (JSON.stringify(item.whitelist) !== '{}' && item.whitelist) {
                 whiteListHTML = this.renderWhiteList(item.whitelist, item.contractAddress, rowID);
             }

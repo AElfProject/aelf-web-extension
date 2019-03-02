@@ -167,22 +167,24 @@ export default class ConfirmationCall extends Component {
             const method = this.confirmation.method;
             const newWhiteList = methodParams.map((item, index) => {
                 const params = this.confirmation.params[index];
-                return {item: params};
+                const obj = {};
+                obj[item.Name] = params;
+                obj.variable = false;
+                return obj;
             });
-            whitelist[method] = {
-                newWhiteList
-            };
+            whitelist[method] = newWhiteList;
         }
         else {
             whitelist = {};
             const method = this.confirmation.method;
             const newWhiteList = methodParams.map((item, index) => {
                 const params = this.confirmation.params[index];
-                return {item: params};
+                const obj = {};
+                obj[item.Name] = params;
+                obj.variable = false;
+                return obj;
             });
-            whitelist[method] = {
-                newWhiteList
-            };
+            whitelist[method] = newWhiteList;
         }
 
         const payload = {

@@ -71431,27 +71431,25 @@ function (_Component) {
         var method = this.confirmation.method;
         var newWhiteList = methodParams.map(function (item, index) {
           var params = _this8.confirmation.params[index];
-          return {
-            item: params
-          };
+          var obj = {};
+          obj[item.Name] = params;
+          obj.variable = false;
+          return obj;
         });
-        whitelist[method] = {
-          newWhiteList: newWhiteList
-        };
+        whitelist[method] = newWhiteList;
       } else {
         whitelist = {};
         var _method = this.confirmation.method;
 
         var _newWhiteList = methodParams.map(function (item, index) {
           var params = _this8.confirmation.params[index];
-          return {
-            item: params
-          };
+          var obj = {};
+          obj[item.Name] = params;
+          obj.variable = false;
+          return obj;
         });
 
-        whitelist[_method] = {
-          newWhiteList: _newWhiteList
-        };
+        whitelist[_method] = _newWhiteList;
       }
 
       var payload = {
