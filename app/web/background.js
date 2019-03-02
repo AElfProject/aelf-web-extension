@@ -191,12 +191,12 @@ export default class Background {
             case InternalMessageTypes.OPEN_PROMPT:
                 Background.openPrompt(sendResponse, message.payload);
                 break;
-            case InternalMessageTypes.SET_PROMPT:
-                Background.setPrompt(sendResponse, message.payload);
-                break;
-            case InternalMessageTypes.GET_PROMPT:
-                Background.getPrompt(sendResponse);
-                break;
+            // case InternalMessageTypes.SET_PROMPT:
+            //     Background.setPrompt(sendResponse, message.payload);
+            //     break;
+            // case InternalMessageTypes.GET_PROMPT:
+            //     Background.getPrompt(sendResponse);
+            //     break;
             // TODO:
             // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
             //     Background.releaseAELFContract(sendResponse);
@@ -1313,14 +1313,14 @@ export default class Background {
         });
     }
 
-    static setPrompt(sendResponse, notification) {
-        prompt = notification;
-        sendResponse(true);
-    }
+    // static setPrompt(sendResponse, notification) {
+    //     prompt = notification;
+    //     sendResponse(true);
+    // }
 
-    static getPrompt(sendResponse) {
-        sendResponse(prompt);
-    }
+    // static getPrompt(sendResponse) {
+    //     sendResponse(prompt);
+    // }
 
     /***
      * Sets the seed on scope to use from decryption
