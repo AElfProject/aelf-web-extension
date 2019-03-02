@@ -23193,8 +23193,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CONTRACT", function() { return RELEASE_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ADDRESS", function() { return GET_ADDRESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_PROMPT", function() { return OPEN_PROMPT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROMPT", function() { return SET_PROMPT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_PROMPT", function() { return GET_PROMPT; });
 /**
  * @file InternalMessageTypes.js
  * @author huangzongzhe
@@ -23233,9 +23231,8 @@ var GET_CONTRACT_ABI = 'getExistContractAbi';
 var RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
 var GET_ADDRESS = 'getAddress';
-var OPEN_PROMPT = 'openPrompt';
-var SET_PROMPT = 'setPrompt';
-var GET_PROMPT = 'getPrompt';
+var OPEN_PROMPT = 'openPrompt'; // export const SET_PROMPT = 'setPrompt';
+// export const GET_PROMPT = 'getPrompt';
 
 /***/ }),
 /* 471 */
@@ -47641,14 +47638,12 @@ function () {
         case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["OPEN_PROMPT"]:
           Background.openPrompt(sendResponse, message.payload);
           break;
-
-        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["SET_PROMPT"]:
-          Background.setPrompt(sendResponse, message.payload);
-          break;
-
-        case _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__["GET_PROMPT"]:
-          Background.getPrompt(sendResponse);
-          break;
+        // case InternalMessageTypes.SET_PROMPT:
+        //     Background.setPrompt(sendResponse, message.payload);
+        //     break;
+        // case InternalMessageTypes.GET_PROMPT:
+        //     Background.getPrompt(sendResponse);
+        //     break;
         // TODO:
         // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
         //     Background.releaseAELFContract(sendResponse);
@@ -48712,18 +48707,14 @@ function () {
         route: route,
         message: message
       });
-    }
-  }, {
-    key: "setPrompt",
-    value: function setPrompt(sendResponse, notification) {
-      prompt = notification;
-      sendResponse(true);
-    }
-  }, {
-    key: "getPrompt",
-    value: function getPrompt(sendResponse) {
-      sendResponse(prompt);
-    }
+    } // static setPrompt(sendResponse, notification) {
+    //     prompt = notification;
+    //     sendResponse(true);
+    // }
+    // static getPrompt(sendResponse) {
+    //     sendResponse(prompt);
+    // }
+
     /***
      * Sets the seed on scope to use from decryption
      * @param sendResponse - Delegating response handler
@@ -49335,7 +49326,7 @@ function () {
       var _open = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2(notification) {
-        var height, width, middleX, middleY, getPopup, popup;
+        var height, width, middleX, middleY, getPopup;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -49376,7 +49367,7 @@ function () {
                             // as Firefox does not support opening windows from background.
 
                             if (!(typeof browser !== 'undefined')) {
-                              _context.next = 11;
+                              _context.next = 9;
                               break;
                             }
 
@@ -49393,58 +49384,50 @@ function () {
                             window.notification = notification;
                             return _context.abrupt("return", created);
 
-                          case 11:
+                          case 9:
                             win = window.open(url, 'NightElf Prompt', "width=".concat(width, ",height=").concat(height, ",resizable=0,top=").concat(middleY, ",left=").concat(middleX, ",titlebar=0"));
                             win.data = notification;
                             openWindow = win;
                             return _context.abrupt("return", win);
 
                           case 15:
-                            _context.next = 21;
-                            break;
-
-                          case 17:
-                            _context.prev = 17;
+                            _context.prev = 15;
                             _context.t0 = _context["catch"](0);
                             console.log('notification error', _context.t0);
                             return _context.abrupt("return", null);
 
-                          case 21:
+                          case 19:
                           case "end":
                             return _context.stop();
                         }
                       }
-                    }, _callee, this, [[0, 17]]);
+                    }, _callee, this, [[0, 15]]);
                   }));
 
                   return function getPopup() {
                     return _ref.apply(this, arguments);
                   };
-                }();
+                }(); // Could not establish connection. Receiving end does not exist.
+                // InternalMessage.payload(InternalMessageTypes.SET_PROMPT, JSON.stringify(notification)).send();
+                // If we need setPrompt, use callback to complement it.
+                // let popup = await getPopup();
 
-                _context2.next = 8;
-                return _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_8__["SET_PROMPT"], JSON.stringify(notification)).send();
 
-              case 8:
-                _context2.next = 10;
-                return getPopup();
+                getPopup().then(function (popup) {
+                  // Handles the user closing the popup without taking any action
+                  if (popup) {
+                    popup.onbeforeunload = function () {
+                      // notification.responder(Error.promptClosedWithoutAction());
+                      notification.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_5__["default"])(200010))); // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+                      // Must return undefined to bypass form protection
 
-              case 10:
-                popup = _context2.sent;
+                      openWindow = null;
+                      return undefined;
+                    };
+                  }
+                });
 
-                // Handles the user closing the popup without taking any action
-                if (popup) {
-                  popup.onbeforeunload = function () {
-                    // notification.responder(Error.promptClosedWithoutAction());
-                    notification.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_5__["default"])(200010))); // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-                    // Must return undefined to bypass form protection
-
-                    openWindow = null;
-                    return undefined;
-                  };
-                }
-
-              case 12:
+              case 7:
               case "end":
                 return _context2.stop();
             }
