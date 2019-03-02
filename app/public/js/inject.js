@@ -12231,15 +12231,17 @@ __webpack_require__.r(__webpack_exports__);
 var promisePendingList = [];
 
 var handlePendingPromise = function handlePendingPromise(eventMessage) {
-  var sid = eventMessage.sid;
-  promisePendingList = promisePendingList.filter(function (item, index) {
-    if (item.sid === sid) {
-      item.resolve(eventMessage);
-      return false;
-    }
+  if (eventMessage) {
+    var sid = eventMessage.sid;
+    promisePendingList = promisePendingList.filter(function (item, index) {
+      if (item.sid === sid) {
+        item.resolve(eventMessage);
+        return false;
+      }
 
-    return true;
-  });
+      return true;
+    });
+  }
 };
 
 var stream = new WeakMap(); // Just a wrap of the api of the extension for developers.

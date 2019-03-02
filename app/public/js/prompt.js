@@ -66364,8 +66364,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELEASE_AELF_CONTRACT", function() { return RELEASE_AELF_CONTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ADDRESS", function() { return GET_ADDRESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_PROMPT", function() { return OPEN_PROMPT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROMPT", function() { return SET_PROMPT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_PROMPT", function() { return GET_PROMPT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_LOGIN_KEYPAIR", function() { return OPEN_LOGIN_KEYPAIR; });
 /**
  * @file InternalMessageTypes.js
@@ -66408,9 +66406,9 @@ var GET_CONTRACT_ABI = 'getExistContractAbi';
 var RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
 var GET_ADDRESS = 'getAddress';
-var OPEN_PROMPT = 'openPrompt';
-var SET_PROMPT = 'setPrompt';
-var GET_PROMPT = 'getPrompt';
+var OPEN_PROMPT = 'openPrompt'; // export const SET_PROMPT = 'setPrompt';
+// export const GET_PROMPT = 'getPrompt';
+
 var OPEN_LOGIN_KEYPAIR = 'openLoginKeypairs';
 
 /***/ }),

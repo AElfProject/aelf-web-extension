@@ -16,14 +16,16 @@ import * as PageContentTags from './messages/PageContentTags';
 
 let promisePendingList = [];
 const handlePendingPromise = function (eventMessage) {
-    const sid = eventMessage.sid;
-    promisePendingList = promisePendingList.filter((item, index) => {
-        if (item.sid === sid) {
-            item.resolve(eventMessage);
-            return false;
-        }
-        return true;
-    });
+    if (eventMessage) {
+        const sid = eventMessage.sid;
+        promisePendingList = promisePendingList.filter((item, index) => {
+            if (item.sid === sid) {
+                item.resolve(eventMessage);
+                return false;
+            }
+            return true;
+        });
+    }
 };
 
 let stream = new WeakMap();
