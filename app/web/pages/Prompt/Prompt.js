@@ -26,6 +26,7 @@ import {antdChooseLocale, chooseLocale} from '../../utils/utils';
 import Permission from './Permission/Permission';
 import Prompt from './Prompt/Prompt';
 import LoginKeypairs from './LoginKeypairs/LoginKeypairs';
+import ConfirmationCall from './ConfirmationCall/ConfirmationCall';
 
 addLocaleData([...zh, ...en]);
 
@@ -36,6 +37,7 @@ ReactDOM.render(
                 <Route path="/" component={Permission}></Route>
                 <Route path="/prompt" component={Prompt}></Route>
                 <Route path="/loginKeypairs" component={LoginKeypairs}></Route>
+                <Route path='/confirmation' component={ConfirmationCall}></Route>
             </Router>
         </LocaleProvider>
     </IntlProvider>,

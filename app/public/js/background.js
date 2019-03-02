@@ -47520,13 +47520,13 @@ var prompt = null; // TODO: release single contract
 // });
 
 function getPromptRoute(message) {
-  var method = message.payload.payload.method;
+  var method = message.payload.method ? message.payload.method : message.payload.payload.method;
   var routMap = {
-    SET_PERMISSION: '',
+    SET_PERMISSION: '#/',
     LOGIN: '#/loginKeypairs',
     CALL_AELF_CONTRACT: '#/examine-approve'
   };
-  return message.router || routMap[method] || '';
+  return message.router || routMap[method] || '#/confirmation';
 }
 
 var aelfMeta = []; // This is the script that runs in the extension's background ( singleton )
@@ -48089,6 +48089,7 @@ function () {
         sendResponse: sendResponse
       }, function (_ref2) {
         var nightElfObject = _ref2.nightElfObject;
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>callAelfContract', contractInfo);
         var payload = contractInfo.payload,
             chainId = contractInfo.chainId,
             hostname = contractInfo.hostname;
@@ -48101,6 +48102,7 @@ function () {
 
         if (checkWhitelist) {
           var appPermissions = Object(_utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__["getApplicationPermssions"])(permissions, hostname);
+          console.log('>>>>>>>>>>>>>>>>', appPermissions);
 
           if (appPermissions.permissions.length && !Object(_utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__["contractWhitelistCheck"])({
             sendResponse: sendResponse,
@@ -48109,6 +48111,7 @@ function () {
             contractInfo: contractInfo,
             method: method
           })) {
+            contractInfo.keypairAddress = appPermissions.permissions[0].address;
             Background.openPrompt(sendResponse, contractInfo);
             return;
           }

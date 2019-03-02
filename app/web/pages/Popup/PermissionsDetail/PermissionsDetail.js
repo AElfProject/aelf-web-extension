@@ -97,7 +97,7 @@ export default class PermissionsDetail extends Component {
         this.renderRow = (rowData, sectionID, rowID) => {
             let item = this.rData[rowID];
             let whiteListHTML = null;
-            if (item.whitelist) {
+            if (JSON.stringify(item.whitelist) !== '{}' && item.whitelist) {
                 whiteListHTML = this.renderWhiteList(item.whitelist, item.contractAddress, rowID);
             }
 
@@ -122,11 +122,11 @@ export default class PermissionsDetail extends Component {
                                         }, {
                                             text: 'Ok',
                                             onPress: () => removeContract(item.contractAddress, this.domain, () => {
-                                                this.rData = this.rData.filter(rItem => {
-                                                    return rItem.contractAddress !== item.contractAddress;
-                                                });
-                                                this.setState({
-                                                    dataSource: this.state.dataSource.cloneWithRows(this.rData)
+                                                this.getPermissions(result => {
+                                                    this.rData = result[0].contracts;
+                                                    this.setState({
+                                                        dataSource: this.state.dataSource.cloneWithRows(this.rData)
+                                                    });
                                                 });
                                             })
                                         }
@@ -179,7 +179,6 @@ export default class PermissionsDetail extends Component {
                         </div>
                     </div>;
             });
-
             return (
                 <div>
                     <div>---------------White List----------------</div>

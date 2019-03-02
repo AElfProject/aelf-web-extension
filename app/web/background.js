@@ -49,13 +49,13 @@ let prompt = null;
 // });
 
 function getPromptRoute(message) {
-    const method = message.payload.payload.method;
+    let method = message.payload.method ? message.payload.method : message.payload.payload.method;
     const routMap = {
-        SET_PERMISSION: '',
+        SET_PERMISSION: '#/',
         LOGIN: '#/loginKeypairs',
         CALL_AELF_CONTRACT: '#/examine-approve'
     };
-    return message.router || routMap[method] || '';
+    return message.router || routMap[method] || '#/confirmation';
 }
 
 let aelfMeta = [];
@@ -599,6 +599,7 @@ export default class Background {
     static callAelfContract(sendResponse, contractInfo, checkWhitelist = true) {
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>callAelfContract', contractInfo);
             const {payload, chainId, hostname} = contractInfo;
             const {
                 contractName,
@@ -615,6 +616,7 @@ export default class Background {
 
             if (checkWhitelist) {
                 const appPermissions = getApplicationPermssions(permissions, hostname);
+                console.log('>>>>>>>>>>>>>>>>', appPermissions);
                 if (appPermissions.permissions.length && !contractWhitelistCheck({
                         sendResponse,
                         appPermissions,
@@ -622,6 +624,7 @@ export default class Background {
                         contractInfo,
                         method
                     })) {
+                    contractInfo.keypairAddress = appPermissions.permissions[0].address;
                     Background.openPrompt(sendResponse, contractInfo);
                     return;
                 }

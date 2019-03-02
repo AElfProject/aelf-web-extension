@@ -22,6 +22,7 @@ document.addEventListener('NightElf', result => {
         appName: 'hzzTest',
         domain: 'aelf.io',
         method: 'LOGIN',
+        chainId: 'AELF',
         payload: {
             payload: {
                 // appName: message.appName,
@@ -84,8 +85,8 @@ document.addEventListener('NightElf', result => {
 
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
-        // httpProvider: 'http://192.168.199.128:5000/chain',
         httpProvider: 'http://192.168.199.109:5000/chain',
+        // httpProvider: 'http://192.168.197.70:8000/chain',
         appName: 'Test'
     });
 
@@ -204,16 +205,42 @@ document.addEventListener('NightElf', result => {
         });
     };
 
-
-    const setVote = document.getElementById('set-vote');
-    setVote.onclick = function () {
-
+    const setWhiteList = document.getElementById('set-whitelist');
+    setWhiteList.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'SET_WHITELIST',
+            hostname: 'aelf.io',
+            chainId: 'AELF',
+            payload: {
+                contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                whitelist: {
+                    // transfer(a, b, c)
+                    // transfer(a, b, c, d) is not ok
+                    transfer: [{
+                        value: 'a',
+                        variable: true
+                    }, {
+                        value: 'b',
+                        variable: false
+                    }, {
+                        value: 'c',
+                        variable: true
+                    }],
+                    test: [{}],
+                    hzz780: [{}]
+                }
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
     };
+
 
     let tokenC;
     initAelfContract.onclick = function () {
         const wallet = {
-            address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY'
+            address: 'ELF_6WZNJgU5MHWsvzZmPpC7cW6g3qciniQhDKRLCvbQcTCcVFH'
         };
         // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
         // There is only one value named address;
@@ -230,7 +257,7 @@ document.addEventListener('NightElf', result => {
 
     callAelfContract.onclick = function () {
         tokenC.BalanceOf(
-            'ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB',
+            'ELF_6WZNJgU5MHWsvzZmPpC7cW6g3qciniQhDKRLCvbQcTCcVFH',
             (err, result) => {
                 console.log('>>>>>>>>>>>>>>>>>>>', result);
             }
@@ -273,7 +300,7 @@ document.addEventListener('NightElf', result => {
             appName: 'hzzTest',
             method: 'CHECK_PERMISSION',
             type: 'contract', // if you did not set type, it aways get by domain.
-            contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx'
+            contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9'
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
         });

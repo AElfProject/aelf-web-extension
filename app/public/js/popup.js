@@ -103158,7 +103158,7 @@ function (_Component) {
       var item = _this.rData[rowID];
       var whiteListHTML = null;
 
-      if (item.whitelist) {
+      if (JSON.stringify(item.whitelist) !== '{}' && item.whitelist) {
         whiteListHTML = _this.renderWhiteList(item.whitelist, item.contractAddress, rowID);
       }
 
@@ -103183,12 +103183,12 @@ function (_Component) {
             text: 'Ok',
             onPress: function onPress() {
               return removeContract(item.contractAddress, _this.domain, function () {
-                _this.rData = _this.rData.filter(function (rItem) {
-                  return rItem.contractAddress !== item.contractAddress;
-                });
+                _this.getPermissions(function (result) {
+                  _this.rData = result[0].contracts;
 
-                _this.setState({
-                  dataSource: _this.state.dataSource.cloneWithRows(_this.rData)
+                  _this.setState({
+                    dataSource: _this.state.dataSource.cloneWithRows(_this.rData)
+                  });
                 });
               });
             }
