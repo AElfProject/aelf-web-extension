@@ -223,7 +223,7 @@ export default class Permissions extends Component {
         };
     }
 
-    getDetails(domain, address) {
+    getDetails(domain, address, appName) {
         const data = JSON.stringify({
             domain,
             address,
@@ -232,7 +232,6 @@ export default class Permissions extends Component {
         // const path = {
         //     pathname: '/permissionsDetail',
         //     state: {
-                
         //     }
         // };
         hashHistory.push(`/permissionsDetail/${data}`);
