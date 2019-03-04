@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 719);
+/******/ 	return __webpack_require__(__webpack_require__.s = 722);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -69738,7 +69738,10 @@ module.exports = "./assets/output/69c5491246fc2b0f54ac801691b60ae4.svg";
 /* 716 */,
 /* 717 */,
 /* 718 */,
-/* 719 */
+/* 719 */,
+/* 720 */,
+/* 721 */,
+/* 722 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -69760,10 +69763,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(199);
 /* harmony import */ var react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(200);
-/* harmony import */ var _Permission_Permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(720);
-/* harmony import */ var _Prompt_Prompt__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(727);
-/* harmony import */ var _LoginKeypairs_LoginKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(728);
-/* harmony import */ var _ConfirmationCall_ConfirmationCall__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(740);
+/* harmony import */ var _Permission_Permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(723);
+/* harmony import */ var _Prompt_Prompt__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(730);
+/* harmony import */ var _LoginKeypairs_LoginKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(731);
+/* harmony import */ var _ConfirmationCall_ConfirmationCall__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(743);
 
 
 
@@ -69806,7 +69809,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
   path: "/prompt",
   component: _Prompt_Prompt__WEBPACK_IMPORTED_MODULE_11__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/loginKeypairs",
+  path: "/loginkeypairs",
   component: _LoginKeypairs_LoginKeypairs__WEBPACK_IMPORTED_MODULE_12__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/confirmation",
@@ -69814,13 +69817,13 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
 })))), document.getElementById('root'));
 
 /***/ }),
-/* 720 */
+/* 723 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Permission; });
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(721);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(724);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(224);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__);
@@ -69838,9 +69841,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(722);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(723);
-/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(724);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(725);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(726);
+/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(727);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(496);
 
@@ -69954,7 +69957,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 721 */
+/* 724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(218);
@@ -69981,7 +69984,7 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 722 */
+/* 725 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70022,7 +70025,7 @@ var ApiGenerator = function ApiGenerator() {
 var apis = new ApiGenerator();
 
 /***/ }),
-/* 723 */
+/* 726 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70090,7 +70093,7 @@ function errorHandler(code, error) {
 }
 
 /***/ }),
-/* 724 */
+/* 727 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70108,7 +70111,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(725);
+/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(728);
 /* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__);
 
 
@@ -70169,11 +70172,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 725 */
+/* 728 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(726);
+var content = __webpack_require__(729);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -70194,7 +70197,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 726 */
+/* 729 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -70210,7 +70213,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 727 */
+/* 730 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70228,7 +70231,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(722);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(725);
 
 
 
@@ -70274,7 +70277,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 728 */
+/* 731 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70284,9 +70287,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(656);
 /* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(729);
+/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(732);
 /* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(732);
+/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(735);
 /* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(224);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_4__);
@@ -70311,12 +70314,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(115);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(176);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(200);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(722);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(725);
 /* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(681);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(496);
-/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(724);
-/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(736);
+/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(727);
+/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(739);
 /* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__);
 
 
@@ -70347,7 +70350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-__webpack_require__(738);
+__webpack_require__(741);
 
 var NUM_ROWS = 9999;
 var pageSize = 9999;
@@ -70546,15 +70549,15 @@ function (_Component) {
       });
     }
   }, {
-    key: "noKeypairs",
-    value: function noKeypairs() {
+    key: "renderNoKeypairs",
+    value: function renderNoKeypairs() {
       return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         className: _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.noKeypairsTips
-      }, "\u4F60\u8FD8\u6CA1\u6709\u53EF\u7528\u7684 keypair \u8BF7\u5230\u6269\u5C55\u4E2D\u521B\u5EFA\u4F60\u7684 ELF Keypair ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", null), "\u901A\u8FC7\u5237\u65B0\u9875\u9762\u6765\u91CD\u65B0\u83B7\u53D6\u6388\u6743\u9875\uFF01");
+      }, "You do not have keypairs available yet. Go to the extension and create your ELF Keypair", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", null), "Retrieve the authorization page by refreshing the page!");
     }
   }, {
-    key: "hasKeypairs",
-    value: function hasKeypairs() {
+    key: "renderKeypairs",
+    value: function renderKeypairs() {
       var _this5 = this;
 
       var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_16__["getPageContainerStyle"])();
@@ -70601,9 +70604,9 @@ function (_Component) {
       var keypairsHTML = '';
 
       if (hasKeypairs) {
-        keypairsHTML = this.hasKeypairs();
+        keypairsHTML = this.renderKeypairs();
       } else {
-        keypairsHTML = this.noKeypairs();
+        keypairsHTML = this.renderNoKeypairs();
       } // const searchHTML = this.renderSearch();
 
 
@@ -70629,7 +70632,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 729 */
+/* 732 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70637,14 +70640,14 @@ function (_Component) {
 
 __webpack_require__(225);
 
-__webpack_require__(730);
+__webpack_require__(733);
 
 /***/ }),
-/* 730 */
+/* 733 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(731);
+var content = __webpack_require__(734);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -70665,7 +70668,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 731 */
+/* 734 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -70679,7 +70682,7 @@ exports.push([module.i, "/* 默认搜索bar */\n.am-search {\n  position: relati
 
 
 /***/ }),
-/* 732 */
+/* 735 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70729,13 +70732,13 @@ var _rmcFeedback = __webpack_require__(278);
 
 var _rmcFeedback2 = _interopRequireDefault(_rmcFeedback);
 
-var _getDataAttr = __webpack_require__(733);
+var _getDataAttr = __webpack_require__(736);
 
 var _getDataAttr2 = _interopRequireDefault(_getDataAttr);
 
 var _getLocale = __webpack_require__(280);
 
-var _PropsType = __webpack_require__(734);
+var _PropsType = __webpack_require__(737);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -70920,7 +70923,7 @@ var SearchBar = function (_React$Component) {
             // tslint:disable-next-line:variable-name
 
             var _locale = (0, _getLocale.getComponentLocale)(this.props, this.context, 'SearchBar', function () {
-                return __webpack_require__(735);
+                return __webpack_require__(738);
             });
             var cancelText = _locale.cancelText;
             var _state = this.state,
@@ -70991,7 +70994,7 @@ SearchBar.contextTypes = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 733 */
+/* 736 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71013,7 +71016,7 @@ exports['default'] = function (props) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 734 */
+/* 737 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71036,7 +71039,7 @@ var defaultProps = exports.defaultProps = {
 };
 
 /***/ }),
-/* 735 */
+/* 738 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71051,11 +71054,11 @@ exports['default'] = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 736 */
+/* 739 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(737);
+var content = __webpack_require__(740);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -71076,7 +71079,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 737 */
+/* 740 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(512);
@@ -71126,11 +71129,11 @@ exports.locals = {
 };
 
 /***/ }),
-/* 738 */
+/* 741 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(739);
+var content = __webpack_require__(742);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -71151,7 +71154,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 739 */
+/* 742 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -71165,7 +71168,7 @@ exports.push([module.i, ".am-list-body {\n    border: none;\n    background: tra
 
 
 /***/ }),
-/* 740 */
+/* 743 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71175,7 +71178,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(675);
 /* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(721);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(724);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(224);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_3__);
@@ -71193,13 +71196,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(722);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(723);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(725);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(726);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(496);
-/* harmony import */ var _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(741);
+/* harmony import */ var _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(744);
 /* harmony import */ var _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _ConfirmationCall_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(743);
+/* harmony import */ var _ConfirmationCall_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(746);
 /* harmony import */ var _ConfirmationCall_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_ConfirmationCall_css__WEBPACK_IMPORTED_MODULE_16__);
 
 
@@ -71249,73 +71252,6 @@ function (_Component) {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_6___default()(ConfirmationCall, [{
-    key: "renderConfirmation",
-    value: function renderConfirmation() {
-      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "APP NAME: ", this.appName), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "METHOD: ", this.confirmation.method), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "The keypair used: ", this.keypairAddress));
-    }
-  }, {
-    key: "renderConfirmationInfo",
-    value: function renderConfirmationInfo() {
-      var _this2 = this;
-
-      var info = Object.keys(this.confirmation);
-      var infoHTMl = info.map(function (item) {
-        return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
-          key: item
-        }, item, ": ", JSON.stringify(_this2.confirmation[item]));
-      });
-      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "------------Information display area-------------"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, infoHTMl), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "-------------------------------------------------"));
-    }
-  }, {
-    key: "renderConfirm",
-    value: function renderConfirm() {
-      var _this3 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "-----------------------"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
-        type: "button",
-        onClick: function onClick() {
-          return _this3.getCallAelfContract();
-        }
-      }, "OK"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
-        type: "button",
-        onClick: function onClick() {
-          return _this3.refuse();
-        }
-      }, "REFUSE"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "-----------------------"));
-    }
-  }, {
-    key: "getCallAelfContract",
-    value: function getCallAelfContract() {
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__["CALL_AELF_CONTRACT_WITHOUT_CHECK"], this.message).send().then(function (result) {
-        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__["CALL_AELF_CONTRACT_WITHOUT_CHECK"], result);
-
-        if (result.error === 0 && result) {
-          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_4___default.a.success('success, after 3s close the window.');
-
-          window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_12__["default"])(0), {
-            result: result
-          }));
-          setTimeout(function () {
-            window.close();
-          }, 3000);
-        }
-      });
-    }
-  }, {
-    key: "renderWhiteList",
-    value: function renderWhiteList() {
-      var _this4 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "------------------------------------------------"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "Whitelist this to not have to accept next time You can remove the permission in Extension"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
-        type: "button",
-        onClick: function onClick() {
-          return _this4.setState({
-            show: true
-          });
-        }
-      }, "Enable Whitelist")), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "------------------------------------------------"));
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.getContractAbi();
@@ -71324,18 +71260,20 @@ function (_Component) {
   }, {
     key: "getContractAbi",
     value: function getContractAbi() {
-      var _this5 = this;
+      var _this2 = this;
 
       _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__["GET_CONTRACT_ABI"], this.message).send().then(function (result) {
         if (result && result.error === 0) {
           var contractAbi = JSON.parse(result.detail).Methods;
           contractAbi.map(function (item) {
-            if (item.Name === _this5.confirmation.method) {
-              _this5.setState({
+            if (item.Name === _this2.confirmation.method) {
+              _this2.setState({
                 methodParams: item.Params
               });
             }
           });
+        } else {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_4___default.a.fail(result.errorMessage.message, 3);
         }
       });
     }
@@ -71353,29 +71291,32 @@ function (_Component) {
       });
     }
   }, {
-    key: "renderWhiteListInfo",
-    value: function renderWhiteListInfo() {
-      var _this6 = this;
+    key: "getCallAelfContract",
+    value: function getCallAelfContract() {
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__["CALL_AELF_CONTRACT_WITHOUT_CHECK"], this.message).send().then(function (result) {
+        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__["CALL_AELF_CONTRACT_WITHOUT_CHECK"], result);
 
-      var methodParams = this.state.methodParams;
-      console.log(methodParams);
-      var whiteListHTML = methodParams.map(function (item, index) {
-        console.log(item);
-        var params = _this6.confirmation.params[index];
-        return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
-          key: item.Name,
-          className: _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_15___default.a.paramsInfo
-        }, item.Name, ": ", params);
+        if (result && result.error === 0) {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_4___default.a.success('success, after 3s close the window.');
+
+          window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_12__["default"])(0), {
+            result: result
+          }));
+          setTimeout(function () {
+            window.close();
+          }, 3000);
+        } else {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_4___default.a.fail(result.errorMessage.message, 3);
+        }
       });
-      return whiteListHTML;
     }
   }, {
     key: "getPermissions",
     value: function getPermissions() {
-      var _this7 = this;
+      var _this3 = this;
 
       var queryInfo = {
-        appName: 'hzzTest',
+        appName: this.appName,
         type: 'address',
         hostname: this.hostname,
         address: this.keypairAddress
@@ -71384,19 +71325,21 @@ function (_Component) {
         if (result && result.error === 0) {
           var permission = result.permissions[0].contracts;
           permission.map(function (item) {
-            if (item.contractAddress === _this7.confirmation.contractAddress) {
-              _this7.setState({
+            if (item.contractAddress === _this3.confirmation.contractAddress) {
+              _this3.setState({
                 contract: item
               });
             }
           });
+        } else {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_4___default.a.fail(result.errorMessage.message, 3);
         }
       });
     }
   }, {
-    key: "setWhiteList",
-    value: function setWhiteList() {
-      var _this8 = this;
+    key: "setWhitelist",
+    value: function setWhitelist() {
+      var _this4 = this;
 
       var _this$state = this.state,
           contract = _this$state.contract,
@@ -71406,27 +71349,27 @@ function (_Component) {
       if (contract.whitelist) {
         whitelist = contract.whitelist;
         var method = this.confirmation.method;
-        var newWhiteList = methodParams.map(function (item, index) {
-          var params = _this8.confirmation.params[index];
+        var newWhitelist = methodParams.map(function (item, index) {
+          var params = _this4.confirmation.params[index];
           var obj = {};
           obj[item.Name] = params;
           obj.variable = false;
           return obj;
         });
-        whitelist[method] = newWhiteList;
+        whitelist[method] = newWhitelist;
       } else {
         whitelist = {};
         var _method = this.confirmation.method;
 
-        var _newWhiteList = methodParams.map(function (item, index) {
-          var params = _this8.confirmation.params[index];
+        var _newWhitelist = methodParams.map(function (item, index) {
+          var params = _this4.confirmation.params[index];
           var obj = {};
           obj[item.Name] = params;
           obj.variable = false;
           return obj;
         });
 
-        whitelist[_method] = _newWhiteList;
+        whitelist[_method] = _newWhitelist;
       }
 
       var payload = {
@@ -71440,14 +71383,78 @@ function (_Component) {
       _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__["SET_WHITELIST"], payload).send().then(function (result) {
         if (result && result.error === 0) {
           antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_4___default.a.success('Successful addition of whitelist', 3, function () {
-            _this8.onClose();
+            _this4.onClose();
           });
         } else {
           antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_4___default.a.fail('Failed to add whitelist', 3, function () {
-            _this8.onClose();
+            _this4.onClose();
           });
         }
       });
+    }
+  }, {
+    key: "renderWhitelist",
+    value: function renderWhitelist() {
+      var _this5 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "------------------------------------------------"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "Whitelist this to not have to accept next time You can remove the permission in Extension"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
+        type: "button",
+        onClick: function onClick() {
+          return _this5.setState({
+            show: true
+          });
+        }
+      }, "Enable Whitelist")), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "------------------------------------------------"));
+    }
+  }, {
+    key: "renderConfirmation",
+    value: function renderConfirmation() {
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "APP NAME: ", this.appName), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "METHOD: ", this.confirmation.method), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "The keypair used: ", this.keypairAddress));
+    }
+  }, {
+    key: "renderConfirmationInfo",
+    value: function renderConfirmationInfo() {
+      var _this6 = this;
+
+      var info = Object.keys(this.confirmation);
+      var infoHTMl = info.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+          key: item
+        }, item, ": ", JSON.stringify(_this6.confirmation[item]));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "------------Information display area-------------"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, infoHTMl), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "-------------------------------------------------"));
+    }
+  }, {
+    key: "renderConfirm",
+    value: function renderConfirm() {
+      var _this7 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "-----------------------"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
+        type: "button",
+        onClick: function onClick() {
+          return _this7.getCallAelfContract();
+        }
+      }, "OK"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
+        type: "button",
+        onClick: function onClick() {
+          return _this7.refuse();
+        }
+      }, "REFUSE"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, "-----------------------"));
+    }
+  }, {
+    key: "renderWhitelistInfo",
+    value: function renderWhitelistInfo() {
+      var _this8 = this;
+
+      var methodParams = this.state.methodParams;
+      var whitelistHTML = methodParams.map(function (item, index) {
+        var params = _this8.confirmation.params[index];
+        return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+          key: item.Name,
+          className: _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_15___default.a.paramsInfo
+        }, item.Name, ": ", params);
+      });
+      return whitelistHTML;
     }
   }, {
     key: "render",
@@ -71457,17 +71464,17 @@ function (_Component) {
       var confiramtionHTML = this.renderConfirmation();
       var confiramtionInfoHTML = this.renderConfirmationInfo();
       var confirmHTML = this.renderConfirm();
-      var getWhiteListHTML = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null);
-      var whiteListHTML = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null);
+      var getWhitelistHTML = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null);
+      var whitelistHTML = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null);
 
       if (this.state.methodParams) {
-        getWhiteListHTML = this.renderWhiteList();
-        whiteListHTML = this.renderWhiteListInfo();
+        getWhitelistHTML = this.renderWhitelist();
+        whitelistHTML = this.renderWhitelistInfo();
       }
 
       return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
         className: _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_15___default.a.container
-      }, confiramtionHTML, confiramtionInfoHTML, confirmHTML, getWhiteListHTML, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      }, confiramtionHTML, confiramtionInfoHTML, confirmHTML, getWhitelistHTML, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
         visible: this.state.show,
         transparent: true,
         maskClosable: false,
@@ -71480,7 +71487,7 @@ function (_Component) {
         }, {
           text: 'Ok',
           onPress: function onPress() {
-            _this9.setWhiteList();
+            _this9.setWhitelist();
           }
         }]
       }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
@@ -71488,7 +71495,7 @@ function (_Component) {
           height: 100,
           overflow: 'scroll'
         }
-      }, whiteListHTML)));
+      }, whitelistHTML)));
     }
   }]);
 
@@ -71498,11 +71505,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 741 */
+/* 744 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(742);
+var content = __webpack_require__(745);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -71523,7 +71530,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 742 */
+/* 745 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -71540,11 +71547,11 @@ exports.locals = {
 };
 
 /***/ }),
-/* 743 */
+/* 746 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(744);
+var content = __webpack_require__(747);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -71565,7 +71572,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 744 */
+/* 747 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);

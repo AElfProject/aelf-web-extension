@@ -12,6 +12,8 @@ import getPageContainerStyle from '../../../utils/getPageContainerStyle';
 import NavNormal from '../../../components/NavNormal/NavNormal';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 
 import aelf from 'aelf-sdk';
 
@@ -24,6 +26,9 @@ const tabs = [
     {title: 'private'}
 ];
 // React component
+
+@insert(checkWallet)
+
 export default class Import extends Component {
     constructor() {
         super();
@@ -41,22 +46,7 @@ export default class Import extends Component {
     }
 
     componentDidMount() {
-        this.checkWallet();
-    }
-
-    turnToHomePage(walletStatus) {
-        const {
-            nightElf
-        } = walletStatus || {};
-        if (!nightElf) {
-            hashHistory.push('/');
-        }
-    }
-
-    checkWallet() {
-        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            this.turnToHomePage(result);
-        });
+        this.checkWalletInfo();
     }
 
     createAndGO() {

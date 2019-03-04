@@ -52,7 +52,7 @@ function getPromptRoute(message) {
     let method = message.payload.method ? message.payload.method : message.payload.payload.method;
     const routMap = {
         SET_PERMISSION: '#/',
-        LOGIN: '#/loginKeypairs',
+        LOGIN: '#/loginkeypairs',
         CALL_AELF_CONTRACT: '#/examine-approve'
     };
     return message.router || routMap[method] || '#/confirmation';

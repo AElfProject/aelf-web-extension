@@ -15,13 +15,15 @@ import style from './Home.scss';
 import ListContent from '../../../components/ListContent/ListContent';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
-
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 import {FormattedMessage} from 'react-intl';
 
 // import aelf from 'aelf-sdk';
 
 const Item = List.Item;
 
+@insert(checkWallet)
 export default class personalCenterHome extends Component {
 
     lockWallet() {
@@ -32,24 +34,8 @@ export default class personalCenterHome extends Component {
     }
 
     componentDidMount() {
-        this.checkWallet();
+        this.checkWalletInfo();
     }
-
-    turnToHomePage(walletStatus) {
-        const {
-            nightElf
-        } = walletStatus || {};
-        if (!nightElf) {
-            hashHistory.push('/');
-        }
-    }
-
-    checkWallet() {
-        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            this.turnToHomePage(result);
-        });
-    }
-
 
     render() {
         return (

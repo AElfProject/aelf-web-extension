@@ -201,14 +201,14 @@ export default class LoginKeypairs extends Component {
         });
     }
 
-    noKeypairs() {
+    renderNoKeypairs() {
         return <div className={style.noKeypairsTips}>
-                    你还没有可用的 keypair 请到扩展中创建你的 ELF Keypair <br></br>
-                    通过刷新页面来重新获取授权页！
+                    You do not have keypairs available yet. Go to the extension and create your ELF Keypair<br></br>
+                    Retrieve the authorization page by refreshing the page!
                 </div>;
     }
 
-    hasKeypairs() {
+    renderKeypairs() {
         let pageContainerStyle = getPageContainerStyle();
         pageContainerStyle.height -= 166;
         let backgroundStyle = Object.assign({}, pageContainerStyle);
@@ -242,10 +242,10 @@ export default class LoginKeypairs extends Component {
         const permission = this.permission;
         let keypairsHTML = '';
         if (hasKeypairs) {
-            keypairsHTML = this.hasKeypairs();
+            keypairsHTML = this.renderKeypairs();
         }
         else {
-            keypairsHTML = this.noKeypairs();
+            keypairsHTML = this.renderNoKeypairs();
         }
         // const searchHTML = this.renderSearch();
         return (

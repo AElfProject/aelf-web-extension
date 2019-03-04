@@ -27,6 +27,159 @@ export default class ConfirmationCall extends Component {
         };
     }
 
+
+    componentDidMount() {
+        this.getContractAbi();
+        this.getPermissions();
+    }
+
+    getContractAbi() {
+        InternalMessage.payload(InternalMessageTypes.GET_CONTRACT_ABI, this.message)
+        .send()
+        .then(result => {
+            if (result && result.error === 0) {
+                const contractAbi = JSON.parse(result.detail).Methods;
+                contractAbi.map(item => {
+                    if (item.Name === this.confirmation.method) {
+                        this.setState({
+                            methodParams: item.Params
+                        });
+                    }
+                });
+            }
+            else {
+                Toast.fail(result.errorMessage.message, 3);
+            }
+        });
+    }
+
+    refuse() {
+        window.data.sendResponse({
+            ...errorHandler(400001, 'Refuse')
+        });
+        window.close();
+    }
+
+    onClose() {
+        this.setState({
+            show: false
+        });
+    }
+
+    getCallAelfContract() {
+        InternalMessage.payload(
+            InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK,
+            this.message
+        ).send()
+        .then(result => {
+            console.log(InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK, result);
+            if (result && result.error === 0) {
+                Toast.success('success, after 3s close the window.');
+                window.data.sendResponse({
+                    ...errorHandler(0),
+                    result
+                });
+                setTimeout(() => {
+                    window.close();
+                }, 3000);
+            }
+            else {
+                Toast.fail(result.errorMessage.message, 3);
+            }
+        });
+    }
+
+    getPermissions() {
+        const queryInfo = {
+            appName: this.appName,
+            type: 'address',
+            hostname: this.hostname,
+            address: this.keypairAddress
+        };
+        InternalMessage.payload(InternalMessageTypes.CHECK_PERMISSION, queryInfo)
+        .send()
+        .then(result => {
+            if (result && result.error === 0) {
+                const permission = result.permissions[0].contracts;
+                permission.map(item => {
+                    if (item.contractAddress === this.confirmation.contractAddress) {
+                        this.setState({
+                            contract: item
+                        });
+                    }
+                });
+            }
+            else {
+                Toast.fail(result.errorMessage.message, 3);
+            }
+        });
+    }
+
+    setWhitelist() {
+        const {contract, methodParams} = this.state;
+        let whitelist = {};
+        if (contract.whitelist) {
+            whitelist = contract.whitelist;
+            const method = this.confirmation.method;
+            const newWhitelist = methodParams.map((item, index) => {
+                const params = this.confirmation.params[index];
+                const obj = {};
+                obj[item.Name] = params;
+                obj.variable = false;
+                return obj;
+            });
+            whitelist[method] = newWhitelist;
+        }
+        else {
+            whitelist = {};
+            const method = this.confirmation.method;
+            const newWhitelist = methodParams.map((item, index) => {
+                const params = this.confirmation.params[index];
+                const obj = {};
+                obj[item.Name] = params;
+                obj.variable = false;
+                return obj;
+            });
+            whitelist[method] = newWhitelist;
+        }
+
+        const payload = {
+            hostname: this.hostname,
+            payload: {
+                contractName: this.confirmation.contractName,
+                contractAddress: this.confirmation.contractAddress,
+                whitelist
+            }
+        };
+        InternalMessage.payload(InternalMessageTypes.SET_WHITELIST, payload).send().then(result => {
+            if (result && result.error === 0) {
+                Toast.success('Successful addition of whitelist', 3, () => {
+                    this.onClose();
+                });
+            }
+            else {
+                Toast.fail('Failed to add whitelist', 3, () => {
+                    this.onClose();
+                });
+            }
+        });
+    }
+
+
+    renderWhitelist() {
+        return <div>
+                <div>------------------------------------------------</div>
+                <div>
+                    Whitelist this to not have to accept next time
+                    You can remove the permission in Extension
+                </div>
+                <div>
+                    <button type='button' onClick={() => this.setState({show: true})}>Enable Whitelist</button>
+                </div>
+                <div>------------------------------------------------</div>
+            </div>;
+    }
+
     renderConfirmation() {
         return <div>
             <div>APP NAME: {this.appName}</div>
@@ -55,176 +208,33 @@ export default class ConfirmationCall extends Component {
                 </div>;
     }
 
-    getCallAelfContract() {
-        InternalMessage.payload(
-            InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK,
-            this.message
-        ).send()
-        .then(result => {
-            console.log(InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK, result);
-            if (result.error === 0 && result) {
-                Toast.success('success, after 3s close the window.');
-                window.data.sendResponse({
-                    ...errorHandler(0),
-                    result
-                });
-                setTimeout(() => {
-                    window.close();
-                }, 3000);
-            }
-        });
-    }
+    
 
-
-    renderWhiteList() {
-        return <div>
-                <div>------------------------------------------------</div>
-                <div>
-                    Whitelist this to not have to accept next time
-                    You can remove the permission in Extension
-                </div>
-                <div>
-                    <button type='button' onClick={() => this.setState({show: true})}>Enable Whitelist</button>
-                </div>
-                <div>------------------------------------------------</div>
-            </div>;
-    }
-
-    componentDidMount() {
-        this.getContractAbi();
-        this.getPermissions();
-    }
-
-    getContractAbi() {
-        InternalMessage.payload(InternalMessageTypes.GET_CONTRACT_ABI, this.message)
-        .send()
-        .then(result => {
-            if (result && result.error === 0) {
-                const contractAbi = JSON.parse(result.detail).Methods;
-                contractAbi.map(item => {
-                    if (item.Name === this.confirmation.method) {
-                        this.setState({
-                            methodParams: item.Params
-                        });
-                    }
-                });
-            }
-        });
-    }
-
-    refuse() {
-        window.data.sendResponse({
-            ...errorHandler(400001, 'Refuse')
-        });
-        window.close();
-    }
-
-    onClose() {
-        this.setState({
-            show: false
-        });
-    }
-
-    renderWhiteListInfo() {
+    renderWhitelistInfo() {
         const {methodParams} = this.state;
-        console.log(methodParams);
-        const whiteListHTML = methodParams.map((item, index) => {
-            console.log(item);
+        const whitelistHTML = methodParams.map((item, index) => {
             const params = this.confirmation.params[index];
             return <div key={item.Name} className={style.paramsInfo}>{item.Name}: {params}</div>;
         });
-        return whiteListHTML;
-    }
-
-    getPermissions() {
-        const queryInfo = {
-            appName: 'hzzTest',
-            type: 'address',
-            hostname: this.hostname,
-            address: this.keypairAddress
-        };
-        InternalMessage.payload(InternalMessageTypes.CHECK_PERMISSION, queryInfo)
-        .send()
-        .then(result => {
-            if (result && result.error === 0) {
-                const permission = result.permissions[0].contracts;
-                permission.map(item => {
-                    if (item.contractAddress === this.confirmation.contractAddress) {
-                        this.setState({
-                            contract: item
-                        });
-                    }
-                });
-            }
-        });
-    }
-
-    setWhiteList() {
-        const {contract, methodParams} = this.state;
-        let whitelist = {};
-        if (contract.whitelist) {
-            whitelist = contract.whitelist;
-            const method = this.confirmation.method;
-            const newWhiteList = methodParams.map((item, index) => {
-                const params = this.confirmation.params[index];
-                const obj = {};
-                obj[item.Name] = params;
-                obj.variable = false;
-                return obj;
-            });
-            whitelist[method] = newWhiteList;
-        }
-        else {
-            whitelist = {};
-            const method = this.confirmation.method;
-            const newWhiteList = methodParams.map((item, index) => {
-                const params = this.confirmation.params[index];
-                const obj = {};
-                obj[item.Name] = params;
-                obj.variable = false;
-                return obj;
-            });
-            whitelist[method] = newWhiteList;
-        }
-
-        const payload = {
-            hostname: this.hostname,
-            payload: {
-                contractName: this.confirmation.contractName,
-                contractAddress: this.confirmation.contractAddress,
-                whitelist
-            }
-        };
-        InternalMessage.payload(InternalMessageTypes.SET_WHITELIST, payload).send().then(result => {
-            if (result && result.error === 0) {
-                Toast.success('Successful addition of whitelist', 3, () => {
-                    this.onClose();
-                });
-            }
-            else {
-                Toast.fail('Failed to add whitelist', 3, () => {
-                    this.onClose();
-                });
-            }
-        });
+        return whitelistHTML;
     }
 
     render() {
         const confiramtionHTML = this.renderConfirmation();
         const confiramtionInfoHTML = this.renderConfirmationInfo();
         const confirmHTML = this.renderConfirm();
-        let getWhiteListHTML = <div></div>;
-        let whiteListHTML = <div></div>;
+        let getWhitelistHTML = <div></div>;
+        let whitelistHTML = <div></div>;
         if (this.state.methodParams) {
-            getWhiteListHTML = this.renderWhiteList();
-            whiteListHTML = this.renderWhiteListInfo();
+            getWhitelistHTML = this.renderWhitelist();
+            whitelistHTML = this.renderWhitelistInfo();
         }
         return (
             <div className={style.container}>
                 {confiramtionHTML}
                 {confiramtionInfoHTML}
                 {confirmHTML}
-                {getWhiteListHTML}
+                {getWhitelistHTML}
                 <Modal
                     visible={this.state.show}
                     transparent
@@ -238,13 +248,13 @@ export default class ConfirmationCall extends Component {
                         },
                         {
                             text: 'Ok', onPress: () => {
-                                this.setWhiteList();
+                                this.setWhitelist();
                             }
                         }]
                     }
                     >
                         <div style={{height: 100, overflow: 'scroll'}}>
-                            {whiteListHTML}
+                            {whitelistHTML}
                         </div>
                 </Modal>
             </div>

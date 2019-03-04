@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 745);
+/******/ 	return __webpack_require__(__webpack_require__.s = 748);
 /******/ })
 /************************************************************************/
 /******/ (Array(104).concat([
@@ -47297,7 +47297,10 @@ exports.XMLHttpRequestUpload = XMLHttpRequestUpload;
 /* 718 */,
 /* 719 */,
 /* 720 */,
-/* 721 */
+/* 721 */,
+/* 722 */,
+/* 723 */,
+/* 724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(218);
@@ -47324,7 +47327,7 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 722 */
+/* 725 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47365,7 +47368,7 @@ var ApiGenerator = function ApiGenerator() {
 var apis = new ApiGenerator();
 
 /***/ }),
-/* 723 */
+/* 726 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47433,9 +47436,6 @@ function errorHandler(code, error) {
 }
 
 /***/ }),
-/* 724 */,
-/* 725 */,
-/* 726 */,
 /* 727 */,
 /* 728 */,
 /* 729 */,
@@ -47454,7 +47454,10 @@ function errorHandler(code, error) {
 /* 742 */,
 /* 743 */,
 /* 744 */,
-/* 745 */
+/* 745 */,
+/* 746 */,
+/* 747 */,
+/* 748 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47462,7 +47465,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Background; });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(104);
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(721);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(724);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
@@ -47472,15 +47475,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(extension_streams__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(496);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(495);
-/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(746);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(722);
-/* harmony import */ var _utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(749);
-/* harmony import */ var _utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(750);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(723);
-/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(751);
-/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(756);
+/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(749);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(725);
+/* harmony import */ var _utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(752);
+/* harmony import */ var _utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(753);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(726);
+/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(754);
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(759);
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(757);
+/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(760);
 /* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(spark_md5__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(518);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_15__);
@@ -47526,7 +47529,7 @@ function getPromptRoute(message) {
   var method = message.payload.method ? message.payload.method : message.payload.payload.method;
   var routMap = {
     SET_PERMISSION: '#/',
-    LOGIN: '#/loginKeypairs',
+    LOGIN: '#/loginkeypairs',
     CALL_AELF_CONTRACT: '#/examine-approve'
   };
   return message.router || routMap[method] || '#/confirmation';
@@ -48887,7 +48890,7 @@ function () {
 new Background();
 
 /***/ }),
-/* 746 */
+/* 749 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48899,7 +48902,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(747);
+/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(750);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(518);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -48992,7 +48995,7 @@ function () {
 
 
 /***/ }),
-/* 747 */
+/* 750 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49002,7 +49005,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(748);
+/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(751);
 
 
 
@@ -49149,7 +49152,7 @@ function () {
 
 
 /***/ }),
-/* 748 */
+/* 751 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49293,7 +49296,7 @@ function () {
 
 
 /***/ }),
-/* 749 */
+/* 752 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49365,7 +49368,7 @@ function contractWhitelistCheck(options) {
 }
 
 /***/ }),
-/* 750 */
+/* 753 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49394,24 +49397,24 @@ function getApplicationPermssions(permissions, domain) {
 }
 
 /***/ }),
-/* 751 */
+/* 754 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NotificationService; });
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(721);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(724);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(752);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(755);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(755);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(758);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(723);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(722);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(726);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(725);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(496);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(495);
 
@@ -49623,14 +49626,14 @@ function () {
 
 
 /***/ }),
-/* 752 */
+/* 755 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(753);
+module.exports = __webpack_require__(756);
 
 
 /***/ }),
-/* 753 */
+/* 756 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -49657,7 +49660,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(754);
+module.exports = __webpack_require__(757);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -49673,7 +49676,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 754 */
+/* 757 */
 /***/ (function(module, exports) {
 
 /**
@@ -50400,7 +50403,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 755 */
+/* 758 */
 /***/ (function(module, exports) {
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -50442,7 +50445,7 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator;
 
 /***/ }),
-/* 756 */
+/* 759 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
@@ -50454,7 +50457,7 @@ module.exports = _asyncToGenerator;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(112)))
 
 /***/ }),
-/* 757 */
+/* 760 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (factory) {

@@ -5,7 +5,7 @@
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {Flex, ListView, Modal, Result} from 'antd-mobile';
+import {Flex, ListView, Modal} from 'antd-mobile';
 import {hashHistory} from 'react-router';
 import {FormattedMessage} from 'react-intl';
 import {getPageContainerStyle} from '../../../utils/utils';
@@ -15,6 +15,8 @@ import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 import ScrollFooter from '../../../components/ScrollFooter/ScrollFooter';
 import style from './PermissionsDetail.scss';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 import './PermissionsDetail.css';
 
 const alert = Modal.alert;
@@ -47,7 +49,7 @@ function removeContract(contractAddress, domain, callback) {
     });
 }
 
-function removeWhiteContarct(contractAddress, methods, domain, callback) {
+function removeWhitelist(contractAddress, methods, domain, callback) {
     InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
         const {
             nightElf
@@ -72,13 +74,14 @@ function removeWhiteContarct(contractAddress, methods, domain, callback) {
     });
 }
 
-
+@insert(checkWallet)
 export default class PermissionsDetail extends Component {
     constructor(props) {
         super(props);
         const data = JSON.parse(this.props.params.data);
         this.domain = data.domain;
         this.address = data.address;
+        this.appName = data.appName;
 
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2
@@ -164,7 +167,7 @@ export default class PermissionsDetail extends Component {
                                             text: 'Cancel', onPress: () => console.log('cancel')
                                         }, {
                                             text: 'Ok',
-                                            onPress: () => removeWhiteContarct(contractAddress, item, this.domain, () => {
+                                            onPress: () => removeWhitelist(contractAddress, item, this.domain, () => {
                                                 this.getPermissions(result => {
                                                     this.rData = result[0].contracts;
                                                     this.setState({
@@ -191,7 +194,7 @@ export default class PermissionsDetail extends Component {
 
     componentDidMount() {
         const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
-        this.checkWallet();
+        this.checkWalletInfo();
         this.getPermissions(result => {
             this.rData = result[0].contracts;
             this.setState({
@@ -206,7 +209,7 @@ export default class PermissionsDetail extends Component {
 
     getPermissions(callback) {
         const queryInfo = {
-            appname: 'hzzTest',
+            appname: this.appName,
             hostname: this.domain,
             type: 'domain'
         };

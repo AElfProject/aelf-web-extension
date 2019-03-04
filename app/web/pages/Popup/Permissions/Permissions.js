@@ -23,6 +23,8 @@ import InternalMessage from '../../../messages/InternalMessage';
 
 import style from './Permissions.scss';
 import {FormattedMessage} from 'react-intl';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 require('./Permissions.css');
 
 const alert = Modal.alert;
@@ -127,7 +129,7 @@ function getAllPermissions(callback) {
         }
     });
 }
-
+@insert(checkWallet)
 export default class Permissions extends Component {
     constructor(props) {
         super(props);
@@ -179,7 +181,7 @@ export default class Permissions extends Component {
                         </div>
                         <div className={style.operationList}>
                             <div
-                                onClick={() => this.getDetails(domain, address)}
+                                onClick={() => this.getDetails(domain, address, appName)}
                             >
                                 <FormattedMessage
                                     id='aelf.Details'
@@ -224,7 +226,8 @@ export default class Permissions extends Component {
     getDetails(domain, address) {
         const data = JSON.stringify({
             domain,
-            address
+            address,
+            appName
         });
         // const path = {
         //     pathname: '/permissionsDetail',
@@ -235,20 +238,6 @@ export default class Permissions extends Component {
         hashHistory.push(`/permissionsDetail/${data}`);
     }
 
-    turnToHomePage(walletStatus) {
-        const {
-            nightElf
-        } = walletStatus || {};
-        if (!nightElf) {
-            hashHistory.push('/');
-        }
-    }
-
-    checkWallet() {
-        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            this.turnToHomePage(result);
-        });
-    }
     // PullToRefresh start
     componentDidUpdate() {
         if (this.state.useBodyScroll) {
@@ -260,7 +249,7 @@ export default class Permissions extends Component {
     }
 
     componentDidMount() {
-        this.checkWallet();
+        this.checkWalletInfo();
         const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
 
         getAllPermissions(result => {

@@ -115,9 +115,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(694);
 /* harmony import */ var _Import_Import__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(695);
 /* harmony import */ var _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(702);
-/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(708);
-/* harmony import */ var _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(711);
-/* harmony import */ var _PermissionsDetail_PermissionsDetail__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(714);
+/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(711);
+/* harmony import */ var _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(714);
+/* harmony import */ var _PermissionsDetail_PermissionsDetail__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(717);
 
 
 
@@ -71823,7 +71823,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(505);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(496);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(176);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(769);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(709);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(176);
 
 
 
@@ -71831,6 +71833,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _dec, _class;
 
 /**
  * @file Home.js
@@ -71843,11 +71847,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
  // import aelf from 'aelf-sdk';
 
 var Item = antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a.Item;
-
-var personalCenterHome =
+var personalCenterHome = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_13__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_14__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(personalCenterHome, _Component);
@@ -71869,31 +71874,12 @@ function (_Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.checkWallet();
-    }
-  }, {
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref = walletStatus || {},
-          nightElf = _ref.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_12__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_11__["CHECK_WALLET"]).send().then(function (result) {
-        _this.turnToHomePage(result);
-      });
+      this.checkWalletInfo();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this = this;
 
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         className: _Home_scss__WEBPACK_IMPORTED_MODULE_9___default.a.container + ' ' + 'aelf-personal-pages aelf-solid'
@@ -71905,7 +71891,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "wallet16",
-        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
           id: "aelf.Key Pairs Management",
           defaultMessage: "Key Pairs Management"
         })
@@ -71917,7 +71903,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "tx_history16",
-        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
           id: "aelf.Application Management",
           defaultMessage: "Application Management"
         })
@@ -71929,7 +71915,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "about16",
-        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
           id: "aelf.Extension Management",
           defaultMessage: "Keypairs Management"
         })
@@ -71937,11 +71923,11 @@ function (_Component) {
         className: 'aelf-list'
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
         onClick: function onClick() {
-          return _this2.lockWallet();
+          return _this.lockWallet();
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "about16",
-        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_13__["FormattedMessage"], {
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
           id: "aelf.Lock",
           defaultMessage: "Lock"
         })
@@ -71950,8 +71936,7 @@ function (_Component) {
   }]);
 
   return personalCenterHome;
-}(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_7__["Component"])) || _class);
 
 
 /***/ }),
@@ -72166,11 +72151,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(200);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(496);
-/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(518);
-/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(176);
-/* harmony import */ var _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(650);
-/* harmony import */ var _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(769);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(709);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(518);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(176);
+/* harmony import */ var _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(650);
+/* harmony import */ var _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(_CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_24__);
 
 
 
@@ -72182,6 +72169,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _dec, _class;
 
 /**
  * @file Backup.jsx
@@ -72199,9 +72188,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
  // React component
 
-var CreateKeypairs =
+var CreateKeypairs = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_20__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_21__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_10___default()(CreateKeypairs, _Component);
@@ -72232,26 +72223,7 @@ function (_Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.checkWallet();
-    }
-  }, {
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref = walletStatus || {},
-          nightElf = _ref.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this2 = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["CHECK_WALLET"]).send().then(function (result) {
-        _this2.turnToHomePage(result);
-      });
+      this.checkWalletInfo();
     } // 子组件要用，要么this.toggleMnemonic = this.toggleMnemonic.bind(this);
     // 要么在传递是使用箭头函数，比如: onLeftClick={() => this.toggleMnemonic()}
 
@@ -72280,7 +72252,7 @@ function (_Component) {
         return;
       }
 
-      var walletInfo = aelf_sdk__WEBPACK_IMPORTED_MODULE_20___default.a.wallet.createNewWallet(); // console.log('walletInfo: ', walletInfo);
+      var walletInfo = aelf_sdk__WEBPACK_IMPORTED_MODULE_22___default.a.wallet.createNewWallet(); // console.log('walletInfo: ', walletInfo);
 
       this.walletInfo = walletInfo;
       this.setState({
@@ -72298,7 +72270,7 @@ function (_Component) {
   }, {
     key: "insertWallet",
     value: function insertWallet() {
-      var _this3 = this;
+      var _this2 = this;
 
       var _this$walletInfo = this.walletInfo,
           address = _this$walletInfo.address,
@@ -72320,7 +72292,7 @@ function (_Component) {
       _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["INSERT_KEYPAIR"], walletInfo).send().then(function (result) {
         console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["INSERT_KEYPAIR"], result);
 
-        _this3.setState({
+        _this2.setState({
           walletStatus: result
         });
 
@@ -72331,7 +72303,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var mnemonicHtml = '';
 
@@ -72341,10 +72313,10 @@ function (_Component) {
           mnemonic: this.state.mnemonic,
           display: this.state.mnemonicDisplay,
           insertWallet: function insertWallet() {
-            return _this4.insertWallet();
+            return _this3.insertWallet();
           },
           onLeftClick: function onLeftClick() {
-            return _this4.toggleMnemonic();
+            return _this3.toggleMnemonic();
           }
         });
       }
@@ -72359,14 +72331,14 @@ function (_Component) {
         className: "aelf-input-container aelf-dash"
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "aelf-input-title"
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_21__["FormattedMessage"], {
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_23__["FormattedMessage"], {
         id: "aelf.Keypair Name"
       }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_input_item__WEBPACK_IMPORTED_MODULE_3___default.a, {
         value: this.state.name,
         type: "text",
         placeholder: "",
         onChange: function onChange(name) {
-          return _this4.setName(name);
+          return _this3.setName(name);
         },
         moneyKeyboardWrapProps: _utils_utils__WEBPACK_IMPORTED_MODULE_17__["moneyKeyboardWrapProps"]
       }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -72374,20 +72346,19 @@ function (_Component) {
           height: '50px'
         }
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_22___default.a.buttonContainer
+        className: _CreateKeypairs_scss__WEBPACK_IMPORTED_MODULE_24___default.a.buttonContainer
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_16__["default"], {
         text: "Create Keypair",
         aelficon: "add_purple20",
         onClick: function onClick() {
-          return _this4.createKeyPair();
+          return _this3.createKeyPair();
         }
       })), mnemonicHtml);
     }
   }]);
 
   return CreateKeypairs;
-}(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_11__["Component"])) || _class);
 
 
 /***/ }),
@@ -96873,6 +96844,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(176);
 /* harmony import */ var _Keypairs_scss__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(682);
 /* harmony import */ var _Keypairs_scss__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_Keypairs_scss__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(769);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(709);
 
 
 
@@ -96886,12 +96859,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _dec, _class;
 
 /**
  * @file
  * @author huangzongzhe
  * 2018.07.26
  */
+
+
 
 
 
@@ -96948,7 +96925,7 @@ function removeKeypairs(address, callback) {
 // https://mobile.ant.design/components/list-view-cn/#components-list-view-demo-basic
 
 
-var Keypairs =
+var Keypairs = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_24__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_25__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(Keypairs, _Component);
@@ -97044,29 +97021,10 @@ function (_Component) {
     };
 
     return _this;
-  }
+  } // PullToRefresh start
+
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(Keypairs, [{
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref2 = walletStatus || {},
-          nightElf = _ref2.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this2 = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["CHECK_WALLET"]).send().then(function (result) {
-        _this2.turnToHomePage(result);
-      });
-    } // PullToRefresh start
-
-  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
       if (this.state.useBodyScroll) {
@@ -97078,15 +97036,15 @@ function (_Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this3 = this;
+      var _this2 = this;
 
       var hei = this.state.height - react_dom__WEBPACK_IMPORTED_MODULE_14___default.a.findDOMNode(this.lv).offsetTop;
-      this.checkWallet();
+      this.checkWalletInfo();
       getKeypairs(function (result) {
-        _this3.rData = result;
+        _this2.rData = result;
 
-        _this3.setState({
-          dataSource: _this3.state.dataSource.cloneWithRows(_this3.rData),
+        _this2.setState({
+          dataSource: _this2.state.dataSource.cloneWithRows(_this2.rData),
           height: hei,
           refreshing: false,
           isLoading: false
@@ -97118,7 +97076,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_17__["getPageContainerStyle"])();
       pageContainerStyle.height -= 45;
@@ -97144,7 +97102,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_23___default.a.keypairButton,
         onClick: function onClick() {
-          return _this4.createKeyPairs();
+          return _this3.createKeyPairs();
         }
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
         id: "aelf.Create Keypair",
@@ -97154,7 +97112,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         className: _Keypairs_scss__WEBPACK_IMPORTED_MODULE_23___default.a.keypairButton,
         onClick: function onClick() {
-          return _this4.importKeyPairs();
+          return _this3.importKeyPairs();
         }
       }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
         id: "aelf.Import Keypair",
@@ -97173,11 +97131,11 @@ function (_Component) {
         initialListSize: NUM_ROWS,
         key: this.state.useBodyScroll ? '0' : '1',
         ref: function ref(el) {
-          return _this4.lv = el;
+          return _this3.lv = el;
         },
         dataSource: this.state.dataSource,
         renderFooter: function renderFooter() {
-          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_19__["default"])(_this4.state.isLoading, _this4.state.hasMore);
+          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_19__["default"])(_this3.state.isLoading, _this3.state.hasMore);
         },
         renderRow: this.renderRow,
         useBodyScroll: this.state.useBodyScroll,
@@ -97191,8 +97149,7 @@ function (_Component) {
   }]);
 
   return Keypairs;
-}(react__WEBPACK_IMPORTED_MODULE_13__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_13__["Component"])) || _class);
 
 
 /***/ }),
@@ -100205,6 +100162,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Permissions_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(690);
 /* harmony import */ var _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_Permissions_scss__WEBPACK_IMPORTED_MODULE_20__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(176);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(769);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(709);
 
 
 
@@ -100216,12 +100175,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _dec, _class;
 
 /**
  * @file
  * @author huangzongzhe
  * 2018.07.26
  */
+
+
 
 
 
@@ -100330,7 +100293,7 @@ function getAllPermissions(callback) {
   });
 }
 
-var Permissions =
+var Permissions = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_22__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_23__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default()(Permissions, _Component);
@@ -100389,7 +100352,7 @@ function (_Component) {
         className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.operationList
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         onClick: function onClick() {
-          return _this.getDetails(domain, address);
+          return _this.getDetails(domain, address, appName);
         }
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_21__["FormattedMessage"], {
         id: "aelf.Details",
@@ -100436,7 +100399,8 @@ function (_Component) {
     value: function getDetails(domain, address) {
       var data = JSON.stringify({
         domain: domain,
-        address: address
+        address: address,
+        appName: appName
       }); // const path = {
       //     pathname: '/permissionsDetail',
       //     state: {
@@ -100444,25 +100408,6 @@ function (_Component) {
       // };
 
       react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push("/permissionsDetail/".concat(data));
-    }
-  }, {
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref2 = walletStatus || {},
-          nightElf = _ref2.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this2 = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["CHECK_WALLET"]).send().then(function (result) {
-        _this2.turnToHomePage(result);
-      });
     } // PullToRefresh start
 
   }, {
@@ -100477,15 +100422,15 @@ function (_Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this3 = this;
+      var _this2 = this;
 
-      this.checkWallet();
+      this.checkWalletInfo();
       var hei = this.state.height - react_dom__WEBPACK_IMPORTED_MODULE_12___default.a.findDOMNode(this.lv).offsetTop;
       getAllPermissions(function (result) {
-        _this3.rData = result;
+        _this2.rData = result;
 
-        _this3.setState({
-          dataSource: _this3.state.dataSource.cloneWithRows(_this3.rData),
+        _this2.setState({
+          dataSource: _this2.state.dataSource.cloneWithRows(_this2.rData),
           height: hei,
           refreshing: false,
           isLoading: false
@@ -100548,7 +100493,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_15__["getPageContainerStyle"])();
       pageContainerStyle.height -= 45;
@@ -100577,11 +100522,11 @@ function (_Component) {
         initialListSize: NUM_ROWS,
         key: this.state.useBodyScroll ? '0' : '1',
         ref: function ref(el) {
-          return _this4.lv = el;
+          return _this3.lv = el;
         },
         dataSource: this.state.dataSource,
         renderFooter: function renderFooter() {
-          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_17__["default"])(_this4.state.isLoading, _this4.state.hasMore);
+          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_17__["default"])(_this3.state.isLoading, _this3.state.hasMore);
         },
         renderRow: this.renderRow,
         useBodyScroll: this.state.useBodyScroll,
@@ -100595,8 +100540,7 @@ function (_Component) {
   }]);
 
   return Permissions;
-}(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_11__["Component"])) || _class);
 
 
 /***/ }),
@@ -101028,15 +100972,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(488);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(496);
-/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(518);
-/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(176);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(769);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(709);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(518);
+/* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(176);
 
 
 
 
 
 
+
+
+
+
+var _dec, _class;
 
 
 
@@ -101062,7 +101013,7 @@ var tabs = [// { title: '助记词' },
   title: 'private'
 }]; // React component
 
-var Import =
+var Import = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_21__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_22__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(Import, _Component);
@@ -101091,31 +101042,12 @@ function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(Import, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.checkWallet();
-    }
-  }, {
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref = walletStatus || {},
-          nightElf = _ref.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this2 = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["CHECK_WALLET"]).send().then(function (result) {
-        _this2.turnToHomePage(result);
-      });
+      this.checkWalletInfo();
     }
   }, {
     key: "createAndGO",
     value: function createAndGO() {
-      var _this3 = this;
+      var _this2 = this;
 
       // let password = this.state.password;
       // if (!password) {
@@ -101134,8 +101066,8 @@ function (_Component) {
         return;
       }
 
-      var mnemonicWallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_21___default.a.wallet.getWalletByMnemonic(this.state.mnemonic.trim() || '');
-      var privateKeyWallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_21___default.a.wallet.getWalletByPrivateKey(this.state.privateKey.trim() || ''); // if (!privateKeyWallet && !mnemonicWallet) {
+      var mnemonicWallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_23___default.a.wallet.getWalletByMnemonic(this.state.mnemonic.trim() || '');
+      var privateKeyWallet = aelf_sdk__WEBPACK_IMPORTED_MODULE_23___default.a.wallet.getWalletByPrivateKey(this.state.privateKey.trim() || ''); // if (!privateKeyWallet && !mnemonicWallet) {
 
       if (!mnemonicWallet) {
         this.setState({
@@ -101181,11 +101113,11 @@ function (_Component) {
         // Users may import multiple times with a private key or mnemonic
         if (result || result.error === 0) {
           if (JSON.stringify(result.keypairs).indexOf(JSON.stringify(setWalletInfo.address)) === -1) {
-            _this3.insertKeypair(setWalletInfo);
+            _this2.insertKeypair(setWalletInfo);
           } else {
             _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_20__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__["REMOVE_KEYPAIR"], setWalletInfo.address).send().then(function (result) {
               if (result || result.error === 0) {
-                _this3.insertKeypair(setWalletInfo);
+                _this2.insertKeypair(setWalletInfo);
               } else {
                 antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.fail(result.message, 3, function () {}, false);
               }
@@ -101251,7 +101183,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var createButtonText = 'Submit';
       var createButton = react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -101266,7 +101198,7 @@ function (_Component) {
         createButton = react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
           text: createButtonText,
           onClick: function onClick() {
-            return _this4.createAndGO();
+            return _this3.createAndGO();
           },
           style: {
             margin: '0 0 20px 0'
@@ -101291,9 +101223,9 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
         className: this.state.tabNClass,
         onClick: function onClick() {
-          return _this4.tabClickN();
+          return _this3.tabClickN();
         }
-      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_24__["FormattedMessage"], {
         id: "aelf.Mnemonic",
         defaultMessage: "Mnemonic"
       })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
@@ -101301,9 +101233,9 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
         className: this.state.tabPClass,
         onClick: function onClick() {
-          return _this4.tabClickP();
+          return _this3.tabClickP();
         }
-      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_24__["FormattedMessage"], {
         id: "aelf.Private Key",
         defaultMessage: "Private Key"
       })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
@@ -101316,7 +101248,7 @@ function (_Component) {
         rows: "6",
         value: this.state.mnemonic,
         onChange: function onChange(mnemonic) {
-          return _this4.inputMnemonic(mnemonic);
+          return _this3.inputMnemonic(mnemonic);
         } // placeholder="此处填写助记词, 用空格分隔"
         ,
         className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textarea
@@ -101328,18 +101260,18 @@ function (_Component) {
         rows: "6",
         value: this.state.privateKey,
         onChange: function onChange(privateKey) {
-          return _this4.inputPrivateKey(privateKey);
+          return _this3.inputPrivateKey(privateKey);
         } // placeholder="此处填写私钥"
         ,
         className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.textarea
       })))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("p", {
         className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.title
-      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_22__["FormattedMessage"], {
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_24__["FormattedMessage"], {
         id: "aelf.hint03",
         defaultMessage: "In this wallet, there is no Mnemonic when import Private Key. But we can get Private Key when we import Mnemonic."
       })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_WalletName_WalletName__WEBPACK_IMPORTED_MODULE_16__["default"], {
         setWalletName: function setWalletName(walletName) {
-          return _this4.setWalletName(walletName);
+          return _this3.setWalletName(walletName);
         }
       }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd_mobile_lib_white_space__WEBPACK_IMPORTED_MODULE_1___default.a, null)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
         className: _Import_scss__WEBPACK_IMPORTED_MODULE_12___default.a.bottom
@@ -101348,8 +101280,7 @@ function (_Component) {
   }]);
 
   return Import;
-}(react__WEBPACK_IMPORTED_MODULE_9__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_9__["Component"])) || _class);
 
 
 /***/ }),
@@ -101667,8 +101598,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(176);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(496);
-/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(305);
-/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(769);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(709);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(305);
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_24__);
 
 
 
@@ -101679,6 +101612,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _dec, _class;
 
 /**
  * @file BackupKeypairs.js
@@ -101697,11 +101632,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var prompt = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_9___default.a.prompt;
 
 function getSeed(password) {
   if (password) {
-    var hmac = Object(crypto__WEBPACK_IMPORTED_MODULE_22__["createHmac"])('sha512', password);
+    var hmac = Object(crypto__WEBPACK_IMPORTED_MODULE_24__["createHmac"])('sha512', password);
     var seed = hmac.update(password).digest('hex');
     return seed;
   }
@@ -101712,7 +101649,7 @@ function getSeed(password) {
 } // React component
 
 
-var BackupKeypairs =
+var BackupKeypairs = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_22__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_23__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(BackupKeypairs, _Component);
@@ -101748,28 +101685,9 @@ function (_Component) {
       this.setState(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, key, true));
     }
   }, {
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref = walletStatus || {},
-          nightElf = _ref.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_11__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this2 = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["CHECK_WALLET"]).send().then(function (result) {
-        _this2.turnToHomePage(result);
-      });
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.checkWallet();
+      this.checkWalletInfo();
       var containerStyle = Object(_utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_15__["default"])();
       this.setState({
         containerStyle: containerStyle
@@ -101808,7 +101726,7 @@ function (_Component) {
   }, {
     key: "getPrivateKeyAndMnemonic",
     value: function getPrivateKeyAndMnemonic() {
-      var _this3 = this;
+      var _this2 = this;
 
       var password = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
       var type = arguments.length > 1 ? arguments[1] : undefined;
@@ -101826,15 +101744,15 @@ function (_Component) {
                 result.keypairs.map(function (item) {
                   if (item.address === address) {
                     if (type === 'Mnemonic') {
-                      _this3.setState({
+                      _this2.setState({
                         mnemonic: item.mnemonic,
-                        mnemonicDisplay: !_this3.state.mnemonicDisplay,
+                        mnemonicDisplay: !_this2.state.mnemonicDisplay,
                         isVerification: true
                       });
                     } else {
-                      _this3.setState({
+                      _this2.setState({
                         privateKey: item.privateKey,
-                        privateKeyModal: !_this3.state.privateKeyModal,
+                        privateKeyModal: !_this2.state.privateKeyModal,
                         isVerification: true
                       });
                     }
@@ -101843,7 +101761,7 @@ function (_Component) {
               }
             });
           } else {
-            _this3.setState({
+            _this2.setState({
               isVerification: false
             });
 
@@ -101893,7 +101811,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var _this$state = this.state,
           containerStyle = _this$state.containerStyle,
@@ -101906,7 +101824,7 @@ function (_Component) {
           mnemonic: this.state.mnemonic,
           display: this.state.mnemonicDisplay,
           onLeftClick: function onLeftClick() {
-            return _this4.toggleMnemonic();
+            return _this3.toggleMnemonic();
           },
           containerStyle: containerStyle
         });
@@ -101918,7 +101836,7 @@ function (_Component) {
         className: "aelf-bg-light"
       }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
         onLeftClick: function onLeftClick() {
-          return _this4.goNextPage();
+          return _this3.goNextPage();
         }
       }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
         className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.container,
@@ -101964,7 +101882,7 @@ function (_Component) {
           }, {
             text: 'Submit',
             onPress: function onPress(password) {
-              _this4.getPrivateKeyAndMnemonic(password, 'Mnemonic');
+              _this3.getPrivateKeyAndMnemonic(password, 'Mnemonic');
             }
           }], 'secure-text');
         } // onClick={(e) => prompt(
@@ -101995,7 +101913,7 @@ function (_Component) {
           }, {
             text: 'Submit',
             onPress: function onPress(password) {
-              _this4.getPrivateKeyAndMnemonic(password, 'privateKey');
+              _this3.getPrivateKeyAndMnemonic(password, 'privateKey');
             }
           }], 'secure-text');
         }
@@ -102003,7 +101921,7 @@ function (_Component) {
         popup: true,
         visible: this.state.privateKeyModal,
         onClose: function onClose() {
-          return _this4.onClose('privateKeyModal');
+          return _this3.onClose('privateKeyModal');
         },
         animationType: "slide-up"
       }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
@@ -102033,7 +101951,7 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
         className: _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannelBtnPurple + ' ' + _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default.a.pannerlBtnGrey,
         onClick: function onClick() {
-          return _this4.onClose('privateKeyModal');
+          return _this3.onClose('privateKeyModal');
         }
       }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_19__["FormattedMessage"], {
         id: "aelf.Close",
@@ -102049,8 +101967,7 @@ function (_Component) {
   }]);
 
   return BackupKeypairs;
-}(react__WEBPACK_IMPORTED_MODULE_10__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_10__["Component"])) || _class);
 
 
 /***/ }),
@@ -102517,7 +102434,55 @@ exports.locals = {
 };
 
 /***/ }),
-/* 708 */
+/* 708 */,
+/* 709 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(495);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(496);
+/* harmony import */ var _turnToPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(710);
+/**
+ * @file checkWallet.js
+ * @author zhouminghui
+*/
+
+
+
+var checkWallet = {
+  checkWalletInfo: function checkWalletInfo() {
+    _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_1__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_0__["CHECK_WALLET"]).send().then(function (result) {
+      Object(_turnToPage__WEBPACK_IMPORTED_MODULE_2__["default"])(result);
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (checkWallet);
+
+/***/ }),
+/* 710 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return turnToPage; });
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(115);
+/**
+ * @file turnToPage()
+ * @author zhouminghui
+*/
+
+function turnToPage(walletStatus) {
+  var _ref = walletStatus || {},
+      nightElf = _ref.nightElf;
+
+  if (!nightElf) {
+    react_router__WEBPACK_IMPORTED_MODULE_0__["hashHistory"].push('/');
+  }
+}
+
+/***/ }),
+/* 711 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102540,14 +102505,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(115);
-/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(709);
+/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(712);
 /* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(505);
 /* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(488);
 /* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(517);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(496);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(176);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(769);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(709);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(176);
 
 
 
@@ -102555,6 +102522,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _dec, _class;
 
 /**
  * @file BackupExtension.js
@@ -102568,11 +102537,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
  // import aelf from 'aelf-sdk';
 
 var Item = antd_mobile_lib_list__WEBPACK_IMPORTED_MODULE_6___default.a.Item;
-
-var ExtensionManager =
+var ExtensionManager = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_15__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_16__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(ExtensionManager, _Component);
@@ -102586,26 +102556,7 @@ function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ExtensionManager, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.checkWallet();
-    }
-  }, {
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref = walletStatus || {},
-          nightElf = _ref.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__["CHECK_WALLET"]).send().then(function (result) {
-        _this.turnToHomePage(result);
-      });
+      this.checkWalletInfo();
     }
   }, {
     key: "render",
@@ -102624,7 +102575,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "wallet16",
-        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
           id: "aelf.Backup NightELF",
           defaultMessage: "Backup NightELF"
         })
@@ -102636,7 +102587,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "tx_history16",
-        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
           id: "aelf.Delete NightELF",
           defaultMessage: "Delete NightELF"
         })
@@ -102648,7 +102599,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "about16",
-        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_15__["FormattedMessage"], {
+        text: react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_17__["FormattedMessage"], {
           id: "aelf.Timer Locks",
           defaultMessage: "Timer Locks"
         })
@@ -102657,16 +102608,15 @@ function (_Component) {
   }]);
 
   return ExtensionManager;
-}(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_7__["Component"])) || _class);
 
 
 /***/ }),
-/* 709 */
+/* 712 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(710);
+var content = __webpack_require__(713);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -102687,7 +102637,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 710 */
+/* 713 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -102704,7 +102654,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 711 */
+/* 714 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102743,7 +102693,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_17__);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(496);
-/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(712);
+/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(715);
 /* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__);
 
 
@@ -102947,11 +102897,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 712 */
+/* 715 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(713);
+var content = __webpack_require__(716);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -102972,7 +102922,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 713 */
+/* 716 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -103000,7 +102950,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 714 */
+/* 717 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103040,10 +102990,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(495);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(496);
 /* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(681);
-/* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(715);
+/* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(718);
 /* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(717);
-/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(769);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(709);
+/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(720);
+/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_24__);
 
 
 
@@ -103055,11 +103007,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _dec, _class;
 
 /**
  * @file PermissionsDetail.js
  * @author zhouminghui
 */
+
+
 
 
 
@@ -103099,7 +103055,7 @@ function removeContract(contractAddress, domain, callback) {
   });
 }
 
-function removeWhiteContarct(contractAddress, methods, domain, callback) {
+function removeWhitelist(contractAddress, methods, domain, callback) {
   _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["CHECK_WALLET"]).send().then(function (result) {
     var _ref2 = result || {},
         nightElf = _ref2.nightElf;
@@ -103123,7 +103079,7 @@ function removeWhiteContarct(contractAddress, methods, domain, callback) {
   });
 }
 
-var PermissionsDetail =
+var PermissionsDetail = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_22__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_23__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(PermissionsDetail, _Component);
@@ -103137,6 +103093,7 @@ function (_Component) {
     var data = JSON.parse(_this.props.params.data);
     _this.domain = data.domain;
     _this.address = data.address;
+    _this.appName = data.appName;
     var dataSource = new antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_3___default.a.DataSource({
       rowHasChanged: function rowHasChanged(row1, row2) {
         return row1 !== row2;
@@ -103218,7 +103175,7 @@ function (_Component) {
             }, {
               text: 'Ok',
               onPress: function onPress() {
-                return removeWhiteContarct(contractAddress, item, _this.domain, function () {
+                return removeWhitelist(contractAddress, item, _this.domain, function () {
                   _this.getPermissions(function (result) {
                     _this.rData = result[0].contracts;
 
@@ -103244,7 +103201,7 @@ function (_Component) {
       var _this2 = this;
 
       var hei = this.state.height - react_dom__WEBPACK_IMPORTED_MODULE_12___default.a.findDOMNode(this.lv).offsetTop;
-      this.checkWallet();
+      this.checkWalletInfo();
       this.getPermissions(function (result) {
         _this2.rData = result[0].contracts;
 
@@ -103263,7 +103220,7 @@ function (_Component) {
       var _this3 = this;
 
       var queryInfo = {
-        appname: 'hzzTest',
+        appname: this.appName,
         hostname: this.domain,
         type: 'domain'
       };
@@ -103364,16 +103321,15 @@ function (_Component) {
   }]);
 
   return PermissionsDetail;
-}(react__WEBPACK_IMPORTED_MODULE_11__["Component"]);
-
+}(react__WEBPACK_IMPORTED_MODULE_11__["Component"])) || _class);
 
 
 /***/ }),
-/* 715 */
+/* 718 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(716);
+var content = __webpack_require__(719);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -103394,7 +103350,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 716 */
+/* 719 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(512);
@@ -103443,11 +103399,11 @@ exports.locals = {
 };
 
 /***/ }),
-/* 717 */
+/* 720 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(718);
+var content = __webpack_require__(721);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -103468,7 +103424,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 718 */
+/* 721 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -103480,6 +103436,75 @@ exports.push([module.i, ".am-list-body {\n    background: transparent;\n}", ""])
 
 // exports
 
+
+/***/ }),
+/* 722 */,
+/* 723 */,
+/* 724 */,
+/* 725 */,
+/* 726 */,
+/* 727 */,
+/* 728 */,
+/* 729 */,
+/* 730 */,
+/* 731 */,
+/* 732 */,
+/* 733 */,
+/* 734 */,
+/* 735 */,
+/* 736 */,
+/* 737 */,
+/* 738 */,
+/* 739 */,
+/* 740 */,
+/* 741 */,
+/* 742 */,
+/* 743 */,
+/* 744 */,
+/* 745 */,
+/* 746 */,
+/* 747 */,
+/* 748 */,
+/* 749 */,
+/* 750 */,
+/* 751 */,
+/* 752 */,
+/* 753 */,
+/* 754 */,
+/* 755 */,
+/* 756 */,
+/* 757 */,
+/* 758 */,
+/* 759 */,
+/* 760 */,
+/* 761 */,
+/* 762 */,
+/* 763 */,
+/* 764 */,
+/* 765 */,
+/* 766 */,
+/* 767 */,
+/* 768 */,
+/* 769 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return insert; });
+/**
+ * @file insert
+ * @author zhouminghui
+ * 向类中插入某方法
+*/
+function insert() {
+  for (var _len = arguments.length, list = new Array(_len), _key = 0; _key < _len; _key++) {
+    list[_key] = arguments[_key];
+  }
+
+  return function (target) {
+    Object.assign.apply(Object, [target.prototype].concat(list));
+  };
+}
 
 /***/ })
 /******/ ]);

@@ -20,12 +20,15 @@ import AelfButton from '../../../components/Button/Button';
 import {moneyKeyboardWrapProps} from '../../../utils/utils';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 
 import aelf from 'aelf-sdk';
 import {FormattedMessage} from 'react-intl';
 import style from './CreateKeypairs.scss';
 // React component
 
+@insert(checkWallet)
 export default class CreateKeypairs extends Component {
     constructor() {
         super();
@@ -44,22 +47,7 @@ export default class CreateKeypairs extends Component {
     }
 
     componentDidMount() {
-        this.checkWallet();
-    }
-
-    turnToHomePage(walletStatus) {
-        const {
-            nightElf
-        } = walletStatus || {};
-        if (!nightElf) {
-            hashHistory.push('/');
-        }
-    }
-
-    checkWallet() {
-        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            this.turnToHomePage(result);
-        });
+        this.checkWalletInfo();
     }
 
     // 子组件要用，要么this.toggleMnemonic = this.toggleMnemonic.bind(this);

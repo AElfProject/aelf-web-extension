@@ -36,7 +36,7 @@ ReactDOM.render(
             <Router history={hashHistory}>
                 <Route path="/" component={Permission}></Route>
                 <Route path="/prompt" component={Prompt}></Route>
-                <Route path="/loginKeypairs" component={LoginKeypairs}></Route>
+                <Route path="/loginkeypairs" component={LoginKeypairs}></Route>
                 <Route path='/confirmation' component={ConfirmationCall}></Route>
             </Router>
         </LocaleProvider>

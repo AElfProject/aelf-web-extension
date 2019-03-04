@@ -24,13 +24,14 @@ import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 import {FormattedMessage} from 'react-intl';
 import style from './Keypairs.scss';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 require('./Keypairs.css');
 
 const alert = Modal.alert;
 
 const NUM_ROWS = 9999;
 const pageSize = 9999;
-
 function getKeypairs(callback) {
     InternalMessage.payload(InternalMessageTypes.GET_KEYPAIR).send().then(result => {
         if (result.error === 0 && result.keypairs) {
@@ -72,6 +73,7 @@ function removeKeypairs(address, callback) {
 // React component
 // TODO, 这里以后考虑使用ListView
 // https://mobile.ant.design/components/list-view-cn/#components-list-view-demo-basic
+@insert(checkWallet)
 export default class Keypairs extends Component {
     constructor(props) {
         super(props);
@@ -165,21 +167,6 @@ export default class Keypairs extends Component {
         };
     }
 
-    turnToHomePage(walletStatus) {
-        const {
-            nightElf
-        } = walletStatus || {};
-        if (!nightElf) {
-            hashHistory.push('/');
-        }
-    }
-
-    checkWallet() {
-        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            this.turnToHomePage(result);
-        });
-    }
-
     // PullToRefresh start
     componentDidUpdate() {
         if (this.state.useBodyScroll) {
@@ -193,7 +180,7 @@ export default class Keypairs extends Component {
 
     componentDidMount() {
         const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
-        this.checkWallet();
+        this.checkWalletInfo();
         getKeypairs(result => {
             this.rData = result;
 
