@@ -21,7 +21,7 @@ const en_US = {
     'aelf.Unlock Wallet': 'Unlock Wallet',
     'aelf.Keypair Name': 'Keypair Name',
     'aelf.Extend Management': 'Extend Management',
-    'aelf.Key Pairs Management': 'Key Pairs Management',
+    'aelf.Key Pairs': 'Key Pairs',
     'aelf.Application Management': 'Application Management',
     'aelf.Receive': 'Receive',
     'aelf.Home': 'Home',
@@ -172,7 +172,12 @@ const en_US = {
     'aelf.Timing Lock Settings': 'Timing Lock Settings',
     'aelf.Application': 'Application',
     'aelf.Login': 'Login',
-    'aelf.Details': 'Details'
+    'aelf.Details': 'Details',
+    'aelf.Submit Backup': 'Submit Backup',
+    'aelf.Manage': 'Manage',
+    'aelf.Delete': 'Delete',
+    'aelf.Copy Address': 'Copy Address',
+    'aelf.Please select the timing lock-in time:': 'Please select the timing lock-in time:'
 };
 
 export default en_US;

@@ -47,13 +47,15 @@ export default class Lock extends Component {
         this.state = {
             password: '',
             walletStatus: false,
-            timingLockTimes: [0],
-            agreement: false
+            timingLockTimes: 0,
+            agreement: false,
+            showOption: false
         };
         const action = getParam('action', location.href);
         const isClear = action === 'clear_wallet';
         const isBackup = action === 'backup_wallet';
         const isTimingLock = action === 'timing_lock';
+        this.marginStyle = {marginTop: '170px'};
         this.isClear = isClear;
         this.isBackup = isBackup;
         this.isTimingLock = isTimingLock;
@@ -248,8 +250,6 @@ export default class Lock extends Component {
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     // >         Timing  lock          >
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    
-
 
     getLockTime(value) {
         console.log(value);
@@ -260,7 +260,7 @@ export default class Lock extends Component {
 
     getTimingLock() {
         const {timingLockTimes} = this.state;
-        let time = timingLockTimes[0];
+        let time = timingLockTimes;
         InternalMessage.payload(InternalMessageTypes.GET_TIMING_LOCK, time).send().then(result => {
             console.log(InternalMessageTypes.GET_TIMING_LOCK, time, result);
             if (result.error !== 0) {
@@ -275,8 +275,12 @@ export default class Lock extends Component {
     checkTime() {
         InternalMessage.payload(InternalMessageTypes.CHECK_INACTIVITY_INTERVAL).send().then(result => {
             if (result) {
+                const lockTime = result.result.inactivityInterval;
+                const timingLockTimes = this.timingLockData.filter(item => {
+                    return item.value === lockTime;
+                });
                 this.setState({
-                    timingLockTimes: [result.result.inactivityInterval]
+                    timingLockTimes: timingLockTimes[0].value
                 });
             }
         });
@@ -293,6 +297,13 @@ export default class Lock extends Component {
         else {
             Toast.fail('Please re-enter your password and confirm it.', 3, () => {}, false);
         }
+    }
+
+    showOption() {
+        const {showOption} = this.state;
+        this.setState({
+            showOption: !showOption
+        });
     }
 
     // if there is no wallet in browser.storage [chrome.storage]
@@ -312,8 +323,9 @@ export default class Lock extends Component {
                 >
                 </AelfButton>
                 <AelfButton
+                    type='transparent'
                     text='Load From Backup'
-                    aelficon='add_purple20'
+                    aelficon='in20'
                     onClick={() => this.loadFromBackup()}>
                 </AelfButton>
             </div>
@@ -321,7 +333,7 @@ export default class Lock extends Component {
     }
 
     renderClear() {
-        return <div>
+        return <div style={this.marginStyle}>
             <div className="aelf-input-container aelf-dash">
                 <List>
                     <div className="aelf-input-title">
@@ -354,7 +366,7 @@ export default class Lock extends Component {
         } = this.state.walletStatus || {};
 
         if (this.state.walletStatus && nightElfEncrypto && !nightElf) {
-            return <div>
+            return <div style={this.marginStyle}>
                 <div className="aelf-input-container aelf-dash">
                     <List>
                         <div className="aelf-input-title">
@@ -387,7 +399,7 @@ export default class Lock extends Component {
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     renderBackup() {
-        return <div>
+        return <div style={this.marginStyle}>
             <div className="aelf-input-container aelf-dash">
                 <List>
                     <div className="aelf-input-title">
@@ -419,24 +431,33 @@ export default class Lock extends Component {
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     renderTimingLock() {
+        const {showOption} = this.state;
+        let renderOption = '';
+        if (showOption) {
+            renderOption = this.renderOption();
+        }
+        else {
+            renderOption = <div></div>;
+        }
+        const obj = this.timingLockData.filter(item => {
+            return this.state.timingLockTimes === item.value;
+        });
         return <div>
             <div className="aelf-input-container aelf-dash">
-                <List>
-                    <Picker
-                        data={this.timingLockData}
-                        cols={1}
-                        onChange={e => this.getLockTime(e)}
-                        value={this.state.timingLockTimes}
-                    >
-                        <List.Item arrow='horizontal' >
-                            <FormattedMessage
-                                id='aelf.Timing Lock Settings'
-                            />>
-                        </List.Item>
-                    </Picker>
-                </List>
+                <div className={style.lockTip}>
+                    <FormattedMessage
+                        id='aelf.Please select the timing lock-in time:'
+                    />
+                </div>
+                <div className={style.timeLock} onClick={() => this.showOption()}>
+                    <div className={style.label}>
+                        {obj[0].label}
+                    </div>
+                    <div className={style.uselessTriangle}>▼</div>
+                    {renderOption}
+                </div>
             </div>
-            <div className={style.bottom}>
+            <div className={style.bottom} style={{marginTop: '170px'}}>
                 <div className='aelf-blank12'></div>
                 <AelfButton
                     text='Commit'
@@ -445,6 +466,18 @@ export default class Lock extends Component {
                 </AelfButton>
             </div>
         </div>;
+    }
+
+    renderOption() {
+        const options = this.timingLockData. map(item => {
+            return <div
+                key={item.value}
+                className={style.option}
+                onClick={() => this.getLockTime(item.value)}
+            >{item.label}</div>;
+        });
+
+        return <div className={style.select}>{options}</div>;
     }
 
     renderTestButtons() {
@@ -456,35 +489,68 @@ export default class Lock extends Component {
         </div>;
     }
 
+    renderAgreementContent() {
+        return <div className={style.agreementContent}>
+                    <p style={{textAlign: 'center'}}>这个就是协议了</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                </div>;
+    }
+
     renderAgreement() {
-        let titleText = 'Agreement';
+        const btnStyle = {
+            height: '32px',
+            lineHeight: '32px'
+        };
+        const agreementContent = this.renderAgreementContent();
         return <div>
                     <div className={style.top}>
-                        <div className={style.blank}></div>
-                        <p className={style.welcome}>{titleText}</p>
-                        <p className={style.wallet}>Night ELF</p>
-                        <p className={style.agreementContent}>
-                            balabalabalabalabalabalabalabalabalabalabalabalabalabalabala
-                        </p>
-                        <p className={style.agreementContent}>
-                            balabalabalabalabalabalabalabalabalabalabalabalabalabalabala
-                        </p>
-                        <p className={style.agreementContent}>
-                            balabalabalabalabalabalabalabalabalabalabalabalabalabalabala
-                        </p>
-                        <div className={style.bottom}>
-                            <div className='aelf-blank12'></div>
-                            <AelfButton
-                                text='Agree'
-                                aelficon='add_purple20'
-                                onClick={() => this.createWallet()}>
-                            </AelfButton>
-                            <div className='aelf-blank12'></div>
-                            <AelfButton
-                                text='Refuse'
-                                aelficon='add_purple20'
-                                onClick={() => this.setState({agreement: false})}>
-                            </AelfButton>
+                        <p className={style.walletAgree}>NIGHT ELF</p>
+                        <div className={style.agreementBox}>
+                            <div className={style.agreementHead}></div>
+                            {agreementContent}
+                        </div>
+                        <div className={style.bottom}
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                width: '100%',
+                                margin: '20px 0 0 0'
+                            }}>
+                            <div style={{width: '48%'}} >
+                                <AelfButton
+                                style={btnStyle}
+                                    text='Agree'
+                                    onClick={() => this.createWallet()}>
+                                </AelfButton>
+                            </div>
+                            <div style={{width: '48%'}} >
+                                <AelfButton
+                                    type='transparent'
+                                    style={btnStyle}
+                                    text='Refuse'
+                                    onClick={() => this.setState({agreement: false})}>
+                                </AelfButton>
+                            </div>
                         </div>
                         {/* <p className={style.description}>offcial</p> */}
                     </div>
@@ -497,6 +563,9 @@ export default class Lock extends Component {
         let buttonHTML = '';
         let navHTML = '';
         let bodyHTML = '';
+        let margin = {
+            marginTop: '62px'
+        };
         const walletStatus = this.state.walletStatus;
         const {
             nightElfEncrypto,
@@ -517,6 +586,7 @@ export default class Lock extends Component {
                 else if (this.isClear) {
                     buttonHTML = this.renderClear();
                     titleText = 'Delete';
+                    margin.marginTop = '17px';
                     navHTML = <NavNormal
                             onLeftClick={() => this.backClick()}
                         ></NavNormal>;
@@ -524,6 +594,7 @@ export default class Lock extends Component {
                 else if (this.isBackup) {
                     buttonHTML = this.renderBackup();
                     titleText = 'Backup';
+                    margin.marginTop = '17px';
                     navHTML = <NavNormal
                             onLeftClick={() => this.backClick()}
                         ></NavNormal>;
@@ -531,6 +602,7 @@ export default class Lock extends Component {
                 else if (this.isTimingLock) {
                     buttonHTML = this.renderTimingLock();
                     titleText = 'Timing Lock';
+                    margin.marginTop = '17px';
                     navHTML = <NavNormal
                             onLeftClick={() => this.backClick()}
                         ></NavNormal>;
@@ -546,9 +618,8 @@ export default class Lock extends Component {
             bodyHTML = <div>
                             {navHTML}
                             <div className={style.top}>
-                                <div className={style.blank}></div>
-                                <p className={style.welcome}>{titleText}</p>
-                                <p className={style.wallet}>Night ELF</p>
+                                <p className={style.welcome} style={margin}>{titleText}</p>
+                                <p className={style.wallet}>NIGHT ELF</p>
                                 {/* <p className={style.description}>offcial</p> */}
                             </div>
                             {buttonHTML}

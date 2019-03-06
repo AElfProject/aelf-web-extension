@@ -19,6 +19,7 @@ import {
     addressOmit
 } from '../../../utils/utils';
 import NavNormal from '../../../components/NavNormal/NavNormal';
+import AelfButton from '../../../components/Button/Button';
 import ScrollFooter from '../../../components/ScrollFooter/ScrollFooter';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
@@ -102,45 +103,43 @@ export default class Keypairs extends Component {
                 <div key={rowID}
                     className={style.txList}
                 >
-                    <div className={style.txListMask}></div>
+                    {/* <div className={style.txListMask}></div> */}
                     {/* <div className={style.keypairsNickname}>{item.name}</div> */}
 
                     <div className={style.operationContainer}>
                         <div className={style.operationList}>
                             {item.name}
-                            <div
-                                className = {
-                                    style.keypairBtnContainer + ' ' + style.copyBtn
-                                }
-                                onClick={() => {
-                                    let btn = document.getElementById(clipboardID);
-                                    btn.click();
-                                }}
-                            ></div>
-
-                            <button id={clipboardID}
-                                    data-clipboard-target={`#${keypairAddressText}`}
-                                    className={style.textarea}>copy
-                            </button>
-                            <input id={keypairAddressText}
-                                type="text"
-                                className={style.textarea}
-                                value={address}
-                                readOnly
-                            />
                         </div>
-                        <div className={style.backup} onClick={() => this.backupKeyPairs(address)}>
-                            <FormattedMessage
-                                id = 'aelf.Backup'
-                                defaultMessage = 'Backup'
-                            />
-                        </div>
-                        <div className={style.operationList}>
-                            <div
-                                className = {
-                                    style.keypairBtnContainer + ' ' + style.removeBtn
-                                }
-                                onClick={() =>
+                        <div className={style.buttonManage}>
+                            <div className={style.button}>
+                                <div
+                                    onClick={() => {
+                                        let btn = document.getElementById(clipboardID);
+                                        btn.click();
+                                    }}
+                                >
+                                    <FormattedMessage
+                                        id='aelf.Copy Address'
+                                    />
+                                </div>
+                                <button id={clipboardID}
+                                        data-clipboard-target={`#${keypairAddressText}`}
+                                        className={style.textarea}>copy
+                                </button>
+                                <input id={keypairAddressText}
+                                    type="text"
+                                    className={style.textarea}
+                                    value={address}
+                                    readOnly
+                                />
+                            </div>
+                            <div className={style.button} onClick={() => this.backupKeyPairs(address)}>
+                                <FormattedMessage
+                                    id = 'aelf.Backup'
+                                    defaultMessage = 'Backup'
+                                />
+                            </div>
+                            <div className={style.button} onClick={() =>
                                     alert('Delete Keypairs', 'Are you sure???',
                                     [
                                         {
@@ -156,9 +155,11 @@ export default class Keypairs extends Component {
                                                 });
                                             })
                                         }
-                                    ])
-                                }
-                            ></div>
+                                    ])}>
+                                    <FormattedMessage
+                                        id='aelf.Delete'
+                                    />
+                            </div>
                         </div>
                     </div>
                     <div className={style.keypairsAddress}>{address}</div>
@@ -213,47 +214,48 @@ export default class Keypairs extends Component {
 
     render() {
         let pageContainerStyle = getPageContainerStyle();
-        pageContainerStyle.height -= 45;
+        pageContainerStyle.height -= 200;
         let backgroundStyle = Object.assign({}, pageContainerStyle);
         // backgroundStyle.height -= 14; // remove padding 7px * 2
         let containerStyle = Object.assign({}, backgroundStyle);
+        const btnStyle = {
+            height: '32px',
+            lineHeight: '32px'
+        };
         // containerStyle.height -= 2; // remove border 2px
         return (
             <div style={pageContainerStyle} className='asstes-container'>
                 <NavNormal
                     onLeftClick={() => historyPush('/home')}
                 ></NavNormal>
-                {/* <button onClick={() => this.createKeyPairs()}>createKeyPairs</button>
-                <button onClick={() => this.createKeyPairs()}>backupKeyPairs</button> */}
-                <Flex justify='center' align='center' style={{margin: '0 22px'}} >
-                    <Flex.Item align='center'>
-                        <div
-                            className={style.keypairButton}
-                            onClick={() => this.createKeyPairs()}
-                        >
-                            <FormattedMessage
-                                id = 'aelf.Create Keypair'
-                                defaultMessage = 'Create Keypairs'
-                            />
-                        </div>
-                    </Flex.Item>
-                    <Flex.Item align='center'>
-                    <div
-                            className={style.keypairButton}
-                            onClick={() => this.importKeyPairs()}
-                        >
-                            <FormattedMessage
-                                id = 'aelf.Import Keypair'
-                                defaultMessage = 'Import Keypairs'
-                            />
-                        </div>
-                    </Flex.Item>
-                </Flex>
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Key Pairs'
+                        />
+                    </p>
+                </div>
+                <div className={style.functionButton}>
+                    <div style={{width: '45%'}} >
+                        <AelfButton
+                        style={btnStyle}
+                            text='Create Keypair'
+                            onClick={() => this.createKeyPairs()}>
+                        </AelfButton>
+                    </div>
+                    <div style={{width: '45%'}} >
+                        <AelfButton
+                            type='transparent'
+                            style={btnStyle}
+                            text='Import Keypair'
+                            onClick={() => this.importKeyPairs()}>
+                        </AelfButton>
+                    </div>
+                </div>
                 <div className={style.background} style={backgroundStyle}>
-                    <div className={style.backgroundMask}></div>
-                    <div className={style.container} style={containerStyle}>
-
-
+                    {/* <div className={style.backgroundMask}></div> */}
+                    {/* <div className={style.container} style={containerStyle}> */}
                         <div className={style.transactionList}>
                             <ListView
                                 initialListSize={NUM_ROWS}
@@ -273,7 +275,7 @@ export default class Keypairs extends Component {
                             />
                         </div>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         );
     }

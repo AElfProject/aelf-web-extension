@@ -205,8 +205,8 @@ document.addEventListener('NightElf', result => {
         });
     };
 
-    const setWhiteList = document.getElementById('set-whitelist');
-    setWhiteList.onclick = function () {
+    const setWhitelist = document.getElementById('set-whitelist');
+    setWhitelist.onclick = function () {
         NightElf.api({
             appName: 'hzzTest',
             method: 'SET_WHITELIST',

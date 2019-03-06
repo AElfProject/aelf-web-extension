@@ -91,11 +91,11 @@ export default class LoadFromBackup extends Component {
 
     renderBackup() {
         const {fileName} = this.state;
-        return <div>
+        return <div style={{marginTop: '120px'}}>
             <div className="aelf-input-container aelf-dash">
                 <List>
                     <div className='aelf-import-file'>
-                        <FormattedMessage id = 'aelf.Please select the file' />
+                        <FormattedMessage id = 'aelf.Please select the file' /> :
                         <div className={style.updateFile} >
                             <FormattedMessage id = 'aelf.Click here' />
                             <input
@@ -123,8 +123,8 @@ export default class LoadFromBackup extends Component {
             <div className={style.bottom}>
                 <div className='aelf-blank12'></div>
                 <AelfButton
-                    text='Commit'
-                    aelficon='add_purple20'
+                    text='Submit Backup'
+                    aelficon='in20'
                     onClick={() => this.importBackup()}>
                 </AelfButton>
             </div>
@@ -140,9 +140,8 @@ export default class LoadFromBackup extends Component {
                     onLeftClick={() => this.getReturn()}
                 ></NavNormal>
                  <div className={style.top}>
-                    <div className={style.blank}></div>
-                    <p className={style.welcome}>{titleText}</p>
-                    <p className={style.wallet}>Night ELF</p>
+                    <p className={style.welcome} style={{marginTop: '17px'}}>{titleText}</p>
+                    <p className={style.wallet}>NIGHT ELF</p>
                     {/* <p className={style.description}>offcial</p> */}
                 </div>
                 {confirmHTML}

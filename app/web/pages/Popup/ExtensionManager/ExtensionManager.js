@@ -41,7 +41,15 @@ export default class ExtensionManager extends Component {
                 <NavNormal
                     onLeftClick={() => historyPush('/home')}
                 ></NavNormal>
-                <List className={'aelf-list'}>
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Manage'
+                        />
+                    </p>
+                </div>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/?action=backup_wallet')}>
                         <ListContent
                             icon="wallet16"
@@ -54,7 +62,7 @@ export default class ExtensionManager extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/?action=clear_wallet')}>
                         <ListContent
                             icon="tx_history16"
@@ -67,7 +75,7 @@ export default class ExtensionManager extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/?action=timing_lock')}>
                         <ListContent
                             icon="about16"

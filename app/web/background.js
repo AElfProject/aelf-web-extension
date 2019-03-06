@@ -52,6 +52,7 @@ function getPromptRoute(message) {
     let method = message.payload.method ? message.payload.method : message.payload.payload.method;
     const routMap = {
         SET_PERMISSION: '#/',
+        SET_CONTRACT_PERMISSION: '#/',
         LOGIN: '#/loginkeypairs',
         CALL_AELF_CONTRACT: '#/examine-approve'
     };
@@ -197,6 +198,12 @@ export default class Background {
 
             case InternalMessageTypes.OPEN_PROMPT:
                 Background.openPrompt(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CHECK_INACTIVITY_INTERVAL:
+                Background.checkInactivityInterval(sendResponse);
+                break;
+            case InternalMessageTypes.GET_TIMING_LOCK:
+                Background.getTimingLock(sendResponse, message.payload);
                 break;
             // case InternalMessageTypes.SET_PROMPT:
             //     Background.setPrompt(sendResponse, message.payload);
@@ -707,6 +714,7 @@ export default class Background {
 
     static updateWallet(sendResponse) {
         // TODO: Check seed.
+        console.log(sendResponse);
         if (nightElf && seed) {
             const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
             apis.storage.local.set({
@@ -837,7 +845,7 @@ export default class Background {
         }
         if (seed && nightElf) {
             timeoutLocker = setTimeout(() => {
-                Background.lockWallet();
+                Background.lockWallet(sendResponse);
             }, inactivityInterval);
         }
     }
@@ -858,6 +866,7 @@ export default class Background {
         apis.storage.local.get({
             inactivityInterval
         }, result => {
+            console.log(result);
             sendResponse({
                 ...errorHandler(0),
                 result
@@ -967,14 +976,14 @@ export default class Background {
                     permissions = []
                 }
             } = nightElfObject;
-
             const appPermissons = getApplicationPermssions(permissions, domain);
             let permissionIndex = appPermissons.indexList;
             const permissionsTemp = appPermissons.permissions;
 
             // set contract permission
             if (permissionsTemp.length) {
-                permissionNeedAdd.address = permissionsTemp.address;
+                // fix: permissionsTemp is Array
+                permissionNeedAdd.address = permissionsTemp[0].address;
                 nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
             }
             // Login

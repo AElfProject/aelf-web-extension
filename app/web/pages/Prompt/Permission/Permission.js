@@ -30,25 +30,49 @@ export default class Permission extends Component {
             hostname,
             payload
         } = message;
+        this.address = this.props.location.state === undefined ? message.payload.payload.address : this.props.location.state;
+        console.log(this.address);
         this.permission = {
             appName,
             domain: hostname,
             // Why do we do this?
             // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
-            address: this.props.location.state,
+            address: this.address,
             contracts: payload.payload.contracts
         };
+        this.hasLogin = payload.payload.method === 'LOGIN';
         this.state = {
-            address: this.props.location.state
+            address: this.address
         };
-        console.log(this.props.location);
     }
 
     setPermission() {
         const {address} = this.state;
         const detail = JSON.stringify({address});
         // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
-        InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission)
+        if (this.hasLogin) {
+            InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission)
+            .send()
+            .then(result => {
+                console.log(InternalMessageTypes.SET_LOGIN_PERMISSION, result);
+                if (result.error === 0) {
+                    Toast.success('Bind Permisson Success, after 3s close the window.');
+                    window.data.sendResponse({
+                        ...errorHandler(0),
+                        detail,
+                        message: 'Bind Permisson Success'
+                    });
+                    setTimeout(() => {
+                        window.close();
+                    }, 3000);
+                }
+                else {
+                    Toast.fail(result.message, 3, () => {}, false);
+                }
+            });
+        }
+        else {
+            InternalMessage.payload(InternalMessageTypes.SET_CONTRACT_PERMISSION, this.permission)
             .send()
             .then(result => {
                 console.log(InternalMessageTypes.SET_CONTRACT_PERMISSION, result);
@@ -67,6 +91,7 @@ export default class Permission extends Component {
                     Toast.fail(result.message, 3, () => {}, false);
                 }
             });
+        }
     }
 
     refuse() {

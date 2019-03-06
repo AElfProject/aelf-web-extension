@@ -47,6 +47,7 @@ export const CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
 export const GET_CONTRACT_ABI = 'getExistContractAbi';
 export const RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
+
 export const GET_ADDRESS = 'getAddress';
 
 export const OPEN_PROMPT = 'openPrompt';

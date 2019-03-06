@@ -22,7 +22,7 @@ const zh_CN = {
     'aelf.Unlock Wallet': '解锁钱包',
     'aelf.Keypair Name': '密钥对别名',
     'aelf.Extend Management': '扩展管理',
-    'aelf.Key Pairs Management': '密钥对管理',
+    'aelf.Key Pairs': '密钥对',
     'aelf.Application Management': '应用管理',
     'aelf.Receive': '钱包地址',
     'aelf.Home': '首页',
@@ -164,7 +164,12 @@ const zh_CN = {
     'aelf.Timing Lock Settings': '定时锁定设置',
     'aelf.Application': '应用',
     'aelf.Login': '登录',
-    'aelf.Details': '查看详情'
+    'aelf.Details': '查看详情',
+    'aelf.Submit Backup': '提交备份',
+    'aelf.Manage': '管理',
+    'aelf.Delete': '删除',
+    'aelf.Copy Address': '复制地址',
+    'aelf.Please select the timing lock-in time:': '请选择定时锁定时间:'
 };
 
 export default zh_CN;

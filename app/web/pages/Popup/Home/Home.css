@@ -1,0 +1,7 @@
+.am-list-item {
+    min-height: 38px;
+}
+
+.am-list-item .am-list-line .am-list-content {
+    padding: 0;
+}

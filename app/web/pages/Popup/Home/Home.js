@@ -18,6 +18,7 @@ import InternalMessage from '../../../messages/InternalMessage';
 import insert from '../../../utils/insert';
 import checkWallet from '../../../utils/checkWallet';
 import {FormattedMessage} from 'react-intl';
+import './Home.css';
 
 // import aelf from 'aelf-sdk';
 
@@ -40,25 +41,24 @@ export default class personalCenterHome extends Component {
     render() {
         return (
             <div className={style.container + ' ' + 'aelf-personal-pages aelf-solid'}>
-
-                {/* <div className={style.blank}></div>
-                <div className={style.blank}></div>
-                <div className={style.blank}></div> */}
-
-                <List className={'aelf-list'}>
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>NIGHT ELF</p>
+                </div>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/keypairs')}>
                         <ListContent
                             icon="wallet16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Key Pairs Management'
-                                    defaultMessage = 'Key Pairs Management'
+                                    id = 'aelf.Key Pairs'
+                                    defaultMessage = 'Key Pairs'
                                 />
                             }
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/permissions')}>
                         <ListContent
                             icon="tx_history16"
@@ -71,7 +71,7 @@ export default class personalCenterHome extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/extensionManager')}>
                         <ListContent
                             icon="about16"
@@ -84,7 +84,7 @@ export default class personalCenterHome extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
+                <List className={style.aelfList}>
                     <Item onClick={() => this.lockWallet()}>
                         <ListContent
                             icon="about16"

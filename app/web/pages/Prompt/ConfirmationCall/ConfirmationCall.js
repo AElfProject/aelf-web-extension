@@ -121,26 +121,44 @@ export default class ConfirmationCall extends Component {
         if (contract.whitelist) {
             whitelist = contract.whitelist;
             const method = this.confirmation.method;
-            const newWhitelist = methodParams.map((item, index) => {
-                const params = this.confirmation.params[index];
+            if (methodParams) {
+                const newWhitelist = methodParams.map((item, index) => {
+                    const params = this.confirmation.params[index];
+                    const obj = {};
+                    obj[item.Name] = params;
+                    obj.variable = false;
+                    return obj;
+                });
+                whitelist[method] = newWhitelist;
+            }
+            else {
+                const params = '';
                 const obj = {};
-                obj[item.Name] = params;
+                obj['value'] = params;
                 obj.variable = false;
-                return obj;
-            });
-            whitelist[method] = newWhitelist;
+                whitelist[method] = obj;
+            }
         }
         else {
             whitelist = {};
             const method = this.confirmation.method;
-            const newWhitelist = methodParams.map((item, index) => {
-                const params = this.confirmation.params[index];
+            if (methodParams) {
+                const newWhitelist = methodParams.map((item, index) => {
+                    const params = this.confirmation.params[index];
+                    const obj = {};
+                    obj[item.Name] = params;
+                    obj.variable = false;
+                    return obj;
+                });
+                whitelist[method] = newWhitelist;
+            }
+            else {
+                const params = '';
                 const obj = {};
-                obj[item.Name] = params;
+                obj['value'] = params;
                 obj.variable = false;
-                return obj;
-            });
-            whitelist[method] = newWhitelist;
+                whitelist[method] = obj;
+            }
         }
 
         const payload = {
@@ -208,27 +226,31 @@ export default class ConfirmationCall extends Component {
                 </div>;
     }
 
-    
-
     renderWhitelistInfo() {
         const {methodParams} = this.state;
-        const whitelistHTML = methodParams.map((item, index) => {
-            const params = this.confirmation.params[index];
-            return <div key={item.Name} className={style.paramsInfo}>{item.Name}: {params}</div>;
-        });
-        return whitelistHTML;
+        if (methodParams) {
+            const whitelistHTML = methodParams.map((item, index) => {
+                const params = this.confirmation.params[index];
+                return <div key={item.Name} className={style.paramsInfo}>{item.Name}: {params}</div>;
+            });
+            return whitelistHTML;
+        }
+        else {
+            return <div className={style.paramsInfo}>This method has no parameters.</div>;
+        }
     }
 
     render() {
         const confiramtionHTML = this.renderConfirmation();
         const confiramtionInfoHTML = this.renderConfirmationInfo();
         const confirmHTML = this.renderConfirm();
-        let getWhitelistHTML = <div></div>;
-        let whitelistHTML = <div></div>;
-        if (this.state.methodParams) {
-            getWhitelistHTML = this.renderWhitelist();
-            whitelistHTML = this.renderWhitelistInfo();
-        }
+        // let getWhitelistHTML = <div></div>;
+        // let whitelistHTML = <div></div>;
+        let getWhitelistHTML = this.renderWhitelist();
+        let whitelistHTML = this.renderWhitelistInfo();
+        // if (this.state.methodParams) {
+            
+        // }
         return (
             <div className={style.container}>
                 {confiramtionHTML}

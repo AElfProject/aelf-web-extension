@@ -200,6 +200,14 @@ export default class Import extends Component {
                 <NavNormal
                     onLeftClick={() => historyPush('/keypairs')}
                 ></NavNormal>
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Import Keypair'
+                        />
+                    </p>
+                </div>
                 <div>
                     <div style={{
                         padding: '0 24px'

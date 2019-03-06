@@ -249,14 +249,14 @@ export default class Permissions extends Component {
 
     componentDidMount() {
         this.checkWalletInfo();
-        const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
+        const permissionListHeight = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
 
         getAllPermissions(result => {
             this.rData = result;
-
+            console.log(this.rData);
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(this.rData),
-                height: hei,
+                height: permissionListHeight,
                 refreshing: false,
                 isLoading: false
             });

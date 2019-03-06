@@ -31,7 +31,7 @@ export default class WalletName extends Component {
         return (
             <div className="aelf-input-container aelf-dash">
                 <List>
-                    <div className="aelf-input-title">
+                    <div className="aelf-input-title" style={{margin: '10px 0 0 0'}}>
                         <FormattedMessage
                             id = 'aelf.Keypair Name'
                             defaultMessage = 'Keypair Name'

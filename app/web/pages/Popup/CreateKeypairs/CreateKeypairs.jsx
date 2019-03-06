@@ -128,20 +128,27 @@ export default class CreateKeypairs extends Component {
                 <NavNormal
                     onLeftClick={() => historyPush('/keypairs')}
                 ></NavNormal>
-
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Create Keypair'
+                        />
+                    </p>
+                </div>
                 {/* <NoticePanel
                     mainTitle={
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Backup Wallet'
                             defaultMessage = 'Backup Wallet'
                         />
                     }
                     subTitle={[
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.AElf Wallet'
                             defaultMessage = 'AElf Wallet'
                         />,
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Manage your wallet addresses'
                             defaultMessage = 'Manage your wallet addresses'
                         />
@@ -151,25 +158,25 @@ export default class CreateKeypairs extends Component {
                         // '没有妥善备份就无法保障资产安全；',
                         // '删除程序或钱包后，',
                         // '您需要通过备份的助记词来会恢复钱包！'
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Becareful03'
                             defaultMessage = 'Please backup your Mnemonic in a secure environment!'
                         />,
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Becareful04'
                             defaultMessage = 'No secure Mnemonic backup means no secure wallet.'
                         />,
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Becareful05'
                             defaultMessage = 'In the case of wallet or App deletion,'
                         />,
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Becareful06'
                             defaultMessage = 'you will need your Mnemonic to recover your wallet.'
                         />
                     ]}
                 ></NoticePanel> */}
-                <div className="aelf-input-container aelf-dash">
+                <div className="aelf-input-container aelf-dash" style={{marginTop: '170px'}}>
                     <List>
                         <div className="aelf-input-title">
                             <div><FormattedMessage id='aelf.Keypair Name' /></div>
