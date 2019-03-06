@@ -214,7 +214,7 @@ export default class PermissionsDetail extends Component {
             type: 'domain'
         };
         InternalMessage.payload(InternalMessageTypes.CHECK_PERMISSION, queryInfo).send().then(result => {
-            if (result.error === 0 && result) {
+            if (result && result.error === 0) {
                 const permissions = result.permissions.filter(item => {
                     const address = this.address === item.address;
                     const domain = this.domain === item.domain;
@@ -222,21 +222,6 @@ export default class PermissionsDetail extends Component {
                 });
                 callback(permissions);
             }
-        });
-    }
-
-    turnToHomePage(walletStatus) {
-        const {
-            nightElf
-        } = walletStatus || {};
-        if (!nightElf) {
-            hashHistory.push('/');
-        }
-    }
-
-    checkWallet() {
-        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            this.turnToHomePage(result);
         });
     }
 
