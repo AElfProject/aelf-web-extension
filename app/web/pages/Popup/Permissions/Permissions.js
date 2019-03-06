@@ -234,7 +234,7 @@ export default class Permissions extends Component {
         //     state: {
         //     }
         // };
-        hashHistory.push(`/permissionsDetail/${data}`);
+        hashHistory.push(`/permissionsdetail/${data}`);
     }
 
     // PullToRefresh start
