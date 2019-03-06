@@ -91,7 +91,7 @@ export default class LoadFromBackup extends Component {
 
     renderBackup() {
         const {fileName} = this.state;
-        return <div style={{marginTop: '120px'}}>
+        return <div style={{marginTop: '90px'}}>
             <div className="aelf-input-container aelf-dash">
                 <List>
                     <div className='aelf-import-file'>
