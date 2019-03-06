@@ -72,7 +72,7 @@ export default class personalCenterHome extends Component {
                     </Item>
                 </List>
                 <List className={style.aelfList}>
-                    <Item onClick={() => hashHistory.push('/extensionManager')}>
+                    <Item onClick={() => hashHistory.push('/extensionmanager')}>
                         <ListContent
                             icon="about16"
                             text={

@@ -37,14 +37,14 @@ ReactDOM.render(
             <Router history={hashHistory}>
                 <Route path="/" component={Lock}></Route>
                 <Route path="/home" component={Home}></Route>
-                <Route path="/createKeypairs" component={CreateKeypairs}></Route>
+                <Route path="/createkeypairs" component={CreateKeypairs}></Route>
                 <Route path="/keypairs" component={Keypairs}></Route>
                 <Route path="/permissions" component={Permissions}></Route>
-                <Route path='/permissionsDetail/:data' component={PermissionsDetail}></Route>
+                <Route path='/permissionsdetail/:data' component={PermissionsDetail}></Route>
                 <Route path="/import" component={Import}></Route>
-                <Route path="/backupKeypairs/:address" component={BackupKeypairs}></Route>
-                <Route path="/extensionManager" component={ExtensionManager}></Route>
-                <Route path="/loadFromBackup" component={LoadFromBackup}></Route>
+                <Route path="/backupkeypairs/:address" component={BackupKeypairs}></Route>
+                <Route path="/extensionmanager" component={ExtensionManager}></Route>
+                <Route path="/loadfrombackup" component={LoadFromBackup}></Route>
                 {/* TODO: contracts just for test */}
                 <Route path="/contracts" component={Contracts}></Route>
             </Router>

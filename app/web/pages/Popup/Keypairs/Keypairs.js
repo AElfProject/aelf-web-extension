@@ -201,7 +201,7 @@ export default class Keypairs extends Component {
     }
 
     createKeyPairs() {
-        hashHistory.push('/createKeypairs');
+        hashHistory.push('/createkeypairs');
     }
 
     importKeyPairs() {
@@ -209,7 +209,7 @@ export default class Keypairs extends Component {
     }
 
     backupKeyPairs(address) {
-        hashHistory.push(`/backupKeypairs/${address}`);
+        hashHistory.push(`/backupkeypairs/${address}`);
     }
 
     render() {

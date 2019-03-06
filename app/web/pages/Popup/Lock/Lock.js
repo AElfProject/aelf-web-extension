@@ -201,7 +201,7 @@ export default class Lock extends Component {
             this.checkWallet();
         }
         else {
-            hashHistory.push('/extensionManager');
+            hashHistory.push('/extensionmanager');
         }
     }
 
@@ -223,7 +223,7 @@ export default class Lock extends Component {
         if (seed) {
             InternalMessage.payload(InternalMessageTypes.BACKUP_WALLET, seed).send().then(result => {
                 if (result && result.error === 0) {
-                    hashHistory.push('/extensionManager');
+                    hashHistory.push('/extensionmanager');
                 }
                 else {
                     Toast.fail('Backup failed!');
@@ -243,7 +243,7 @@ export default class Lock extends Component {
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     loadFromBackup() {
-        hashHistory.push('/loadFromBackup');
+        hashHistory.push('/loadfrombackup');
     }
 
 
