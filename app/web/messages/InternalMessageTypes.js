@@ -18,6 +18,10 @@ export const UPDATE_WALLET = 'updateWallet';
 export const BACKUP_WALLET = 'backupWallet';
 export const IMPORT_WALLET = 'importWallet';
 
+// Timing Lock
+export const GET_TIMING_LOCK = 'getTimingLock';
+export const CHECK_INACTIVITY_INTERVAL =  'checkInactivityInterval';
+
 export const INSERT_KEYPAIR = 'insertKeypair';
 export const REMOVE_KEYPAIR = 'removeKeypair';
 export const GET_KEYPAIR = 'getKeypair';
@@ -43,11 +47,14 @@ export const CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
 export const GET_CONTRACT_ABI = 'getExistContractAbi';
 export const RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
+
 export const GET_ADDRESS = 'getAddress';
 
 export const OPEN_PROMPT = 'openPrompt';
 // export const SET_PROMPT = 'setPrompt';
 // export const GET_PROMPT = 'getPrompt';
+
+export const OPEN_LOGIN_KEYPAIR = 'openLoginKeypairs';
 
 
 

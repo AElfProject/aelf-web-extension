@@ -20,7 +20,7 @@ import {
 } from './utils/permission/permission';
 import errorHandler from './utils/errorHandler';
 import NotificationService from './service/NotificationService';
-import {saveAs} from 'file-saver';
+import FileSaver from 'file-saver';
 import SparkMD5 from 'spark-md5';
 
 import Aelf from 'aelf-sdk';
@@ -35,8 +35,8 @@ const {
 let seed = '';
 let nightElf = null;
 
-// let inactivityInterval = 0;
-// let timeoutLocker = null;
+let inactivityInterval = 0;
+let timeoutLocker = null;
 
 let prompt = null;
 
@@ -49,13 +49,14 @@ let prompt = null;
 // });
 
 function getPromptRoute(message) {
-    const method = message.payload.method;
+    let method = message.payload.method ? message.payload.method : message.payload.payload.method;
     const routMap = {
-        SET_PERMISSION: '',
-        LOGIN: '#/login',
+        SET_PERMISSION: '#/',
+        SET_CONTRACT_PERMISSION: '#/',
+        LOGIN: '#/loginkeypairs',
         CALL_AELF_CONTRACT: '#/examine-approve'
     };
-    return message.router || routMap[method] || '';
+    return message.router || routMap[method] || '#/confirmation';
 }
 
 let aelfMeta = [];
@@ -69,8 +70,8 @@ export default class Background {
     // Watches the internal messaging system ( LocalStream )
     setupInternalMessaging() {
         LocalStream.watch((request, sendResponse) => {
-            console.log(request, sendResponse);
             const message = InternalMessage.fromJson(request);
+            console.log(sendResponse);
             this.dispenseMessage(sendResponse, message);
         });
     }
@@ -88,7 +89,14 @@ export default class Background {
             });
             return;
         }
+
+        apis.storage.local.get({
+            inactivityInterval
+        }, result => {
+            inactivityInterval = result.inactivityInterval;
+        });
         // sendResponse(true);
+        Background.checkTimingLock();
         switch (message.type) {
             case InternalMessageTypes.SET_SEED:
                 Background.setSeed(sendResponse, message.payload);
@@ -190,6 +198,12 @@ export default class Background {
 
             case InternalMessageTypes.OPEN_PROMPT:
                 Background.openPrompt(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CHECK_INACTIVITY_INTERVAL:
+                Background.checkInactivityInterval(sendResponse);
+                break;
+            case InternalMessageTypes.GET_TIMING_LOCK:
+                Background.getTimingLock(sendResponse, message.payload);
                 break;
             // case InternalMessageTypes.SET_PROMPT:
             //     Background.setPrompt(sendResponse, message.payload);
@@ -393,7 +407,6 @@ export default class Background {
      * 1. hostname: a.aelf.io(page) -> aelf.io is OK;
      * 2. chainId: must be the same;
      * 3. contractAddress: must be the same;
-     *
      */
 
     static checkDappContractStatus(options, callback) {
@@ -586,6 +599,7 @@ export default class Background {
     static callAelfContract(sendResponse, contractInfo, checkWhitelist = true) {
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>callAelfContract', contractInfo);
             const {payload, chainId, hostname} = contractInfo;
             const {
                 contractName,
@@ -602,6 +616,7 @@ export default class Background {
 
             if (checkWhitelist) {
                 const appPermissions = getApplicationPermssions(permissions, hostname);
+                console.log('>>>>>>>>>>>>>>>>', appPermissions);
                 if (appPermissions.permissions.length && !contractWhitelistCheck({
                         sendResponse,
                         appPermissions,
@@ -609,6 +624,7 @@ export default class Background {
                         contractInfo,
                         method
                     })) {
+                    contractInfo.keypairAddress = appPermissions.permissions[0].address;
                     Background.openPrompt(sendResponse, contractInfo);
                     return;
                 }
@@ -688,6 +704,7 @@ export default class Background {
         seed = _seed;
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             nightElf = NightElf.fromJson(nightElfObject);
+            Background.checkTimingLock();
             sendResponse({
                 ...errorHandler(0),
                 nightElf: !!nightElf
@@ -697,6 +714,7 @@ export default class Background {
 
     static updateWallet(sendResponse) {
         // TODO: Check seed.
+        console.log(sendResponse);
         if (nightElf && seed) {
             const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
             apis.storage.local.set({
@@ -743,14 +761,15 @@ export default class Background {
 
     static backupWallet(sendResponse, _seed) {
         seed = _seed;
-        this.checkSeed({sendResponse}, () => {
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
-            let file = new File(
-                [nightElfEncrypto],
-                'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt',
-                {type: 'text/plain;charset=utf-8'}
-            );
-            saveAs(file);
+            let blob = new Blob([nightElfEncrypto], {type: 'text/plain;charset=utf-8'});
+            // let file = new File(
+            //     [nightElfEncrypto],
+            //     'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt',
+            //     {type: 'text/plain;charset=utf-8'}
+            // );
+            FileSaver.saveAs(blob, 'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt');
             sendResponse({
                 ...errorHandler(0)
             });
@@ -768,14 +787,14 @@ export default class Background {
 
     static importWallet(sendResponse, values) {
         const nightElfEncrypto = values.fileValue || null;
-        seed = values.seed || null;
+        let seed = values.seed || null;
         let noStorageMsg = '';
-        let decryptoFailMsg = '';
+        let decryptoFailMsg = 'Document error or damaged';
         if (seed) {
             let nightElfString;
             if (nightElfEncrypto) {
                 try {
-                    nightElfString = AESDecrypto(nightElfEncrypto, seed);
+                    nightElfString = JSON.parse(AESDecrypto(nightElfEncrypto, seed));
                 }
                 catch (e) {
                     sendResponse({
@@ -810,8 +829,50 @@ export default class Background {
 
 
     // >>>>>>>>>>>>>>>>>>>>>>>>>
-    // >  import wallet end  >
+    // >   import wallet end   >
     // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+    // >   timing lock start   >
+    // >>>>>>>>>>>>>>>>>>>>>>>>>
+
+    static checkTimingLock() {
+        if (inactivityInterval === 0) {
+            return false;
+        }
+        if (timeoutLocker) {
+            clearTimeout(timeoutLocker);
+        }
+        if (seed && nightElf) {
+            timeoutLocker = setTimeout(() => {
+                Background.lockWallet(sendResponse);
+            }, inactivityInterval);
+        }
+    }
+
+    static getTimingLock(sendResponse, time) {
+        inactivityInterval = time || 0;
+        apis.storage.local.set({
+            inactivityInterval
+        }, result => {
+            sendResponse({
+                ...errorHandler(0),
+                result
+            });
+        });
+    }
+
+    static checkInactivityInterval(sendResponse) {
+        apis.storage.local.get({
+            inactivityInterval
+        }, result => {
+            console.log(result);
+            sendResponse({
+                ...errorHandler(0),
+                result
+            });
+        });
+    }
 
     static lockWallet(sendResponse) {
         seed = null;
@@ -915,15 +976,14 @@ export default class Background {
                     permissions = []
                 }
             } = nightElfObject;
-
             const appPermissons = getApplicationPermssions(permissions, domain);
-
             let permissionIndex = appPermissons.indexList;
             const permissionsTemp = appPermissons.permissions;
 
             // set contract permission
             if (permissionsTemp.length) {
-                permissionNeedAdd.address = permissionsTemp.address;
+                // fix: permissionsTemp is Array
+                permissionNeedAdd.address = permissionsTemp[0].address;
                 nightElfObject.keychain.permissions[permissionIndex[0]] = permissionNeedAdd;
             }
             // Login
@@ -1121,8 +1181,11 @@ export default class Background {
                     break;
                 default: // defaut to check domain;
                     {
+                        console.log(queryInfo);
                         const permissionsTemp = permissions.filter(permission => {
+                            console.log(permission.domain, queryInfo.hostname);
                             const domainCheck = permission.domain === queryInfo.hostname;
+                            console.log(domainCheck);
                             return domainCheck;
                         });
 
@@ -1156,7 +1219,7 @@ export default class Background {
 
             sendResponse({
                 ...errorHandler(0),
-                permissions: permissions
+                permissions
             });
         });
     }

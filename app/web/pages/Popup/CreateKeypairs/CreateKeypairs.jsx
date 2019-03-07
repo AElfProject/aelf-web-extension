@@ -14,18 +14,21 @@ import Mnemonic from './pages/Mnemonic';
 
 import {historyPush} from '../../../utils/historyChange';
 import NavNormal from '../../../components/NavNormal/NavNormal';
-import NoticePanel from '../../../components/NoticePanel/NoticePanel';
+// import NoticePanel from '../../../components/NoticePanel/NoticePanel';
 import AelfButton from '../../../components/Button/Button';
 
-import moneyKeyboardWrapProps from '../../../utils/utils';
+import {moneyKeyboardWrapProps} from '../../../utils/utils';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 
 import aelf from 'aelf-sdk';
 import {FormattedMessage} from 'react-intl';
 import style from './CreateKeypairs.scss';
 // React component
 
+@insert(checkWallet)
 export default class CreateKeypairs extends Component {
     constructor() {
         super();
@@ -41,6 +44,10 @@ export default class CreateKeypairs extends Component {
         this.setState({
             mnemonic: 'frame hold voyage figure bitter lizard better special local tell spot when'
         });
+    }
+
+    componentDidMount() {
+        this.checkWalletInfo();
     }
 
     // 子组件要用，要么this.toggleMnemonic = this.toggleMnemonic.bind(this);
@@ -121,20 +128,27 @@ export default class CreateKeypairs extends Component {
                 <NavNormal
                     onLeftClick={() => historyPush('/keypairs')}
                 ></NavNormal>
-
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Create Keypair'
+                        />
+                    </p>
+                </div>
                 {/* <NoticePanel
                     mainTitle={
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Backup Wallet'
                             defaultMessage = 'Backup Wallet'
                         />
                     }
                     subTitle={[
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.AElf Wallet'
                             defaultMessage = 'AElf Wallet'
                         />,
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Manage your wallet addresses'
                             defaultMessage = 'Manage your wallet addresses'
                         />
@@ -144,25 +158,25 @@ export default class CreateKeypairs extends Component {
                         // '没有妥善备份就无法保障资产安全；',
                         // '删除程序或钱包后，',
                         // '您需要通过备份的助记词来会恢复钱包！'
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Becareful03'
                             defaultMessage = 'Please backup your Mnemonic in a secure environment!'
                         />,
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Becareful04'
                             defaultMessage = 'No secure Mnemonic backup means no secure wallet.'
                         />,
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Becareful05'
                             defaultMessage = 'In the case of wallet or App deletion,'
                         />,
-                        <FormattedMessage 
+                        <FormattedMessage
                             id = 'aelf.Becareful06'
                             defaultMessage = 'you will need your Mnemonic to recover your wallet.'
                         />
                     ]}
                 ></NoticePanel> */}
-                <div className="aelf-input-container aelf-dash">
+                <div className="aelf-input-container aelf-dash" style={{marginTop: '170px'}}>
                     <List>
                         <div className="aelf-input-title">
                             <div><FormattedMessage id='aelf.Keypair Name' /></div>
@@ -176,6 +190,7 @@ export default class CreateKeypairs extends Component {
                         ></InputItem>
                     </List>
                 </div>
+                <div style={{height: '50px'}}></div>
                 <div className={style.buttonContainer}>
                     <AelfButton
                         text='Create Keypair'

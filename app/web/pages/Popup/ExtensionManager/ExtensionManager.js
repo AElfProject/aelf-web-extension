@@ -14,14 +14,22 @@ import style from './ExtensionManager.scss';
 import ListContent from '../../../components/ListContent/ListContent';
 import NavNormal from '../../../components/NavNormal/NavNormal';
 import {historyPush} from '../../../utils/historyChange';
-
+import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
+import InternalMessage from '../../../messages/InternalMessage';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 import {FormattedMessage} from 'react-intl';
 
 // import aelf from 'aelf-sdk';
 
 const Item = List.Item;
 
+@insert(checkWallet)
 export default class ExtensionManager extends Component {
+
+    componentDidMount() {
+        this.checkWalletInfo();
+    }
 
     render() {
         return (
@@ -33,7 +41,15 @@ export default class ExtensionManager extends Component {
                 <NavNormal
                     onLeftClick={() => historyPush('/home')}
                 ></NavNormal>
-                <List className={'aelf-list'}>
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Manage'
+                        />
+                    </p>
+                </div>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/?action=backup_wallet')}>
                         <ListContent
                             icon="wallet16"
@@ -46,7 +62,7 @@ export default class ExtensionManager extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/?action=clear_wallet')}>
                         <ListContent
                             icon="tx_history16"
@@ -59,8 +75,8 @@ export default class ExtensionManager extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
-                    <Item onClick={() => hashHistory.push('/home')}>
+                <List className={style.aelfList}>
+                    <Item onClick={() => hashHistory.push('/?action=timing_lock')}>
                         <ListContent
                             icon="about16"
                             text={
