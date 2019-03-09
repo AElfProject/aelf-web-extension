@@ -5,6 +5,7 @@
 
 import React, {Component} from 'react';
 import style from './ContractInfo.scss';
+import { FormattedMessage } from 'react-intl';
 
 export default class ContractInfo extends Component {
     constructor(props) {
@@ -20,12 +21,37 @@ export default class ContractInfo extends Component {
             description
         } = permission;
         return (
-            <div key={contractAddress + chainID} className={style.contractInfo}>
-                <div>----------------------------------------</div>
-                <div>Chain ID: {chainID}</div>
-                <div>Contract Address: {contractAddress}</div>
-                <div>Contract Name: {contractName}</div>
-                <div>Description: {description}</div>
+            <div key={contractAddress + chainID} className={style.contractInfoList}>
+                <div className={style.contractTitle}>
+                    <div className={style.contractName}>
+                        <FormattedMessage
+                            id='aelf.Contract Address:'
+                        />
+                    </div>
+                    <div>
+                        &nbsp;{contractAddress}
+                    </div>
+                </div>
+                <div className={style.contractTitle}>
+                    <div className={style.contractName}>
+                        <FormattedMessage
+                            id='aelf.Contract Name:'
+                        />
+                    </div>
+                    <div>
+                        &nbsp;{contractName}
+                    </div>
+                </div>
+                <div className={style.contractTitle}>
+                    <div className={style.contractName}>
+                        <FormattedMessage
+                            id='aelf.Description:'
+                        />
+                    </div>
+                    <div>
+                        &nbsp;{description}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -37,7 +63,7 @@ export default class ContractInfo extends Component {
         });
 
         return (
-            <div>
+            <div className={style.contractList}>
                 {contractsHTML}
             </div>
         );

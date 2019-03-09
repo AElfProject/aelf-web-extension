@@ -1,0 +1,43 @@
+.container {
+    color: #FFF;
+    min-height: 578px;
+    min-width: 100%;
+    background: url('../../../assets/background/bg1_long.svg') no-repeat;
+    background-size: cover;
+    background-position: 0 10%;
+}
+
+.top {
+    padding: 0 24px 24px 24px;
+}
+
+.blank {
+    padding: 13px 0 0 0;
+}
+
+.wallet {
+    font-size: 36px;
+    color: #FFF;
+    margin: 8px 0 8px 0;
+    font-weight: 700;
+}
+
+.permissionsTips {
+    margin:0 24px 24px 24px;
+    color: #e2e243;
+}
+
+.domain {
+    font-size: 30px;
+    margin:24px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 24px;
+}
+
+.buttons > div {
+    width: 45%;
+}

@@ -331,34 +331,23 @@ export default class Permissions extends Component {
                     </p>
                 </div>
                 <div className={style.background + ' ????'} style={backgroundStyle}>
-                    {/* <div className={style.backgroundMask}></div>
-                    <div className={style.container} style={containerStyle}> */}
-
-                        {/* <button onClick={() => checkPermission()}>checkPermission</button>
-                        <button onClick={() => this.setPerTest()}>setPermission</button>
-                        <button onClick={() => removePermission()}>removePermission</button>
-                        <button onClick={() => getAllPermissions(output => {
-                            console.log('click getAllPermissions: ', output);
-                        })}>getAllPermissions</button> */}
-
-                        <div className={style.transactionList}>
-                            <ListView
-                                initialListSize={NUM_ROWS}
-                                key={this.state.useBodyScroll ? '0' : '1'}
-                                ref={el => this.lv = el}
-                                dataSource={this.state.dataSource}
-                                renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
-                                renderRow={this.renderRow}
-                                useBodyScroll={this.state.useBodyScroll}
-                                style={this.state.useBodyScroll ? {} : {
-                                    // height: this.state.height - 100,
-                                    height: '100%'
-                                }}
-                                pageSize={pageSize}
-                            />
-                        </div>
+                    <div className={style.transactionList}>
+                        <ListView
+                            initialListSize={NUM_ROWS}
+                            key={this.state.useBodyScroll ? '0' : '1'}
+                            ref={el => this.lv = el}
+                            dataSource={this.state.dataSource}
+                            renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
+                            renderRow={this.renderRow}
+                            useBodyScroll={this.state.useBodyScroll}
+                            style={this.state.useBodyScroll ? {} : {
+                                // height: this.state.height - 100,
+                                height: '100%'
+                            }}
+                            pageSize={pageSize}
+                        />
                     </div>
-                {/* </div> */}
+                </div>
             </div>
         );
     }

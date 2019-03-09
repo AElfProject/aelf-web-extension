@@ -239,7 +239,7 @@ export default class Keypairs extends Component {
                 <div className={style.functionButton}>
                     <div style={{width: '45%'}} >
                         <AelfButton
-                        style={btnStyle}
+                            style={btnStyle}
                             text='Create Keypair'
                             onClick={() => this.createKeyPairs()}>
                         </AelfButton>

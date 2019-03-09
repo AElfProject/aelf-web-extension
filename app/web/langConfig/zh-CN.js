@@ -170,7 +170,14 @@ const zh_CN = {
     'aelf.Delete': '删除',
     'aelf.Copy Address': '复制地址',
     'aelf.Please select the timing lock-in time:': '请选择定时锁定时间:',
-    'aelf.Application details': '应用详情'
+    'aelf.Application details': '应用详情',
+    'aelf.Cancel': '取消',
+    'aelf.Authorization details': '授权详情',
+    'aelf.Authorized domain name:': '授权域名:',
+    'aelf.Contract Address:': '合约地址:',
+    'aelf.Contract Name:': '合约名称:',
+    'aelf.Description:': '合约介绍:',
+    'aelf.Enable Whitelist': '启用白名单'
 };
 
 export default zh_CN;

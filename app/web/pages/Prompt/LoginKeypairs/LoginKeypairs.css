@@ -2,3 +2,11 @@
     border: none;
     background: transparent;
 }
+
+::before {
+    background-color: transparent !important;
+}
+
+::after {
+    background-color: transparent !important;
+}

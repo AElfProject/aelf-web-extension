@@ -178,7 +178,14 @@ const en_US = {
     'aelf.Delete': 'Delete',
     'aelf.Copy Address': 'Copy Address',
     'aelf.Please select the timing lock-in time:': 'Please select the timing lock-in time:',
-    'aelf.Application details': 'Application details'
+    'aelf.Application details': 'Application details',
+    'aelf.Cancel': 'Cancel',
+    'aelf.Authorization details': 'Authorization details',
+    'aelf.Authorized domain name:': 'Authorized domain name:',
+    'aelf.Contract Address:': 'Contract Address:',
+    'aelf.Contract Name:': 'Contract Name:',
+    'aelf.Description:': 'Description:',
+    'aelf.Enable Whitelist': 'Enable Whitelist'
 };
 
 export default en_US;
