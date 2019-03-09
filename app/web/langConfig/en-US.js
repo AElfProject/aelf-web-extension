@@ -177,7 +177,8 @@ const en_US = {
     'aelf.Manage': 'Manage',
     'aelf.Delete': 'Delete',
     'aelf.Copy Address': 'Copy Address',
-    'aelf.Please select the timing lock-in time:': 'Please select the timing lock-in time:'
+    'aelf.Please select the timing lock-in time:': 'Please select the timing lock-in time:',
+    'aelf.Application details': 'Application details'
 };
 
 export default en_US;

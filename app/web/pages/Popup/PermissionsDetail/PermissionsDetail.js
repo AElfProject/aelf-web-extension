@@ -230,14 +230,19 @@ export default class PermissionsDetail extends Component {
         const {permissions} = this.state;
         return <div>
                     <Flex>
-                        <div className={style.head}>
-                            <div className={style.headPortrait}>
-                                this is 头像
+                        <div className={style.headInfoBox}>
+                            <div className={style.head}>
+                                <div className={style.headPortrait}>
+                                    this is 头像
+                                </div>
                             </div>
-                        </div>
-                        <div className={style.permissionInfo}>
-                            <div>APP NAME: {permissions.appName}</div>
-                            <div>KEYPAIR: {permissions.address}</div>
+                            <div className={style.permissionInfo}>
+                                <div className={style.permissionOptions}>
+                                    {permissions.appName}
+                                    <div className={style.removeAll}></div>
+                                </div>
+                                <div>KEYPAIR: {permissions.address}</div>
+                            </div>
                         </div>
                     </Flex>
              </div>;
@@ -260,10 +265,18 @@ export default class PermissionsDetail extends Component {
                 <NavNormal
                     onLeftClick={() => historyPush('/permissions')}
                 />
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Application details'
+                        />
+                    </p>
+                </div>
                 {permissionsInfoHTML}
                 <div className={style.background} style={backgroundStyle}>
-                    <div className={style.backgroundMask}></div>
-                    <div className={style.container} style={containerStyle}>
+                    {/* <div className={style.backgroundMask}></div>
+                    <div className={style.container} style={containerStyle}> */}
                         <div className={style.transactionList}>
                             <ListView
                                 initialListSize={NUM_ROWS}
@@ -283,7 +296,7 @@ export default class PermissionsDetail extends Component {
                             />
                         </div>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         );
     }

@@ -169,7 +169,8 @@ const zh_CN = {
     'aelf.Manage': '管理',
     'aelf.Delete': '删除',
     'aelf.Copy Address': '复制地址',
-    'aelf.Please select the timing lock-in time:': '请选择定时锁定时间:'
+    'aelf.Please select the timing lock-in time:': '请选择定时锁定时间:',
+    'aelf.Application details': '应用详情'
 };
 
 export default zh_CN;

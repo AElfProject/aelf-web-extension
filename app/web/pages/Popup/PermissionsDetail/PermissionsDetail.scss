@@ -1,5 +1,26 @@
+.top {
+    padding: 0 24px 12px 24px;
+}
+
+.blank {
+    padding: 13px 0 0 0;
+}
+
+.wallet {
+    font-size: 36px;
+    color: #FFF;
+    margin: 8px 0 8px 0;
+    font-weight: 700;
+}
+
 .containerBody {
     color: #FFF;
+}
+
+.headInfoBox {
+    margin: 0 24px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .head{
@@ -12,6 +33,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    margin: 0 auto;
     background: #FFF;
 }
 
@@ -211,6 +233,7 @@
 // >>>>>>>>>>>>>>>>>>>>>
 .transactionList {
     flex: 1;
+    height: 100%;
 }
 
 // >>>>>>>>>>>>>>>>>>>>>
