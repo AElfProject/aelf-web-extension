@@ -49451,7 +49451,7 @@ function () {
       var _open = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2(notification) {
-        var height, width, middleX, middleY, getPopup;
+        var height, method, width, middleX, middleY, getPopup;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -49471,7 +49471,13 @@ function () {
                 }
 
                 height = 600;
-                width = Object(_utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__["default"])(notification.message.payload.payload.method || notification.message.payload.method);
+                method = null;
+
+                if (notification.message) {
+                  method = notification.message.payload.payload ? notification.message.payload.payload.method : null;
+                }
+
+                width = Object(_utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__["default"])(method);
                 middleX = window.screen.availWidth / 2 - width / 2;
                 middleY = window.screen.availHeight / 2 - height / 2;
 
@@ -49552,7 +49558,7 @@ function () {
                   }
                 });
 
-              case 7:
+              case 9:
               case "end":
                 return _context2.stop();
             }
