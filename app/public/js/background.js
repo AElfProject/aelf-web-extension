@@ -48823,6 +48823,7 @@ function () {
     key: "openPrompt",
     value: function openPrompt(sendResponse, message) {
       // TODO: NightElf lock notice.
+      console.log(message);
       var route = getPromptRoute(message);
       _service_NotificationService__WEBPACK_IMPORTED_MODULE_12__["default"].open({
         sendResponse: sendResponse,
@@ -49413,6 +49414,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(708);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(474);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(473);
+/* harmony import */ var _utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(757);
 
 
 
@@ -49423,6 +49425,7 @@ __webpack_require__.r(__webpack_exports__);
  * @file NotificationService.js
  * @author huangzongzhe
  */
+
 
 
 
@@ -49468,7 +49471,7 @@ function () {
                 }
 
                 height = 600;
-                width = 700;
+                width = Object(_utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__["default"])(notification.message.payload.payload.method || notification.message.payload.method);
                 middleX = window.screen.availWidth / 2 - width / 2;
                 middleY = window.screen.availHeight / 2 - height / 2;
 
@@ -51194,6 +51197,47 @@ module.exports = _asyncToGenerator;
     return SparkMD5;
 }));
 
+
+/***/ }),
+/* 744 */,
+/* 745 */,
+/* 746 */,
+/* 747 */,
+/* 748 */,
+/* 749 */,
+/* 750 */,
+/* 751 */,
+/* 752 */,
+/* 753 */,
+/* 754 */,
+/* 755 */,
+/* 756 */,
+/* 757 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return checkSetPermission; });
+/**
+ * @file checkSetPermission.js
+ * @author zhouminghui
+*/
+function checkSetPermission(method) {
+  console.log('>>>>>>>>>>>>>>>>>>>>>>', method);
+  var width = 700;
+
+  switch (method) {
+    case 'SET_CONTRACT_PERMISSION':
+      width = 1200;
+      break;
+
+    default:
+      width = 700;
+      break;
+  }
+
+  return width;
+}
 
 /***/ })
 /******/ ]));

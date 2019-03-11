@@ -1368,6 +1368,7 @@ export default class Background {
      */
     static openPrompt(sendResponse, message) {
         // TODO: NightElf lock notice.
+        console.log(message);
         const route = getPromptRoute(message);
         NotificationService.open({
             sendResponse,

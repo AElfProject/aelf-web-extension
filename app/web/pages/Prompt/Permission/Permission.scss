@@ -1,9 +1,9 @@
 .container {
     color: #FFF;
     min-height: 578px;
-    min-width: 100%;
     background: url('../../../assets/background/bg1_long.svg') no-repeat;
     background-size: cover;
+    display: flex;
     background-position: 0 10%;
 }
 
@@ -40,4 +40,14 @@
 
 .buttons > div {
     width: 45%;
+}
+
+.confirmPermission {
+    max-width: 700px;
+}
+
+.contrastTips {
+    font-size: 18px;
+    color: #e2e243;
+    margin: 0 24px;
 }

@@ -189,9 +189,19 @@
     display: flex;
     font-size: 12px;
     margin: 0 4px 8px 4px;
-    text-decoration: underline;
-    color: #e6e73e;
+    color: #FFF;
+    padding: 0 8px;
+    line-height: 22px;
     cursor: pointer;
+    border-radius: 10px;
+}
+
+.details {
+    background: #7ecff5;
+}
+
+.remove {
+    background: #e42750;
 }
 
 .operationContainer {

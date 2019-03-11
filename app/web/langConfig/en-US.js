@@ -185,7 +185,12 @@ const en_US = {
     'aelf.Contract Address:': 'Contract Address:',
     'aelf.Contract Name:': 'Contract Name:',
     'aelf.Description:': 'Description:',
-    'aelf.Enable Whitelist': 'Enable Whitelist'
+    'aelf.Enable Whitelist': 'Enable Whitelist',
+    'aelf.Delete All': 'Delete All',
+    'aelf.Whitelist': 'Whitelist',
+    'aelf.New Contract Method': 'New contract method',
+    'aelf.Delete Contract Method': 'Delete contract method',
+    'aelf.Details of contract changes': 'Details of contract changes'
 };
 
 export default en_US;

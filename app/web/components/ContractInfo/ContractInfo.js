@@ -5,11 +5,12 @@
 
 import React, {Component} from 'react';
 import style from './ContractInfo.scss';
-import { FormattedMessage } from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 
 export default class ContractInfo extends Component {
     constructor(props) {
         super(props);
+        this.style = this.props.style;
         this.permission = this.props.permission;
     }
 
@@ -58,12 +59,20 @@ export default class ContractInfo extends Component {
 
     render() {
         const permission = this.permission;
-        const contractsHTML = permission.contracts.map(item => {
-            return this.renderPermissions(item);
-        });
+        let contractsHTML = null;
+        if (permission.contracts) {
+            contractsHTML = permission.contracts.map(item => {
+                return this.renderPermissions(item);
+            });
+        }
+        else {
+            contractsHTML = permission.map(item => {
+                return this.renderPermissions(item);
+            });
+        }
 
         return (
-            <div className={style.contractList}>
+            <div className={style.contractList} style={this.style}>
                 {contractsHTML}
             </div>
         );
