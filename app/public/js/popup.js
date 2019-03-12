@@ -112,12 +112,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateKeypairs_CreateKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(491);
 /* harmony import */ var _Keypairs_Keypairs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(635);
 /* harmony import */ var _Permissions_Permissions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(667);
-/* harmony import */ var _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(674);
-/* harmony import */ var _Import_Import__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(675);
-/* harmony import */ var _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(682);
-/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(688);
-/* harmony import */ var _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(691);
-/* harmony import */ var _PermissionsDetail_PermissionsDetail__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(694);
+/* harmony import */ var _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(672);
+/* harmony import */ var _Import_Import__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(673);
+/* harmony import */ var _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(680);
+/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(686);
+/* harmony import */ var _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(689);
+/* harmony import */ var _PermissionsDetail_PermissionsDetail__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(692);
 
 
 
@@ -2595,7 +2595,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react-is.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3664,7 +3664,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3686,7 +3686,7 @@ var checkPropTypes = __webpack_require__(101);
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.3';
+var ReactVersion = '16.8.4';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -5664,7 +5664,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -15667,6 +15667,7 @@ function FiberNode(tag, pendingProps, key, mode) {
     this._debugSource = null;
     this._debugOwner = null;
     this._debugIsCurrentlyTiming = false;
+    this._debugHookTypes = null;
     if (!hasBadMapPolyfill && typeof Object.preventExtensions === 'function') {
       Object.preventExtensions(this);
     }
@@ -15734,6 +15735,7 @@ function createWorkInProgress(current, pendingProps, expirationTime) {
       workInProgress._debugID = current._debugID;
       workInProgress._debugSource = current._debugSource;
       workInProgress._debugOwner = current._debugOwner;
+      workInProgress._debugHookTypes = current._debugHookTypes;
     }
 
     workInProgress.alternate = current;
@@ -16001,6 +16003,7 @@ function assignFiberPropertiesInDEV(target, source) {
   target._debugSource = source._debugSource;
   target._debugOwner = source._debugOwner;
   target._debugIsCurrentlyTiming = source._debugIsCurrentlyTiming;
+  target._debugHookTypes = source._debugHookTypes;
   return target;
 }
 
@@ -18386,7 +18389,6 @@ var currentlyRenderingFiber$1 = null;
 // current hook list is the list that belongs to the current fiber. The
 // work-in-progress hook list is a new list that will be added to the
 // work-in-progress fiber.
-var firstCurrentHook = null;
 var currentHook = null;
 var nextCurrentHook = null;
 var firstWorkInProgressHook = null;
@@ -18416,39 +18418,67 @@ var RE_RENDER_LIMIT = 25;
 // In DEV, this is the name of the currently executing primitive hook
 var currentHookNameInDev = null;
 
-function warnOnHookMismatchInDev() {
+// In DEV, this list ensures that hooks are called in the same order between renders.
+// The list stores the order of hooks used during the initial render (mount).
+// Subsequent renders (updates) reference this list.
+var hookTypesDev = null;
+var hookTypesUpdateIndexDev = -1;
+
+function mountHookTypesDev() {
+  {
+    var hookName = currentHookNameInDev;
+
+    if (hookTypesDev === null) {
+      hookTypesDev = [hookName];
+    } else {
+      hookTypesDev.push(hookName);
+    }
+  }
+}
+
+function updateHookTypesDev() {
+  {
+    var hookName = currentHookNameInDev;
+
+    if (hookTypesDev !== null) {
+      hookTypesUpdateIndexDev++;
+      if (hookTypesDev[hookTypesUpdateIndexDev] !== hookName) {
+        warnOnHookMismatchInDev(hookName);
+      }
+    }
+  }
+}
+
+function warnOnHookMismatchInDev(currentHookName) {
   {
     var componentName = getComponentName(currentlyRenderingFiber$1.type);
     if (!didWarnAboutMismatchedHooksForComponent.has(componentName)) {
       didWarnAboutMismatchedHooksForComponent.add(componentName);
 
-      var secondColumnStart = 22;
+      if (hookTypesDev !== null) {
+        var table = '';
 
-      var table = '';
-      var prevHook = firstCurrentHook;
-      var nextHook = firstWorkInProgressHook;
-      var n = 1;
-      while (prevHook !== null && nextHook !== null) {
-        var oldHookName = prevHook._debugType;
-        var newHookName = nextHook._debugType;
+        var secondColumnStart = 30;
 
-        var row = n + '. ' + oldHookName;
+        for (var i = 0; i <= hookTypesUpdateIndexDev; i++) {
+          var oldHookName = hookTypesDev[i];
+          var newHookName = i === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
 
-        // Extra space so second column lines up
-        // lol @ IE not supporting String#repeat
-        while (row.length < secondColumnStart) {
-          row += ' ';
+          var row = i + 1 + '. ' + oldHookName;
+
+          // Extra space so second column lines up
+          // lol @ IE not supporting String#repeat
+          while (row.length < secondColumnStart) {
+            row += ' ';
+          }
+
+          row += newHookName + '\n';
+
+          table += row;
         }
 
-        row += newHookName + '\n';
-
-        table += row;
-        prevHook = prevHook.next;
-        nextHook = nextHook.next;
-        n++;
+        warning$1(false, 'React has detected a change in the order of Hooks called by %s. ' + 'This will lead to bugs and errors if not fixed. ' + 'For more information, read the Rules of Hooks: https://fb.me/rules-of-hooks\n\n' + '   Previous render            Next render\n' + '   ------------------------------------------------------\n' + '%s' + '   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', componentName, table);
       }
-
-      warning$1(false, 'React has detected a change in the order of Hooks called by %s. ' + 'This will lead to bugs and errors if not fixed. ' + 'For more information, read the Rules of Hooks: https://fb.me/rules-of-hooks\n\n' + '   Previous render    Next render\n' + '   -------------------------------\n' + '%s' + '   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', componentName, table);
     }
   }
 }
@@ -18484,7 +18514,12 @@ function areHookInputsEqual(nextDeps, prevDeps) {
 function renderWithHooks(current, workInProgress, Component, props, refOrContext, nextRenderExpirationTime) {
   renderExpirationTime = nextRenderExpirationTime;
   currentlyRenderingFiber$1 = workInProgress;
-  firstCurrentHook = nextCurrentHook = current !== null ? current.memoizedState : null;
+  nextCurrentHook = current !== null ? current.memoizedState : null;
+
+  {
+    hookTypesDev = current !== null ? current._debugHookTypes : null;
+    hookTypesUpdateIndexDev = -1;
+  }
 
   // The following should have already been reset
   // currentHook = null;
@@ -18498,8 +18533,26 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
   // numberOfReRenders = 0;
   // sideEffectTag = 0;
 
+  // TODO Warn if no hooks are used at all during mount, then some are used during update.
+  // Currently we will identify the update render as a mount because nextCurrentHook === null.
+  // This is tricky because it's valid for certain types of components (e.g. React.lazy)
+
+  // Using nextCurrentHook to differentiate between mount/update only works if at least one stateful hook is used.
+  // Non-stateful hooks (e.g. context) don't get added to memoizedState,
+  // so nextCurrentHook would be null during updates and mounts.
   {
-    ReactCurrentDispatcher$1.current = nextCurrentHook === null ? HooksDispatcherOnMountInDEV : HooksDispatcherOnUpdateInDEV;
+    if (nextCurrentHook !== null) {
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnUpdateInDEV;
+    } else if (hookTypesDev !== null) {
+      // This dispatcher handles an edge case where a component is updating,
+      // but no stateful hooks have been used.
+      // We want to match the production code behavior (which will use HooksDispatcherOnMount),
+      // but with the extra DEV validation to ensure hooks ordering hasn't changed.
+      // This dispatcher does that.
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnMountWithHookTypesInDEV;
+    } else {
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnMountInDEV;
+    }
   }
 
   var children = Component(props, refOrContext);
@@ -18510,12 +18563,17 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
       numberOfReRenders += 1;
 
       // Start over from the beginning of the list
-      firstCurrentHook = nextCurrentHook = current !== null ? current.memoizedState : null;
+      nextCurrentHook = current !== null ? current.memoizedState : null;
       nextWorkInProgressHook = firstWorkInProgressHook;
 
       currentHook = null;
       workInProgressHook = null;
       componentUpdateQueue = null;
+
+      {
+        // Also validate hook order for cascading updates.
+        hookTypesUpdateIndexDev = -1;
+      }
 
       ReactCurrentDispatcher$1.current = HooksDispatcherOnUpdateInDEV;
 
@@ -18524,10 +18582,6 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
 
     renderPhaseUpdates = null;
     numberOfReRenders = 0;
-  }
-
-  {
-    currentHookNameInDev = null;
   }
 
   // We can assume the previous dispatcher is always this one, since we set it
@@ -18541,17 +18595,28 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
   renderedWork.updateQueue = componentUpdateQueue;
   renderedWork.effectTag |= sideEffectTag;
 
+  {
+    renderedWork._debugHookTypes = hookTypesDev;
+  }
+
+  // This check uses currentHook so that it works the same in DEV and prod bundles.
+  // hookTypesDev could catch more cases (e.g. context) but only in DEV bundles.
   var didRenderTooFewHooks = currentHook !== null && currentHook.next !== null;
 
   renderExpirationTime = NoWork;
   currentlyRenderingFiber$1 = null;
 
-  firstCurrentHook = null;
   currentHook = null;
   nextCurrentHook = null;
   firstWorkInProgressHook = null;
   workInProgressHook = null;
   nextWorkInProgressHook = null;
+
+  {
+    currentHookNameInDev = null;
+    hookTypesDev = null;
+    hookTypesUpdateIndexDev = -1;
+  }
 
   remainingExpirationTime = NoWork;
   componentUpdateQueue = null;
@@ -18586,20 +18651,22 @@ function resetHooks() {
   renderExpirationTime = NoWork;
   currentlyRenderingFiber$1 = null;
 
-  firstCurrentHook = null;
   currentHook = null;
   nextCurrentHook = null;
   firstWorkInProgressHook = null;
   workInProgressHook = null;
   nextWorkInProgressHook = null;
 
+  {
+    hookTypesDev = null;
+    hookTypesUpdateIndexDev = -1;
+
+    currentHookNameInDev = null;
+  }
+
   remainingExpirationTime = NoWork;
   componentUpdateQueue = null;
   sideEffectTag = 0;
-
-  {
-    currentHookNameInDev = null;
-  }
 
   didScheduleRenderPhaseUpdate = false;
   renderPhaseUpdates = null;
@@ -18617,9 +18684,6 @@ function mountWorkInProgressHook() {
     next: null
   };
 
-  {
-    hook._debugType = currentHookNameInDev;
-  }
   if (workInProgressHook === null) {
     // This is the first hook in the list
     firstWorkInProgressHook = workInProgressHook = hook;
@@ -18666,13 +18730,6 @@ function updateWorkInProgressHook() {
       workInProgressHook = workInProgressHook.next = newHook;
     }
     nextCurrentHook = currentHook.next;
-
-    {
-      newHook._debugType = currentHookNameInDev;
-      if (currentHookNameInDev !== currentHook._debugType) {
-        warnOnHookMismatchInDev();
-      }
-    }
   }
   return workInProgressHook;
 }
@@ -18685,20 +18742,6 @@ function createFunctionComponentUpdateQueue() {
 
 function basicStateReducer(state, action) {
   return typeof action === 'function' ? action(state) : action;
-}
-
-function mountContext(context, observedBits) {
-  {
-    mountWorkInProgressHook();
-  }
-  return readContext(context, observedBits);
-}
-
-function updateContext(context, observedBits) {
-  {
-    updateWorkInProgressHook();
-  }
-  return readContext(context, observedBits);
 }
 
 function mountReducer(reducer, initialArg, init) {
@@ -19193,6 +19236,7 @@ var ContextOnlyDispatcher = {
 };
 
 var HooksDispatcherOnMountInDEV = null;
+var HooksDispatcherOnMountWithHookTypesInDEV = null;
 var HooksDispatcherOnUpdateInDEV = null;
 var InvalidNestedHooksDispatcherOnMountInDEV = null;
 var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
@@ -19212,26 +19256,32 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
+      mountHookTypesDev();
       return mountCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
-      return mountContext(context, observedBits);
+      mountHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
+      mountHookTypesDev();
       return mountEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
+      mountHookTypesDev();
       return mountImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
+      mountHookTypesDev();
       return mountLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19242,6 +19292,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19252,10 +19303,12 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
+      mountHookTypesDev();
       return mountRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19266,6 +19319,81 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
+      mountHookTypesDev();
+      return mountDebugValue(value, formatterFn);
+    }
+  };
+
+  HooksDispatcherOnMountWithHookTypesInDEV = {
+    readContext: function (context, observedBits) {
+      return readContext(context, observedBits);
+    },
+    useCallback: function (callback, deps) {
+      currentHookNameInDev = 'useCallback';
+      updateHookTypesDev();
+      return mountCallback(callback, deps);
+    },
+    useContext: function (context, observedBits) {
+      currentHookNameInDev = 'useContext';
+      updateHookTypesDev();
+      return readContext(context, observedBits);
+    },
+    useEffect: function (create, deps) {
+      currentHookNameInDev = 'useEffect';
+      updateHookTypesDev();
+      return mountEffect(create, deps);
+    },
+    useImperativeHandle: function (ref, create, deps) {
+      currentHookNameInDev = 'useImperativeHandle';
+      updateHookTypesDev();
+      return mountImperativeHandle(ref, create, deps);
+    },
+    useLayoutEffect: function (create, deps) {
+      currentHookNameInDev = 'useLayoutEffect';
+      updateHookTypesDev();
+      return mountLayoutEffect(create, deps);
+    },
+    useMemo: function (create, deps) {
+      currentHookNameInDev = 'useMemo';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountMemo(create, deps);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useReducer: function (reducer, initialArg, init) {
+      currentHookNameInDev = 'useReducer';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountReducer(reducer, initialArg, init);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useRef: function (initialValue) {
+      currentHookNameInDev = 'useRef';
+      updateHookTypesDev();
+      return mountRef(initialValue);
+    },
+    useState: function (initialState) {
+      currentHookNameInDev = 'useState';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountState(initialState);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useDebugValue: function (value, formatterFn) {
+      currentHookNameInDev = 'useDebugValue';
+      updateHookTypesDev();
       return mountDebugValue(value, formatterFn);
     }
   };
@@ -19276,26 +19404,32 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
+      updateHookTypesDev();
       return updateCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
-      return updateContext(context, observedBits);
+      updateHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
+      updateHookTypesDev();
       return updateEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
+      updateHookTypesDev();
       return updateImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
+      updateHookTypesDev();
       return updateLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19306,6 +19440,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19316,10 +19451,12 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
+      updateHookTypesDev();
       return updateRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19330,6 +19467,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
+      updateHookTypesDev();
       return updateDebugValue(value, formatterFn);
     }
   };
@@ -19342,31 +19480,37 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
       warnInvalidHookAccess();
-      return mountContext(context, observedBits);
+      mountHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19378,6 +19522,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19389,11 +19534,13 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19405,6 +19552,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountDebugValue(value, formatterFn);
     }
   };
@@ -19417,31 +19565,37 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
       warnInvalidHookAccess();
-      return updateContext(context, observedBits);
+      updateHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19453,6 +19607,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19464,11 +19619,13 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19480,6 +19637,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateDebugValue(value, formatterFn);
     }
   };
@@ -26214,7 +26372,7 @@ implementation) {
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.3';
+var ReactVersion = '16.8.4';
 
 // TODO: This type is shared between the reconciler and ReactDOM, but will
 // eventually be lifted out to the renderer.
@@ -26757,7 +26915,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.3
+/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.4
  * scheduler.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -27502,7 +27660,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v0.13.3
+/** @license React v0.13.4
  * scheduler-tracing.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -59663,7 +59821,7 @@ elliptic.eddsa = __webpack_require__(407);
 /* 381 */
 /***/ (function(module) {
 
-module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Mon Feb 25 2019 11:33:10 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
+module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Tue Mar 12 2019 10:59:41 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
 
 /***/ }),
 /* 382 */
@@ -71359,6 +71517,7 @@ Aelf.prototype.isConnected = function () {
 
 Aelf.prototype.wallet = wallet;
 Aelf.wallet = wallet;
+Aelf.version = version.version;
 
 if (typeof window !== 'undefined' && !window.Aelf) {
     window.Aelf = Aelf;
@@ -71952,19 +72111,19 @@ Object.defineProperty(Chain.prototype, 'defaultAccount', {
 var methods = function () {
     var getCommands = new Method({
         name: 'getCommands',
-        call: 'get_commands',
-        params: [],
+        call: 'GetCommands',
+        params: []
     });
 
     var connectChain = new Method({
         name: 'connectChain',
-        call: 'connect_chain',
-        params: [],
+        call: 'ConnectChain',
+        params: []
     });
 
     var getContractAbi = new Method({
         name: 'getContractAbi',
-        call: 'get_contract_abi',
+        call: 'GetContractAbi',
         params: ['address'],
         inputFormatter: [formatters.inputAddressFormatter],
         outputFormatter: formatters.outputAbiFormatter
@@ -71972,15 +72131,15 @@ var methods = function () {
 
     var getBlockHeight = new Method({
         name: 'getBlockHeight',
-        call: 'get_block_height',
+        call: 'GetBlockHeight',
         params: [],
         inputFormatter: []
     });
 
     var getBlockInfo = new Method({
         name: 'getBlockInfo',
-        call: 'get_block_info',
-        params: ['block_height', 'include_txs']
+        call: 'GetBlockInfo',
+        params: ['blockHeight', 'includeTransactions']
     });
 
     var getIncrement = new Method({
@@ -71992,28 +72151,35 @@ var methods = function () {
 
     var getTxResult = new Method({
         name: 'getTxResult',
-        call: 'get_tx_result',
-        params: ['txhash'],
+        call: 'GetTransactionResult',
+        params: ['transactionId'],
         inputFormatter: [null]
     });
 
     var getTxsResultByBlockhash = new Method({
         name: 'getTxsResult',
-        call: 'get_txs_result',
-        params: ['blockhash', 'offset', 'num']
+        call: 'GetTransactionsResult',
+        params: ['blockHash', 'offset', 'num']
     });
 
     var getMerklePath = new Method({
         name: 'getMerklePath',
-        call: 'get_merkle_path',
-        params: ['txid'],
+        call: 'GetTransactionMerklePath',
+        params: ['transactionId'],
         inputFormatter: [null]
     });
 
     var sendTransaction = new Method({
         name: 'sendTransaction',
-        call: 'broadcast_tx',
-        params: ['rawtx'],
+        call: 'BroadcastTransaction',
+        params: ['rawTransaction'],
+        inputFormatter: [null]
+    });
+
+    var sendTransactions = new Method({
+        name: 'sendTransactions',
+        call: 'BroadcastTransactions',
+        params: ['rawTransaction'],
         inputFormatter: [null]
     });
 
@@ -72024,13 +72190,59 @@ var methods = function () {
         inputFormatter: [null]
     });
 
-    var callReadOnly = new Method({
-        name: 'callReadOnly',
-        call: 'call',
-        params: ['rawtx'],
+    var getTxPoolSize = new Method({
+        name: 'getTxPoolSize',
+        call: 'GetTransactionPoolSize',
+        params: []
+    });
+
+    var getDposStatus = new Method({
+        name: 'getDposStatus',
+        call: 'GetDposStatus',
+        params: []
+    });
+
+    var getNodeStatus = new Method({
+        name: 'getNodeStatus',
+        call: 'GetNodeStatus',
+        params: []
+    });
+
+    var getBlockStateSet = new Method({
+        name: 'getBlockStateSet',
+        call: 'GetBlockStateSet',
+        params: ['blockHash'],
         inputFormatter: [null]
     });
 
+    var callReadOnly = new Method({
+        name: 'callReadOnly',
+        call: 'Call',
+        params: ['rawTransaction'],
+        inputFormatter: [null]
+    });
+
+    var getPeers = new Method({
+        name: 'getPeers',
+        call: 'GetPeers',
+        params: []
+    });
+
+    var addPeer = new Method({
+        name: 'addPeer',
+        call: 'AddPeer',
+        params: ['address'],
+        inputFormatter: [null]
+    });
+
+    var removePeer = new Method({
+        name: 'removePeer',
+        call: 'RemovePeer',
+        params: ['address'],
+        inputFormatter: [null]
+    });
+
+    // getDposStatus, getNodeStatus, getPeers, addPeer, removePeer not support yet
     return [
         getCommands,
         connectChain,
@@ -72039,11 +72251,19 @@ var methods = function () {
         getBlockInfo,
         getIncrement,
         sendTransaction,
+        sendTransactions,
         callReadOnly,
         getTxResult,
         getTxsResultByBlockhash,
         getMerklePath,
-        checkProposal
+        checkProposal,
+        getTxPoolSize,
+        getDposStatus,
+        getNodeStatus,
+        getBlockStateSet,
+        getPeers,
+        addPeer,
+        removePeer
     ];
 };
 
@@ -72139,7 +72359,7 @@ var inputAddressFormatter = function (address) {
 var outputAbiFormatter = function (result) {
     // var root = protobuf.Root.fromJSON(abiDescriptor);
     // var ModuleMessage = root.Module;
-    var buffer = Buffer.from(result.abi.replace('0x', ''), 'hex');
+    var buffer = Buffer.from(result.Abi.replace('0x', ''), 'hex');
     result.abi = ModuleMessage.decode(buffer);
     return result.abi;
 };
@@ -81071,7 +81291,7 @@ common.get = function get(file) {
 /* 552 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.ABI.CSharp"},"nested":{"Field":{"fields":{"Type":{"type":"string","id":1},"Name":{"type":"string","id":2}}},"Type":{"fields":{"Name":{"type":"string","id":1},"Fields":{"rule":"repeated","type":"Field","id":2}}},"Event":{"fields":{"Name":{"type":"string","id":1},"Indexed":{"rule":"repeated","type":"Field","id":2},"NonIndexed":{"rule":"repeated","type":"Field","id":3}}},"Method":{"fields":{"Name":{"type":"string","id":1},"Params":{"rule":"repeated","type":"Field","id":2},"ReturnType":{"type":"string","id":3},"IsView":{"type":"bool","id":4},"IsAsync":{"type":"bool","id":5}}},"Module":{"fields":{"Name":{"type":"string","id":1},"Methods":{"rule":"repeated","type":"Method","id":2},"Events":{"rule":"repeated","type":"Event","id":3},"Types":{"rule":"repeated","type":"Type","id":4}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Kernel.ABI"},"nested":{"Field":{"fields":{"Type":{"type":"string","id":1},"Name":{"type":"string","id":2}}},"Type":{"fields":{"Name":{"type":"string","id":1},"Fields":{"rule":"repeated","type":"Field","id":2}}},"Event":{"fields":{"Name":{"type":"string","id":1},"Indexed":{"rule":"repeated","type":"Field","id":2},"NonIndexed":{"rule":"repeated","type":"Field","id":3}}},"Method":{"fields":{"Name":{"type":"string","id":1},"Params":{"rule":"repeated","type":"Field","id":2},"ReturnType":{"type":"string","id":3},"IsView":{"type":"bool","id":4},"IsAsync":{"type":"bool","id":5},"Fee":{"type":"uint64","id":6}}},"Module":{"fields":{"Name":{"type":"string","id":1},"Methods":{"rule":"repeated","type":"Method","id":2},"Events":{"rule":"repeated","type":"Event","id":3},"Types":{"rule":"repeated","type":"Type","id":4}}}}};
 
 /***/ }),
 /* 553 */
@@ -81647,6 +81867,7 @@ var decodeAddressRep = function (address) {
         var b58rep = parts[parts.length - 1];
         return base58check.decode(b58rep, 'hex');
     }
+    return base58check.decode(address, 'hex');
 };
 
 /**
@@ -81658,7 +81879,7 @@ var decodeAddressRep = function (address) {
  */
 var encodeAddressRep = function (hex) {
     var buf = Buffer.from(hex.replace('0x', ''), 'hex')
-    return "ELF_" + base58check.encode(buf, '');
+    return base58check.encode(buf, '');
 };
 
 /**
@@ -85709,11 +85930,11 @@ ContractMethod.prototype.validateArgs = function (args) {
 ContractMethod.prototype.toPayload = function (args) {
     var rawtx = proto.getTransaction(this._wallet.address, this._address, this._name, coder.encodeParams(this._paramTypes, args));
 
-    var block_height = JSON.parse(this._chain.getBlockHeight().result.block_height, 10);
-    var block_info = this._chain.getBlockInfo(block_height, false).result;
+    var block_height = JSON.parse(this._chain.getBlockHeight(), 10);
+    var block_info = this._chain.getBlockInfo(block_height, false);
 
     rawtx.RefBlockNumber = block_height;
-    var blockhash = block_info.Blockhash;
+    var blockhash = block_info.BlockHash;
     blockhash = blockhash.match(/^0x/) ? blockhash.substring(2) : blockhash;
 
     rawtx.RefBlockPrefix = (new Buffer(blockhash, 'hex')).slice(0, 4);
@@ -85750,12 +85971,12 @@ ContractMethod.prototype.toPayloadAsync = function (args) {
     );
     return new Promise((resolve, reject) => {
         this._chain.getBlockHeight((error, item) => {
-            var blockHeight = parseInt(item.result.block_height, 10);
+            var blockHeight = parseInt(item, 10);
             this._chain.getBlockInfo(blockHeight, false, (error, item) => {
-                var blockInfo = item.result;
+                var blockInfo = item;
 
                 rawtx.RefBlockNumber = blockHeight;
-                var blockhash = blockInfo.Blockhash;
+                var blockhash = blockInfo.BlockHash;
                 blockhash = blockhash.match(/^0x/) ? blockhash.substring(2) : blockhash;
 
                 rawtx.RefBlockPrefix = (new Buffer(blockhash, 'hex')).slice(0, 4);
@@ -86671,19 +86892,19 @@ module.exports = {
 /* 566 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureSt":{"type":"SignatureStatus","id":3},"RefBlockSt":{"type":"RefBlockStatus","id":4},"Status":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}},"nested":{"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"Status":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"Status","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTxnId":{"type":"Hash","id":10}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Index":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"Hash","id":10},"SideChainTransactionsRoot":{"type":"Hash","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3},"IndexedInfo":{"rule":"repeated","type":"SideChainBlockInfo","id":4}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"ContractHash":{"type":"Hash","id":2},"ContractBytes":{"type":"bytes","id":3},"SerialNumber":{"type":"uint64","id":4}}},"SmartContractDeployment":{"fields":{"ContractHash":{"type":"Hash","id":1},"Caller":{"type":"Hash","id":2},"ConstructParams":{"type":"bytes","id":3},"IncrementId":{"type":"uint64","id":4}}},"Parameters":{"fields":{"Params":{"rule":"repeated","type":"Param","id":1}}},"Param":{"oneofs":{"data":{"oneof":["intVal","uintVal","longVal","ulongVal","boolVal","bytesVal","strVal","dVal","hashVal","registerVal","deploymentVal"]}},"fields":{"intVal":{"type":"int32","id":1},"uintVal":{"type":"uint32","id":2},"longVal":{"type":"int64","id":3},"ulongVal":{"type":"uint64","id":4},"boolVal":{"type":"bool","id":5},"bytesVal":{"type":"bytes","id":6},"strVal":{"type":"string","id":7},"dVal":{"type":"double","id":8},"hashVal":{"type":"Hash","id":9},"registerVal":{"type":"SmartContractRegistration","id":10},"deploymentVal":{"type":"SmartContractDeployment","id":11}}},"SmartContractInvokeContext":{"fields":{"Caller":{"type":"Hash","id":1},"IncrementId":{"type":"uint64","id":2},"MethodName":{"type":"string","id":3},"Params":{"type":"bytes","id":4}}},"DataItem":{"fields":{"ResourcePath":{"type":"Hash","id":1},"ResourcePointer":{"type":"Hash","id":2},"StateMerkleTreeLeaf":{"type":"Hash","id":3}}},"WorldState":{"fields":{"Data":{"rule":"repeated","type":"DataItem","id":1}}},"Chain":{"fields":{"Id":{"type":"Hash","id":1},"GenesisBlockHash":{"type":"Hash","id":2}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"Key":{"fields":{"Value":{"type":"bytes","id":1},"type":{"type":"string","id":2},"HashType":{"type":"uint32","id":3}}},"DataPath":{"fields":{"ChainId":{"type":"Hash","id":1},"BlockHeight":{"type":"uint64","id":2},"BlockProducerAddress":{"type":"Address","id":3},"ContractAddress":{"type":"Address","id":4},"DataProviderHash":{"type":"Hash","id":5},"KeyHash":{"type":"Hash","id":6},"StatePath":{"type":"StatePath","id":7}}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Common"},"nested":{"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureStatus":{"type":"SignatureStatus","id":3},"RefBlockStatus":{"type":"RefBlockStatus","id":4},"TransactionStatus":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"TransactionResultStatus":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":10},"DeferredTxnId":{"type":"Hash","id":11}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11,"InsufficientTransactionFees":-12}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12},"FeeTransactionTrace":{"type":"TransactionTrace","id":13},"StateSet":{"type":"TransactionExecutingStateSet","id":14}}},"ExecutionReturnSet":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"StateChanges":{"keyType":"string","type":"bytes","id":3},"Bloom":{"type":"bytes","id":4},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":5},"ReturnValue":{"type":"bytes","id":6}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"TransactionLogEvent":{"fields":{"Transaction":{"type":"Hash","id":1},"LogEvent":{"type":"LogEvent","id":2}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockExtraData":{"fields":{"SideChainTransactionsRoot":{"type":"Hash","id":1},"ConsensusInformation":{"type":"bytes","id":2}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Height":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"int32","id":10},"BlockExtraData":{"type":"BlockExtraData","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"Code":{"type":"bytes","id":2},"CodeHash":{"type":"Hash","id":3}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1},"Remark":{"type":"string","id":2}}},"ULongList":{"fields":{"Values":{"rule":"repeated","type":"uint64","id":1},"Remark":{"type":"string","id":2}}},"BlockAbstract":{"fields":{"MinerPublicKey":{"type":"string","id":1},"Time":{"type":"google.protobuf.Timestamp","id":2}}},"BlockValidationResult":{"values":{"Success":0,"NotMiner":11,"InvalidTimeSlot":12,"FailedToCheckConsensusInvalidation":13,"DoingRollback":14,"BlockIsNull":101,"SameWithCurrentRound":102,"IncorrectConsensusTransaction":103,"ParseProblem":104,"NoTransaction":105,"IncorrectTxMerkleTreeRoot":106,"IncorrectSideChainInfo":107,"IncorrectPoWResult":108,"NotImplementConsensus":109}},"VersionedState":{"fields":{"Key":{"type":"string","id":1},"Value":{"type":"bytes","id":2},"BlockHeight":{"type":"uint64","id":3},"BlockHash":{"type":"Hash","id":4},"OriginBlockHash":{"type":"Hash","id":5}}},"BlockStateSet":{"fields":{"BlockHash":{"type":"Hash","id":1},"PreviousHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"Changes":{"keyType":"string","type":"bytes","id":4}}},"TransactionExecutingStateSet":{"fields":{"Version":{"type":"int64","id":1},"Writes":{"keyType":"string","type":"bytes","id":2},"Reads":{"keyType":"string","type":"bool","id":3}}},"ChainStateMergingStatus":{"values":{"Common":0,"Merging":1,"Merged":2}},"ChainStateInfo":{"fields":{"ChainId":{"type":"int64","id":1},"BlockHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"MergingBlockHash":{"type":"Hash","id":4},"Status":{"type":"ChainStateMergingStatus","id":5}}},"ActionResult":{"fields":{"Success":{"type":"bool","id":1},"ErrorMessage":{"type":"string","id":2}}},"ChainBlockLinkExecutionStatus":{"values":{"ExecutionNone":0,"ExecutionSuccess":1,"ExecutionFailed":2}},"ChainBlockLink":{"fields":{"BlockHash":{"type":"Hash","id":1},"Height":{"type":"uint64","id":2},"PreviousBlockHash":{"type":"Hash","id":3},"ExecutionStatus":{"type":"ChainBlockLinkExecutionStatus","id":4},"IsIrreversibleBlock":{"type":"bool","id":5},"IsLinked":{"type":"bool","id":6},"IsLightBlock":{"type":"bool","id":7}}},"Chain":{"fields":{"Id":{"type":"int32","id":1},"GenesisBlockHash":{"type":"Hash","id":2},"LongestChainHash":{"type":"Hash","id":3},"LongestChainHeight":{"type":"uint64","id":4},"Branches":{"keyType":"string","type":"uint64","id":5},"NotLinkedBlocks":{"keyType":"string","type":"string","id":6},"LastIrreversibleBlockHash":{"type":"Hash","id":7},"LastIrreversibleBlockHeight":{"type":"uint64","id":8},"BestChainHash":{"type":"Hash","id":9},"BestChainHeight":{"type":"uint64","id":10}}},"ChainBlockIndex":{"fields":{"BlockHash":{"type":"Hash","id":1}}},"BranchSwitch":{"fields":{"RollBack":{"rule":"repeated","type":"Hash","id":1},"RollForward":{"rule":"repeated","type":"Hash","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}}}};
 
 /***/ }),
 /* 567 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"Authorization":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"ExecutionThreshold":{"type":"uint32","id":2},"ProposerThreshold":{"type":"uint32","id":3},"Reviewers":{"rule":"repeated","type":"Reviewer","id":4}}},"Reviewer":{"fields":{"PubKey":{"type":"bytes","id":1},"Weight":{"type":"uint32","id":2}}},"Proposal":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"Name":{"type":"string","id":2},"TxnData":{"type":"bytes","id":3},"ExpiredTime":{"type":"double","id":4},"Status":{"type":"ProposalStatus","id":5},"Proposer":{"type":"Address","id":6}}},"ProposalStatus":{"values":{"ToBeDecided":0,"Decided":1,"Released":2}},"Approved":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Approvals":{"rule":"repeated","type":"Approval","id":5}}},"Approval":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Signature":{"type":"bytes","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureSt":{"type":"SignatureStatus","id":3},"RefBlockSt":{"type":"RefBlockStatus","id":4},"Status":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}},"nested":{"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"Status":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"Status","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTxnId":{"type":"Hash","id":10}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Index":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"Hash","id":10},"SideChainTransactionsRoot":{"type":"Hash","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3},"IndexedInfo":{"rule":"repeated","type":"SideChainBlockInfo","id":4}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"ContractHash":{"type":"Hash","id":2},"ContractBytes":{"type":"bytes","id":3},"SerialNumber":{"type":"uint64","id":4}}},"SmartContractDeployment":{"fields":{"ContractHash":{"type":"Hash","id":1},"Caller":{"type":"Hash","id":2},"ConstructParams":{"type":"bytes","id":3},"IncrementId":{"type":"uint64","id":4}}},"Parameters":{"fields":{"Params":{"rule":"repeated","type":"Param","id":1}}},"Param":{"oneofs":{"data":{"oneof":["intVal","uintVal","longVal","ulongVal","boolVal","bytesVal","strVal","dVal","hashVal","registerVal","deploymentVal"]}},"fields":{"intVal":{"type":"int32","id":1},"uintVal":{"type":"uint32","id":2},"longVal":{"type":"int64","id":3},"ulongVal":{"type":"uint64","id":4},"boolVal":{"type":"bool","id":5},"bytesVal":{"type":"bytes","id":6},"strVal":{"type":"string","id":7},"dVal":{"type":"double","id":8},"hashVal":{"type":"Hash","id":9},"registerVal":{"type":"SmartContractRegistration","id":10},"deploymentVal":{"type":"SmartContractDeployment","id":11}}},"SmartContractInvokeContext":{"fields":{"Caller":{"type":"Hash","id":1},"IncrementId":{"type":"uint64","id":2},"MethodName":{"type":"string","id":3},"Params":{"type":"bytes","id":4}}},"DataItem":{"fields":{"ResourcePath":{"type":"Hash","id":1},"ResourcePointer":{"type":"Hash","id":2},"StateMerkleTreeLeaf":{"type":"Hash","id":3}}},"WorldState":{"fields":{"Data":{"rule":"repeated","type":"DataItem","id":1}}},"Chain":{"fields":{"Id":{"type":"Hash","id":1},"GenesisBlockHash":{"type":"Hash","id":2}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"Key":{"fields":{"Value":{"type":"bytes","id":1},"type":{"type":"string","id":2},"HashType":{"type":"uint32","id":3}}},"DataPath":{"fields":{"ChainId":{"type":"Hash","id":1},"BlockHeight":{"type":"uint64","id":2},"BlockProducerAddress":{"type":"Address","id":3},"ContractAddress":{"type":"Address","id":4},"DataProviderHash":{"type":"Hash","id":5},"KeyHash":{"type":"Hash","id":6},"StatePath":{"type":"StatePath","id":7}}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1}}},"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Common"},"nested":{"Authorization":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"ExecutionThreshold":{"type":"uint32","id":2},"ProposerThreshold":{"type":"uint32","id":3},"Reviewers":{"rule":"repeated","type":"Reviewer","id":4}}},"Reviewer":{"fields":{"PubKey":{"type":"bytes","id":1},"Weight":{"type":"uint32","id":2}}},"Proposal":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"Name":{"type":"string","id":2},"TxnData":{"type":"bytes","id":3},"ExpiredTime":{"type":"google.protobuf.Timestamp","id":4},"Status":{"type":"ProposalStatus","id":5},"Proposer":{"type":"Address","id":6}}},"ProposalStatus":{"values":{"ToBeDecided":0,"Decided":1,"Released":2,"Expired":3}},"Approved":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Approvals":{"rule":"repeated","type":"Approval","id":5}}},"Approval":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Signature":{"type":"bytes","id":2}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}}}};
 
 /***/ }),
 /* 568 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"SideChainBlockData":{"fields":{"SideChainHeight":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"SideChainId":{"type":"int32","id":4}}},"IndexedSideChainBlockDataResult":{"fields":{"Height":{"type":"uint64","id":1},"Miner":{"type":"Address","id":2},"SideChainBlockData":{"rule":"repeated","type":"SideChainBlockData","id":3}}},"ParentChainBlockData":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedMerklePath":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"ParentChainHeight":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ParentChainId":{"type":"int32","id":4}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"InsufficientBalance":3,"Terminated":4}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"SideChainId":{"type":"int32","id":7},"ProposalHash":{"type":"Hash","id":8}}},"SideChainIdAndHeightDict":{"fields":{"IdHeighDict":{"keyType":"int32","type":"uint64","id":1}}},"CrossChainBlockData":{"fields":{"SideChainBlockData":{"rule":"repeated","type":"SideChainBlockData","id":1},"ParentChainBlockData":{"rule":"repeated","type":"ParentChainBlockData","id":2}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}},"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureStatus":{"type":"SignatureStatus","id":3},"RefBlockStatus":{"type":"RefBlockStatus","id":4},"TransactionStatus":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"TransactionResultStatus":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":10},"DeferredTxnId":{"type":"Hash","id":11}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11,"InsufficientTransactionFees":-12}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12},"FeeTransactionTrace":{"type":"TransactionTrace","id":13},"StateSet":{"type":"TransactionExecutingStateSet","id":14}}},"ExecutionReturnSet":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"StateChanges":{"keyType":"string","type":"bytes","id":3},"Bloom":{"type":"bytes","id":4},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":5},"ReturnValue":{"type":"bytes","id":6}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"TransactionLogEvent":{"fields":{"Transaction":{"type":"Hash","id":1},"LogEvent":{"type":"LogEvent","id":2}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockExtraData":{"fields":{"SideChainTransactionsRoot":{"type":"Hash","id":1},"ConsensusInformation":{"type":"bytes","id":2}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Height":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"int32","id":10},"BlockExtraData":{"type":"BlockExtraData","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"Code":{"type":"bytes","id":2},"CodeHash":{"type":"Hash","id":3}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1},"Remark":{"type":"string","id":2}}},"ULongList":{"fields":{"Values":{"rule":"repeated","type":"uint64","id":1},"Remark":{"type":"string","id":2}}},"BlockAbstract":{"fields":{"MinerPublicKey":{"type":"string","id":1},"Time":{"type":"google.protobuf.Timestamp","id":2}}},"BlockValidationResult":{"values":{"Success":0,"NotMiner":11,"InvalidTimeSlot":12,"FailedToCheckConsensusInvalidation":13,"DoingRollback":14,"BlockIsNull":101,"SameWithCurrentRound":102,"IncorrectConsensusTransaction":103,"ParseProblem":104,"NoTransaction":105,"IncorrectTxMerkleTreeRoot":106,"IncorrectSideChainInfo":107,"IncorrectPoWResult":108,"NotImplementConsensus":109}},"VersionedState":{"fields":{"Key":{"type":"string","id":1},"Value":{"type":"bytes","id":2},"BlockHeight":{"type":"uint64","id":3},"BlockHash":{"type":"Hash","id":4},"OriginBlockHash":{"type":"Hash","id":5}}},"BlockStateSet":{"fields":{"BlockHash":{"type":"Hash","id":1},"PreviousHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"Changes":{"keyType":"string","type":"bytes","id":4}}},"TransactionExecutingStateSet":{"fields":{"Version":{"type":"int64","id":1},"Writes":{"keyType":"string","type":"bytes","id":2},"Reads":{"keyType":"string","type":"bool","id":3}}},"ChainStateMergingStatus":{"values":{"Common":0,"Merging":1,"Merged":2}},"ChainStateInfo":{"fields":{"ChainId":{"type":"int64","id":1},"BlockHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"MergingBlockHash":{"type":"Hash","id":4},"Status":{"type":"ChainStateMergingStatus","id":5}}},"ActionResult":{"fields":{"Success":{"type":"bool","id":1},"ErrorMessage":{"type":"string","id":2}}},"ChainBlockLinkExecutionStatus":{"values":{"ExecutionNone":0,"ExecutionSuccess":1,"ExecutionFailed":2}},"ChainBlockLink":{"fields":{"BlockHash":{"type":"Hash","id":1},"Height":{"type":"uint64","id":2},"PreviousBlockHash":{"type":"Hash","id":3},"ExecutionStatus":{"type":"ChainBlockLinkExecutionStatus","id":4},"IsIrreversibleBlock":{"type":"bool","id":5},"IsLinked":{"type":"bool","id":6},"IsLightBlock":{"type":"bool","id":7}}},"Chain":{"fields":{"Id":{"type":"int32","id":1},"GenesisBlockHash":{"type":"Hash","id":2},"LongestChainHash":{"type":"Hash","id":3},"LongestChainHeight":{"type":"uint64","id":4},"Branches":{"keyType":"string","type":"uint64","id":5},"NotLinkedBlocks":{"keyType":"string","type":"string","id":6},"LastIrreversibleBlockHash":{"type":"Hash","id":7},"LastIrreversibleBlockHeight":{"type":"uint64","id":8},"BestChainHash":{"type":"Hash","id":9},"BestChainHeight":{"type":"uint64","id":10}}},"ChainBlockIndex":{"fields":{"BlockHash":{"type":"Hash","id":1}}},"BranchSwitch":{"fields":{"RollBack":{"rule":"repeated","type":"Hash","id":1},"RollForward":{"rule":"repeated","type":"Hash","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}}}};
 
 /***/ }),
 /* 569 */
@@ -90741,7 +90962,7 @@ module.exports = Settings;
 /* 606 */
 /***/ (function(module) {
 
-module.exports = {"version":"1.1.18"};
+module.exports = {"version":"2.0.3"};
 
 /***/ }),
 /* 607 */
@@ -90903,7 +91124,7 @@ HttpProvider.prototype.isConnected = function () {
     this.send({
       id: 9999,
       jsonrpc: '2.0',
-      method: 'connect_chain',
+      method: 'ConnectChain',
       params: {}
     });
     return true;
@@ -98544,7 +98765,7 @@ var _dec, _class;
 
 
 
-__webpack_require__(672);
+__webpack_require__(670);
 
 var alert = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10___default.a.alert;
 var NUM_ROWS = 9999;
@@ -98916,13 +99137,11 @@ exports.locals = {
 };
 
 /***/ }),
-/* 670 */,
-/* 671 */,
-/* 672 */
+/* 670 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(673);
+var content = __webpack_require__(671);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -98943,7 +99162,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 673 */
+/* 671 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -98957,7 +99176,7 @@ exports.push([module.i, ".asstes-container .am-list-body {\n    background: none
 
 
 /***/ }),
-/* 674 */
+/* 672 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99239,7 +99458,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 675 */
+/* 673 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99267,12 +99486,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(445);
 /* harmony import */ var _components_Svg_Svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(451);
-/* harmony import */ var _Import_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(676);
+/* harmony import */ var _Import_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(674);
 /* harmony import */ var _Import_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_Import_scss__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(115);
-/* harmony import */ var _utils_walletStorage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(678);
+/* harmony import */ var _utils_walletStorage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(676);
 /* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(500);
-/* harmony import */ var _WalletName_WalletName__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(679);
+/* harmony import */ var _WalletName_WalletName__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(677);
 /* harmony import */ var _utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(221);
 /* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(466);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(473);
@@ -99597,11 +99816,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 676 */
+/* 674 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(677);
+var content = __webpack_require__(675);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -99622,7 +99841,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 677 */
+/* 675 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -99653,7 +99872,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 678 */
+/* 676 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99730,7 +99949,7 @@ function insertWalletInfo(walletInfoInput, password) {
 /* harmony default export */ __webpack_exports__["default"] = (insertWalletInfo);
 
 /***/ }),
-/* 679 */
+/* 677 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99756,7 +99975,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _WalletName_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(680);
+/* harmony import */ var _WalletName_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(678);
 /* harmony import */ var _WalletName_scss__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_WalletName_scss__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(200);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(176);
@@ -99837,11 +100056,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 680 */
+/* 678 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(681);
+var content = __webpack_require__(679);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -99862,7 +100081,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 681 */
+/* 679 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -99878,7 +100097,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 682 */
+/* 680 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99907,9 +100126,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(115);
-/* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(683);
+/* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(681);
 /* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _pages_Mnemonic__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(685);
+/* harmony import */ var _pages_Mnemonic__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(683);
 /* harmony import */ var _utils_clipboard__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(223);
 /* harmony import */ var _utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(221);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(445);
@@ -100291,11 +100510,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 683 */
+/* 681 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(684);
+var content = __webpack_require__(682);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -100316,7 +100535,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 684 */
+/* 682 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -100342,7 +100561,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 685 */
+/* 683 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100373,7 +100592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(115);
-/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(686);
+/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(684);
 /* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_pages_scss__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(445);
 /* harmony import */ var _components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(497);
@@ -100701,11 +100920,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 686 */
+/* 684 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(687);
+var content = __webpack_require__(685);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -100726,7 +100945,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 687 */
+/* 685 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(495);
@@ -100754,7 +100973,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 688 */
+/* 686 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100777,7 +100996,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(115);
-/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(689);
+/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(687);
 /* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(483);
 /* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(466);
@@ -100892,11 +101111,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 689 */
+/* 687 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(690);
+var content = __webpack_require__(688);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -100917,7 +101136,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 690 */
+/* 688 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -100937,7 +101156,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 691 */
+/* 689 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100976,7 +101195,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_17__);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(473);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(474);
-/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(692);
+/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(690);
 /* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__);
 
 
@@ -101185,11 +101404,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 692 */
+/* 690 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(693);
+var content = __webpack_require__(691);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -101210,7 +101429,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 693 */
+/* 691 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -101236,15 +101455,15 @@ exports.locals = {
 };
 
 /***/ }),
-/* 694 */
+/* 692 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PermissionsDetail; });
-/* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(695);
+/* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(693);
 /* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(698);
+/* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(696);
 /* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(636);
 /* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2__);
@@ -101280,11 +101499,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(473);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(474);
 /* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(661);
-/* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(701);
+/* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(699);
 /* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23__);
 /* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(486);
 /* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(487);
-/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(703);
+/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(701);
 /* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_26__);
 
 
@@ -101698,7 +101917,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 695 */
+/* 693 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101706,14 +101925,14 @@ function (_Component) {
 
 __webpack_require__(225);
 
-__webpack_require__(696);
+__webpack_require__(694);
 
 /***/ }),
-/* 696 */
+/* 694 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(697);
+var content = __webpack_require__(695);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -101734,7 +101953,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 697 */
+/* 695 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -101748,7 +101967,7 @@ exports.push([module.i, "/* flexbox */\n.am-flexbox {\n  text-align: left;\n  ov
 
 
 /***/ }),
-/* 698 */
+/* 696 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101758,11 +101977,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Flex = __webpack_require__(699);
+var _Flex = __webpack_require__(697);
 
 var _Flex2 = _interopRequireDefault(_Flex);
 
-var _FlexItem = __webpack_require__(700);
+var _FlexItem = __webpack_require__(698);
 
 var _FlexItem2 = _interopRequireDefault(_FlexItem);
 
@@ -101773,7 +101992,7 @@ exports['default'] = _Flex2['default'];
 module.exports = exports['default'];
 
 /***/ }),
-/* 699 */
+/* 697 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101870,7 +102089,7 @@ Flex.defaultProps = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 700 */
+/* 698 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101955,11 +102174,11 @@ FlexItem.defaultProps = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 701 */
+/* 699 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(702);
+var content = __webpack_require__(700);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -101980,7 +102199,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 702 */
+/* 700 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -102030,11 +102249,11 @@ exports.locals = {
 };
 
 /***/ }),
-/* 703 */
+/* 701 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(704);
+var content = __webpack_require__(702);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -102055,7 +102274,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 704 */
+/* 702 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);

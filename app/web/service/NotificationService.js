@@ -39,10 +39,10 @@ export default class NotificationService {
         }
 
         const height = 600;
-        let method = null;
-        if (notification.message) {
-            method = notification.message.payload.payload ? notification.message.payload.payload.method : null;
-        }
+        let method = notification.message ? notification.message.payload.method : null;
+        // if (notification.message) {
+        //     method = notification.message.payload.method;
+        // }
         const width = checkSetPermission(method);
         let middleX = window.screen.availWidth / 2 - (width / 2);
         let middleY = window.screen.availHeight / 2 - (height / 2);

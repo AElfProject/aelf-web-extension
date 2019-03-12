@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 731);
+/******/ 	return __webpack_require__(__webpack_require__.s = 736);
 /******/ })
 /************************************************************************/
 /******/ (Array(104).concat([
@@ -14789,7 +14789,7 @@ elliptic.eddsa = __webpack_require__(407);
 /* 381 */
 /***/ (function(module) {
 
-module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Mon Feb 25 2019 11:33:10 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
+module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Tue Mar 12 2019 10:59:41 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
 
 /***/ }),
 /* 382 */
@@ -23611,6 +23611,7 @@ Aelf.prototype.isConnected = function () {
 
 Aelf.prototype.wallet = wallet;
 Aelf.wallet = wallet;
+Aelf.version = version.version;
 
 if (typeof window !== 'undefined' && !window.Aelf) {
     window.Aelf = Aelf;
@@ -24204,19 +24205,19 @@ Object.defineProperty(Chain.prototype, 'defaultAccount', {
 var methods = function () {
     var getCommands = new Method({
         name: 'getCommands',
-        call: 'get_commands',
-        params: [],
+        call: 'GetCommands',
+        params: []
     });
 
     var connectChain = new Method({
         name: 'connectChain',
-        call: 'connect_chain',
-        params: [],
+        call: 'ConnectChain',
+        params: []
     });
 
     var getContractAbi = new Method({
         name: 'getContractAbi',
-        call: 'get_contract_abi',
+        call: 'GetContractAbi',
         params: ['address'],
         inputFormatter: [formatters.inputAddressFormatter],
         outputFormatter: formatters.outputAbiFormatter
@@ -24224,15 +24225,15 @@ var methods = function () {
 
     var getBlockHeight = new Method({
         name: 'getBlockHeight',
-        call: 'get_block_height',
+        call: 'GetBlockHeight',
         params: [],
         inputFormatter: []
     });
 
     var getBlockInfo = new Method({
         name: 'getBlockInfo',
-        call: 'get_block_info',
-        params: ['block_height', 'include_txs']
+        call: 'GetBlockInfo',
+        params: ['blockHeight', 'includeTransactions']
     });
 
     var getIncrement = new Method({
@@ -24244,28 +24245,35 @@ var methods = function () {
 
     var getTxResult = new Method({
         name: 'getTxResult',
-        call: 'get_tx_result',
-        params: ['txhash'],
+        call: 'GetTransactionResult',
+        params: ['transactionId'],
         inputFormatter: [null]
     });
 
     var getTxsResultByBlockhash = new Method({
         name: 'getTxsResult',
-        call: 'get_txs_result',
-        params: ['blockhash', 'offset', 'num']
+        call: 'GetTransactionsResult',
+        params: ['blockHash', 'offset', 'num']
     });
 
     var getMerklePath = new Method({
         name: 'getMerklePath',
-        call: 'get_merkle_path',
-        params: ['txid'],
+        call: 'GetTransactionMerklePath',
+        params: ['transactionId'],
         inputFormatter: [null]
     });
 
     var sendTransaction = new Method({
         name: 'sendTransaction',
-        call: 'broadcast_tx',
-        params: ['rawtx'],
+        call: 'BroadcastTransaction',
+        params: ['rawTransaction'],
+        inputFormatter: [null]
+    });
+
+    var sendTransactions = new Method({
+        name: 'sendTransactions',
+        call: 'BroadcastTransactions',
+        params: ['rawTransaction'],
         inputFormatter: [null]
     });
 
@@ -24276,13 +24284,59 @@ var methods = function () {
         inputFormatter: [null]
     });
 
-    var callReadOnly = new Method({
-        name: 'callReadOnly',
-        call: 'call',
-        params: ['rawtx'],
+    var getTxPoolSize = new Method({
+        name: 'getTxPoolSize',
+        call: 'GetTransactionPoolSize',
+        params: []
+    });
+
+    var getDposStatus = new Method({
+        name: 'getDposStatus',
+        call: 'GetDposStatus',
+        params: []
+    });
+
+    var getNodeStatus = new Method({
+        name: 'getNodeStatus',
+        call: 'GetNodeStatus',
+        params: []
+    });
+
+    var getBlockStateSet = new Method({
+        name: 'getBlockStateSet',
+        call: 'GetBlockStateSet',
+        params: ['blockHash'],
         inputFormatter: [null]
     });
 
+    var callReadOnly = new Method({
+        name: 'callReadOnly',
+        call: 'Call',
+        params: ['rawTransaction'],
+        inputFormatter: [null]
+    });
+
+    var getPeers = new Method({
+        name: 'getPeers',
+        call: 'GetPeers',
+        params: []
+    });
+
+    var addPeer = new Method({
+        name: 'addPeer',
+        call: 'AddPeer',
+        params: ['address'],
+        inputFormatter: [null]
+    });
+
+    var removePeer = new Method({
+        name: 'removePeer',
+        call: 'RemovePeer',
+        params: ['address'],
+        inputFormatter: [null]
+    });
+
+    // getDposStatus, getNodeStatus, getPeers, addPeer, removePeer not support yet
     return [
         getCommands,
         connectChain,
@@ -24291,11 +24345,19 @@ var methods = function () {
         getBlockInfo,
         getIncrement,
         sendTransaction,
+        sendTransactions,
         callReadOnly,
         getTxResult,
         getTxsResultByBlockhash,
         getMerklePath,
-        checkProposal
+        checkProposal,
+        getTxPoolSize,
+        getDposStatus,
+        getNodeStatus,
+        getBlockStateSet,
+        getPeers,
+        addPeer,
+        removePeer
     ];
 };
 
@@ -24391,7 +24453,7 @@ var inputAddressFormatter = function (address) {
 var outputAbiFormatter = function (result) {
     // var root = protobuf.Root.fromJSON(abiDescriptor);
     // var ModuleMessage = root.Module;
-    var buffer = Buffer.from(result.abi.replace('0x', ''), 'hex');
+    var buffer = Buffer.from(result.Abi.replace('0x', ''), 'hex');
     result.abi = ModuleMessage.decode(buffer);
     return result.abi;
 };
@@ -33323,7 +33385,7 @@ common.get = function get(file) {
 /* 552 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.ABI.CSharp"},"nested":{"Field":{"fields":{"Type":{"type":"string","id":1},"Name":{"type":"string","id":2}}},"Type":{"fields":{"Name":{"type":"string","id":1},"Fields":{"rule":"repeated","type":"Field","id":2}}},"Event":{"fields":{"Name":{"type":"string","id":1},"Indexed":{"rule":"repeated","type":"Field","id":2},"NonIndexed":{"rule":"repeated","type":"Field","id":3}}},"Method":{"fields":{"Name":{"type":"string","id":1},"Params":{"rule":"repeated","type":"Field","id":2},"ReturnType":{"type":"string","id":3},"IsView":{"type":"bool","id":4},"IsAsync":{"type":"bool","id":5}}},"Module":{"fields":{"Name":{"type":"string","id":1},"Methods":{"rule":"repeated","type":"Method","id":2},"Events":{"rule":"repeated","type":"Event","id":3},"Types":{"rule":"repeated","type":"Type","id":4}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Kernel.ABI"},"nested":{"Field":{"fields":{"Type":{"type":"string","id":1},"Name":{"type":"string","id":2}}},"Type":{"fields":{"Name":{"type":"string","id":1},"Fields":{"rule":"repeated","type":"Field","id":2}}},"Event":{"fields":{"Name":{"type":"string","id":1},"Indexed":{"rule":"repeated","type":"Field","id":2},"NonIndexed":{"rule":"repeated","type":"Field","id":3}}},"Method":{"fields":{"Name":{"type":"string","id":1},"Params":{"rule":"repeated","type":"Field","id":2},"ReturnType":{"type":"string","id":3},"IsView":{"type":"bool","id":4},"IsAsync":{"type":"bool","id":5},"Fee":{"type":"uint64","id":6}}},"Module":{"fields":{"Name":{"type":"string","id":1},"Methods":{"rule":"repeated","type":"Method","id":2},"Events":{"rule":"repeated","type":"Event","id":3},"Types":{"rule":"repeated","type":"Type","id":4}}}}};
 
 /***/ }),
 /* 553 */
@@ -33899,6 +33961,7 @@ var decodeAddressRep = function (address) {
         var b58rep = parts[parts.length - 1];
         return base58check.decode(b58rep, 'hex');
     }
+    return base58check.decode(address, 'hex');
 };
 
 /**
@@ -33910,7 +33973,7 @@ var decodeAddressRep = function (address) {
  */
 var encodeAddressRep = function (hex) {
     var buf = Buffer.from(hex.replace('0x', ''), 'hex')
-    return "ELF_" + base58check.encode(buf, '');
+    return base58check.encode(buf, '');
 };
 
 /**
@@ -37961,11 +38024,11 @@ ContractMethod.prototype.validateArgs = function (args) {
 ContractMethod.prototype.toPayload = function (args) {
     var rawtx = proto.getTransaction(this._wallet.address, this._address, this._name, coder.encodeParams(this._paramTypes, args));
 
-    var block_height = JSON.parse(this._chain.getBlockHeight().result.block_height, 10);
-    var block_info = this._chain.getBlockInfo(block_height, false).result;
+    var block_height = JSON.parse(this._chain.getBlockHeight(), 10);
+    var block_info = this._chain.getBlockInfo(block_height, false);
 
     rawtx.RefBlockNumber = block_height;
-    var blockhash = block_info.Blockhash;
+    var blockhash = block_info.BlockHash;
     blockhash = blockhash.match(/^0x/) ? blockhash.substring(2) : blockhash;
 
     rawtx.RefBlockPrefix = (new Buffer(blockhash, 'hex')).slice(0, 4);
@@ -38002,12 +38065,12 @@ ContractMethod.prototype.toPayloadAsync = function (args) {
     );
     return new Promise((resolve, reject) => {
         this._chain.getBlockHeight((error, item) => {
-            var blockHeight = parseInt(item.result.block_height, 10);
+            var blockHeight = parseInt(item, 10);
             this._chain.getBlockInfo(blockHeight, false, (error, item) => {
-                var blockInfo = item.result;
+                var blockInfo = item;
 
                 rawtx.RefBlockNumber = blockHeight;
-                var blockhash = blockInfo.Blockhash;
+                var blockhash = blockInfo.BlockHash;
                 blockhash = blockhash.match(/^0x/) ? blockhash.substring(2) : blockhash;
 
                 rawtx.RefBlockPrefix = (new Buffer(blockhash, 'hex')).slice(0, 4);
@@ -38923,19 +38986,19 @@ module.exports = {
 /* 566 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureSt":{"type":"SignatureStatus","id":3},"RefBlockSt":{"type":"RefBlockStatus","id":4},"Status":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}},"nested":{"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"Status":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"Status","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTxnId":{"type":"Hash","id":10}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Index":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"Hash","id":10},"SideChainTransactionsRoot":{"type":"Hash","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3},"IndexedInfo":{"rule":"repeated","type":"SideChainBlockInfo","id":4}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"ContractHash":{"type":"Hash","id":2},"ContractBytes":{"type":"bytes","id":3},"SerialNumber":{"type":"uint64","id":4}}},"SmartContractDeployment":{"fields":{"ContractHash":{"type":"Hash","id":1},"Caller":{"type":"Hash","id":2},"ConstructParams":{"type":"bytes","id":3},"IncrementId":{"type":"uint64","id":4}}},"Parameters":{"fields":{"Params":{"rule":"repeated","type":"Param","id":1}}},"Param":{"oneofs":{"data":{"oneof":["intVal","uintVal","longVal","ulongVal","boolVal","bytesVal","strVal","dVal","hashVal","registerVal","deploymentVal"]}},"fields":{"intVal":{"type":"int32","id":1},"uintVal":{"type":"uint32","id":2},"longVal":{"type":"int64","id":3},"ulongVal":{"type":"uint64","id":4},"boolVal":{"type":"bool","id":5},"bytesVal":{"type":"bytes","id":6},"strVal":{"type":"string","id":7},"dVal":{"type":"double","id":8},"hashVal":{"type":"Hash","id":9},"registerVal":{"type":"SmartContractRegistration","id":10},"deploymentVal":{"type":"SmartContractDeployment","id":11}}},"SmartContractInvokeContext":{"fields":{"Caller":{"type":"Hash","id":1},"IncrementId":{"type":"uint64","id":2},"MethodName":{"type":"string","id":3},"Params":{"type":"bytes","id":4}}},"DataItem":{"fields":{"ResourcePath":{"type":"Hash","id":1},"ResourcePointer":{"type":"Hash","id":2},"StateMerkleTreeLeaf":{"type":"Hash","id":3}}},"WorldState":{"fields":{"Data":{"rule":"repeated","type":"DataItem","id":1}}},"Chain":{"fields":{"Id":{"type":"Hash","id":1},"GenesisBlockHash":{"type":"Hash","id":2}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"Key":{"fields":{"Value":{"type":"bytes","id":1},"type":{"type":"string","id":2},"HashType":{"type":"uint32","id":3}}},"DataPath":{"fields":{"ChainId":{"type":"Hash","id":1},"BlockHeight":{"type":"uint64","id":2},"BlockProducerAddress":{"type":"Address","id":3},"ContractAddress":{"type":"Address","id":4},"DataProviderHash":{"type":"Hash","id":5},"KeyHash":{"type":"Hash","id":6},"StatePath":{"type":"StatePath","id":7}}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Common"},"nested":{"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureStatus":{"type":"SignatureStatus","id":3},"RefBlockStatus":{"type":"RefBlockStatus","id":4},"TransactionStatus":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"TransactionResultStatus":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":10},"DeferredTxnId":{"type":"Hash","id":11}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11,"InsufficientTransactionFees":-12}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12},"FeeTransactionTrace":{"type":"TransactionTrace","id":13},"StateSet":{"type":"TransactionExecutingStateSet","id":14}}},"ExecutionReturnSet":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"StateChanges":{"keyType":"string","type":"bytes","id":3},"Bloom":{"type":"bytes","id":4},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":5},"ReturnValue":{"type":"bytes","id":6}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"TransactionLogEvent":{"fields":{"Transaction":{"type":"Hash","id":1},"LogEvent":{"type":"LogEvent","id":2}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockExtraData":{"fields":{"SideChainTransactionsRoot":{"type":"Hash","id":1},"ConsensusInformation":{"type":"bytes","id":2}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Height":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"int32","id":10},"BlockExtraData":{"type":"BlockExtraData","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"Code":{"type":"bytes","id":2},"CodeHash":{"type":"Hash","id":3}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1},"Remark":{"type":"string","id":2}}},"ULongList":{"fields":{"Values":{"rule":"repeated","type":"uint64","id":1},"Remark":{"type":"string","id":2}}},"BlockAbstract":{"fields":{"MinerPublicKey":{"type":"string","id":1},"Time":{"type":"google.protobuf.Timestamp","id":2}}},"BlockValidationResult":{"values":{"Success":0,"NotMiner":11,"InvalidTimeSlot":12,"FailedToCheckConsensusInvalidation":13,"DoingRollback":14,"BlockIsNull":101,"SameWithCurrentRound":102,"IncorrectConsensusTransaction":103,"ParseProblem":104,"NoTransaction":105,"IncorrectTxMerkleTreeRoot":106,"IncorrectSideChainInfo":107,"IncorrectPoWResult":108,"NotImplementConsensus":109}},"VersionedState":{"fields":{"Key":{"type":"string","id":1},"Value":{"type":"bytes","id":2},"BlockHeight":{"type":"uint64","id":3},"BlockHash":{"type":"Hash","id":4},"OriginBlockHash":{"type":"Hash","id":5}}},"BlockStateSet":{"fields":{"BlockHash":{"type":"Hash","id":1},"PreviousHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"Changes":{"keyType":"string","type":"bytes","id":4}}},"TransactionExecutingStateSet":{"fields":{"Version":{"type":"int64","id":1},"Writes":{"keyType":"string","type":"bytes","id":2},"Reads":{"keyType":"string","type":"bool","id":3}}},"ChainStateMergingStatus":{"values":{"Common":0,"Merging":1,"Merged":2}},"ChainStateInfo":{"fields":{"ChainId":{"type":"int64","id":1},"BlockHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"MergingBlockHash":{"type":"Hash","id":4},"Status":{"type":"ChainStateMergingStatus","id":5}}},"ActionResult":{"fields":{"Success":{"type":"bool","id":1},"ErrorMessage":{"type":"string","id":2}}},"ChainBlockLinkExecutionStatus":{"values":{"ExecutionNone":0,"ExecutionSuccess":1,"ExecutionFailed":2}},"ChainBlockLink":{"fields":{"BlockHash":{"type":"Hash","id":1},"Height":{"type":"uint64","id":2},"PreviousBlockHash":{"type":"Hash","id":3},"ExecutionStatus":{"type":"ChainBlockLinkExecutionStatus","id":4},"IsIrreversibleBlock":{"type":"bool","id":5},"IsLinked":{"type":"bool","id":6},"IsLightBlock":{"type":"bool","id":7}}},"Chain":{"fields":{"Id":{"type":"int32","id":1},"GenesisBlockHash":{"type":"Hash","id":2},"LongestChainHash":{"type":"Hash","id":3},"LongestChainHeight":{"type":"uint64","id":4},"Branches":{"keyType":"string","type":"uint64","id":5},"NotLinkedBlocks":{"keyType":"string","type":"string","id":6},"LastIrreversibleBlockHash":{"type":"Hash","id":7},"LastIrreversibleBlockHeight":{"type":"uint64","id":8},"BestChainHash":{"type":"Hash","id":9},"BestChainHeight":{"type":"uint64","id":10}}},"ChainBlockIndex":{"fields":{"BlockHash":{"type":"Hash","id":1}}},"BranchSwitch":{"fields":{"RollBack":{"rule":"repeated","type":"Hash","id":1},"RollForward":{"rule":"repeated","type":"Hash","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}}}};
 
 /***/ }),
 /* 567 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"Authorization":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"ExecutionThreshold":{"type":"uint32","id":2},"ProposerThreshold":{"type":"uint32","id":3},"Reviewers":{"rule":"repeated","type":"Reviewer","id":4}}},"Reviewer":{"fields":{"PubKey":{"type":"bytes","id":1},"Weight":{"type":"uint32","id":2}}},"Proposal":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"Name":{"type":"string","id":2},"TxnData":{"type":"bytes","id":3},"ExpiredTime":{"type":"double","id":4},"Status":{"type":"ProposalStatus","id":5},"Proposer":{"type":"Address","id":6}}},"ProposalStatus":{"values":{"ToBeDecided":0,"Decided":1,"Released":2}},"Approved":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Approvals":{"rule":"repeated","type":"Approval","id":5}}},"Approval":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Signature":{"type":"bytes","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureSt":{"type":"SignatureStatus","id":3},"RefBlockSt":{"type":"RefBlockStatus","id":4},"Status":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}},"nested":{"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"Status":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"Status","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTxnId":{"type":"Hash","id":10}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Index":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"Hash","id":10},"SideChainTransactionsRoot":{"type":"Hash","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3},"IndexedInfo":{"rule":"repeated","type":"SideChainBlockInfo","id":4}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"ContractHash":{"type":"Hash","id":2},"ContractBytes":{"type":"bytes","id":3},"SerialNumber":{"type":"uint64","id":4}}},"SmartContractDeployment":{"fields":{"ContractHash":{"type":"Hash","id":1},"Caller":{"type":"Hash","id":2},"ConstructParams":{"type":"bytes","id":3},"IncrementId":{"type":"uint64","id":4}}},"Parameters":{"fields":{"Params":{"rule":"repeated","type":"Param","id":1}}},"Param":{"oneofs":{"data":{"oneof":["intVal","uintVal","longVal","ulongVal","boolVal","bytesVal","strVal","dVal","hashVal","registerVal","deploymentVal"]}},"fields":{"intVal":{"type":"int32","id":1},"uintVal":{"type":"uint32","id":2},"longVal":{"type":"int64","id":3},"ulongVal":{"type":"uint64","id":4},"boolVal":{"type":"bool","id":5},"bytesVal":{"type":"bytes","id":6},"strVal":{"type":"string","id":7},"dVal":{"type":"double","id":8},"hashVal":{"type":"Hash","id":9},"registerVal":{"type":"SmartContractRegistration","id":10},"deploymentVal":{"type":"SmartContractDeployment","id":11}}},"SmartContractInvokeContext":{"fields":{"Caller":{"type":"Hash","id":1},"IncrementId":{"type":"uint64","id":2},"MethodName":{"type":"string","id":3},"Params":{"type":"bytes","id":4}}},"DataItem":{"fields":{"ResourcePath":{"type":"Hash","id":1},"ResourcePointer":{"type":"Hash","id":2},"StateMerkleTreeLeaf":{"type":"Hash","id":3}}},"WorldState":{"fields":{"Data":{"rule":"repeated","type":"DataItem","id":1}}},"Chain":{"fields":{"Id":{"type":"Hash","id":1},"GenesisBlockHash":{"type":"Hash","id":2}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"Key":{"fields":{"Value":{"type":"bytes","id":1},"type":{"type":"string","id":2},"HashType":{"type":"uint32","id":3}}},"DataPath":{"fields":{"ChainId":{"type":"Hash","id":1},"BlockHeight":{"type":"uint64","id":2},"BlockProducerAddress":{"type":"Address","id":3},"ContractAddress":{"type":"Address","id":4},"DataProviderHash":{"type":"Hash","id":5},"KeyHash":{"type":"Hash","id":6},"StatePath":{"type":"StatePath","id":7}}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1}}},"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Common"},"nested":{"Authorization":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"ExecutionThreshold":{"type":"uint32","id":2},"ProposerThreshold":{"type":"uint32","id":3},"Reviewers":{"rule":"repeated","type":"Reviewer","id":4}}},"Reviewer":{"fields":{"PubKey":{"type":"bytes","id":1},"Weight":{"type":"uint32","id":2}}},"Proposal":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"Name":{"type":"string","id":2},"TxnData":{"type":"bytes","id":3},"ExpiredTime":{"type":"google.protobuf.Timestamp","id":4},"Status":{"type":"ProposalStatus","id":5},"Proposer":{"type":"Address","id":6}}},"ProposalStatus":{"values":{"ToBeDecided":0,"Decided":1,"Released":2,"Expired":3}},"Approved":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Approvals":{"rule":"repeated","type":"Approval","id":5}}},"Approval":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Signature":{"type":"bytes","id":2}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}}}};
 
 /***/ }),
 /* 568 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"SideChainBlockData":{"fields":{"SideChainHeight":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"SideChainId":{"type":"int32","id":4}}},"IndexedSideChainBlockDataResult":{"fields":{"Height":{"type":"uint64","id":1},"Miner":{"type":"Address","id":2},"SideChainBlockData":{"rule":"repeated","type":"SideChainBlockData","id":3}}},"ParentChainBlockData":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedMerklePath":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"ParentChainHeight":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ParentChainId":{"type":"int32","id":4}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"InsufficientBalance":3,"Terminated":4}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"SideChainId":{"type":"int32","id":7},"ProposalHash":{"type":"Hash","id":8}}},"SideChainIdAndHeightDict":{"fields":{"IdHeighDict":{"keyType":"int32","type":"uint64","id":1}}},"CrossChainBlockData":{"fields":{"SideChainBlockData":{"rule":"repeated","type":"SideChainBlockData","id":1},"ParentChainBlockData":{"rule":"repeated","type":"ParentChainBlockData","id":2}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}},"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureStatus":{"type":"SignatureStatus","id":3},"RefBlockStatus":{"type":"RefBlockStatus","id":4},"TransactionStatus":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"TransactionResultStatus":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":10},"DeferredTxnId":{"type":"Hash","id":11}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11,"InsufficientTransactionFees":-12}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12},"FeeTransactionTrace":{"type":"TransactionTrace","id":13},"StateSet":{"type":"TransactionExecutingStateSet","id":14}}},"ExecutionReturnSet":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"StateChanges":{"keyType":"string","type":"bytes","id":3},"Bloom":{"type":"bytes","id":4},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":5},"ReturnValue":{"type":"bytes","id":6}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"TransactionLogEvent":{"fields":{"Transaction":{"type":"Hash","id":1},"LogEvent":{"type":"LogEvent","id":2}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockExtraData":{"fields":{"SideChainTransactionsRoot":{"type":"Hash","id":1},"ConsensusInformation":{"type":"bytes","id":2}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Height":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"int32","id":10},"BlockExtraData":{"type":"BlockExtraData","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"Code":{"type":"bytes","id":2},"CodeHash":{"type":"Hash","id":3}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1},"Remark":{"type":"string","id":2}}},"ULongList":{"fields":{"Values":{"rule":"repeated","type":"uint64","id":1},"Remark":{"type":"string","id":2}}},"BlockAbstract":{"fields":{"MinerPublicKey":{"type":"string","id":1},"Time":{"type":"google.protobuf.Timestamp","id":2}}},"BlockValidationResult":{"values":{"Success":0,"NotMiner":11,"InvalidTimeSlot":12,"FailedToCheckConsensusInvalidation":13,"DoingRollback":14,"BlockIsNull":101,"SameWithCurrentRound":102,"IncorrectConsensusTransaction":103,"ParseProblem":104,"NoTransaction":105,"IncorrectTxMerkleTreeRoot":106,"IncorrectSideChainInfo":107,"IncorrectPoWResult":108,"NotImplementConsensus":109}},"VersionedState":{"fields":{"Key":{"type":"string","id":1},"Value":{"type":"bytes","id":2},"BlockHeight":{"type":"uint64","id":3},"BlockHash":{"type":"Hash","id":4},"OriginBlockHash":{"type":"Hash","id":5}}},"BlockStateSet":{"fields":{"BlockHash":{"type":"Hash","id":1},"PreviousHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"Changes":{"keyType":"string","type":"bytes","id":4}}},"TransactionExecutingStateSet":{"fields":{"Version":{"type":"int64","id":1},"Writes":{"keyType":"string","type":"bytes","id":2},"Reads":{"keyType":"string","type":"bool","id":3}}},"ChainStateMergingStatus":{"values":{"Common":0,"Merging":1,"Merged":2}},"ChainStateInfo":{"fields":{"ChainId":{"type":"int64","id":1},"BlockHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"MergingBlockHash":{"type":"Hash","id":4},"Status":{"type":"ChainStateMergingStatus","id":5}}},"ActionResult":{"fields":{"Success":{"type":"bool","id":1},"ErrorMessage":{"type":"string","id":2}}},"ChainBlockLinkExecutionStatus":{"values":{"ExecutionNone":0,"ExecutionSuccess":1,"ExecutionFailed":2}},"ChainBlockLink":{"fields":{"BlockHash":{"type":"Hash","id":1},"Height":{"type":"uint64","id":2},"PreviousBlockHash":{"type":"Hash","id":3},"ExecutionStatus":{"type":"ChainBlockLinkExecutionStatus","id":4},"IsIrreversibleBlock":{"type":"bool","id":5},"IsLinked":{"type":"bool","id":6},"IsLightBlock":{"type":"bool","id":7}}},"Chain":{"fields":{"Id":{"type":"int32","id":1},"GenesisBlockHash":{"type":"Hash","id":2},"LongestChainHash":{"type":"Hash","id":3},"LongestChainHeight":{"type":"uint64","id":4},"Branches":{"keyType":"string","type":"uint64","id":5},"NotLinkedBlocks":{"keyType":"string","type":"string","id":6},"LastIrreversibleBlockHash":{"type":"Hash","id":7},"LastIrreversibleBlockHeight":{"type":"uint64","id":8},"BestChainHash":{"type":"Hash","id":9},"BestChainHeight":{"type":"uint64","id":10}}},"ChainBlockIndex":{"fields":{"BlockHash":{"type":"Hash","id":1}}},"BranchSwitch":{"fields":{"RollBack":{"rule":"repeated","type":"Hash","id":1},"RollForward":{"rule":"repeated","type":"Hash","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}}}};
 
 /***/ }),
 /* 569 */
@@ -42993,7 +43056,7 @@ module.exports = Settings;
 /* 606 */
 /***/ (function(module) {
 
-module.exports = {"version":"1.1.18"};
+module.exports = {"version":"2.0.3"};
 
 /***/ }),
 /* 607 */
@@ -43155,7 +43218,7 @@ HttpProvider.prototype.isConnected = function () {
     this.send({
       id: 9999,
       jsonrpc: '2.0',
-      method: 'connect_chain',
+      method: 'ConnectChain',
       params: {}
     });
     return true;
@@ -47281,9 +47344,7 @@ exports.XMLHttpRequestUpload = XMLHttpRequestUpload;
 /* 702 */,
 /* 703 */,
 /* 704 */,
-/* 705 */,
-/* 706 */,
-/* 707 */
+/* 705 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(218);
@@ -47310,7 +47371,7 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 708 */
+/* 706 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47351,7 +47412,7 @@ var ApiGenerator = function ApiGenerator() {
 var apis = new ApiGenerator();
 
 /***/ }),
-/* 709 */
+/* 707 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47419,6 +47480,8 @@ function errorHandler(code, error) {
 }
 
 /***/ }),
+/* 708 */,
+/* 709 */,
 /* 710 */,
 /* 711 */,
 /* 712 */,
@@ -47440,7 +47503,12 @@ function errorHandler(code, error) {
 /* 728 */,
 /* 729 */,
 /* 730 */,
-/* 731 */
+/* 731 */,
+/* 732 */,
+/* 733 */,
+/* 734 */,
+/* 735 */,
+/* 736 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47448,7 +47516,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Background; });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(104);
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(707);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(705);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
@@ -47458,15 +47526,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var extension_streams__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(extension_streams__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(474);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(473);
-/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(732);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(708);
-/* harmony import */ var _utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(735);
-/* harmony import */ var _utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(736);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(709);
-/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(737);
-/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(742);
+/* harmony import */ var _models_NightElf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(737);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(706);
+/* harmony import */ var _utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(740);
+/* harmony import */ var _utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(741);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(707);
+/* harmony import */ var _service_NotificationService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(742);
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(748);
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(743);
+/* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(749);
 /* harmony import */ var spark_md5__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(spark_md5__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(501);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_15__);
@@ -47726,15 +47794,14 @@ function () {
       this.lockGuard(sendResponse, function () {
         var aelf = new aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default.a(new aelf_sdk__WEBPACK_IMPORTED_MODULE_15___default.a.providers.HttpProvider(chainInfo.payload.httpProvider));
         aelf.chain.connectChain(function (error, result) {
-          // console.log(error, result);
-          if (error || !result || !result.result || result.error) {
+          if (error || !result || result.error) {
             sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(500001, error || result.error), {
               result: result
             }));
             return;
           }
 
-          var chainId = result.result.chain_id || 'Can not find chain_id';
+          var chainId = result.ChainId || 'Can not find ChainId';
           var existentMetaIndex = -1;
           var existentMeta = aelfMeta.find(function (item, index) {
             // const checkDomain = chainInfo.hostname.includes(item.hostname);
@@ -47900,6 +47967,7 @@ function () {
           payload = contractInfo.payload;
       var address = payload.address,
           contractAddress = payload.contractAddress;
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', contractInfo);
       var dappAelfMeta = aelfMeta.find(function (item, index) {
         // const checkDomain = contractInfo.hostname.includes(item.hostname);
         var checkDomain = hostname === item.hostname;
@@ -48035,6 +48103,7 @@ function () {
           return;
         }
 
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', dappAelfMeta);
         var extendContract = dappAelfMeta.contracts.find(function (item) {
           return contractAddress === item.contractAddress;
         });
@@ -48077,7 +48146,6 @@ function () {
         sendResponse: sendResponse
       }, function (_ref2) {
         var nightElfObject = _ref2.nightElfObject;
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>callAelfContract', contractInfo);
         var payload = contractInfo.payload,
             chainId = contractInfo.chainId,
             hostname = contractInfo.hostname;
@@ -48090,7 +48158,6 @@ function () {
 
         if (checkWhitelist) {
           var appPermissions = Object(_utils_permission_permission__WEBPACK_IMPORTED_MODULE_10__["getApplicationPermssions"])(permissions, hostname);
-          console.log('>>>>>>>>>>>>>>>>', appPermissions);
 
           if (appPermissions.permissions.length && !Object(_utils_contracts_contracts__WEBPACK_IMPORTED_MODULE_9__["contractWhitelistCheck"])({
             sendResponse: sendResponse,
@@ -48117,6 +48184,7 @@ function () {
           return;
         }
 
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', dappAelfMeta);
         var extendContract = dappAelfMeta.contracts.find(function (item) {
           return contractAddress === item.contractAddress;
         });
@@ -48887,7 +48955,7 @@ function () {
 new Background();
 
 /***/ }),
-/* 732 */
+/* 737 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48899,7 +48967,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(733);
+/* harmony import */ var _Keychain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(738);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(501);
 /* harmony import */ var aelf_sdk__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(aelf_sdk__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -48992,7 +49060,7 @@ function () {
 
 
 /***/ }),
-/* 733 */
+/* 738 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49002,7 +49070,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(734);
+/* harmony import */ var _utils_ObjectHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(739);
 
 
 
@@ -49149,7 +49217,7 @@ function () {
 
 
 /***/ }),
-/* 734 */
+/* 739 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49293,7 +49361,7 @@ function () {
 
 
 /***/ }),
-/* 735 */
+/* 740 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49365,7 +49433,7 @@ function contractWhitelistCheck(options) {
 }
 
 /***/ }),
-/* 736 */
+/* 741 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49394,27 +49462,27 @@ function getApplicationPermssions(permissions, domain) {
 }
 
 /***/ }),
-/* 737 */
+/* 742 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NotificationService; });
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(707);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(705);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(738);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(743);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(741);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(746);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(255);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(256);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(709);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(708);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(707);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(706);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(474);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(473);
-/* harmony import */ var _utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(757);
+/* harmony import */ var _utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(747);
 
 
 
@@ -49471,11 +49539,9 @@ function () {
                 }
 
                 height = 600;
-                method = null;
-
-                if (notification.message) {
-                  method = notification.message.payload.payload ? notification.message.payload.payload.method : null;
-                }
+                method = notification.message ? notification.message.payload.method : null; // if (notification.message) {
+                //     method = notification.message.payload.method;
+                // }
 
                 width = Object(_utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__["default"])(method);
                 middleX = window.screen.availWidth / 2 - width / 2;
@@ -49558,7 +49624,7 @@ function () {
                   }
                 });
 
-              case 9:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -49631,14 +49697,14 @@ function () {
 
 
 /***/ }),
-/* 738 */
+/* 743 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(739);
+module.exports = __webpack_require__(744);
 
 
 /***/ }),
-/* 739 */
+/* 744 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -49665,7 +49731,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(740);
+module.exports = __webpack_require__(745);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -49681,7 +49747,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 740 */
+/* 745 */
 /***/ (function(module, exports) {
 
 /**
@@ -50408,7 +50474,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 741 */
+/* 746 */
 /***/ (function(module, exports) {
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -50450,7 +50516,35 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator;
 
 /***/ }),
-/* 742 */
+/* 747 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return checkSetPermission; });
+/**
+ * @file checkSetPermission.js
+ * @author zhouminghui
+*/
+function checkSetPermission(method) {
+  console.log('>>>>>>>>>>>>>>>>>>>>>>', method);
+  var width = 700;
+
+  switch (method) {
+    case 'SET_CONTRACT_PERMISSION':
+      width = 1200;
+      break;
+
+    default:
+      width = 700;
+      break;
+  }
+
+  return width;
+}
+
+/***/ }),
+/* 748 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
@@ -50462,7 +50556,7 @@ module.exports = _asyncToGenerator;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(112)))
 
 /***/ }),
-/* 743 */
+/* 749 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (factory) {
@@ -51203,47 +51297,6 @@ module.exports = _asyncToGenerator;
     return SparkMD5;
 }));
 
-
-/***/ }),
-/* 744 */,
-/* 745 */,
-/* 746 */,
-/* 747 */,
-/* 748 */,
-/* 749 */,
-/* 750 */,
-/* 751 */,
-/* 752 */,
-/* 753 */,
-/* 754 */,
-/* 755 */,
-/* 756 */,
-/* 757 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return checkSetPermission; });
-/**
- * @file checkSetPermission.js
- * @author zhouminghui
-*/
-function checkSetPermission(method) {
-  console.log('>>>>>>>>>>>>>>>>>>>>>>', method);
-  var width = 700;
-
-  switch (method) {
-    case 'SET_CONTRACT_PERMISSION':
-      width = 1200;
-      break;
-
-    default:
-      width = 700;
-      break;
-  }
-
-  return width;
-}
 
 /***/ })
 /******/ ]));

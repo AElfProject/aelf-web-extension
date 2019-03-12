@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 705);
+/******/ 	return __webpack_require__(__webpack_require__.s = 703);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2491,7 +2491,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react-is.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3560,7 +3560,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3582,7 +3582,7 @@ var checkPropTypes = __webpack_require__(101);
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.3';
+var ReactVersion = '16.8.4';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -5560,7 +5560,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -15563,6 +15563,7 @@ function FiberNode(tag, pendingProps, key, mode) {
     this._debugSource = null;
     this._debugOwner = null;
     this._debugIsCurrentlyTiming = false;
+    this._debugHookTypes = null;
     if (!hasBadMapPolyfill && typeof Object.preventExtensions === 'function') {
       Object.preventExtensions(this);
     }
@@ -15630,6 +15631,7 @@ function createWorkInProgress(current, pendingProps, expirationTime) {
       workInProgress._debugID = current._debugID;
       workInProgress._debugSource = current._debugSource;
       workInProgress._debugOwner = current._debugOwner;
+      workInProgress._debugHookTypes = current._debugHookTypes;
     }
 
     workInProgress.alternate = current;
@@ -15897,6 +15899,7 @@ function assignFiberPropertiesInDEV(target, source) {
   target._debugSource = source._debugSource;
   target._debugOwner = source._debugOwner;
   target._debugIsCurrentlyTiming = source._debugIsCurrentlyTiming;
+  target._debugHookTypes = source._debugHookTypes;
   return target;
 }
 
@@ -18282,7 +18285,6 @@ var currentlyRenderingFiber$1 = null;
 // current hook list is the list that belongs to the current fiber. The
 // work-in-progress hook list is a new list that will be added to the
 // work-in-progress fiber.
-var firstCurrentHook = null;
 var currentHook = null;
 var nextCurrentHook = null;
 var firstWorkInProgressHook = null;
@@ -18312,39 +18314,67 @@ var RE_RENDER_LIMIT = 25;
 // In DEV, this is the name of the currently executing primitive hook
 var currentHookNameInDev = null;
 
-function warnOnHookMismatchInDev() {
+// In DEV, this list ensures that hooks are called in the same order between renders.
+// The list stores the order of hooks used during the initial render (mount).
+// Subsequent renders (updates) reference this list.
+var hookTypesDev = null;
+var hookTypesUpdateIndexDev = -1;
+
+function mountHookTypesDev() {
+  {
+    var hookName = currentHookNameInDev;
+
+    if (hookTypesDev === null) {
+      hookTypesDev = [hookName];
+    } else {
+      hookTypesDev.push(hookName);
+    }
+  }
+}
+
+function updateHookTypesDev() {
+  {
+    var hookName = currentHookNameInDev;
+
+    if (hookTypesDev !== null) {
+      hookTypesUpdateIndexDev++;
+      if (hookTypesDev[hookTypesUpdateIndexDev] !== hookName) {
+        warnOnHookMismatchInDev(hookName);
+      }
+    }
+  }
+}
+
+function warnOnHookMismatchInDev(currentHookName) {
   {
     var componentName = getComponentName(currentlyRenderingFiber$1.type);
     if (!didWarnAboutMismatchedHooksForComponent.has(componentName)) {
       didWarnAboutMismatchedHooksForComponent.add(componentName);
 
-      var secondColumnStart = 22;
+      if (hookTypesDev !== null) {
+        var table = '';
 
-      var table = '';
-      var prevHook = firstCurrentHook;
-      var nextHook = firstWorkInProgressHook;
-      var n = 1;
-      while (prevHook !== null && nextHook !== null) {
-        var oldHookName = prevHook._debugType;
-        var newHookName = nextHook._debugType;
+        var secondColumnStart = 30;
 
-        var row = n + '. ' + oldHookName;
+        for (var i = 0; i <= hookTypesUpdateIndexDev; i++) {
+          var oldHookName = hookTypesDev[i];
+          var newHookName = i === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
 
-        // Extra space so second column lines up
-        // lol @ IE not supporting String#repeat
-        while (row.length < secondColumnStart) {
-          row += ' ';
+          var row = i + 1 + '. ' + oldHookName;
+
+          // Extra space so second column lines up
+          // lol @ IE not supporting String#repeat
+          while (row.length < secondColumnStart) {
+            row += ' ';
+          }
+
+          row += newHookName + '\n';
+
+          table += row;
         }
 
-        row += newHookName + '\n';
-
-        table += row;
-        prevHook = prevHook.next;
-        nextHook = nextHook.next;
-        n++;
+        warning$1(false, 'React has detected a change in the order of Hooks called by %s. ' + 'This will lead to bugs and errors if not fixed. ' + 'For more information, read the Rules of Hooks: https://fb.me/rules-of-hooks\n\n' + '   Previous render            Next render\n' + '   ------------------------------------------------------\n' + '%s' + '   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', componentName, table);
       }
-
-      warning$1(false, 'React has detected a change in the order of Hooks called by %s. ' + 'This will lead to bugs and errors if not fixed. ' + 'For more information, read the Rules of Hooks: https://fb.me/rules-of-hooks\n\n' + '   Previous render    Next render\n' + '   -------------------------------\n' + '%s' + '   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', componentName, table);
     }
   }
 }
@@ -18380,7 +18410,12 @@ function areHookInputsEqual(nextDeps, prevDeps) {
 function renderWithHooks(current, workInProgress, Component, props, refOrContext, nextRenderExpirationTime) {
   renderExpirationTime = nextRenderExpirationTime;
   currentlyRenderingFiber$1 = workInProgress;
-  firstCurrentHook = nextCurrentHook = current !== null ? current.memoizedState : null;
+  nextCurrentHook = current !== null ? current.memoizedState : null;
+
+  {
+    hookTypesDev = current !== null ? current._debugHookTypes : null;
+    hookTypesUpdateIndexDev = -1;
+  }
 
   // The following should have already been reset
   // currentHook = null;
@@ -18394,8 +18429,26 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
   // numberOfReRenders = 0;
   // sideEffectTag = 0;
 
+  // TODO Warn if no hooks are used at all during mount, then some are used during update.
+  // Currently we will identify the update render as a mount because nextCurrentHook === null.
+  // This is tricky because it's valid for certain types of components (e.g. React.lazy)
+
+  // Using nextCurrentHook to differentiate between mount/update only works if at least one stateful hook is used.
+  // Non-stateful hooks (e.g. context) don't get added to memoizedState,
+  // so nextCurrentHook would be null during updates and mounts.
   {
-    ReactCurrentDispatcher$1.current = nextCurrentHook === null ? HooksDispatcherOnMountInDEV : HooksDispatcherOnUpdateInDEV;
+    if (nextCurrentHook !== null) {
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnUpdateInDEV;
+    } else if (hookTypesDev !== null) {
+      // This dispatcher handles an edge case where a component is updating,
+      // but no stateful hooks have been used.
+      // We want to match the production code behavior (which will use HooksDispatcherOnMount),
+      // but with the extra DEV validation to ensure hooks ordering hasn't changed.
+      // This dispatcher does that.
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnMountWithHookTypesInDEV;
+    } else {
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnMountInDEV;
+    }
   }
 
   var children = Component(props, refOrContext);
@@ -18406,12 +18459,17 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
       numberOfReRenders += 1;
 
       // Start over from the beginning of the list
-      firstCurrentHook = nextCurrentHook = current !== null ? current.memoizedState : null;
+      nextCurrentHook = current !== null ? current.memoizedState : null;
       nextWorkInProgressHook = firstWorkInProgressHook;
 
       currentHook = null;
       workInProgressHook = null;
       componentUpdateQueue = null;
+
+      {
+        // Also validate hook order for cascading updates.
+        hookTypesUpdateIndexDev = -1;
+      }
 
       ReactCurrentDispatcher$1.current = HooksDispatcherOnUpdateInDEV;
 
@@ -18420,10 +18478,6 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
 
     renderPhaseUpdates = null;
     numberOfReRenders = 0;
-  }
-
-  {
-    currentHookNameInDev = null;
   }
 
   // We can assume the previous dispatcher is always this one, since we set it
@@ -18437,17 +18491,28 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
   renderedWork.updateQueue = componentUpdateQueue;
   renderedWork.effectTag |= sideEffectTag;
 
+  {
+    renderedWork._debugHookTypes = hookTypesDev;
+  }
+
+  // This check uses currentHook so that it works the same in DEV and prod bundles.
+  // hookTypesDev could catch more cases (e.g. context) but only in DEV bundles.
   var didRenderTooFewHooks = currentHook !== null && currentHook.next !== null;
 
   renderExpirationTime = NoWork;
   currentlyRenderingFiber$1 = null;
 
-  firstCurrentHook = null;
   currentHook = null;
   nextCurrentHook = null;
   firstWorkInProgressHook = null;
   workInProgressHook = null;
   nextWorkInProgressHook = null;
+
+  {
+    currentHookNameInDev = null;
+    hookTypesDev = null;
+    hookTypesUpdateIndexDev = -1;
+  }
 
   remainingExpirationTime = NoWork;
   componentUpdateQueue = null;
@@ -18482,20 +18547,22 @@ function resetHooks() {
   renderExpirationTime = NoWork;
   currentlyRenderingFiber$1 = null;
 
-  firstCurrentHook = null;
   currentHook = null;
   nextCurrentHook = null;
   firstWorkInProgressHook = null;
   workInProgressHook = null;
   nextWorkInProgressHook = null;
 
+  {
+    hookTypesDev = null;
+    hookTypesUpdateIndexDev = -1;
+
+    currentHookNameInDev = null;
+  }
+
   remainingExpirationTime = NoWork;
   componentUpdateQueue = null;
   sideEffectTag = 0;
-
-  {
-    currentHookNameInDev = null;
-  }
 
   didScheduleRenderPhaseUpdate = false;
   renderPhaseUpdates = null;
@@ -18513,9 +18580,6 @@ function mountWorkInProgressHook() {
     next: null
   };
 
-  {
-    hook._debugType = currentHookNameInDev;
-  }
   if (workInProgressHook === null) {
     // This is the first hook in the list
     firstWorkInProgressHook = workInProgressHook = hook;
@@ -18562,13 +18626,6 @@ function updateWorkInProgressHook() {
       workInProgressHook = workInProgressHook.next = newHook;
     }
     nextCurrentHook = currentHook.next;
-
-    {
-      newHook._debugType = currentHookNameInDev;
-      if (currentHookNameInDev !== currentHook._debugType) {
-        warnOnHookMismatchInDev();
-      }
-    }
   }
   return workInProgressHook;
 }
@@ -18581,20 +18638,6 @@ function createFunctionComponentUpdateQueue() {
 
 function basicStateReducer(state, action) {
   return typeof action === 'function' ? action(state) : action;
-}
-
-function mountContext(context, observedBits) {
-  {
-    mountWorkInProgressHook();
-  }
-  return readContext(context, observedBits);
-}
-
-function updateContext(context, observedBits) {
-  {
-    updateWorkInProgressHook();
-  }
-  return readContext(context, observedBits);
 }
 
 function mountReducer(reducer, initialArg, init) {
@@ -19089,6 +19132,7 @@ var ContextOnlyDispatcher = {
 };
 
 var HooksDispatcherOnMountInDEV = null;
+var HooksDispatcherOnMountWithHookTypesInDEV = null;
 var HooksDispatcherOnUpdateInDEV = null;
 var InvalidNestedHooksDispatcherOnMountInDEV = null;
 var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
@@ -19108,26 +19152,32 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
+      mountHookTypesDev();
       return mountCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
-      return mountContext(context, observedBits);
+      mountHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
+      mountHookTypesDev();
       return mountEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
+      mountHookTypesDev();
       return mountImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
+      mountHookTypesDev();
       return mountLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19138,6 +19188,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19148,10 +19199,12 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
+      mountHookTypesDev();
       return mountRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19162,6 +19215,81 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
+      mountHookTypesDev();
+      return mountDebugValue(value, formatterFn);
+    }
+  };
+
+  HooksDispatcherOnMountWithHookTypesInDEV = {
+    readContext: function (context, observedBits) {
+      return readContext(context, observedBits);
+    },
+    useCallback: function (callback, deps) {
+      currentHookNameInDev = 'useCallback';
+      updateHookTypesDev();
+      return mountCallback(callback, deps);
+    },
+    useContext: function (context, observedBits) {
+      currentHookNameInDev = 'useContext';
+      updateHookTypesDev();
+      return readContext(context, observedBits);
+    },
+    useEffect: function (create, deps) {
+      currentHookNameInDev = 'useEffect';
+      updateHookTypesDev();
+      return mountEffect(create, deps);
+    },
+    useImperativeHandle: function (ref, create, deps) {
+      currentHookNameInDev = 'useImperativeHandle';
+      updateHookTypesDev();
+      return mountImperativeHandle(ref, create, deps);
+    },
+    useLayoutEffect: function (create, deps) {
+      currentHookNameInDev = 'useLayoutEffect';
+      updateHookTypesDev();
+      return mountLayoutEffect(create, deps);
+    },
+    useMemo: function (create, deps) {
+      currentHookNameInDev = 'useMemo';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountMemo(create, deps);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useReducer: function (reducer, initialArg, init) {
+      currentHookNameInDev = 'useReducer';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountReducer(reducer, initialArg, init);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useRef: function (initialValue) {
+      currentHookNameInDev = 'useRef';
+      updateHookTypesDev();
+      return mountRef(initialValue);
+    },
+    useState: function (initialState) {
+      currentHookNameInDev = 'useState';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountState(initialState);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useDebugValue: function (value, formatterFn) {
+      currentHookNameInDev = 'useDebugValue';
+      updateHookTypesDev();
       return mountDebugValue(value, formatterFn);
     }
   };
@@ -19172,26 +19300,32 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
+      updateHookTypesDev();
       return updateCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
-      return updateContext(context, observedBits);
+      updateHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
+      updateHookTypesDev();
       return updateEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
+      updateHookTypesDev();
       return updateImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
+      updateHookTypesDev();
       return updateLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19202,6 +19336,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19212,10 +19347,12 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
+      updateHookTypesDev();
       return updateRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19226,6 +19363,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
+      updateHookTypesDev();
       return updateDebugValue(value, formatterFn);
     }
   };
@@ -19238,31 +19376,37 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
       warnInvalidHookAccess();
-      return mountContext(context, observedBits);
+      mountHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19274,6 +19418,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19285,11 +19430,13 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19301,6 +19448,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountDebugValue(value, formatterFn);
     }
   };
@@ -19313,31 +19461,37 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
       warnInvalidHookAccess();
-      return updateContext(context, observedBits);
+      updateHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19349,6 +19503,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19360,11 +19515,13 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19376,6 +19533,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateDebugValue(value, formatterFn);
     }
   };
@@ -26110,7 +26268,7 @@ implementation) {
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.3';
+var ReactVersion = '16.8.4';
 
 // TODO: This type is shared between the reconciler and ReactDOM, but will
 // eventually be lifted out to the renderer.
@@ -26653,7 +26811,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.3
+/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.4
  * scheduler.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -27398,7 +27556,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v0.13.3
+/** @license React v0.13.4
  * scheduler-tracing.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -57538,7 +57696,7 @@ elliptic.eddsa = __webpack_require__(407);
 /* 381 */
 /***/ (function(module) {
 
-module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Mon Feb 25 2019 11:33:10 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
+module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Tue Mar 12 2019 10:59:41 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
 
 /***/ }),
 /* 382 */
@@ -70030,222 +70188,8 @@ var SCROLLLIST = {
 /* 667 */,
 /* 668 */,
 /* 669 */,
-/* 670 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Permission; });
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(707);
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(224);
-/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(235);
-/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(255);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(256);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(277);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(280);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(281);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(102);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(708);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(709);
-/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(710);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(176);
-/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(445);
-/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(473);
-/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(474);
-/* harmony import */ var _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(671);
-/* harmony import */ var _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16__);
-
-
-
-
-
-
-
-
-
-/**
- * @file Prompt/Permission.js
- * @author huangzongzhe
- * 2019.01
- */
-
-
-
-
-
- // import {hashHistory} from 'react-router';
-
-
- // import {FormattedMessage} from 'react-intl';
-
-
-
-var Permission =
-/*#__PURE__*/
-function (_Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(Permission, _Component);
-
-  function Permission(props) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Permission);
-
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Permission).call(this, props));
-    var data = window.data || _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__["apis"].extension.getBackgroundPage().notification || null;
-    var message = data.message;
-    var appName = message.appName,
-        hostname = message.hostname,
-        payload = message.payload;
-    _this.address = _this.props.location.state === undefined ? message.payload.payload.address : _this.props.location.state;
-    console.log(_this.address);
-    _this.permission = {
-      appName: appName,
-      domain: hostname,
-      // Why do we do this?
-      // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
-      address: _this.address,
-      contracts: payload.payload.contracts
-    };
-    _this.hasLogin = payload.payload.method === 'LOGIN';
-    _this.state = {
-      address: _this.address
-    };
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Permission, [{
-    key: "setPermission",
-    value: function setPermission() {
-      var address = this.state.address;
-      var detail = JSON.stringify({
-        address: address
-      }); // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
-
-      if (this.hasLogin) {
-        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_15__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__["SET_LOGIN_PERMISSION"], this.permission).send().then(function (result) {
-          console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__["SET_LOGIN_PERMISSION"], result);
-
-          if (result.error === 0) {
-            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.success('Bind Permisson Success, after 3s close the window.');
-
-            window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(0), {
-              detail: detail,
-              message: 'Bind Permisson Success'
-            }));
-            setTimeout(function () {
-              window.close();
-            }, 3000);
-          } else {
-            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.fail(result.message, 3, function () {}, false);
-          }
-        });
-      } else {
-        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_15__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__["SET_CONTRACT_PERMISSION"], this.permission).send().then(function (result) {
-          console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__["SET_CONTRACT_PERMISSION"], result);
-
-          if (result.error === 0) {
-            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.success('Bind Permisson Success, after 3s close the window.');
-
-            window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(0), {
-              detail: detail,
-              message: 'Bind Permisson Success'
-            }));
-            setTimeout(function () {
-              window.close();
-            }, 3000);
-          } else {
-            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.fail(result.message, 3, function () {}, false);
-          }
-        });
-      }
-    }
-  }, {
-    key: "refuse",
-    value: function refuse() {
-      window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(400001, 'Refuse')));
-      window.close();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var permission = this.permission;
-      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.container
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.top
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.blank
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
-        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.wallet
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_12__["FormattedMessage"], {
-        id: "aelf.Authorization details"
-      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.permissionsTips
-      }, "The application will use the following contracts, contract id, contract audit address and contract description:"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.domain
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_12__["FormattedMessage"], {
-        id: "aelf.Authorized domain name:"
-      }), "\xA0\xA0", permission.domain), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__["default"], {
-        permission: permission
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.buttons
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_13__["default"], {
-        text: "Commit",
-        onClick: function onClick() {
-          return _this2.setPermission();
-        }
-      })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_13__["default"], {
-        type: "transparent",
-        text: "Cancel",
-        onClick: function onClick() {
-          return _this2.refuse();
-        }
-      }))));
-    }
-  }]);
-
-  return Permission;
-}(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
-
-
-
-/***/ }),
-/* 671 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(755);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(5)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
+/* 670 */,
+/* 671 */,
 /* 672 */,
 /* 673 */,
 /* 674 */,
@@ -70277,9 +70221,7 @@ if(false) {}
 /* 700 */,
 /* 701 */,
 /* 702 */,
-/* 703 */,
-/* 704 */,
-/* 705 */
+/* 703 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70301,11 +70243,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(199);
 /* harmony import */ var react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_intl_locale_data_en__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(200);
-/* harmony import */ var _Permission_Permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(706);
-/* harmony import */ var _Prompt_Prompt__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(713);
-/* harmony import */ var _LoginKeypairs_LoginKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(714);
-/* harmony import */ var _ConfirmationCall_ConfirmationCall__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(726);
-/* harmony import */ var _ChangePermission_ChangePermission__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(670);
+/* harmony import */ var _Permission_Permission__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(704);
+/* harmony import */ var _Prompt_Prompt__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(714);
+/* harmony import */ var _LoginKeypairs_LoginKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(715);
+/* harmony import */ var _ConfirmationCall_ConfirmationCall__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(727);
+/* harmony import */ var _ChangePermission_ChangePermission__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(733);
 
 
 
@@ -70360,13 +70302,13 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
 })))), document.getElementById('root'));
 
 /***/ }),
-/* 706 */
+/* 704 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Permission; });
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(707);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(705);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(224);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__);
@@ -70384,15 +70326,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(708);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(709);
-/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(710);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(706);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(707);
+/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(708);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(176);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(445);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(473);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(474);
-/* harmony import */ var _utils_diffPermissions__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(756);
-/* harmony import */ var _Permission_scss__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(752);
+/* harmony import */ var _utils_diffPermissions__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(711);
+/* harmony import */ var _Permission_scss__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(712);
 /* harmony import */ var _Permission_scss__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_Permission_scss__WEBPACK_IMPORTED_MODULE_17__);
 
 
@@ -70618,7 +70560,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 707 */
+/* 705 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(218);
@@ -70645,7 +70587,7 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 708 */
+/* 706 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70686,7 +70628,7 @@ var ApiGenerator = function ApiGenerator() {
 var apis = new ApiGenerator();
 
 /***/ }),
-/* 709 */
+/* 707 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70754,7 +70696,7 @@ function errorHandler(code, error) {
 }
 
 /***/ }),
-/* 710 */
+/* 708 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70772,7 +70714,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(711);
+/* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(709);
 /* harmony import */ var _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(176);
 
@@ -70866,11 +70808,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 711 */
+/* 709 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(712);
+var content = __webpack_require__(710);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -70891,7 +70833,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 712 */
+/* 710 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -70910,7 +70852,95 @@ exports.locals = {
 };
 
 /***/ }),
+/* 711 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return diffPermissions; });
+/**
+ * @file diffPermissions.js
+ * @author zhouminghui
+*/
+function diffPermissions(oldPermissions, newPermissions) {
+  if (oldPermissions && newPermissions) {
+    var removePermissions = oldPermissions;
+    var addPermissions = [];
+
+    for (var i = 0, len = newPermissions.length; i < len; i++) {
+      var unconverter = false;
+
+      for (var j = 0, _len = oldPermissions.length; j < _len; j++) {
+        if (JSON.stringify(newPermissions[i]) === JSON.stringify(oldPermissions[j])) {
+          unconverter = true;
+          removePermissions.splice(j, 1);
+        }
+      }
+
+      if (!unconverter) {
+        addPermissions.push(newPermissions[i]);
+      }
+    }
+
+    return {
+      removePermissions: removePermissions,
+      addPermissions: addPermissions
+    };
+  }
+}
+
+/***/ }),
+/* 712 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(713);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
 /* 713 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(495);
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Prompt-Permission-Permission_container-pOTfU {\n  color: #FFF;\n  min-height: 578px;\n  background: url(" + escape(__webpack_require__(496)) + ") no-repeat;\n  -webkit-background-size: cover;\n  background-size: cover;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  background-position: 0 10%; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_top-1NgCI {\n  padding: 0 24px 24px 24px; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_blank-30_gp {\n  padding: 13px 0 0 0; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_wallet-16fag {\n  font-size: 36px;\n  color: #FFF;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_permissionsTips-3qj9K {\n  margin: 0 24px 24px 24px;\n  color: #e2e243; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_domain-3ZSXz {\n  font-size: 30px;\n  margin: 24px; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_buttons-1OUOg {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  margin: 24px; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_buttons-1OUOg > div {\n  width: 45%; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_confirmPermission-3x9Uc {\n  max-width: 700px; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_contrastTips-3mJKK {\n  font-size: 18px;\n  color: #e2e243;\n  margin: 0 24px; }\n", ""]);
+
+// exports
+exports.locals = {
+	"container": "AELF-app-web-pages-Prompt-Permission-Permission_container-pOTfU",
+	"top": "AELF-app-web-pages-Prompt-Permission-Permission_top-1NgCI",
+	"blank": "AELF-app-web-pages-Prompt-Permission-Permission_blank-30_gp",
+	"wallet": "AELF-app-web-pages-Prompt-Permission-Permission_wallet-16fag",
+	"permissionsTips": "AELF-app-web-pages-Prompt-Permission-Permission_permissionsTips-3qj9K",
+	"domain": "AELF-app-web-pages-Prompt-Permission-Permission_domain-3ZSXz",
+	"buttons": "AELF-app-web-pages-Prompt-Permission-Permission_buttons-1OUOg",
+	"confirmPermission": "AELF-app-web-pages-Prompt-Permission-Permission_confirmPermission-3x9Uc",
+	"contrastTips": "AELF-app-web-pages-Prompt-Permission-Permission_contrastTips-3mJKK"
+};
+
+/***/ }),
+/* 714 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70928,7 +70958,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(708);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(706);
 
 
 
@@ -70974,15 +71004,15 @@ function (_Component) {
 
 
 /***/ }),
-/* 714 */
+/* 715 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LoginKeypairs; });
-/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(715);
+/* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(716);
 /* harmony import */ var antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar_style_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(718);
+/* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(719);
 /* harmony import */ var antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_search_bar__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(224);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_2__);
@@ -71008,12 +71038,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(176);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(200);
 /* harmony import */ var _components_Svg_Svg__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(451);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(708);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(706);
 /* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(661);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(473);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(474);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(445);
-/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(722);
+/* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(723);
 /* harmony import */ var _LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_LoginKeypairs_scss__WEBPACK_IMPORTED_MODULE_21__);
 
 
@@ -71043,7 +71073,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-__webpack_require__(724);
+__webpack_require__(725);
 
 var NUM_ROWS = 9999;
 var pageSize = 9999;
@@ -71312,7 +71342,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 715 */
+/* 716 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71320,14 +71350,14 @@ function (_Component) {
 
 __webpack_require__(225);
 
-__webpack_require__(716);
+__webpack_require__(717);
 
 /***/ }),
-/* 716 */
+/* 717 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(717);
+var content = __webpack_require__(718);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -71348,7 +71378,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 717 */
+/* 718 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -71362,7 +71392,7 @@ exports.push([module.i, "/* 默认搜索bar */\n.am-search {\n  position: relati
 
 
 /***/ }),
-/* 718 */
+/* 719 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71412,13 +71442,13 @@ var _rmcFeedback = __webpack_require__(263);
 
 var _rmcFeedback2 = _interopRequireDefault(_rmcFeedback);
 
-var _getDataAttr = __webpack_require__(719);
+var _getDataAttr = __webpack_require__(720);
 
 var _getDataAttr2 = _interopRequireDefault(_getDataAttr);
 
 var _getLocale = __webpack_require__(269);
 
-var _PropsType = __webpack_require__(720);
+var _PropsType = __webpack_require__(721);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -71603,7 +71633,7 @@ var SearchBar = function (_React$Component) {
             // tslint:disable-next-line:variable-name
 
             var _locale = (0, _getLocale.getComponentLocale)(this.props, this.context, 'SearchBar', function () {
-                return __webpack_require__(721);
+                return __webpack_require__(722);
             });
             var cancelText = _locale.cancelText;
             var _state = this.state,
@@ -71674,7 +71704,7 @@ SearchBar.contextTypes = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 719 */
+/* 720 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71696,7 +71726,7 @@ exports['default'] = function (props) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 720 */
+/* 721 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71719,7 +71749,7 @@ var defaultProps = exports.defaultProps = {
 };
 
 /***/ }),
-/* 721 */
+/* 722 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71734,11 +71764,11 @@ exports['default'] = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 722 */
+/* 723 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(723);
+var content = __webpack_require__(724);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -71759,7 +71789,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 723 */
+/* 724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(495);
@@ -71792,11 +71822,11 @@ exports.locals = {
 };
 
 /***/ }),
-/* 724 */
+/* 725 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(725);
+var content = __webpack_require__(726);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -71817,7 +71847,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 725 */
+/* 726 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -71831,7 +71861,7 @@ exports.push([module.i, ".am-list-body {\n    border: none;\n    background: tra
 
 
 /***/ }),
-/* 726 */
+/* 727 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71841,7 +71871,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(652);
 /* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(707);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(705);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(224);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_3__);
@@ -71859,17 +71889,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(708);
-/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(709);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(706);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(707);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(473);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(474);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(445);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(176);
-/* harmony import */ var _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(727);
+/* harmony import */ var _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(728);
 /* harmony import */ var _ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_ConfirmationCall_scss__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _ConfirmationCall_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(729);
+/* harmony import */ var _ConfirmationCall_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(730);
 /* harmony import */ var _ConfirmationCall_css__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_ConfirmationCall_css__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _rmc_tabs_1_2_29_rmc_tabs_lib_Tabs_base__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(754);
+/* harmony import */ var _rmc_tabs_1_2_29_rmc_tabs_lib_Tabs_base__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(732);
 /* harmony import */ var _rmc_tabs_1_2_29_rmc_tabs_lib_Tabs_base__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_rmc_tabs_1_2_29_rmc_tabs_lib_Tabs_base__WEBPACK_IMPORTED_MODULE_19__);
 
 
@@ -72218,11 +72248,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 727 */
+/* 728 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(728);
+var content = __webpack_require__(729);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -72243,7 +72273,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 728 */
+/* 729 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(495);
@@ -72270,11 +72300,11 @@ exports.locals = {
 };
 
 /***/ }),
-/* 729 */
+/* 730 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(730);
+var content = __webpack_require__(731);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -72295,7 +72325,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 730 */
+/* 731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -72309,78 +72339,7 @@ exports.push([module.i, ".am-modal-transparent {\n    width: 400px;\n}", ""]);
 
 
 /***/ }),
-/* 731 */,
-/* 732 */,
-/* 733 */,
-/* 734 */,
-/* 735 */,
-/* 736 */,
-/* 737 */,
-/* 738 */,
-/* 739 */,
-/* 740 */,
-/* 741 */,
-/* 742 */,
-/* 743 */,
-/* 744 */,
-/* 745 */,
-/* 746 */,
-/* 747 */,
-/* 748 */,
-/* 749 */,
-/* 750 */,
-/* 751 */,
-/* 752 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(753);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(5)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-/* 753 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var escape = __webpack_require__(495);
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".AELF-app-web-pages-Prompt-Permission-Permission_container-pOTfU {\n  color: #FFF;\n  min-height: 578px;\n  background: url(" + escape(__webpack_require__(496)) + ") no-repeat;\n  -webkit-background-size: cover;\n  background-size: cover;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  background-position: 0 10%; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_top-1NgCI {\n  padding: 0 24px 24px 24px; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_blank-30_gp {\n  padding: 13px 0 0 0; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_wallet-16fag {\n  font-size: 36px;\n  color: #FFF;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_permissionsTips-3qj9K {\n  margin: 0 24px 24px 24px;\n  color: #e2e243; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_domain-3ZSXz {\n  font-size: 30px;\n  margin: 24px; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_buttons-1OUOg {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  margin: 24px; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_buttons-1OUOg > div {\n  width: 45%; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_confirmPermission-3x9Uc {\n  max-width: 700px; }\n\n.AELF-app-web-pages-Prompt-Permission-Permission_contrastTips-3mJKK {\n  font-size: 18px;\n  color: #e2e243;\n  margin: 0 24px; }\n", ""]);
-
-// exports
-exports.locals = {
-	"container": "AELF-app-web-pages-Prompt-Permission-Permission_container-pOTfU",
-	"top": "AELF-app-web-pages-Prompt-Permission-Permission_top-1NgCI",
-	"blank": "AELF-app-web-pages-Prompt-Permission-Permission_blank-30_gp",
-	"wallet": "AELF-app-web-pages-Prompt-Permission-Permission_wallet-16fag",
-	"permissionsTips": "AELF-app-web-pages-Prompt-Permission-Permission_permissionsTips-3qj9K",
-	"domain": "AELF-app-web-pages-Prompt-Permission-Permission_domain-3ZSXz",
-	"buttons": "AELF-app-web-pages-Prompt-Permission-Permission_buttons-1OUOg",
-	"confirmPermission": "AELF-app-web-pages-Prompt-Permission-Permission_confirmPermission-3x9Uc",
-	"contrastTips": "AELF-app-web-pages-Prompt-Permission-Permission_contrastTips-3mJKK"
-};
-
-/***/ }),
-/* 754 */
+/* 732 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72631,7 +72590,223 @@ Tabs.defaultProps = {
 };
 
 /***/ }),
-/* 755 */
+/* 733 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Permission; });
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(705);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(224);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(235);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(255);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(256);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(277);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(280);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(281);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(102);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(706);
+/* harmony import */ var _utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(707);
+/* harmony import */ var _components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(708);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(176);
+/* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(445);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(473);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(474);
+/* harmony import */ var _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(734);
+/* harmony import */ var _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16__);
+
+
+
+
+
+
+
+
+
+/**
+ * @file Prompt/Permission.js
+ * @author huangzongzhe
+ * 2019.01
+ */
+
+
+
+
+
+ // import {hashHistory} from 'react-router';
+
+
+ // import {FormattedMessage} from 'react-intl';
+
+
+
+var Permission =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(Permission, _Component);
+
+  function Permission(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Permission);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Permission).call(this, props));
+    var data = window.data || _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__["apis"].extension.getBackgroundPage().notification || null;
+    var message = data.message;
+    var appName = message.appName,
+        hostname = message.hostname,
+        payload = message.payload;
+    _this.address = _this.props.location.state === undefined ? message.payload.payload.address : _this.props.location.state;
+    console.log(_this.address);
+    _this.permission = {
+      appName: appName,
+      domain: hostname,
+      // Why do we do this?
+      // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
+      address: _this.address,
+      contracts: payload.payload.contracts
+    };
+    _this.hasLogin = payload.payload.method === 'LOGIN';
+    _this.state = {
+      address: _this.address
+    };
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Permission, [{
+    key: "setPermission",
+    value: function setPermission() {
+      var address = this.state.address;
+      var detail = JSON.stringify({
+        address: address
+      }); // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
+
+      if (this.hasLogin) {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_15__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__["SET_LOGIN_PERMISSION"], this.permission).send().then(function (result) {
+          console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__["SET_LOGIN_PERMISSION"], result);
+
+          if (result.error === 0) {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.success('Bind Permisson Success, after 3s close the window.');
+
+            window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(0), {
+              detail: detail,
+              message: 'Bind Permisson Success'
+            }));
+            setTimeout(function () {
+              window.close();
+            }, 3000);
+          } else {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.fail(result.message, 3, function () {}, false);
+          }
+        });
+      } else {
+        _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_15__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__["SET_CONTRACT_PERMISSION"], this.permission).send().then(function (result) {
+          console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_14__["SET_CONTRACT_PERMISSION"], result);
+
+          if (result.error === 0) {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.success('Bind Permisson Success, after 3s close the window.');
+
+            window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(0), {
+              detail: detail,
+              message: 'Bind Permisson Success'
+            }));
+            setTimeout(function () {
+              window.close();
+            }, 3000);
+          } else {
+            antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_2___default.a.fail(result.message, 3, function () {}, false);
+          }
+        });
+      }
+    }
+  }, {
+    key: "refuse",
+    value: function refuse() {
+      window.data.sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_10__["default"])(400001, 'Refuse')));
+      window.close();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var permission = this.permission;
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.container
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.blank
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
+        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.wallet
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_12__["FormattedMessage"], {
+        id: "aelf.Authorization details"
+      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.permissionsTips
+      }, "The application will use the following contracts, contract id, contract audit address and contract description:"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.domain
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_12__["FormattedMessage"], {
+        id: "aelf.Authorized domain name:"
+      }), "\xA0\xA0", permission.domain), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_ContractInfo_ContractInfo__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        permission: permission
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: _ChangePermission_scss__WEBPACK_IMPORTED_MODULE_16___default.a.buttons
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        text: "Commit",
+        onClick: function onClick() {
+          return _this2.setPermission();
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_Button_Button__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        type: "transparent",
+        text: "Cancel",
+        onClick: function onClick() {
+          return _this2.refuse();
+        }
+      }))));
+    }
+  }]);
+
+  return Permission;
+}(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
+
+
+
+/***/ }),
+/* 734 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(735);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 735 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -72643,44 +72818,6 @@ exports.push([module.i, "", ""]);
 
 // exports
 
-
-/***/ }),
-/* 756 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return diffPermissions; });
-/**
- * @file diffPermissions.js
- * @author zhouminghui
-*/
-function diffPermissions(oldPermissions, newPermissions) {
-  if (oldPermissions && newPermissions) {
-    var removePermissions = oldPermissions;
-    var addPermissions = [];
-
-    for (var i = 0, len = newPermissions.length; i < len; i++) {
-      var unconverter = false;
-
-      for (var j = 0, _len = oldPermissions.length; j < _len; j++) {
-        if (JSON.stringify(newPermissions[i]) === JSON.stringify(oldPermissions[j])) {
-          unconverter = true;
-          removePermissions.splice(j, 1);
-        }
-      }
-
-      if (!unconverter) {
-        addPermissions.push(newPermissions[i]);
-      }
-    }
-
-    return {
-      removePermissions: removePermissions,
-      addPermissions: addPermissions
-    };
-  }
-}
 
 /***/ })
 /******/ ]);
