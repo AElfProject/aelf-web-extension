@@ -21,6 +21,7 @@ export default class ContractInfo extends Component {
             contractName,
             description
         } = permission;
+        console.log(permission);
         return (
             <div key={contractAddress + chainID} className={style.contractInfoList}>
                 <div className={style.contractTitle}>

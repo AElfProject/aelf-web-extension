@@ -45,6 +45,7 @@ export default class Permission extends Component {
             address: this.address,
             contracts: payload.payload.contracts
         };
+        console.log(this.permission);
         this.isLogin = payload.payload.method === 'LOGIN';
         this.isSetPermission = payload.payload.method === 'SET_CONTRACT_PERMISSION';
         this.newPermissions = message.payload.payload.contracts;
@@ -66,7 +67,6 @@ export default class Permission extends Component {
             if (result && result.error === 0) {
                 if (result.permissions.length > 0) {
                     const permissionsList = diffPermissions(result.permissions[0].contracts, this.newPermissions);
-                    console.log(permissionsList);
                     this.setState({
                         permissionsList
                     });

@@ -70389,6 +70389,7 @@ function (_Component) {
       address: _this.address,
       contracts: payload.payload.contracts
     };
+    console.log(_this.permission);
     _this.isLogin = payload.payload.method === 'LOGIN';
     _this.isSetPermission = payload.payload.method === 'SET_CONTRACT_PERMISSION';
     _this.newPermissions = message.payload.payload.contracts;
@@ -70413,7 +70414,6 @@ function (_Component) {
         if (result && result.error === 0) {
           if (result.permissions.length > 0) {
             var permissionsList = Object(_utils_diffPermissions__WEBPACK_IMPORTED_MODULE_16__["default"])(result.permissions[0].contracts, _this2.newPermissions);
-            console.log(permissionsList);
 
             _this2.setState({
               permissionsList: permissionsList
@@ -70754,6 +70754,7 @@ function (_Component) {
           contractAddress = permission.contractAddress,
           contractName = permission.contractName,
           description = permission.description;
+      console.log(permission);
       return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         key: contractAddress + chainID,
         className: _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default.a.contractInfoList

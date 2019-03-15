@@ -4,7 +4,7 @@
 */
 
 export default function checkSetPermission(method) {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>', method);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>checkSetPermission', method);
     let width = 700;
     switch (method) {
         case 'SET_CONTRACT_PERMISSION':

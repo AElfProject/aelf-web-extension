@@ -399,7 +399,6 @@ export default class Background {
                 });
             }
         });
-
     }
 
     /**

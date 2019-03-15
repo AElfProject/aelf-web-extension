@@ -49539,7 +49539,7 @@ function () {
                 }
 
                 height = 600;
-                method = notification.message ? notification.message.payload.method : null; // if (notification.message) {
+                method = notification.message.payload.payload ? notification.message.payload.payload.method : notification.message.payload.method; // if (notification.message) {
                 //     method = notification.message.payload.method;
                 // }
 
@@ -50527,7 +50527,7 @@ __webpack_require__.r(__webpack_exports__);
  * @author zhouminghui
 */
 function checkSetPermission(method) {
-  console.log('>>>>>>>>>>>>>>>>>>>>>>', method);
+  console.log('>>>>>>>>>>>>>>>>>>>>>>checkSetPermission', method);
   var width = 700;
 
   switch (method) {
