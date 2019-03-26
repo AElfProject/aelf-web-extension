@@ -27,6 +27,7 @@ import Permission from './Permission/Permission';
 import Prompt from './Prompt/Prompt';
 import LoginKeypairs from './LoginKeypairs/LoginKeypairs';
 import ConfirmationCall from './ConfirmationCall/ConfirmationCall';
+import ChangePermission from './ChangePermission/ChangePermission';
 
 addLocaleData([...zh, ...en]);
 
@@ -38,6 +39,7 @@ ReactDOM.render(
                 <Route path="/prompt" component={Prompt}></Route>
                 <Route path="/loginkeypairs" component={LoginKeypairs}></Route>
                 <Route path='/confirmation' component={ConfirmationCall}></Route>
+                <Route path='/chengepermission' component={ChangePermission}></Route>
             </Router>
         </LocaleProvider>
     </IntlProvider>,

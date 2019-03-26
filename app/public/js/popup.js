@@ -112,12 +112,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateKeypairs_CreateKeypairs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(491);
 /* harmony import */ var _Keypairs_Keypairs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(635);
 /* harmony import */ var _Permissions_Permissions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(667);
-/* harmony import */ var _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(674);
-/* harmony import */ var _Import_Import__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(675);
-/* harmony import */ var _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(682);
-/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(688);
-/* harmony import */ var _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(691);
-/* harmony import */ var _PermissionsDetail_PermissionsDetail__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(694);
+/* harmony import */ var _Contracts_Contracts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(672);
+/* harmony import */ var _Import_Import__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(673);
+/* harmony import */ var _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(680);
+/* harmony import */ var _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(686);
+/* harmony import */ var _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(689);
+/* harmony import */ var _PermissionsDetail_PermissionsDetail__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(692);
 
 
 
@@ -161,7 +161,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
   path: "/home",
   component: _Home_Home__WEBPACK_IMPORTED_MODULE_11__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/createKeypairs",
+  path: "/createkeypairs",
   component: _CreateKeypairs_CreateKeypairs__WEBPACK_IMPORTED_MODULE_12__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/keypairs",
@@ -170,19 +170,19 @@ react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_
   path: "/permissions",
   component: _Permissions_Permissions__WEBPACK_IMPORTED_MODULE_14__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/permissionsDetail/:data",
+  path: "/permissionsdetail/:data",
   component: _PermissionsDetail_PermissionsDetail__WEBPACK_IMPORTED_MODULE_20__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/import",
   component: _Import_Import__WEBPACK_IMPORTED_MODULE_16__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/backupKeypairs/:address",
+  path: "/backupkeypairs/:address",
   component: _BackupKeypairs_BackupKeypairs__WEBPACK_IMPORTED_MODULE_17__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/extensionManager",
+  path: "/extensionmanager",
   component: _ExtensionManager_ExtensionManager__WEBPACK_IMPORTED_MODULE_18__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-  path: "/loadFromBackup",
+  path: "/loadfrombackup",
   component: _LoadFromBackup_LoadFromBackup__WEBPACK_IMPORTED_MODULE_19__["default"]
 }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__["Route"], {
   path: "/contracts",
@@ -2595,7 +2595,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react-is.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3664,7 +3664,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -3686,7 +3686,7 @@ var checkPropTypes = __webpack_require__(101);
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.3';
+var ReactVersion = '16.8.4';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -5664,7 +5664,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.8.3
+/** @license React v16.8.4
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -15667,6 +15667,7 @@ function FiberNode(tag, pendingProps, key, mode) {
     this._debugSource = null;
     this._debugOwner = null;
     this._debugIsCurrentlyTiming = false;
+    this._debugHookTypes = null;
     if (!hasBadMapPolyfill && typeof Object.preventExtensions === 'function') {
       Object.preventExtensions(this);
     }
@@ -15734,6 +15735,7 @@ function createWorkInProgress(current, pendingProps, expirationTime) {
       workInProgress._debugID = current._debugID;
       workInProgress._debugSource = current._debugSource;
       workInProgress._debugOwner = current._debugOwner;
+      workInProgress._debugHookTypes = current._debugHookTypes;
     }
 
     workInProgress.alternate = current;
@@ -16001,6 +16003,7 @@ function assignFiberPropertiesInDEV(target, source) {
   target._debugSource = source._debugSource;
   target._debugOwner = source._debugOwner;
   target._debugIsCurrentlyTiming = source._debugIsCurrentlyTiming;
+  target._debugHookTypes = source._debugHookTypes;
   return target;
 }
 
@@ -18386,7 +18389,6 @@ var currentlyRenderingFiber$1 = null;
 // current hook list is the list that belongs to the current fiber. The
 // work-in-progress hook list is a new list that will be added to the
 // work-in-progress fiber.
-var firstCurrentHook = null;
 var currentHook = null;
 var nextCurrentHook = null;
 var firstWorkInProgressHook = null;
@@ -18416,39 +18418,67 @@ var RE_RENDER_LIMIT = 25;
 // In DEV, this is the name of the currently executing primitive hook
 var currentHookNameInDev = null;
 
-function warnOnHookMismatchInDev() {
+// In DEV, this list ensures that hooks are called in the same order between renders.
+// The list stores the order of hooks used during the initial render (mount).
+// Subsequent renders (updates) reference this list.
+var hookTypesDev = null;
+var hookTypesUpdateIndexDev = -1;
+
+function mountHookTypesDev() {
+  {
+    var hookName = currentHookNameInDev;
+
+    if (hookTypesDev === null) {
+      hookTypesDev = [hookName];
+    } else {
+      hookTypesDev.push(hookName);
+    }
+  }
+}
+
+function updateHookTypesDev() {
+  {
+    var hookName = currentHookNameInDev;
+
+    if (hookTypesDev !== null) {
+      hookTypesUpdateIndexDev++;
+      if (hookTypesDev[hookTypesUpdateIndexDev] !== hookName) {
+        warnOnHookMismatchInDev(hookName);
+      }
+    }
+  }
+}
+
+function warnOnHookMismatchInDev(currentHookName) {
   {
     var componentName = getComponentName(currentlyRenderingFiber$1.type);
     if (!didWarnAboutMismatchedHooksForComponent.has(componentName)) {
       didWarnAboutMismatchedHooksForComponent.add(componentName);
 
-      var secondColumnStart = 22;
+      if (hookTypesDev !== null) {
+        var table = '';
 
-      var table = '';
-      var prevHook = firstCurrentHook;
-      var nextHook = firstWorkInProgressHook;
-      var n = 1;
-      while (prevHook !== null && nextHook !== null) {
-        var oldHookName = prevHook._debugType;
-        var newHookName = nextHook._debugType;
+        var secondColumnStart = 30;
 
-        var row = n + '. ' + oldHookName;
+        for (var i = 0; i <= hookTypesUpdateIndexDev; i++) {
+          var oldHookName = hookTypesDev[i];
+          var newHookName = i === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
 
-        // Extra space so second column lines up
-        // lol @ IE not supporting String#repeat
-        while (row.length < secondColumnStart) {
-          row += ' ';
+          var row = i + 1 + '. ' + oldHookName;
+
+          // Extra space so second column lines up
+          // lol @ IE not supporting String#repeat
+          while (row.length < secondColumnStart) {
+            row += ' ';
+          }
+
+          row += newHookName + '\n';
+
+          table += row;
         }
 
-        row += newHookName + '\n';
-
-        table += row;
-        prevHook = prevHook.next;
-        nextHook = nextHook.next;
-        n++;
+        warning$1(false, 'React has detected a change in the order of Hooks called by %s. ' + 'This will lead to bugs and errors if not fixed. ' + 'For more information, read the Rules of Hooks: https://fb.me/rules-of-hooks\n\n' + '   Previous render            Next render\n' + '   ------------------------------------------------------\n' + '%s' + '   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', componentName, table);
       }
-
-      warning$1(false, 'React has detected a change in the order of Hooks called by %s. ' + 'This will lead to bugs and errors if not fixed. ' + 'For more information, read the Rules of Hooks: https://fb.me/rules-of-hooks\n\n' + '   Previous render    Next render\n' + '   -------------------------------\n' + '%s' + '   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', componentName, table);
     }
   }
 }
@@ -18484,7 +18514,12 @@ function areHookInputsEqual(nextDeps, prevDeps) {
 function renderWithHooks(current, workInProgress, Component, props, refOrContext, nextRenderExpirationTime) {
   renderExpirationTime = nextRenderExpirationTime;
   currentlyRenderingFiber$1 = workInProgress;
-  firstCurrentHook = nextCurrentHook = current !== null ? current.memoizedState : null;
+  nextCurrentHook = current !== null ? current.memoizedState : null;
+
+  {
+    hookTypesDev = current !== null ? current._debugHookTypes : null;
+    hookTypesUpdateIndexDev = -1;
+  }
 
   // The following should have already been reset
   // currentHook = null;
@@ -18498,8 +18533,26 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
   // numberOfReRenders = 0;
   // sideEffectTag = 0;
 
+  // TODO Warn if no hooks are used at all during mount, then some are used during update.
+  // Currently we will identify the update render as a mount because nextCurrentHook === null.
+  // This is tricky because it's valid for certain types of components (e.g. React.lazy)
+
+  // Using nextCurrentHook to differentiate between mount/update only works if at least one stateful hook is used.
+  // Non-stateful hooks (e.g. context) don't get added to memoizedState,
+  // so nextCurrentHook would be null during updates and mounts.
   {
-    ReactCurrentDispatcher$1.current = nextCurrentHook === null ? HooksDispatcherOnMountInDEV : HooksDispatcherOnUpdateInDEV;
+    if (nextCurrentHook !== null) {
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnUpdateInDEV;
+    } else if (hookTypesDev !== null) {
+      // This dispatcher handles an edge case where a component is updating,
+      // but no stateful hooks have been used.
+      // We want to match the production code behavior (which will use HooksDispatcherOnMount),
+      // but with the extra DEV validation to ensure hooks ordering hasn't changed.
+      // This dispatcher does that.
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnMountWithHookTypesInDEV;
+    } else {
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnMountInDEV;
+    }
   }
 
   var children = Component(props, refOrContext);
@@ -18510,12 +18563,17 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
       numberOfReRenders += 1;
 
       // Start over from the beginning of the list
-      firstCurrentHook = nextCurrentHook = current !== null ? current.memoizedState : null;
+      nextCurrentHook = current !== null ? current.memoizedState : null;
       nextWorkInProgressHook = firstWorkInProgressHook;
 
       currentHook = null;
       workInProgressHook = null;
       componentUpdateQueue = null;
+
+      {
+        // Also validate hook order for cascading updates.
+        hookTypesUpdateIndexDev = -1;
+      }
 
       ReactCurrentDispatcher$1.current = HooksDispatcherOnUpdateInDEV;
 
@@ -18524,10 +18582,6 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
 
     renderPhaseUpdates = null;
     numberOfReRenders = 0;
-  }
-
-  {
-    currentHookNameInDev = null;
   }
 
   // We can assume the previous dispatcher is always this one, since we set it
@@ -18541,17 +18595,28 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
   renderedWork.updateQueue = componentUpdateQueue;
   renderedWork.effectTag |= sideEffectTag;
 
+  {
+    renderedWork._debugHookTypes = hookTypesDev;
+  }
+
+  // This check uses currentHook so that it works the same in DEV and prod bundles.
+  // hookTypesDev could catch more cases (e.g. context) but only in DEV bundles.
   var didRenderTooFewHooks = currentHook !== null && currentHook.next !== null;
 
   renderExpirationTime = NoWork;
   currentlyRenderingFiber$1 = null;
 
-  firstCurrentHook = null;
   currentHook = null;
   nextCurrentHook = null;
   firstWorkInProgressHook = null;
   workInProgressHook = null;
   nextWorkInProgressHook = null;
+
+  {
+    currentHookNameInDev = null;
+    hookTypesDev = null;
+    hookTypesUpdateIndexDev = -1;
+  }
 
   remainingExpirationTime = NoWork;
   componentUpdateQueue = null;
@@ -18586,20 +18651,22 @@ function resetHooks() {
   renderExpirationTime = NoWork;
   currentlyRenderingFiber$1 = null;
 
-  firstCurrentHook = null;
   currentHook = null;
   nextCurrentHook = null;
   firstWorkInProgressHook = null;
   workInProgressHook = null;
   nextWorkInProgressHook = null;
 
+  {
+    hookTypesDev = null;
+    hookTypesUpdateIndexDev = -1;
+
+    currentHookNameInDev = null;
+  }
+
   remainingExpirationTime = NoWork;
   componentUpdateQueue = null;
   sideEffectTag = 0;
-
-  {
-    currentHookNameInDev = null;
-  }
 
   didScheduleRenderPhaseUpdate = false;
   renderPhaseUpdates = null;
@@ -18617,9 +18684,6 @@ function mountWorkInProgressHook() {
     next: null
   };
 
-  {
-    hook._debugType = currentHookNameInDev;
-  }
   if (workInProgressHook === null) {
     // This is the first hook in the list
     firstWorkInProgressHook = workInProgressHook = hook;
@@ -18666,13 +18730,6 @@ function updateWorkInProgressHook() {
       workInProgressHook = workInProgressHook.next = newHook;
     }
     nextCurrentHook = currentHook.next;
-
-    {
-      newHook._debugType = currentHookNameInDev;
-      if (currentHookNameInDev !== currentHook._debugType) {
-        warnOnHookMismatchInDev();
-      }
-    }
   }
   return workInProgressHook;
 }
@@ -18685,20 +18742,6 @@ function createFunctionComponentUpdateQueue() {
 
 function basicStateReducer(state, action) {
   return typeof action === 'function' ? action(state) : action;
-}
-
-function mountContext(context, observedBits) {
-  {
-    mountWorkInProgressHook();
-  }
-  return readContext(context, observedBits);
-}
-
-function updateContext(context, observedBits) {
-  {
-    updateWorkInProgressHook();
-  }
-  return readContext(context, observedBits);
 }
 
 function mountReducer(reducer, initialArg, init) {
@@ -19193,6 +19236,7 @@ var ContextOnlyDispatcher = {
 };
 
 var HooksDispatcherOnMountInDEV = null;
+var HooksDispatcherOnMountWithHookTypesInDEV = null;
 var HooksDispatcherOnUpdateInDEV = null;
 var InvalidNestedHooksDispatcherOnMountInDEV = null;
 var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
@@ -19212,26 +19256,32 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
+      mountHookTypesDev();
       return mountCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
-      return mountContext(context, observedBits);
+      mountHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
+      mountHookTypesDev();
       return mountEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
+      mountHookTypesDev();
       return mountImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
+      mountHookTypesDev();
       return mountLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19242,6 +19292,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19252,10 +19303,12 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
+      mountHookTypesDev();
       return mountRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19266,6 +19319,81 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
+      mountHookTypesDev();
+      return mountDebugValue(value, formatterFn);
+    }
+  };
+
+  HooksDispatcherOnMountWithHookTypesInDEV = {
+    readContext: function (context, observedBits) {
+      return readContext(context, observedBits);
+    },
+    useCallback: function (callback, deps) {
+      currentHookNameInDev = 'useCallback';
+      updateHookTypesDev();
+      return mountCallback(callback, deps);
+    },
+    useContext: function (context, observedBits) {
+      currentHookNameInDev = 'useContext';
+      updateHookTypesDev();
+      return readContext(context, observedBits);
+    },
+    useEffect: function (create, deps) {
+      currentHookNameInDev = 'useEffect';
+      updateHookTypesDev();
+      return mountEffect(create, deps);
+    },
+    useImperativeHandle: function (ref, create, deps) {
+      currentHookNameInDev = 'useImperativeHandle';
+      updateHookTypesDev();
+      return mountImperativeHandle(ref, create, deps);
+    },
+    useLayoutEffect: function (create, deps) {
+      currentHookNameInDev = 'useLayoutEffect';
+      updateHookTypesDev();
+      return mountLayoutEffect(create, deps);
+    },
+    useMemo: function (create, deps) {
+      currentHookNameInDev = 'useMemo';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountMemo(create, deps);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useReducer: function (reducer, initialArg, init) {
+      currentHookNameInDev = 'useReducer';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountReducer(reducer, initialArg, init);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useRef: function (initialValue) {
+      currentHookNameInDev = 'useRef';
+      updateHookTypesDev();
+      return mountRef(initialValue);
+    },
+    useState: function (initialState) {
+      currentHookNameInDev = 'useState';
+      updateHookTypesDev();
+      var prevDispatcher = ReactCurrentDispatcher$1.current;
+      ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
+      try {
+        return mountState(initialState);
+      } finally {
+        ReactCurrentDispatcher$1.current = prevDispatcher;
+      }
+    },
+    useDebugValue: function (value, formatterFn) {
+      currentHookNameInDev = 'useDebugValue';
+      updateHookTypesDev();
       return mountDebugValue(value, formatterFn);
     }
   };
@@ -19276,26 +19404,32 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
+      updateHookTypesDev();
       return updateCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
-      return updateContext(context, observedBits);
+      updateHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
+      updateHookTypesDev();
       return updateEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
+      updateHookTypesDev();
       return updateImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
+      updateHookTypesDev();
       return updateLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19306,6 +19440,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19316,10 +19451,12 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
+      updateHookTypesDev();
       return updateRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19330,6 +19467,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     },
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
+      updateHookTypesDev();
       return updateDebugValue(value, formatterFn);
     }
   };
@@ -19342,31 +19480,37 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
       warnInvalidHookAccess();
-      return mountContext(context, observedBits);
+      mountHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19378,6 +19522,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19389,11 +19534,13 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
       try {
@@ -19405,6 +19552,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
       warnInvalidHookAccess();
+      mountHookTypesDev();
       return mountDebugValue(value, formatterFn);
     }
   };
@@ -19417,31 +19565,37 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useCallback: function (callback, deps) {
       currentHookNameInDev = 'useCallback';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateCallback(callback, deps);
     },
     useContext: function (context, observedBits) {
       currentHookNameInDev = 'useContext';
       warnInvalidHookAccess();
-      return updateContext(context, observedBits);
+      updateHookTypesDev();
+      return readContext(context, observedBits);
     },
     useEffect: function (create, deps) {
       currentHookNameInDev = 'useEffect';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateEffect(create, deps);
     },
     useImperativeHandle: function (ref, create, deps) {
       currentHookNameInDev = 'useImperativeHandle';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateImperativeHandle(ref, create, deps);
     },
     useLayoutEffect: function (create, deps) {
       currentHookNameInDev = 'useLayoutEffect';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateLayoutEffect(create, deps);
     },
     useMemo: function (create, deps) {
       currentHookNameInDev = 'useMemo';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19453,6 +19607,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useReducer: function (reducer, initialArg, init) {
       currentHookNameInDev = 'useReducer';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19464,11 +19619,13 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useRef: function (initialValue) {
       currentHookNameInDev = 'useRef';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateRef(initialValue);
     },
     useState: function (initialState) {
       currentHookNameInDev = 'useState';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       var prevDispatcher = ReactCurrentDispatcher$1.current;
       ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
       try {
@@ -19480,6 +19637,7 @@ var InvalidNestedHooksDispatcherOnUpdateInDEV = null;
     useDebugValue: function (value, formatterFn) {
       currentHookNameInDev = 'useDebugValue';
       warnInvalidHookAccess();
+      updateHookTypesDev();
       return updateDebugValue(value, formatterFn);
     }
   };
@@ -26214,7 +26372,7 @@ implementation) {
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.8.3';
+var ReactVersion = '16.8.4';
 
 // TODO: This type is shared between the reconciler and ReactDOM, but will
 // eventually be lifted out to the renderer.
@@ -26757,7 +26915,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.3
+/* WEBPACK VAR INJECTION */(function(global) {/** @license React v0.13.4
  * scheduler.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -27502,7 +27660,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v0.13.3
+/** @license React v0.13.4
  * scheduler-tracing.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -39082,7 +39240,7 @@ var zh_CN = (_zh_CN = {
   'aelf.Backup': '备份',
   'aelf.Change Password': '修改密码',
   'aelf.Transaction List': '交易记录'
-}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Contact", '联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Commit', '提交'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New contacts', '新建联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Name', '姓名'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Payee wallet address', '钱包地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Old password', '旧密码'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Forget your password', '忘记密码？导入助记符或私钥可以重置。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Immediately import', '立即导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.hint03', '在这个钱包中，导入私钥时没有助记词。但是，当我们导入助记词时，我们可以得到私钥。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Import', '导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.System Setting', '系统设置'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Network', '网络'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon01', '当前钱包服务的URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon02', '该服务做了什么？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon03', '1、在将Token转让给他人时，广播您的交易。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon04', '2、在打开显示交易细节的页面时提供信息。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon05', '如何变更服务？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon06', '1、点击上方 URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon07', '2、然后，你可以更改它。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon08', '默认提供的为:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Language', '语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Help Center', '帮助中心'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle01', '什么是助记词？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle02', '什么是keystore？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle03', '什么是公钥私钥？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle04', 'AElf钱包介绍'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle05', '如何修改密码？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle06', '如果我忘记密码了怎么办？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon01', '助记词相当于传统金融机构的银行卡+密码。请把它放在安全的地方。助记词是明文私钥的另一种表现形式，它被设计成帮助用户记住复杂的私钥（64位散列）。' + '记忆法一般由12, 15, 18个单词和21个单词组成。这些词是从固定的词汇中提取出来的。生成顺序也是基于一定的算法。助记词是一个未加密的私钥。任何人得到你的助记词后，就可以不费吹灰之力夺走你的资产。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon02', '因此，用户在备份助记符时必须注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon03', '1、尽可能采用物理介质，例如把助记词写在纸上，尽可能不要采用截屏或者拍照之后放在联网设备上，以防被黑客窃取。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon04', '2、多次验证备份的助记词是否正确，一旦抄错一个字母或单词，那么将对后续找回正确的助记词带来巨大苦难。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon05', '3、将备份后的助记词妥善保管，做好防盗防丢措施。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon01', 'Keystore 文件是存储私钥的一种文件格式（JSON）。它使用用户自定义密码加密，以起到一定程度的保护作用，而保护的程度取决于用' + '户加密该钱包的密码强度，如果类似于123456这样的密码，是极为不安全的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon02', '所以用户在备份助记词时一定要注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon03', '1、使用不常用，并且尽可能复杂的密码加密Keystore文件。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon04', '2、一定要记住加密Keystore的密码，一旦忘记密码，那么你就失去了Keystore的使用权，并且aelf无法帮你找回密码。所以请妥善保管。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon05', 'Keystore密码样式：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon01', '钱包中资金的控制取决于相应私钥的所有权和控制权。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon02', '在区块链交易中，私钥用于生成支付货币所必须的签名，以证明资金的所有权。私钥必须始终保持机密，因为一旦泄露给第三方，相当于该私钥保护下的资产也拱手相让了。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon03', '它不同于keystore，keystore是加密过后的私钥文件，只要密码强度足够强，即使黑客攻击，破译难度也很高。私' + '钥实际上并不是存储在网络中，而是由用户生成并储存在一个文件或者简单的数据库中，称为钱包。用户的钱包地址就是由私钥通过椭圆曲线加密生成公钥，进而生成以0x开头的42位地址。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon04', '私钥的样式为64位16进制哈希值字符串。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon01', 'AElf钱包是一款全新的数字货币钱包，为用户提供更安全、高效、便捷的服务。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon02', 'AElf钱包支持AElf智能合约数字货币。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon03', '目前暂不支持BTC和ETH，但是符合AElf标准的代币我们都支持。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changepasswordCon01', '密码可以在钱包管理界面上修改。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon01', '在去中心化钱包中，所有用户的用户身份验证内容，如交易密码、私钥、助记词等都保存在用户手机本地，并不是' + '保存在中心化服务器中，所以用户如果忘记密码是没有办法通过第三方团队来重置密码的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon02', '唯一的解决办法是通过重新导入助记词或者私钥来设置新的密码。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.About AElf Official Wallet', '关于 AELF 钱包'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Use Agreement', '使用协议'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Privacy Policy', '隐私政策'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changelanguage', '选择语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.languageSelect', '请选择'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Record', '交易记录'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Send', '发送'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Receive", '接收'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Copy URL', '复制链接'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Details', '交易细节'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.To Address', '发送地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction', '交易'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Amount to send', '发送值/价值'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Balance', '等量'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New Provider', '新供应商'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.slow', '慢'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.fast', '快'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltips', '密码错误，您还有'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltimes', '次机会'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Back Home', '返回'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.error page', '错误页'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.cannot connect chain', '无法连接到链'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.PleaseBackUp', '注意!请立即备份钱包!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon01', 'aelf在此提示您，区块链钱包不同于传统网站账户，它是基于密码学的去中心化账户系统。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon02', '你必须保存好钱包和私钥和交易密码，任何意外发生将导致资产丢失。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon03', 'aelf提示您做好备份，在进行小额交易测试后，再开启使用之旅。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon04', '备份助记词在您丢失钱包或忘记密码时，能帮助您恢复钱包。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup now', '立即备份助记词'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords confirmed error.', '两次输入不一致'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords is not strong.', '密码强度不够'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Extension Management', '管理'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup NightELF', '备份 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete NightELF', '删除 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Timer Locks', '定时锁定'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Load From Backup', '导入加密备份'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Please select the file', '请选择备份文件'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Click here', '点击这里'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Timing Lock Settings', '定时锁定设置'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Application', '应用'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Login', '登录'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Details', '查看详情'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Submit Backup', '提交备份'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Manage', '管理'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete', '删除'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Copy Address", '复制地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Please select the timing lock-in time:', '请选择定时锁定时间:'), _zh_CN);
+}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Contact", '联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Commit', '提交'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New contacts', '新建联系人'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Name', '姓名'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Payee wallet address', '钱包地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Old password', '旧密码'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Forget your password', '忘记密码？导入助记符或私钥可以重置。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Immediately import', '立即导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.hint03', '在这个钱包中，导入私钥时没有助记词。但是，当我们导入助记词时，我们可以得到私钥。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Import', '导入'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.System Setting', '系统设置'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Network', '网络'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon01', '当前钱包服务的URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon02', '该服务做了什么？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon03', '1、在将Token转让给他人时，广播您的交易。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon04', '2、在打开显示交易细节的页面时提供信息。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon05', '如何变更服务？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon06', '1、点击上方 URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon07', '2、然后，你可以更改它。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.NetworkCon08', '默认提供的为:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Language', '语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Help Center', '帮助中心'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle01', '什么是助记词？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle02', '什么是keystore？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle03', '什么是公钥私钥？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle04', 'AElf钱包介绍'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle05', '如何修改密码？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.HelpTitle06', '如果我忘记密码了怎么办？'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon01', '助记词相当于传统金融机构的银行卡+密码。请把它放在安全的地方。助记词是明文私钥的另一种表现形式，它被设计成帮助用户记住复杂的私钥（64位散列）。' + '记忆法一般由12, 15, 18个单词和21个单词组成。这些词是从固定的词汇中提取出来的。生成顺序也是基于一定的算法。助记词是一个未加密的私钥。任何人得到你的助记词后，就可以不费吹灰之力夺走你的资产。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon02', '因此，用户在备份助记符时必须注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon03', '1、尽可能采用物理介质，例如把助记词写在纸上，尽可能不要采用截屏或者拍照之后放在联网设备上，以防被黑客窃取。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon04', '2、多次验证备份的助记词是否正确，一旦抄错一个字母或单词，那么将对后续找回正确的助记词带来巨大苦难。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.mnemonicCon05', '3、将备份后的助记词妥善保管，做好防盗防丢措施。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon01', 'Keystore 文件是存储私钥的一种文件格式（JSON）。它使用用户自定义密码加密，以起到一定程度的保护作用，而保护的程度取决于用' + '户加密该钱包的密码强度，如果类似于123456这样的密码，是极为不安全的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon02', '所以用户在备份助记词时一定要注意三点：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon03', '1、使用不常用，并且尽可能复杂的密码加密Keystore文件。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon04', '2、一定要记住加密Keystore的密码，一旦忘记密码，那么你就失去了Keystore的使用权，并且aelf无法帮你找回密码。所以请妥善保管。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.keystoreCon05', 'Keystore密码样式：'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon01', '钱包中资金的控制取决于相应私钥的所有权和控制权。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon02', '在区块链交易中，私钥用于生成支付货币所必须的签名，以证明资金的所有权。私钥必须始终保持机密，因为一旦泄露给第三方，相当于该私钥保护下的资产也拱手相让了。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon03', '它不同于keystore，keystore是加密过后的私钥文件，只要密码强度足够强，即使黑客攻击，破译难度也很高。私' + '钥实际上并不是存储在网络中，而是由用户生成并储存在一个文件或者简单的数据库中，称为钱包。用户的钱包地址就是由私钥通过椭圆曲线加密生成公钥，进而生成以0x开头的42位地址。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.publickeyCon04', '私钥的样式为64位16进制哈希值字符串。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon01', 'AElf钱包是一款全新的数字货币钱包，为用户提供更安全、高效、便捷的服务。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon02', 'AElf钱包支持AElf智能合约数字货币。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.walletCon03', '目前暂不支持BTC和ETH，但是符合AElf标准的代币我们都支持。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changepasswordCon01', '密码可以在钱包管理界面上修改。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon01', '在去中心化钱包中，所有用户的用户身份验证内容，如交易密码、私钥、助记词等都保存在用户手机本地，并不是' + '保存在中心化服务器中，所以用户如果忘记密码是没有办法通过第三方团队来重置密码的。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.forgetpasswordCon02', '唯一的解决办法是通过重新导入助记词或者私钥来设置新的密码。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.About AElf Official Wallet', '关于 AELF 钱包'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Use Agreement', '使用协议'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Privacy Policy', '隐私政策'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.changelanguage', '选择语言'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.languageSelect', '请选择'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Record', '交易记录'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Send', '发送'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Receive", '接收'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Copy URL', '复制链接'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction Details', '交易细节'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.To Address', '发送地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Transaction', '交易'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Amount to send', '发送值/价值'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Balance', '等量'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New Provider', '新供应商'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.slow', '慢'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.fast', '快'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltips', '密码错误，您还有'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Modaltimes', '次机会'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Back Home', '返回'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.error page', '错误页'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.cannot connect chain', '无法连接到链'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.PleaseBackUp', '注意!请立即备份钱包!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon01', 'aelf在此提示您，区块链钱包不同于传统网站账户，它是基于密码学的去中心化账户系统。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon02', '你必须保存好钱包和私钥和交易密码，任何意外发生将导致资产丢失。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon03', 'aelf提示您做好备份，在进行小额交易测试后，再开启使用之旅。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.BackUpCon04', '备份助记词在您丢失钱包或忘记密码时，能帮助您恢复钱包。'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup now', '立即备份助记词'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords confirmed error.', '两次输入不一致'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.The passwords is not strong.', '密码强度不够'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Extension Management', '管理'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Backup NightELF', '备份 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete NightELF', '删除 NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Timer Locks', '定时锁定'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Load From Backup', '导入加密备份'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Please select the file', '请选择备份文件'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Click here', '点击这里'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Timing Lock Settings', '定时锁定设置'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Application', '应用'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Login', '登录'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Details', '查看详情'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Submit Backup', '提交备份'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Manage', '管理'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete', '删除'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, "aelf.Copy Address", '复制地址'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Please select the timing lock-in time:', '请选择定时锁定时间:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Application details', '应用详情'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Cancel', '取消'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Authorization details', '授权详情'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Authorized domain name:', '授权域名:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Contract Address:', '合约地址:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Contract Name:', '合约名称:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Description:', '合约介绍:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Enable Whitelist', '启用白名单'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete All', '删除全部权限'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Whitelist', '白名单'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.New Contract Method', '新增合约权限'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Delete Contract Method', '删除合约权限'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_zh_CN, 'aelf.Details of contract changes', '合约变更详情'), _zh_CN);
 /* harmony default export */ __webpack_exports__["default"] = (zh_CN);
 
 /***/ }),
@@ -39191,7 +39349,7 @@ var en_US = (_en_US = {
   'aelf.Backup': 'Backup',
   'aelf.Change Password': 'Change Password',
   'aelf.Transaction List': 'Transaction List'
-}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Contact", 'Contact'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Commit', 'Commit'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New contacts', 'New contacts'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Name', 'Name'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Payee wallet address', 'Payee wallet address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Old password', 'Old password'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Forget your password', 'Forget your password? Importing mnemonic or private key can be reset.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Immediately import', 'Immediately import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.hint03', 'In this wallet, there is no Mnemonic when import Private Key. But we can get ' + 'Private Key when we import Mnemonic.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Import', 'Import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.System Setting', 'System Setting'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Network', 'Network'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon01', 'Current Wallet Service URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon02', 'What did the service provider do?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon03', '1.Broadcast your transaction when you transfer tokens to others.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon04', '2.Provide information when you open the page which shows transaction detail.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon05', 'How to change the service provider?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon06', '1.Click the URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon07', '2.Then, you can change it.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon08', 'Default provider is'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Language', 'Language'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Help Center', 'Help Center'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle01', 'What is a mnemonic?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle02', 'What is a keystore?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle03', 'What are public key and private key?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle04', 'What is the AElf Wallet?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle05', 'How to change the password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle06', 'What if I forget my password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon01', 'The Mnemonics is equivalent to the bank card + ' + 'password of a traditional financial institution. ' + 'Please keep it in a safe place. A Mnemonics is another manifestation of a plaintext private' + ' key that is designed to help users remember' + ' complex private keys (64-bit hashes). Mnemonicss are generally composed of 12, 15, 18, and 21 words. These' + ' words are taken from a fixed vocabulary. The order of generation ' + 'is also based on a certain algorithm. The Mnemonics is an unencrypted private ' + 'key. When people get your Mnemonics, you can take away your assets with little effort.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon02', 'Therefore, users must pay attention to three points when backing up the Mnemonics:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon03', '1. Use physical media as much as possible. For example, write Mnemonicss on paper. ' + 'Do not use screenshots or photos on networked devices as much as possible to prevent hackers from stealing.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon04', '2. Verify that the backup Mnemonics is correct multiple times.' + ' Once you have misread a letter or word, it will bring great suffering to the sub' + 'sequent retrieval of the correct Mnemonics.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon05', '3. Keep the Mnemonics after the backup in a safe place, and do a good job of anti-theft and anti-lost measures.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon01', 'The Keystore file is a file format (JSON) for storing the private key. It uses user-defined password encryption to protect the wallet to a certain extent, and the degree of protection depends on the password strength of the wallet. If the password is similar to 123456, it is extremely unsafe.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon02', 'So users must pay attention to three points when backing up Keystore:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon03', '1. use encrypted Keystore files that are not commonly used and as complex as possible.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon04', "2. Be sure to remember the password to encrypt Keystore. Once you forget the password, you lose the right to use Keystore, and aelf can't help you retrieve the password. So please keep it safe."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon05', 'Keystore Demo:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon01', 'The control of funds in a wallet depends on the ownership and control of the private key.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon02', 'In block-chain transactions, the private key is used to generate the signature necessary for the payment currency to prove the ownership of the fund. Private keys must always be kept confidential, because once they are disclosed to a third party, assets protected by the private key are also compromised.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon03', "It is different from keystore, which is a private key file after encryption. As long as the password strength is strong enough, even hackers attack, it is very difficult to decipher. The private key is not actually stored in the network, but is generated and stored by the user in a file or a simple database, called a wallet. The user's wallet address is generated by the private key through the elliptic curve encryption to generate the public key, and then generate the 36-bit address."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon04', 'The style of the private key is a 64 bit 16 binary hash value string.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon01', 'AElf Wallet is a new digital money wallet, providing users with safer, more efficient and convenient services.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon02', 'AElf Wallet supports AElf intelligent contract digital currency.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon03', 'At present, BTC and ETH are not supported at the moment, but we are in support of the AElf standard token.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changepasswordCon01', 'Passwords can be modified at the wallet management interface.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon01', "In the decentralized wallet, all users'user authentication content, such as transaction password, private key, mnemonic and so on, are stored locally in the user's mobile phone, not in the centralized server, so if the user forgets the password, it is impossible to reset the password through a third-party team."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon02', 'The only solution is to set up new passwords by re importing mnemonic or private keys.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.About AElf Official Wallet', 'About AElf Official Wallet'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Use Agreement', 'Use Agreement'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Privacy Policy', 'Privacy Policy'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changelanguage', 'Language change'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.languageSelect', 'Select'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Record', 'Transaction Record'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Receive", 'Receive'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Send', 'Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Copy URL', 'Copy URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Details', 'Transaction Details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.To Address', 'To Address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction', 'Transaction'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Amount to send', 'Value / Amount to Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Balance', 'Balance'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New Provider', 'New Provider'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.slow', 'Slow'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.fast', 'Fast'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltips', 'Password error, you have'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltimes', 'more chances'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Back Home', 'Back Home'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.error page', 'error page'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.cannot connect chain', 'cannot connect chain'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.PleaseBackUp', 'NOTE! Please Back Up!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon01', 'Aelf reminds you again that the blockchain wallet is different from the traditional website account, which is a cryptographic-based decentralized account system.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon02', "You must save the wallet's private key and transaction password, and any accidents will result in the loss of assets."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon03', 'Aelf prompts you to make a backup, conduct a small transaction test, and start the journey of use.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon04', 'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup now', 'Backup now'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords confirmed error.', 'The passwords confirmed error.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords is not strong.', 'The passwords is not strong.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Extension Management', 'Extension Management'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup NightELF', 'Backup NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete NightELF', 'Delete NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Timer Locks', 'Timer Locks'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Load From Backup', 'Load From Backup'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Please select the file', 'Please select the file'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Click here', 'Click here'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Timing Lock Settings', 'Timing Lock Settings'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Application', 'Application'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Login', 'Login'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Details', 'Details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Submit Backup', 'Submit Backup'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Manage', 'Manage'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete', 'Delete'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Copy Address", 'Copy Address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Please select the timing lock-in time:', 'Please select the timing lock-in time:'), _en_US);
+}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Contact", 'Contact'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Commit', 'Commit'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New contacts', 'New contacts'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Name', 'Name'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Payee wallet address', 'Payee wallet address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Old password', 'Old password'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Forget your password', 'Forget your password? Importing mnemonic or private key can be reset.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Immediately import', 'Immediately import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.hint03', 'In this wallet, there is no Mnemonic when import Private Key. But we can get ' + 'Private Key when we import Mnemonic.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Import', 'Import'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.System Setting', 'System Setting'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Network', 'Network'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon01', 'Current Wallet Service URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon02', 'What did the service provider do?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon03', '1.Broadcast your transaction when you transfer tokens to others.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon04', '2.Provide information when you open the page which shows transaction detail.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon05', 'How to change the service provider?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon06', '1.Click the URL.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon07', '2.Then, you can change it.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.NetworkCon08', 'Default provider is'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Language', 'Language'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Help Center', 'Help Center'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle01', 'What is a mnemonic?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle02', 'What is a keystore?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle03', 'What are public key and private key?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle04', 'What is the AElf Wallet?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle05', 'How to change the password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.HelpTitle06', 'What if I forget my password?'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon01', 'The Mnemonics is equivalent to the bank card + ' + 'password of a traditional financial institution. ' + 'Please keep it in a safe place. A Mnemonics is another manifestation of a plaintext private' + ' key that is designed to help users remember' + ' complex private keys (64-bit hashes). Mnemonicss are generally composed of 12, 15, 18, and 21 words. These' + ' words are taken from a fixed vocabulary. The order of generation ' + 'is also based on a certain algorithm. The Mnemonics is an unencrypted private ' + 'key. When people get your Mnemonics, you can take away your assets with little effort.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon02', 'Therefore, users must pay attention to three points when backing up the Mnemonics:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon03', '1. Use physical media as much as possible. For example, write Mnemonicss on paper. ' + 'Do not use screenshots or photos on networked devices as much as possible to prevent hackers from stealing.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon04', '2. Verify that the backup Mnemonics is correct multiple times.' + ' Once you have misread a letter or word, it will bring great suffering to the sub' + 'sequent retrieval of the correct Mnemonics.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.mnemonicCon05', '3. Keep the Mnemonics after the backup in a safe place, and do a good job of anti-theft and anti-lost measures.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon01', 'The Keystore file is a file format (JSON) for storing the private key. It uses user-defined password encryption to protect the wallet to a certain extent, and the degree of protection depends on the password strength of the wallet. If the password is similar to 123456, it is extremely unsafe.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon02', 'So users must pay attention to three points when backing up Keystore:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon03', '1. use encrypted Keystore files that are not commonly used and as complex as possible.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon04', "2. Be sure to remember the password to encrypt Keystore. Once you forget the password, you lose the right to use Keystore, and aelf can't help you retrieve the password. So please keep it safe."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aefl.keystoreCon05', 'Keystore Demo:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon01', 'The control of funds in a wallet depends on the ownership and control of the private key.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon02', 'In block-chain transactions, the private key is used to generate the signature necessary for the payment currency to prove the ownership of the fund. Private keys must always be kept confidential, because once they are disclosed to a third party, assets protected by the private key are also compromised.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon03', "It is different from keystore, which is a private key file after encryption. As long as the password strength is strong enough, even hackers attack, it is very difficult to decipher. The private key is not actually stored in the network, but is generated and stored by the user in a file or a simple database, called a wallet. The user's wallet address is generated by the private key through the elliptic curve encryption to generate the public key, and then generate the 36-bit address."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.publickeyCon04', 'The style of the private key is a 64 bit 16 binary hash value string.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon01', 'AElf Wallet is a new digital money wallet, providing users with safer, more efficient and convenient services.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon02', 'AElf Wallet supports AElf intelligent contract digital currency.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.walletCon03', 'At present, BTC and ETH are not supported at the moment, but we are in support of the AElf standard token.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changepasswordCon01', 'Passwords can be modified at the wallet management interface.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon01', "In the decentralized wallet, all users'user authentication content, such as transaction password, private key, mnemonic and so on, are stored locally in the user's mobile phone, not in the centralized server, so if the user forgets the password, it is impossible to reset the password through a third-party team."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.forgetpasswordCon02', 'The only solution is to set up new passwords by re importing mnemonic or private keys.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.About AElf Official Wallet', 'About AElf Official Wallet'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Use Agreement', 'Use Agreement'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Privacy Policy', 'Privacy Policy'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.changelanguage', 'Language change'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.languageSelect', 'Select'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Record', 'Transaction Record'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Receive", 'Receive'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Send', 'Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Copy URL', 'Copy URL'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction Details', 'Transaction Details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.To Address', 'To Address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Transaction', 'Transaction'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Amount to send', 'Value / Amount to Send'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Balance', 'Balance'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New Provider', 'New Provider'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.slow', 'Slow'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.fast', 'Fast'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltips', 'Password error, you have'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Modaltimes', 'more chances'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Back Home', 'Back Home'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.error page', 'error page'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.cannot connect chain', 'cannot connect chain'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.PleaseBackUp', 'NOTE! Please Back Up!'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon01', 'Aelf reminds you again that the blockchain wallet is different from the traditional website account, which is a cryptographic-based decentralized account system.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon02', "You must save the wallet's private key and transaction password, and any accidents will result in the loss of assets."), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon03', 'Aelf prompts you to make a backup, conduct a small transaction test, and start the journey of use.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.BackUpCon04', 'Backup your wallet recovery phrase is extremely important when your wallet is lost or forgotten.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup now', 'Backup now'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords confirmed error.', 'The passwords confirmed error.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.The passwords is not strong.', 'The passwords is not strong.'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Extension Management', 'Extension Management'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Backup NightELF', 'Backup NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete NightELF', 'Delete NightELF'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Timer Locks', 'Timer Locks'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Load From Backup', 'Load From Backup'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Please select the file', 'Please select the file'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Click here', 'Click here'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Timing Lock Settings', 'Timing Lock Settings'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Application', 'Application'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Login', 'Login'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Details', 'Details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Submit Backup', 'Submit Backup'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Manage', 'Manage'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete', 'Delete'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, "aelf.Copy Address", 'Copy Address'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Please select the timing lock-in time:', 'Please select the timing lock-in time:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Application details', 'Application details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Cancel', 'Cancel'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Authorization details', 'Authorization details'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Authorized domain name:', 'Authorized domain name:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Contract Address:', 'Contract Address:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Contract Name:', 'Contract Name:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Description:', 'Description:'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Enable Whitelist', 'Enable Whitelist'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete All', 'Delete All'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Whitelist', 'Whitelist'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.New Contract Method', 'New contract method'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Delete Contract Method', 'Delete contract method'), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_en_US, 'aelf.Details of contract changes', 'Details of contract changes'), _en_US);
 /* harmony default export */ __webpack_exports__["default"] = (en_US);
 
 /***/ }),
@@ -42836,7 +42994,7 @@ function (_Component) {
       } else if (this.backupFailed) {
         this.checkWallet();
       } else {
-        react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/extensionManager');
+        react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/extensionmanager');
       }
     }
   }, {
@@ -42863,7 +43021,7 @@ function (_Component) {
       if (seed) {
         _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["BACKUP_WALLET"], seed).send().then(function (result) {
           if (result && result.error === 0) {
-            react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/extensionManager');
+            react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/extensionmanager');
           } else {
             antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail('Backup failed!');
 
@@ -42883,7 +43041,7 @@ function (_Component) {
   }, {
     key: "loadFromBackup",
     value: function loadFromBackup() {
-      react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/loadFromBackup');
+      react_router__WEBPACK_IMPORTED_MODULE_12__["hashHistory"].push('/loadfrombackup');
     } // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     // >         Timing  lock          >
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -59663,7 +59821,7 @@ elliptic.eddsa = __webpack_require__(407);
 /* 381 */
 /***/ (function(module) {
 
-module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Mon Feb 25 2019 11:33:10 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
+module.exports = {"name":"elliptic","version":"6.4.1","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"__npminstall_done":"Tue Mar 12 2019 10:59:41 GMT+0800 (GMT+08:00)","_from":"elliptic@6.4.1","_resolved":"http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.1.tgz"};
 
 /***/ }),
 /* 382 */
@@ -69996,7 +70154,7 @@ function (_Component) {
         className: _Home_scss__WEBPACK_IMPORTED_MODULE_9___default.a.aelfList
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Item, {
         onClick: function onClick() {
-          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/extensionManager');
+          return react_router__WEBPACK_IMPORTED_MODULE_8__["hashHistory"].push('/extensionmanager');
         }
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__["default"], {
         icon: "about16",
@@ -71359,6 +71517,7 @@ Aelf.prototype.isConnected = function () {
 
 Aelf.prototype.wallet = wallet;
 Aelf.wallet = wallet;
+Aelf.version = version.version;
 
 if (typeof window !== 'undefined' && !window.Aelf) {
     window.Aelf = Aelf;
@@ -71952,19 +72111,19 @@ Object.defineProperty(Chain.prototype, 'defaultAccount', {
 var methods = function () {
     var getCommands = new Method({
         name: 'getCommands',
-        call: 'get_commands',
-        params: [],
+        call: 'GetCommands',
+        params: []
     });
 
     var connectChain = new Method({
         name: 'connectChain',
-        call: 'connect_chain',
-        params: [],
+        call: 'ConnectChain',
+        params: []
     });
 
     var getContractAbi = new Method({
         name: 'getContractAbi',
-        call: 'get_contract_abi',
+        call: 'GetContractAbi',
         params: ['address'],
         inputFormatter: [formatters.inputAddressFormatter],
         outputFormatter: formatters.outputAbiFormatter
@@ -71972,15 +72131,15 @@ var methods = function () {
 
     var getBlockHeight = new Method({
         name: 'getBlockHeight',
-        call: 'get_block_height',
+        call: 'GetBlockHeight',
         params: [],
         inputFormatter: []
     });
 
     var getBlockInfo = new Method({
         name: 'getBlockInfo',
-        call: 'get_block_info',
-        params: ['block_height', 'include_txs']
+        call: 'GetBlockInfo',
+        params: ['blockHeight', 'includeTransactions']
     });
 
     var getIncrement = new Method({
@@ -71992,28 +72151,35 @@ var methods = function () {
 
     var getTxResult = new Method({
         name: 'getTxResult',
-        call: 'get_tx_result',
-        params: ['txhash'],
+        call: 'GetTransactionResult',
+        params: ['transactionId'],
         inputFormatter: [null]
     });
 
     var getTxsResultByBlockhash = new Method({
         name: 'getTxsResult',
-        call: 'get_txs_result',
-        params: ['blockhash', 'offset', 'num']
+        call: 'GetTransactionsResult',
+        params: ['blockHash', 'offset', 'num']
     });
 
     var getMerklePath = new Method({
         name: 'getMerklePath',
-        call: 'get_merkle_path',
-        params: ['txid'],
+        call: 'GetTransactionMerklePath',
+        params: ['transactionId'],
         inputFormatter: [null]
     });
 
     var sendTransaction = new Method({
         name: 'sendTransaction',
-        call: 'broadcast_tx',
-        params: ['rawtx'],
+        call: 'BroadcastTransaction',
+        params: ['rawTransaction'],
+        inputFormatter: [null]
+    });
+
+    var sendTransactions = new Method({
+        name: 'sendTransactions',
+        call: 'BroadcastTransactions',
+        params: ['rawTransaction'],
         inputFormatter: [null]
     });
 
@@ -72024,13 +72190,59 @@ var methods = function () {
         inputFormatter: [null]
     });
 
-    var callReadOnly = new Method({
-        name: 'callReadOnly',
-        call: 'call',
-        params: ['rawtx'],
+    var getTxPoolSize = new Method({
+        name: 'getTxPoolSize',
+        call: 'GetTransactionPoolSize',
+        params: []
+    });
+
+    var getDposStatus = new Method({
+        name: 'getDposStatus',
+        call: 'GetDposStatus',
+        params: []
+    });
+
+    var getNodeStatus = new Method({
+        name: 'getNodeStatus',
+        call: 'GetNodeStatus',
+        params: []
+    });
+
+    var getBlockStateSet = new Method({
+        name: 'getBlockStateSet',
+        call: 'GetBlockStateSet',
+        params: ['blockHash'],
         inputFormatter: [null]
     });
 
+    var callReadOnly = new Method({
+        name: 'callReadOnly',
+        call: 'Call',
+        params: ['rawTransaction'],
+        inputFormatter: [null]
+    });
+
+    var getPeers = new Method({
+        name: 'getPeers',
+        call: 'GetPeers',
+        params: []
+    });
+
+    var addPeer = new Method({
+        name: 'addPeer',
+        call: 'AddPeer',
+        params: ['address'],
+        inputFormatter: [null]
+    });
+
+    var removePeer = new Method({
+        name: 'removePeer',
+        call: 'RemovePeer',
+        params: ['address'],
+        inputFormatter: [null]
+    });
+
+    // getDposStatus, getNodeStatus, getPeers, addPeer, removePeer not support yet
     return [
         getCommands,
         connectChain,
@@ -72039,11 +72251,19 @@ var methods = function () {
         getBlockInfo,
         getIncrement,
         sendTransaction,
+        sendTransactions,
         callReadOnly,
         getTxResult,
         getTxsResultByBlockhash,
         getMerklePath,
-        checkProposal
+        checkProposal,
+        getTxPoolSize,
+        getDposStatus,
+        getNodeStatus,
+        getBlockStateSet,
+        getPeers,
+        addPeer,
+        removePeer
     ];
 };
 
@@ -72139,7 +72359,7 @@ var inputAddressFormatter = function (address) {
 var outputAbiFormatter = function (result) {
     // var root = protobuf.Root.fromJSON(abiDescriptor);
     // var ModuleMessage = root.Module;
-    var buffer = Buffer.from(result.abi.replace('0x', ''), 'hex');
+    var buffer = Buffer.from(result.Abi.replace('0x', ''), 'hex');
     result.abi = ModuleMessage.decode(buffer);
     return result.abi;
 };
@@ -81071,7 +81291,7 @@ common.get = function get(file) {
 /* 552 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.ABI.CSharp"},"nested":{"Field":{"fields":{"Type":{"type":"string","id":1},"Name":{"type":"string","id":2}}},"Type":{"fields":{"Name":{"type":"string","id":1},"Fields":{"rule":"repeated","type":"Field","id":2}}},"Event":{"fields":{"Name":{"type":"string","id":1},"Indexed":{"rule":"repeated","type":"Field","id":2},"NonIndexed":{"rule":"repeated","type":"Field","id":3}}},"Method":{"fields":{"Name":{"type":"string","id":1},"Params":{"rule":"repeated","type":"Field","id":2},"ReturnType":{"type":"string","id":3},"IsView":{"type":"bool","id":4},"IsAsync":{"type":"bool","id":5}}},"Module":{"fields":{"Name":{"type":"string","id":1},"Methods":{"rule":"repeated","type":"Method","id":2},"Events":{"rule":"repeated","type":"Event","id":3},"Types":{"rule":"repeated","type":"Type","id":4}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Kernel.ABI"},"nested":{"Field":{"fields":{"Type":{"type":"string","id":1},"Name":{"type":"string","id":2}}},"Type":{"fields":{"Name":{"type":"string","id":1},"Fields":{"rule":"repeated","type":"Field","id":2}}},"Event":{"fields":{"Name":{"type":"string","id":1},"Indexed":{"rule":"repeated","type":"Field","id":2},"NonIndexed":{"rule":"repeated","type":"Field","id":3}}},"Method":{"fields":{"Name":{"type":"string","id":1},"Params":{"rule":"repeated","type":"Field","id":2},"ReturnType":{"type":"string","id":3},"IsView":{"type":"bool","id":4},"IsAsync":{"type":"bool","id":5},"Fee":{"type":"uint64","id":6}}},"Module":{"fields":{"Name":{"type":"string","id":1},"Methods":{"rule":"repeated","type":"Method","id":2},"Events":{"rule":"repeated","type":"Event","id":3},"Types":{"rule":"repeated","type":"Type","id":4}}}}};
 
 /***/ }),
 /* 553 */
@@ -81647,6 +81867,7 @@ var decodeAddressRep = function (address) {
         var b58rep = parts[parts.length - 1];
         return base58check.decode(b58rep, 'hex');
     }
+    return base58check.decode(address, 'hex');
 };
 
 /**
@@ -81658,7 +81879,7 @@ var decodeAddressRep = function (address) {
  */
 var encodeAddressRep = function (hex) {
     var buf = Buffer.from(hex.replace('0x', ''), 'hex')
-    return "ELF_" + base58check.encode(buf, '');
+    return base58check.encode(buf, '');
 };
 
 /**
@@ -85709,11 +85930,11 @@ ContractMethod.prototype.validateArgs = function (args) {
 ContractMethod.prototype.toPayload = function (args) {
     var rawtx = proto.getTransaction(this._wallet.address, this._address, this._name, coder.encodeParams(this._paramTypes, args));
 
-    var block_height = JSON.parse(this._chain.getBlockHeight().result.block_height, 10);
-    var block_info = this._chain.getBlockInfo(block_height, false).result;
+    var block_height = JSON.parse(this._chain.getBlockHeight(), 10);
+    var block_info = this._chain.getBlockInfo(block_height, false);
 
     rawtx.RefBlockNumber = block_height;
-    var blockhash = block_info.Blockhash;
+    var blockhash = block_info.BlockHash;
     blockhash = blockhash.match(/^0x/) ? blockhash.substring(2) : blockhash;
 
     rawtx.RefBlockPrefix = (new Buffer(blockhash, 'hex')).slice(0, 4);
@@ -85750,12 +85971,12 @@ ContractMethod.prototype.toPayloadAsync = function (args) {
     );
     return new Promise((resolve, reject) => {
         this._chain.getBlockHeight((error, item) => {
-            var blockHeight = parseInt(item.result.block_height, 10);
+            var blockHeight = parseInt(item, 10);
             this._chain.getBlockInfo(blockHeight, false, (error, item) => {
-                var blockInfo = item.result;
+                var blockInfo = item;
 
                 rawtx.RefBlockNumber = blockHeight;
-                var blockhash = blockInfo.Blockhash;
+                var blockhash = blockInfo.BlockHash;
                 blockhash = blockhash.match(/^0x/) ? blockhash.substring(2) : blockhash;
 
                 rawtx.RefBlockPrefix = (new Buffer(blockhash, 'hex')).slice(0, 4);
@@ -86671,19 +86892,19 @@ module.exports = {
 /* 566 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureSt":{"type":"SignatureStatus","id":3},"RefBlockSt":{"type":"RefBlockStatus","id":4},"Status":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}},"nested":{"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"Status":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"Status","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTxnId":{"type":"Hash","id":10}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Index":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"Hash","id":10},"SideChainTransactionsRoot":{"type":"Hash","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3},"IndexedInfo":{"rule":"repeated","type":"SideChainBlockInfo","id":4}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"ContractHash":{"type":"Hash","id":2},"ContractBytes":{"type":"bytes","id":3},"SerialNumber":{"type":"uint64","id":4}}},"SmartContractDeployment":{"fields":{"ContractHash":{"type":"Hash","id":1},"Caller":{"type":"Hash","id":2},"ConstructParams":{"type":"bytes","id":3},"IncrementId":{"type":"uint64","id":4}}},"Parameters":{"fields":{"Params":{"rule":"repeated","type":"Param","id":1}}},"Param":{"oneofs":{"data":{"oneof":["intVal","uintVal","longVal","ulongVal","boolVal","bytesVal","strVal","dVal","hashVal","registerVal","deploymentVal"]}},"fields":{"intVal":{"type":"int32","id":1},"uintVal":{"type":"uint32","id":2},"longVal":{"type":"int64","id":3},"ulongVal":{"type":"uint64","id":4},"boolVal":{"type":"bool","id":5},"bytesVal":{"type":"bytes","id":6},"strVal":{"type":"string","id":7},"dVal":{"type":"double","id":8},"hashVal":{"type":"Hash","id":9},"registerVal":{"type":"SmartContractRegistration","id":10},"deploymentVal":{"type":"SmartContractDeployment","id":11}}},"SmartContractInvokeContext":{"fields":{"Caller":{"type":"Hash","id":1},"IncrementId":{"type":"uint64","id":2},"MethodName":{"type":"string","id":3},"Params":{"type":"bytes","id":4}}},"DataItem":{"fields":{"ResourcePath":{"type":"Hash","id":1},"ResourcePointer":{"type":"Hash","id":2},"StateMerkleTreeLeaf":{"type":"Hash","id":3}}},"WorldState":{"fields":{"Data":{"rule":"repeated","type":"DataItem","id":1}}},"Chain":{"fields":{"Id":{"type":"Hash","id":1},"GenesisBlockHash":{"type":"Hash","id":2}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"Key":{"fields":{"Value":{"type":"bytes","id":1},"type":{"type":"string","id":2},"HashType":{"type":"uint32","id":3}}},"DataPath":{"fields":{"ChainId":{"type":"Hash","id":1},"BlockHeight":{"type":"uint64","id":2},"BlockProducerAddress":{"type":"Address","id":3},"ContractAddress":{"type":"Address","id":4},"DataProviderHash":{"type":"Hash","id":5},"KeyHash":{"type":"Hash","id":6},"StatePath":{"type":"StatePath","id":7}}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Common"},"nested":{"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureStatus":{"type":"SignatureStatus","id":3},"RefBlockStatus":{"type":"RefBlockStatus","id":4},"TransactionStatus":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"TransactionResultStatus":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":10},"DeferredTxnId":{"type":"Hash","id":11}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11,"InsufficientTransactionFees":-12}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12},"FeeTransactionTrace":{"type":"TransactionTrace","id":13},"StateSet":{"type":"TransactionExecutingStateSet","id":14}}},"ExecutionReturnSet":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"StateChanges":{"keyType":"string","type":"bytes","id":3},"Bloom":{"type":"bytes","id":4},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":5},"ReturnValue":{"type":"bytes","id":6}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"TransactionLogEvent":{"fields":{"Transaction":{"type":"Hash","id":1},"LogEvent":{"type":"LogEvent","id":2}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockExtraData":{"fields":{"SideChainTransactionsRoot":{"type":"Hash","id":1},"ConsensusInformation":{"type":"bytes","id":2}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Height":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"int32","id":10},"BlockExtraData":{"type":"BlockExtraData","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"Code":{"type":"bytes","id":2},"CodeHash":{"type":"Hash","id":3}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1},"Remark":{"type":"string","id":2}}},"ULongList":{"fields":{"Values":{"rule":"repeated","type":"uint64","id":1},"Remark":{"type":"string","id":2}}},"BlockAbstract":{"fields":{"MinerPublicKey":{"type":"string","id":1},"Time":{"type":"google.protobuf.Timestamp","id":2}}},"BlockValidationResult":{"values":{"Success":0,"NotMiner":11,"InvalidTimeSlot":12,"FailedToCheckConsensusInvalidation":13,"DoingRollback":14,"BlockIsNull":101,"SameWithCurrentRound":102,"IncorrectConsensusTransaction":103,"ParseProblem":104,"NoTransaction":105,"IncorrectTxMerkleTreeRoot":106,"IncorrectSideChainInfo":107,"IncorrectPoWResult":108,"NotImplementConsensus":109}},"VersionedState":{"fields":{"Key":{"type":"string","id":1},"Value":{"type":"bytes","id":2},"BlockHeight":{"type":"uint64","id":3},"BlockHash":{"type":"Hash","id":4},"OriginBlockHash":{"type":"Hash","id":5}}},"BlockStateSet":{"fields":{"BlockHash":{"type":"Hash","id":1},"PreviousHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"Changes":{"keyType":"string","type":"bytes","id":4}}},"TransactionExecutingStateSet":{"fields":{"Version":{"type":"int64","id":1},"Writes":{"keyType":"string","type":"bytes","id":2},"Reads":{"keyType":"string","type":"bool","id":3}}},"ChainStateMergingStatus":{"values":{"Common":0,"Merging":1,"Merged":2}},"ChainStateInfo":{"fields":{"ChainId":{"type":"int64","id":1},"BlockHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"MergingBlockHash":{"type":"Hash","id":4},"Status":{"type":"ChainStateMergingStatus","id":5}}},"ActionResult":{"fields":{"Success":{"type":"bool","id":1},"ErrorMessage":{"type":"string","id":2}}},"ChainBlockLinkExecutionStatus":{"values":{"ExecutionNone":0,"ExecutionSuccess":1,"ExecutionFailed":2}},"ChainBlockLink":{"fields":{"BlockHash":{"type":"Hash","id":1},"Height":{"type":"uint64","id":2},"PreviousBlockHash":{"type":"Hash","id":3},"ExecutionStatus":{"type":"ChainBlockLinkExecutionStatus","id":4},"IsIrreversibleBlock":{"type":"bool","id":5},"IsLinked":{"type":"bool","id":6},"IsLightBlock":{"type":"bool","id":7}}},"Chain":{"fields":{"Id":{"type":"int32","id":1},"GenesisBlockHash":{"type":"Hash","id":2},"LongestChainHash":{"type":"Hash","id":3},"LongestChainHeight":{"type":"uint64","id":4},"Branches":{"keyType":"string","type":"uint64","id":5},"NotLinkedBlocks":{"keyType":"string","type":"string","id":6},"LastIrreversibleBlockHash":{"type":"Hash","id":7},"LastIrreversibleBlockHeight":{"type":"uint64","id":8},"BestChainHash":{"type":"Hash","id":9},"BestChainHeight":{"type":"uint64","id":10}}},"ChainBlockIndex":{"fields":{"BlockHash":{"type":"Hash","id":1}}},"BranchSwitch":{"fields":{"RollBack":{"rule":"repeated","type":"Hash","id":1},"RollForward":{"rule":"repeated","type":"Hash","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}}}};
 
 /***/ }),
 /* 567 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"Authorization":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"ExecutionThreshold":{"type":"uint32","id":2},"ProposerThreshold":{"type":"uint32","id":3},"Reviewers":{"rule":"repeated","type":"Reviewer","id":4}}},"Reviewer":{"fields":{"PubKey":{"type":"bytes","id":1},"Weight":{"type":"uint32","id":2}}},"Proposal":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"Name":{"type":"string","id":2},"TxnData":{"type":"bytes","id":3},"ExpiredTime":{"type":"double","id":4},"Status":{"type":"ProposalStatus","id":5},"Proposer":{"type":"Address","id":6}}},"ProposalStatus":{"values":{"ToBeDecided":0,"Decided":1,"Released":2}},"Approved":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Approvals":{"rule":"repeated","type":"Approval","id":5}}},"Approval":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Signature":{"type":"bytes","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureSt":{"type":"SignatureStatus","id":3},"RefBlockSt":{"type":"RefBlockStatus","id":4},"Status":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}},"nested":{"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"Status":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"Status","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTxnId":{"type":"Hash","id":10}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Index":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"Hash","id":10},"SideChainTransactionsRoot":{"type":"Hash","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3},"IndexedInfo":{"rule":"repeated","type":"SideChainBlockInfo","id":4}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"ContractHash":{"type":"Hash","id":2},"ContractBytes":{"type":"bytes","id":3},"SerialNumber":{"type":"uint64","id":4}}},"SmartContractDeployment":{"fields":{"ContractHash":{"type":"Hash","id":1},"Caller":{"type":"Hash","id":2},"ConstructParams":{"type":"bytes","id":3},"IncrementId":{"type":"uint64","id":4}}},"Parameters":{"fields":{"Params":{"rule":"repeated","type":"Param","id":1}}},"Param":{"oneofs":{"data":{"oneof":["intVal","uintVal","longVal","ulongVal","boolVal","bytesVal","strVal","dVal","hashVal","registerVal","deploymentVal"]}},"fields":{"intVal":{"type":"int32","id":1},"uintVal":{"type":"uint32","id":2},"longVal":{"type":"int64","id":3},"ulongVal":{"type":"uint64","id":4},"boolVal":{"type":"bool","id":5},"bytesVal":{"type":"bytes","id":6},"strVal":{"type":"string","id":7},"dVal":{"type":"double","id":8},"hashVal":{"type":"Hash","id":9},"registerVal":{"type":"SmartContractRegistration","id":10},"deploymentVal":{"type":"SmartContractDeployment","id":11}}},"SmartContractInvokeContext":{"fields":{"Caller":{"type":"Hash","id":1},"IncrementId":{"type":"uint64","id":2},"MethodName":{"type":"string","id":3},"Params":{"type":"bytes","id":4}}},"DataItem":{"fields":{"ResourcePath":{"type":"Hash","id":1},"ResourcePointer":{"type":"Hash","id":2},"StateMerkleTreeLeaf":{"type":"Hash","id":3}}},"WorldState":{"fields":{"Data":{"rule":"repeated","type":"DataItem","id":1}}},"Chain":{"fields":{"Id":{"type":"Hash","id":1},"GenesisBlockHash":{"type":"Hash","id":2}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"Key":{"fields":{"Value":{"type":"bytes","id":1},"type":{"type":"string","id":2},"HashType":{"type":"uint32","id":3}}},"DataPath":{"fields":{"ChainId":{"type":"Hash","id":1},"BlockHeight":{"type":"uint64","id":2},"BlockProducerAddress":{"type":"Address","id":3},"ContractAddress":{"type":"Address","id":4},"DataProviderHash":{"type":"Hash","id":5},"KeyHash":{"type":"Hash","id":6},"StatePath":{"type":"StatePath","id":7}}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1}}},"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Common"},"nested":{"Authorization":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"ExecutionThreshold":{"type":"uint32","id":2},"ProposerThreshold":{"type":"uint32","id":3},"Reviewers":{"rule":"repeated","type":"Reviewer","id":4}}},"Reviewer":{"fields":{"PubKey":{"type":"bytes","id":1},"Weight":{"type":"uint32","id":2}}},"Proposal":{"fields":{"MultiSigAccount":{"type":"Address","id":1},"Name":{"type":"string","id":2},"TxnData":{"type":"bytes","id":3},"ExpiredTime":{"type":"google.protobuf.Timestamp","id":4},"Status":{"type":"ProposalStatus","id":5},"Proposer":{"type":"Address","id":6}}},"ProposalStatus":{"values":{"ToBeDecided":0,"Decided":1,"Released":2,"Expired":3}},"Approved":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Approvals":{"rule":"repeated","type":"Approval","id":5}}},"Approval":{"fields":{"ProposalHash":{"type":"Hash","id":1},"Signature":{"type":"bytes","id":2}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}}}};
 
 /***/ }),
 /* 568 */
 /***/ (function(module) {
 
-module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"SideChainBlockInfo":{"fields":{"Height":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"ParentChainBlockInfo":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedBlockInfo":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"Height":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ChainId":{"type":"Hash","id":4}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"Terminated":3}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"ChainId":{"type":"Hash","id":7}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1},"HashType":{"type":"HashType","id":2}}},"HashType":{"values":{"General":0,"AccountAddress":1,"ResourcePath":2,"ResourcePointer":3,"StateHash":4,"BlockHash":5,"AccountZero":6,"ChainHeight":7,"PreviousBlockHash":8,"CallingGraph":9,"TxResult":10,"CanonicalHash":11,"CurrentHash":12,"GenesisHash":13,"BlockHeaderHash":14,"BlockBodyHash":15}},"SInt32Value":{"fields":{"value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"value":{"type":"sint64","id":1}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}}}};
+module.exports = {"options":{"csharp_namespace":"AElf.Kernel"},"nested":{"SideChainBlockData":{"fields":{"SideChainHeight":{"type":"uint64","id":1},"BlockHeaderHash":{"type":"Hash","id":2},"TransactionMKRoot":{"type":"Hash","id":3},"SideChainId":{"type":"int32","id":4}}},"IndexedSideChainBlockDataResult":{"fields":{"Height":{"type":"uint64","id":1},"Miner":{"type":"Address","id":2},"SideChainBlockData":{"rule":"repeated","type":"SideChainBlockData","id":3}}},"ParentChainBlockData":{"fields":{"Root":{"type":"ParentChainBlockRootInfo","id":1},"IndexedMerklePath":{"keyType":"uint64","type":"MerklePath","id":2}}},"ParentChainBlockRootInfo":{"fields":{"ParentChainHeight":{"type":"uint64","id":1},"SideChainBlockHeadersRoot":{"type":"Hash","id":2},"SideChainTransactionsRoot":{"type":"Hash","id":3},"ParentChainId":{"type":"int32","id":4}}},"SideChainStatus":{"values":{"Apply":0,"Review":1,"Active":2,"InsufficientBalance":3,"Terminated":4}},"SideChainInfo":{"fields":{"IndexingPrice":{"type":"uint64","id":1},"LockedTokenAmount":{"type":"uint64","id":2},"ResourceBalances":{"rule":"repeated","type":"ResourceTypeBalancePair","id":3},"ContractCode":{"type":"bytes","id":4},"Proposer":{"type":"Address","id":5},"SideChainStatus":{"type":"SideChainStatus","id":6},"SideChainId":{"type":"int32","id":7},"ProposalHash":{"type":"Hash","id":8}}},"SideChainIdAndHeightDict":{"fields":{"IdHeighDict":{"keyType":"int32","type":"uint64","id":1}}},"CrossChainBlockData":{"fields":{"SideChainBlockData":{"rule":"repeated","type":"SideChainBlockData","id":1},"ParentChainBlockData":{"rule":"repeated","type":"ParentChainBlockData","id":2}}},"Address":{"fields":{"Value":{"type":"bytes","id":1}}},"Hash":{"fields":{"Value":{"type":"bytes","id":1}}},"SInt32Value":{"fields":{"Value":{"type":"sint32","id":1}}},"SInt64Value":{"fields":{"Value":{"type":"sint64","id":1}}},"ResourceType":{"values":{"UndefinedResourceType":0,"Ram":1,"Cpu":2,"Net":3}},"ResourceTypeBalancePair":{"fields":{"Type":{"type":"ResourceType","id":1},"Amount":{"type":"uint64","id":2}}},"Transaction":{"fields":{"From":{"type":"Address","id":1},"To":{"type":"Address","id":2},"RefBlockNumber":{"type":"uint64","id":3},"RefBlockPrefix":{"type":"bytes","id":4},"IncrementId":{"type":"uint64","id":5},"MethodName":{"type":"string","id":6},"Params":{"type":"bytes","id":7},"Fee":{"type":"uint64","id":8},"Sigs":{"rule":"repeated","type":"bytes","id":9},"Type":{"type":"TransactionType","id":10},"Time":{"type":"google.protobuf.Timestamp","id":11}}},"TransactionStatus":{"values":{"UnknownTransactionStatus":0,"TransactionExecuting":1,"TransactionExecuted":2}},"SignatureStatus":{"values":{"UnknownSignatureStatus":0,"SignatureValid":1,"SignatureInvalid":-1}},"RefBlockStatus":{"values":{"UnknownRefBlockStatus":0,"RefBlockValid":1,"RefBlockInvalid":-1,"RefBlockExpired":-2,"FutureRefBlock":-3}},"TransactionReceipt":{"fields":{"TransactionId":{"type":"Hash","id":1},"Transaction":{"type":"Transaction","id":2},"SignatureStatus":{"type":"SignatureStatus","id":3},"RefBlockStatus":{"type":"RefBlockStatus","id":4},"TransactionStatus":{"type":"TransactionStatus","id":5},"IsSystemTxn":{"type":"bool","id":6},"ExecutedBlockNumber":{"type":"uint64","id":7}}},"StatePath":{"fields":{"Path":{"rule":"repeated","type":"bytes","id":1}}},"StateValue":{"fields":{"CurrentValue":{"type":"bytes","id":1},"OriginalValue":{"type":"bytes","id":2}}},"StateChange":{"fields":{"StatePath":{"type":"StatePath","id":1},"StateValue":{"type":"StateValue","id":2}}},"TransactionList":{"fields":{"Transactions":{"rule":"repeated","type":"Transaction","id":1}}},"TransactionType":{"values":{"ContractTransaction":0,"DposTransaction":1,"MsigTransaction":2,"ContractDeployTransaction":3}},"TransactionResultStatus":{"values":{"NotExisted":0,"Pending":1,"Failed":2,"Mined":3}},"TransactionResult":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"Logs":{"rule":"repeated","type":"LogEvent","id":3},"Bloom":{"type":"bytes","id":4},"RetVal":{"type":"bytes","id":5},"BlockNumber":{"type":"uint64","id":6},"BlockHash":{"type":"Hash","id":7},"Index":{"type":"int32","id":8},"StateHash":{"type":"Hash","id":9},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":10},"DeferredTxnId":{"type":"Hash","id":11}}},"ExecutionStatus":{"values":{"Undefined":0,"ExecutedButNotCommitted":1,"ExecutedAndCommitted":2,"Canceled":-1,"SystemError":-2,"ContractError":-10,"ExceededMaxCallDepth":-11,"InsufficientTransactionFees":-12}},"TransactionTrace":{"fields":{"TransactionId":{"type":"Hash","id":1},"RetVal":{"type":"RetVal","id":2},"StdOut":{"type":"string","id":3},"StdErr":{"type":"string","id":4},"StateHash":{"type":"Hash","id":5},"Logs":{"rule":"repeated","type":"LogEvent","id":6},"InlineTransactions":{"rule":"repeated","type":"Transaction","id":7},"InlineTraces":{"rule":"repeated","type":"TransactionTrace","id":8},"StateChanges":{"rule":"repeated","type":"StateChange","id":9},"Elapsed":{"type":"int64","id":10},"ExecutionStatus":{"type":"ExecutionStatus","id":11},"DeferredTransaction":{"type":"bytes","id":12},"FeeTransactionTrace":{"type":"TransactionTrace","id":13},"StateSet":{"type":"TransactionExecutingStateSet","id":14}}},"ExecutionReturnSet":{"fields":{"TransactionId":{"type":"Hash","id":1},"Status":{"type":"TransactionResultStatus","id":2},"StateChanges":{"keyType":"string","type":"bytes","id":3},"Bloom":{"type":"bytes","id":4},"DeferredTransactions":{"rule":"repeated","type":"Transaction","id":5},"ReturnValue":{"type":"bytes","id":6}}},"LogEvent":{"fields":{"Address":{"type":"Address","id":1},"Topics":{"rule":"repeated","type":"bytes","id":2},"Data":{"type":"bytes","id":3}}},"TransactionLogEvent":{"fields":{"Transaction":{"type":"Hash","id":1},"LogEvent":{"type":"LogEvent","id":2}}},"RetVal":{"fields":{"Type":{"type":"RetType","id":1},"Data":{"type":"bytes","id":2}},"nested":{"RetType":{"values":{"Void":0,"Bool":1,"Int32":2,"UInt32":3,"Int64":4,"UInt64":5,"String":6,"Bytes":7,"PbMessage":8,"UserType":9}}}},"BlockHeaderList":{"fields":{"Headers":{"rule":"repeated","type":"BlockHeader","id":1}}},"BlockExtraData":{"fields":{"SideChainTransactionsRoot":{"type":"Hash","id":1},"ConsensusInformation":{"type":"bytes","id":2}}},"BlockHeader":{"fields":{"Version":{"type":"int32","id":1},"PreviousBlockHash":{"type":"Hash","id":2},"MerkleTreeRootOfTransactions":{"type":"Hash","id":3},"MerkleTreeRootOfWorldState":{"type":"Hash","id":4},"Bloom":{"type":"bytes","id":5},"Height":{"type":"uint64","id":6},"Sig":{"type":"bytes","id":7},"P":{"type":"bytes","id":8},"Time":{"type":"google.protobuf.Timestamp","id":9},"ChainId":{"type":"int32","id":10},"BlockExtraData":{"type":"BlockExtraData","id":11}}},"BlockBody":{"fields":{"BlockHeader":{"type":"Hash","id":1},"Transactions":{"rule":"repeated","type":"Hash","id":2},"TransactionList":{"rule":"repeated","type":"Transaction","id":3}}},"Block":{"fields":{"Header":{"type":"BlockHeader","id":1},"Body":{"type":"BlockBody","id":2}}},"SmartContractRegistration":{"fields":{"Category":{"type":"int32","id":1},"Code":{"type":"bytes","id":2},"CodeHash":{"type":"Hash","id":3}}},"DataAccessMode":{"values":{"ReadOnlyAccountSharing":0,"ReadWriteAccountSharing":1,"AccountSpecific":2}},"BinaryMerkleTree":{"fields":{"Nodes":{"rule":"repeated","type":"Hash","id":1},"Root":{"type":"Hash","id":2},"LeafCount":{"type":"int32","id":3}}},"MerklePath":{"fields":{"Path":{"rule":"repeated","type":"Hash","id":1}}},"StringList":{"fields":{"Values":{"rule":"repeated","type":"string","id":1},"Remark":{"type":"string","id":2}}},"ULongList":{"fields":{"Values":{"rule":"repeated","type":"uint64","id":1},"Remark":{"type":"string","id":2}}},"BlockAbstract":{"fields":{"MinerPublicKey":{"type":"string","id":1},"Time":{"type":"google.protobuf.Timestamp","id":2}}},"BlockValidationResult":{"values":{"Success":0,"NotMiner":11,"InvalidTimeSlot":12,"FailedToCheckConsensusInvalidation":13,"DoingRollback":14,"BlockIsNull":101,"SameWithCurrentRound":102,"IncorrectConsensusTransaction":103,"ParseProblem":104,"NoTransaction":105,"IncorrectTxMerkleTreeRoot":106,"IncorrectSideChainInfo":107,"IncorrectPoWResult":108,"NotImplementConsensus":109}},"VersionedState":{"fields":{"Key":{"type":"string","id":1},"Value":{"type":"bytes","id":2},"BlockHeight":{"type":"uint64","id":3},"BlockHash":{"type":"Hash","id":4},"OriginBlockHash":{"type":"Hash","id":5}}},"BlockStateSet":{"fields":{"BlockHash":{"type":"Hash","id":1},"PreviousHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"Changes":{"keyType":"string","type":"bytes","id":4}}},"TransactionExecutingStateSet":{"fields":{"Version":{"type":"int64","id":1},"Writes":{"keyType":"string","type":"bytes","id":2},"Reads":{"keyType":"string","type":"bool","id":3}}},"ChainStateMergingStatus":{"values":{"Common":0,"Merging":1,"Merged":2}},"ChainStateInfo":{"fields":{"ChainId":{"type":"int64","id":1},"BlockHash":{"type":"Hash","id":2},"BlockHeight":{"type":"uint64","id":3},"MergingBlockHash":{"type":"Hash","id":4},"Status":{"type":"ChainStateMergingStatus","id":5}}},"ActionResult":{"fields":{"Success":{"type":"bool","id":1},"ErrorMessage":{"type":"string","id":2}}},"ChainBlockLinkExecutionStatus":{"values":{"ExecutionNone":0,"ExecutionSuccess":1,"ExecutionFailed":2}},"ChainBlockLink":{"fields":{"BlockHash":{"type":"Hash","id":1},"Height":{"type":"uint64","id":2},"PreviousBlockHash":{"type":"Hash","id":3},"ExecutionStatus":{"type":"ChainBlockLinkExecutionStatus","id":4},"IsIrreversibleBlock":{"type":"bool","id":5},"IsLinked":{"type":"bool","id":6},"IsLightBlock":{"type":"bool","id":7}}},"Chain":{"fields":{"Id":{"type":"int32","id":1},"GenesisBlockHash":{"type":"Hash","id":2},"LongestChainHash":{"type":"Hash","id":3},"LongestChainHeight":{"type":"uint64","id":4},"Branches":{"keyType":"string","type":"uint64","id":5},"NotLinkedBlocks":{"keyType":"string","type":"string","id":6},"LastIrreversibleBlockHash":{"type":"Hash","id":7},"LastIrreversibleBlockHeight":{"type":"uint64","id":8},"BestChainHash":{"type":"Hash","id":9},"BestChainHeight":{"type":"uint64","id":10}}},"ChainBlockIndex":{"fields":{"BlockHash":{"type":"Hash","id":1}}},"BranchSwitch":{"fields":{"RollBack":{"rule":"repeated","type":"Hash","id":1},"RollForward":{"rule":"repeated","type":"Hash","id":2}}},"google":{"nested":{"protobuf":{"nested":{"Timestamp":{"fields":{"seconds":{"type":"int64","id":1},"nanos":{"type":"int32","id":2}}}}}}}}};
 
 /***/ }),
 /* 569 */
@@ -90741,7 +90962,7 @@ module.exports = Settings;
 /* 606 */
 /***/ (function(module) {
 
-module.exports = {"version":"1.1.18"};
+module.exports = {"version":"2.0.3"};
 
 /***/ }),
 /* 607 */
@@ -90903,7 +91124,7 @@ HttpProvider.prototype.isConnected = function () {
     this.send({
       id: 9999,
       jsonrpc: '2.0',
-      method: 'connect_chain',
+      method: 'ConnectChain',
       params: {}
     });
     return true;
@@ -95275,7 +95496,7 @@ function (_Component) {
   }, {
     key: "createKeyPairs",
     value: function createKeyPairs() {
-      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/createKeypairs');
+      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/createkeypairs');
     }
   }, {
     key: "importKeyPairs",
@@ -95285,7 +95506,7 @@ function (_Component) {
   }, {
     key: "backupKeyPairs",
     value: function backupKeyPairs(address) {
-      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push("/backupKeypairs/".concat(address));
+      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push("/backupkeypairs/".concat(address));
     }
   }, {
     key: "render",
@@ -98544,7 +98765,7 @@ var _dec, _class;
 
 
 
-__webpack_require__(672);
+__webpack_require__(670);
 
 var alert = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10___default.a.alert;
 var NUM_ROWS = 9999;
@@ -98690,14 +98911,13 @@ function (_Component) {
         className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.operationContainer
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.operationList
-      }, "APP NAME: ", appName, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.keypairBtnContainer + ' ' + _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.copyBtn,
-        onClick: function onClick() {
-          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_8___default.a.success(JSON.stringify(contracts));
+      }, appName), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.operationList,
+        style: {
+          justifyContent: 'flex-end'
         }
-      })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.operationList
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.button + ' ' + _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.details,
         onClick: function onClick() {
           return _this.getDetails(domain, address, appName);
         }
@@ -98705,7 +98925,7 @@ function (_Component) {
         id: "aelf.Details",
         defaultMessage: "Details"
       })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.keypairBtnContainer + ' ' + _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.removeBtn,
+        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.button + ' ' + _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.remove,
         onClick: function onClick() {
           return alert('Delete Permissions', deleteAlertText, [{
             text: 'Cancel',
@@ -98729,12 +98949,12 @@ function (_Component) {
             }
           }]);
         }
-      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_21__["FormattedMessage"], {
+        id: "aelf.Delete"
+      })))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.permissionOption
-      }, "DOMAIN: ", domain), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.permissionOption
-      }, "KEYPARI: ", address), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.permissionOption
+      }, address), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.permissionsNum
       }, "PERMISSIONS: ", permissionsCount));
     };
 
@@ -98754,7 +98974,7 @@ function (_Component) {
       //     }
       // };
 
-      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push("/permissionsDetail/".concat(data));
+      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push("/permissionsdetail/".concat(data));
     } // PullToRefresh start
 
   }, {
@@ -98791,63 +99011,16 @@ function (_Component) {
       this.WillUnmount = true;
 
       this.setState = function () {};
-    } // setPerTest() {
-    //     let random = randomName();
-    //     let permission = {
-    //         appName: 'aelf' + random,
-    //         domain: 'https://aelf.io',
-    //         address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + random,
-    //         contracts: [
-    //             {
-    //                 chainId: 'xxxx',
-    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t0',
-    //                 contractName: 'xxx',
-    //                 description: 'xxxx'
-    //             },
-    //             {
-    //                 chainId: 'xxxx',
-    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
-    //                 contractName: 'xxx',
-    //                 description: 'xxxx'
-    //             },
-    //             {
-    //                 chainId: 'xxxx',
-    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
-    //                 contractName: 'contractName' + Math.random(),
-    //                 description: 'description' + Math.random()
-    //             }
-    //         ]
-    //     };
-    //     setPermission(permission, permissionSeted => {
-    //         console.log('permission666: ', permission);
-    //         // Just for test
-    //         const temp = Array.from(this.rData);
-    //         const list = this.rData.filter(item => {
-    //             const domainCheck = permission.domain === item.domain;
-    //             const addressCheck = permission.address === item.address;
-    //             return domainCheck && addressCheck;
-    //         });
-    //         if (list.length === 0) {
-    //             temp.unshift(permission);
-    //             this.rData = temp;
-    //             console.log('this.rData: ', this.rData);
-    //             this.setState({
-    //                 dataSource: this.state.dataSource.cloneWithRows(this.rData)
-    //             });
-    //         }
-    //     });
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
       var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_15__["getPageContainerStyle"])();
-      pageContainerStyle.height -= 45;
+      pageContainerStyle.height -= 140;
       var backgroundStyle = Object.assign({}, pageContainerStyle); // backgroundStyle.height -= 14; // remove padding 7px * 2
-
-      var containerStyle = Object.assign({}, backgroundStyle); // containerStyle.height -= 2; // remove border 2px
+      // containerStyle.height -= 2; // remove border 2px
 
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         style: pageContainerStyle,
@@ -98857,13 +99030,16 @@ function (_Component) {
           return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_14__["historyPush"])('/home');
         }
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.blank
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
+        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.wallet
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_21__["FormattedMessage"], {
+        id: "aelf.Application Management"
+      }))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.background + ' ????',
         style: backgroundStyle
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.backgroundMask
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.container,
-        style: containerStyle
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: _Permissions_scss__WEBPACK_IMPORTED_MODULE_20___default.a.transactionList
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_1___default.a, {
@@ -98883,7 +99059,7 @@ function (_Component) {
           height: '100%'
         },
         pageSize: pageSize
-      })))));
+      }))));
     }
   }]);
 
@@ -98920,13 +99096,12 @@ if(false) {}
 /* 669 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(495);
 exports = module.exports = __webpack_require__(4)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7 {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txListMask-3Bjju {\n  /* Rectangle 2 Copy: */\n  opacity: 0.3;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairNickname-2XsyN {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairAddress-3BYhu {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_permissionOption-3qWWt {\n  padding: 8px 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_logoContainer-1On0- {\n  height: 36px;\n  width: 36px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_logoContainer-1On0- img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS .AELF-app-web-pages-Popup-Permissions-Permissions_name-1onuv {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS .AELF-app-web-pages-Popup-Permissions-Permissions_description-13vp0 {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e .AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8 {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e .AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_background-2cn7o {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_backgroundMask-lKtpH {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_container-1TejP {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_walletInfo-1ub71 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8 {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_aelfValuation-1uKlr {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_tenderUnit-Vg7k5 {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addressContainer-29Hv9 {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_copyBtn-2cU6I {\n  background: url(" + escape(__webpack_require__(670)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_removeBtn-1Cgzu {\n  background: url(" + escape(__webpack_require__(671)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairBtnContainer-1X52s {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_operationContainer-3wovV {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_operationList-1kOid {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_transactionList-36rDC {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtnContainer-1VimY {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtn-qoCx2 {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(664)) + ") no-repeat;\n  -webkit-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addBtn-qoCx2:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_textarea-3c70T {\n  position: fixed;\n  top: -250px; }\n", ""]);
+exports.push([module.i, ".AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7 {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txListMask-3Bjju {\n  /* Rectangle 2 Copy: */\n  opacity: 0.3;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairNickname-2XsyN {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairAddress-3BYhu {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_permissionOption-3qWWt {\n  padding: 8px 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_logoContainer-1On0- {\n  height: 36px;\n  width: 36px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_logoContainer-1On0- img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS .AELF-app-web-pages-Popup-Permissions-Permissions_name-1onuv {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listLeft-3YvlS .AELF-app-web-pages-Popup-Permissions-Permissions_description-13vp0 {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e .AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8 {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e .AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_walletInfo-1ub71 {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8 {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_aelfValuation-1uKlr {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_tenderUnit-Vg7k5 {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_addressContainer-29Hv9 {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_keypairBtnContainer-1X52s {\n  margin: 0 0 0 8px;\n  background-position: center;\n  -webkit-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_transactionList-36rDC {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_top-1EQWy {\n  padding: 0 24px 24px 24px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_blank-2kPDj {\n  padding: 13px 0 0 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_wallet-397rt {\n  font-size: 36px;\n  color: #FFF;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_background-2cn7o {\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);\n  border-radius: 8px;\n  margin: 0 24px;\n  padding: 7px;\n  background: rgba(0, 0, 0, 0.3);\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_txList-Nawj7 {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.4);\n  border-radius: 8px;\n  margin: 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_buttonManage-2brLJ {\n  vertical-align: middle;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: end;\n  -webkit-justify-content: flex-end;\n  -moz-box-pack: end;\n  -ms-flex-pack: end;\n  justify-content: flex-end;\n  width: 50%; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_button-Q8Y88 {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  font-size: 12px;\n  margin: 0 4px 8px 4px;\n  color: #FFF;\n  padding: 0 8px;\n  line-height: 22px;\n  cursor: pointer;\n  border-radius: 10px; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_details-1t7xV {\n  background: #7ecff5; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_remove-1Rt9Z {\n  background: #e42750; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_operationContainer-3wovV {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  vertical-align: middle;\n  border-bottom: 1px dashed #FFF;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_operationList-1kOid {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  vertical-align: middle;\n  font-size: 16px;\n  width: 50%;\n  font-weight: 700;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-Permissions-Permissions_permissionsNum-1rPzG {\n  padding: 8px 0 8px 0;\n  color: #e6e73e;\n  text-align: right; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -98942,42 +99117,31 @@ exports.locals = {
 	"listRight": "AELF-app-web-pages-Popup-Permissions-Permissions_listRight-2gK3e",
 	"balance": "AELF-app-web-pages-Popup-Permissions-Permissions_balance-HJ0r8",
 	"tenderValuation": "AELF-app-web-pages-Popup-Permissions-Permissions_tenderValuation-eATBU",
-	"background": "AELF-app-web-pages-Popup-Permissions-Permissions_background-2cn7o",
-	"backgroundMask": "AELF-app-web-pages-Popup-Permissions-Permissions_backgroundMask-lKtpH",
-	"container": "AELF-app-web-pages-Popup-Permissions-Permissions_container-1TejP",
 	"walletInfo": "AELF-app-web-pages-Popup-Permissions-Permissions_walletInfo-1ub71",
 	"aelfValuation": "AELF-app-web-pages-Popup-Permissions-Permissions_aelfValuation-1uKlr",
 	"tenderUnit": "AELF-app-web-pages-Popup-Permissions-Permissions_tenderUnit-Vg7k5",
 	"addressContainer": "AELF-app-web-pages-Popup-Permissions-Permissions_addressContainer-29Hv9",
-	"copyBtn": "AELF-app-web-pages-Popup-Permissions-Permissions_copyBtn-2cU6I",
-	"removeBtn": "AELF-app-web-pages-Popup-Permissions-Permissions_removeBtn-1Cgzu",
 	"keypairBtnContainer": "AELF-app-web-pages-Popup-Permissions-Permissions_keypairBtnContainer-1X52s",
+	"transactionList": "AELF-app-web-pages-Popup-Permissions-Permissions_transactionList-36rDC",
+	"top": "AELF-app-web-pages-Popup-Permissions-Permissions_top-1EQWy",
+	"blank": "AELF-app-web-pages-Popup-Permissions-Permissions_blank-2kPDj",
+	"wallet": "AELF-app-web-pages-Popup-Permissions-Permissions_wallet-397rt",
+	"background": "AELF-app-web-pages-Popup-Permissions-Permissions_background-2cn7o",
+	"buttonManage": "AELF-app-web-pages-Popup-Permissions-Permissions_buttonManage-2brLJ",
+	"button": "AELF-app-web-pages-Popup-Permissions-Permissions_button-Q8Y88",
+	"details": "AELF-app-web-pages-Popup-Permissions-Permissions_details-1t7xV",
+	"remove": "AELF-app-web-pages-Popup-Permissions-Permissions_remove-1Rt9Z",
 	"operationContainer": "AELF-app-web-pages-Popup-Permissions-Permissions_operationContainer-3wovV",
 	"operationList": "AELF-app-web-pages-Popup-Permissions-Permissions_operationList-1kOid",
-	"transactionList": "AELF-app-web-pages-Popup-Permissions-Permissions_transactionList-36rDC",
-	"addBtnContainer": "AELF-app-web-pages-Popup-Permissions-Permissions_addBtnContainer-1VimY",
-	"addBtn": "AELF-app-web-pages-Popup-Permissions-Permissions_addBtn-qoCx2",
-	"textarea": "AELF-app-web-pages-Popup-Permissions-Permissions_textarea-3c70T"
+	"permissionsNum": "AELF-app-web-pages-Popup-Permissions-Permissions_permissionsNum-1rPzG"
 };
 
 /***/ }),
 /* 670 */
-/***/ (function(module, exports) {
-
-module.exports = "./assets/output/e6207205c1a4064ec49c41a228aff00b.svg";
-
-/***/ }),
-/* 671 */
-/***/ (function(module, exports) {
-
-module.exports = "./assets/output/558e8530d417f12d6246f3511925a725.svg";
-
-/***/ }),
-/* 672 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(673);
+var content = __webpack_require__(671);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -98998,7 +99162,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 673 */
+/* 671 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -99012,7 +99176,7 @@ exports.push([module.i, ".asstes-container .am-list-body {\n    background: none
 
 
 /***/ }),
-/* 674 */
+/* 672 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99294,7 +99458,7 @@ function (_Component) {
 
 
 /***/ }),
-/* 675 */
+/* 673 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99322,12 +99486,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(445);
 /* harmony import */ var _components_Svg_Svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(451);
-/* harmony import */ var _Import_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(676);
+/* harmony import */ var _Import_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(674);
 /* harmony import */ var _Import_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_Import_scss__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(115);
-/* harmony import */ var _utils_walletStorage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(678);
+/* harmony import */ var _utils_walletStorage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(676);
 /* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(500);
-/* harmony import */ var _WalletName_WalletName__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(679);
+/* harmony import */ var _WalletName_WalletName__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(677);
 /* harmony import */ var _utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(221);
 /* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(466);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(473);
@@ -99652,11 +99816,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 676 */
+/* 674 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(677);
+var content = __webpack_require__(675);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -99677,7 +99841,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 677 */
+/* 675 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -99708,7 +99872,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 678 */
+/* 676 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99785,7 +99949,7 @@ function insertWalletInfo(walletInfoInput, password) {
 /* harmony default export */ __webpack_exports__["default"] = (insertWalletInfo);
 
 /***/ }),
-/* 679 */
+/* 677 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99811,7 +99975,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _WalletName_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(680);
+/* harmony import */ var _WalletName_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(678);
 /* harmony import */ var _WalletName_scss__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_WalletName_scss__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(200);
 /* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(176);
@@ -99892,11 +100056,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 680 */
+/* 678 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(681);
+var content = __webpack_require__(679);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -99917,7 +100081,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 681 */
+/* 679 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -99933,7 +100097,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 682 */
+/* 680 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99962,9 +100126,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(115);
-/* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(683);
+/* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(681);
 /* harmony import */ var _BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_BackupKeypairs_scss__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _pages_Mnemonic__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(685);
+/* harmony import */ var _pages_Mnemonic__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(683);
 /* harmony import */ var _utils_clipboard__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(223);
 /* harmony import */ var _utils_getPageContainerStyle__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(221);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(445);
@@ -100346,11 +100510,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 683 */
+/* 681 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(684);
+var content = __webpack_require__(682);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -100371,7 +100535,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 684 */
+/* 682 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -100397,7 +100561,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 685 */
+/* 683 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100428,7 +100592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(115);
-/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(686);
+/* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(684);
 /* harmony import */ var _pages_scss__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_pages_scss__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _components_Button_Button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(445);
 /* harmony import */ var _components_NoticePanel_NoticePanel__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(497);
@@ -100756,11 +100920,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 686 */
+/* 684 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(687);
+var content = __webpack_require__(685);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -100781,7 +100945,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 687 */
+/* 685 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(495);
@@ -100809,7 +100973,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 688 */
+/* 686 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100832,7 +100996,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(102);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(115);
-/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(689);
+/* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(687);
 /* harmony import */ var _ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_ExtensionManager_scss__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _components_ListContent_ListContent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(483);
 /* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(466);
@@ -100947,11 +101111,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 689 */
+/* 687 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(690);
+var content = __webpack_require__(688);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -100972,7 +101136,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 690 */
+/* 688 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -100992,7 +101156,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 691 */
+/* 689 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101031,7 +101195,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_17__);
 /* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(473);
 /* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(474);
-/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(692);
+/* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(690);
 /* harmony import */ var _LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_LoadFromBackup_scss__WEBPACK_IMPORTED_MODULE_20__);
 
 
@@ -101164,7 +101328,7 @@ function (_Component) {
       var fileName = this.state.fileName;
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         style: {
-          marginTop: '120px'
+          marginTop: '90px'
         }
       }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "aelf-input-container aelf-dash"
@@ -101240,11 +101404,11 @@ function (_Component) {
 
 
 /***/ }),
-/* 692 */
+/* 690 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(693);
+var content = __webpack_require__(691);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -101265,7 +101429,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 693 */
+/* 691 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -101291,15 +101455,15 @@ exports.locals = {
 };
 
 /***/ }),
-/* 694 */
+/* 692 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PermissionsDetail; });
-/* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(695);
+/* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(693);
 /* harmony import */ var antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex_style_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(698);
+/* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(696);
 /* harmony import */ var antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(636);
 /* harmony import */ var antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_list_view_style_css__WEBPACK_IMPORTED_MODULE_2__);
@@ -101315,28 +101479,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(281);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(649);
-/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(652);
-/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(102);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(108);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(115);
-/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(176);
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(200);
-/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(466);
-/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(500);
-/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(473);
-/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(474);
-/* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(661);
-/* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(701);
-/* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(486);
-/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(487);
-/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(703);
-/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_24__);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(224);
+/* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(235);
+/* harmony import */ var antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(649);
+/* harmony import */ var antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(652);
+/* harmony import */ var antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(102);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(108);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(115);
+/* harmony import */ var react_intl__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(176);
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(200);
+/* harmony import */ var _components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(466);
+/* harmony import */ var _utils_historyChange__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(500);
+/* harmony import */ var _messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(473);
+/* harmony import */ var _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(474);
+/* harmony import */ var _components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(661);
+/* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(699);
+/* harmony import */ var _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _utils_insert__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(486);
+/* harmony import */ var _utils_checkWallet__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(487);
+/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(701);
+/* harmony import */ var _PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(_PermissionsDetail_css__WEBPACK_IMPORTED_MODULE_26__);
+
+
 
 
 
@@ -101369,14 +101539,40 @@ var _dec, _class;
 
 
 
-var alert = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_10___default.a.alert;
+var alert = antd_mobile_lib_modal__WEBPACK_IMPORTED_MODULE_12___default.a.alert;
 var NUM_ROWS = 9999;
 var pageSize = 9999;
 
-function removeContract(contractAddress, domain, callback) {
-  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["CHECK_WALLET"]).send().then(function (result) {
+function removePermission(permissionNeedRemove, callback) {
+  // const permission = {
+  //     domain: 'https://aelf.io',
+  //     address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + randomName(),
+  //     contracts: ['ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t0']
+  // };
+  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["CHECK_WALLET"]).send().then(function (result) {
     var _ref = result || {},
         nightElf = _ref.nightElf;
+
+    if (nightElf) {
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["REMOVE_PERMISSION"], permissionNeedRemove).send().then(function (result) {
+        console.log(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["REMOVE_PERMISSION"], result);
+
+        if (result.error === 0) {
+          callback();
+        } else {
+          antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_10___default.a.fail(result.message, 3, function () {}, false);
+        }
+      });
+    } else {
+      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/');
+    }
+  });
+}
+
+function removeContract(contractAddress, domain, callback) {
+  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["CHECK_WALLET"]).send().then(function (result) {
+    var _ref2 = result || {},
+        nightElf = _ref2.nightElf;
 
     if (nightElf) {
       var payload = {
@@ -101385,21 +101581,21 @@ function removeContract(contractAddress, domain, callback) {
           contractAddress: contractAddress
         }
       };
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["REMOVE_CONTRACT_PERMISSION"], payload).send().then(function (result) {
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["REMOVE_CONTRACT_PERMISSION"], payload).send().then(function (result) {
         if (result && result.error === 0) {
           callback();
         }
       });
     } else {
-      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/');
+      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/');
     }
   });
 }
 
 function removeWhitelist(contractAddress, methods, domain, callback) {
-  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["CHECK_WALLET"]).send().then(function (result) {
-    var _ref2 = result || {},
-        nightElf = _ref2.nightElf;
+  _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["CHECK_WALLET"]).send().then(function (result) {
+    var _ref3 = result || {},
+        nightElf = _ref3.nightElf;
 
     if (nightElf) {
       var payload = {
@@ -101409,18 +101605,18 @@ function removeWhitelist(contractAddress, methods, domain, callback) {
           methods: [methods]
         }
       };
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["REMOVE_METHODS_WHITELIST"], payload).send().then(function (result) {
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["REMOVE_METHODS_WHITELIST"], payload).send().then(function (result) {
         if (result && result.error === 0) {
           callback();
         }
       });
     } else {
-      react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/');
+      react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/');
     }
   });
 }
 
-var PermissionsDetail = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_22__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_23__["default"]), _dec(_class =
+var PermissionsDetail = (_dec = Object(_utils_insert__WEBPACK_IMPORTED_MODULE_24__["default"])(_utils_checkWallet__WEBPACK_IMPORTED_MODULE_25__["default"]), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(PermissionsDetail, _Component);
@@ -101446,29 +101642,41 @@ function (_Component) {
       refreshing: true,
       isLoading: true,
       height: document.documentElement.clientHeight,
-      useBodyScroll: false
+      useBodyScroll: false,
+      openRow: null,
+      hasClick: false
     };
 
     _this.renderRow = function (rowData, sectionID, rowID) {
       var item = _this.rData[rowID];
       var whiteListHTML = null;
-      console.log(item.whitelist);
 
       if (JSON.stringify(item.whitelist) !== '{}' && item.whitelist) {
         whiteListHTML = _this.renderWhiteList(item.whitelist, item.contractAddress, rowID);
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+      var infoHeight = '17px';
+      var transformRotate = 'rotate(90deg)';
+
+      if (_this.state.openRow === rowID) {
+        infoHeight = 'auto';
+        transformRotate = 'rotate(270deg)';
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
         key: rowID,
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.txList
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.txListMask
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.operationContainer
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.operationList
-      }, "Jurisdiction: ", item.contractName, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.keypairBtnContainer + ' ' + _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.removeBtn,
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.txListBox
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.txList,
+        style: {
+          height: infoHeight
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.operationContainer
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.operationList
+      }, item.contractName, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.remove,
         onClick: function onClick() {
           return alert('Delete Contract', 'Are you sure???', [{
             text: 'Cancel',
@@ -101490,23 +101698,46 @@ function (_Component) {
             }
           }]);
         }
-      })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.operationList
-      }, "Contract Address: ", item.contractAddress), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.operationList
-      }, "Description: ", item.description), whiteListHTML));
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_16__["FormattedMessage"], {
+        id: "aelf.Delete"
+      }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.operationList
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.infoClass
+      }, "Address:"), " ", item.contractAddress), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.operationList
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.infoClass
+      }, "Description:"), " ", item.description), whiteListHTML)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.arrow,
+        onClick: function onClick() {
+          if (_this.state.openRow === rowID) {
+            _this.setState({
+              openRow: null
+            });
+          } else {
+            _this.setState({
+              openRow: rowID
+            });
+          }
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        style: {
+          transform: transformRotate
+        }
+      }, "\u300B")));
     };
 
     _this.renderWhiteList = function (data, contractAddress, rowID) {
       var whiteListDate = data;
       var whiteList = Object.keys(whiteListDate);
       var whiteListHTML = whiteList.map(function (item) {
-        return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
           key: item
-        }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-          className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.operationList
-        }, item, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-          className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.keypairBtnContainer + ' ' + _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.removeBtn,
+        }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+          className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.operationList
+        }, item, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+          className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.remove,
           onClick: function onClick() {
             return alert('Delete the white list', 'Are you sure???', [{
               text: 'Cancel',
@@ -101528,9 +101759,15 @@ function (_Component) {
               }
             }]);
           }
-        })));
+        }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_16__["FormattedMessage"], {
+          id: "aelf.Delete"
+        }))));
       });
-      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, "---------------White List----------------"), whiteListHTML);
+      return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.infoClass
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_16__["FormattedMessage"], {
+        id: "aelf.Whitelist"
+      }), ":"), whiteListHTML);
     };
 
     return _this;
@@ -101541,7 +101778,7 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var hei = this.state.height - react_dom__WEBPACK_IMPORTED_MODULE_12___default.a.findDOMNode(this.lv).offsetTop;
+      var hei = this.state.height - react_dom__WEBPACK_IMPORTED_MODULE_14___default.a.findDOMNode(this.lv).offsetTop;
       this.checkWalletInfo();
       this.getPermissions(function (result) {
         _this2.rData = result[0].contracts;
@@ -101565,8 +101802,8 @@ function (_Component) {
         hostname: this.domain,
         type: 'domain'
       };
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["CHECK_PERMISSION"], queryInfo).send().then(function (result) {
-        if (result.error === 0 && result) {
+      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_21__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_20__["CHECK_PERMISSION"], queryInfo).send().then(function (result) {
+        if (result && result.error === 0) {
           var permissions = result.permissions.filter(function (item) {
             var address = _this3.address === item.address;
             var domain = _this3.domain === item.domain;
@@ -101577,78 +101814,92 @@ function (_Component) {
       });
     }
   }, {
-    key: "turnToHomePage",
-    value: function turnToHomePage(walletStatus) {
-      var _ref3 = walletStatus || {},
-          nightElf = _ref3.nightElf;
-
-      if (!nightElf) {
-        react_router__WEBPACK_IMPORTED_MODULE_13__["hashHistory"].push('/');
-      }
-    }
-  }, {
-    key: "checkWallet",
-    value: function checkWallet() {
-      var _this4 = this;
-
-      _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_19__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_18__["CHECK_WALLET"]).send().then(function (result) {
-        _this4.turnToHomePage(result);
-      });
-    }
-  }, {
     key: "renderPermissionsInfo",
     value: function renderPermissionsInfo() {
       var permissions = this.state.permissions;
-      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.head
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.headPortrait
-      }, "this is \u5934\u50CF")), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.permissionInfo
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, "APP NAME: ", permissions.appName), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null, "KEYPAIR: ", permissions.address))));
+      var appName = this.appName;
+      var domain = this.domain;
+      var address = this.address;
+      var permissionNeedRemove = {
+        appName: appName,
+        domain: domain,
+        address: address
+      };
+      return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_flex__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.headInfoBox
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.head
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.headPortrait
+      }, "this is \u5934\u50CF")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.permissionInfo
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.permissionOptions
+      }, permissions.appName, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.remove,
+        onClick: function onClick() {
+          return alert('Delete Permissions', 'You Sure ?', [{
+            text: 'Cancel',
+            onPress: function onPress() {
+              return console.log('cancel');
+            }
+          }, {
+            text: 'Ok',
+            onPress: function onPress() {
+              return removePermission(permissionNeedRemove, function () {
+                react_router__WEBPACK_IMPORTED_MODULE_15__["hashHistory"].push('/permissions');
+              });
+            }
+          }]);
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_16__["FormattedMessage"], {
+        id: "aelf.Delete All"
+      }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", null, "KEYPAIR: ", permissions.address)))));
     }
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
-      var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_15__["getPageContainerStyle"])();
-      pageContainerStyle.height -= 145;
+      var pageContainerStyle = Object(_utils_utils__WEBPACK_IMPORTED_MODULE_17__["getPageContainerStyle"])();
+      pageContainerStyle.height -= 220;
       var backgroundStyle = Object.assign({}, pageContainerStyle); // backgroundStyle.height -= 14; // remove padding 7px * 2
 
-      var containerStyle = Object.assign({}, backgroundStyle);
       var permissions = this.state.permissions;
-      var permissionsInfoHTML = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", null);
+      var permissionsInfoHTML = react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", null);
 
       if (permissions) {
         permissionsInfoHTML = this.renderPermissionsInfo();
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.containerBody
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.containerBody
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(_components_NavNormal_NavNormal__WEBPACK_IMPORTED_MODULE_18__["default"], {
         onLeftClick: function onLeftClick() {
-          return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_17__["historyPush"])('/permissions');
+          return Object(_utils_historyChange__WEBPACK_IMPORTED_MODULE_19__["historyPush"])('/permissions');
         }
-      }), permissionsInfoHTML, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.background,
+      }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.top
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.blank
+      }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.wallet
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_16__["FormattedMessage"], {
+        id: "aelf.Application details"
+      }))), permissionsInfoHTML, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.background,
         style: backgroundStyle
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.backgroundMask
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.container,
-        style: containerStyle
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_21___default.a.transactionList
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+        className: _PermissionsDetail_scss__WEBPACK_IMPORTED_MODULE_23___default.a.transactionList
+      }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(antd_mobile_lib_list_view__WEBPACK_IMPORTED_MODULE_3___default.a, {
         initialListSize: NUM_ROWS,
         key: this.state.useBodyScroll ? '0' : '1',
         ref: function ref(el) {
-          return _this5.lv = el;
+          return _this4.lv = el;
         },
         dataSource: this.state.dataSource,
         renderFooter: function renderFooter() {
-          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_20__["default"])(_this5.state.isLoading, _this5.state.hasMore);
+          return Object(_components_ScrollFooter_ScrollFooter__WEBPACK_IMPORTED_MODULE_22__["default"])(_this4.state.isLoading, _this4.state.hasMore);
         },
         renderRow: this.renderRow,
         useBodyScroll: this.state.useBodyScroll,
@@ -101657,16 +101908,16 @@ function (_Component) {
           height: '100%'
         },
         pageSize: pageSize
-      })))));
+      }))));
     }
   }]);
 
   return PermissionsDetail;
-}(react__WEBPACK_IMPORTED_MODULE_11__["Component"])) || _class);
+}(react__WEBPACK_IMPORTED_MODULE_13__["Component"])) || _class);
 
 
 /***/ }),
-/* 695 */
+/* 693 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101674,14 +101925,14 @@ function (_Component) {
 
 __webpack_require__(225);
 
-__webpack_require__(696);
+__webpack_require__(694);
 
 /***/ }),
-/* 696 */
+/* 694 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(697);
+var content = __webpack_require__(695);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -101702,7 +101953,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 697 */
+/* 695 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -101716,7 +101967,7 @@ exports.push([module.i, "/* flexbox */\n.am-flexbox {\n  text-align: left;\n  ov
 
 
 /***/ }),
-/* 698 */
+/* 696 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101726,11 +101977,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Flex = __webpack_require__(699);
+var _Flex = __webpack_require__(697);
 
 var _Flex2 = _interopRequireDefault(_Flex);
 
-var _FlexItem = __webpack_require__(700);
+var _FlexItem = __webpack_require__(698);
 
 var _FlexItem2 = _interopRequireDefault(_FlexItem);
 
@@ -101741,7 +101992,7 @@ exports['default'] = _Flex2['default'];
 module.exports = exports['default'];
 
 /***/ }),
-/* 699 */
+/* 697 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101838,7 +102089,7 @@ Flex.defaultProps = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 700 */
+/* 698 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101923,6 +102174,81 @@ FlexItem.defaultProps = {
 module.exports = exports['default'];
 
 /***/ }),
+/* 699 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(700);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(5)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 700 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_top-2D83P {\n  padding: 0 24px 12px 24px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_blank-WjfId {\n  padding: 13px 0 0 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_wallet-3tpAu {\n  font-size: 36px;\n  color: #FFF;\n  margin: 8px 0 8px 0;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_containerBody-3lTrU {\n  color: #FFF; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_headInfoBox-3Ilnb {\n  margin: 0 24px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_head-3Ljkw {\n  width: 26%;\n  margin: 2%; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_headPortrait-yreto {\n  color: #000;\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  margin: 0 auto;\n  background: #FFF; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_permissionInfo--d9nz {\n  width: 66%;\n  margin: 2%;\n  word-break: break-all;\n  word-wrap: break-word; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txList-3yFXX {\n  padding: 8px 16px 16px 16px;\n  background: rgba(0, 0, 0, 0.15);\n  border-radius: 12px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txListBox-2BJAF {\n  background: rgba(255, 255, 255, 0.4);\n  border-radius: 12px;\n  margin: 12px 7px;\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16); }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_arrow-3zpzi {\n  color: #fff;\n  text-align: center;\n  font-size: 14px;\n  line-height: 22px;\n  height: 22px;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_arrow-3zpzi > div {\n  width: 22px;\n  height: 22px;\n  margin: 0 auto; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairNickname-2T9NJ {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairAddress-3elj5 {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listLeft-1R4oJ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_logoContainer-rdr_b {\n  height: 36px;\n  width: 36px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_logoContainer-rdr_b img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listLeft-1R4oJ .AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_name-2Y_kY {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listLeft-1R4oJ .AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_description-44Ah4 {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listRight-1KQfK {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listRight-1KQfK .AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_balance-qF7bc {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listRight-1KQfK .AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderValuation-3sJdj {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txList-3yFXX:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_background-14-Jy {\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);\n  border-radius: 8px;\n  margin: 14px 24px;\n  padding: 7px;\n  background: rgba(0, 0, 0, 0.3);\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_backgroundMask-1bt2l {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_container-1u59D {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_permissionOptions-z_TCN {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  vertical-align: middle;\n  font-size: 20px;\n  font-weight: 700; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_walletInfo-3Mc2u {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_balance-qF7bc {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_aelfValuation-1NgfL {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderValuation-3sJdj {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderUnit-37bTy {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addressContainer-2OEgO {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_operationContainer-2elZa {\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_operationList-1YCD4 {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_transactionList-38pB- {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  height: 100%; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairButton-1vdug {\n  background: #FFF;\n  display: inline-block;\n  width: 100%;\n  text-align: center;\n  height: 24px;\n  line-height: 24px;\n  font-size: 12px;\n  border-radius: 12px;\n  color: #3D55CC;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_backup-2hh0i {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0;\n  vertical-align: middle;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_remove-1qsgh {\n  background: #e42750;\n  color: #FFF;\n  font-size: 12px;\n  line-height: 24px;\n  text-align: center;\n  border-radius: 10px;\n  padding: 0 8px;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_infoClass-HNBVp {\n  color: #e8e73c;\n  width: 45%; }\n", ""]);
+
+// exports
+exports.locals = {
+	"top": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_top-2D83P",
+	"blank": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_blank-WjfId",
+	"wallet": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_wallet-3tpAu",
+	"containerBody": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_containerBody-3lTrU",
+	"headInfoBox": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_headInfoBox-3Ilnb",
+	"head": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_head-3Ljkw",
+	"headPortrait": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_headPortrait-yreto",
+	"permissionInfo": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_permissionInfo--d9nz",
+	"txList": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txList-3yFXX",
+	"txListBox": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txListBox-2BJAF",
+	"arrow": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_arrow-3zpzi",
+	"keypairNickname": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairNickname-2T9NJ",
+	"keypairAddress": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairAddress-3elj5",
+	"listLeft": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listLeft-1R4oJ",
+	"logoContainer": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_logoContainer-rdr_b",
+	"name": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_name-2Y_kY",
+	"description": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_description-44Ah4",
+	"listRight": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listRight-1KQfK",
+	"balance": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_balance-qF7bc",
+	"tenderValuation": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderValuation-3sJdj",
+	"background": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_background-14-Jy",
+	"backgroundMask": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_backgroundMask-1bt2l",
+	"container": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_container-1u59D",
+	"permissionOptions": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_permissionOptions-z_TCN",
+	"walletInfo": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_walletInfo-3Mc2u",
+	"aelfValuation": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_aelfValuation-1NgfL",
+	"tenderUnit": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderUnit-37bTy",
+	"addressContainer": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addressContainer-2OEgO",
+	"operationContainer": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_operationContainer-2elZa",
+	"operationList": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_operationList-1YCD4",
+	"transactionList": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_transactionList-38pB-",
+	"keypairButton": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairButton-1vdug",
+	"backup": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_backup-2hh0i",
+	"remove": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_remove-1qsgh",
+	"infoClass": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_infoClass-HNBVp"
+};
+
+/***/ }),
 /* 701 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -101949,80 +102275,6 @@ if(false) {}
 
 /***/ }),
 /* 702 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var escape = __webpack_require__(495);
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_containerBody-3lTrU {\n  color: #FFF; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_head-3Ljkw {\n  width: 26%;\n  margin: 2%; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_headPortrait-yreto {\n  color: #000;\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  background: #FFF; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_permissionInfo--d9nz {\n  width: 66%;\n  margin: 2%;\n  word-break: break-all;\n  word-wrap: break-word; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txList-3yFXX {\n  padding: 8px 16px 16px 16px;\n  background: rgba(255, 255, 255, 0.15);\n  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);\n  border-radius: 8px 8px 0 0;\n  margin: 0 7px;\n  color: #FFF;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  position: relative;\n  overflow: hidden;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txListMask-BsYtT {\n  opacity: 0.4;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(rgba(255, 255, 255, 0)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);\n  border-radius: 8px 0 0 0;\n  position: absolute;\n  left: -5%;\n  top: -28%;\n  -webkit-transform: rotate(15deg);\n  -moz-transform: rotate(15deg);\n  -ms-transform: rotate(15deg);\n  -o-transform: rotate(15deg);\n  transform: rotate(15deg);\n  width: 116px;\n  height: 64px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairNickname-2T9NJ {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairAddress-3elj5 {\n  font-size: 12px;\n  word-break: break-all; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listLeft-1R4oJ {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: left; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_logoContainer-rdr_b {\n  height: 36px;\n  width: 36px;\n  border-radius: 8px;\n  background: #FFF;\n  overflow: hidden;\n  margin: 0 12px 0 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_logoContainer-rdr_b img {\n  height: 100%;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listLeft-1R4oJ .AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_name-2Y_kY {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listLeft-1R4oJ .AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_description-44Ah4 {\n  font-size: 10px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listRight-1KQfK {\n  text-align: right; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listRight-1KQfK .AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_balance-qF7bc {\n  font-size: 14px;\n  margin: 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listRight-1KQfK .AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderValuation-3sJdj {\n  font-size: 10px;\n  font-weight: 100;\n  margin: 0;\n  line-height: 1.5; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txList-3yFXX:last-child {\n  border: none; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_background-14-Jy {\n  background: -webkit-gradient(linear, left top, right bottom, from(#D649F2), to(#3D55CC));\n  background: -webkit-linear-gradient(left top, #D649F2, #3D55CC);\n  background: -moz-linear-gradient(left top, #D649F2, #3D55CC);\n  background: linear-gradient(to right bottom, #D649F2, #3D55CC);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);\n  border-radius: 16px;\n  margin: 0 22px;\n  padding: 7px;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  z-index: 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_backgroundMask-1bt2l {\n  position: absolute;\n  left: -5%;\n  top: -5%;\n  -webkit-transform: rotate(-6deg);\n  -moz-transform: rotate(-6deg);\n  -ms-transform: rotate(-6deg);\n  -o-transform: rotate(-6deg);\n  transform: rotate(-6deg);\n  height: 195px;\n  width: 120%;\n  opacity: 0.2;\n  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(97%, rgba(255, 255, 255, 0.3)));\n  background-image: -webkit-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: -moz-linear-gradient(top, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.3) 97%);\n  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);\n  border-radius: 16px 16px 0 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_container-1u59D {\n  position: relative;\n  z-index: 3;\n  border: 1px dashed rgba(219, 184, 255, 0.5);\n  border-radius: 16px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -moz-box-orient: vertical;\n  -moz-box-direction: normal;\n  -ms-flex-direction: column;\n  flex-direction: column; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_walletInfo-3Mc2u {\n  height: 188px;\n  color: #FFF;\n  text-align: left;\n  text-indent: 20px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_balance-qF7bc {\n  margin: 34px 0 0 0;\n  overflow: hidden;\n  word-break: break-all;\n  white-space: nowrap; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_aelfValuation-1NgfL {\n  font-size: 40px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderValuation-3sJdj {\n  margin: 12px 0 0 0;\n  font-size: 22px;\n  font-weight: 100; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderUnit-37bTy {\n  font-size: 14px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addressContainer-2OEgO {\n  font-size: 12px;\n  margin: 24px 0 0 0;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 14px;\n  line-height: 14px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_copyBtn-2FPAW {\n  background: url(" + escape(__webpack_require__(670)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_removeBtn-2EqPP {\n  background: url(" + escape(__webpack_require__(671)) + ") no-repeat; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairBtnContainer-12m46 {\n  margin: 0 0 0 8px;\n  width: 24px;\n  height: 24px;\n  background-position: center;\n  -webkit-background-size: cover;\n  background-size: cover; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_operationContainer-2elZa {\n  position: relative;\n  z-index: 100; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_operationList-1YCD4 {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n  -moz-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  margin: 0 0 8px 0; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_transactionList-38pB- {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -moz-box-flex: 1;\n  -ms-flex: 1;\n  flex: 1; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addBtnContainer-19HwS {\n  height: 60px;\n  width: 100%; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addBtn-3B8QA {\n  display: inline-block;\n  float: right;\n  height: 24px;\n  width: 24px;\n  background: url(" + escape(__webpack_require__(664)) + ") no-repeat;\n  -webkit-background-size: cover;\n  background-size: cover;\n  margin-right: 20px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addBtn-3B8QA:active {\n  opacity: 0.7; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_textarea-tv2yz {\n  position: fixed;\n  top: -250px; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairButton-1vdug {\n  background: #FFF;\n  display: inline-block;\n  width: 100%;\n  text-align: center;\n  height: 24px;\n  line-height: 24px;\n  font-size: 12px;\n  border-radius: 12px;\n  color: #3D55CC;\n  cursor: pointer; }\n\n.AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_backup-2hh0i {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: flex;\n  line-height: 24px;\n  height: 24px;\n  margin: 0 0 8px 0; }\n", ""]);
-
-// exports
-exports.locals = {
-	"containerBody": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_containerBody-3lTrU",
-	"head": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_head-3Ljkw",
-	"headPortrait": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_headPortrait-yreto",
-	"permissionInfo": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_permissionInfo--d9nz",
-	"txList": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txList-3yFXX",
-	"txListMask": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_txListMask-BsYtT",
-	"keypairNickname": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairNickname-2T9NJ",
-	"keypairAddress": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairAddress-3elj5",
-	"listLeft": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listLeft-1R4oJ",
-	"logoContainer": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_logoContainer-rdr_b",
-	"name": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_name-2Y_kY",
-	"description": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_description-44Ah4",
-	"listRight": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_listRight-1KQfK",
-	"balance": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_balance-qF7bc",
-	"tenderValuation": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderValuation-3sJdj",
-	"background": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_background-14-Jy",
-	"backgroundMask": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_backgroundMask-1bt2l",
-	"container": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_container-1u59D",
-	"walletInfo": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_walletInfo-3Mc2u",
-	"aelfValuation": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_aelfValuation-1NgfL",
-	"tenderUnit": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_tenderUnit-37bTy",
-	"addressContainer": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addressContainer-2OEgO",
-	"copyBtn": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_copyBtn-2FPAW",
-	"removeBtn": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_removeBtn-2EqPP",
-	"keypairBtnContainer": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairBtnContainer-12m46",
-	"operationContainer": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_operationContainer-2elZa",
-	"operationList": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_operationList-1YCD4",
-	"transactionList": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_transactionList-38pB-",
-	"addBtnContainer": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addBtnContainer-19HwS",
-	"addBtn": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_addBtn-3B8QA",
-	"textarea": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_textarea-tv2yz",
-	"keypairButton": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_keypairButton-1vdug",
-	"backup": "AELF-app-web-pages-Popup-PermissionsDetail-PermissionsDetail_backup-2hh0i"
-};
-
-/***/ }),
-/* 703 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(704);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(5)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-/* 704 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);

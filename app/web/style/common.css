@@ -165,3 +165,11 @@ body {
 .aelf-personal-pages .aelf-list:hover {
     background: rgba(255, 255, 255, 0.1);
 }
+
+::before {
+    background-color: transparent !important;
+}
+
+::after {
+    background-color: transparent !important;
+}

@@ -5,18 +5,19 @@
 
 import React, {Component} from 'react';
 import {hashHistory} from 'react-router';
-import {Toast, Flex, SearchBar, ListView} from 'antd-mobile';
+import {Toast, SearchBar, ListView} from 'antd-mobile';
 import {FormattedMessage} from 'react-intl';
 import {
     getPageContainerStyle,
     clipboard,
     addressOmit
 } from '../../../utils/utils';
+import Svg from '../../../components/Svg/Svg';
 import {apis} from '../../../utils/BrowserApis';
 import ScrollFooter from '../../../components/ScrollFooter/ScrollFooter';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
-import ContractInfo from '../../../components/ContractInfo/ContractInfo';
+import AelfButton from '../../../components/Button/Button';
 import style from './LoginKeypairs.scss';
 require('./LoginKeypairs.css');
 
@@ -67,7 +68,6 @@ export default class LoginKeypairs extends Component {
         this.renderRow = (rowData, sectionID, rowID) => {
             let item = this.rData[rowID];
             const clipboardID = 'clipboard-keypair-' + rowID;
-            const keypairAddressText = 'keypair-text-' + rowID;
             const address = item.address;
             setTimeout(() => {
                 clipboard(`#${clipboardID}`, addressOmit(address, 15, 56));
@@ -76,38 +76,15 @@ export default class LoginKeypairs extends Component {
                 <div key={rowID}
                     className={style.txList}
                 >
-                    <div className={style.txListMask}></div>
                     {/* <div className={style.keypairsNickname}>{item.name}</div> */}
-                    <div className={style.operationContainer}>
-                        <div className={style.operationList}>
-                            {item.name}
-                            <div
-                                className = {
-                                    style.keypairBtnContainer + ' ' + style.copyBtn
-                                }
-                                onClick={() => {
-                                    let btn = document.getElementById(clipboardID);
-                                    btn.click();
-                                }}
-                            ></div>
-                            <button id={clipboardID}
-                                    data-clipboard-target={`#${keypairAddressText}`}
-                                    className={style.textarea}>copy
-                            </button>
-                            <input id={keypairAddressText}
-                                type="text"
-                                className={style.textarea}
-                                value={address}
-                                readOnly
+                    <div className={style.keypairAddress}>
+                        <div className={style.address}>{address}</div>
+                        <div className={style.login} onClick={() => this.setPermission(address)}>
+                            <FormattedMessage
+                                id='aelf.Login'
                             />
                         </div>
-                        <div className={style.login} onClick={() => this.setPermission(address)}>
-                                <FormattedMessage
-                                    id='aelf.Login'
-                                />
-                            </div>
                     </div>
-                    <div className={style.keypairsAddress}>{address}</div>
                 </div>
             );
         };
@@ -202,9 +179,20 @@ export default class LoginKeypairs extends Component {
     }
 
     renderNoKeypairs() {
-        return <div className={style.noKeypairsTips}>
-                    You do not have keypairs available yet. Go to the extension and create your ELF Keypair<br></br>
-                    Retrieve the authorization page by refreshing the page!
+        return <div>
+                    <div className={style.noKeypairs}>
+                        <Svg icon='notice32' /> No Keypairs !
+                    </div>
+                    <div className={style.noKeypairsTips}>
+                        You do not have keypairs available yet. Go to the extension and create your ELF Keypair<br></br>
+                        Retrieve the authorization page by refreshing the page!
+                    </div>
+                    <AelfButton
+                        type='transparent'
+                        style={{width: '50%', margin: '30px auto'}}
+                        text='Cancel'
+                        onClick={() => window.close()}
+                    />
                 </div>;
     }
 
@@ -213,33 +201,30 @@ export default class LoginKeypairs extends Component {
         pageContainerStyle.height -= 166;
         let backgroundStyle = Object.assign({}, pageContainerStyle);
         // backgroundStyle.height -= 14; // remove padding 7px * 2
-        let containerStyle = Object.assign({}, backgroundStyle);
+        // let containerStyle = Object.assign({}, backgroundStyle);
         return <div className={style.background} style={backgroundStyle}>
-                    <div className={style.backgroundMask}></div>
-                    <div className={style.scrollContainer} style={containerStyle}>
-                        <div className={style.transactionList}>
-                            <ListView
-                                initialListSize={NUM_ROWS}
-                                key={this.state.useBodyScroll ? '0' : '1'}
-                                ref={el => this.lv = el}
-                                dataSource={this.state.dataSource}
-                                renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
-                                renderRow={this.renderRow}
-                                useBodyScroll={this.state.useBodyScroll}
-                                style={this.state.useBodyScroll ? {} : {
-                                    // height: this.state.height - 100,
-                                    height: '100%'
-                                }}
-                                pageSize={pageSize}
-                            />
-                        </div>
+                    <div className={style.transactionList}>
+                        <ListView
+                            initialListSize={NUM_ROWS}
+                            key={this.state.useBodyScroll ? '0' : '1'}
+                            ref={el => this.lv = el}
+                            dataSource={this.state.dataSource}
+                            renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
+                            renderRow={this.renderRow}
+                            useBodyScroll={this.state.useBodyScroll}
+                            style={this.state.useBodyScroll ? {} : {
+                                // height: this.state.height - 100,
+                                height: '100%'
+                            }}
+                            pageSize={pageSize}
+                        />
                     </div>
                 </div>;
     }
 
     render() {
         const {appName, hasKeypairs} = this.state;
-        const permission = this.permission;
+        const pageContainerStyle = getPageContainerStyle();
         let keypairsHTML = '';
         if (hasKeypairs) {
             keypairsHTML = this.renderKeypairs();
@@ -249,32 +234,20 @@ export default class LoginKeypairs extends Component {
         }
         // const searchHTML = this.renderSearch();
         return (
-            <div className={style.container}>
-                <Flex>
-                    <Flex.Item>
-                        <div className={style.appLogin}>
-                            <div className={style.appName}>
-                                <div>
-                                    {appName}
-                                </div>
-                                <div className={style.loginTip}>
-                                    <FormattedMessage
-                                        id='aelf.Login'
-                                    />
-                                </div>
-                            </div>
-                            {keypairsHTML}
+            <div className={style.container} style={pageContainerStyle}>
+                <div className={style.appLogin}>
+                    <div className={style.appName}>
+                        <div>
+                            {appName}
                         </div>
-                    </Flex.Item>
-                    <Flex.Item>
-                        <div>----------------------------------------</div>
-                        <div>Welcome to {appName}</div>
-                        <ContractInfo
-                            permission={permission}
-                        />
-                        <div>----------------------------------------</div>
-                    </Flex.Item>
-                </Flex>
+                        <div className={style.loginTip}>
+                            <FormattedMessage
+                                id='aelf.Login'
+                            />
+                        </div>
+                    </div>
+                    {keypairsHTML}
+                </div>
             </div>
         );
     }

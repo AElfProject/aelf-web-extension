@@ -118,7 +118,6 @@ function removePermission(permissionNeedRemove, callback) {
 // }
 
 function getAllPermissions(callback) {
-    
     InternalMessage.payload(InternalMessageTypes.GET_ALLPERMISSIONS).send().then(result => {
         // console.log(InternalMessageTypes.GET_ALLPERMISSIONS, result);
         if (result.error === 0) {
@@ -169,18 +168,11 @@ export default class Permissions extends Component {
 
                     <div className={style.operationContainer}>
                         <div className={style.operationList}>
-                            APP NAME: {appName}
-                            <div
-                                className = {
-                                    style.keypairBtnContainer + ' ' + style.copyBtn
-                                }
-                                onClick={() => {
-                                    Toast.success(JSON.stringify(contracts));
-                                }}
-                            ></div>
+                            {appName}
                         </div>
-                        <div className={style.operationList}>
+                        <div className={style.operationList} style={{justifyContent: 'flex-end'}}>
                             <div
+                                className={style.button + ' ' + style.details}
                                 onClick={() => this.getDetails(domain, address, appName)}
                             >
                                 <FormattedMessage
@@ -189,9 +181,7 @@ export default class Permissions extends Component {
                                 />
                             </div>
                             <div
-                                className = {
-                                    style.keypairBtnContainer + ' ' + style.removeBtn
-                                }
+                                className={style.button + ' ' + style.remove}
                                 onClick={() =>
                                     alert('Delete Permissions', deleteAlertText,
                                     [
@@ -212,12 +202,15 @@ export default class Permissions extends Component {
                                         }
                                     ])
                                 }
-                            ></div>
+                            >
+                                <FormattedMessage
+                                    id='aelf.Delete'
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div className={style.permissionOption}>DOMAIN: {domain}</div>
-                    <div className={style.permissionOption}>KEYPARI: {address}</div>
-                    <div className={style.permissionOption}>PERMISSIONS: {permissionsCount}</div>
+                    <div className={style.permissionOption}>{address}</div>
+                    <div className={style.permissionsNum}>PERMISSIONS: {permissionsCount}</div>
                 </div>
             );
         };
@@ -268,95 +261,41 @@ export default class Permissions extends Component {
         this.setState = () => { };
     }
 
-    // setPerTest() {
-    //     let random = randomName();
-    //     let permission = {
-    //         appName: 'aelf' + random,
-    //         domain: 'https://aelf.io',
-    //         address: 'ELF_6VcYJiB5Q5JdZiAxYatAGVJ9NLGXETZXsp1zivULyTinKwe' + random,
-    //         contracts: [
-    //             {
-    //                 chainId: 'xxxx',
-    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t0',
-    //                 contractName: 'xxx',
-    //                 description: 'xxxx'
-    //             },
-    //             {
-    //                 chainId: 'xxxx',
-    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
-    //                 contractName: 'xxx',
-    //                 description: 'xxxx'
-    //             },
-    //             {
-    //                 chainId: 'xxxx',
-    //                 contractAddress: 'ELF_hQZE5kPUVH8BtVMvKfLVMYeNRYE1xB2RzQVn1E5j5zwb9t1',
-    //                 contractName: 'contractName' + Math.random(),
-    //                 description: 'description' + Math.random()
-    //             }
-    //         ]
-    //     };
-
-    //     setPermission(permission, permissionSeted => {
-    //         console.log('permission666: ', permission);
-    //         // Just for test
-    //         const temp = Array.from(this.rData);
-    //         const list = this.rData.filter(item => {
-    //             const domainCheck = permission.domain === item.domain;
-    //             const addressCheck = permission.address === item.address;
-    //             return domainCheck && addressCheck;
-    //         });
-    //         if (list.length === 0) {
-    //             temp.unshift(permission);
-    //             this.rData = temp;
-    //             console.log('this.rData: ', this.rData);
-    //             this.setState({
-    //                 dataSource: this.state.dataSource.cloneWithRows(this.rData)
-    //             });
-    //         }
-    //     });
-    // }
-
     render() {
         let pageContainerStyle = getPageContainerStyle();
-        pageContainerStyle.height -= 45;
+        pageContainerStyle.height -= 140;
         let backgroundStyle = Object.assign({}, pageContainerStyle);
         // backgroundStyle.height -= 14; // remove padding 7px * 2
-        let containerStyle = Object.assign({}, backgroundStyle);
         // containerStyle.height -= 2; // remove border 2px
         return (
             <div style={pageContainerStyle} className='asstes-container 23333'>
                 <NavNormal
                     onLeftClick={() => historyPush('/home')}
                 ></NavNormal>
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Application Management'
+                        />
+                    </p>
+                </div>
                 <div className={style.background + ' ????'} style={backgroundStyle}>
-                    <div className={style.backgroundMask}></div>
-                    <div className={style.container} style={containerStyle}>
-
-                        {/* <button onClick={() => checkPermission()}>checkPermission</button>
-                        <button onClick={() => this.setPerTest()}>setPermission</button>
-                        <button onClick={() => removePermission()}>removePermission</button>
-                        <button onClick={() => getAllPermissions(output => {
-                            console.log('click getAllPermissions: ', output);
-                        })}>getAllPermissions</button> */}
-
-                        <div className={style.transactionList}>
-                            <ListView
-                                initialListSize={NUM_ROWS}
-                                key={this.state.useBodyScroll ? '0' : '1'}
-                                ref={el => this.lv = el}
-                                dataSource={this.state.dataSource}
-
-                                renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
-
-                                renderRow={this.renderRow}
-                                useBodyScroll={this.state.useBodyScroll}
-                                style={this.state.useBodyScroll ? {} : {
-                                    // height: this.state.height - 100,
-                                    height: '100%'
-                                }}
-                                pageSize={pageSize}
-                            />
-                        </div>
+                    <div className={style.transactionList}>
+                        <ListView
+                            initialListSize={NUM_ROWS}
+                            key={this.state.useBodyScroll ? '0' : '1'}
+                            ref={el => this.lv = el}
+                            dataSource={this.state.dataSource}
+                            renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
+                            renderRow={this.renderRow}
+                            useBodyScroll={this.state.useBodyScroll}
+                            style={this.state.useBodyScroll ? {} : {
+                                // height: this.state.height - 100,
+                                height: '100%'
+                            }}
+                            pageSize={pageSize}
+                        />
                     </div>
                 </div>
             </div>

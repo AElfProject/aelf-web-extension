@@ -177,7 +177,20 @@ const en_US = {
     'aelf.Manage': 'Manage',
     'aelf.Delete': 'Delete',
     'aelf.Copy Address': 'Copy Address',
-    'aelf.Please select the timing lock-in time:': 'Please select the timing lock-in time:'
+    'aelf.Please select the timing lock-in time:': 'Please select the timing lock-in time:',
+    'aelf.Application details': 'Application details',
+    'aelf.Cancel': 'Cancel',
+    'aelf.Authorization details': 'Authorization details',
+    'aelf.Authorized domain name:': 'Authorized domain name:',
+    'aelf.Contract Address:': 'Contract Address:',
+    'aelf.Contract Name:': 'Contract Name:',
+    'aelf.Description:': 'Description:',
+    'aelf.Enable Whitelist': 'Enable Whitelist',
+    'aelf.Delete All': 'Delete All',
+    'aelf.Whitelist': 'Whitelist',
+    'aelf.New Contract Method': 'New contract method',
+    'aelf.Delete Contract Method': 'Delete contract method',
+    'aelf.Details of contract changes': 'Details of contract changes'
 };
 
 export default en_US;

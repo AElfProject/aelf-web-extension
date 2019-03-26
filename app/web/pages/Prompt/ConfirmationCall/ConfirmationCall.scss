@@ -1,4 +1,10 @@
 .container {
+    color: #FFF;
+    min-height: 578px;
+    min-width: 100%;
+    background: url('../../../assets/background/bg1_long.svg') no-repeat;
+    background-size: cover;
+    background-position: 0 10%;
     word-break: break-all;
     word-wrap: break-word;
 }
@@ -7,4 +13,65 @@
     word-break: break-all;
     word-wrap: break-word;
     text-align: left;
+}
+
+.appName {
+    text-align: center;
+    font-size: 44px;
+    font-weight: 900;
+    color: #FFF;
+    padding: 24px 20px;
+
+    .loginTip {
+        font-size: 16px;
+        font-weight: 100;
+        padding-top: 20px;
+    }
+
+}
+
+
+.login {
+    padding:6px 18px;
+    background: #6987F4;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.confirmationInfo {
+    margin:0 24px;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, .3);
+    height: 100px;
+    overflow: auto;
+}
+
+.confirmationInfoItem {
+    margin: 12px 0px;
+    font-size: 14px;
+}
+
+.buttons {
+    width: 50%;
+    margin: 12px auto;
+}
+
+.blank {
+    margin: 10px 0;
+}
+
+.enableWhitelist {
+    color: #e6e83a;
+    text-decoration: underline;
+    font-size: 28px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.whitelistTip {
+    text-align: center;
+    margin: 24px;
 }

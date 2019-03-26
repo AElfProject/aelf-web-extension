@@ -10,6 +10,7 @@ import {
 import InternalMessage from '../messages/InternalMessage';
 import * as InternalMessageTypes from '../messages/InternalMessageTypes';
 
+import checkSetPermission from '../utils/checkSetPermission';
 let openWindow = null;
 
 export default class NotificationService {
@@ -37,9 +38,12 @@ export default class NotificationService {
             // to have to quit the browser to regain control.
         }
 
-
         const height = 600;
-        const width = 700;
+        let method = notification.message.payload.payload ? notification.message.payload.payload.method : notification.message.payload.method;
+        // if (notification.message) {
+        //     method = notification.message.payload.method;
+        // }
+        const width = checkSetPermission(method);
         let middleX = window.screen.availWidth / 2 - (width / 2);
         let middleY = window.screen.availHeight / 2 - (height / 2);
 

@@ -9,19 +9,21 @@ import {apis} from '../../../utils/BrowserApis';
 import errorHandler from '../../../utils/errorHandler';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
+import AelfButton from '../../../components/Button/Button';
+import {FormattedMessage} from 'react-intl';
 import style from './ConfirmationCall.scss';
 import './ConfirmationCall.css';
+import { StateType } from '_rmc-tabs@1.2.29@rmc-tabs/lib/Tabs.base';
 
 export default class ConfirmationCall extends Component {
     constructor(props) {
         super(props);
         const data = window.data || apis.extension.getBackgroundPage().notification || null;
-        const message = data.message;
         this.message = data.message;
-        this.keypairAddress = message.keypairAddress;
-        this.confirmation = message.payload;
-        this.appName = message.appName;
-        this.hostname = message.hostname;
+        this.keypairAddress = this.message.keypairAddress;
+        this.confirmation = this.message.payload;
+        this.appName = this.message.appName;
+        this.hostname = this.message.hostname;
         this.state = {
             show: false
         };
@@ -185,44 +187,66 @@ export default class ConfirmationCall extends Component {
 
 
     renderWhitelist() {
-        return <div>
-                <div>------------------------------------------------</div>
+        return <div className={style.whitelistTip}>
                 <div>
                     Whitelist this to not have to accept next time
                     You can remove the permission in Extension
                 </div>
-                <div>
-                    <button type='button' onClick={() => this.setState({show: true})}>Enable Whitelist</button>
+                <div
+                    className={style.enableWhitelist}
+                    onClick={() => this.setState({show: true})}
+                >
+                    <FormattedMessage
+                        id='aelf.Enable Whitelist'
+                    />
                 </div>
-                <div>------------------------------------------------</div>
             </div>;
     }
 
     renderConfirmation() {
-        return <div>
-            <div>APP NAME: {this.appName}</div>
-            <div>METHOD: {this.confirmation.method}</div>
-            <div>The keypair used: {this.keypairAddress}</div>
-        </div>;
+        return <div className={style.appLogin}>
+                <div className={style.appName}>
+                    <div>
+                        {this.appName}
+                    </div>
+                    <div className={style.loginTip}>
+                       {this.confirmation.method}
+                    </div>
+                    <div className={style.loginTip}>
+                        {this.keypairAddress}
+                    </div>
+                </div>
+            </div>;
     }
 
     renderConfirmationInfo() {
         const info = Object.keys(this.confirmation);
-        const infoHTMl = info.map(item => <div key={item}>{item}: {JSON.stringify(this.confirmation[item])}</div>);
+        const infoHTMl = info.map(item => {
+            if (item !== 'contractName') {
+                return <div key={item}
+                                className={style.confirmationInfoItem}
+                            >{item}: {JSON.stringify(this.confirmation[item])}
+                        </div>;
+            }
+        });
 
-        return <div>
-            <div>------------Information display area-------------</div>
-            <div>{infoHTMl}</div>
-            <div>-------------------------------------------------</div>
-        </div>;
+        return <div className={style.confirmationInfo}>
+                    <div>{infoHTMl}</div>
+                </div>;
     }
 
     renderConfirm() {
-        return <div>
-                    <div>-----------------------</div>
-                    <button type='button' onClick={() => this.getCallAelfContract()}>OK</button>
-                    <button type='button' onClick={() => this.refuse()}>REFUSE</button>
-                    <div>-----------------------</div>
+        return <div className={style.buttons}>
+                    <AelfButton
+                        text='Commit'
+                        onClick={() => this.getCallAelfContract()}
+                    />
+                    <div className={style.blank}></div>
+                    <AelfButton
+                        text='Cancel'
+                        type='transparent'
+                        onClick={() => this.refuse()}
+                    />
                 </div>;
     }
 
@@ -249,7 +273,6 @@ export default class ConfirmationCall extends Component {
         let getWhitelistHTML = this.renderWhitelist();
         let whitelistHTML = this.renderWhitelistInfo();
         // if (this.state.methodParams) {
-            
         // }
         return (
             <div className={style.container}>

@@ -229,15 +229,14 @@ export default class Background {
         this.lockGuard(sendResponse, () => {
             const aelf = new Aelf(new Aelf.providers.HttpProvider(chainInfo.payload.httpProvider));
             aelf.chain.connectChain((error, result) => {
-                // console.log(error, result);
-                if (error || !result || !result.result || result.error) {
+                if (error || !result || result.error) {
                     sendResponse({
                         ...errorHandler(500001, error || result.error),
                         result
                     });
                     return;
                 }
-                const chainId = result.result.chain_id || 'Can not find chain_id';
+                const chainId = result.ChainId || 'Can not find ChainId';
                 let existentMetaIndex = -1;
                 const existentMeta = aelfMeta.find((item, index) => {
                     // const checkDomain = chainInfo.hostname.includes(item.hostname);
@@ -400,7 +399,6 @@ export default class Background {
                 });
             }
         });
-
     }
 
     /**
@@ -425,6 +423,7 @@ export default class Background {
             address,
             contractAddress
         } = payload;
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', contractInfo);
         const dappAelfMeta = aelfMeta.find((item, index) => {
             // const checkDomain = contractInfo.hostname.includes(item.hostname);
             const checkDomain = hostname === item.hostname;
@@ -559,7 +558,7 @@ export default class Background {
                 });
                 return;
             }
-
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', dappAelfMeta);
             const extendContract = dappAelfMeta.contracts.find(item => {
                 return contractAddress === item.contractAddress;
             });
@@ -599,7 +598,6 @@ export default class Background {
     static callAelfContract(sendResponse, contractInfo, checkWhitelist = true) {
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>callAelfContract', contractInfo);
             const {payload, chainId, hostname} = contractInfo;
             const {
                 contractName,
@@ -616,7 +614,6 @@ export default class Background {
 
             if (checkWhitelist) {
                 const appPermissions = getApplicationPermssions(permissions, hostname);
-                console.log('>>>>>>>>>>>>>>>>', appPermissions);
                 if (appPermissions.permissions.length && !contractWhitelistCheck({
                         sendResponse,
                         appPermissions,
@@ -642,7 +639,7 @@ export default class Background {
                 });
                 return;
             }
-
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', dappAelfMeta);
             const extendContract = dappAelfMeta.contracts.find(item => {
                 return contractAddress === item.contractAddress;
             });
@@ -1368,6 +1365,7 @@ export default class Background {
      */
     static openPrompt(sendResponse, message) {
         // TODO: NightElf lock notice.
+        console.log(message);
         const route = getPromptRoute(message);
         NotificationService.open({
             sendResponse,

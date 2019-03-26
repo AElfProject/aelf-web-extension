@@ -72,7 +72,7 @@ class NightAElf {
             }).then(result => {
                 this.callbackWrap(result, callback);
                 if (!result.error) {
-                    this.chainId = result.result.result.chain_id;
+                    this.chainId = result.result.ChainId;
                 }
             });
         };
