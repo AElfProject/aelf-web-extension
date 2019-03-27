@@ -172,6 +172,9 @@ export default class Background {
             case InternalMessageTypes.CONNECT_AELF_CHAIN:
                 Background.connectAelfChain(sendResponse, message.payload);
                 break;
+            case InternalMessageTypes.GET_CHAIN_INFORMATION:
+                Background.getChainInformation(sendResponse, message.payload);
+                break;
             case InternalMessageTypes.CALL_AELF_CHAIN:
                 Background.callAelfChain(sendResponse, message.payload);
                 break;
@@ -185,9 +188,12 @@ export default class Background {
             case InternalMessageTypes.CALL_AELF_CONTRACT:
                 Background.callAelfContract(sendResponse, message.payload);
                 break;
-            case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
-                Background.callAelfContractWithoutCheck(sendResponse, message.payload);
+            case InternalMessageTypes.CALL_AELF_CONTRACT_READONLY:
+                Background.callAelfContractReadonly(sendResponse, message.payload);
                 break;
+            // case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
+            //     Background.callAelfContractWithoutCheck(sendResponse, message.payload);
+            //     break;
             case InternalMessageTypes.GET_CONTRACT_ABI:
                 Background.getExistContractAbi(sendResponse, message.payload);
                 break;
@@ -259,6 +265,59 @@ export default class Background {
                     aelfMeta[existentMetaIndex] = aelfMetaTemp;
                 }
                 else {
+                    aelfMeta.push(aelfMetaTemp);
+                }
+                sendResponse({
+                    ...errorHandler(0),
+                    result // ,
+                    // aelfMeta: JSON.stringify(aelfMeta)
+                });
+            });
+        });
+
+    }
+
+    /**
+     * connect chain, init or refresh the instance of Aelf for dapp.
+     * hostname & chainId as a union key.[like sql]
+     *
+     * @param {Function} sendResponse Delegating response handler.
+     * @param {Object} chainInfo from content.js
+     */
+    static getChainInformation(sendResponse, chainInfo) {
+        this.lockGuard(sendResponse, () => {
+            const aelf = new Aelf(new Aelf.providers.HttpProvider(chainInfo.payload.httpProvider));
+            aelf.chain.getChainInformation((error, result) => {
+                // console.log(error, result);
+                if (error || !result || result.error) {
+                    sendResponse({
+                        ...errorHandler(500001, error || result.error),
+                        result
+                    });
+                    return;
+                }
+                const chainId = result.ChainId || 'Can not find ChainId:';
+                let existentMetaIndex = -1;
+                const existentMeta = aelfMeta.find((item, index) => {
+                    // const checkDomain = chainInfo.hostname.includes(item.hostname);
+                    const checkDomain = chainInfo.hostname === item.hostname;
+                    const checkChainId = item.chainId === chainId;
+                    if (checkDomain && checkChainId) {
+                        existentMetaIndex = index;
+                        return true;
+                    }
+                });
+                const aelfMetaTemp = {
+                    appName: chainInfo.appName,
+                    hostname: chainInfo.hostname,
+                    httpProvider: chainInfo.payload.httpProvider,
+                    chainId,
+                    aelf,
+                    contracts: []
+                };
+                if (existentMeta) {
+                    aelfMeta[existentMetaIndex] = aelfMetaTemp;
+                } else {
                     aelfMeta.push(aelfMetaTemp);
                 }
                 sendResponse({
@@ -533,10 +592,6 @@ export default class Background {
         });
     }
 
-    static callAelfContractWithoutCheck(sendResponse, contractInfo) {
-        Background.callAelfContract(sendResponse, contractInfo, false);
-    }
-
     // After initContract
     static getExistContractAbi(sendResponse, contractInfo) {
         this.checkSeed({sendResponse}, () => {
@@ -595,7 +650,17 @@ export default class Background {
         });
     }
 
-    static callAelfContract(sendResponse, contractInfo, checkWhitelist = true) {
+    static callAelfContractReadonly(sendResponse, contractInfo) {
+        Background.callAelfContract(sendResponse, contractInfo, true, true);
+    }
+    // static callAelfContractWithoutCheck(sendResponse, contractInfo) {
+    //     Background.callAelfContract(sendResponse, contractInfo, false);
+    // }
+    // static callAelfContractWithoutCheckReadonly(sendResponse, contractInfo) {
+    //     Background.callAelfContract(sendResponse, contractInfo, false, true);
+    // }
+
+    static callAelfContract(sendResponse, contractInfo, checkWhitelist = true, readonly = false) {
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const {payload, chainId, hostname} = contractInfo;
@@ -668,7 +733,10 @@ export default class Background {
                 contractInfo: contractInfoTemp
             }, () => {
                 try {
-                    extendContract.contractMethods[method](...params, (error, result) => {
+                    let contractMethod = readonly
+                        ? extendContract.contractMethods[method].call
+                        : extendContract.contractMethods[method];
+                    contractMethod(...params, (error, result) => {
                         if (error || result.error) {
                             sendResponse({
                                 ...errorHandler(500001, error || result.error)

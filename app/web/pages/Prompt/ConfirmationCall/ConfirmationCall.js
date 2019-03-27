@@ -13,7 +13,6 @@ import AelfButton from '../../../components/Button/Button';
 import {FormattedMessage} from 'react-intl';
 import style from './ConfirmationCall.scss';
 import './ConfirmationCall.css';
-import { StateType } from '_rmc-tabs@1.2.29@rmc-tabs/lib/Tabs.base';
 
 export default class ConfirmationCall extends Component {
     constructor(props) {

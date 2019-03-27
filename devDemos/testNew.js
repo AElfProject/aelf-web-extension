@@ -7,7 +7,8 @@
 document.addEventListener('NightElf', result => {
     console.log(Date.now());
     console.log('NightElf test.html: ', result);
-    const connectChainBtn = document.getElementById('connect-chain');
+    // const connectChainBtn = document.getElementById('connect-chain');
+    const getChainInformation = document.getElementById('get-chain-information');
     const callAelfChainBtn = document.getElementById('call-aelf-chain');
     const openPrompt = document.getElementById('open-prompt');
     const initAelfContract = document.getElementById('init-aelf-contract');
@@ -30,12 +31,12 @@ document.addEventListener('NightElf', result => {
                 method: 'LOGIN',
                 contracts: [{
                     chainId: 'AELF',
-                    contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                    contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
                     contractName: 'token',
                     description: 'token contract'
                 }, {
                     chainId: 'AELF TEST',
-                    contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup8',
+                    contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
                     contractName: 'TEST contractName',
                     description: 'contract description'
                 }]
@@ -85,20 +86,27 @@ document.addEventListener('NightElf', result => {
 
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
-        httpProvider: 'http://192.168.199.109:5000/chain',
+        httpProvider: 'http://192.168.197.70:8000/chain',
         // httpProvider: 'http://192.168.197.70:8000/chain',
         appName: 'Test'
     });
 
-    connectChainBtn.onclick = function () {
-        aelf.chain.connectChain((error, result) => {
-            console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
+    // connectChainBtn.onclick = function () {
+    //     aelf.chain.connectChain((error, result) => {
+    //         console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
+    //         console.log(error, result);
+    //     });
+    // };
+
+    getChainInformation.onclick = function () {
+        aelf.chain.getChainInformation((error, result) => {
+            console.log('>>>>>>>>>>>>> getChainInformation >>>>>>>>>>>>>');
             console.log(error, result);
         });
     };
 
     callAelfChainBtn.onclick = function () {
-        const txid = 'c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768';
+        const txid = 'ff5bcd126f9b7f22bbfd0816324390776f10ccb3fe0690efc84c5fcf6bdd3fc6';
         aelf.chain.getTxResult(txid, (err, result) => {
             console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
             console.log(err, result);
@@ -184,10 +192,10 @@ document.addEventListener('NightElf', result => {
                 payload: {
                     // appName: message.appName,
                     // domain: message.hostname
-                    address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY',
+                    address: '1bQQ9G5V6VbFFvRZvaodS27LcnrQZvmjCwyfNsoeoddabU',
                     contracts: [{
                         chainId: 'AELF',
-                        contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                        contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
                         contractName: 'token',
                         description: 'token contract',
                         github: ''
@@ -236,21 +244,23 @@ document.addEventListener('NightElf', result => {
         });
     };
 
-
-    let tokenC;
+    /* global tokenC */
+    window.tokenC = {};
     initAelfContract.onclick = function () {
         const wallet = {
-            address: 'ELF_6WZNJgU5MHWsvzZmPpC7cW6g3qciniQhDKRLCvbQcTCcVFH'
+            address: '1bQQ9G5V6VbFFvRZvaodS27LcnrQZvmjCwyfNsoeoddabU'
+            // address withoud permission
+            // address: '65dDNxzcd35jESiidFXN5JV8Z7pCwaFnepuYQToNefSgqk9'
         };
         // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
         // There is only one value named address;
         aelf.chain.contractAtAsync(
-            'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+            '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
             wallet,
             (error, result) => {
                 console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
                 console.log(error, result);
-                tokenC = result;
+                window.tokenC = result;
             }
         );
     };
@@ -488,3 +498,11 @@ if (false) {
     );
 
 }
+
+
+
+
+
+
+
+
