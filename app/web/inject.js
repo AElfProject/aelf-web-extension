@@ -62,20 +62,20 @@ class NightAElf {
     }
 
     chain() {
-        const connectChain = callback => {
-            window.NightElf.api({
-                appName: this.appName,
-                method: 'CONNECT_AELF_CHAIN',
-                payload: {
-                    httpProvider: this.httpProvider
-                }
-            }).then(result => {
-                this.callbackWrap(result, callback);
-                if (!result.error) {
-                    this.chainId = result.result.ChainId;
-                }
-            });
-        };
+        // const connectChain = callback => {
+        //     window.NightElf.api({
+        //         appName: this.appName,
+        //         method: 'CONNECT_AELF_CHAIN',
+        //         payload: {
+        //             httpProvider: this.httpProvider
+        //         }
+        //     }).then(result => {
+        //         this.callbackWrap(result, callback);
+        //         if (!result.error) {
+        //             this.chainId = result.result.ChainId;
+        //         }
+        //     });
+        // };
         const getChainInformation = callback => {
             window.NightElf.api({
                 appName: this.appName,
@@ -177,7 +177,7 @@ class NightAElf {
         };
 
         return {
-            connectChain,
+            // connectChain,
             getChainInformation,
             getContractAbi,
             getBlockHeight,

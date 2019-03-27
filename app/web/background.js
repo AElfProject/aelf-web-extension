@@ -651,7 +651,7 @@ export default class Background {
     }
 
     static callAelfContractReadonly(sendResponse, contractInfo) {
-        Background.callAelfContract(sendResponse, contractInfo, true, true);
+        Background.callAelfContract(sendResponse, contractInfo, false, true);
     }
     // static callAelfContractWithoutCheck(sendResponse, contractInfo) {
     //     Background.callAelfContract(sendResponse, contractInfo, false);
