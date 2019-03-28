@@ -35,22 +35,8 @@ export default class ConfirmationCall extends Component {
     }
 
     getContractAbi() {
-        InternalMessage.payload(InternalMessageTypes.GET_CONTRACT_ABI, this.message)
-        .send()
-        .then(result => {
-            if (result && result.error === 0) {
-                const contractAbi = JSON.parse(result.detail).Methods;
-                contractAbi.map(item => {
-                    if (item.Name === this.confirmation.method) {
-                        this.setState({
-                            methodParams: item.Params
-                        });
-                    }
-                });
-            }
-            else {
-                Toast.fail(result.errorMessage.message, 3);
-            }
+        this.setState({
+            methodParams: this.message.payload.params || []
         });
     }
 
@@ -73,7 +59,7 @@ export default class ConfirmationCall extends Component {
             this.message
         ).send()
         .then(result => {
-            console.log(InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK, result);
+            console.log(result);
             if (result && result.error === 0) {
                 Toast.success('success, after 3s close the window.');
                 window.data.sendResponse({
@@ -123,20 +109,13 @@ export default class ConfirmationCall extends Component {
             whitelist = contract.whitelist;
             const method = this.confirmation.method;
             if (methodParams) {
-                const newWhitelist = methodParams.map((item, index) => {
-                    const params = this.confirmation.params[index];
-                    const obj = {};
-                    obj[item.Name] = params;
-                    obj.variable = false;
-                    return obj;
-                });
-                whitelist[method] = newWhitelist;
+                whitelist[method] = methodParams[0];
             }
             else {
-                const params = '';
-                const obj = {};
-                obj['value'] = params;
-                obj.variable = false;
+                const obj = {
+                    value: '',
+                    variable: false
+                };
                 whitelist[method] = obj;
             }
         }
@@ -144,20 +123,13 @@ export default class ConfirmationCall extends Component {
             whitelist = {};
             const method = this.confirmation.method;
             if (methodParams) {
-                const newWhitelist = methodParams.map((item, index) => {
-                    const params = this.confirmation.params[index];
-                    const obj = {};
-                    obj[item.Name] = params;
-                    obj.variable = false;
-                    return obj;
-                });
-                whitelist[method] = newWhitelist;
+                whitelist[method] = methodParams[0];
             }
             else {
-                const params = '';
-                const obj = {};
-                obj['value'] = params;
-                obj.variable = false;
+                const obj = {
+                    value: '',
+                    variable: false
+                };
                 whitelist[method] = obj;
             }
         }
@@ -252,10 +224,18 @@ export default class ConfirmationCall extends Component {
     renderWhitelistInfo() {
         const {methodParams} = this.state;
         if (methodParams) {
-            const whitelistHTML = methodParams.map((item, index) => {
-                const params = this.confirmation.params[index];
-                return <div key={item.Name} className={style.paramsInfo}>{item.Name}: {params}</div>;
+            let params = [];
+            for (let item in methodParams[0]) {
+                const obj = {
+                    key: item,
+                    value: methodParams[0][item]
+                };
+                params.push(obj);
+            }
+            const whitelistHTML = params.map((item, index) => {
+                return <div key={item.key} className={style.paramsInfo}>{item.key}: {item.value}</div>;
             });
+            
             return whitelistHTML;
         }
         else {
