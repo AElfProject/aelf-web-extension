@@ -191,9 +191,9 @@ export default class Background {
             case InternalMessageTypes.CALL_AELF_CONTRACT_READONLY:
                 Background.callAelfContractReadonly(sendResponse, message.payload);
                 break;
-            // case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
-            //     Background.callAelfContractWithoutCheck(sendResponse, message.payload);
-            //     break;
+            case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
+                Background.callAelfContractWithoutCheck(sendResponse, message.payload);
+                break;
             case InternalMessageTypes.GET_CONTRACT_ABI:
                 Background.getExistContractAbi(sendResponse, message.payload);
                 break;
@@ -607,16 +607,20 @@ export default class Background {
                 const checkChainId = item.chainId === chainId;
                 return checkDomain && checkChainId;
             });
+
+            console.log(dappAelfMeta);
             if (!dappAelfMeta) {
                 sendResponse({
                     ...errorHandler(200003)
                 });
                 return;
             }
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', dappAelfMeta);
+
             const extendContract = dappAelfMeta.contracts.find(item => {
                 return contractAddress === item.contractAddress;
             });
+            
+
             if (!extendContract) {
                 sendResponse({
                     ...errorHandler(400001, `Please init contract ${contractName}: ${contractAddress}.`)
@@ -636,6 +640,7 @@ export default class Background {
                     contractAddress: extendContract.contractAddress
                 }
             });
+
             // If the user remove the permission after the dapp initialized the contract
             this.checkDappContractStatus({
                 sendResponse,
@@ -644,7 +649,7 @@ export default class Background {
                 sendResponse({
                     ...errorHandler(0),
                     message: '',
-                    detail: JSON.stringify(extendContract.contractMethods.abi)
+                    detail: JSON.stringify(extendContract.contractMethods)
                 });
             });
         });
@@ -653,9 +658,10 @@ export default class Background {
     static callAelfContractReadonly(sendResponse, contractInfo) {
         Background.callAelfContract(sendResponse, contractInfo, false, true);
     }
-    // static callAelfContractWithoutCheck(sendResponse, contractInfo) {
-    //     Background.callAelfContract(sendResponse, contractInfo, false);
-    // }
+
+    static callAelfContractWithoutCheck(sendResponse, contractInfo) {
+        Background.callAelfContract(sendResponse, contractInfo, false);
+    }
     // static callAelfContractWithoutCheckReadonly(sendResponse, contractInfo) {
     //     Background.callAelfContract(sendResponse, contractInfo, false, true);
     // }

@@ -45,7 +45,7 @@ export const RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:
 export const INIT_AELF_CONTRACT = 'initAelfContract';
 export const CALL_AELF_CONTRACT = 'callAelfContract';
 export const CALL_AELF_CONTRACT_READONLY = 'callAelfContractReadonly';
-// export const CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
+export const CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
 export const GET_CONTRACT_ABI = 'getExistContractAbi';
 export const RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
