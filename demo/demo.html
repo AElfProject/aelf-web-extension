@@ -40,6 +40,7 @@
         <div class="body">
                 <h2>1. If you don't know how to add contract permissions by extending the SDK, you can first check the testNew.js in the devDemo directory.</h2>
                 <h2>2. You have to know that if you want to make a token transfer through the browser extension application, you need to add the contract permission before you can perform the contract operation.</h2>
+                <h2>3. The account that sent the transaction is the current authorized account.</h2>
         </div>
     </div>
     <br>
@@ -57,23 +58,35 @@
                 <!-- <button type="button" id="get-balance">getBalance</button>
                 <div>Click the button to query your assets</div> -->
                 <div>
-                    <span>Address:</span>
-                    <span id="address1"></span>
+                    <div>
+                        <span>Address:</span>
+                        <span id="address1"></span>
+                    </div>
                     <br>
-                    <span>Account 1 balance:</span>
-                    <span id="account-1"></span>
+                    <div>
+                        <span>Account 1 balance:</span>
+                        <span id="account-1"></span>
+                    </div>
                     <br>
-                    <span>Address:</span>
-                    <span id="address2"></span>
+                    <div>
+                        <span>Address:</span>
+                        <span id="address2"></span>
+                    </div>
                     <br>
-                    <span>Account 2 balance:</span>
-                    <span id="account-2"></span>
+                   <div>
+                        <span>Account 2 balance:</span>
+                        <span id="account-2"></span>
+                   </div>
+                   <br>
                 </div>
                 <div class="info">
                     <div class="balance-number">number: <input type='text' id="number"></div>
+                    <br>
                     <div class="address">to address: <input type='text' id="address"></div>
                 </div>
+                <br>
                 <button id="confirm">confirm</button>
+                <br>
                 <div>You can query the result of the transaction through the transaction ID.</div>
                 <div id="txId">txID: </div>
             </div>

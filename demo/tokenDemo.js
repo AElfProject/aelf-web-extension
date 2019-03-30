@@ -85,20 +85,16 @@ document.addEventListener('NightElf', result => {
         window.tokenContract.GetBalance.call(payload1, (error, result) => {
             // If you use a framework like react, this process will become easier
             if (result) {
-                const balance = document.createTextNode(result.balance);
-                const address = document.createTextNode(wallet1.address);
-                account1.appendChild(balance);
-                address1.appendChild(address);
+                account1.innerHTML = result.balance;
+                address1.innerHTML = wallet1.address;
             }
         });
 
         window.tokenContract.GetBalance.call(payload2, (error, result) => {
             // If you use a framework like react, this process will become easier
             if (result) {
-                const balance = document.createTextNode(result.balance);
-                const address = document.createTextNode(wallet2.address);
-                account2.appendChild(balance);
-                address2.appendChild(address);
+                account2.innerHTML = result.balance;
+                address2.innerHTML = wallet2.address;
             }
         });
     };
@@ -128,6 +124,7 @@ document.addEventListener('NightElf', result => {
 
     const number = document.getElementById('number');
     const address = document.getElementById('address');
+    const txId = document.getElementById('txId');
     confirm.onclick = () => {
         const amount = number.value;
         const to = address.value;
@@ -140,6 +137,7 @@ document.addEventListener('NightElf', result => {
         window.tokenContract.Transfer(payload, (error, result) => {
             console.log(result);
             if (result) {
+                txId.innerHTML = result.result.TransactionId;
                 setTimeout(() => {
                     getYourBalance();
                 }, 4000);
