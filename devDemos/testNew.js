@@ -15,6 +15,7 @@ document.addEventListener('NightElf', result => {
     const checkPermissionAddress = document.getElementById('check-permission-address');
     const checkPermissionContractAddress = document.getElementById('check-permission-contract');
     const getAddress = document.getElementById('get-address');
+    const setPermission = document.getElementById('set-contract-permission');
 
     // Login at first
     NightElf.api({
@@ -31,12 +32,14 @@ document.addEventListener('NightElf', result => {
                     chainId: 'AELF',
                     contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
                     contractName: 'token',
-                    description: 'token contract'
+                    description: 'token contract',
+                    github: ''
                 }, {
                     chainId: 'AELF TEST',
                     contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
                     contractName: 'TEST contractName',
-                    description: 'contract description'
+                    description: 'contract description',
+                    github: ''
                 }]
             }
         }
@@ -58,7 +61,7 @@ document.addEventListener('NightElf', result => {
 
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
-        httpProvider: 'http://192.168.197.70:8000/chain',
+        httpProvider: 'http://192.168.197.56:8101/chain',
         // httpProvider: 'http://192.168.197.70:8000/chain',
         appName: 'Test'
     });
@@ -149,7 +152,7 @@ document.addEventListener('NightElf', result => {
             chainId: 'AELF',
             hostname: 'aelf.io',
             payload: {
-                method: 'SET_PERMISSION',
+                method: 'LOGIN',
                 // 在中间层会补齐
                 // appName: 'hzzTest',
                 // method 使用payload的
@@ -179,6 +182,43 @@ document.addEventListener('NightElf', result => {
         });
     };
 
+
+    setPermission.onclick = function () {
+        NightElf.api({
+            appName: 'hzzTest',
+            method: 'OPEN_PROMPT',
+            chainId: 'AELF',
+            hostname: 'aelf.io',
+            payload: {
+                method: 'SET_CONTRACT_PERMISSION',
+                // 在中间层会补齐
+                // appName: 'hzzTest',
+                // method 使用payload的
+                // chainId: 'AELF',
+                // hostname: 'aelf.io',
+                payload: {
+                    // appName: message.appName,
+                    // domain: message.hostname
+                    address: '1bQQ9G5V6VbFFvRZvaodS27LcnrQZvmjCwyfNsoeoddabU',
+                    contracts: [{
+                        chainId: 'AELF',
+                        contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+                        contractName: 'token',
+                        description: 'token contract',
+                        github: ''
+                    }, {
+                        chainId: 'AELF TEST',
+                        contractAddress: 'TEST contractAddress',
+                        contractName: 'TEST contractName',
+                        description: 'contract description',
+                        github: ''
+                    }]
+                }
+            }
+        }).then(result => {
+            console.log('>>>>>>>>>>>>>>>>>>>', result);
+        });
+    }
     // For extension dev
     // const setWhitelist = document.getElementById('set-whitelist');
     // setWhitelist.onclick = function () {
@@ -215,7 +255,7 @@ document.addEventListener('NightElf', result => {
     window.tokenC = {};
     initAelfContract.onclick = function () {
         const wallet = {
-            address: '1bQQ9G5V6VbFFvRZvaodS27LcnrQZvmjCwyfNsoeoddabU'
+            address: '28kDK2xgK3qkMeTzxTpRYmHi4PqMRKRgRjsUnEy8J1AE5wz'
             // address withoud permission
             // address: '65dDNxzcd35jESiidFXN5JV8Z7pCwaFnepuYQToNefSgqk9'
         };

@@ -22,7 +22,7 @@ import InternalMessage from '../../../messages/InternalMessage';
 // import {FormattedMessage} from 'react-intl';
 import style from './ChangePermission.scss';
 
-export default class Permission extends Component {
+export default class ChangePermission extends Component {
 
     constructor(props) {
         super(props);
@@ -34,7 +34,6 @@ export default class Permission extends Component {
             payload
         } = message;
         this.address = this.props.location.state === undefined ? message.payload.payload.address : this.props.location.state;
-        console.log(this.address);
         this.permission = {
             appName,
             domain: hostname,

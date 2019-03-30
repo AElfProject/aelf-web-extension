@@ -20,7 +20,10 @@ open development mode, add the directory /public.
 
 ### 1.CONNECT_AELF_CHAIN
 
-You can see the demo ./devDemos/test.html. [demo.js just a draft]
+You can see the demo [./devDemos/test.html](https://github.com/hzz780/aelf-web-extension/tree/1.0/devDemos). [demo.js just a draft]
+
+If you want to check Token transfer Demo.
+You can [click here](https://github.com/hzz780/aelf-web-extension/tree/1.0/demo/token)
 
 The Methods calls are almost identical to the methods call of the aelf-sdk.js
 

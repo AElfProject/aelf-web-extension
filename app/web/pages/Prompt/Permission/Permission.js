@@ -67,6 +67,7 @@ export default class Permission extends Component {
             if (result && result.error === 0) {
                 if (result.permissions.length > 0) {
                     const permissionsList = diffPermissions(result.permissions[0].contracts, this.newPermissions);
+                    console.log(permissionsList);
                     this.setState({
                         permissionsList
                     });

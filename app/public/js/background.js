@@ -52024,9 +52024,19 @@ function () {
         _this2.openPrompt(sendResponse, input);
       });
     }
+    /**
+     * callAelfChain
+     *
+     * @param {Function} sendResponse sendResponse
+     * @param {Object} callInfo callInfo
+     *
+    */
+
   }, {
     key: "callAelfChain",
     value: function callAelfChain(sendResponse, callInfo) {
+      console.log('>>>>>>>>>>>>>>>>>', sendResponse, callInfo);
+
       if (callInfo.payload.method === 'sendTransaction') {
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'Forbidden')));
         return;
@@ -53646,7 +53656,7 @@ function () {
       var _open = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2(notification) {
-        var height, method, width, middleX, middleY, getPopup;
+        var height, width, middleX, middleY, getPopup;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -53665,12 +53675,12 @@ function () {
                   // to have to quit the browser to regain control.
                 }
 
-                height = 600;
-                method = notification.message.payload.payload ? notification.message.payload.payload.method : notification.message.payload.method; // if (notification.message) {
+                height = 600; // let method = notification.message.payload.payload ? notification.message.payload.payload.method : notification.message.payload.method;
+                // if (notification.message) {
                 //     method = notification.message.payload.method;
                 // }
 
-                width = Object(_utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__["default"])(method);
+                width = Object(_utils_checkSetPermission__WEBPACK_IMPORTED_MODULE_9__["default"])(notification.message) || 700;
                 middleX = window.screen.availWidth / 2 - width / 2;
                 middleY = window.screen.availHeight / 2 - height / 2;
 
@@ -53751,7 +53761,7 @@ function () {
                   }
                 });
 
-              case 8:
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -54615,8 +54625,9 @@ __webpack_require__.r(__webpack_exports__);
  * @file checkSetPermission.js
  * @author zhouminghui
 */
-function checkSetPermission(method) {
-  console.log('>>>>>>>>>>>>>>>>>>>>>>checkSetPermission', method);
+function checkSetPermission(message) {
+  console.log('>>>>>>>>>>>>>>>>>>>>>>checkSetPermission', message);
+  var method = message.payload.payload ? message.payload.payload.method : message.payload.method;
   var width = 700;
 
   switch (method) {

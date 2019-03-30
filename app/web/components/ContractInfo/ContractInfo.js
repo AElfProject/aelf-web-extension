@@ -19,9 +19,9 @@ export default class ContractInfo extends Component {
             chainID,
             contractAddress,
             contractName,
-            description
+            description,
+            github
         } = permission;
-        console.log(permission);
         return (
             <div key={contractAddress + chainID} className={style.contractInfoList}>
                 <div className={style.contractTitle}>
@@ -52,6 +52,14 @@ export default class ContractInfo extends Component {
                     </div>
                     <div>
                         &nbsp;{description}
+                    </div>
+                </div>
+                <div className={style.contractTitle}>
+                    <div className={style.contractName}>
+                        Github:
+                    </div>
+                    <div>
+                        &nbsp;{github}
                     </div>
                 </div>
             </div>

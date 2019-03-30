@@ -70531,6 +70531,7 @@ function (_Component) {
         if (result && result.error === 0) {
           if (result.permissions.length > 0) {
             var permissionsList = Object(_utils_diffPermissions__WEBPACK_IMPORTED_MODULE_16__["default"])(result.permissions[0].contracts, _this2.newPermissions);
+            console.log(permissionsList);
 
             _this2.setState({
               permissionsList: permissionsList
@@ -70870,8 +70871,8 @@ function (_Component) {
       var chainID = permission.chainID,
           contractAddress = permission.contractAddress,
           contractName = permission.contractName,
-          description = permission.description;
-      console.log(permission);
+          description = permission.description,
+          github = permission.github;
       return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         key: contractAddress + chainID,
         className: _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default.a.contractInfoList
@@ -70893,7 +70894,11 @@ function (_Component) {
         className: _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default.a.contractName
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_intl__WEBPACK_IMPORTED_MODULE_7__["FormattedMessage"], {
         id: "aelf.Description:"
-      })), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\xA0", description)));
+      })), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\xA0", description)), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default.a.contractTitle
+      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: _ContractInfo_scss__WEBPACK_IMPORTED_MODULE_6___default.a.contractName
+      }, "Github:"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "\xA0", github)));
     }
   }, {
     key: "render",
@@ -70979,6 +70984,17 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * @file diffPermissions.js
  * @author zhouminghui
+ * @description diff permission
+ *
+*/
+
+/**
+ *
+ * @property diffPermissions
+ *
+ * @param {object} oldPermissions
+ * @param {object} newPermissions
+ *
 */
 function diffPermissions(oldPermissions, newPermissions) {
   if (oldPermissions && newPermissions) {
@@ -70992,6 +71008,7 @@ function diffPermissions(oldPermissions, newPermissions) {
         if (JSON.stringify(newPermissions[i]) === JSON.stringify(oldPermissions[j])) {
           unconverter = true;
           removePermissions.splice(j, 1);
+          console.log('>>>>>>>>>>>>>>>>>>>>>removePermissions', removePermissions);
         }
       }
 
@@ -72102,8 +72119,6 @@ function (_Component) {
     key: "getCallAelfContract",
     value: function getCallAelfContract() {
       _messages_InternalMessage__WEBPACK_IMPORTED_MODULE_14__["default"].payload(_messages_InternalMessageTypes__WEBPACK_IMPORTED_MODULE_13__["CALL_AELF_CONTRACT_WITHOUT_CHECK"], this.message).send().then(function (result) {
-        console.log(result);
-
         if (result && result.error === 0) {
           antd_mobile_lib_toast__WEBPACK_IMPORTED_MODULE_3___default.a.success('success, after 3s close the window.');
 
@@ -72445,7 +72460,7 @@ exports.push([module.i, ".am-modal-transparent {\n    width: 400px;\n}", ""]);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Permission; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChangePermission; });
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(723);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var antd_mobile_lib_toast_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(225);
@@ -72499,24 +72514,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Permission =
+var ChangePermission =
 /*#__PURE__*/
 function (_Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(Permission, _Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(ChangePermission, _Component);
 
-  function Permission(props) {
+  function ChangePermission(props) {
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Permission);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, ChangePermission);
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Permission).call(this, props));
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(ChangePermission).call(this, props));
     var data = window.data || _utils_BrowserApis__WEBPACK_IMPORTED_MODULE_9__["apis"].extension.getBackgroundPage().notification || null;
     var message = data.message;
     var appName = message.appName,
         hostname = message.hostname,
         payload = message.payload;
     _this.address = _this.props.location.state === undefined ? message.payload.payload.address : _this.props.location.state;
-    console.log(_this.address);
     _this.permission = {
       appName: appName,
       domain: hostname,
@@ -72532,7 +72546,7 @@ function (_Component) {
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Permission, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(ChangePermission, [{
     key: "setPermission",
     value: function setPermission() {
       var address = this.state.address;
@@ -72625,7 +72639,7 @@ function (_Component) {
     }
   }]);
 
-  return Permission;
+  return ChangePermission;
 }(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
 
 
