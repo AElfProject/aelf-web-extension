@@ -1,8 +1,18 @@
 /**
  * @file diffPermissions.js
  * @author zhouminghui
+ * @description diff permission
+ *
 */
 
+/**
+ *
+ * @property diffPermissions
+ *
+ * @param {object} oldPermissions
+ * @param {object} newPermissions
+ *
+*/
 
 
 export default function diffPermissions(oldPermissions, newPermissions) {
@@ -15,6 +25,7 @@ export default function diffPermissions(oldPermissions, newPermissions) {
                 if (JSON.stringify(newPermissions[i]) === JSON.stringify(oldPermissions[j])) {
                     unconverter = true;
                     removePermissions.splice(j, 1);
+                    console.log('>>>>>>>>>>>>>>>>>>>>>removePermissions', removePermissions);
                 }
             }
 

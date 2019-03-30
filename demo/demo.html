@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How to use the plugin for token transfer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .sub-title {
+            background: #2d0379;
+            color: #FFF;
+            height: 30px;
+            line-height: 30px;
+            text-indent: 8px;
+        }
+
+        .box {
+            border: 1px solid #333;
+        }
+
+        .head {
+            height: 30px;
+            width: 100%;
+            background: #2d0379;
+            color: #FFF;
+            line-height: 30px;
+            text-indent: 2em;
+        }
+        
+        .body {
+            background: #fff;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello demo.html</h1>
+    <div class="box">
+        <div class="head">Important reminder</div>
+        <div class="body">
+                <h2>1. If you don't know how to add contract permissions by extending the SDK, you can first check the testNew.js in the devDemo directory.</h2>
+                <h2>2. You have to know that if you want to make a token transfer through the browser extension application, you need to add the contract permission before you can perform the contract operation.</h2>
+        </div>
+    </div>
+    <br>
+    <div class="box">
+        <div class="head">You can also do these operations manually.</div>
+        <div class="body">
+            <button type="button" id="get-chain-information">getChainInformation</button>
+            <div>It is not necessary to connectChain, if we want to use getTxResult, etc.</div>
+        </div>
+    </div>
+    <br>
+    <div class="box">
+            <div class="head">Query the number of tokens && Token transfer</div>
+            <div class="body">
+                <!-- <button type="button" id="get-balance">getBalance</button>
+                <div>Click the button to query your assets</div> -->
+                <div>
+                    <span>Address:</span>
+                    <span id="address1"></span>
+                    <br>
+                    <span>Account 1 balance:</span>
+                    <span id="account-1"></span>
+                    <br>
+                    <span>Address:</span>
+                    <span id="address2"></span>
+                    <br>
+                    <span>Account 2 balance:</span>
+                    <span id="account-2"></span>
+                </div>
+                <div class="info">
+                    <div class="balance-number">number: <input type='text' id="number"></div>
+                    <div class="address">to address: <input type='text' id="address"></div>
+                </div>
+                <button id="confirm">confirm</button>
+                <div>You can query the result of the transaction through the transaction ID.</div>
+                <div id="txId">txID: </div>
+            </div>
+        </div>
+    <script src="./tokenDemo.js"></script>
+</body>
+</html>
