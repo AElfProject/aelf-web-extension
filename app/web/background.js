@@ -407,7 +407,15 @@ export default class Background {
         });
     }
 
+    /**
+     * callAelfChain
+     *
+     * @param {Function} sendResponse sendResponse
+     * @param {Object} callInfo callInfo
+     *
+    */
     static callAelfChain(sendResponse, callInfo) {
+        console.log('>>>>>>>>>>>>>>>>>', sendResponse, callInfo);
         if (callInfo.payload.method === 'sendTransaction') {
             sendResponse({
                 ...errorHandler(400001, 'Forbidden')

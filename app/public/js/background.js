@@ -52024,9 +52024,19 @@ function () {
         _this2.openPrompt(sendResponse, input);
       });
     }
+    /**
+     * callAelfChain
+     *
+     * @param {Function} sendResponse sendResponse
+     * @param {Object} callInfo callInfo
+     *
+    */
+
   }, {
     key: "callAelfChain",
     value: function callAelfChain(sendResponse, callInfo) {
+      console.log('>>>>>>>>>>>>>>>>>', sendResponse, callInfo);
+
       if (callInfo.payload.method === 'sendTransaction') {
         sendResponse(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, Object(_utils_errorHandler__WEBPACK_IMPORTED_MODULE_11__["default"])(400001, 'Forbidden')));
         return;
