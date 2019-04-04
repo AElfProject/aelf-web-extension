@@ -89,10 +89,10 @@ document.addEventListener('NightElf', result => {
         });
     };
 
-    const getContractAbi = document.getElementById('get-contract-abi');
-    getContractAbi.onclick = function () {
-        aelf.chain.getContractAbi(
-            'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+    const getFileDescriptorSet = document.getElementById('get-file-descriptor-set');
+    getFileDescriptorSet.onclick = function () {
+        aelf.chain.getFileDescriptorSet(
+            '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
             (err, result) => {
                 console.log('>>>>>>>>>>>>>>>>>>>', result);
             }

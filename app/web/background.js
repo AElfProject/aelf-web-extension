@@ -168,10 +168,6 @@ export default class Background {
             case InternalMessageTypes.GET_ALLPERMISSIONS:
                 Background.getAllPermissions(sendResponse);
                 break;
-
-            case InternalMessageTypes.CONNECT_AELF_CHAIN:
-                Background.connectAelfChain(sendResponse, message.payload);
-                break;
             case InternalMessageTypes.GET_CHAIN_INFORMATION:
                 Background.getChainInformation(sendResponse, message.payload);
                 break;
@@ -222,59 +218,6 @@ export default class Background {
             //     Background.releaseAELFContract(sendResponse);
             //     break;
         }
-    }
-
-    /**
-     * connect chain, init or refresh the instance of Aelf for dapp.
-     * hostname & chainId as a union key.[like sql]
-     *
-     * @param {Function} sendResponse Delegating response handler.
-     * @param {Object} chainInfo from content.js
-     */
-    static connectAelfChain(sendResponse, chainInfo) {
-        this.lockGuard(sendResponse, () => {
-            const aelf = new Aelf(new Aelf.providers.HttpProvider(chainInfo.payload.httpProvider));
-            aelf.chain.connectChain((error, result) => {
-                if (error || !result || result.error) {
-                    sendResponse({
-                        ...errorHandler(500001, error || result.error),
-                        result
-                    });
-                    return;
-                }
-                const chainId = result.ChainId || 'Can not find ChainId';
-                let existentMetaIndex = -1;
-                const existentMeta = aelfMeta.find((item, index) => {
-                    // const checkDomain = chainInfo.hostname.includes(item.hostname);
-                    const checkDomain = chainInfo.hostname === item.hostname;
-                    const checkChainId = item.chainId === chainId;
-                    if (checkDomain && checkChainId) {
-                        existentMetaIndex = index;
-                        return true;
-                    }
-                });
-                const aelfMetaTemp = {
-                    appName: chainInfo.appName,
-                    hostname: chainInfo.hostname,
-                    httpProvider: chainInfo.payload.httpProvider,
-                    chainId,
-                    aelf,
-                    contracts: []
-                };
-                if (existentMeta) {
-                    aelfMeta[existentMetaIndex] = aelfMetaTemp;
-                }
-                else {
-                    aelfMeta.push(aelfMetaTemp);
-                }
-                sendResponse({
-                    ...errorHandler(0),
-                    result // ,
-                    // aelfMeta: JSON.stringify(aelfMeta)
-                });
-            });
-        });
-
     }
 
     /**

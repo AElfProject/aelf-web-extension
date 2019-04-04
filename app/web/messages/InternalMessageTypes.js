@@ -37,7 +37,6 @@ export const REMOVE_CONTRACT_PERMISSION = 'removeContractInPermission';
 export const SET_WHITELIST = 'setWhitelist';
 export const REMOVE_METHODS_WHITELIST = 'removeMethodsOfWhitelist';
 
-export const CONNECT_AELF_CHAIN = 'connectAelfChain';
 export const GET_CHAIN_INFORMATION = 'getChainInformation';
 export const CALL_AELF_CHAIN = 'callAelfChain';
 export const RELEASE_AELF_CHAIN = 'releaseAelfContract'; // TODO:

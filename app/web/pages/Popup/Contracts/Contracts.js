@@ -23,51 +23,6 @@ function setPermission(permission) {
 
 export default class Contracts extends Component {
 
-    connectAelfChain() {
-        const chainInfo = {
-            appName: 'hzzTest',
-            method: 'CONNECT_AELF_CHAIN',
-            hostname: 'aelf.io', // TODO: 这个需要content.js 主动获取
-            payload: {
-                httpProvider: 'http://localhost:1234/chain'
-            }
-        };
-
-        InternalMessage.payload(InternalMessageTypes.CONNECT_AELF_CHAIN, chainInfo)
-            .send()
-            .then(result => {
-                console.log(InternalMessageTypes.CONNECT_AELF_CHAIN, result);
-                if (result.error === 0) {
-                }
-                else {
-                    // Toast.fail(result.message, 3, () => { }, false);
-                }
-            });
-    }
-
-    connectAelfChainMore() {
-        const random = Math.ceil(Math.random() * 3);
-        const chainInfo = {
-            appName: 'hzzTest',
-            method: 'CONNECT_AELF_CHAIN',
-            hostname: 'aelf.io' + random, // TODO: 这个需要content.js 主动获取
-            payload: {
-                httpProvider: 'http://localhost:1234/chain'
-            }
-        };
-
-        InternalMessage.payload(InternalMessageTypes.CONNECT_AELF_CHAIN, chainInfo)
-            .send()
-            .then(result => {
-                console.log(InternalMessageTypes.CONNECT_AELF_CHAIN, result);
-                if (result.error === 0) {
-                }
-                else {
-                    // Toast.fail(result.message, 3, () => { }, false);
-                }
-            });
-    }
-
     callAelfChain() {
         const chainInfo = {
             appName: 'hzzTest',
@@ -211,7 +166,6 @@ export default class Contracts extends Component {
     render() {
         return <div>
                 <h1>Hello World</h1>
-                <button onClick={() => this.connectAelfChain()}>connectAelfChain</button>
                 <button onClick={() => this.callAelfChain()}>callAelfChain</button>
                 <br/>
                 <button onClick={() => this.initAelfContract()}>initAelfContract</button>
@@ -220,7 +174,6 @@ export default class Contracts extends Component {
                 <button onClick={() => this.callAelfContract()}>callAelfContract</button>
 
                 <p>设置测试权限</p>
-                <button onClick={() => this.connectAelfChainMore()}>connectAelfChainMore</button>
                 <button onClick={() => this.callAelfContractNoExistMethod()}>
                     callAelfContractNoExistMethod
                 </button>
