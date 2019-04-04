@@ -150,16 +150,31 @@ class NightAElf {
             }).then(result => {
                 const message = JSON.parse(result.message);
                 // const methods = message.abi.Methods;
-                const methods = Object.keys(message.service.methods);
+                // const methods = Object.keys(message.service.methods);
+                // const methods = Object.keys(message.service.methods);
+
+                // const methods = [];
                 let contractMethods = {};
-                methods.map(item => {
-                    contractMethods[item] = (...params) => {
-                        _callAelfContract(params, 'CALL_AELF_CONTRACT', contractAddress, item);
-                    };
-                    contractMethods[item].call = (...params) => {
-                        _callAelfContract(params, 'CALL_AELF_CONTRACT_READONLY', contractAddress, item);
-                    };
+                message.services.map(item => {
+                    const methods = Object.keys(item.methods);
+                    methods.map(item => {
+                        contractMethods[item] = (...params) => {
+                            _callAelfContract(params, 'CALL_AELF_CONTRACT', contractAddress, item);
+                        };
+                        contractMethods[item].call = (...params) => {
+                            _callAelfContract(params, 'CALL_AELF_CONTRACT_READONLY', contractAddress, item);
+                        };
+                    });
                 });
+                // let contractMethods = {};
+                // methods.map(item => {
+                //     contractMethods[item] = (...params) => {
+                //         _callAelfContract(params, 'CALL_AELF_CONTRACT', contractAddress, item);
+                //     };
+                //     contractMethods[item].call = (...params) => {
+                //         _callAelfContract(params, 'CALL_AELF_CONTRACT_READONLY', contractAddress, item);
+                //     };
+                // });
                 callback(null, contractMethods);
             });
         };
