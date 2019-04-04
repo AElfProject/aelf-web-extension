@@ -1,28 +1,3 @@
-.txList {
-    padding: 8px 16px 16px 16px;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.20), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);
-    border-radius: 8px 8px 0 0;
-    margin: 0 7px;
-    color: #FFF;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    word-break: break-all;
-}
-
-.txListMask {
-    opacity: 0.3;
-    background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
-    border-radius: 8px 0 0 0;
-    position: absolute;
-    left: -5%;
-    top: -28%;
-    transform: rotate(15deg);
-    width: 116px;
-    height: 64px;
-}
-
 .keypairNickname {
     font-size: 14px;
 }
@@ -80,44 +55,6 @@
     border: none;
 }
 
-
-.background {
-    background: linear-gradient(to right bottom, #D649F2, #3D55CC);
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.50), inset 0 1px 3px 0 rgba(0, 0, 0, 0.50), inset 0 1px 3px 0 rgba(0, 0, 0, 0.50);
-    border-radius: 16px;
-
-    margin: 0 22px;
-    padding: 7px;
-
-    height: 100%;
-    overflow: hidden;
-
-    position: relative;
-    z-index: 0;
-}
-
-.backgroundMask {
-    position: absolute;
-    left: -5%;
-    top: -5%;
-    transform: rotate(-6deg);
-    height: 195px;
-    width: 120%;
-    opacity: 0.2;
-    background-image: linear-gradient(-180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.30) 97%);
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);
-    border-radius: 16px 16px 0 0;
-}
-
-.container {
-    position: relative;
-    z-index: 3;
-    border: 1px dashed rgba(219, 184, 255, 0.5);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-}
-
 // >>>>>>>>>>>>>>>>>>>>>
 .walletInfo {
     height: 188px;
@@ -157,14 +94,6 @@
     line-height: 14px;
 }
 
-.copyBtn {
-    background: url("../../../assets/svg_icon/copy12.svg") no-repeat;
-}
-
-.removeBtn {
-    background: url("../../../assets/svg_icon/move22.svg") no-repeat;
-}
-
 .keypairBtnContainer {
     margin: 0 0 0 8px;
     width: 24px;
@@ -173,22 +102,10 @@
     background-size: cover;
 }
 
-.operationContainer {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 100;
-}
-.operationList {
-    display: flex;
-    line-height: 24px;
-    height: 24px;
-    margin: 0 0 8px 0;
-}
-
 // >>>>>>>>>>>>>>>>>>>>>
 .transactionList {
     flex: 1;
+    height: 100%;
 }
 
 // >>>>>>>>>>>>>>>>>>>>>
@@ -231,9 +148,80 @@
     cursor: pointer;
 }
 
-.backup {
+.top {
+    padding: 0 24px 24px 24px;
+}
+
+.blank {
+    padding: 13px 0 0 0;
+}
+
+.wallet {
+    font-size: 36px;
+    color: #FFF;
+    margin: 8px 0 8px 0;
+    font-weight: 700;
+}
+
+.functionButton {
     display: flex;
-    line-height: 24px;
-    height: 24px;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+
+.background {
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 28px 22px;
+    padding: 7px;
+    background: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+.txList {
+    padding: 8px 16px 16px 16px;
+    background: rgba(255, 255, 255, .4);
+    border-radius: 8px;
+    margin:7px;
+    color: #FFF;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.buttonManage {
+    vertical-align: middle;
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.button {
+    display: flex;
+    font-size: 12px;
+    margin: 0 4px 8px 4px;
+    text-decoration: underline;
+    color: #e6e73e;
+    cursor: pointer;
+}
+
+.operationContainer {
+    display: flex;
+    vertical-align: middle;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+}
+
+.operationList {
+    display: flex;
+    font-size: 16px;
+    width: 50%;
+    font-weight: 700;
     margin: 0 0 8px 0;
 }

@@ -171,10 +171,10 @@ document.addEventListener('NightElf', result => {
                 payload: {
                     // appName: message.appName,
                     // domain: message.hostname
-                    address: 'ELF_4yCJfobjm2YAdxGrwACQihpa3TMz1prDTdYiWTvFTvefQFs',
+                    address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs',
                     contracts: [{
                         chainId: 'AELF',
-                        contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
+                        contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
                         contractName: 'token',
                         description: 'token contract',
                         github: ''

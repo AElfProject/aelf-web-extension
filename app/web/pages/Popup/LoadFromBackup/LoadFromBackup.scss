@@ -1,7 +1,5 @@
 .container {
     color: #FFF;
-    display: flex;
-    justify-content: space-between;
     flex-direction: column;
     height: 100%;
 }
@@ -10,19 +8,10 @@
     padding: 0 24px 0 24px;
 }
 
-.blank {
-    margin: 58px 0 0 0;
-}
-
-.blank12 {
-    height: 12px;
-    width: 12px;
-}
-
 .welcome {
     font-weight: 100;
     font-size: 36px;
-    margin: 62px 0 0px 0;
+    margin: 17px 0 0px 0;
 }
 
 .wallet {
@@ -55,9 +44,11 @@
 
 .updateFile {
     cursor: pointer;
-    color: dodgerblue;
+    color: #bb737a;
     display: inline-block;
     position: relative;
+    text-decoration: underline !important;
+    margin-left: 10px;
 }
 
 .update {

@@ -12,7 +12,7 @@ import * as PageContentTags from './messages/PageContentTags';
 // import * as InternalMessageTypes from './messages/InternalMessageTypes'
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
 import InternalMessage from './messages/InternalMessage';
-// import Error from './models/errors/Error'
+
 import {
     apis
 } from './utils/BrowserApis';
@@ -107,8 +107,12 @@ class Content {
         }
 
         const methodWhiteList = [
-            'CONNECT_AELF_CHAIN', 'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT',
-            'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS'
+            'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT',
+            'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS', 'LOGIN',
+            'REMOVE_CONTRACT_PERMISSION', 'REMOVE_METHODS_WHITELIST',
+            'SET_PERMISSION', 'SET_CONTRACT_PERMISSION',
+            'GET_CHAIN_INFORMATION',
+            'CALL_AELF_CONTRACT_READONLY'
         ];
 
         if (!methodWhiteList.includes(method)) {

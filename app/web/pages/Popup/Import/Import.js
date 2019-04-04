@@ -12,6 +12,8 @@ import getPageContainerStyle from '../../../utils/getPageContainerStyle';
 import NavNormal from '../../../components/NavNormal/NavNormal';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 
 import aelf from 'aelf-sdk';
 
@@ -24,6 +26,9 @@ const tabs = [
     {title: 'private'}
 ];
 // React component
+
+@insert(checkWallet)
+
 export default class Import extends Component {
     constructor() {
         super();
@@ -38,6 +43,10 @@ export default class Import extends Component {
             walletName: null
         };
         this.failMessage = 'Please input your privateKey or mnemonic'; // 请填入助记词或者私钥
+    }
+
+    componentDidMount() {
+        this.checkWalletInfo();
     }
 
     createAndGO() {
@@ -191,6 +200,14 @@ export default class Import extends Component {
                 <NavNormal
                     onLeftClick={() => historyPush('/keypairs')}
                 ></NavNormal>
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>
+                        <FormattedMessage
+                            id='aelf.Import Keypair'
+                        />
+                    </p>
+                </div>
                 <div>
                     <div style={{
                         padding: '0 24px'

@@ -1,37 +1,188 @@
 /**
  * @file inject.js
  * @author huangzongzhe
+ * only for browser
  */
 import IdGenerator from './utils/IdGenerator';
 import EncryptedStream from './utils/EncryptedStream';
-import logger from './utils/logger';
-// import {
-//     EncryptedStream
-// } from 'extension-streams';
 import * as PageContentTags from './messages/PageContentTags';
 // import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
 
-/***
+/**
  * This is the javascript which gets injected into
  * the application and facilitates communication between
  * NightElf and the web application.
  */
-
+/* eslint-disable fecs-camelcase */
 let promisePendingList = [];
 const handlePendingPromise = function (eventMessage) {
-    const sid = eventMessage.sid;
-    promisePendingList = promisePendingList.filter((item, index) => {
-        if (item.sid === sid) {
-            item.resolve(eventMessage);
-            return false;
-        }
-        return true;
-    });
+    if (eventMessage) {
+        const sid = eventMessage.sid;
+        promisePendingList = promisePendingList.filter((item, index) => {
+            if (item.sid === sid) {
+                item.resolve(eventMessage);
+                return false;
+            }
+            return true;
+        });
+    }
 };
 
 let stream = new WeakMap();
 
-class Inject {
+// Just a wrap of the api of the extension for developers.
+class NightAElf {
+    constructor(options) {
+        this.httpProvider = options.httpProvider;
+        this.appName = options.appName;
+        this.chain = this.chain();
+        this.chainId;
+    }
+
+    callbackWrap(result, callback) {
+        if (result.error) {
+            callback(true, result, result);
+            return;
+        }
+        callback(null, result.result, result);
+    }
+
+    callAElfChain(methodName, params, callback) {
+        window.NightElf.api({
+            appName: this.appName,
+            method: 'CALL_AELF_CHAIN',
+            chainId: this.chainId,
+            payload: {
+                method: methodName,
+                params: params // Array
+            }
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+    chain() {
+        const getChainInformation = callback => {
+            window.NightElf.api({
+                appName: this.appName,
+                method: 'GET_CHAIN_INFORMATION',
+                payload: {
+                    httpProvider: this.httpProvider
+                }
+            }).then(result => {
+                this.callbackWrap(result, callback);
+                if (!result.error) {
+                    this.chainId = result.result.ChainId;
+                }
+            });
+        };
+        const getBlockHeight = callback => {
+            this.callAElfChain('getBlockHeight', [], callback);
+        };
+
+        const getFileDescriptorSet = (address, callback) => {
+            this.callAElfChain('getFileDescriptorSet', [address], callback);
+        };
+
+        const getBlockInfo = (blockHeight, includeTxs, callback) => {
+            this.callAElfChain(
+                'getBlockInfo',
+                [blockHeight, includeTxs],
+                callback
+            );
+        };
+        const getTxResult = (txhash, callback) => {
+            this.callAElfChain('getTxResult', [txhash], callback);
+        };
+        const getTxsResult = (blockhash, offset, num, callback) => {
+            this.callAElfChain(
+                'getTxsResult',
+                [blockhash, offset, num],
+                callback
+            );
+        };
+        const getMerklePath = (txid, callback) => {
+            this.callAElfChain('getMerklePath', [txid], callback);
+        };
+        const sendTransaction = (rawtx, callback) => {
+            this.callAElfChain('sendTransaction', [rawtx], callback);
+        };
+        const checkProposal = (proposalId, callback) => {
+            this.callAElfChain('checkProposal', [proposalId], callback);
+        };
+        const callReadOnly = (rawtx, callback) => {
+            this.callAElfChain('callReadOnly', [rawtx], callback);
+        };
+
+        const _callAelfContract = (params, methodName, contractAddress, method) => {
+            let paramsTemp = Array.from(params); // [...params];
+            const callback = paramsTemp.pop();
+            if (typeof callback !== 'function') {
+                throw Error('last param must be callback function');
+            }
+            else {
+                window.NightElf.api({
+                    appName: this.appName,
+                    method: methodName,
+                    chainId: this.chainId,
+                    payload: {
+                        contractName: 'From Extension',
+                        contractAddress: contractAddress,
+                        method: method,
+                        params: paramsTemp
+                    }
+                }).then(result => {
+                    this.callbackWrap(result, callback);
+                });
+            }
+        };
+
+        const contractAtAsync = (contractAddress, wallet, callback) => {
+            window.NightElf.api({
+                appName: this.appName,
+                method: 'INIT_AELF_CONTRACT',
+                chainId: this.chainId,
+                payload: {
+                    address: wallet.address,
+                    contractName: 'EXTENSION',
+                    contractAddress: contractAddress
+                }
+            }).then(result => {
+                const message = JSON.parse(result.message);
+
+                let contractMethods = {};
+                message.services.map(item => {
+                    const methods = Object.keys(item.methods);
+                    methods.map(item => {
+                        contractMethods[item] = (...params) => {
+                            _callAelfContract(params, 'CALL_AELF_CONTRACT', contractAddress, item);
+                        };
+                        contractMethods[item].call = (...params) => {
+                            _callAelfContract(params, 'CALL_AELF_CONTRACT_READONLY', contractAddress, item);
+                        };
+                    });
+                });
+                callback(null, contractMethods);
+            });
+        };
+
+        return {
+            getChainInformation,
+            getFileDescriptorSet,
+            getBlockHeight,
+            getBlockInfo,
+            getTxResult,
+            getTxsResult,
+            getMerklePath,
+            sendTransaction,
+            checkProposal,
+            callReadOnly,
+            contractAtAsync
+        };
+    }
+}
+
+export default class Inject {
 
     constructor() {
         // Injecting an encrypted stream into the
@@ -42,9 +193,7 @@ class Inject {
 
     setupEncryptedStream() {
         stream = new EncryptedStream(PageContentTags.PAGE_NIGHTELF, this.aesKey);
-        // logger.log('inject stream', stream);
         stream.addEventListener(result => {
-            // logger.log('inject addEventListener: ', result);
             handlePendingPromise(result);
         });
 
@@ -70,7 +219,9 @@ class Inject {
 
     initNightElf() {
         window.NightElf = {
-            api: this.promiseSend
+            // ...window.NightElf,
+            api: this.promiseSend,
+            AElf: NightAElf
         };
 
         document.dispatchEvent(new CustomEvent('NightElf', {
@@ -80,15 +231,9 @@ class Inject {
             }
         }));
     }
-
-    initNightELFFailed() {
-        document.dispatchEvent(new CustomEvent('NightElf', {
-            detail: {
-                error: 1,
-                message: 'init Night ELF failed.'
-            }
-        }));
-    }
 }
 
 new Inject();
+// window.NightElf = {
+//     Inject
+// };

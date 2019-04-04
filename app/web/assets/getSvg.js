@@ -14,24 +14,24 @@ function readfile(filename) {
     // }
 
     return new Promise((resolve, reject) => {
-        fs.readFile(path.join(svgDir, filename), 'utf8', function(err, data) {
-            
+        fs.readFile(path.join(svgDir, filename), 'utf8', function (err, data) {
+
             console.log('filename: >>>>>>>>>>>>>>.', filename);
             data = data.replace(/<\?xml.*?\?>|<\!--.*?-->|<!DOCTYPE.*?>/g, '');
             // data = data.replace(/<\?xml version="1.0" encoding="UTF-8"\?>/g, '');
+            console.log('viewBox>>>>>>>>>>>>', data.match(/viewBox="\d*\s\d*\s\d*\s\d*"/g));
             let viewBox = data.match(/viewBox="\d*\s\d*\s\d*\s\d*"/g)[0];
             let svgMatch = data.match(/[width|height]="\d*px"/g);
             // data = data.replace(/^(<svg)(.*)(xlink)">$/g, `<svg viewBox="${viewBox}" version="1.1">`);
             data = data.replace(/(width|height)="\d*px"/g, '');
             data = data.replace(/xmlns[^>]*/g, '');
-            
             data = data.replace(/stroke-width/g, 'strokeWidth');
             data = data.replace(/fill-rule=/g, 'fillRule');
 
             console.log(data, viewBox, svgMatch);
             if (err) reject(err);
             resolve({
-                [filename.slice(0, nameNeedLength)]: data,
+                [filename.slice(0, nameNeedLength)]: data
             });
         });
     });
