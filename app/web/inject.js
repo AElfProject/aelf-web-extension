@@ -13,7 +13,7 @@ import * as PageContentTags from './messages/PageContentTags';
  * the application and facilitates communication between
  * NightElf and the web application.
  */
-
+/* eslint-disable fecs-camelcase */
 let promisePendingList = [];
 const handlePendingPromise = function (eventMessage) {
     if (eventMessage) {
@@ -62,20 +62,6 @@ class NightAElf {
     }
 
     chain() {
-        // const connectChain = callback => {
-        //     window.NightElf.api({
-        //         appName: this.appName,
-        //         method: 'CONNECT_AELF_CHAIN',
-        //         payload: {
-        //             httpProvider: this.httpProvider
-        //         }
-        //     }).then(result => {
-        //         this.callbackWrap(result, callback);
-        //         if (!result.error) {
-        //             this.chainId = result.result.ChainId;
-        //         }
-        //     });
-        // };
         const getChainInformation = callback => {
             window.NightElf.api({
                 appName: this.appName,
@@ -90,12 +76,14 @@ class NightAElf {
                 }
             });
         };
-        const getContractAbi = (address, callback) => {
-            this.callAElfChain('getContractAbi', [address], callback);
-        };
         const getBlockHeight = callback => {
             this.callAElfChain('getBlockHeight', [], callback);
         };
+
+        const getFileDescriptorSet = (address, callback) => {
+            this.callAElfChain('getFileDescriptorSet', [address], callback);
+        };
+
         const getBlockInfo = (blockHeight, includeTxs, callback) => {
             this.callAElfChain(
                 'getBlockInfo',
@@ -147,7 +135,7 @@ class NightAElf {
                     this.callbackWrap(result, callback);
                 });
             }
-        }
+        };
 
         const contractAtAsync = (contractAddress, wallet, callback) => {
             window.NightElf.api({
@@ -177,9 +165,8 @@ class NightAElf {
         };
 
         return {
-            // connectChain,
             getChainInformation,
-            getContractAbi,
+            getFileDescriptorSet,
             getBlockHeight,
             getBlockInfo,
             getTxResult,
