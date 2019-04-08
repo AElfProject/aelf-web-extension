@@ -1,4 +1,5 @@
 .btn,.button {
+  cursor: pointer;
   border-radius: 100px;
   color: #AC00E6;
   height: 50px;
@@ -13,4 +14,10 @@
 .blue {
   color: #FFF;
   background: #26B7FF;
+}
+
+.transparent {
+  border: 1px dashed #FFF;
+  background: transparent;
+  color: #FFF;
 }

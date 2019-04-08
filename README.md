@@ -2,19 +2,28 @@
 
 ## How to add Extension
 
-download the code.
+### Normal user
 
-open development mode, add the directory /public.
+https://chrome.google.com/webstore/category/extensions
+
+search: aelf-web-extension or Night Elf
+
+### Developers
+
+download the code.
 
 webpack -w
 
-[TODO] publish to chrome.
+open development mode, add the directory /public.
 
 ## How to use
 
 ### 1.CONNECT_AELF_CHAIN
 
-You can see the demo ./devDemos/test.html. [demo.js just a draft]
+You can see the demo [./devDemos/test.html](https://github.com/hzz780/aelf-web-extension/tree/1.0/devDemos). [demo.js just a draft]
+
+If you want to check Token transfer Demo.
+You can [click here](https://github.com/hzz780/aelf-web-extension/tree/1.0/demo/token)
 
 The Methods calls are almost identical to the methods call of the aelf-sdk.js
 
@@ -155,6 +164,4 @@ NightElf.api({
 
 ## Project Information
 
-We use [eccryto](https://github.com/bitchan/eccrypto) to use public key to  encryt data and private key to decrypt data.
-
-The eccryto wrap the elliptic.
+We use [ECDH](https://github.com/indutny/elliptic) to use public key to  encryt data and private key to decrypt data.

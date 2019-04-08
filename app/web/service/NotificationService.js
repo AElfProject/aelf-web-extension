@@ -1,10 +1,16 @@
-import Error from '../models/errors/Error';
+/**
+ * @file NotificationService.js
+ * @author huangzongzhe
+ */
+
+import errorHandler from '../utils/errorHandler';
 import {
     apis
 } from '../utils/BrowserApis';
 import InternalMessage from '../messages/InternalMessage';
 import * as InternalMessageTypes from '../messages/InternalMessageTypes';
 
+import checkSetPermission from '../utils/checkSetPermission';
 let openWindow = null;
 
 export default class NotificationService {
@@ -32,9 +38,12 @@ export default class NotificationService {
             // to have to quit the browser to regain control.
         }
 
-
         const height = 600;
-        const width = 700;
+        // let method = notification.message.payload.payload ? notification.message.payload.payload.method : notification.message.payload.method;
+        // if (notification.message) {
+        //     method = notification.message.payload.method;
+        // }
+        const width = checkSetPermission(notification.message) || 700;
         let middleX = window.screen.availWidth / 2 - (width / 2);
         let middleY = window.screen.availHeight / 2 - (height / 2);
 
@@ -56,37 +65,42 @@ export default class NotificationService {
                     window.notification = notification;
                     return created;
                 }
-                else {
-                    const win = window.open(
-                        url,
-                        'NightElf Prompt',
-                        `width=${width},height=${height},resizable=0,top=${middleY},left=${middleX},titlebar=0`);
-                    win.data = notification;
-                    openWindow = win;
-                    return win;
-                }
-            } catch (e) {
+                const win = window.open(
+                    url,
+                    'NightElf Prompt',
+                    `width=${width},height=${height},resizable=0,top=${middleY},left=${middleX},titlebar=0`);
+                win.data = notification;
+                openWindow = win;
+                return win;
+            }
+            catch (e) {
                 console.log('notification error', e);
                 return null;
             }
-        }
+        };
 
-        await InternalMessage.payload(InternalMessageTypes.SET_PROMPT, JSON.stringify(notification)).send();
+        // Could not establish connection. Receiving end does not exist.
+        // InternalMessage.payload(InternalMessageTypes.SET_PROMPT, JSON.stringify(notification)).send();
+        // If we need setPrompt, use callback to complement it.
 
-        let popup = await getPopup();
+        // let popup = await getPopup();
+        getPopup().then(popup => {
+            // Handles the user closing the popup without taking any action
+            if (popup) {
+                popup.onbeforeunload = () => {
+                    // notification.responder(Error.promptClosedWithoutAction());
+                    notification.sendResponse({
+                        ...errorHandler(200010)
+                    });
 
-        // Handles the user closing the popup without taking any action
-        if (popup) {
-            popup.onbeforeunload = () => {
-                // notification.responder(Error.promptClosedWithoutAction());
-                notification.sendResponse(Error.promptClosedWithoutAction());
+                    // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+                    // Must return undefined to bypass form protection
+                    openWindow = null;
+                    return undefined;
+                };
+            }
+        });
 
-                // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-                // Must return undefined to bypass form protection
-                openWindow = null;
-                return undefined;
-            };
-        }
     }
 
     /***
@@ -99,7 +113,8 @@ export default class NotificationService {
                 id: windowId
             } = (await apis.windows.getCurrent());
             apis.windows.remove(windowId);
-        } else {
+        }
+        else {
             window.onbeforeunload = () => {};
             window.close();
         }

@@ -13,17 +13,19 @@ import * as PageContentTags from './messages/PageContentTags';
  * the application and facilitates communication between
  * NightElf and the web application.
  */
-
+/* eslint-disable fecs-camelcase */
 let promisePendingList = [];
 const handlePendingPromise = function (eventMessage) {
-    const sid = eventMessage.sid;
-    promisePendingList = promisePendingList.filter((item, index) => {
-        if (item.sid === sid) {
-            item.resolve(eventMessage);
-            return false;
-        }
-        return true;
-    });
+    if (eventMessage) {
+        const sid = eventMessage.sid;
+        promisePendingList = promisePendingList.filter((item, index) => {
+            if (item.sid === sid) {
+                item.resolve(eventMessage);
+                return false;
+            }
+            return true;
+        });
+    }
 };
 
 let stream = new WeakMap();
@@ -60,26 +62,28 @@ class NightAElf {
     }
 
     chain() {
-        const connectChain = callback => {
+        const getChainInformation = callback => {
             window.NightElf.api({
                 appName: this.appName,
-                method: 'CONNECT_AELF_CHAIN',
+                method: 'GET_CHAIN_INFORMATION',
                 payload: {
                     httpProvider: this.httpProvider
                 }
             }).then(result => {
                 this.callbackWrap(result, callback);
                 if (!result.error) {
-                    this.chainId = result.result.result.chain_id;
+                    this.chainId = result.result.ChainId;
                 }
             });
-        };
-        const getContractAbi = (address, callback) => {
-            this.callAElfChain('getContractAbi', [address], callback);
         };
         const getBlockHeight = callback => {
             this.callAElfChain('getBlockHeight', [], callback);
         };
+
+        const getFileDescriptorSet = (address, callback) => {
+            this.callAElfChain('getFileDescriptorSet', [address], callback);
+        };
+
         const getBlockInfo = (blockHeight, includeTxs, callback) => {
             this.callAElfChain(
                 'getBlockInfo',
@@ -110,6 +114,29 @@ class NightAElf {
             this.callAElfChain('callReadOnly', [rawtx], callback);
         };
 
+        const _callAelfContract = (params, methodName, contractAddress, method) => {
+            let paramsTemp = Array.from(params); // [...params];
+            const callback = paramsTemp.pop();
+            if (typeof callback !== 'function') {
+                throw Error('last param must be callback function');
+            }
+            else {
+                window.NightElf.api({
+                    appName: this.appName,
+                    method: methodName,
+                    chainId: this.chainId,
+                    payload: {
+                        contractName: 'From Extension',
+                        contractAddress: contractAddress,
+                        method: method,
+                        params: paramsTemp
+                    }
+                }).then(result => {
+                    this.callbackWrap(result, callback);
+                });
+            }
+        };
+
         const contractAtAsync = (contractAddress, wallet, callback) => {
             window.NightElf.api({
                 appName: this.appName,
@@ -122,40 +149,26 @@ class NightAElf {
                 }
             }).then(result => {
                 const message = JSON.parse(result.message);
-                const methods = message.abi.Methods;
+
                 let contractMethods = {};
-                methods.map(item => {
-                    contractMethods[item.Name] = (...params) => {
-                        let paramsTemp = [...params];
-                        const callback = paramsTemp.pop();
-                        if (typeof callback !== 'function') {
-                            throw Error('last param must be callback function');
-                        }
-                        else {
-                            window.NightElf.api({
-                                appName: this.appName,
-                                method: 'CALL_AELF_CONTRACT',
-                                chainId: this.chainId,
-                                payload: {
-                                    contractName: 'From Extension',
-                                    contractAddress: contractAddress,
-                                    method: item.Name,
-                                    params: paramsTemp
-                                }
-                            }).then(result => {
-                                this.callbackWrap(result, callback);
-                            });
-                        }
-                    };
+                message.services.map(item => {
+                    const methods = Object.keys(item.methods);
+                    methods.map(item => {
+                        contractMethods[item] = (...params) => {
+                            _callAelfContract(params, 'CALL_AELF_CONTRACT', contractAddress, item);
+                        };
+                        contractMethods[item].call = (...params) => {
+                            _callAelfContract(params, 'CALL_AELF_CONTRACT_READONLY', contractAddress, item);
+                        };
+                    });
                 });
                 callback(null, contractMethods);
-                // console.log('>>>>>>>>> contractAtAsync >>>>>>>>>>', result);
             });
         };
 
         return {
-            connectChain,
-            getContractAbi,
+            getChainInformation,
+            getFileDescriptorSet,
             getBlockHeight,
             getBlockInfo,
             getTxResult,

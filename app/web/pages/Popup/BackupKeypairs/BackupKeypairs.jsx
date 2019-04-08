@@ -4,24 +4,22 @@
 */
 import React, {Component} from 'react';
 import {hashHistory} from 'react-router';
-import {Modal, Button, WhiteSpace, List, InputItem, Toast, Result} from 'antd-mobile';
+import {Modal, Toast} from 'antd-mobile';
 import style from './BackupKeypairs.scss';
 import Mnemonic from './pages/Mnemonic';
-import moneyKeyboardWrapProps from '../../../utils/moneyKeyboardWrapProps';
-import {historyPush} from '../../../utils/historyChange';
 import clipboard from '../../../utils/clipboard';
 import getPageContainerStyle from '../../../utils/getPageContainerStyle';
 
 import AelfButton from '../../../components/Button/Button';
-import Svg from '../../../components/Svg/Svg';
 import NoticePanel from '../../../components/NoticePanel/NoticePanel';
 
 import NavNormal from '../../../components/NavNormal/NavNormal';
 
-import aelf from 'aelf-sdk';
 import {FormattedMessage} from 'react-intl';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 import {createHmac} from 'crypto';
 
 const prompt = Modal.prompt;
@@ -38,6 +36,7 @@ function getSeed(password) {
 }
 
 // React component
+@insert(checkWallet)
 export default class BackupKeypairs extends Component {
     constructor(props) {
         super(props);
@@ -49,6 +48,7 @@ export default class BackupKeypairs extends Component {
             mnemonicDisplay: false,
             privateKeyModal: false,
             passwordModal: false,
+            walletStatus: false,
             containerStyle: null,
             isVerification: true,
             address: this.props.params.address || ''
@@ -64,6 +64,7 @@ export default class BackupKeypairs extends Component {
     }
 
     componentDidMount() {
+        this.checkWalletInfo();
         let containerStyle = getPageContainerStyle();
         this.setState({
             containerStyle
@@ -253,7 +254,7 @@ export default class BackupKeypairs extends Component {
 
                         <AelfButton
                             text='Mnemonic'
-                            onClick={(e) => prompt(
+                            onClick={e => prompt(
                                 'Password',
                                 'Please make sure you are under safe enviroment.',
                                 [
@@ -370,13 +371,13 @@ export default class BackupKeypairs extends Component {
                 >
                     <div>
                         <div className={style.pannelTitle}>
-                            <FormattedMessage 
+                            <FormattedMessage
                                 id = 'aelf.Copy Private Key'
                                 defaultMessage = 'Copy Private Key'
                             />
                         </div>
                         <div className={style.copyArea}>
-                            <div style={{ width: '100%' }}>
+                            <div style={{width: '100%'}}>
                                 {this.state.privateKey}
                             </div>
                             <textarea
@@ -407,7 +408,11 @@ export default class BackupKeypairs extends Component {
                                 defaultMessage = 'Close'
                             />
                         </div>
-                        <button id="clipboard-backup" data-clipboard-target="#privateKeyBackUp" style={{display: 'none'}}>copy</button>
+                        <button
+                            id="clipboard-backup"
+                            data-clipboard-target="#privateKeyBackUp"
+                            style={{display: 'none'}}
+                        >copy</button>
                     </div>
                 </Modal>
                {mnemonicHtml}

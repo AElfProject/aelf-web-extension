@@ -15,13 +15,16 @@ import style from './Home.scss';
 import ListContent from '../../../components/ListContent/ListContent';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
-
+import insert from '../../../utils/insert';
+import checkWallet from '../../../utils/checkWallet';
 import {FormattedMessage} from 'react-intl';
+import './Home.css';
 
 // import aelf from 'aelf-sdk';
 
 const Item = List.Item;
 
+@insert(checkWallet)
 export default class personalCenterHome extends Component {
 
     lockWallet() {
@@ -31,15 +34,18 @@ export default class personalCenterHome extends Component {
         });
     }
 
+    componentDidMount() {
+        this.checkWalletInfo();
+    }
+
     render() {
         return (
             <div className={style.container + ' ' + 'aelf-personal-pages aelf-solid'}>
-
-                {/* <div className={style.blank}></div>
-                <div className={style.blank}></div>
-                <div className={style.blank}></div> */}
-
-                <List className={'aelf-list'}>
+                <div className={style.top}>
+                    <div className={style.blank}></div>
+                    <p className={style.wallet}>NIGHT ELF</p>
+                </div>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/keypairs')}>
                         <ListContent
                             icon="wallet16"
@@ -52,33 +58,33 @@ export default class personalCenterHome extends Component {
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
+                <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/permissions')}>
                         <ListContent
                             icon="tx_history16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Permissions'
-                                    defaultMessage = 'Permissions'
+                                    id = 'aelf.Application Management'
+                                    defaultMessage = 'Application Management'
                                 />
                             }
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
-                    <Item onClick={() => hashHistory.push('/extensionManager')}>
+                <List className={style.aelfList}>
+                    <Item onClick={() => hashHistory.push('/extensionmanager')}>
                         <ListContent
                             icon="about16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Extension Manager'
-                                    defaultMessage = "Keypairs Manager"
+                                    id = 'aelf.Extension Management'
+                                    defaultMessage = "Keypairs Management"
                                 />
                             }
                         ></ListContent>
                     </Item>
                 </List>
-                <List className={'aelf-list'}>
+                <List className={style.aelfList}>
                     <Item onClick={() => this.lockWallet()}>
                         <ListContent
                             icon="about16"

@@ -37,7 +37,7 @@ export default class ListContent extends Component {
                     {listIconLeftHtml}
                     <div style={textStyle}>{this.props.text}</div>
                 </div>
-                <div>
+                <div style={{marginTop: '-14px'}}>
                     <Svg
                         icon="right12"
                     ></Svg>

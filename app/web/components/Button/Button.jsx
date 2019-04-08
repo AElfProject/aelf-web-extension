@@ -51,9 +51,35 @@ export default class AelfButton extends Component {
         );
     }
 
+    renderTransparent() {
+        let svgStyle = {
+            padding: '3px 12px 0 0',
+            display: this.props.aelficon ? 'block' : 'none'
+        };
+        return (
+            <div {...this.props} className={style.button + ' ' + style.transparent + ' ' + this.props.className}>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div style={svgStyle}>
+                            <Svg icon={this.props.aelficon}
+                                style={{display: 'inline-block', height: 20, width: 20}}></Svg>
+                    </div>
+                    <div>
+                        <FormattedMessage
+                            id={'aelf.' + this.props.text || this.props.children || ''}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         if (this.props.type === 'blue') {
             return this.renderBlue();
+        }
+
+        if (this.props.type === 'transparent') {
+            return this.renderTransparent();
         }
 
         let svgStyle = {
@@ -61,7 +87,7 @@ export default class AelfButton extends Component {
             display: this.props.aelficon ? 'block' : 'none'
         };
         return (
-            <Button {...this.props} className={style.btn}>
+            <Button {...this.props} className={style.btn} style={this.props.style}>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <div style={svgStyle}>
                         <Svg icon={this.props.aelficon}
