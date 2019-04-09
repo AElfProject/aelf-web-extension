@@ -10,12 +10,22 @@ search: aelf-web-extension or Night Elf
 
 ### Developers
 
+1. Download Extensions
+
 ```shell
    git clone https://github.com/hzz780/aelf-web-extension.git
+```
 
-   npm install
+2. Install dependent
 
-   webpack -w
+```shell
+    npm install
+```
+
+3. Run webpack
+
+```shell
+    webpack -w
 ```
 
 open development mode, add the directory /public.
