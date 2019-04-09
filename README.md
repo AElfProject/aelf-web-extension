@@ -10,7 +10,7 @@ search: aelf-web-extension or Night Elf
 
 ### Developers
 
-1. Download Extensions
+1. Download the code
 
 ```shell
    git clone https://github.com/hzz780/aelf-web-extension.git
