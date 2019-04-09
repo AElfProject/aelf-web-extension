@@ -80,27 +80,27 @@ Note: ``` '...' ``` stands for omitted data.
 ### 3. LOGIN
 
 ```javascript
-    NightElf.api({
+    aelf.login({
         appName: 'hzzTest',
-        method: 'LOGIN',
         chainId: 'AELF',
         payload: {
-            payload: {
-                // appName: message.appName,
-                // domain: message.hostname
-                method: 'LOGIN',
-                contracts: [{
-                    chainId: 'AELF',
-                    contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-                    contractName: 'token',
-                    description: 'token contract',
-                    github: ''
-                }]
-            }
+            method: 'LOGIN',
+            contracts: [{
+                chainId: 'AELF',
+                contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+                contractName: 'token',
+                description: 'token contract',
+                github: ''
+            }, {
+                chainId: 'AELF TEST',
+                contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+                contractName: 'TEST contractName',
+                description: 'contract description',
+                github: ''
+            }]
         }
-    }).then(result => {
-        console.log('>>>>>>> login >>>>>>>>>>>>', result);
-        // write project logic
+    }, (error, result) => {
+        console.log('login>>>>>>>>>>>>>>>>>>', result);
     });
 
 // keychain = {
