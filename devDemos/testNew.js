@@ -107,37 +107,78 @@ document.addEventListener('NightElf', result => {
         });
     };
 
+    // const openPrompt = document.getElementById('open-prompt');
+    // openPrompt.onclick = function () {
+    //     NightElf.api({
+    //         appName: 'hzzTest',
+    //         method: 'OPEN_PROMPT',
+    //         chainId: 'AELF',
+    //         hostname: 'aelf.io',
+    //         payload: {
+    //             method: 'SET_PERMISSION',
+    //             // 在中间层会补齐
+    //             // appName: 'hzzTest',
+    //             // method 使用payload的
+    //             // chainId: 'AELF',
+    //             // hostname: 'aelf.io',
+    //             payload: {
+    //                 // appName: message.appName,
+    //                 // domain: message.hostname
+    //                 address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY',
+    //                 contracts: [{
+    //                     chainId: 'AELF',
+    //                     contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+    //                     contractName: 'token',
+    //                     description: 'token contract',
+    //                     github: ''
+    //                 }, {
+    //                     chainId: 'AELF TEST',
+    //                     contractAddress: 'TEST contractAddress',
+    //                     contractName: 'TEST contractName',
+    //                     description: 'contract description',
+    //                     github: ''
+    //                 }]
+    //             }
+    //         }
+    //     }).then(result => {
+    //         console.log('>>>>>>>>>>>>>>>>>>>', result);
+    //     });
+    // };
+
     const openPrompt = document.getElementById('open-prompt');
     openPrompt.onclick = function () {
         NightElf.api({
             appName: 'hzzTest',
             method: 'OPEN_PROMPT',
             chainId: 'AELF',
-            hostname: 'aelf.io',
             payload: {
-                method: 'SET_PERMISSION',
+                method: 'AAAAA',
                 // 在中间层会补齐
                 // appName: 'hzzTest',
                 // method 使用payload的
                 // chainId: 'AELF',
                 // hostname: 'aelf.io',
                 payload: {
-                    // appName: message.appName,
-                    // domain: message.hostname
-                    address: 'ELF_3N68Zg4q3NqPQcfW4d466EiTzvabadnTdxgiwmdDsk8smY',
-                    contracts: [{
-                        chainId: 'AELF',
-                        contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
-                        contractName: 'token',
-                        description: 'token contract',
-                        github: ''
-                    }, {
-                        chainId: 'AELF TEST',
-                        contractAddress: 'TEST contractAddress',
-                        contractName: 'TEST contractName',
-                        description: 'contract description',
-                        github: ''
-                    }]
+                    contractName: 'token',
+                    contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+                    method: 'BalanceOf',
+                    params: ['ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB'],
+                    whitelist: {
+                        // transfer(a, b, c)
+                        // transfer(a, b, c, d) is not ok
+                        transfer: [{
+                            value: 'a',
+                            variable: true
+                        }, {
+                            value: 'b',
+                            variable: false
+                        }, {
+                            value: 'c',
+                            variable: true
+                        }],
+                        test: [{}],
+                        hzz780: [{}]
+                    }
                 }
             }
         }).then(result => {
@@ -219,7 +260,8 @@ document.addEventListener('NightElf', result => {
         }).then(result => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
         });
-    }
+    };
+
     // For extension dev
     // const setWhitelist = document.getElementById('set-whitelist');
     // setWhitelist.onclick = function () {

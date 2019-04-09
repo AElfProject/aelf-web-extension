@@ -10,13 +10,19 @@ search: aelf-web-extension or Night Elf
 
 ### Developers
 
-download the code.
+```shell
+   git clone https://github.com/hzz780/aelf-web-extension.git
 
-webpack -w
+   npm install
+
+   webpack -w
+```
 
 open development mode, add the directory /public.
 
 ## How to use
+
+If you need complete data structure. you can [click here](#dataformat)
 
 ### 1.GET_CHAIN_INFORMATION
 
@@ -30,14 +36,15 @@ The Methods calls are almost identical to the methods call of the aelf-sdk.js
 Note: ``` '...' ``` stands for omitted data.
 
 ```javascript
-const aelf = new window.NightElf.AElf({
-    httpProvider: 'http://192.168.199.210:5000/chain',
-    appName: 'Test'
-});
-aelf.chain.getChainInformation((error, result) => {
-    console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
-    console.log(error, result);
-});
+    const aelf = new window.NightElf.AElf({
+        httpProvider: 'http://192.168.199.210:5000/chain',
+        appName: 'Test'
+    });
+
+    aelf.chain.getChainInformation((error, result) => {
+        console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
+        console.log(error, result);
+    });
 
 // result = {
 //     ChainId: "AELF"
@@ -48,41 +55,39 @@ aelf.chain.getChainInformation((error, result) => {
 ### 2.CALL_AELF_CHAIN
 
 ```javascript
-const txid = 'c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768';
-aelf.chain.getTxResult(txid, (err, result) => {
-    console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
-    console.log(err, result);
-});
+    const txid = 'c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768';
+    aelf.chain.getTxResult(txid, (err, result) => {
+        console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
+        console.log(err, result);
+    });
 
 // result = {
 //     Status: "NotExisted"
 //     TransactionId: "ff5bcd126f9b7f22bbfd0816324390776f10ccb3fe0690efc84c5fcf6bdd3fc6"
 // }
-//
 ```
 
 ### 3. LOGIN
 
 ```javascript
     NightElf.api({
-    appName: 'hzzTest',
-    // domain: 'aelf.io', // auto
-    method: 'LOGIN',
-    chainId: 'AELF',
-    payload: {
+        appName: 'hzzTest',
+        method: 'LOGIN',
+        chainId: 'AELF',
         payload: {
-            // appName: message.appName,
-            // domain: message.hostname
-            method: 'LOGIN',
-            contracts: [{
-                chainId: 'AELF',
-                contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-                contractName: 'token',
-                description: 'token contract',
-                github: ''
-            }]
+            payload: {
+                // appName: message.appName,
+                // domain: message.hostname
+                method: 'LOGIN',
+                contracts: [{
+                    chainId: 'AELF',
+                    contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+                    contractName: 'token',
+                    description: 'token contract',
+                    github: ''
+                }]
+            }
         }
-    }
     }).then(result => {
         console.log('>>>>>>> login >>>>>>>>>>>>', result);
         // write project logic
@@ -114,110 +119,26 @@ aelf.chain.getTxResult(txid, (err, result) => {
 // }
 ```
 
-### 4.OPEN_PROMPT -> other method (SET_CONTRACT_PERMISSION)
-
-```javascript
-// TODO: param check
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'OPEN_PROMPT',
-    chainId: 'AELF',
-    hostname: 'aelf.io',
-    payload: {
-        method: 'SET_CONTRACT_PERMISSION',
-        // 在中间层会补齐
-        // appName: 'hzzTest',
-        // method 使用payload的
-        // chainId: 'AELF',
-        // hostname: 'aelf.io',
-        payload: {
-            // appName: message.appName,
-            // domain: message.hostname
-            address: '4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
-            contracts: [{
-                chainId: 'AELF',
-                contractAddress: '4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
-                contractName: 'token',
-                description: 'token contract',
-                github: ''
-            }, {
-                chainId: 'AELF TEST',
-                contractAddress: 'TEST contractAddress',
-                contractName: 'TEST contractName',
-                description: 'contract description',
-                github: ''
-            }]
-        }
-    }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-});
-
-
-// keychain = {
-//     keypairs: {...},
-//     permissions: [{
-//         appName: 'hzzTest',
-//         address: 'your keyparis address',
-//         contracts: [{
-//             chainId: 'AELF',
-//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-//             contractName: 'token',
-//             description: 'token contract',
-//             github: ''
-//         },
-//         {
-//             chainId: 'AELF TEST',
-//             contractAddress: 'TEST contractAddress',
-//             contractName: 'TEST contractName',
-//             description: 'contract description',
-//             github: ''
-//         }],
-//         domain: 'Dapp domain'
-//     }]
-// }
-```
-
-### 5.OPEN_PROMPT
-
-```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'OPEN_PROMPT',
-    chainId: 'AELF',
-    hostname: 'aelf.io',
-    route: '#/prompt',
-    payload: {
-        message: 'xxxxxxx'
-    }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-});
-
-// you can open a new extension window.
-
-```
-
-### 6.INIT_AELF_CONTRACT
+### 4.INIT_AELF_CONTRACT
 
 ```javascript
 // In aelf-sdk.js wallet is the realy wallet.
 // But in extension sdk, we just need the address of the wallet.
-const tokenContract;
-const wallet = {
-    address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu'
-};
+    const tokenContract;
+    const wallet = {
+        address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu'
+    };
 // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
 // There is only one value named address;
-aelf.chain.contractAtAsync(
-    '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-    wallet,
-    (error, result) => {
-        console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
-        console.log(error, result);
-        tokenContract = result;
-    }
-);
+    aelf.chain.contractAtAsync(
+        '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+        wallet,
+        (error, result) => {
+            console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
+            console.log(error, result);
+            tokenContract = result;
+        }
+    );
 
 // result = {
 //     Approve: ƒ (),
@@ -228,7 +149,7 @@ aelf.chain.contractAtAsync(
 // }
 ```
 
-### 7.CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY
+### 5.CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY
 
 ```javascript
 // tokenContract from the contractAsync
@@ -264,18 +185,18 @@ aelf.chain.contractAtAsync(
 // }
 ```
 
-### 8.CHECK_PERMISSION
+### 6.CHECK_PERMISSION
 
 ```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'CHECK_PERMISSION',
-    // type: 'contract/address/domain(default)'
-    type: 'address', // if you did not set type, it aways get by domain.
-    address: '4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+    NightElf.api({
+        appName: 'hzzTest',
+        method: 'CHECK_PERMISSION',
+        // type: 'contract/address/domain(default)'
+        type: 'address', // if you did not set type, it aways get by domain.
+        address: '4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
+    }).then(result => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    })
 
 // result = {
 //     ...,
@@ -303,7 +224,7 @@ NightElf.api({
 // }
 ```
 
-### 9.GET_ADDRESS
+### 7.GET_ADDRESS
 
 ```javascript
 NightElf.api({
@@ -329,7 +250,7 @@ NightElf.api({
 
 ```
 
-### 10.REMOVE_CONTRACT_PERMISSION
+### 8.REMOVE_CONTRACT_PERMISSION
 
 ```javascript
     NightElf.api({
@@ -359,43 +280,7 @@ NightElf.api({
 
 ```
 
-### 11. SET_WHITELIST
-
-```javascript
-    NightElf.api({
-        appName: 'hzzTest',
-        method: 'SET_WHITELIST',
-        chainId: 'AELF',
-        payload: {
-            contractAddress: '4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
-            methods: ['test']
-        }
-    }).then(result => {
-        console.log('>>>>>>>>>>>>>>>>>>>', result);
-    });
-
-// keychain = {
-//     keypairs: {...},
-//     permissions: [{
-//         appName: 'hzzTest',
-//         address: 'your keyparis address',
-//         contracts: [{
-//             chainId: 'AELF',
-//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-//             contractName: 'token',
-//             description: 'token contract',
-//             github: '',
-//             whitelist: {
-//                 test: {...}
-//             }
-//         }],
-//         domain: 'Dapp domain'
-//     }]
-// }
-
-```
-
-### 12.REMOVE_METHODS_WHITELIST
+### 9.REMOVE_METHODS_WHITELIST
 
 ```javascript
     NightElf.api({
@@ -426,6 +311,46 @@ NightElf.api({
 //         domain: 'Dapp domain'
 //     }]
 // }
+```
+
+<span id="dataformat"></span>
+
+## Data Format
+
+```javascript
+    NightElf = {
+        histories: [],
+        keychain: {
+            keypairs: [
+                {
+                    name: 'your keypairs name',
+                    address: 'your keypairs address',
+                    mnemonic: 'your keypairs mnemonic',
+                    privateKey: 'your keupairs privateKey',
+                    publicKey: {
+                        x: 'you keupairs publicKey',
+                        y: 'you keupairs publicKey'
+                    }
+                }
+            ],
+            permissions: [
+                {
+                    chainId: 'AELF',
+                    contractAddress: 'contract address',
+                    contractName: 'contract name',
+                    description: 'contract description',
+                    github: 'contract github',
+                    whitelist: {
+                        method: {
+                            parameter1: 'a',
+                            parameter2: 'b',
+                            parameter3: 'c'
+                        }
+                    }
+                }
+            ]
+        }
+    }
 ```
 
 ## Project Information

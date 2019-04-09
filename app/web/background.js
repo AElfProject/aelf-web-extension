@@ -726,6 +726,7 @@ export default class Background {
         seed = _seed;
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             nightElf = NightElf.fromJson(nightElfObject);
+            console.log('nightElf', nightElf);
             Background.checkTimingLock();
             sendResponse({
                 ...errorHandler(0),
