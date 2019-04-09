@@ -227,12 +227,12 @@ Note: ``` '...' ``` stands for omitted data.
 ### 7.GET_ADDRESS
 
 ```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'GET_ADDRESS'
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+    NightElf.api({
+        appName: 'hzzTest',
+        method: 'GET_ADDRESS'
+    }).then(result => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    })
 
 // result = {
 //     ...,
