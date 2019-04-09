@@ -737,6 +737,7 @@ export default class Background {
     static updateWallet(sendResponse) {
         // TODO: Check seed.
         console.log(sendResponse);
+        console.log('nightElf', nightElf);
         if (nightElf && seed) {
             const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
             apis.storage.local.set({

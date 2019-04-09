@@ -4,6 +4,7 @@
  */
 /* global NightElf */
 
+
 document.addEventListener('NightElf', result => {
     console.log(Date.now());
     console.log('NightElf test.html: ', result);
@@ -255,7 +256,7 @@ document.addEventListener('NightElf', result => {
     window.tokenC = {};
     initAelfContract.onclick = function () {
         const wallet = {
-            address: '28kDK2xgK3qkMeTzxTpRYmHi4PqMRKRgRjsUnEy8J1AE5wz'
+            address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu'
             // address withoud permission
             // address: '65dDNxzcd35jESiidFXN5JV8Z7pCwaFnepuYQToNefSgqk9'
         };
