@@ -726,7 +726,6 @@ export default class Background {
         seed = _seed;
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             nightElf = NightElf.fromJson(nightElfObject);
-            console.log('nightElf', nightElf);
             Background.checkTimingLock();
             sendResponse({
                 ...errorHandler(0),
@@ -738,7 +737,6 @@ export default class Background {
     static updateWallet(sendResponse) {
         // TODO: Check seed.
         console.log(sendResponse);
-        console.log('nightElf', nightElf);
         if (nightElf && seed) {
             const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
             apis.storage.local.set({
