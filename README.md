@@ -34,6 +34,19 @@ open development mode, add the directory /public.
 
 If you need complete data structure. you can [click here](#dataformat)
 
+- [1. GET_CHAIN_INFORMATION](#get-chain-information)
+- [2. CALL_AELF_CHAIN](#call-aelf-chain)
+- [3. LOGIN](#login)
+- [4. INIT_AELF_CONTRACT](#init-aelf-contract)
+- [5. CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call-aelf-contract)
+- [6. CHECK_PERMISSION](#check-permission)
+- [7. GET_ADDRESS](#get-address)
+- [8. SET_CONTRACT_PERMISSION](#set-contract-permission)
+- [9. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
+- [10. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
+
+<span id="get-chain-information"></span>
+
 ### 1.GET_CHAIN_INFORMATION
 
 You can see the demo [./devDemos/test.html](https://github.com/hzz780/aelf-web-extension/tree/1.0/devDemos). [demo.js just a draft]
@@ -62,6 +75,8 @@ aelf.chain.getChainInformation((error, result) => {
 // }
 ```
 
+<span id="call-aelf-chain"></span>
+
 ### 2.CALL_AELF_CHAIN
 
 ```javascript
@@ -76,6 +91,8 @@ aelf.chain.getTxResult(txid, (err, result) => {
 //     TransactionId: "ff5bcd126f9b7f22bbfd0816324390776f10ccb3fe0690efc84c5fcf6bdd3fc6"
 // }
 ```
+
+<span id="login"></span>
 
 ### 3. LOGIN
 
@@ -129,6 +146,8 @@ aelf.login({
 // }
 ```
 
+<span id="init-aelf-contract"></span>
+
 ### 4.INIT_AELF_CONTRACT
 
 ```javascript
@@ -158,6 +177,8 @@ aelf.chain.contractAtAsync(
 //     ....
 // }
 ```
+
+<span id="call-aelf-contract"></span>
 
 ### 5.CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY
 
@@ -194,6 +215,8 @@ tokenContract.Approve(
 //     balance: 0
 // }
 ```
+
+<span id="check-permission"></span>
 
 ### 6.CHECK_PERMISSION
 
@@ -232,6 +255,8 @@ aelf.checkPermission({
 // }
 ```
 
+<span id="get-address"></span>
+
 ### 7.GET_ADDRESS
 
 ```javascript
@@ -256,6 +281,8 @@ aelf.getAddress({
 // }
 
 ```
+
+<span id="set-contract-permission"></span>
 
 ### 8.SET_CONTRACT_PERMISSION
 
@@ -303,6 +330,8 @@ aelf.setContractPermission({
 
 ```
 
+<span id="remove-contract-permission"></span>
+
 ### 9.REMOVE_CONTRACT_PERMISSION
 
 ```javascript
@@ -333,6 +362,8 @@ aelf.removeContractPermission({
 // }
 
 ```
+
+<span id="remove-methods-whitelist"></span>
 
 ### 10.REMOVE_METHODS_WHITELIST
 
