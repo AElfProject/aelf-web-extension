@@ -137,7 +137,7 @@ export default class Permission extends Component {
             height: '150px'
         };
         if (permissionsList) {
-            return <div>
+            return <div className={style.confirmPermission} style={{width: '50%'}}>
                 <div className={style.top}>
                     <div className={style.blank}></div>
                     <p className={style.wallet}>
@@ -173,7 +173,7 @@ export default class Permission extends Component {
 
     render() {
         const permission = this.permission;
-        const a = this.renderContrast();
+        const contrast = this.renderContrast();
         return (
             <div className={style.container}>
                 <div className={style.confirmPermission}>
@@ -214,7 +214,7 @@ export default class Permission extends Component {
                         </div>
                     </div>
                 </div>
-                {a}
+                {contrast}
             </div>
         );
     }
