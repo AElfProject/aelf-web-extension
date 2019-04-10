@@ -226,23 +226,20 @@ document.addEventListener('NightElf', result => {
             appName: 'hzzTest',
             hainId: 'AELF',
             payload: {
-                method: 'SET_CONTRACT_PERMISSION',
-                payload: {
-                    address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu',
-                    contracts: [{
-                        chainId: 'AELF',
-                        contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-                        contractName: 'token',
-                        description: 'token contract',
-                        github: ''
-                    }, {
-                        chainId: 'AELF TEST',
-                        contractAddress: 'TEST contractAddress',
-                        contractName: 'TEST contractName',
-                        description: 'contract description',
-                        github: ''
-                    }]
-                }
+                address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu',
+                contracts: [{
+                    chainId: 'AELF',
+                    contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+                    contractName: 'token',
+                    description: 'token contract',
+                    github: ''
+                }, {
+                    chainId: 'AELF TEST',
+                    contractAddress: 'TEST contractAddress',
+                    contractName: 'TEST contractName',
+                    description: 'contract description',
+                    github: ''
+                }]
             }
         }, (error, result) => {
             console.log('>>>>>>>>>>>>>', result);

@@ -91,7 +91,10 @@ class NightAElf {
             appName: params.appName,
             method: 'OPEN_PROMPT',
             chainId: params.chainId,
-            payload: params.payload
+            payload: {
+                method: 'SET_CONTRACT_PERMISSION',
+                payload: params.payload
+            }
         }).then(result => {
             this.callbackWrap(result, callback);
         });
