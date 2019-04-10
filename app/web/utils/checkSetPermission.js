@@ -5,7 +5,7 @@
 
 export default function checkSetPermission(message) {
     console.log('>>>>>>>>>>>>>>>>>>>>>>checkSetPermission', message);
-    let method = message.payload.payload ? message.payload.payload.method : message.payload.method;
+    let method = message.payload ? message.payload.method : message.payload.payload.method;
     let width = 700;
     switch (method) {
         case 'SET_CONTRACT_PERMISSION':

@@ -40,11 +40,15 @@ class NightAElf {
     }
 
     callbackWrap(result, callback) {
-        if (result.error) {
-            callback(true, result, result);
+        // if (result.error) {
+        //     callback(true, result, result);
+        //     return;
+        // }
+        if (result.result) {
+            callback(null, result.result);
             return;
         }
-        callback(null, result.result, result);
+        callback(null, result);
     }
 
     callAElfChain(methodName, params, callback) {
@@ -60,6 +64,76 @@ class NightAElf {
             this.callbackWrap(result, callback);
         });
     }
+
+    login(params, callback) {
+        window.NightElf.api({
+            appName: params.appName,
+            chainId: params.chainId,
+            method: 'LOGIN',
+            payload: {
+                payload: params.payload
+            }
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+    checkPermission(params, callback) {
+        window.NightElf.api({
+            appName: params.appName,
+            method: 'CHECK_PERMISSION',
+            address: params.address,
+            type: params.type || '',
+            contractAddress: params.contractAddress || ''
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+    setContractPermission(params, callback) {
+        window.NightElf.api({
+            appName: params.appName,
+            method: 'OPEN_PROMPT',
+            chainId: params.chainId,
+            payload: params.payload
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+    removeContractPermission(params, callback) {
+        window.NightElf.api({
+            appName: params.appName,
+            method: 'REMOVE_CONTRACT_PERMISSION',
+            payload: params.payload
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+    removeMethodsWhitelist(params, callback) {
+        window.NightElf.api({
+            appName: params.appName,
+            chainId: params.chainId,
+            method: 'REMOVE_METHODS_WHITELIST',
+            payload: params.payload
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+
+
+    getAddress(param, callback) {
+        window.NightElf.api({
+            appName: param.appName,
+            method: 'GET_ADDRESS'
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+
 
     chain() {
         const getChainInformation = callback => {
