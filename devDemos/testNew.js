@@ -18,7 +18,7 @@ document.addEventListener('NightElf', result => {
     const getAddress = document.getElementById('get-address');
     const setPermission = document.getElementById('set-contract-permission');
     const removeContractPermission = document.getElementById('remove-contract-permission');
-
+    const removeWhitelist = document.getElementById('remove-whitelist');
     // Login at first
     // NightElf.api({
     //     appName: 'hzzTest',
@@ -207,6 +207,17 @@ document.addEventListener('NightElf', result => {
             }
         }, (error, result) => {
             console.log('removeContractPermission>>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    removeWhitelist.onclick = function () {
+        aelf.removeMethodsWhitelist({
+            payload: {
+                contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+                whitelist: ['Approve']
+            }
+        }, (error, result) => {
+            console.log('removeWhitelist>>>>>>>>>>>>>>>>>', result);
         });
     };
 

@@ -198,15 +198,13 @@ Note: ``` '...' ``` stands for omitted data.
 ### 6.CHECK_PERMISSION
 
 ```javascript
-    NightElf.api({
+    aelf.checkPermission({
         appName: 'hzzTest',
-        method: 'CHECK_PERMISSION',
-        // type: 'contract/address/domain(default)'
         type: 'address', // if you did not set type, it aways get by domain.
         address: '4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
-    }).then(result => {
-        console.log('>>>>>>>>>>>>>>>>>>>', result);
-    })
+    }, (error, result) => {
+        console.log('checkPermission>>>>>>>>>>>>>>>>>', result);
+    });
 
 // result = {
 //     ...,
@@ -237,12 +235,11 @@ Note: ``` '...' ``` stands for omitted data.
 ### 7.GET_ADDRESS
 
 ```javascript
-    NightElf.api({
-        appName: 'hzzTest',
-        method: 'GET_ADDRESS'
-    }).then(result => {
+    aelf.getAddress({
+        appName: 'hzzTest'
+    }, (error, result) => {
         console.log('>>>>>>>>>>>>>>>>>>>', result);
-    })
+    });
 
 // result = {
 //     ...,
@@ -263,13 +260,14 @@ Note: ``` '...' ``` stands for omitted data.
 ### 8.REMOVE_CONTRACT_PERMISSION
 
 ```javascript
-    NightElf.api({
+    aelf.removeContractPermission({
         appName: 'hzzTest',
-        method: 'REMOVE_CONTRACT_PERMISSION',
         chainId: 'AELF',
         payload: {
-            contractAddress: 'TEST contractAddress'
+            contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb'
         }
+    }, (error, result) => {
+        console.log('removeContractPermission>>>>>>>>>>>>>>>>>>>', result);
     });
 
 // keychain = {
@@ -293,18 +291,16 @@ Note: ``` '...' ``` stands for omitted data.
 ### 9.REMOVE_METHODS_WHITELIST
 
 ```javascript
-    NightElf.api({
+    aelf.removeMethodsWhitelist({
         appName: 'hzzTest',
-        method: 'REMOVE_METHODS_WHITELIST',
         chainId: 'AELF',
         payload: {
-            contractAddress: 'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
-            methods: ['test']
+            contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+            whitelist: ['Approve']
         }
-    }).then(result => {
-        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    }, (error, result) => {
+        console.log('removeWhitelist>>>>>>>>>>>>>>>>>', result);
     });
-
 // keychain = {
 //     keypairs: {...},
 //     permissions: [{

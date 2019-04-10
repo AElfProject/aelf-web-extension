@@ -123,7 +123,7 @@ class Content {
                 return;
             }
         }
-        console.log('通过了?');
+
         this.internalCommunicate(method, message);
     }
 

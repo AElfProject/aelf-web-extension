@@ -90,16 +90,39 @@ class NightAElf {
         });
     }
 
-    setContractPermission(param, callback) {
+    setContractPermission(params, callback) {
         window.NightElf.api({
-            appName: param.appName,
+            appName: params.appName,
             method: 'OPEN_PROMPT',
-            chainId: param.chainId,
-            payload: param.payload
+            chainId: params.chainId,
+            payload: params.payload
         }).then(result => {
             this.callbackWrap(result, callback);
         });
     }
+
+    removeContractPermission(params, callback) {
+        window.NightElf.api({
+            appName: params.appName,
+            method: 'REMOVE_CONTRACT_PERMISSION',
+            payload: params.payload
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+    removeMethodsWhitelist(params, callback) {
+        window.NightElf.api({
+            appName: params.appName,
+            chainId: params.chainId,
+            method: 'REMOVE_METHODS_WHITELIST',
+            payload: params.payload
+        }).then(result => {
+            this.callbackWrap(result, callback);
+        });
+    }
+
+
 
     getAddress(param, callback) {
         window.NightElf.api({
