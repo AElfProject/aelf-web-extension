@@ -40,10 +40,6 @@ class NightAElf {
     }
 
     callbackWrap(result, callback) {
-        // if (result.error) {
-        //     callback(true, result, result);
-        //     return;
-        // }
         if (result.result) {
             callback(null, result.result);
             return;
