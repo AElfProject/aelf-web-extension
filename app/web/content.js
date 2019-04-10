@@ -123,6 +123,15 @@ class Content {
                 return;
             }
         }
+        else if (!methodWhiteList.includes(message.method)) {
+            this.respond({
+                sid,
+                ...errorHandler(400001, `${message.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`)
+            });
+            return;
+        }
+
+        
 
         this.internalCommunicate(method, message);
     }
