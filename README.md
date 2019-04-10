@@ -347,7 +347,7 @@ aelf.removeMethodsWhitelist({
                     description: 'contract description',
                     github: 'contract github',
                     whitelist: {
-                        method: {
+                        Approve: {
                             parameter1: 'a',
                             parameter2: 'b',
                             parameter3: 'c'
