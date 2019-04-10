@@ -46,15 +46,15 @@ The Methods calls are almost identical to the methods call of the aelf-sdk.js
 Note: ``` '...' ``` stands for omitted data.
 
 ```javascript
-    const aelf = new window.NightElf.AElf({
-        httpProvider: 'http://192.168.199.210:5000/chain',
-        appName: 'Test'
-    });
+const aelf = new window.NightElf.AElf({
+    httpProvider: 'http://192.168.199.210:5000/chain',
+    appName: 'Test'
+});
 
-    aelf.chain.getChainInformation((error, result) => {
-        console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
-        console.log(error, result);
-    });
+aelf.chain.getChainInformation((error, result) => {
+    console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
+    console.log(error, result);
+});
 
 // result = {
 //     ChainId: "AELF"
@@ -65,11 +65,11 @@ Note: ``` '...' ``` stands for omitted data.
 ### 2.CALL_AELF_CHAIN
 
 ```javascript
-    const txid = 'c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768';
-    aelf.chain.getTxResult(txid, (err, result) => {
-        console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
-        console.log(err, result);
-    });
+const txid = 'c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768';
+aelf.chain.getTxResult(txid, (err, result) => {
+    console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
+    console.log(err, result);
+});
 
 // result = {
 //     Status: "NotExisted"
@@ -80,28 +80,28 @@ Note: ``` '...' ``` stands for omitted data.
 ### 3. LOGIN
 
 ```javascript
-    aelf.login({
-        appName: 'hzzTest',
-        chainId: 'AELF',
-        payload: {
-            method: 'LOGIN',
-            contracts: [{
-                chainId: 'AELF',
-                contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-                contractName: 'token',
-                description: 'token contract',
-                github: ''
-            }, {
-                chainId: 'AELF TEST',
-                contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
-                contractName: 'TEST contractName',
-                description: 'contract description',
-                github: ''
-            }]
-        }
-    }, (error, result) => {
-        console.log('login>>>>>>>>>>>>>>>>>>', result);
-    });
+aelf.login({
+    appName: 'hzzTest',
+    chainId: 'AELF',
+    payload: {
+        method: 'LOGIN',
+        contracts: [{
+            chainId: 'AELF',
+            contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+            contractName: 'token',
+            description: 'token contract',
+            github: ''
+        }, {
+            chainId: 'AELF TEST',
+            contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+            contractName: 'TEST contractName',
+            description: 'contract description',
+            github: ''
+        }]
+    }
+}, (error, result) => {
+    console.log('login>>>>>>>>>>>>>>>>>>', result);
+});
 
 // keychain = {
 //     keypairs: {
@@ -134,21 +134,21 @@ Note: ``` '...' ``` stands for omitted data.
 ```javascript
 // In aelf-sdk.js wallet is the realy wallet.
 // But in extension sdk, we just need the address of the wallet.
-    const tokenContract;
-    const wallet = {
-        address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu'
-    };
+const tokenContract;
+const wallet = {
+    address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu'
+};
 // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
 // There is only one value named address;
-    aelf.chain.contractAtAsync(
-        '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-        wallet,
-        (error, result) => {
-            console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
-            console.log(error, result);
-            tokenContract = result;
-        }
-    );
+aelf.chain.contractAtAsync(
+    '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+    wallet,
+    (error, result) => {
+        console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
+        console.log(error, result);
+        tokenContract = result;
+    }
+);
 
 // result = {
 //     Approve: ƒ (),
@@ -163,26 +163,26 @@ Note: ``` '...' ``` stands for omitted data.
 
 ```javascript
 // tokenContract from the contractAsync
-    tokenContract.GetBalance.call(
-        {
-            symbol: 'AELF',
-            owner: '65dDNxzcd35jESiidFXN5JV8Z7pCwaFnepuYQToNefSgqk9'
-        },
-        (err, result) => {
-            console.log('>>>>>>>>>>>>>>>>>>>', result);
-        }
-    );
+tokenContract.GetBalance.call(
+    {
+        symbol: 'AELF',
+        owner: '65dDNxzcd35jESiidFXN5JV8Z7pCwaFnepuYQToNefSgqk9'
+    },
+    (err, result) => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    }
+);
 
-    tokenContract.Approve(
-        {
-            symbol: 'AELF',
-            spender: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-            amount: '100'
-        },
-        (err, result) => {
-            console.log('>>>>>>>>>>>>>>>>>>>', result);
-        }
-    );
+tokenContract.Approve(
+    {
+        symbol: 'AELF',
+        spender: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+        amount: '100'
+    },
+    (err, result) => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    }
+);
 
 // If you use tokenContract.GetBalance.call  this method is only applicable to queries that do not require extended authorization validation.(CALL_AELF_CONTRACT_READONLY)
 // If you use tokenContract.Approve this requires extended authorization validation (CALL_AELF_CONTRACT)
@@ -198,13 +198,13 @@ Note: ``` '...' ``` stands for omitted data.
 ### 6.CHECK_PERMISSION
 
 ```javascript
-    aelf.checkPermission({
-        appName: 'hzzTest',
-        type: 'address', // if you did not set type, it aways get by domain.
-        address: '4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
-    }, (error, result) => {
-        console.log('checkPermission>>>>>>>>>>>>>>>>>', result);
-    });
+aelf.checkPermission({
+    appName: 'hzzTest',
+    type: 'address', // if you did not set type, it aways get by domain.
+    address: '4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
+}, (error, result) => {
+    console.log('checkPermission>>>>>>>>>>>>>>>>>', result);
+});
 
 // result = {
 //     ...,
@@ -235,11 +235,11 @@ Note: ``` '...' ``` stands for omitted data.
 ### 7.GET_ADDRESS
 
 ```javascript
-    aelf.getAddress({
-        appName: 'hzzTest'
-    }, (error, result) => {
-        console.log('>>>>>>>>>>>>>>>>>>>', result);
-    });
+aelf.getAddress({
+    appName: 'hzzTest'
+}, (error, result) => {
+    console.log('>>>>>>>>>>>>>>>>>>>', result);
+});
 
 // result = {
 //     ...,
@@ -260,15 +260,15 @@ Note: ``` '...' ``` stands for omitted data.
 ### 8.REMOVE_CONTRACT_PERMISSION
 
 ```javascript
-    aelf.removeContractPermission({
-        appName: 'hzzTest',
-        chainId: 'AELF',
-        payload: {
-            contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb'
-        }
-    }, (error, result) => {
-        console.log('removeContractPermission>>>>>>>>>>>>>>>>>>>', result);
-    });
+aelf.removeContractPermission({
+    appName: 'hzzTest',
+    chainId: 'AELF',
+    payload: {
+        contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb'
+    }
+}, (error, result) => {
+    console.log('removeContractPermission>>>>>>>>>>>>>>>>>>>', result);
+});
 
 // keychain = {
 //     keypairs: {...},
@@ -291,16 +291,16 @@ Note: ``` '...' ``` stands for omitted data.
 ### 9.REMOVE_METHODS_WHITELIST
 
 ```javascript
-    aelf.removeMethodsWhitelist({
-        appName: 'hzzTest',
-        chainId: 'AELF',
-        payload: {
-            contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
-            whitelist: ['Approve']
-        }
-    }, (error, result) => {
-        console.log('removeWhitelist>>>>>>>>>>>>>>>>>', result);
-    });
+aelf.removeMethodsWhitelist({
+    appName: 'hzzTest',
+    chainId: 'AELF',
+    payload: {
+        contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+        whitelist: ['Approve']
+    }
+}, (error, result) => {
+    console.log('removeWhitelist>>>>>>>>>>>>>>>>>', result);
+});
 // keychain = {
 //     keypairs: {...},
 //     permissions: [{
