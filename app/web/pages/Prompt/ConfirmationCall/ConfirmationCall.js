@@ -107,7 +107,7 @@ export default class ConfirmationCall extends Component {
         if (contract.whitelist) {
             whitelist = contract.whitelist;
             const method = this.confirmation.method;
-            if (methodParams) {
+            if (methodParams.length !== 0) {
                 whitelist[method] = methodParams[0];
             }
             else {
@@ -119,9 +119,8 @@ export default class ConfirmationCall extends Component {
             }
         }
         else {
-            whitelist = {};
             const method = this.confirmation.method;
-            if (methodParams) {
+            if (methodParams.length !== 0) {
                 whitelist[method] = methodParams[0];
             }
             else {

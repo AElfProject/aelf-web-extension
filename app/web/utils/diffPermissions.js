@@ -22,6 +22,11 @@ export default function diffPermissions(oldPermissions, newPermissions) {
         for (let i = 0, len = newPermissions.length; i < len; i++) {
             let unconverter = false;
             for (let j = 0, len = oldPermissions.length; j < len; j++) {
+
+                // The same contract with different white lists Direct skip
+                if (JSON.stringify(oldPermissions[j]).includes('whitelist')) {
+                    continue;
+                }
                 if (JSON.stringify(newPermissions[i]) === JSON.stringify(oldPermissions[j])) {
                     unconverter = true;
                     removePermissions.splice(j, 1);

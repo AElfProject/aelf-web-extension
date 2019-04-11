@@ -108,20 +108,31 @@ class Content {
 
         const methodWhiteList = [
             'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT',
-            'OPEN_PROMPT', 'CHECK_PERMISSION', 'GET_ADDRESS', 'LOGIN',
+            'CHECK_PERMISSION', 'GET_ADDRESS', 'LOGIN',
             'REMOVE_CONTRACT_PERMISSION', 'REMOVE_METHODS_WHITELIST',
-            'SET_PERMISSION', 'SET_CONTRACT_PERMISSION',
-            'GET_CHAIN_INFORMATION',
+            'SET_CONTRACT_PERMISSION', 'GET_CHAIN_INFORMATION',
             'CALL_AELF_CONTRACT_READONLY'
         ];
 
-        if (!methodWhiteList.includes(method)) {
+        if (method === 'OPEN_PROMPT') {
+            if (!methodWhiteList.includes(message.payload.method)) {
+                this.respond({
+                    sid,
+                    ...errorHandler(400001, `${message.payload.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`)
+                });
+                return;
+            }
+        }
+        else if (!methodWhiteList.includes(message.method)) {
             this.respond({
                 sid,
                 ...errorHandler(400001, `${message.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`)
             });
             return;
         }
+
+        
+
         this.internalCommunicate(method, message);
     }
 

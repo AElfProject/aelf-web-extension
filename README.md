@@ -8,17 +8,54 @@ https://chrome.google.com/webstore/category/extensions
 
 search: aelf-web-extension or Night Elf
 
+#### *Using File:/// protocol may result in the impossibility of using extended applications
+
+https://developer.chrome.com/extensions/match_patterns
+
+```note
+Note: Access to file URLs isn't automatic. The user must visit the extensions management page and opt in to file access for each extension that requests it.
+```
+
 ### Developers
 
-download the code.
+1. Download the code
 
-webpack -w
+```shell
+   git clone https://github.com/hzz780/aelf-web-extension.git
+```
+
+2. Install dependent
+
+```shell
+    npm install
+```
+
+3. Run webpack
+
+```shell
+    webpack -w
+```
 
 open development mode, add the directory /public.
 
 ## How to use
 
-### 1.CONNECT_AELF_CHAIN
+If you need complete data structure. you can [click here](#dataformat)
+
+- [1. GET_CHAIN_INFORMATION](#get-chain-information)
+- [2. CALL_AELF_CHAIN](#call-aelf-chain)
+- [3. LOGIN](#login)
+- [4. INIT_AELF_CONTRACT](#init-aelf-contract)
+- [5. CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call-aelf-contract)
+- [6. CHECK_PERMISSION](#check-permission)
+- [7. GET_ADDRESS](#get-address)
+- [8. SET_CONTRACT_PERMISSION](#set-contract-permission)
+- [9. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
+- [10. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
+
+<span id="get-chain-information"></span>
+
+### 1.GET_CHAIN_INFORMATION
 
 You can see the demo [./devDemos/test.html](https://github.com/hzz780/aelf-web-extension/tree/1.0/devDemos). [demo.js just a draft]
 
@@ -27,16 +64,26 @@ You can [click here](https://github.com/hzz780/aelf-web-extension/tree/1.0/demo/
 
 The Methods calls are almost identical to the methods call of the aelf-sdk.js
 
+Note: ``` '...' ``` stands for omitted data.
+
 ```javascript
 const aelf = new window.NightElf.AElf({
     httpProvider: 'http://192.168.199.210:5000/chain',
     appName: 'Test'
 });
-aelf.chain.connectChain((error, result) => {
+
+aelf.chain.getChainInformation((error, result) => {
     console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
     console.log(error, result);
 });
+
+// result = {
+//     ChainId: "AELF"
+//     GenesisContractAddress: "61W3AF3Voud7cLY2mejzRuZ4WEN8mrDMioA9kZv3H8taKxF"
+// }
 ```
+
+<span id="call-aelf-chain"></span>
 
 ### 2.CALL_AELF_CHAIN
 
@@ -46,120 +93,355 @@ aelf.chain.getTxResult(txid, (err, result) => {
     console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
     console.log(err, result);
 });
+
+// result = {
+//     Status: "NotExisted"
+//     TransactionId: "ff5bcd126f9b7f22bbfd0816324390776f10ccb3fe0690efc84c5fcf6bdd3fc6"
+// }
 ```
 
-### 3.OPEN_PROMPT -> other method
+<span id="login"></span>
+
+### 3. LOGIN
 
 ```javascript
-// TODO: param check
-NightElf.api({
+aelf.login({
     appName: 'hzzTest',
-    method: 'OPEN_PROMPT',
     chainId: 'AELF',
-    hostname: 'aelf.io',
     payload: {
-        method: 'SET_PERMISSION',
-        // 在中间层会补齐
-        // appName: 'hzzTest',
-        // method 使用payload的
-        // chainId: 'AELF',
-        // hostname: 'aelf.io',
-        payload: {
-            // appName: message.appName,
-            // domain: message.hostname
-            address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK',
-            contracts: [{
-                chainId: 'AELF',
-                contractAddress: 'ELF_4Qna4KWEr9XyxewGNHku1gwUvqtfsARSHcwjd3WXBpLw9Yx',
-                contractName: 'token',
-                description: 'token contract'
-            }, {
-                chainId: 'AELF TEST',
-                contractAddress: 'TEST contractAddress',
-                contractName: 'TEST contractName',
-                description: 'contract description'
-            }]
-        }
+        method: 'LOGIN',
+        contracts: [{
+            chainId: 'AELF',
+            contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+            contractName: 'token',
+            description: 'token contract',
+            github: ''
+        }, {
+            chainId: 'AELF TEST',
+            contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+            contractName: 'TEST contractName',
+            description: 'contract description',
+            github: ''
+        }]
     }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+}, (error, result) => {
+    console.log('login>>>>>>>>>>>>>>>>>>', result);
+});
+
+// keychain = {
+//     keypairs: {
+//         name: 'your keypairs name',
+//         address: 'your keypairs address',
+//         mnemonic: 'your keypairs mnemonic',
+//         privateKey: 'your keypairs privateKey'，
+//         publicKey: {
+//             x: 'f79c25eb......',
+//             y: '7fa959ed......'
+//         }
+//     },
+//     permissions: [{
+//         appName: 'hzzTest',
+//         address: 'your keyparis address',
+//         contracts: [{
+//             chainId: 'AELF',
+//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+//             contractName: 'token',
+//             description: 'token contract',
+//             github: ''
+//         }],
+//         domain: 'Dapp domain'
+//     }]
+// }
 ```
 
-### 4.OPEN_PROMPT
+<span id="init-aelf-contract"></span>
 
-```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'OPEN_PROMPT',
-    chainId: 'AELF',
-    hostname: 'aelf.io',
-    route: '#/prompt',
-    payload: {
-        message: 'xxxxxxx'
-    }
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
-```
-
-### 5.INIT_AELF_CONTRACT
+### 4.INIT_AELF_CONTRACT
 
 ```javascript
 // In aelf-sdk.js wallet is the realy wallet.
 // But in extension sdk, we just need the address of the wallet.
-const tokenC;
+const tokenContract;
 const wallet = {
-    address: 'ELF_YjPzUqeWxqNzzAJURHPsD1SVQFhG1VFKUG9UKauYFE3cFs'
+    address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu'
 };
 // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
 // There is only one value named address;
 aelf.chain.contractAtAsync(
-    'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
+    '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
     wallet,
     (error, result) => {
         console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
         console.log(error, result);
-        tokenC = result;
+        tokenContract = result;
     }
 );
+
+// result = {
+//     Approve: ƒ (),
+//     Burn: ƒ (),
+//     ChargeTransactionFees: ƒ (),
+//     ClaimTransactionFees: ƒ (),
+//     ....
+// }
 ```
 
-### 6.CALL_AELF_CONTRACT
+<span id="call-aelf-contract"></span>
+
+### 5.CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY
 
 ```javascript
-// tokenC from the contractAsync
-tokenC.BalanceOf(
-    'ELF_2rAp1aiE3VMwR6SEx5dJYR2Sh8NHsJ2euJoxNaT7uF7XfeB',
+// tokenContract from the contractAsync
+tokenContract.GetBalance.call(
+    {
+        symbol: 'AELF',
+        owner: '65dDNxzcd35jESiidFXN5JV8Z7pCwaFnepuYQToNefSgqk9'
+    },
     (err, result) => {
         console.log('>>>>>>>>>>>>>>>>>>>', result);
     }
 );
+
+tokenContract.Approve(
+    {
+        symbol: 'AELF',
+        spender: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+        amount: '100'
+    },
+    (err, result) => {
+        console.log('>>>>>>>>>>>>>>>>>>>', result);
+    }
+);
+
+// If you use tokenContract.GetBalance.call  this method is only applicable to queries that do not require extended authorization validation.(CALL_AELF_CONTRACT_READONLY)
+// If you use tokenContract.Approve this requires extended authorization validation (CALL_AELF_CONTRACT)
+
+// tokenContract.GetBalance.call(payload, (error, result) => {})
+// result = {
+//     symbol: "AELF",
+//     owner: "65dDNxzcd35jESiidFXN5JV8Z7pCwaFnepuYQToNefSgqk9",
+//     balance: 0
+// }
 ```
 
-### 7.CHECK_PERMISSION
+<span id="check-permission"></span>
+
+### 6.CHECK_PERMISSION
 
 ```javascript
-NightElf.api({
+aelf.checkPermission({
     appName: 'hzzTest',
-    method: 'CHECK_PERMISSION',
-    // type: 'contract/address/domain(default)'
     type: 'address', // if you did not set type, it aways get by domain.
-    address: 'ELF_4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
-}).then(result => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+    address: '4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
+}, (error, result) => {
+    console.log('checkPermission>>>>>>>>>>>>>>>>>', result);
+});
+
+// result = {
+//     ...,
+//     permissions:[
+//         {
+//             address: '...',
+//             appName: 'hzzTest',
+//             contracts: [{
+//                 chainId: 'AELF',
+//                 contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+//                 contractName: 'token',
+//                 description: 'token contract',
+//                 github: ''
+//             },
+//             {
+//                 chainId: 'AELF TEST',
+//                 contractAddress: 'TEST contractAddress',
+//                 contractName: 'TEST contractName',
+//                 description: 'contract description',
+//                 github: ''
+//             }],
+//             domian: 'Dapp domain'
+//         }
+//     ]
+// }
 ```
 
-### 8.GET_ADDRESS
+<span id="get-address"></span>
+
+### 7.GET_ADDRESS
 
 ```javascript
-NightElf.api({
-    appName: 'hzzTest',
-    method: 'GET_ADDRESS'
-}).then(result => {
+aelf.getAddress({
+    appName: 'hzzTest'
+}, (error, result) => {
     console.log('>>>>>>>>>>>>>>>>>>>', result);
-})
+});
+
+// result = {
+//     ...,
+//     addressList: [
+//         {
+//             address: '...',
+//             name: '...',
+//             publicKey: {
+//                 x: '...',
+//                 y: '...'
+//             }
+//         }
+//     ]
+// }
+
+```
+
+<span id="set-contract-permission"></span>
+
+### 8.SET_CONTRACT_PERMISSION
+
+```javascript
+aelf.setContractPermission({
+    appName: 'hzzTest',
+    hainId: 'AELF',
+    payload: {
+        address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu',
+        contracts: [{
+            chainId: 'AELF',
+            contractAddress: 'TEST contractAddress',
+            contractName: 'AAAA',
+            description: 'contract description',
+            github: ''
+        }]
+    }
+}, (error, result) => {
+    console.log('>>>>>>>>>>>>>', result);
+});
+
+// keychain = {
+//     keypairs: {...},
+//     permissions: [{
+//         appName: 'hzzTest',
+//         address: 'your keyparis address',
+//         contracts: [{
+//             chainId: 'AELF',
+//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+//             contractName: 'token',
+//             description: 'token contract',
+//             github: '',
+//             whitelist: {}
+//         },
+//         {
+//             chainId: 'AELF',
+//             contractAddress: 'TEST contractAddress',
+//             contractName: 'AAAA',
+//             description: 'contract description',
+//             github: ''
+//         }],
+//         domain: 'Dapp domain'
+//     }]
+// }
+
+```
+
+<span id="remove-contract-permission"></span>
+
+### 9.REMOVE_CONTRACT_PERMISSION
+
+```javascript
+aelf.removeContractPermission({
+    appName: 'hzzTest',
+    chainId: 'AELF',
+    payload: {
+        contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb'
+    }
+}, (error, result) => {
+    console.log('removeContractPermission>>>>>>>>>>>>>>>>>>>', result);
+});
+
+// keychain = {
+//     keypairs: {...},
+//     permissions: [{
+//         appName: 'hzzTest',
+//         address: 'your keyparis address',
+//         contracts: [{
+//             chainId: 'AELF',
+//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+//             contractName: 'token',
+//             description: 'token contract',
+//             github: ''
+//         }],
+//         domain: 'Dapp domain'
+//     }]
+// }
+
+```
+
+<span id="remove-methods-whitelist"></span>
+
+### 10.REMOVE_METHODS_WHITELIST
+
+```javascript
+aelf.removeMethodsWhitelist({
+    appName: 'hzzTest',
+    chainId: 'AELF',
+    payload: {
+        contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+        whitelist: ['Approve']
+    }
+}, (error, result) => {
+    console.log('removeWhitelist>>>>>>>>>>>>>>>>>', result);
+});
+// keychain = {
+//     keypairs: {...},
+//     permissions: [{
+//         appName: 'hzzTest',
+//         address: 'your keyparis address',
+//         contracts: [{
+//             chainId: 'AELF',
+//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+//             contractName: 'token',
+//             description: 'token contract',
+//             github: '',
+//             whitelist: {}
+//         }],
+//         domain: 'Dapp domain'
+//     }]
+// }
+```
+
+<span id="dataformat"></span>
+
+## Data Format
+
+```javascript
+    NightElf = {
+        histories: [],
+        keychain: {
+            keypairs: [
+                {
+                    name: 'your keypairs name',
+                    address: 'your keypairs address',
+                    mnemonic: 'your keypairs mnemonic',
+                    privateKey: 'your keupairs privateKey',
+                    publicKey: {
+                        x: 'you keupairs publicKey',
+                        y: 'you keupairs publicKey'
+                    }
+                }
+            ],
+            permissions: [
+                {
+                    chainId: 'AELF',
+                    contractAddress: 'contract address',
+                    contractName: 'contract name',
+                    description: 'contract description',
+                    github: 'contract github',
+                    whitelist: {
+                        Approve: {
+                            parameter1: 'a',
+                            parameter2: 'b',
+                            parameter3: 'c'
+                        }
+                    }
+                }
+            ]
+        }
+    }
 ```
 
 ## Project Information
