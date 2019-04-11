@@ -33,7 +33,7 @@ const outputDir = 'public';
 module.exports = {
     // When mode is production or not defined, minimize is enabled. This option automatically adds Uglify plugin.
     // production will remove the 'dead code'. Look at Tree Shaking
-    mode: 'none',
+    mode: 'production',
     // mode: 'production',
     // mode: 'development',
     entry: {

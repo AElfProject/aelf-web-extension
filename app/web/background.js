@@ -35,7 +35,7 @@ const {
 let seed = '';
 let nightElf = null;
 
-let inactivityInterval = 0;
+let inactivityInterval = 900000;
 let timeoutLocker = null;
 
 let prompt = null;
@@ -96,7 +96,7 @@ export default class Background {
             inactivityInterval = result.inactivityInterval;
         });
         // sendResponse(true);
-        Background.checkTimingLock();
+        Background.checkTimingLock(sendResponse);
         switch (message.type) {
             case InternalMessageTypes.SET_SEED:
                 Background.setSeed(sendResponse, message.payload);
@@ -273,6 +273,11 @@ export default class Background {
 
     }
 
+    /**
+     * login your keypair
+     * @param {Function} sendResponse Delegating response handler.
+     * @param {Object} loginInfo from content.js
+     */
     static login(sendResponse, loginInfo) {
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
 
@@ -415,6 +420,9 @@ export default class Background {
      * 1. hostname: a.aelf.io(page) -> aelf.io is OK;
      * 2. chainId: must be the same;
      * 3. contractAddress: must be the same;
+     *
+     * @param {Object} options Contain sendResponse and contractInfo
+     * @param {Function} callback callback function
      */
 
     static checkDappContractStatus(options, callback) {
@@ -726,7 +734,7 @@ export default class Background {
         seed = _seed;
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             nightElf = NightElf.fromJson(nightElfObject);
-            Background.checkTimingLock();
+            Background.checkTimingLock(sendResponse);
             sendResponse({
                 ...errorHandler(0),
                 nightElf: !!nightElf
@@ -858,7 +866,7 @@ export default class Background {
     // >   timing lock start   >
     // >>>>>>>>>>>>>>>>>>>>>>>>>
 
-    static checkTimingLock() {
+    static checkTimingLock(sendResponse) {
         if (inactivityInterval === 0) {
             return false;
         }

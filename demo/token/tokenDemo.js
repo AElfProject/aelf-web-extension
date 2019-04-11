@@ -6,13 +6,12 @@
 
 const tokenAddress = '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc';
 const wallet1 = {
-    address: '28kDK2xgK3qkMeTzxTpRYmHi4PqMRKRgRjsUnEy8J1AE5wz'
+    address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu'
 };
 const wallet2 = {
     address: '21zGCU6gcDRnsB4z31nKQ4k1K6soJJGecoCYcN7DzLNq5RQ'
 };
 const appName = 'tokenTest';
-
 window.tokenContract = {};
 
 document.addEventListener('NightElf', result => {
@@ -137,13 +136,11 @@ document.addEventListener('NightElf', result => {
         window.tokenContract.Transfer(payload, (error, result) => {
             console.log(result);
             if (result) {
-                txId.innerHTML = result.result.TransactionId;
+                txId.innerHTML = result.TransactionId || result.result.TransactionId;
                 setTimeout(() => {
                     getYourBalance();
                 }, 4000);
             }
         });
     };
-
-
 });

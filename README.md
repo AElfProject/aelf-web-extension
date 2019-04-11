@@ -8,6 +8,14 @@ https://chrome.google.com/webstore/category/extensions
 
 search: aelf-web-extension or Night Elf
 
+#### *Using File:/// protocol may result in the impossibility of using extended applications
+
+https://developer.chrome.com/extensions/match_patterns
+
+```note
+Note: Access to file URLs isn't automatic. The user must visit the extensions management page and opt in to file access for each extension that requests it.
+```
+
 ### Developers
 
 1. Download the code
