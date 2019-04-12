@@ -8,7 +8,7 @@
 // const webpack = require('webpack'); // 用于访问内置插件
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // 与webpack内置dev-server功能会有重复，所以不推荐混合在一起使用
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -19,13 +19,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 // let LiveReloadPlugin = require('webpack-livereload-plugin');
 
 // clean-webpack-plugin: https://github.com/johnagan/clean-webpack-plugin
-// let pathsToClean = [
-//     // 'app/public/js/*.js'
-//     'app/public/*'
-// ];
-// let cleanOptions = {
-//     watch: true
-// };
+let pathsToClean = [
+    // 'app/public/js/*.js'
+    'app/public/*'
+];
+let cleanOptions = {
+    watch: true
+};
 
 const outputDir = 'public';
 
@@ -166,12 +166,12 @@ module.exports = {
                 to: `./${outputDir}/_locales`,
                 toType: 'dir'
             }
-        ])
+        ]),
         // new HtmlWebpackPlugin({
         //     chunks: ['transactionDetail'],
         //     template: './app/web/page/transactionDetail.tpl',
         //     filename: './view/transactionDetail.tpl'
         // }),
-        // new CleanWebpackPlugin(pathsToClean, cleanOptions)
+        new CleanWebpackPlugin(pathsToClean, cleanOptions)
     ]
 };

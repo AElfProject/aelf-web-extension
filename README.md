@@ -1,44 +1,24 @@
 # aelf-web-extension
 
-## How to add Extension
+## For User
 
-### Normal user
+[release version, please waiting](#)
 
-https://chrome.google.com/webstore/category/extensions
+[dev version](https://chrome.google.com/webstore/detail/aelf-explorer-extension-d/mlmlhipeonlflbcclinpbmcjdnpnmkpf)
 
-search: aelf-web-extension or Night Elf
+If you are using qq browser,etc, you can add the extention too.
 
-#### *Using File:/// protocol may result in the impossibility of using extended applications
-
-https://developer.chrome.com/extensions/match_patterns
+### Notice
 
 ```note
+Using File:/// protocol may can not use the extenstion
+// https://developer.chrome.com/extensions/match_patterns
 Note: Access to file URLs isn't automatic. The user must visit the extensions management page and opt in to file access for each extension that requests it.
 ```
 
-### Developers
+## For Dapp Developers
 
-1. Download the code
-
-```shell
-   git clone https://github.com/hzz780/aelf-web-extension.git
-```
-
-2. Install dependent
-
-```shell
-    npm install
-```
-
-3. Run webpack
-
-```shell
-    webpack -w
-```
-
-open development mode, add the directory /public.
-
-## How to use
+### How to use
 
 If you need complete data structure. you can [click here](#dataformat)
 
@@ -53,16 +33,56 @@ If you need complete data structure. you can [click here](#dataformat)
 - [9. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
 - [10. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
 
+<span id="dataformat"></span>
+
+## Data Format
+
+```javascript
+    NightElf = {
+        histories: [],
+        keychain: {
+            keypairs: [
+                {
+                    name: 'your keypairs name',
+                    address: 'your keypairs address',
+                    mnemonic: 'your keypairs mnemonic',
+                    privateKey: 'your keupairs privateKey',
+                    publicKey: {
+                        x: 'you keupairs publicKey',
+                        y: 'you keupairs publicKey'
+                    }
+                }
+            ],
+            permissions: [
+                {
+                    chainId: 'AELF',
+                    contractAddress: 'contract address',
+                    contractName: 'contract name',
+                    description: 'contract description',
+                    github: 'contract github',
+                    whitelist: {
+                        Approve: {
+                            parameter1: 'a',
+                            parameter2: 'b',
+                            parameter3: 'c'
+                        }
+                    }
+                }
+            ]
+        }
+    }
+```
+
 <span id="get-chain-information"></span>
 
 ### 1.GET_CHAIN_INFORMATION
 
 You can see the demo [./devDemos/test.html](https://github.com/hzz780/aelf-web-extension/tree/1.0/devDemos). [demo.js just a draft]
 
-If you want to check Token transfer Demo.
-You can [click here](https://github.com/hzz780/aelf-web-extension/tree/1.0/demo/token)
+If you want to check Token Transfer Demo.
+You can [click here](https://github.com/hzz780/aelf-web-extension/tree/master/demo/token)
 
-The Methods calls are almost identical to the methods call of the aelf-sdk.js
+The methods calls act the same as the methods call of the aelf-sdk.js
 
 Note: ``` '...' ``` stands for omitted data.
 
@@ -404,44 +424,30 @@ aelf.removeMethodsWhitelist({
 // }
 ```
 
-<span id="dataformat"></span>
+## For Extension Developers
 
-## Data Format
+1. Download the code
 
-```javascript
-    NightElf = {
-        histories: [],
-        keychain: {
-            keypairs: [
-                {
-                    name: 'your keypairs name',
-                    address: 'your keypairs address',
-                    mnemonic: 'your keypairs mnemonic',
-                    privateKey: 'your keupairs privateKey',
-                    publicKey: {
-                        x: 'you keupairs publicKey',
-                        y: 'you keupairs publicKey'
-                    }
-                }
-            ],
-            permissions: [
-                {
-                    chainId: 'AELF',
-                    contractAddress: 'contract address',
-                    contractName: 'contract name',
-                    description: 'contract description',
-                    github: 'contract github',
-                    whitelist: {
-                        Approve: {
-                            parameter1: 'a',
-                            parameter2: 'b',
-                            parameter3: 'c'
-                        }
-                    }
-                }
-            ]
-        }
-    }
+```shell
+   git clone https://github.com/hzz780/aelf-web-extension.git
+```
+
+2. Install dependent
+
+```shell
+    npm install
+```
+
+3. Run webpack
+
+```shell
+    webpack -w
+```
+
+4. Add to the browser
+
+```shell
+    open development mode, add the webpack output app/public.
 ```
 
 ## Project Information
