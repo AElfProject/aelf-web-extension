@@ -297,9 +297,7 @@ export default class PermissionsDetail extends Component {
                     <Flex>
                         <div className={style.headInfoBox}>
                             <div className={style.head}>
-                                <div className={style.headPortrait}>
-                                    this is 头像
-                                </div>
+                                <div className={style.headPortrait}></div>
                             </div>
                             <div className={style.permissionInfo}>
                                 <div className={style.permissionOptions}>
