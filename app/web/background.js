@@ -229,20 +229,13 @@ export default class Background {
      */
     static getChainInformation(sendResponse, chainInfo) {
         this.lockGuard(sendResponse, () => {
-            const user = null;
-            const pssword = null;
-            const timeout = null;
-            const header = [{
-                name: 'Accept',
-                value: 'text/plain;v=1.0'
-            }];
             const aelf = new AElf(
                 new AElf.providers.HttpProvider(
                     chainInfo.payload.httpProvider,
-                    user,
-                    pssword,
-                    timeout,
-                    header
+                    chainInfo.payload.user || null,
+                    chainInfo.payload.pssword || null,
+                    chainInfo.payload.timeout || null,
+                    chainInfo.payload.header || null
             ));
             aelf.chain.getChainInformation((error, result) => {
                 // console.log(error, result);
