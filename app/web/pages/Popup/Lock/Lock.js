@@ -22,10 +22,10 @@ import AelfButton from '../../../components/Button/Button';
 import {getPageContainerStyle, moneyKeyboardWrapProps, getParam} from '../../../utils/utils';
 import Password from '../../../components/Password/Password';
 import NavNormal from '../../../components/NavNormal/NavNormal';
-
+import AgreementZh from './components/AgreementZh';
+import AgreementEn from './components/AgreementEn';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
-
 import {
     FormattedMessage
 } from 'react-intl';
@@ -49,7 +49,8 @@ export default class Lock extends Component {
             walletStatus: false,
             timingLockTimes: 0,
             agreement: false,
-            showOption: false
+            showOption: false,
+            language: navigator.language
         };
         const action = getParam('action', location.href);
         const isClear = action === 'clear_wallet';
@@ -490,29 +491,15 @@ export default class Lock extends Component {
     }
 
     renderAgreementContent() {
+        let content = <div></div>;
+        if (this.state.language === 'zh-CN') {
+            content = <AgreementZh />;
+        }
+        else {
+            content = <AgreementEn />;
+        }
         return <div className={style.agreementContent}>
-                    <p style={{textAlign: 'center'}}>这个就是协议了</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
-                    <p>balabalabalababalalbalbalablablablbalbal</p>
+                    {content}
                 </div>;
     }
 

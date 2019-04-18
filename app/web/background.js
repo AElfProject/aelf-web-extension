@@ -23,9 +23,9 @@ import NotificationService from './service/NotificationService';
 import FileSaver from 'file-saver';
 import SparkMD5 from 'spark-md5';
 
-import Aelf from 'aelf-sdk';
+import AElf from 'aelf-sdk';
 
-const {wallet} = Aelf;
+const {wallet} = AElf;
 const {
     AESEncrypto,
     AESDecrypto
@@ -229,7 +229,7 @@ export default class Background {
      */
     static getChainInformation(sendResponse, chainInfo) {
         this.lockGuard(sendResponse, () => {
-            const aelf = new Aelf(new Aelf.providers.HttpProvider(chainInfo.payload.httpProvider));
+            const aelf = new AElf(new AElf.providers.HttpProvider(...chainInfo.payload.httpProvider));
             aelf.chain.getChainInformation((error, result) => {
                 // console.log(error, result);
                 if (error || !result || result.error) {
@@ -511,7 +511,7 @@ export default class Background {
                 });
                 return;
             }
-            const wallet = Aelf.wallet.getWalletByPrivateKey(keypair.privateKey);
+            const wallet = AElf.wallet.getWalletByPrivateKey(keypair.privateKey);
             dappAelfMeta.aelf.chain.contractAtAsync(contractAddress, wallet, (error, contractMethods) => {
                 if (error) {
                     sendResponse({
