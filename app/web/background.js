@@ -229,14 +229,7 @@ export default class Background {
      */
     static getChainInformation(sendResponse, chainInfo) {
         this.lockGuard(sendResponse, () => {
-            const aelf = new AElf(
-                new AElf.providers.HttpProvider(
-                    chainInfo.payload.httpProvider,
-                    chainInfo.payload.user || null,
-                    chainInfo.payload.pssword || null,
-                    chainInfo.payload.timeout || null,
-                    chainInfo.payload.header || null
-            ));
+            const aelf = new AElf(new AElf.providers.HttpProvider(...chainInfo.payload.httpProvider));
             aelf.chain.getChainInformation((error, result) => {
                 // console.log(error, result);
                 if (error || !result || result.error) {

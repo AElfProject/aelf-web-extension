@@ -22,7 +22,7 @@ import AelfButton from '../../../components/Button/Button';
 import {getPageContainerStyle, moneyKeyboardWrapProps, getParam} from '../../../utils/utils';
 import Password from '../../../components/Password/Password';
 import NavNormal from '../../../components/NavNormal/NavNormal';
-import AgreementCn from './components/AgreementCn';
+import AgreementZh from './components/AgreementZh';
 import AgreementEn from './components/AgreementEn';
 import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
@@ -493,7 +493,7 @@ export default class Lock extends Component {
     renderAgreementContent() {
         let content = <div></div>;
         if (this.state.language === 'zh-CN') {
-            content = <AgreementCn />;
+            content = <AgreementZh />;
         }
         else {
             content = <AgreementEn />;
