@@ -18,20 +18,27 @@ Note: Access to file URLs isn't automatic. The user must visit the extensions ma
 
 ## For Dapp Developers
 
+### Interaction Flow
+
+- 1.Make sure the user get the Extension
+- 2.Connect Chain
+- 3.Initialize Contract
+- 4.Call contract methods
+
 ### How to use
 
 If you need complete data structure. you can [click here](#dataformat)
 
+- [0. Check Extension Demo](#check-extension-demo)
 - [1. GET_CHAIN_INFORMATION](#get-chain-information)
 - [2. CALL_AELF_CHAIN](#call-aelf-chain)
 - [3. LOGIN](#login)
 - [4. INIT_AELF_CONTRACT](#init-aelf-contract)
 - [5. CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call-aelf-contract)
 - [6. CHECK_PERMISSION](#check-permission)
-- [7. GET_ADDRESS](#get-address)
-- [8. SET_CONTRACT_PERMISSION](#set-contract-permission)
-- [9. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
-- [10. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
+- [7. SET_CONTRACT_PERMISSION](#set-contract-permission)
+- [8. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
+- [9. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
 
 <span id="dataformat"></span>
 
@@ -73,9 +80,50 @@ If you need complete data structure. you can [click here](#dataformat)
     }
 ```
 
+<span id="check-extension-demo"></span>
+
+### Demo of Checking the Extension
+
+```js
+let nightElfInstance = null;
+class NightElfCheck {
+    constructor() {
+        const readyMessage = 'NightElf is ready';
+        let resovleTemp = null;
+        this.check = new Promise((resolve, reject) => {
+            if (window.NightElf) {
+                resolve(readyMessage);
+            }
+            setTimeout(() => {
+                reject({
+                    error: 200001,
+                    message: 'timeout / can not find NightElf / please install the extension'
+                });
+            }, 1000);
+            resovleTemp = resolve;
+        });
+        document.addEventListener('NightElf', result => {
+            console.log('test.js check the status of extension named nightElf: ', result);
+            resovleTemp(readyMessage);
+        });
+    }
+    static getInstance() {
+        if (!nightElfInstance) {
+            nightElfInstance = new NightElfCheck();
+            return nightElfInstance;
+        }
+        return nightElfInstance;
+    }
+}
+const nightElfCheck = NightElfCheck.getInstance();
+nightElfCheck.check.then(message => {
+    // connectChain -> Login -> initContract -> call contract methods
+});
+```
+
 <span id="get-chain-information"></span>
 
-### 1.GET_CHAIN_INFORMATION
+### 1.GET_CHAIN_STATUS
 
 You can see the demo [./devDemos/test.html](https://github.com/hzz780/aelf-web-extension/tree/1.0/devDemos). [demo.js just a draft]
 
@@ -88,11 +136,20 @@ Note: ``` '...' ``` stands for omitted data.
 
 ```javascript
 const aelf = new window.NightElf.AElf({
-    httpProvider: 'http://192.168.199.210:5000/chain',
+    httpProvider: [
+        'http://192.168.197.56:8101/chain',
+        null,
+        null,
+        null,
+        [{
+            name: 'Accept',
+            value: 'text/plain;v=1.0'
+        }]
+    ],
     appName: 'Test'
 });
 
-aelf.chain.getChainInformation((error, result) => {
+aelf.chain.getChainStatus((error, result) => {
     console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
     console.log(error, result);
 });
@@ -283,36 +340,9 @@ aelf.checkPermission({
 // }
 ```
 
-<span id="get-address"></span>
-
-### 7.GET_ADDRESS
-
-```javascript
-aelf.getAddress({
-    appName: 'hzzTest'
-}, (error, result) => {
-    console.log('>>>>>>>>>>>>>>>>>>>', result);
-});
-
-// result = {
-//     ...,
-//     addressList: [
-//         {
-//             address: '...',
-//             name: '...',
-//             publicKey: {
-//                 x: '...',
-//                 y: '...'
-//             }
-//         }
-//     ]
-// }
-
-```
-
 <span id="set-contract-permission"></span>
 
-### 8.SET_CONTRACT_PERMISSION
+### 7.SET_CONTRACT_PERMISSION
 
 ```javascript
 aelf.setContractPermission({
@@ -360,7 +390,7 @@ aelf.setContractPermission({
 
 <span id="remove-contract-permission"></span>
 
-### 9.REMOVE_CONTRACT_PERMISSION
+### 8.REMOVE_CONTRACT_PERMISSION
 
 ```javascript
 aelf.removeContractPermission({
@@ -393,7 +423,7 @@ aelf.removeContractPermission({
 
 <span id="remove-methods-whitelist"></span>
 
-### 10.REMOVE_METHODS_WHITELIST
+### 9.REMOVE_METHODS_WHITELIST
 
 ```javascript
 aelf.removeMethodsWhitelist({

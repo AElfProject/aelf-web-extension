@@ -237,6 +237,11 @@ class NightAElf {
                     contractAddress: contractAddress
                 }
             }).then(result => {
+                if (result.error) {
+                    callback(result.error, result);
+                    return;
+                }
+
                 const message = JSON.parse(result.message);
 
                 let contractMethods = {};
