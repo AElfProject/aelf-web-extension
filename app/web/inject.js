@@ -132,13 +132,11 @@ class NightAElf {
         });
     }
 
-
-
     chain() {
-        const getChainInformation = callback => {
+        const getChainStatus = callback => {
             window.NightElf.api({
                 appName: this.appName,
-                method: 'GET_CHAIN_INFORMATION',
+                method: 'GET_CHAIN_STATUS',
                 payload: {
                     httpProvider: this.httpProvider
                 }
@@ -149,40 +147,58 @@ class NightAElf {
                 }
             });
         };
+
+        const getChainState = (blockHash, callback) => {
+            this.callAElfChain('getChainState', [blockHash], callback);
+        };
+
         const getBlockHeight = callback => {
             this.callAElfChain('getBlockHeight', [], callback);
         };
 
-        const getFileDescriptorSet = (address, callback) => {
-            this.callAElfChain('getFileDescriptorSet', [address], callback);
+        const getContractFileDescriptorSet = (address, callback) => {
+            this.callAElfChain('getContractFileDescriptorSet', [address], callback);
         };
 
-        const getBlockInfo = (blockHeight, includeTxs, callback) => {
+        const getBlock = (blockHash, includeTxs, callback) => {
             this.callAElfChain(
-                'getBlockInfo',
+                'getBlock',
+                [blockHash, includeTxs],
+                callback
+            );
+        };
+        const getBlockByHeight = (blockHeight, includeTxs, callback) => {
+            this.callAElfChain(
+                'getBlockByHeight',
                 [blockHeight, includeTxs],
                 callback
             );
         };
+
         const getTxResult = (txhash, callback) => {
             this.callAElfChain('getTxResult', [txhash], callback);
         };
-        const getTxsResult = (blockhash, offset, num, callback) => {
+
+        const getTxResults = (blockhash, offset, num, callback) => {
             this.callAElfChain(
-                'getTxsResult',
+                'getTxResults',
                 [blockhash, offset, num],
                 callback
             );
         };
-        const getMerklePath = (txid, callback) => {
-            this.callAElfChain('getMerklePath', [txid], callback);
+
+        const getTransactionPoolStatus = callback => {
+            this.callAElfChain('getTransactionPoolStatus', [], callback);
         };
+
         const sendTransaction = (rawtx, callback) => {
             this.callAElfChain('sendTransaction', [rawtx], callback);
         };
-        const checkProposal = (proposalId, callback) => {
-            this.callAElfChain('checkProposal', [proposalId], callback);
+
+        const sendTransactions = (rawtx, callback) => {
+            this.callAElfChain('sendTransactions', [rawtx], callback);
         };
+
         const callReadOnly = (rawtx, callback) => {
             this.callAElfChain('callReadOnly', [rawtx], callback);
         };
@@ -239,17 +255,20 @@ class NightAElf {
             });
         };
 
+        // 对标JS SDK 输出
         return {
-            getChainInformation,
-            getFileDescriptorSet,
+            getChainStatus,
+            getChainState,
+            getContractFileDescriptorSet,
             getBlockHeight,
-            getBlockInfo,
-            getTxResult,
-            getTxsResult,
-            getMerklePath,
+            getBlock,
+            getBlockByHeight,
             sendTransaction,
-            checkProposal,
+            sendTransactions,
             callReadOnly,
+            getTxResult,
+            getTxResults,
+            getTransactionPoolStatus,
             contractAtAsync
         };
     }

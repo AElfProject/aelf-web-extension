@@ -428,27 +428,27 @@ aelf.removeMethodsWhitelist({
 
 1. Download the code
 
-```shell
-   git clone https://github.com/hzz780/aelf-web-extension.git
-```
+    ```bash
+    git clone https://github.com/hzz780/aelf-web-extension.git
+    ```
 
 2. Install dependent
 
-```shell
-    npm install
-```
+    ```bash
+        npm install
+    ```
 
 3. Run webpack
 
-```shell
-    webpack -w
-```
+    ```bash
+        webpack -w
+    ```
 
 4. Add to the browser
 
-```shell
-    open development mode, add the webpack output app/public.
-```
+    ```bash
+        open development mode, add the webpack output app/public.
+    ```
 
 ## Project Information
 

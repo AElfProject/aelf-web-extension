@@ -8,7 +8,7 @@
 document.addEventListener('NightElf', result => {
     console.log(Date.now());
     console.log('NightElf test.html: ', result);
-    const getChainInformation = document.getElementById('get-chain-information');
+    const getChainStatus = document.getElementById('get-chain-status');
     const callAelfChainBtn = document.getElementById('call-aelf-chain');
     const initAelfContract = document.getElementById('init-aelf-contract');
     const callAelfContract = document.getElementById('call-aelf-contract');
@@ -52,7 +52,16 @@ document.addEventListener('NightElf', result => {
 
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
-        httpProvider: 'http://192.168.197.56:8101/chain',
+        httpProvider: [
+            'http://192.168.197.56:8101/chain',
+            null,
+            null,
+            null,
+            [{
+                name: 'Accept',
+                value: 'text/plain;v=1.0'
+            }]
+        ],
         // httpProvider: 'http://192.168.197.70:8000/chain',
         appName: 'Test'
     });
@@ -92,9 +101,9 @@ document.addEventListener('NightElf', result => {
         });
     };
 
-    getChainInformation.onclick = function () {
-        aelf.chain.getChainInformation((error, result) => {
-            console.log('>>>>>>>>>>>>> getChainInformation >>>>>>>>>>>>>');
+    getChainStatus.onclick = function () {
+        aelf.chain.getChainStatus((error, result) => {
+            console.log('>>>>>>>>>>>>> getChainStatus >>>>>>>>>>>>>');
             console.log(error, result);
         });
     };
