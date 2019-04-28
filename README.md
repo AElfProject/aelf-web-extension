@@ -30,7 +30,7 @@ Note: Access to file URLs isn't automatic. The user must visit the extensions ma
 If you need complete data structure. you can [click here](#dataformat)
 
 - [0. Check Extension Demo](#check-extension-demo)
-- [1. GET_CHAIN_INFORMATION](#get-chain-information)
+- [1. GET_CHAIN_STATUS](#get-chain-status)
 - [2. CALL_AELF_CHAIN](#call-aelf-chain)
 - [3. LOGIN](#login)
 - [4. INIT_AELF_CONTRACT](#init-aelf-contract)
@@ -121,7 +121,7 @@ nightElfCheck.check.then(message => {
 });
 ```
 
-<span id="get-chain-information"></span>
+<span id="get-chain-status"></span>
 
 ### 1.GET_CHAIN_STATUS
 
