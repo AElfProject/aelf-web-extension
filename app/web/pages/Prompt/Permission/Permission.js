@@ -30,13 +30,14 @@ export default class Permission extends Component {
         super(props);
         const data = window.data || apis.extension.getBackgroundPage().notification || null;
         const message = data.message;
-        console.log(message);
+
         const {
             appName,
             hostname,
             payload
         } = message;
-        this.address = this.props.location.state === undefined ? message.payload.payload.address : this.props.location.state;
+        this.address = this.props.location.state === undefined
+            ? message.payload.payload.address : this.props.location.state;
         this.permission = {
             appName,
             domain: hostname,
@@ -45,7 +46,7 @@ export default class Permission extends Component {
             address: this.address,
             contracts: payload.payload.contracts
         };
-        console.log(this.permission);
+
         this.isLogin = payload.payload.method === 'LOGIN';
         this.isSetPermission = payload.payload.method === 'SET_CONTRACT_PERMISSION';
         this.newPermissions = message.payload.payload.contracts;
@@ -84,7 +85,7 @@ export default class Permission extends Component {
             InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission)
             .send()
             .then(result => {
-                console.log(InternalMessageTypes.SET_LOGIN_PERMISSION, result);
+
                 if (result.error === 0) {
                     Toast.success('Bind Permisson Success, after 3s close the window.');
                     window.data.sendResponse({
@@ -105,7 +106,7 @@ export default class Permission extends Component {
             InternalMessage.payload(InternalMessageTypes.SET_CONTRACT_PERMISSION, this.permission)
             .send()
             .then(result => {
-                console.log(InternalMessageTypes.SET_CONTRACT_PERMISSION, result);
+
                 if (result.error === 0) {
                     Toast.success('Bind Permisson Success, after 3s close the window.');
                     window.data.sendResponse({
