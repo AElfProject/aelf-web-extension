@@ -30,14 +30,12 @@ export default class Permission extends Component {
         super(props);
         const data = window.data || apis.extension.getBackgroundPage().notification || null;
         const message = data.message;
-
         const {
             appName,
             hostname,
             payload
         } = message;
-        this.address = this.props.location.state === undefined
-            ? message.payload.payload.address : this.props.location.state;
+        this.address = this.props.location.state === undefined ? message.payload.payload.address : this.props.location.state;
         this.permission = {
             appName,
             domain: hostname,
@@ -46,7 +44,6 @@ export default class Permission extends Component {
             address: this.address,
             contracts: payload.payload.contracts
         };
-
         this.isLogin = payload.payload.method === 'LOGIN';
         this.isSetPermission = payload.payload.method === 'SET_CONTRACT_PERMISSION';
         this.newPermissions = message.payload.payload.contracts;
@@ -79,50 +76,65 @@ export default class Permission extends Component {
 
     setPermission() {
         const {address} = this.state;
-        const detail = JSON.stringify({address});
+        let detail = null;
         // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
-        if (this.isLogin) {
-            InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission)
-            .send()
-            .then(result => {
-
-                if (result.error === 0) {
-                    Toast.success('Bind Permisson Success, after 3s close the window.');
-                    window.data.sendResponse({
-                        ...errorHandler(0),
-                        detail,
-                        message: 'Bind Permisson Success'
-                    });
-                    setTimeout(() => {
-                        window.close();
-                    }, 3000);
-                }
-                else {
-                    Toast.fail(result.message, 3, () => {}, false);
-                }
+        InternalMessage.payload(InternalMessageTypes.GET_ADDRESS)
+        .send().
+        then(result => {
+            const keypairMessage = result.addressList.filter(item => {
+                return item.address === address;
             });
-        }
-        else {
-            InternalMessage.payload(InternalMessageTypes.SET_CONTRACT_PERMISSION, this.permission)
-            .send()
-            .then(result => {
 
-                if (result.error === 0) {
-                    Toast.success('Bind Permisson Success, after 3s close the window.');
-                    window.data.sendResponse({
-                        ...errorHandler(0),
-                        detail,
-                        message: 'Bind Permisson Success'
-                    });
-                    setTimeout(() => {
-                        window.close();
-                    }, 3000);
-                }
-                else {
-                    Toast.fail(result.message, 3, () => {}, false);
-                }
-            });
-        }
+            if (keypairMessage) {
+                detail = JSON.stringify({
+                    address,
+                    name: keypairMessage[0].name
+                });
+            }
+
+            if (this.isLogin) {
+                InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission)
+                .send()
+                .then(result => {
+                    console.log(InternalMessageTypes.SET_LOGIN_PERMISSION, result);
+                    if (result.error === 0) {
+                        Toast.success('Bind Permisson Success, after 3s close the window.');
+                        window.data.sendResponse({
+                            ...errorHandler(0),
+                            detail,
+                            message: 'Bind Permisson Success'
+                        });
+                        setTimeout(() => {
+                            window.close();
+                        }, 3000);
+                    }
+                    else {
+                        Toast.fail(result.message, 3, () => {}, false);
+                    }
+                });
+            }
+            else {
+                InternalMessage.payload(InternalMessageTypes.SET_CONTRACT_PERMISSION, this.permission)
+                .send()
+                .then(result => {
+                    console.log(InternalMessageTypes.SET_CONTRACT_PERMISSION, result);
+                    if (result.error === 0) {
+                        Toast.success('Bind Permisson Success, after 3s close the window.');
+                        window.data.sendResponse({
+                            ...errorHandler(0),
+                            detail,
+                            message: 'Bind Permisson Success'
+                        });
+                        setTimeout(() => {
+                            window.close();
+                        }, 3000);
+                    }
+                    else {
+                        Toast.fail(result.message, 3, () => {}, false);
+                    }
+                });
+            }
+        });
     }
 
     refuse() {

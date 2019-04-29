@@ -107,11 +107,13 @@ export default class LoginKeypairs extends Component {
             Toast.fail('Night Elf is locked!', 3);
             return;
         }
-        const path = {
-            pathname: '/',
-            state: address
-        };
-        hashHistory.push(path);
+        else {
+            const path = {
+                pathname: '/',
+                state: address
+            };
+            hashHistory.push(path);
+        }
     }
 
     checkWallet(address) {
@@ -127,7 +129,7 @@ export default class LoginKeypairs extends Component {
                         cancelText='Cancel'
                         onChange={e => this.setSearch(e)}
                     />
-                </div>;
+            </div>;
     }
 
     setSearch(e) {
