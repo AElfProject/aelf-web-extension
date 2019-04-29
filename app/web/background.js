@@ -168,8 +168,8 @@ export default class Background {
             case InternalMessageTypes.GET_ALLPERMISSIONS:
                 Background.getAllPermissions(sendResponse);
                 break;
-            case InternalMessageTypes.GET_CHAIN_INFORMATION:
-                Background.getChainInformation(sendResponse, message.payload);
+            case InternalMessageTypes.GET_CHAIN_STATUS:
+                Background.getChainStatus(sendResponse, message.payload);
                 break;
             case InternalMessageTypes.CALL_AELF_CHAIN:
                 Background.callAelfChain(sendResponse, message.payload);
@@ -227,10 +227,10 @@ export default class Background {
      * @param {Function} sendResponse Delegating response handler.
      * @param {Object} chainInfo from content.js
      */
-    static getChainInformation(sendResponse, chainInfo) {
+    static getChainStatus(sendResponse, chainInfo) {
         this.lockGuard(sendResponse, () => {
             const aelf = new AElf(new AElf.providers.HttpProvider(...chainInfo.payload.httpProvider));
-            aelf.chain.getChainInformation((error, result) => {
+            aelf.chain.getChainStatus((error, result) => {
                 // console.log(error, result);
                 if (error || !result || result.error) {
                     sendResponse({
@@ -270,7 +270,6 @@ export default class Background {
                 });
             });
         });
-
     }
 
     /**
@@ -284,6 +283,7 @@ export default class Background {
             // 如果permissions下有对应的
             const {
                 keychain: {
+                    keypairs = [],
                     permissions = []
                 }
             } = nightElfObject;
@@ -309,6 +309,9 @@ export default class Background {
                     && loginInfo.payload.payload.contracts
                     && appPermissons;
 
+                const keypairLoggedIn
+                    = keypairs.find(item => item.address === addressBinded);
+
                 if (isLoginAndSetPermission) {
                     const address = loginInfo.payload.payload.address;
                     const contracts = loginInfo.payload.payload.contracts;
@@ -322,6 +325,7 @@ export default class Background {
                             ...errorHandler(0),
                             message: '',
                             detail: JSON.stringify({
+                                name: keypairLoggedIn.name,
                                 address: addressBinded
                             })
                         });
@@ -335,6 +339,7 @@ export default class Background {
                             ...errorHandler(0),
                             message: '',
                             detail: JSON.stringify({
+                                name: keypairLoggedIn.name,
                                 address: addressBinded
                             })
                         });
@@ -923,6 +928,9 @@ export default class Background {
     static removeKeypair(sendResponse, address) {
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             nightElfObject.keychain.keypairs = nightElfObject.keychain.keypairs.filter(item => {
+                return address !== item.address;
+            });
+            nightElfObject.keychain.permissions = nightElfObject.keychain.permissions.filter(item => {
                 return address !== item.address;
             });
 

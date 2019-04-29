@@ -19,44 +19,50 @@
 </style>
 <body>
     <h1>Hello Test.html</h1>
-    
+    <p>You can see the console.log in the dev tool.</p>
 
-    <button type="button" id="check-content">checkContent</button>
-    <br>
-
-    <button type="button" id="get-chain-information">getChainInformation</button>
-    <div>It is not necessary to connectChain, if we want to use getTxResult, etc.</div>
-    <br>
-
+    <!-- just for fun -->
+    <!-- <button type="button" id="check-content">checkContent</button>
+    <br> -->
     <button type="button" id="login-btn">login</button>
+    <div>If the user had logged in, you will get the information of the user.</div>
+    <div>If not, there will be a prompt for user to login in.</div>
+    <br>
+
+    <button type="button" id="get-chain-status">getChainStatus</button>
+    <div>It is necessary to getChainStatus at first when use extension.</div>
     <br>
 
     <button type-="button" id="set-contract-permission">Change of contract information</button>
+    <p>We can reset permission after login.</p>
     <br>
 
     <button type="button" id="remove-contract-permission">Remove contract permission</button>
+    <p>We remove the permission after set it.</p>
     <br>
 
     <button type="button" id="remove-whitelist">Remove permission whitelist</button>
+    <p>We can remove the action in whitelist out after the user set the action in whitelist.</p>
     <br>
     
-    <button type="button" id="get-block-info">callAelfChain: getBlockInfo</button>
+    <button type="button" id="get-block-by-height">callAelfChain: getBlockByHeight</button>
     <br>
     <button type="button" id="call-aelf-chain">callAelfChain: getTxResult</button>
     <br>
-    <button type="button" id="get-file-descriptor-set">callAelfChain: getFileDescriptorSet</button>
+    <button type="button" id="get-contract-descriptor-set">callAelfChain: getContractFileDescriptorSet</button>
     <br>
     <button type="button" id="send-transation">sendTransation: send-transation, throw error</button>
     <br>
-    <button type="button" id="open-prompt">OPEN_PROMPT: bind permissions</button>
     <br>
-    <button type="button" id="get-address">GET_ADDRESS</button>
-    <br>
+
     <div class="sub-title">contract demo(use token contract)</div>
+    <p>If it does not work, please change the wallet address and contract address.</p>
     <button type="button" id="init-aelf-contract">INIT_AELF_CONTRACT</button>
     <br>
     <button type="button" id="call-aelf-contract">CALL_AELF_CONTRACT</button>
     <br>
+    <br>
+
     <div class="sub-title">check permission</div>
     <button type="button" id="check-permission-address">CHECK_PERMISSION by address</button>
     <br>
