@@ -206,7 +206,7 @@ aelf.login({
 });
 
 // keychain = {
-//     keypairs: {
+//     keypairs: [{
 //         name: 'your keypairs name',
 //         address: 'your keypairs address',
 //         mnemonic: 'your keypairs mnemonic',
@@ -215,7 +215,7 @@ aelf.login({
 //             x: 'f79c25eb......',
 //             y: '7fa959ed......'
 //         }
-//     },
+//     }],
 //     permissions: [{
 //         appName: 'hzzTest',
 //         address: 'your keyparis address',

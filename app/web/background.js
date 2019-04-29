@@ -924,6 +924,9 @@ export default class Background {
             nightElfObject.keychain.keypairs = nightElfObject.keychain.keypairs.filter(item => {
                 return address !== item.address;
             });
+            nightElfObject.keychain.permissions = nightElfObject.keychain.permissions.filter(item => {
+                return address !== item.address;
+            });
 
             nightElf = NightElf.fromJson(nightElfObject);
             Background.updateWallet(sendResponse);
