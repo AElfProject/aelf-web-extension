@@ -283,6 +283,7 @@ export default class Background {
             // 如果permissions下有对应的
             const {
                 keychain: {
+                    keypairs = [],
                     permissions = []
                 }
             } = nightElfObject;
@@ -308,6 +309,9 @@ export default class Background {
                     && loginInfo.payload.payload.contracts
                     && appPermissons;
 
+                const keypairLoggedIn
+                    = keypairs.find(item => item.address === addressBinded);
+
                 if (isLoginAndSetPermission) {
                     const address = loginInfo.payload.payload.address;
                     const contracts = loginInfo.payload.payload.contracts;
@@ -321,6 +325,7 @@ export default class Background {
                             ...errorHandler(0),
                             message: '',
                             detail: JSON.stringify({
+                                name: keypairLoggedIn.name,
                                 address: addressBinded
                             })
                         });
@@ -334,6 +339,7 @@ export default class Background {
                             ...errorHandler(0),
                             message: '',
                             detail: JSON.stringify({
+                                name: keypairLoggedIn.name,
                                 address: addressBinded
                             })
                         });
