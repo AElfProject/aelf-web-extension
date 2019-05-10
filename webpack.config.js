@@ -10,6 +10,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 // 与webpack内置dev-server功能会有重复，所以不推荐混合在一起使用
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
@@ -30,11 +33,12 @@ let cleanOptions = {
 const outputDir = 'public';
 
 // TODO: 热更新，浏览器同步组件
-module.exports = {
+// module.exports =
+let config = {
     // When mode is production or not defined, minimize is enabled. This option automatically adds Uglify plugin.
     // production will remove the 'dead code'. Look at Tree Shaking
-    mode: 'none',
-    // mode: 'production',
+    // mode: 'none',
+    mode: 'production',
     // mode: 'development',
     entry: {
         // wallet: './app/web/js/index.jsx',
@@ -174,4 +178,29 @@ module.exports = {
         // }),
         new CleanWebpackPlugin(pathsToClean, cleanOptions)
     ]
+};
+
+module.exports = (env, argv) => {
+
+    if (argv.mode === 'production' || config.mode) {
+        config.plugins.push(
+            // new HtmlWebpackPlugin({
+            //     chunks: [''],
+            //     template: './app/web/popup.html',
+            //     filename: `./${outputDir}/popup.html`
+            // })
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    compress: {
+                        warnings: false,
+                        drop_debugger: true,
+                        drop_console: true
+                    }
+                }
+            })
+        );
+        // console.log('production: ', config);
+    }
+
+    return config;
 };
