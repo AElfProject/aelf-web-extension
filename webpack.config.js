@@ -57,7 +57,10 @@ let config = {
     },
 
     resolve: {
-        extensions: ['.js', '.jsx', '.scss']
+        extensions: ['.js', '.jsx', '.scss'],
+        alias: {
+            'aelf-sdk$': 'aelf-sdk/dist/aelf.umd.js'
+        }
     },
     module: {
         rules: [{

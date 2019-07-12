@@ -5,7 +5,7 @@
  */
 // Immutability Is Important
 // https://reactjs.org/tutorial/tutorial.html#why-immutability-is-important
-import aelf from 'aelf-sdk'
+import AElf from 'aelf-sdk'
 
 // TODO: 将localStorage部分封装到aelf-sdk中去，
 // node部分使用file（json）存储，RN使用AsyncStorage.
@@ -17,8 +17,8 @@ function insertWalletInfo(walletInfoInput, password) {
     let walletInfo = Object.assign({}, walletInfoInput);
     // let walletInfo = mnemonicWallet || privateKeyWallet; // 助记词钱包优先
     if (password) {
-        walletInfo.AESEncryptoPrivateKey = aelf.wallet.AESEncrypto(walletInfo.privateKey, password);
-        walletInfo.AESEncryptoMnemonic = aelf.wallet.AESEncrypto(walletInfo.mnemonic, password);
+        walletInfo.AESEncryptoPrivateKey = AElf.wallet.AESEncrypt(walletInfo.privateKey, password);
+        walletInfo.AESEncryptoMnemonic = AElf.wallet.AESEncrypt(walletInfo.mnemonic, password);
 
         if (!walletInfo.publicKey) {
             let publicKey = walletInfo.keyPair.getPublic();

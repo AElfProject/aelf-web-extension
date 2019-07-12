@@ -3,8 +3,8 @@ import Keychain from './Keychain';
 // import Settings from './Settings';
 import {wallet} from 'aelf-sdk';
 const {
-    AESEncrypto,
-    AESDecrypto
+    AESEncrypt,
+    AESDecrypt
 } = wallet;
 // import Hasher from '../util/Hasher'
 // import IdGenerator from '../util/IdGenerator'
@@ -50,7 +50,7 @@ export default class NightElf {
      */
     decrypt(seed) {
         if (this.isEncrypted()) {
-            this.keychain = Keychain.fromJson(AESDecrypto(this.keychain, seed));
+            this.keychain = Keychain.fromJson(AESDecrypt(this.keychain, seed));
         }
     }
 
@@ -59,7 +59,7 @@ export default class NightElf {
      * @param seed - The seed to decrypt with
      */
     encrypt(seed) {
-        if (!this.isEncrypted()) this.keychain = AESEncrypto(this.keychain, seed);
+        if (!this.isEncrypted()) this.keychain = AESEncrypt(this.keychain, seed);
     }
 
     forBackup() {

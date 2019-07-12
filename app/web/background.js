@@ -27,8 +27,8 @@ import AElf from 'aelf-sdk';
 
 const {wallet} = AElf;
 const {
-    AESEncrypto,
-    AESDecrypto
+    AESEncrypt,
+    AESDecrypt
 } = wallet;
 
 /* eslint-disable fecs-camelcase */
@@ -517,7 +517,7 @@ export default class Background {
                 return;
             }
             const wallet = AElf.wallet.getWalletByPrivateKey(keypair.privateKey);
-            dappAelfMeta.aelf.chain.contractAtAsync(contractAddress, wallet, (error, contractMethods) => {
+            dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet, (error, contractMethods) => {
                 if (error) {
                     sendResponse({
                         ...errorHandler(500001, error)
@@ -751,7 +751,7 @@ export default class Background {
         // TODO: Check seed.
         console.log(sendResponse);
         if (nightElf && seed) {
-            const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
+            const nightElfEncrypto = AESEncrypt(JSON.stringify(nightElf), seed);
             apis.storage.local.set({
                 nightElfEncrypto
             }, result => {
@@ -797,7 +797,7 @@ export default class Background {
     static backupWallet(sendResponse, _seed) {
         seed = _seed;
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
-            const nightElfEncrypto = AESEncrypto(JSON.stringify(nightElf), seed);
+            const nightElfEncrypto = AESEncrypt(JSON.stringify(nightElf), seed);
             let blob = new Blob([nightElfEncrypto], {type: 'text/plain;charset=utf-8'});
             // let file = new File(
             //     [nightElfEncrypto],
@@ -829,7 +829,7 @@ export default class Background {
             let nightElfString;
             if (nightElfEncrypto) {
                 try {
-                    nightElfString = JSON.parse(AESDecrypto(nightElfEncrypto, seed));
+                    nightElfString = JSON.parse(AESDecrypt(nightElfEncrypto, seed));
                 }
                 catch (e) {
                     sendResponse({
@@ -1333,7 +1333,7 @@ export default class Background {
                 if (result.nightElfEncrypto) {
                     let nightElfString;
                     try {
-                        nightElfString = AESDecrypto(result.nightElfEncrypto, seed);
+                        nightElfString = AESDecrypt(result.nightElfEncrypto, seed);
                     }
                     catch (e) {
                         sendResponse({

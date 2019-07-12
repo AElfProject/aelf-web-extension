@@ -15,7 +15,7 @@ import InternalMessage from '../../../messages/InternalMessage';
 import insert from '../../../utils/insert';
 import checkWallet from '../../../utils/checkWallet';
 
-import aelf from 'aelf-sdk';
+import AElf from 'aelf-sdk';
 
 import {FormattedMessage} from 'react-intl';
 
@@ -65,8 +65,8 @@ export default class Import extends Component {
             return;
         }
 
-        let mnemonicWallet = aelf.wallet.getWalletByMnemonic(this.state.mnemonic.trim() || '');
-        let privateKeyWallet = aelf.wallet.getWalletByPrivateKey(this.state.privateKey.trim() || '');
+        let mnemonicWallet = AElf.wallet.getWalletByMnemonic(this.state.mnemonic.trim() || '');
+        let privateKeyWallet = AElf.wallet.getWalletByPrivateKey(this.state.privateKey.trim() || '');
 
         // if (!privateKeyWallet && !mnemonicWallet) {
         if (!mnemonicWallet) {
