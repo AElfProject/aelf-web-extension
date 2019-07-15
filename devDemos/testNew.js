@@ -4,6 +4,11 @@
  */
 /* global NightElf */
 
+// century renew blade meadow faith evil uniform work discover poet ripple drill
+
+const tokenContractAddress = 'WnV9Gv3gioSh3Vgaw8SSB96nV8fWUNxuVozCf6Y14e7RXyGaM';
+const testAddress = 'AZsECHAzWgWpCoywTdv8mU8s75yicmkmhrJFWc5p6uJ19sb9m';
+
 document.addEventListener('NightElf', result => {
     console.log(Date.now());
     console.log('NightElf test.html: ', result);
@@ -21,14 +26,15 @@ document.addEventListener('NightElf', result => {
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
         httpProvider: [
-            'http://192.168.197.56:8101/chain',
-            null,
-            null,
-            null,
-            [{
-                name: 'Accept',
-                value: 'text/plain;v=1.0'
-            }]
+            // 'http://192.168.197.56:8101/chain',
+            'http://34.213.112.35:8000' //,
+            // null,
+            // null,
+            // null,
+            // [{
+            //     name: 'Accept',
+            //     value: 'text/plain;v=1.0'
+            // }]
         ],
         // httpProvider: 'http://192.168.197.70:8000/chain',
         appName: 'Test'
@@ -41,7 +47,7 @@ document.addEventListener('NightElf', result => {
             method: 'LOGIN',
             contracts: [{
                 chainId: 'AELF',
-                contractAddress: '2J9wWhuyz7Drkmtu9DTegM9rLmamjekmRkCAWz5YYPjm7akfbH',
+                contractAddress: tokenContractAddress,
                 contractName: 'token',
                 description: 'token contract',
                 github: ''
@@ -83,7 +89,7 @@ document.addEventListener('NightElf', result => {
                 address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu',
                 contracts: [{
                     chainId: 'AELF',
-                    contractAddress: '2J9wWhuyz7Drkmtu9DTegM9rLmamjekmRkCAWz5YYPjm7akfbH',
+                    contractAddress: tokenContractAddress,
                     contractName: 'token',
                     description: 'token contract',
                     github: ''
@@ -119,7 +125,7 @@ document.addEventListener('NightElf', result => {
     const getContractFileDescriptorSet = document.getElementById('get-contract-descriptor-set');
     getContractFileDescriptorSet.onclick = function () {
         aelf.chain.getContractFileDescriptorSet(
-            '2J9wWhuyz7Drkmtu9DTegM9rLmamjekmRkCAWz5YYPjm7akfbH',
+            'WnV9Gv3gioSh3Vgaw8SSB96nV8fWUNxuVozCf6Y14e7RXyGaM',
             (err, result) => {
                 console.log('>>>>>>>>>>>>>>>>>>>', result);
             }
@@ -142,7 +148,7 @@ document.addEventListener('NightElf', result => {
                 method: 'LOGIN',
                 contracts: [{
                     chainId: 'AELF',
-                    contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
+                    contractAddress: tokenContractAddress,
                     contractName: 'token',
                     description: 'token contract',
                     github: ''
@@ -184,17 +190,17 @@ document.addEventListener('NightElf', result => {
     window.tokenC = {};
     initAelfContract.onclick = function () {
         const wallet = {
-            address: 'sDMWhcipPmFoMSWFevUh1HbZMQSRon4bMVQYZK8DwCf3jahVs'
+            address: testAddress
             // address withoud permission
             // address: '65dDNxzcd35jESiidFXN5JV8Z7pCwaFnepuYQToNefSgqk9'
         };
         // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
         // There is only one value named address;
-        aelf.chain.contractAtAsync(
-            '2J9wWhuyz7Drkmtu9DTegM9rLmamjekmRkCAWz5YYPjm7akfbH',
+        aelf.chain.contractAt(
+            tokenContractAddress,
             wallet,
             (error, result) => {
-                console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
+                console.log('>>>>>>>>>>>>> contractAt Async >>>>>>>>>>>>>');
                 console.log(error, result);
                 window.tokenC = result;
             }
@@ -205,7 +211,7 @@ document.addEventListener('NightElf', result => {
         tokenC.GetBalance.call(
             {
                 symbol: 'AELF',
-                owner: 'sDMWhcipPmFoMSWFevUh1HbZMQSRon4bMVQYZK8DwCf3jahVs'
+                owner: testAddress
             },
             (err, result) => {
                 console.log('>>>>>>>>>>>>>>>>>>>', result);
@@ -425,11 +431,11 @@ if (false) {
     // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
     // There is only one value named address;
     let tokenC;
-    aelf.chain.contractAtAsync(
+    aelf.chain.contractAt(
         'ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9',
         wallet,
         (error, result) => {
-            console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
+            console.log('>>>>>>>>>>>>> contractAt Async >>>>>>>>>>>>>');
             console.log(error, result);
             tokenC = result;
         }

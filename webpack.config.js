@@ -37,8 +37,10 @@ const outputDir = 'public';
 let config = {
     // When mode is production or not defined, minimize is enabled. This option automatically adds Uglify plugin.
     // production will remove the 'dead code'. Look at Tree Shaking
-    // mode: 'none',
-    mode: 'production',
+    mode: 'none',
+    devtool: 'eval-source-map', // only dev
+    // devtool: 'source-map',
+    // mode: 'production',
     // mode: 'development',
     entry: {
         // wallet: './app/web/js/index.jsx',
@@ -185,7 +187,7 @@ let config = {
 
 module.exports = (env, argv) => {
 
-    if (argv.mode === 'production' || config.mode) {
+    if (argv.mode === 'production' || config.mode !== 'none') {
         config.plugins.push(
             // new HtmlWebpackPlugin({
             //     chunks: [''],
