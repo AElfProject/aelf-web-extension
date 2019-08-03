@@ -39,8 +39,6 @@ let config = {
     // production will remove the 'dead code'. Look at Tree Shaking
     // mode: 'none',
     // devtool: 'eval-source-map', // only dev
-    devtool: 'source-map',
-    mode: 'production',
     // mode: 'development',
     entry: {
         // wallet: './app/web/js/index.jsx',
@@ -187,13 +185,8 @@ let config = {
 
 module.exports = (env, argv) => {
 
-    if (argv.mode === 'production' || config.mode !== 'none') {
+    if (argv.mode === 'production') {
         config.plugins.push(
-            // new HtmlWebpackPlugin({
-            //     chunks: [''],
-            //     template: './app/web/popup.html',
-            //     filename: `./${outputDir}/popup.html`
-            // })
             new UglifyJsPlugin({
                 uglifyOptions: {
                     compress: {
@@ -204,7 +197,6 @@ module.exports = (env, argv) => {
                 }
             })
         );
-        // console.log('production: ', config);
     }
 
     return config;

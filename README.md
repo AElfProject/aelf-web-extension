@@ -471,7 +471,12 @@ aelf.removeMethodsWhitelist({
 3. Run webpack
 
     ```bash
-        webpack -w
+        npm run none
+        npm run none:watch
+        npm run dev
+        npm run dev:watch
+        npm run pro
+        npm run pro:watch
     ```
 
 4. Add to the browser
