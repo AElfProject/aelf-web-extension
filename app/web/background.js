@@ -326,7 +326,8 @@ export default class Background {
                             message: '',
                             detail: JSON.stringify({
                                 name: keypairLoggedIn.name,
-                                address: addressBinded
+                                address: addressBinded,
+                                publicKey: keypairLoggedIn.publicKey
                             })
                         });
                         return;
@@ -340,7 +341,8 @@ export default class Background {
                             message: '',
                             detail: JSON.stringify({
                                 name: keypairLoggedIn.name,
-                                address: addressBinded
+                                address: addressBinded,
+                                publicKey: keypairLoggedIn.publicKey
                             })
                         });
                         return;
