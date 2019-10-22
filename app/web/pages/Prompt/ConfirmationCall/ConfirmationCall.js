@@ -158,8 +158,8 @@ export default class ConfirmationCall extends Component {
     renderWhitelist() {
         return <div className={style.whitelistTip}>
                 <div>
-                    Whitelist this to not have to accept next time
-                    You can remove the permission in Extension
+                    Whitelist this to not have to accept next time.
+                    You can remove the permission in Extension later.
                 </div>
                 <div
                     className={style.enableWhitelist}
@@ -231,10 +231,10 @@ export default class ConfirmationCall extends Component {
                 params.push(obj);
             }
             const whitelistHTML = params.map((item, index) => {
-                return <div key={item.key} className={style.paramsInfo}>{item.key}: {item.value}</div>;
+                return <div key={item.key} className={style.paramsInfo}>{item.key}: {JSON.stringify(item.value, null, 2)}</div>;
             });
             
-            return whitelistHTML;
+            return  <React.Fragment>{ whitelistHTML }</React.Fragment>;
         }
         else {
             return <div className={style.paramsInfo}>This method has no parameters.</div>;
