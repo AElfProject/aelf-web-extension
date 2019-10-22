@@ -11,7 +11,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // 与webpack内置dev-server功能会有重复，所以不推荐混合在一起使用
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -187,15 +187,29 @@ module.exports = (env, argv) => {
 
     if (argv.mode === 'production') {
         config.plugins.push(
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    compress: {
-                        warnings: false,
-                        drop_debugger: true,
-                        drop_console: true
-                    }
+            new TerserPlugin({
+              cache: true,
+              parallel: true,
+              terserOptions: {
+                ecma: undefined,
+                warnings: false,
+                parse: {},
+                compress: {},
+                mangle: true, // Note `mangle.properties` is `false` by default.
+                module: false,
+                output: null,
+                toplevel: false,
+                nameCache: null,
+                ie8: false,
+                keep_classnames: undefined,
+                keep_fnames: false,
+                safari10: false,
+                compress: {
+                  drop_debugger: true,
+                  drop_console: true
                 }
-            })
+              },
+            }),
         );
     }
 
