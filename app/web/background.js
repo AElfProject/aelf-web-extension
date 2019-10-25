@@ -197,6 +197,9 @@ export default class Background {
             case InternalMessageTypes.GET_ADDRESS:
                 Background.getAddress(sendResponse);
                 break;
+            case InternalMessageTypes.GET_SIGNATURE:
+                Background.getSignature(sendResponse, message.payload);
+                break;
 
             case InternalMessageTypes.OPEN_PROMPT:
                 Background.openPrompt(sendResponse, message.payload);
@@ -1397,6 +1400,47 @@ export default class Background {
                 addressList
             });
         });
+    }
+
+    // TODO: need a prompt page. neet week.
+    static getSignature(sendResponse, options) {
+      this.checkSeed({
+        sendResponse
+      }, ({
+        nightElfObject
+      }) => {
+        console.log('getSignature: ', nightElfObject, options);
+        const {
+          keychain: {
+            keypairs = []
+          }
+        } = nightElfObject;
+
+        const {
+          address,
+          hexToBeSign
+        } = options;
+        
+        const keypair = keypairs.find(item => {
+          return item.address === address
+        });
+
+        let signedMsgString;
+        if (keypair) {
+          const keypairAndUtils = AElf.wallet.ellipticEc.keyFromPrivate(keypair.privateKey);
+          const signedMsgObject = keypairAndUtils.sign(hexToBeSign);
+          signedMsgString = [
+            signedMsgObject.r.toString(16, 64),
+            signedMsgObject.s.toString(16, 64),
+            `0${signedMsgObject.recoveryParam.toString()}`
+          ].join('');
+        }
+        
+        sendResponse({
+          ...errorHandler(0),
+          signature: signedMsgString
+        });
+      });
     }
 
     /**

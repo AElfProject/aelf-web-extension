@@ -112,7 +112,7 @@ class Content {
             'CHECK_PERMISSION', 'LOGIN',
             'REMOVE_CONTRACT_PERMISSION', 'REMOVE_METHODS_WHITELIST',
             'SET_CONTRACT_PERMISSION', 'GET_CHAIN_STATUS',
-            'CALL_AELF_CONTRACT_READONLY'
+            'CALL_AELF_CONTRACT_READONLY', 'GET_SIGNATURE'
         ];
 
         if (method === 'OPEN_PROMPT') {

@@ -133,6 +133,17 @@ class NightAElf {
     });
   }
 
+  getSignature(param, callback) {
+    return window.NightElf.api({
+      appName: param.appName,
+      address: param.address,
+      hexToBeSign: param.hexToBeSign,
+      method: 'GET_SIGNATURE'
+    }).then(result => {
+      return this.callbackWrap(result, callback);
+    });
+  }
+
   chain() {
     const getChainStatus = callback => {
       return window.NightElf.api({

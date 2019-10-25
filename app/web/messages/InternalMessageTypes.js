@@ -50,6 +50,7 @@ export const RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
 
 export const GET_ADDRESS = 'getAddress';
+export const GET_SIGNATURE = 'getSignature';
 
 export const OPEN_PROMPT = 'openPrompt';
 // export const SET_PROMPT = 'setPrompt';

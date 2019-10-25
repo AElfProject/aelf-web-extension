@@ -6,7 +6,7 @@
 
 // century renew blade meadow faith evil uniform work discover poet ripple drill
 
-const tokenContractAddress = 'WnV9Gv3gioSh3Vgaw8SSB96nV8fWUNxuVozCf6Y14e7RXyGaM';
+const tokenContractAddress = '25CecrU94dmMdbhC3LWMKxtoaL4Wv8PChGvVJM6PxkHAyvXEhB';
 const testAddress = 'AZsECHAzWgWpCoywTdv8mU8s75yicmkmhrJFWc5p6uJ19sb9m';
 
 document.addEventListener('NightElf', result => {
@@ -27,7 +27,7 @@ document.addEventListener('NightElf', result => {
         // httpProvider: 'http://192.168.199.210:5000/chain',
         httpProvider: [
             // 'http://192.168.197.56:8101/chain',
-            'http://34.213.112.35:8000' //,
+            'http://13.231.179.27:8000' //,
             // null,
             // null,
             // null,
@@ -273,6 +273,15 @@ document.addEventListener('NightElf', result => {
     const errorGetTxResult = document.getElementById('error-get-tx-result');
     errorGetTxResult.onclick = function () {
         aelf.chain.getTxResult('');
+    };
+
+    const getSignature = document.getElementById('get-signature');
+    getSignature.onclick = function () {
+      aelf.getSignature({
+        appName: 'hzzTest',
+        address: '2XCnbwrtYGP3KxjcXnXRmLRh9NN1Y1YaUHAtP7jAxNYzYzfh8p',
+        hexToBeSign: '2333'
+      });
     };
 
     // For test
