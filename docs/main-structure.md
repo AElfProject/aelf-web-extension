@@ -2,7 +2,7 @@
 
 * [Getting Started](GettingStarted/GettingStarted.md)
 * [User use document](User/User.md)
-    * [Install](User/Step/install.md)
+    * [Install](User/Step/install.md)
     * [Create](User/Step/create.md)
     * [Create Keypair](User/Step/use.md)
     * [Backup Keypair / Import Keypair](User/Step/backup-import.md)
@@ -16,7 +16,7 @@
 * [Supported Blockchains](SupportedBlockchains/SupportedBlockchains.md)
     * [AELF](SupportedBlockchains/Chain/AELF.md)
 * [Examples](Examples/Examples.md)
-* [Featrue & TODO](Feature/Feature.md)
+* [Feature & TODO](Feature/Feature.md)
 * [API Reference](ApiReference/ApiReference.md)
     * [GET_CHAIN_INFORMATION / getChainInformation](ApiReference/Api/getChainInformation.md)
     * [CALL_AELF_CHAIN](ApiReference/Api/callAElfChain.md)
