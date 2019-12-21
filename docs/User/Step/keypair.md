@@ -4,11 +4,11 @@
 
 If you already have a Keypair, please check the [Backup Keypair / Import Keypair](backup-import.md) directly.
 
-![Keypair](../../Asset/keypair.png)
+![Keypair](../../Asset/keypair.jpg)
 
 Click the ```Create Keypair``` button shown in the picture to create your Keypair
 
-![Create Keypair](../../Asset/create-keypair.png)
+![Create Keypair](../../Asset/create-keypair.jpg)
 
 You can also enter any name for your Keypair alias.
 
@@ -20,11 +20,11 @@ Please do not screenshots it, because if other people have the screenshots, they
 
 If you do not back up your mnemonic, then you will not be able to create the Keypair.
 
-![Backup](../../Asset/backup-mnemonic.png)
+![Backup](../../Asset/backup-mnemonic.jpg)
 
 Arrange the mnemonics you have recorded to ensure that the mnemonics you have recorded are correct.
 
-![Backup](../../Asset/confirm-mnemonic.png)
+![Backup](../../Asset/confirm-mnemonic.jpg)
 
 ## Finish Creation
 
