@@ -4,7 +4,7 @@
 
 Through the API methods, you can quickly and conveniently perform some operations on the chain, such as transfers and queries. We also provide different calling methods. We use GET_ADDRESS as an example:
 
-### aelf.[$MethodName] [Recommend]
+### aelf.MethodName (Recommend)
 
 ```javascript
 
@@ -45,8 +45,6 @@ We can get the same result by the two above methods, but we recommend that you u
 
 ## Quick link
 
-[GET_CHAIN_INFORMATION / getChainInformation](Api/getChainInformation.md)
-
 [CALL_AELF_CHAIN](Api/callAElfChain.md)
 
 [LOGIN / login](Api/login.md)
@@ -66,3 +64,5 @@ We can get the same result by the two above methods, but we recommend that you u
 [REMOVE_CONTRACT_PERMISSION / removeContractPermission](Api/removeContractPermission.md)
 
 [REMOVE_METHODS_WHITELIST / removeMethodsWhitelist](Api/removeMethodsWhitelist.md)
+
+[GET_CHAIN_INFORMATION / getChainInformation](Api/getChainInformation.md)

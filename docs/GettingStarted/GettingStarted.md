@@ -2,7 +2,7 @@
 
 By reading this document, you can quickly get started with Dapp development using NightELF.
 
-[release version](#) coming soon
+release version coming soon
 
 [dev version NightELF](https://chrome.google.com/webstore/detail/aelf-explorer-extension-d/mlmlhipeonlflbcclinpbmcjdnpnmkpf)
 
