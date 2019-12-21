@@ -1,26 +1,21 @@
-# 创建 NightELF
+# Create
 
-## 创建
+## Create NightELF Account
 
-你可以把 NightELF 看做一个 keypair 与 授权的管理工具，你的所有 Keypair 与相应的授权情况都会在 NightELF 中显示，并且你可以通过。在初次使用 NightELF 的时候, 你需要做如下操作。
+You can think of NightELF as a keypair and authorization management tool. All your keypairs and corresponding authorizations will be displayed in NightELF and you can manage them. When you are using NightELF for the first time, you need to do the following.
 
-![Create](../../Asset/step-01.jpg)
+![Create](../../Asset/create.png)
 
-首选你需要输入一个长度至少达到9位的密码，需要有一定的复杂程度, 可以包含大写字母、小写字母、符号、数字。
-然后点击 ```创建钱包``` 按钮
+First, you need to enter a password with a length of at least 9 digits, which must have a certain degree of complexity. It can contain uppercase letters, lowercase letters, symbols, numbers. Then click the ```Create Wallet``` button
 
-## 协议
+## Protocol
 
-通过上一步，你可以看见NightELF的使用协议，请详细阅读我们的使用协议并决定您是否要使用NightELF，然后点击同意或者取消
+Through the previous step, you can see the NightELF User Agreement, please read it carefully and decide whether you want to use NightELF, then click Agree or Refuse
 
-![Agreen](../../Asset/step-02.jpg)
+![Agreen](../../Asset/protocol.png)
 
-## 使用界面
+## Homepage
 
-如果您看到了以下界面，证明你已经创建成功了。
+If you see the following page, which means you have successfully created your NightELF account.
 
-![Home](../../Asset/step-03.jpg)
-
-
-
-
+![Home](../../Asset/Homepage.png)

@@ -1,7 +1,6 @@
-# 安装 NightELf
+# Install NightELf
 
-你可以到 Chrome 应用商店搜索 ```aelf-explorer-extension-dev```  或者 [点击此处下载](https://chrome.google.com/webstore/detail/aelf-explorer-extension-d/mlmlhipeonlflbcclinpbmcjdnpnmkpf)
+You can search ```aelf-explorer-extension-dev``` in Chrome App Store or click [here](https://chrome.google.com/webstore/detail/aelf-explorer-extension-d/mlmlhipeonlflbcclinpbmcjdnpnmkpf) to download.
+You can also install it from the public.crx file on Github.
 
-
-你也可以通过[Github](https://github.com/hzz780/aelf-web-extension/tree/master/installFiles) 中的 public.crx 文件进行安装。
-
+You can download publick.crx from [Github](https://github.com/AElfProject/aelf-web-extension/tree/master/installFiles) too.
