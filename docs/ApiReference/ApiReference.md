@@ -1,9 +1,5 @@
 # API Reference
 
-<!-- ## TODO -->
-
-<!-- 在之后的版本中我们会进行一些优化，请你时刻关注此文档。或移步到 [Feature & TODO](../Feature/Feature.md) 查看我们做了哪些改变。 -->
-
 ## API
 
 Through the API methods, you can quickly and conveniently perform some operations on the chain, such as transfers and queries. We also provide different calling methods. We use GET_ADDRESS as an example:
