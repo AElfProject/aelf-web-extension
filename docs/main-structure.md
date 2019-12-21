@@ -1,7 +1,7 @@
 # Summary
 
 * [Getting Started](GettingStarted/GettingStarted.md)
-* [User use document](User/User.md)
+<!-- * [User use document](User/User.md)
   * [Install](User/Step/install.md)
   * [Create](User/Step/create.md)
   * [Create Keypair](User/Step/keypair.md)
@@ -10,13 +10,11 @@
   * [Delete Keypair / Delete NightELF](User/Step/delete.md)
   * [Permission Manager](User/Step/permission.md)
   * [How to use in Dapp](User/Step/how-to-use.md)
-  <!-- * [How to confirm the transaction](User/Step/transaction.md) -->
   * [Timing Lock](User/Step/time-lock.md)
 * [Setting up for you Web Applications](SettingUpForYou/SettingUpForYou.md)
 * [Supported Blockchains](SupportedBlockchains/SupportedBlockchains.md)
   * [AELF](SupportedBlockchains/Chain/AELF.md)
-* [Examples](Examples/Examples.md)
-<!-- * [Feature & TODO](Feature/Feature.md) -->
+* [Examples](Examples/Examples.md) -->
 * [API Reference](ApiReference/ApiReference.md)
   * [GET_CHAIN_INFORMATION / getChainInformation](ApiReference/Api/getChainInformation.md)
   * [CALL_AELF_CHAIN](ApiReference/Api/callAElfChain.md)
