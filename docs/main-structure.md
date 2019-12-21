@@ -11,7 +11,7 @@
   * [Permission Manager](User/Step/permission.md)
   * [How to use in Dapp](User/Step/how-to-use.md)
   <!-- * [How to confirm the transaction](User/Step/transaction.md) -->
-  <!-- * [Timing Lock](User/Step/time-lock.md) -->
+  * [Timing Lock](User/Step/time-lock.md)
 * [Setting up for you Web Applications](SettingUpForYou/SettingUpForYou.md)
 * [Supported Blockchains](SupportedBlockchains/SupportedBlockchains.md)
   * [AELF](SupportedBlockchains/Chain/AELF.md)
