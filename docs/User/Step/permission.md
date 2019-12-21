@@ -4,7 +4,7 @@ When you authorize a Dapp permission, you can view your authorized information i
 
 You can view all your authorization information through the ```Application Management``` page.
 
-![Permission Manager](../../Asset/application.png)
+![Permission Manager](../../Asset/application.jpg)
 
 You can go to the ```Details page``` to check authorized detailed contract information such as contract addresses, contract names, contract details, etc.
 

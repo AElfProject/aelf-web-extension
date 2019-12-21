@@ -4,7 +4,7 @@
 
 If you want to remove the Keypair in your NightELF, click the corresponding delete button on the Keypair management page. This operation does not require you to provide the NightELF password.
 
-![Create Keypair](../../Asset/delete-keypair.png)
+![Create Keypair](../../Asset/delete-keypair.jpg)
 
 Click the ```OK``` button to delete the keypair you want to delete, but this operation will not delete the Dapp authorization you made to the keypair.
 

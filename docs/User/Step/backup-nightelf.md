@@ -4,7 +4,7 @@ You can back up your NightELF data to prevent your device from being damaged or 
 
 You can go to homepage first, then click Extension ```Management``` > ```Backup NightELF```, enter your password and click Backup NightELF.
 
-![Backup NightELF](../../Asset/backup-night-elf.png)
+![Backup NightELF](../../Asset/backup-night-elf.jpg)
 
 Click ```Backup NightELF```
 

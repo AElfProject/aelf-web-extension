@@ -6,7 +6,7 @@ What if you accidentally lose your mnemonic?
 
 Don't worry, you just need to click ```backup``` in Key Pairs page.
 
-![Backup keypair](../../Asset/backup-wallet.png)
+![Backup keypair](../../Asset/backup-wallet.jpg)
 
 Then, you can use ```Mnemonic``` and ```Private key``` to back up. Both mnemonics and private key can help you to import your Keypair.
 
@@ -18,8 +18,8 @@ If you accidentally uninstalled Chrome or your device was damaged and you will h
 
 We provide two methods: ```Mnemonic``` and ```Private Key```. Whether you use a mnemonic or a private key can import your Keypair, you can switch by clicking the mnemonic or clicking the private key. (Do not enter the private key into the mnemonic or the mnemonic into the private key, this will not help you to retrieve the keypair).
 
-![Import Keypair](../../Asset/keypair.png)
+![Import Keypair](../../Asset/keypair.jpg)
 
 Click the ```Import Keypair``` button
 
-![Import Keypair](../../Asset/import-keypair.png)
+![Import Keypair](../../Asset/import-keypair.jpg)

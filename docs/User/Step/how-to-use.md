@@ -4,11 +4,11 @@
 
 When you enter a Dapp that complies with the AELF ecosystem, usually the first step will be a pop up a prompt box for you to authorize, you can choose any Keypair to authorize.
 
-![Login](../../Asset/login.png)
+![Login](../../Asset/login.jpg)
 
 Click the ```Login``` button, then, you can see the details of authorizations required by the current Dapp. This may include the domain name, contract address, contract name, contract description, Github address, etc.
 
-![Login](../../Asset/authorization.png)
+![Login](../../Asset/authorization.jpg)
 
 If you close this window or click ```Cancel```, this action means you do not allow this application’s authorizations, then you may not be able to use the Dapp or most of the functions of the Dapp.
 
