@@ -459,7 +459,7 @@ aelf.removeMethodsWhitelist({
 1. Download the code
 
     ```bash
-    git clone https://github.com/hzz780/aelf-web-extension.git
+    git clone https://github.com/AElfProject/aelf-web-extension.git
     ```
 
 2. Install dependent
@@ -484,6 +484,16 @@ aelf.removeMethodsWhitelist({
     ```bash
         open development mode, add the webpack output app/public.
     ```
+   
+### How to publish to chrome
+
+zip app/public to public.zip, and follow the notes.
+
+### Can not use crx
+
+You can not install the extension from an offline crx if Chrome >= 73.
+
+Please import the `.zip file` with developer mode.
 
 ## Project Information
 
