@@ -75,3 +75,17 @@
     text-align: center;
     margin: 24px;
 }
+
+.whitelistContainer {
+    height: 100px;
+    width: 370px;
+    overflow: scroll;
+    word-break: break-all;
+    text-align: left;
+}
+
+.title {
+    font-size: 18px;
+    color: #333;
+    text-align: left;
+}

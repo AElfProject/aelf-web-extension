@@ -142,7 +142,7 @@ export default class ConfirmationCall extends Component {
         };
         InternalMessage.payload(InternalMessageTypes.SET_WHITELIST, payload).send().then(result => {
             if (result && result.error === 0) {
-                Toast.success('Successful addition of whitelist', 3, () => {
+                Toast.success('Success', 3, () => {
                     this.onClose();
                 });
             }
@@ -158,8 +158,9 @@ export default class ConfirmationCall extends Component {
     renderWhitelist() {
         return <div className={style.whitelistTip}>
                 <div>
-                    Whitelist this to not have to accept next time.
-                    You can remove the permission in Extension later.
+                    <FormattedMessage
+                        id='aelf.Whitelist Description'
+                    />
                 </div>
                 <div
                     className={style.enableWhitelist}
@@ -233,8 +234,20 @@ export default class ConfirmationCall extends Component {
             const whitelistHTML = params.map((item, index) => {
                 return <div key={item.key} className={style.paramsInfo}>{item.key}: {JSON.stringify(item.value, null, 2)}</div>;
             });
-            
-            return  <React.Fragment>{ whitelistHTML }</React.Fragment>;
+
+            // TODO: whitelist matches exact params.
+            // <div className={style.title}>contract params</div>
+            // <div className={style.content}>{ whitelistHTML }</div>
+            return  <React.Fragment>
+                <div className={style.title}>wallet address</div>
+                <div className={style.content}>{ this.keypairAddress }</div>
+                <div className={style.title}>contract name</div>
+                <div className={style.content}>{ this.confirmation.contractName }</div>
+                <div className={style.title}>contact address</div>
+                <div className={style.content}>{ this.confirmation.contractAddress }</div>
+                <div className={style.title}>contact method</div>
+                <div className={style.content}>{ this.confirmation.method }</div>
+            </React.Fragment>;
         }
         else {
             return <div className={style.paramsInfo}>This method has no parameters.</div>;
@@ -264,18 +277,18 @@ export default class ConfirmationCall extends Component {
                     title="White List"
                     footer={
                         [{
-                            text: 'REFUSE', onPress: () => {
+                            text: 'Cancel', onPress: () => {
                                 this.onClose();
                             }
                         },
                         {
-                            text: 'Ok', onPress: () => {
+                            text: 'Add', onPress: () => {
                                 this.setWhitelist();
                             }
                         }]
                     }
                     >
-                        <div style={{height: 100, overflow: 'scroll'}}>
+                        <div className={style.whitelistContainer}>
                             {whitelistHTML}
                         </div>
                 </Modal>

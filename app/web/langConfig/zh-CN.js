@@ -179,6 +179,7 @@ const zh_CN = {
     'aelf.Contract Name:': '合约名称:',
     'aelf.Description:': '合约介绍:',
     'aelf.Enable Whitelist': '启用白名单',
+    'aelf.Whitelist Description': '加入白名单后，下次将不需要再确认。您可以在插件中删除该权限。',
     'aelf.Delete All': '删除全部权限',
     'aelf.Whitelist': '白名单',
     'aelf.New Contract Method': '新增合约权限',

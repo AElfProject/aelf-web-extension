@@ -19,6 +19,7 @@ document.addEventListener('NightElf', result => {
     const initAelfContract = document.getElementById('init-aelf-contract');
     const callAelfContract = document.getElementById('call-aelf-contract');
     const executeAelfContract = document.getElementById('execute-aelf-contract');
+    const executeAelfContractDiffrentParam = document.getElementById('execute-aelf-contract-diff');
     const checkPermissionDefault = document.getElementById('check-permission-default');
     const checkPermissionAddress = document.getElementById('check-permission-address');
     const checkPermissionContractAddress = document.getElementById('check-permission-contract');
@@ -237,6 +238,20 @@ document.addEventListener('NightElf', result => {
         );
     };
 
+    executeAelfContractDiffrentParam.onclick = function () {
+        tokenC.Transfer(
+          {
+              symbol: 'ELF',
+              to: 'ELF_2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX_AELF',
+              amount: 2,
+              memo: 'have fun'
+          },
+          (err, result) => {
+              console.log('>>>>>>>>>>>>>>>>>>>', result);
+          }
+        );
+    };
+
     // 根据hostname, address, contractAddress查询
     // checkPermissionDefault.onclick = function () {
     //     NightElf.api({
@@ -260,7 +275,7 @@ document.addEventListener('NightElf', result => {
     checkPermissionAddress.onclick = function () {
         aelf.checkPermission({
             appName: 'hzzTest',
-            address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu',
+            address: testAddress,
             type: 'address' // if you did not set type, it aways get by domain.
         }, (error, result) => {
             console.log('checkPermission>>>>>>>>>>>>>>>>>', result);
@@ -270,8 +285,8 @@ document.addEventListener('NightElf', result => {
     checkPermissionContractAddress.onclick = function () {
         aelf.checkPermission({
             appName: 'hzzTest',
-            address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu',
-            contractAddress: '2J9wWhuyz7Drkmtu9DTegM9rLmamjekmRkCAWz5YYPjm7akfbH',
+            address: testAddress,
+            contractAddress: tokenContractAddress,
             type: 'contract' // if you did not set type, it aways get by domain.
         }, (error, result) => {
             console.log('checkPermission>>>>>>>>>>>>>>>>>', result);
@@ -297,7 +312,7 @@ document.addEventListener('NightElf', result => {
     getSignature.onclick = function () {
       aelf.getSignature({
         appName: 'hzzTest',
-        address: 'H49mJABR9SibRNRZaXD6XbZeDFjUhM3yYBBJnAALKTUFSw8Yy',
+        address: testAddress,
         hexToBeSign: '2333'
       }).then(result => {
           console.log('result: ', result);

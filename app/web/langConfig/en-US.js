@@ -187,6 +187,7 @@ const en_US = {
     'aelf.Contract Name:': 'Contract Name:',
     'aelf.Description:': 'Description:',
     'aelf.Enable Whitelist': 'Enable Whitelist',
+    'aelf.Whitelist Description': 'Whitelist this to not have to accept next time. You can remove the permission in Extension later.',
     'aelf.Delete All': 'Delete All',
     'aelf.Whitelist': 'Whitelist',
     'aelf.New Contract Method': 'New contract method',
