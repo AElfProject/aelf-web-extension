@@ -77,6 +77,20 @@ class NightAElf {
     });
   }
 
+  logout(params, callback) {
+    return window.NightElf.api({
+      appName: params.appName,
+      chainId: params.chainId,
+      address: params.address,
+      method: 'REMOVE_PERMISSION',
+      payload: {
+        payload: params.payload
+      }
+    }).then(result => {
+      return this.callbackWrap(result, callback);
+    });
+  }
+
   checkPermission(params, callback) {
     return window.NightElf.api({
       appName: params.appName,
@@ -217,7 +231,7 @@ class NightAElf {
 
     const _callAelfContract = (params, methodName, contractAddress, method) => {
       let paramsTemp = Array.from(params); // [...params];
-      
+
       const filterParams = paramsTemp.filter(function (arg) {
         return !(typeof arg === 'function') && !(typeof arg === 'boolean')
       });

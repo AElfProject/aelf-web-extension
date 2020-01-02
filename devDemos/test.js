@@ -14,6 +14,9 @@ const testAddress = '2RCLmZQ2291xDwSbDEJR6nLhFJcMkyfrVTq1i1YxWC4SdY49a6';
 document.addEventListener('NightElf', result => {
     console.log(Date.now());
     console.log('NightElf test.html: ', result);
+
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
     const getChainStatus = document.getElementById('get-chain-status');
     const callAelfChainBtn = document.getElementById('call-aelf-chain');
     const initAelfContract = document.getElementById('init-aelf-contract');
@@ -66,6 +69,41 @@ document.addEventListener('NightElf', result => {
     }, (error, result) => {
         console.log('login>>>>>>>>>>>>>>>>>>', result);
     });
+
+    loginBtn.onclick = function () {
+        aelf.login({
+            appName: 'hzzTest',
+            chainId: 'AELF',
+            payload: {
+                method: 'LOGIN',
+                contracts: [{
+                    chainId: 'AELF',
+                    contractAddress: tokenContractAddress,
+                    contractName: 'token',
+                    description: 'token contract',
+                    github: ''
+                }, {
+                    chainId: 'AELF TEST',
+                    contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+                    contractName: 'TEST contractName',
+                    description: 'contract description',
+                    github: ''
+                }]
+            }
+        }, (error, result) => {
+            console.log('login>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    logoutBtn.onclick = function () {
+        aelf.logout({
+            appName: 'hzzTest',
+            chainId: 'AELF',
+            address: testAddress
+        }, (error, result) => {
+            console.log('logout>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
 
     // just for fun
     // const checkContent = document.getElementById('check-content');
@@ -140,32 +178,6 @@ document.addEventListener('NightElf', result => {
     sendTransaction.onclick = function () {
         aelf.chain.sendTransaction({}, (err, result) => {
             console.log('>>>>>>>>>>>>>>>>>>>', result);
-        });
-    };
-
-    const loginBtn = document.getElementById('login-btn');
-    loginBtn.onclick = function () {
-        aelf.login({
-            appName: 'hzzTest',
-            chainId: 'AELF',
-            payload: {
-                method: 'LOGIN',
-                contracts: [{
-                    chainId: 'AELF',
-                    contractAddress: tokenContractAddress,
-                    contractName: 'token',
-                    description: 'token contract',
-                    github: ''
-                }, {
-                    chainId: 'AELF TEST',
-                    contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
-                    contractName: 'TEST contractName',
-                    description: 'contract description',
-                    github: ''
-                }]
-            }
-        }, (error, result) => {
-            console.log('login>>>>>>>>>>>>>>>>>>', result);
         });
     };
 

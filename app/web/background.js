@@ -588,7 +588,7 @@ export default class Background {
             const extendContract = dappAelfMeta.contracts.find(item => {
                 return contractAddress === item.contractAddress;
             });
-            
+
 
             if (!extendContract) {
                 sendResponse({
@@ -712,7 +712,7 @@ export default class Background {
                         ? extendContract.contractMethods[method].call
                         : extendContract.contractMethods[method];
                     contractMethod(...params, (error, result) => {
-                        if (error || result.error) {
+                        if (error || (result && result.error)) {
                             sendResponse({
                                 ...errorHandler(500001, error || result.error)
                             });
@@ -1276,7 +1276,7 @@ export default class Background {
             } = nightElfObject;
 
             nightElfObject.keychain.permissions = permissions.filter(item => {
-                const domainCheck = removeInfo.domain === item.domain;
+                const domainCheck = removeInfo.domain === item.domain || removeInfo.hostname === item.domain;
                 const addressCheck = removeInfo.address === item.address;
                 return !(domainCheck && addressCheck);
             });
@@ -1420,7 +1420,7 @@ export default class Background {
           address,
           hexToBeSign
         } = options;
-        
+
         const keypair = keypairs.find(item => {
           return item.address === address
         });
@@ -1435,7 +1435,7 @@ export default class Background {
             `0${signedMsgObject.recoveryParam.toString()}`
           ].join('');
         }
-        
+
         sendResponse({
           ...errorHandler(0),
           signature: signedMsgString

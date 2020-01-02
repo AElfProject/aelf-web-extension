@@ -109,7 +109,7 @@ class Content {
         // GET_ADDRESS
         const methodWhiteList = [
             'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT',
-            'CHECK_PERMISSION', 'LOGIN',
+            'CHECK_PERMISSION', 'LOGIN', 'REMOVE_PERMISSION',
             'REMOVE_CONTRACT_PERMISSION', 'REMOVE_METHODS_WHITELIST',
             'SET_CONTRACT_PERMISSION', 'GET_CHAIN_STATUS',
             'CALL_AELF_CONTRACT_READONLY', 'GET_SIGNATURE'
@@ -132,7 +132,7 @@ class Content {
             return;
         }
 
-        
+
 
         this.internalCommunicate(method, message);
     }
