@@ -103,22 +103,23 @@ export default class ChangePermission extends Component {
         window.close();
     }
 
+    // <div className={style.top}>
+    //     <div className={style.blank}></div>
+    //     <p className={style.wallet}>
+    //         <FormattedMessage
+    //             id='aelf.Authorization details'
+    //         />
+    //     </p>
+    // </div>
+    // <div className={style.permissionsTips}>
+    //         <FormattedMessage
+    //             id='aelf.Authorization description'
+    //         />
+    // </div>
     render() {
         const permission = this.permission;
         return (
             <div className={style.container}>
-                <div className={style.top}>
-                    <div className={style.blank}></div>
-                    <p className={style.wallet}>
-                        <FormattedMessage
-                            id='aelf.Authorization details'
-                        />
-                    </p>
-                </div>
-                <div className={style.permissionsTips}>
-                    The application will use the following contracts, contract id,
-                    contract audit address and contract description:
-                </div>
                 <div className={style.domain}>
                     <FormattedMessage
                         id='aelf.Authorized domain name:'

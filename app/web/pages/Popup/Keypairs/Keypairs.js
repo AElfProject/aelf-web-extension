@@ -140,7 +140,7 @@ export default class Keypairs extends Component {
                                 />
                             </div>
                             <div className={style.button} onClick={() =>
-                                    alert('Delete Keypairs', 'Are you sure???',
+                                    alert('Delete Keypair', 'Are you sure?',
                                     [
                                         {
                                             text: 'Cancel', onPress: () => console.log('cancel')

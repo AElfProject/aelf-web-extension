@@ -1,4 +1,4 @@
-const aelfMetaDemo = {
+const aelfMetaNewDemo = {
     "keychain": {
         "keypairs": [{
                 "name": "1111",
@@ -22,15 +22,45 @@ const aelfMetaDemo = {
             }
         ],
         "permissions": [{
-                "appName": "hzzTest",
+                // https://github.com/hzz780/aelf-web-extension/tree/master/app/web/langConfig
+                // "appName": "hzzTest",
+                // if input value is string, set { default: string }.
+                // else, set input string.
+                // and the default value will be the key.
+                "appName": {
+                    default: 'hzzTest',
+                    'zh-CN': 'xxx'
+                },
                 "domain": "OnlyForTest!!!",
+                // address对应 登录权限。
+                // 如果address为空，则无登录权限。
                 "address": "ELF_5E85xxqccciycENmu4azsX47pyszNm2eZRGpWMQjfASuSZv",
                 "contracts": [{
                         "chainId": "AELF",
                         "contractAddress": "ELF_3AhZRe8RvTiZUBdcqCsv37K46bMU2L2hH81JF8jKAnAUup9",
                         "contractName": "token",
-                        "description": "token contract",
-                        "github": ""
+                        // "description": "token contract",
+                        // if input value is string, set { default: string }.
+                        // else, set input string.
+                        "description": {
+                            default: 'token contract',
+                            'zh-CN': '通令合约'
+                        },
+                        "github": "",
+                        "whitelist": {
+                            // transfer(a, b, c)
+                            // transfer(a, b, c, d) is not ok
+                            transfer: [{
+                                value: 'a',
+                                variable: true
+                            }, {
+                                value: 'b',
+                                variable: false
+                            }, {
+                                value: 'c',
+                                variable: true
+                            }]
+                        }
                     },
                     {
                         "chainId": "AELF",
@@ -40,6 +70,18 @@ const aelfMetaDemo = {
                         "github": ""
                     }
                 ]
+            },
+            // 仅仅只是登录授权的情况。
+            {
+                "appName": {
+                    default: 'hzzTest',
+                    'zh-CN': 'xxx'
+                },
+                "domain": "OnlyForTest!!!",
+                // address对应 登录权限。
+                // 如果address为空，则无登录权限。
+                "address": "ELF_5E85xxqccciycENmu4azsX47pyszNm2eZRGpWMQjfASuSZv",
+                "contracts": []
             },
             {
                 "appName": "hzzTest",
@@ -65,4 +107,3 @@ const aelfMetaDemo = {
     },
     "histories": []
 };
-

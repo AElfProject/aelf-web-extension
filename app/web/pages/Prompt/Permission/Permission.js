@@ -85,11 +85,13 @@ export default class Permission extends Component {
                 return item.address === address;
             });
 
-            if (keypairMessage) {
+            if (keypairMessage && keypairMessage.length) {
                 detail = JSON.stringify({
                     address,
                     name: keypairMessage[0].name
                 });
+            } else {
+                Toast.fail(`No matched wallet. ${address}`, 3, () => {}, false);
             }
 
             if (this.isLogin) {
@@ -134,6 +136,8 @@ export default class Permission extends Component {
                     }
                 });
             }
+        }).catch(error => {
+            Toast.fail(error, 3, () => {}, false);
         });
     }
 
@@ -145,10 +149,19 @@ export default class Permission extends Component {
     }
 
     renderContrast() {
+
+        if (this.isLogin) {
+            return null;
+        }
+
         const {permissionsList} = this.state;
         const contractInfoHeight = {
             height: '150px'
         };
+
+        // const addPermissions = permissionsList ? permissionsList.addPermissions : [];
+        // const removePermissions = permissionsList ? permissionsList.addPermissions : [];
+        // <div className={style.blank}>{JSON.stringify(permissionsList)} {typeof permissionsList}</div>
         if (permissionsList) {
             return <div className={style.confirmPermission} style={{width: '50%'}}>
                 <div className={style.top}>
@@ -178,12 +191,23 @@ export default class Permission extends Component {
                     permission={permissionsList.removePermissions}
                 />
             </div>;
-        }
-        else {
-            return <div></div>;
+        } else {
+            return null;
         }
     }
 
+    // <div className={style.top}>
+    //     <div className={style.blank}></div>
+    //     <p className={style.wallet}>
+    //         <FormattedMessage
+    //             id='aelf.Authorization details'
+    //         />
+    //     </p>
+    // </div>
+    // <div className={style.permissionsTips}>
+    //     The application will use the following contracts, contract id,
+    //     contract audit address and contract description:
+    // </div>
     render() {
         const permission = this.permission;
         const contrast = this.renderContrast();
@@ -191,16 +215,12 @@ export default class Permission extends Component {
             <div className={style.container}>
                 <div className={style.confirmPermission}>
                     <div className={style.top}>
-                        <div className={style.blank}></div>
-                        <p className={style.wallet}>
-                            <FormattedMessage
-                                id='aelf.Authorization details'
-                            />
-                        </p>
-                    </div>
-                    <div className={style.permissionsTips}>
-                        The application will use the following contracts, contract id,
-                        contract audit address and contract description:
+                          <div className={style.blank}></div>
+                          <p className={style.wallet}>
+                              <FormattedMessage
+                                  id='aelf.Authorization details'
+                              />
+                          </p>
                     </div>
                     <div className={style.domain}>
                         <FormattedMessage
