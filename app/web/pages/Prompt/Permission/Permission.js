@@ -86,10 +86,7 @@ export default class Permission extends Component {
             });
 
             if (keypairMessage && keypairMessage.length) {
-                detail = JSON.stringify({
-                    address,
-                    name: keypairMessage[0].name
-                });
+                detail = JSON.stringify(keypairMessage[0]);
             } else {
                 Toast.fail(`No matched wallet. ${address}`, 3, () => {}, false);
             }
