@@ -4,14 +4,16 @@
  * webpack 4.16.1
  */
 
-/* eslint-disable fecs-camelcase */
-// const webpack = require('webpack'); // 用于访问内置插件
+const webpack = require('webpack'); // 用于访问内置插件
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin');
+
+const ROOT = path.resolve(__dirname, './');
+const {version} = require(path.resolve(ROOT, 'package.json'));
 
 // 与webpack内置dev-server功能会有重复，所以不推荐混合在一起使用
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -174,6 +176,9 @@ let config = {
                 toType: 'dir'
             }
         ]),
+        new webpack.DefinePlugin({
+            'process.env.SDK_VERSION': JSON.stringify( 'v' + version)
+        }),
         // new HtmlWebpackPlugin({
         //     chunks: ['transactionDetail'],
         //     template: './app/web/page/transactionDetail.tpl',

@@ -56,7 +56,7 @@ export default class Lock extends Component {
         const isClear = action === 'clear_wallet';
         const isBackup = action === 'backup_wallet';
         const isTimingLock = action === 'timing_lock';
-        this.marginStyle = {marginTop: '170px'};
+        this.marginStyle = {marginTop: '154px'};
         this.isClear = isClear;
         this.isBackup = isBackup;
         this.isTimingLock = isTimingLock;
@@ -607,7 +607,7 @@ export default class Lock extends Component {
                             <div className={style.top}>
                                 <p className={style.welcome} style={margin}>{titleText}</p>
                                 <p className={style.wallet}>NIGHT ELF</p>
-                                {/* <p className={style.description}>offcial</p> */}
+                                <p className={style.description}>{process.env.SDK_VERSION}</p>
                             </div>
                             {buttonHTML}
                             {/* {testHTML} */}

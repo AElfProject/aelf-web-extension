@@ -19,12 +19,6 @@ import {
 import getHostname from './utils/getHostname';
 import errorHandler from './utils/errorHandler';
 
-import logger from './utils/logger';
-// import Hasher from './util/Hasher'
-// import {
-//     strippedHost
-// } from './util/GenericTools'
-
 // The stream that connects between the content script
 // and the website
 let stream = new WeakMap();
@@ -52,7 +46,7 @@ class Content {
         stream = new EncryptedStream(PageContentTags.CONTENT_NIGHTELF, this.aesKey);
 
         stream.addEventListener(result => {
-            logger.log('setupEncryptedStream: ', result);
+            console.log('setupEncryptedStream: ', result);
             this.contentListener(result);
             // this.respond(result);
         });
@@ -82,7 +76,7 @@ class Content {
         script.src = apis.extension.getURL(INJECTION_SCRIPT_FILENAME);
         (document.head || document.documentElement).appendChild(script);
         script.onload = () => {
-            logger.log('inject.js onload!!!');
+            console.log('inject.js onload!!!');
             script.remove();
         };
     }
@@ -91,11 +85,11 @@ class Content {
         let message = Object.assign({}, input, {
             hostname: getHostname()
         });
-        logger.log('contentListener: ', message, location.host || location.hostname);
+        console.log('contentListener: ', message, location.host || location.hostname);
         // TODO: params check or use TS?
         // sid, method, appName, hostname,
         const {method, sid} = message;
-        logger.log('message: ', message);
+        console.log('message: ', message);
 
         if (method === 'CHECK_CONTENT') {
             this.respond({
@@ -142,7 +136,7 @@ class Content {
             .send()
             .then(result => {
                 result.sid = message.sid;
-                logger.log(InternalMessageTypes[method], result);
+                console.log(InternalMessageTypes[method], result);
                 this.respond({
                     ...errorHandler(0),
                     ...result

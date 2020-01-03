@@ -20,8 +20,6 @@ import checkWallet from '../../../utils/checkWallet';
 import {FormattedMessage} from 'react-intl';
 import './Home.css';
 
-// import aelf from 'aelf-sdk';
-
 const Item = List.Item;
 
 @insert(checkWallet)
@@ -44,6 +42,7 @@ export default class personalCenterHome extends Component {
                 <div className={style.top}>
                     <div className={style.blank}></div>
                     <p className={style.wallet}>NIGHT ELF</p>
+                    <p>{process.env.SDK_VERSION}</p>
                 </div>
                 <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/keypairs')}>
