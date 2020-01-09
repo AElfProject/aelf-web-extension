@@ -13,7 +13,8 @@ import {apis} from './utils/BrowserApis';
 import {
     contractsCompare,
     formatContracts,
-    contractWhitelistCheck
+    contractWhitelistCheck,
+    getContractInfoWithAppPermissions
 } from './utils/contracts/contracts';
 import {
     getApplicationPermssions
@@ -507,7 +508,7 @@ export default class Background {
             const {address, contractAddress, contractName} = payload;
             const {
                 dappAelfMetaIndex,
-                dappAelfMeta // ,
+                dappAelfMeta, // ,
                 // dappPermission,
                 // dappContractPermission
             } = output;
@@ -661,7 +662,12 @@ export default class Background {
                         contractInfo,
                         method
                     })) {
+
+                    const contractInfoWithAppPermissions = getContractInfoWithAppPermissions(contractInfo, appPermissions);
+
                     contractInfo.keypairAddress = appPermissions.permissions[0].address;
+                    contractInfo.contractInfoWithAppPermissions = contractInfoWithAppPermissions;
+
                     Background.openPrompt(sendResponse, contractInfo);
                     return;
                 }

@@ -231,7 +231,7 @@ export default class Permission extends Component {
                     <div className={style.buttons}>
                         <div>
                             <AelfButton
-                                text='Commit'
+                                text='Submit'
                                 onClick={() => this.setPermission()}
                             />
                         </div>

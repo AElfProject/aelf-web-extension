@@ -174,16 +174,22 @@ export default class ConfirmationCall extends Component {
     }
 
     renderConfirmation() {
+
+        const { contractName } = this.message.contractInfoWithAppPermissions;
+
+        // <div>
+        //     {this.appName} {JSON.stringify(this.message)}
+        // </div>
         return <div className={style.appLogin}>
                 <div className={style.appName}>
-                    <div>
-                        {this.appName}
+                    <div className={style.loginTip}>
+                        Contract Name: {contractName}
                     </div>
                     <div className={style.loginTip}>
-                       {this.confirmation.method}
+                        Method: {this.confirmation.method}
                     </div>
                     <div className={style.loginTip}>
-                        {this.keypairAddress}
+                        Wallet Address: {this.keypairAddress}
                     </div>
                 </div>
             </div>;
@@ -208,10 +214,9 @@ export default class ConfirmationCall extends Component {
     renderConfirm() {
         return <div className={style.buttons}>
                     <AelfButton
-                        text='Commit'
+                        text='Submit'
                         onClick={() => this.getCallAelfContract()}
                     />
-                    <div className={style.blank}></div>
                     <AelfButton
                         text='Cancel'
                         type='transparent'
@@ -235,6 +240,8 @@ export default class ConfirmationCall extends Component {
                 return <div key={item.key} className={style.paramsInfo}>{item.key}: {JSON.stringify(item.value, null, 2)}</div>;
             });
 
+            const { contractName } = this.message.contractInfoWithAppPermissions;
+
             // TODO: whitelist matches exact params.
             // <div className={style.title}>contract params</div>
             // <div className={style.content}>{ whitelistHTML }</div>
@@ -242,7 +249,7 @@ export default class ConfirmationCall extends Component {
                 <div className={style.title}>wallet address</div>
                 <div className={style.content}>{ this.keypairAddress }</div>
                 <div className={style.title}>contract name</div>
-                <div className={style.content}>{ this.confirmation.contractName }</div>
+                <div className={style.content}>{ contractName }</div>
                 <div className={style.title}>contact address</div>
                 <div className={style.content}>{ this.confirmation.contractAddress }</div>
                 <div className={style.title}>contact method</div>

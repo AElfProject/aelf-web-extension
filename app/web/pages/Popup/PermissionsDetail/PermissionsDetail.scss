@@ -61,7 +61,7 @@
     border-radius: 12px;
     margin:12px 7px;
     box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.20), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);
-    
+
 }
 
 .arrow {
@@ -71,7 +71,7 @@
     line-height: 22px;
     height: 22px;
     cursor: pointer;
-    
+
 }
 
 .arrow > div {
@@ -173,7 +173,6 @@
     flex-direction: column;
 }
 
-
 .permissionOptions {
     display: flex;
     justify-content: space-between;
@@ -181,7 +180,6 @@
     font-size: 20px;
     font-weight: 700;
 }
-
 
 // >>>>>>>>>>>>>>>>>>>>>
 .walletInfo {
@@ -268,9 +266,11 @@
     font-size: 12px;
     line-height: 24px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 0 8px;
     cursor: pointer;
+    height: 24px;
+    width: 116px;
 }
 
 .infoClass {

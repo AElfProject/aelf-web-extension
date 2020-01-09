@@ -66,7 +66,7 @@ export default class Lock extends Component {
                 value: 0
             },
             {
-                label: '1 minutes',
+                label: '1 minute',
                 value: 60000
             },
             {
@@ -461,7 +461,7 @@ export default class Lock extends Component {
             <div className={style.bottom} style={{marginTop: '170px'}}>
                 <div className='aelf-blank12'></div>
                 <AelfButton
-                    text='Commit'
+                    text='Submit'
                     aelficon='add_purple20'
                     onClick={() => this.getTimingLock()}>
                 </AelfButton>

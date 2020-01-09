@@ -61,3 +61,26 @@ export function contractWhitelistCheck(options) {
     }
     return false;
 }
+
+export function getContractInfoWithAppPermissions(contractInfo, appPermissions) {
+
+    let contractInfoOutput = {};
+    if (!appPermissions || !appPermissions.permissions) {
+        return contractInfoOutput;
+    }
+
+    const {hostname,payload} = contractInfo;
+    const {contractAddress} = payload;
+
+    appPermissions.permissions.forEach(permission => {
+        if (permission.domain === hostname) {
+            const { contracts } = permission;
+            contracts.forEach(contract => {
+                if (contract.contractAddress === contractAddress) {
+                    contractInfoOutput = contract;
+                }
+            });
+        }
+    });
+    return contractInfoOutput;
+}

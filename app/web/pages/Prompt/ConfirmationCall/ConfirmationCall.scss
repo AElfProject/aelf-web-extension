@@ -24,8 +24,9 @@
 
     .loginTip {
         font-size: 16px;
-        font-weight: 100;
-        padding-top: 20px;
+        font-weight: normal;
+        padding: 20px 6px 0 6px;
+        text-align: left;
     }
 
 }
@@ -44,7 +45,7 @@
     padding: 12px;
     border-radius: 8px;
     background: rgba(0, 0, 0, .3);
-    height: 100px;
+    height: 180px;
     overflow: auto;
 }
 
@@ -54,8 +55,17 @@
 }
 
 .buttons {
-    width: 50%;
+    width: 80%;
     margin: 12px auto;
+    display: flex;
+    > a {
+        flex: 1;
+        margin: 8px;
+    }
+    > div {
+        flex: 1;
+        margin: 8px;
+    }
 }
 
 .blank {
