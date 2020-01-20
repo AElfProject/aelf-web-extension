@@ -10,4 +10,4 @@
 
 ## 删除 NightELF
 
-如果你想移除NightELF并清空数据，你可以通过 ```管理``` 中的 ```删除NightELF``` 进行删除，这一操作需要你输入你的NightELF密码，你也可以直接在Chrome中删除 NightELF 同样可以清空数据。
+如果你想移除NightELF并清空数据，你可以通过 ```管理``` 中的 ```删除NightELF``` 进行删除，这一操作需要你输入你的NightELF密码，你也可以直接在Chrome中删除 NightELF 同样可以清空数据。
