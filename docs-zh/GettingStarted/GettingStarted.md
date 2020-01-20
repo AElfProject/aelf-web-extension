@@ -8,9 +8,9 @@
 
 ## 如果你是普通用户
 
-你可以直接略过以下内容，并仔细阅读 [User use document](../User/User.md)。
+你可以直接略过以下内容，并仔细阅读 [User use document](../User/User.md)。
 
-这会让你了解作为一名用户如何使用 NightELF 进行一些日常操作。
+这会让你了解作为一名用户如何使用 NightELF 进行一些日常操作。
 
 ## 如果你是开发者
 
