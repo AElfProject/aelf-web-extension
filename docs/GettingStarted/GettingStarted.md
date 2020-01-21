@@ -1,4 +1,4 @@
-# Getting Started
+# 介绍
 
 通过阅读本文档，可以使你快速上手使用 NightELF 进行 Dapp 开发。
 
@@ -20,7 +20,6 @@
 
 你可以通过查看 [Examples](../Examples/Examples.md) 了解如何快速实现转账功能
 
-
 ### 我们在开发 NightELF 时的一些想法
 
 1. 我们要做一个支持AELF生态的浏览器扩展应用。
@@ -37,4 +36,5 @@
 6. 合约白名单 (如用户经常用到的Transfer 加入白名单后无需反复确认)
 
 ### Project Information
+
 We use [ECDH](https://github.com/indutny/elliptic) to use public key to encryt data and private key to decrypt data.
