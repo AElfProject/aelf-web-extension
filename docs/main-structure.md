@@ -11,12 +11,12 @@
   * [权限管理](User/Step/permission.md)
   * [如何在DApp中使用](User/Step/dapp.md)
   <!-- * [How to confirm the transaction](User/Step/transaction.md) -->
-  * [自动锁定]](User/Step/lock.md)
-* [开发你的DApp]](SettingUpForYou/SettingUpForYou.md)
-* [支持的区块链](SupportedBlockchains/SupportedBlockchains.md)
-  * [AELF](SupportedBlockchains/Chain/AELF.md)
+  * [自动锁定](User/Step/lock.md)
+  <!-- * [开发你的DApp](SettingUpForYou/SettingUpForYou.md) -->
+  <!-- * [支持的区块链](SupportedBlockchains/SupportedBlockchains.md)
+    * [AELF](SupportedBlockchains/Chain/AELF.md) -->
 * [开发案例](Examples/Examples.md)
-* [特性 & TODO](Feature/Feature.md)
+<!-- * [特性 & TODO](Feature/Feature.md) -->
 * [API Reference](ApiReference/ApiReference.md)
   * [GET_CHAIN_INFORMATION / getChainInformation](ApiReference/Api/getChainInformation.md)
   * [CALL_AELF_CHAIN](ApiReference/Api/callAElfChain.md)
