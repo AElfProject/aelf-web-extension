@@ -1,8 +1,8 @@
 # AELF
 
-At present, NightELF only supports AELF.
+目前 NightELF 只支持 AELF。
 
-To connect to aelf:
+连接到AELF的方法如下：
 
 ```javascript
     const aelf = new window.NightElf.AElf({
@@ -21,3 +21,4 @@ To connect to aelf:
         appName // your Dapp name
     });
 ```
+

@@ -5,7 +5,7 @@
         // Enter your test address in this location
         httpProvider: [
             'https://127.0.0.1:8000/chain', // host
-            null, // timeout
+            null, // timeout
             null, // user
             null, // password
             // header

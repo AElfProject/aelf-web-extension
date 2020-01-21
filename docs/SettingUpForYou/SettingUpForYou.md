@@ -1,5 +1,6 @@
 # Setting up for you Web Applications
 
-You can easily get started with NightELF. It doesn't need to rely on any dependencies, you only need to install the NightELF extension application on your browser.
+你可以很容易的上手使用 NightELF 它不需要依靠任何依赖，只需要你的浏览器安装 NightELF扩展应用即可。
 
-You can go to the [API Reference](ApiReference/ApiReference.md) to see the API methods we provide, or you can see the usage methods through [Examples](../Examples/Examples.md).
+你可以到 [API Reference](ApiReference/ApiReference.md) 查看我们提供的API方法，也可以通过 [Examples](../Examples/Examples.md) 查看使用方法。
+
