@@ -1,6 +1,6 @@
 # aelf-web-extension
 
-## For User
+## 1 For User
 
 [release version, please waiting](#)
 
@@ -8,7 +8,7 @@
 
 If you are using qq browser,etc, you can add the extention too.
 
-### Notice
+### 1.1 Notice
 
 ```note
 Using File:/// protocol may can not use the extenstion
@@ -16,73 +16,16 @@ Using File:/// protocol may can not use the extenstion
 Note: Access to file URLs isn't automatic. The user must visit the extensions management page and opt in to file access for each extension that requests it.
 ```
 
-## For Dapp Developers
+## 2 For Dapp Developers
 
-### Interaction Flow
+### 2.1 Interaction Flow
 
 - 1.Make sure the user get the Extension
-- 2.Connect Chain
-- 3.Initialize Contract
-- 4.Call contract methods
+- 2.Connect the blockchain
+- 3.Initialize contract / Call the methods of the blockchain
+- 4.Call the methods of contract 
 
-### How to use
-
-If you need complete data structure. you can [click here](#dataformat)
-
-- [0. Check Extension Demo](#check-extension-demo)
-- [1. GET_CHAIN_STATUS](#get-chain-status)
-- [2. CALL_AELF_CHAIN](#call-aelf-chain)
-- [3. LOGIN](#login)
-- [4. INIT_AELF_CONTRACT](#init-aelf-contract)
-- [5. CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call-aelf-contract)
-- [6. CHECK_PERMISSION](#check-permission)
-- [7. SET_CONTRACT_PERMISSION](#set-contract-permission)
-- [8. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
-- [9. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
-
-<span id="dataformat"></span>
-
-## Data Format
-
-```javascript
-    NightElf = {
-        histories: [],
-        keychain: {
-            keypairs: [
-                {
-                    name: 'your keypairs name',
-                    address: 'your keypairs address',
-                    mnemonic: 'your keypairs mnemonic',
-                    privateKey: 'your keupairs privateKey',
-                    publicKey: {
-                        x: 'you keupairs publicKey',
-                        y: 'you keupairs publicKey'
-                    }
-                }
-            ],
-            permissions: [
-                {
-                    chainId: 'AELF',
-                    contractAddress: 'contract address',
-                    contractName: 'contract name',
-                    description: 'contract description',
-                    github: 'contract github',
-                    whitelist: {
-                        Approve: {
-                            parameter1: 'a',
-                            parameter2: 'b',
-                            parameter3: 'c'
-                        }
-                    }
-                }
-            ]
-        }
-    }
-```
-
-<span id="check-extension-demo"></span>
-
-### Demo of Checking the Extension
+### 2.2 Demo of Checking the Extension
 
 ```js
 let nightElfInstance = null;
@@ -121,69 +64,70 @@ nightElfCheck.check.then(message => {
 });
 ```
 
-<span id="get-chain-status"></span>
+#### 2.3 How Connect the blockchain
 
-### 1.GET_CHAIN_STATUS
+```javascript
+const aelf = new window.NightElf.AElf({
+    httpProvider: [
+        'http://127.0.0.1:8101',
+    ],
+    appName: 'your own app name'
+});
+```
+### 2.4 How to call the API
 
-You can see the demo [./devDemos/test.html](https://github.com/hzz780/aelf-web-extension/tree/1.0/devDemos). [demo.js just a draft]
+Callback or promise are both ok.
 
-If you want to check Token Transfer Demo.
-You can [click here](https://github.com/hzz780/aelf-web-extension/tree/master/demo/token)
+```javascript
+// callback
+aelf.chain.getChainStatus((error, result) => {
+    console.log('>>>>>>>>>>>>> getChainStatus >>>>>>>>>>>>>');
+    console.log(error, result);
+});
+
+// promise
+aelf.chain.getChainStatus().then(result => {
+    console.log('>>>>>>>>>>>>> getChainStatus >>>>>>>>>>>>>');
+    console.log('promise then', result);
+}).catch(error => {
+    console.log('promise catch', error);
+});
+```
+
+<span id="check-extension-demo"></span>
+
+## 3 API Reference
+
+Here you can find examples and in-depth information about NightELF's API.
+
+You can see the demo code. [click here](https://github.com/AElfProject/aelf-web-extension/blob/master/devDemos/test.html)
+
+If you want to check token transfer demo. [click here](https://github.com/AElfProject/aelf-web-extension/blob/master/demo/token/demo.html)
 
 The methods calls act the same as the methods call of the aelf-sdk.js
 
 Note: ``` '...' ``` stands for omitted data.
 
-```javascript
-const aelf = new window.NightElf.AElf({
-    httpProvider: [
-        'http://192.168.197.56:8101/chain',
-        null,
-        null,
-        null,
-        [{
-            name: 'Accept',
-            value: 'text/plain;v=1.0'
-        }]
-    ],
-    appName: 'Test'
-});
-
-aelf.chain.getChainStatus((error, result) => {
-    console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
-    console.log(error, result);
-});
-
-// result = {
-//     ChainId: "AELF"
-//     GenesisContractAddress: "61W3AF3Voud7cLY2mejzRuZ4WEN8mrDMioA9kZv3H8taKxF"
-// }
-```
-
-<span id="call-aelf-chain"></span>
-
-### 2.CALL_AELF_CHAIN
-
-```javascript
-const txid = 'c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768';
-aelf.chain.getTxResult(txid, (err, result) => {
-    console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
-    console.log(err, result);
-});
-
-// result = {
-//     Status: "NotExisted"
-//     TransactionId: "ff5bcd126f9b7f22bbfd0816324390776f10ccb3fe0690efc84c5fcf6bdd3fc6"
-// }
-```
+- [1. LOGIN](#login)
+- [2. GET_CHAIN_STATUS](#get-chain-status)
+- [3. CALL_AELF_CHAIN](#call-aelf-chain)
+- [4. INIT_AELF_CONTRACT](#init-aelf-contract)
+- [5. CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call-aelf-contract)
+- [6. CHECK_PERMISSION](#check-permission)
+- [7. SET_CONTRACT_PERMISSION](#set-contract-permission)
+- [8. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
+- [9. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
+- [10. GET_SIGNATURE](#get-signature)
 
 <span id="login"></span>
 
-### 3. LOGIN
+### 3.1 LOGIN
+
+LOGIN allows your application to request permission to interact with a user's NightELF
+and be provided with an account of the user's choosing. 
 
 ```javascript
 aelf.login({
-    appName: 'hzzTest',
     chainId: 'AELF',
     payload: {
         method: 'LOGIN',
@@ -205,6 +149,23 @@ aelf.login({
     console.log('login>>>>>>>>>>>>>>>>>>', result);
 });
 
+// result = {
+//     "error": 0,
+//     "errorMessage": "",
+//     "message": "",
+//     "detail": {
+//         "name": "your name",
+//         "address": "2RCLmZQ2291xDwSbDEJR6nLhFJcMkyfrVTq1i1YxWC4SdY49a6",
+//         "publicKey": {
+//             "x": "4958d5c48f003c771769f4a31413cd18053516615cbde502441af8452fb53441",
+//             "y": "a80cc48a7f3b0f2552fd030cacbe9012ba055a3d553b70003f2e637d55fa0f23"
+//         }
+//     },
+//     "sid": "350815427961739930163684",
+//     "from": "contentNightElf"
+// }
+
+// the data in the extension
 // keychain = {
 //     keypairs: [{
 //         name: 'your keypairs name',
@@ -231,24 +192,55 @@ aelf.login({
 // }
 ```
 
+<span id="get-chain-status"></span>
+
+### 3.2 GET_CHAIN_STATUS
+
+```javascript
+
+aelf.chain.getChainStatus((error, result) => {
+    console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
+    console.log(error, result);
+});
+
+```
+
+<span id="call-aelf-chain"></span>
+
+### 3.3 CALL_AELF_CHAIN
+
+```javascript
+// this txid is an example.
+const txid = 'c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768';
+aelf.chain.getTxResult(txid, (err, result) => {
+    console.log('>>>>>>>>>>>>> getTxResult >>>>>>>>>>>>>');
+    console.log(err, result);
+});
+
+// result = {
+//     Status: "NotExisted"
+//     TransactionId: "c45edfcca86f4f528cd8e30634fa4ac53801aae05365cfefc3bfe9b652fe5768"
+//     ....
+// }
+```
+
 <span id="init-aelf-contract"></span>
 
-### 4.INIT_AELF_CONTRACT
+### 3.4 INIT_AELF_CONTRACT
 
 ```javascript
 // In aelf-sdk.js wallet is the realy wallet.
 // But in extension sdk, we just need the address of the wallet.
-const tokenContract;
 const wallet = {
     address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu'
 };
 // It is different from the wallet created by Aelf.wallet.getWalletByPrivateKey();
 // There is only one value named address;
-aelf.chain.contractAtAsync(
+aelf.chain.contractAt(
     '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
     wallet,
     (error, result) => {
-        console.log('>>>>>>>>>>>>> contractAtAsync >>>>>>>>>>>>>');
+        console.log('>>>>>>>>>>>>> contractAt >>>>>>>>>>>>>');
         console.log(error, result);
         tokenContract = result;
     }
@@ -265,10 +257,10 @@ aelf.chain.contractAtAsync(
 
 <span id="call-aelf-contract"></span>
 
-### 5.CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY
+### 3.5 CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY
 
 ```javascript
-// tokenContract from the contractAsync
+// tokenContract from the pre step.
 tokenContract.GetBalance.call(
     {
         symbol: 'AELF',
@@ -303,15 +295,16 @@ tokenContract.Approve(
 
 <span id="check-permission"></span>
 
-### 6.CHECK_PERMISSION
+### 3.6 CHECK_PERMISSION
+
+CHECK_PERMISSION returns the contracts your can use with the address.
 
 ```javascript
 aelf.checkPermission({
-    appName: 'hzzTest',
     type: 'address', // if you did not set type, it aways get by domain.
     address: '4WBgSL2fSem9ABD4LLZBpwP8eEymVSS1AyTBCqXjt5cfxXK'
 }, (error, result) => {
-    console.log('checkPermission>>>>>>>>>>>>>>>>>', result);
+    console.log('>>>>>>>>>>>>>', error, result);
 });
 
 // result = {
@@ -342,12 +335,13 @@ aelf.checkPermission({
 
 <span id="set-contract-permission"></span>
 
-### 7.SET_CONTRACT_PERMISSION
+### 3.7 SET_CONTRACT_PERMISSION
+
+SET_CONTRACT_PERMISSION applies to the users to allow the Dapp use the contract.
 
 ```javascript
 aelf.setContractPermission({
-    appName: 'hzzTest',
-    hainId: 'AELF',
+    chainId: 'AELF',
     payload: {
         address: '2JqnxvDiMNzbSgme2oxpqUFpUYfMjTpNBGCLP2CsWjpbHdu',
         contracts: [{
@@ -359,75 +353,31 @@ aelf.setContractPermission({
         }]
     }
 }, (error, result) => {
-    console.log('>>>>>>>>>>>>>', result);
+    console.log('>>>>>>>>>>>>>', error, result);
 });
-
-// keychain = {
-//     keypairs: {...},
-//     permissions: [{
-//         appName: 'hzzTest',
-//         address: 'your keyparis address',
-//         contracts: [{
-//             chainId: 'AELF',
-//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-//             contractName: 'token',
-//             description: 'token contract',
-//             github: '',
-//             whitelist: {}
-//         },
-//         {
-//             chainId: 'AELF',
-//             contractAddress: 'TEST contractAddress',
-//             contractName: 'AAAA',
-//             description: 'contract description',
-//             github: ''
-//         }],
-//         domain: 'Dapp domain'
-//     }]
-// }
-
 ```
 
 <span id="remove-contract-permission"></span>
 
-### 8.REMOVE_CONTRACT_PERMISSION
+### 3.8 REMOVE_CONTRACT_PERMISSION
 
 ```javascript
 aelf.removeContractPermission({
-    appName: 'hzzTest',
     chainId: 'AELF',
     payload: {
         contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb'
     }
 }, (error, result) => {
-    console.log('removeContractPermission>>>>>>>>>>>>>>>>>>>', result);
+    console.log('>>>>>>>>>>>>>', error, result);
 });
-
-// keychain = {
-//     keypairs: {...},
-//     permissions: [{
-//         appName: 'hzzTest',
-//         address: 'your keyparis address',
-//         contracts: [{
-//             chainId: 'AELF',
-//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-//             contractName: 'token',
-//             description: 'token contract',
-//             github: ''
-//         }],
-//         domain: 'Dapp domain'
-//     }]
-// }
-
 ```
 
 <span id="remove-methods-whitelist"></span>
 
-### 9.REMOVE_METHODS_WHITELIST
+### 3.9 REMOVE_METHODS_WHITELIST
 
 ```javascript
 aelf.removeMethodsWhitelist({
-    appName: 'hzzTest',
     chainId: 'AELF',
     payload: {
         contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
@@ -436,65 +386,104 @@ aelf.removeMethodsWhitelist({
 }, (error, result) => {
     console.log('removeWhitelist>>>>>>>>>>>>>>>>>', result);
 });
-// keychain = {
-//     keypairs: {...},
-//     permissions: [{
-//         appName: 'hzzTest',
-//         address: 'your keyparis address',
-//         contracts: [{
-//             chainId: 'AELF',
-//             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
-//             contractName: 'token',
-//             description: 'token contract',
-//             github: '',
-//             whitelist: {}
-//         }],
-//         domain: 'Dapp domain'
-//     }]
-// }
 ```
 
-## For Extension Developers
+<span id="get-signature"></span>
 
-1. Download the code
+### 3.10 GET_SIGNATURE
 
-    ```bash
-    git clone https://github.com/AElfProject/aelf-web-extension.git
-    ```
+```javascript
+aelf.getSignature({
+    address: 'address',
+    hexToBeSign: 'hexToBeSign'
+}).then(result => {
+  // ...
+}).cathc(error => {
+  // ...
+});
+```
 
-2. Install dependent
+## 4.For Extension Developers
 
-    ```bash
-        npm install
-    ```
+### 4.1. Download the code
 
-3. Run webpack
+```bash
+git clone https://github.com/AElfProject/aelf-web-extension.git
+```
 
-    ```bash
-        npm run none
-        npm run none:watch
-        npm run dev
-        npm run dev:watch
-        npm run pro
-        npm run pro:watch
-    ```
+### 4.2 Install dependent
 
-4. Add to the browser
+```bash
+    npm install
+```
 
-    ```bash
-        open development mode, add the webpack output app/public.
-    ```
+### 4.3 Run webpack
+
+```bash
+    npm run none
+    npm run none:watch
+    npm run dev
+    npm run dev:watch
+    npm run pro
+    npm run pro:watch
+```
+
+### 4.4 Add to the browser
+
+```bash
+    open development mode, add the webpack output app/public.
+```
    
-### How to publish to chrome
+### 4.5 How to publish to chrome
 
 zip app/public to public.zip, and follow the notes.
 
-### Can not use crx
+### 4.6 Can not use crx
 
 You can not install the extension from an offline crx if Chrome >= 73.
 
 Please import the `.zip file` with developer mode.
 
-## Project Information
+<span id="dataformat"></span>
+
+## 5 Formatted Data Example
+
+```javascript
+    NightElf = {
+        histories: [],
+        keychain: {
+            keypairs: [
+                {
+                    name: 'your keypairs name',
+                    address: 'your keypairs address',
+                    mnemonic: 'your keypairs mnemonic',
+                    privateKey: 'your keupairs privateKey',
+                    publicKey: {
+                        x: 'you keupairs publicKey',
+                        y: 'you keupairs publicKey'
+                    }
+                }
+            ],
+            permissions: [
+                {
+                    chainId: 'AELF',
+                    contractAddress: 'contract address',
+                    contractName: 'contract name',
+                    description: 'contract description',
+                    github: 'contract github',
+                    whitelist: {
+                        Approve: {
+                            parameter1: 'a',
+                            parameter2: 'b',
+                            parameter3: 'c'
+                        }
+                    }
+                }
+            ]
+        }
+    }
+```
+
+## 6 Project Information
 
 We use [ECDH](https://github.com/indutny/elliptic) to use public key to  encryt data and private key to decrypt data.

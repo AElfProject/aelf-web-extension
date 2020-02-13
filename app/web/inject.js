@@ -66,7 +66,7 @@ class NightAElf {
 
   login(params, callback) {
     return window.NightElf.api({
-      appName: params.appName,
+      appName: params.appName || this.appName,
       chainId: params.chainId,
       method: 'LOGIN',
       payload: {
@@ -79,7 +79,7 @@ class NightAElf {
 
   logout(params, callback) {
     return window.NightElf.api({
-      appName: params.appName,
+      appName: params.appName || this.appName,
       chainId: params.chainId,
       address: params.address,
       method: 'REMOVE_PERMISSION',
@@ -93,7 +93,7 @@ class NightAElf {
 
   checkPermission(params, callback) {
     return window.NightElf.api({
-      appName: params.appName,
+      appName: params.appName || this.appName,
       method: 'CHECK_PERMISSION',
       address: params.address,
       type: params.type || '',
@@ -105,7 +105,7 @@ class NightAElf {
 
   setContractPermission(params, callback) {
     return window.NightElf.api({
-      appName: params.appName,
+      appName: params.appName || this.appName,
       method: 'OPEN_PROMPT',
       chainId: params.chainId,
       payload: {
@@ -119,7 +119,7 @@ class NightAElf {
 
   removeContractPermission(params, callback) {
     return window.NightElf.api({
-      appName: params.appName,
+      appName: params.appName || this.appName,
       method: 'REMOVE_CONTRACT_PERMISSION',
       payload: params.payload
     }).then(result => {
@@ -129,7 +129,7 @@ class NightAElf {
 
   removeMethodsWhitelist(params, callback) {
     return window.NightElf.api({
-      appName: params.appName,
+      appName: params.appName || this.appName,
       chainId: params.chainId,
       method: 'REMOVE_METHODS_WHITELIST',
       payload: params.payload
@@ -140,7 +140,7 @@ class NightAElf {
 
   getAddress(param, callback) {
     return window.NightElf.api({
-      appName: param.appName,
+      appName: param.appName || this.appName,
       method: 'GET_ADDRESS'
     }).then(result => {
       return this.callbackWrap(result, callback);
@@ -149,7 +149,7 @@ class NightAElf {
 
   getSignature(param, callback) {
     return window.NightElf.api({
-      appName: param.appName,
+      appName: param.appName || this.appName,
       address: param.address,
       hexToBeSign: param.hexToBeSign,
       method: 'GET_SIGNATURE'
