@@ -1,22 +1,12 @@
 # aelf-web-extension
 
-## 1 For User
+## 1 Download
 
 [release version, please waiting](#)
 
 [dev version](https://chrome.google.com/webstore/detail/aelf-explorer-extension-d/mlmlhipeonlflbcclinpbmcjdnpnmkpf)
 
-If you are using qq browser,etc, you can add the extention too.
-
-### 1.1 Notice
-
-```note
-Using File:/// protocol may can not use the extenstion
-// https://developer.chrome.com/extensions/match_patterns
-Note: Access to file URLs isn't automatic. The user must visit the extensions management page and opt in to file access for each extension that requests it.
-```
-
-## 2 For Dapp Developers
+## 2 Preparation
 
 ### 2.1 Interaction Flow
 
@@ -481,7 +471,3 @@ Please import the `.zip file` with developer mode.
         }
     }
 ```
-
-## 6 Project Information
-
-We use [ECDH](https://github.com/indutny/elliptic) to use public key to  encryt data and private key to decrypt data.
