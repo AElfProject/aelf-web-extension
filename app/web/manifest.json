@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "name": "aelf-explorer-extension-dev",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "__MSG_pluginDesc__",
   "icons": {
     "16": "assets/images/aelf_logo.png",
@@ -24,7 +24,6 @@
   }],
   "permissions": [
     "contextMenus",
-    "tabs",
     "notifications",
     "webRequest",
     "webRequestBlocking",
