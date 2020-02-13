@@ -15,17 +15,4 @@
   <!-- * [开发你的DApp](SettingUpForYou/SettingUpForYou.md) -->
   <!-- * [支持的区块链](SupportedBlockchains/SupportedBlockchains.md)
     * [AELF](SupportedBlockchains/Chain/AELF.md) -->
-* [开发案例](Examples/Examples.md)
-<!-- * [特性 & TODO](Feature/Feature.md) -->
-* [API Reference](ApiReference/ApiReference.md)
-  * [GET_CHAIN_INFORMATION / getChainInformation](ApiReference/Api/getChainInformation.md)
-  * [CALL_AELF_CHAIN](ApiReference/Api/callAElfChain.md)
-  * [LOGIN / login](ApiReference/Api/login.md)
-  * [INIT_AELF_CONTRACT / contractAtAsync](ApiReference/Api/contractAtAsync.md)
-  * [CALL_AELF_CONTRACT](ApiReference/Api/callAElfContract.md)
-  * [CALL_AELF_CONTRACT_READONLY](ApiReference/Api/callAElfContractReadonly.md)
-  * [CHECK_PERMISSION / checkPermission](ApiReference/Api/checkPermission.md)
-  * [GET_ADDRESS / getAddress](ApiReference/Api/getAddress.md)
-  * [SET_CONTRACT_PERMISSION / setContractPermission](ApiReference/Api/setContractPermission.md)
-  * [REMOVE_CONTRACT_PERMISSION / removeContractPermission](ApiReference/Api/removeContractPermission.md)
-  * [REMOVE_METHODS_WHITELIST / removeMethodsWhitelist](ApiReference/Api/removeMethodsWhitelist.md)
+* [开发者文档](DevDocs/devDocs.md)
