@@ -51,15 +51,11 @@ export function contractWhitelistCheck(options) {
         method
     } = options;
     const contractMatch = appPermissions.permissions[0].contracts.find(item => {
-        if (item.contractAddress === contractAddress) {
-            return true;
-        }
-        return false;
+        return item.contractAddress === contractAddress;
+
     });
-    if (contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method)) {
-        return true;
-    }
-    return false;
+    return contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method);
+
 }
 
 export function getContractInfoWithAppPermissions(contractInfo, appPermissions) {

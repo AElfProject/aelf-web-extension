@@ -20,16 +20,16 @@
 // B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
 // C 0，no Error
 const errorMap = {
-    200001: 'payload is false.',
+    200001: 'Payload is false.',
     200002: 'Please set permission at first.',
     200003: 'Please set permission at first.',
     200004: 'No Wallet Info.',
     200005: 'Night Elf is locked!',
-    200006: 'Decrypto Failed. Please unlock your wallet.',
+    200006: 'Decrypt Failed. Please unlock your wallet.',
     200007: 'No Night Elf in storage.',
     200008: 'Please login first.',
     200009: 'No permission, can not set whitelist.',
-    200010: 'The user closed the prompt without any action.'
+    200010: 'You closed the prompt without any action.'
 };
 
 export default function errorHandler(code, error) {

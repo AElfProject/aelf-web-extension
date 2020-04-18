@@ -40,9 +40,9 @@ export default class ConfirmationCall extends Component {
         });
     }
 
-    refuse() {
+    cancel() {
         window.data.sendResponse({
-            ...errorHandler(400001, 'Refuse')
+            ...errorHandler(400001, 'Operation canceled.')
         });
         window.close();
     }
@@ -60,11 +60,8 @@ export default class ConfirmationCall extends Component {
         ).send()
         .then(result => {
             if (result && result.error === 0) {
-                Toast.success('success, after 3s close the window.');
-                window.data.sendResponse({
-                    ...errorHandler(0),
-                    result
-                });
+                Toast.success('Success, after 3s close the window.');
+                window.data.sendResponse(result);
                 setTimeout(() => {
                     window.close();
                 }, 3000);
@@ -220,7 +217,7 @@ export default class ConfirmationCall extends Component {
                     <AelfButton
                         text='Cancel'
                         type='transparent'
-                        onClick={() => this.refuse()}
+                        onClick={() => this.cancel()}
                     />
                 </div>;
     }

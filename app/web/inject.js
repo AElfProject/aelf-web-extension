@@ -42,7 +42,7 @@ class NightAElf {
   }
 
   callbackWrap(result, callback = () => {}) {
-    if (result.result) {
+    if (result.result && result.result.hasOwnProperty('error') && result.result.hasOwnProperty('errorMessage')) {
       callback(null, result.result);
       return result.result;
     }

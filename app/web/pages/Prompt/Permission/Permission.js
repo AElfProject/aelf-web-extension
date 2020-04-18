@@ -138,9 +138,9 @@ export default class Permission extends Component {
         });
     }
 
-    refuse() {
+    cancel() {
         window.data.sendResponse({
-            ...errorHandler(400001, 'Refuse')
+            ...errorHandler(400001, 'Authorization operation cancelled.')
         });
         window.close();
     }
@@ -239,7 +239,7 @@ export default class Permission extends Component {
                             <AelfButton
                                 type='transparent'
                                 text='Cancel'
-                                onClick={() => this.refuse()}
+                                onClick={() => this.cancel()}
                             />
                         </div>
                     </div>
