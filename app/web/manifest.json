@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "name": "aelf-explorer-extension-dev",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "__MSG_pluginDesc__",
   "icons": {
     "16": "assets/images/aelf_logo.png",

@@ -227,9 +227,9 @@ export default class Keypairs extends Component {
             <div style={pageContainerStyle} className='asstes-container'>
                 <NavNormal
                     onLeftClick={() => historyPush('/home')}
-                ></NavNormal>
+                />
                 <div className={style.top}>
-                    <div className={style.blank}></div>
+                    <div className={style.blank}/>
                     <p className={style.wallet}>
                         <FormattedMessage
                             id='aelf.Key Pairs'
@@ -256,25 +256,25 @@ export default class Keypairs extends Component {
                 <div className={style.background} style={backgroundStyle}>
                     {/* <div className={style.backgroundMask}></div> */}
                     {/* <div className={style.container} style={containerStyle}> */}
-                        <div className={style.transactionList}>
-                            <ListView
-                                initialListSize={NUM_ROWS}
-                                key={this.state.useBodyScroll ? '0' : '1'}
-                                ref={el => this.lv = el}
-                                dataSource={this.state.dataSource}
+                    <div className={style.transactionList}>
+                        <ListView
+                            initialListSize={NUM_ROWS}
+                            key={this.state.useBodyScroll ? '0' : '1'}
+                            ref={el => this.lv = el}
+                            dataSource={this.state.dataSource}
 
-                                renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
+                            renderFooter={() => ScrollFooter(this.state.isLoading, this.state.hasMore)}
 
-                                renderRow={this.renderRow}
-                                useBodyScroll={this.state.useBodyScroll}
-                                style={this.state.useBodyScroll ? {} : {
-                                    // height: this.state.height - 100,
-                                    height: '100%'
-                                }}
-                                pageSize={pageSize}
-                            />
-                        </div>
+                            renderRow={this.renderRow}
+                            useBodyScroll={this.state.useBodyScroll}
+                            style={this.state.useBodyScroll ? {} : {
+                                // height: this.state.height - 100,
+                                height: '100%'
+                            }}
+                            pageSize={pageSize}
+                        />
                     </div>
+                </div>
                 {/* </div> */}
             </div>
         );

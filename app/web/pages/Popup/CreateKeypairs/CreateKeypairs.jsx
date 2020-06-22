@@ -127,9 +127,9 @@ export default class CreateKeypairs extends Component {
                 {/*<NavNormal navTitle="导入钱包" */}
                 <NavNormal
                     onLeftClick={() => historyPush('/keypairs')}
-                ></NavNormal>
+                />
                 <div className={style.top}>
-                    <div className={style.blank}></div>
+                    <div className={style.blank}/>
                     <p className={style.wallet}>
                         <FormattedMessage
                             id='aelf.Create Keypair'
@@ -187,10 +187,10 @@ export default class CreateKeypairs extends Component {
                             placeholder=""
                             onChange={name => this.setName(name)}
                             moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-                        ></InputItem>
+                        />
                     </List>
                 </div>
-                <div style={{height: '50px'}}></div>
+                <div style={{height: '50px'}}/>
                 <div className={style.buttonContainer}>
                     <AelfButton
                         text='Create Keypair'
