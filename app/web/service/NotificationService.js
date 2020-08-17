@@ -12,6 +12,7 @@ import * as InternalMessageTypes from '../messages/InternalMessageTypes';
 
 import checkSetPermission from '../utils/checkSetPermission';
 let openWindow = null;
+let getPopupTimeout = null;
 
 export default class NotificationService {
 
@@ -48,35 +49,29 @@ export default class NotificationService {
         let middleY = window.screen.availHeight / 2 - (height / 2);
 
         const getPopup = async () => {
-            try {
-                const route = notification.route || '';
-                const url = apis.runtime.getURL('/prompt.html' + route);
+            const route = notification.route || '';
+            const url = apis.runtime.getURL('/prompt.html' + route);
 
-                // Notifications get bound differently depending on browser
-                // as Firefox does not support opening windows from background.
-                if (typeof browser !== 'undefined') {
-                    const created = await apis.windows.create({
-                        url,
-                        height,
-                        width,
-                        type: 'popup'
-                    });
-
-                    window.notification = notification;
-                    return created;
-                }
-                const win = window.open(
+            // Notifications get bound differently depending on browser
+            // as Firefox does not support opening windows from background.
+            if (typeof browser !== 'undefined') {
+                const created = await apis.windows.create({
                     url,
-                    'NightElf Prompt',
-                    `width=${width},height=${height},resizable=0,top=${middleY},left=${middleX},titlebar=0`);
-                win.data = notification;
-                openWindow = win;
-                return win;
+                    height,
+                    width,
+                    type: 'popup'
+                });
+
+                window.notification = notification;
+                return created;
             }
-            catch (e) {
-                console.log('notification error', e);
-                return null;
-            }
+            const win = window.open(
+                url,
+                'NightElf Prompt',
+                `width=${width},height=${height},resizable=0,top=${middleY},left=${middleX},titlebar=0`);
+            win.data = notification;
+            openWindow = win;
+            return win;
         };
 
         // Could not establish connection. Receiving end does not exist.
@@ -84,23 +79,29 @@ export default class NotificationService {
         // If we need setPrompt, use callback to complement it.
 
         // let popup = await getPopup();
-        getPopup().then(popup => {
-            // Handles the user closing the popup without taking any action
-            if (popup) {
-                popup.onbeforeunload = () => {
-                    // notification.responder(Error.promptClosedWithoutAction());
-                    notification.sendResponse({
-                        ...errorHandler(200010)
-                    });
+        clearTimeout(getPopupTimeout);
+        getPopupTimeout = setTimeout(async () => {
+            try {
+                const popup = await getPopup();
+                if (popup) {
+                    popup.onbeforeunload = () => {
+                        // notification.responder(Error.promptClosedWithoutAction());
+                        notification.sendResponse({
+                            ...errorHandler(200010)
+                        });
 
-                    // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-                    // Must return undefined to bypass form protection
-                    openWindow = null;
-                    return undefined;
-                };
+                        // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+                        // Must return undefined to bypass form protection
+                        openWindow = null;
+                        return undefined;
+                    };
+                }
+            } catch (error) {
+                notification.sendResponse({
+                    ...errorHandler(500002, error)
+                });
             }
-        });
-
+        }, 100);
     }
 
     /***

@@ -6,8 +6,9 @@
 
 // century renew blade meadow faith evil uniform work discover poet ripple drill
 
-const tokenContractAddress = 'ELF_25CecrU94dmMdbhC3LWMKxtoaL4Wv8PChGvVJM6PxkHAyvXEhB_AELF';
-const testAddress = '2RCLmZQ2291xDwSbDEJR6nLhFJcMkyfrVTq1i1YxWC4SdY49a6';
+const tokenContractAddress = 'ELF_JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE_AELF';
+// const testAddress = '2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX';
+const testAddress = '2QCkN89q5XdsGJXoiobuVGJQ5NHdFsUQVbY88rLKQb3S4hQHC2';
 
 document.addEventListener('NightElf', result => {
     console.log(Date.now());
@@ -15,6 +16,7 @@ document.addEventListener('NightElf', result => {
 
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
+    const lockBtn = document.getElementById('lock-btn');
     const getChainStatus = document.getElementById('get-chain-status');
     const callAelfChainBtn = document.getElementById('call-aelf-chain');
     const initAelfContract = document.getElementById('init-aelf-contract');
@@ -31,6 +33,8 @@ document.addEventListener('NightElf', result => {
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
         httpProvider: ['http://3.25.10.185:8000'],
+        // httpProvider: ['http://1.119.195.50:11105/chain'],
+        // httpProvider: ['http://1.119.195.50:11105/chain'],
         appName: 'your own app name'
     });
     console.log('aelf>>>>>>>>>>>', aelf);
@@ -89,6 +93,12 @@ document.addEventListener('NightElf', result => {
             address: testAddress
         }, (error, result) => {
             console.log('logout>>>>>>>>>>>>>>>>>>', result);
+        });
+    };
+
+    lockBtn.onclick = function () {
+        aelf.lock({}, (error, result) => {
+            console.log('lock>>>>>>>>>>>>>>>>>>', result);
         });
     };
 
@@ -209,11 +219,11 @@ document.addEventListener('NightElf', result => {
     callAelfContract.onclick = function () {
         tokenC.GetBalance.call(
             {
-                symbol: 'AELF',
+                symbol: 'ELF',
                 owner: testAddress
             },
             (err, result) => {
-                console.log('>>>>>>>>>>>>>>>>>>>', result);
+                console.log('>>>>>>>>>>>>>>>>>>>', err, result);
             }
         );
     };
@@ -222,12 +232,13 @@ document.addEventListener('NightElf', result => {
         tokenC.Transfer(
           {
               symbol: 'ELF',
-              to: 'ELF_2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX_AELF',
+              to: 'ELF_2RCLmZQ2291xDwSbDEJR6nLhFJcMkyfrVTq1i1YxWC4SdY49a6_AELF',
+              // to: 'ELF_2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX_AELF',
               amount: 1,
               memo: 'have fun'
           },
           (err, result) => {
-              console.log('>>>>>>>>>>>>>>>>>>>', result);
+              console.log('>>>>>>>>>>>>>>>>>>>',err, result);
           }
         );
     };
@@ -236,7 +247,8 @@ document.addEventListener('NightElf', result => {
         tokenC.Transfer(
           {
               symbol: 'ELF',
-              to: 'ELF_2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX_AELF',
+              to: 'ELF_2RCLmZQ2291xDwSbDEJR6nLhFJcMkyfrVTq1i1YxWC4SdY49a6_AELF',
+              // to: 'ELF_2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX_AELF',
               amount: 2,
               memo: 'have fun'
           },

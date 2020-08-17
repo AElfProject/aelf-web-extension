@@ -11,6 +11,9 @@ export default function checkSetPermission(message) {
         case 'SET_CONTRACT_PERMISSION':
             width = 1200;
             break;
+        case 'UNLOCK_NIGHT_ELF':
+            width = 320;
+            break;
         default:
             width = 700;
             break;

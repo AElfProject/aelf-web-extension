@@ -212,7 +212,7 @@ export default class Permission extends Component {
             <div className={style.container}>
                 <div className={style.confirmPermission}>
                     <div className={style.top}>
-                          <div className={style.blank}></div>
+                          <div className={style.blank}/>
                           <p className={style.wallet}>
                               <FormattedMessage
                                   id='aelf.Authorization details'

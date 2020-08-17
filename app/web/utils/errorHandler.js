@@ -34,6 +34,8 @@ const errorMap = {
     200011: 'Decrypt failed, get Night Elf failed!',
     200012: 'Wallet error or damaged',
     200013: 'Decrypt keystore failed',
+    // 3xxxxx 暂时仅用于内部重定向
+    300000: 'Unlocked your wallet, recall your function please.',
     // [40000, 41000) 是动态错误
     // 400001 都是动态错误
     // [41001, 42000) 是固定错误
@@ -42,7 +44,8 @@ const errorMap = {
     410003: 'Missing param contractAddress.',
     410004: 'Missing param sendResponse(function).',
     // 5xxxxxx 一般和接口请求有关，插件主动抛出来
-    // 目前仅有500001，未分类
+    // 目前仅有500001，background.js 报错
+    // 500002 NotificationService.js failed
 };
 
 export default function errorHandler(code, error) {

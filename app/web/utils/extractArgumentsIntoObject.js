@@ -5,7 +5,7 @@
  */
 const isFunction = object => typeof object === 'function';
 const isBoolean = object => typeof object === 'boolean';
-export default function extractArgumentsIntoObjec(args) {
+export default function extractArgumentsIntoObject(args) {
   const result = {
     callback: () => {},
     isSync: false

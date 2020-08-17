@@ -313,9 +313,9 @@ export default class Lock extends Component {
         return <div>
             <Password
                 setPassword={password => this.setPassword(password)}
-            ></Password>
+            />
             <div className={style.createBottom}>
-                <div className='aelf-blank12'></div>
+                <div className='aelf-blank12'/>
                 <AelfButton
                     text='Create Wallet'
                     aelficon='add_purple20'
@@ -346,11 +346,11 @@ export default class Lock extends Component {
                         placeholder=""
                         onChange={password => this.setPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-                    ></InputItem>
+                    />
                 </List>
             </div>
             <div className={style.bottom}>
-                <div className='aelf-blank12'></div>
+                <div className='aelf-blank12'/>
                 <AelfButton
                     text='Clear Wallet'
                     aelficon='add_purple20'
@@ -379,11 +379,11 @@ export default class Lock extends Component {
                             placeholder=""
                             onChange={password => this.setPassword(password)}
                             moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-                        ></InputItem>
+                        />
                     </List>
                 </div>
                 <div className={style.bottom}>
-                    <div className='aelf-blank12'></div>
+                    <div className='aelf-blank12'/>
                     <AelfButton
                         text='Unlock Wallet'
                         aelficon='add_purple20'
@@ -392,7 +392,7 @@ export default class Lock extends Component {
                 </div>
             </div>;
         }
-        return <div></div>;
+        return <div/>;
     }
 
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -412,11 +412,11 @@ export default class Lock extends Component {
                         placeholder=""
                         onChange={password => this.setPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-                    ></InputItem>
+                    />
                 </List>
             </div>
             <div className={style.bottom}>
-                <div className='aelf-blank12'></div>
+                <div className='aelf-blank12'/>
                 <AelfButton
                     text='Backup NightELF'
                     aelficon='add_purple20'
@@ -438,7 +438,7 @@ export default class Lock extends Component {
             renderOption = this.renderOption();
         }
         else {
-            renderOption = <div></div>;
+            renderOption = <div/>;
         }
         const obj = this.timingLockData.filter(item => {
             return this.state.timingLockTimes === item.value;
@@ -459,7 +459,7 @@ export default class Lock extends Component {
                 </div>
             </div>
             <div className={style.bottom} style={{marginTop: '170px'}}>
-                <div className='aelf-blank12'></div>
+                <div className='aelf-blank12'/>
                 <AelfButton
                     text='Submit'
                     aelficon='add_purple20'
@@ -513,7 +513,7 @@ export default class Lock extends Component {
                     <div className={style.top}>
                         <p className={style.walletAgree}>NIGHT ELF</p>
                         <div className={style.agreementBox}>
-                            <div className={style.agreementHead}></div>
+                            <div className={style.agreementHead}/>
                             {agreementContent}
                         </div>
                         <div className={style.bottom}
@@ -576,7 +576,7 @@ export default class Lock extends Component {
                     margin.marginTop = '17px';
                     navHTML = <NavNormal
                             onLeftClick={() => this.backClick()}
-                        ></NavNormal>;
+                        />;
                 }
                 else if (this.isBackup) {
                     buttonHTML = this.renderBackup();
@@ -584,7 +584,7 @@ export default class Lock extends Component {
                     margin.marginTop = '17px';
                     navHTML = <NavNormal
                             onLeftClick={() => this.backClick()}
-                        ></NavNormal>;
+                        />;
                 }
                 else if (this.isTimingLock) {
                     buttonHTML = this.renderTimingLock();
@@ -592,7 +592,7 @@ export default class Lock extends Component {
                     margin.marginTop = '17px';
                     navHTML = <NavNormal
                             onLeftClick={() => this.backClick()}
-                        ></NavNormal>;
+                        />;
                 }
             }
         }

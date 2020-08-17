@@ -1,0 +1,141 @@
+.container {
+    color: #FFF;
+    min-height: 578px;
+    width: 320px;
+    background: url('../../../assets/background/bg1_long.svg') no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    background-position: 0 10%;
+}
+
+.top {
+    padding: 0 24px 0 24px;
+}
+
+.blank {
+    margin: 58px 0 0 0;
+}
+
+.blank12 {
+    height: 12px;
+    width: 12px;
+}
+
+.welcome {
+    font-weight: 100;
+    font-size: 22px;
+    margin: 62px 0 0px 0;
+}
+
+.wallet {
+    font-size: 36px;
+    margin: 8px 0 8px 0;
+    font-weight: 700;
+}
+
+.description {
+    font-size: 14px;
+    margin: 0;
+}
+
+.bottom {
+    width: 80%;
+    margin: 16px auto 50px 10%;
+}
+
+.btn {
+    border-radius: 100px;
+}
+
+
+// >>>>>>>> new Create style <<<<<<<<<
+
+.createBottom {
+    width: 80%;
+    margin: 0 auto 0px 10%;
+}
+
+
+// >>>>>>>>> agreement <<<<<<<<<
+
+.agreementContent {
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size: 16px;
+}
+
+.walletAgree {
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 62px;
+}
+
+.agreementBox {
+    overflow: hidden;
+    margin: 0 8px;
+    border: 1px solid white;
+    height: 280px;
+}
+
+.agreementHead {
+    height: 20px;
+    background: rgba(255, 255, 255, .3);
+}
+
+.agreementContent {
+    background: rgba(0, 0, 0, .3);
+    height: 260px;
+    overflow-y: scroll;
+    padding: 10px 20px;
+}
+
+.timeLock {
+    height: 36px;
+    line-height: 36px;
+    font-size: 16px;
+    background: rgba(0, 0, 0, .3);
+    border: 1px solid #FFF;
+    position: relative;
+}
+
+.select {
+    position: absolute;
+    background: #FFF;
+    width: 100%;
+    padding-right: 2px;
+    top: 37px;
+    left: -1px;
+}
+
+.option {
+    height: 24px;
+    padding: 0 0 0 24px;
+    line-height: 24px;
+    color: black;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: rgb(82, 21, 150);
+    color: #FFF;
+    padding-right: 2px;
+}
+
+.label {
+    padding: 0 0 0 24px;
+}
+
+.lockTip {
+    color: #e6e73e;
+    margin-bottom: 20px;
+}
+
+.uselessTriangle {
+    width: 50px;
+    border-left: 1px solid #FFF;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+}

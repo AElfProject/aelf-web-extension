@@ -32,6 +32,7 @@ const handlePendingPromise = function (eventMessage) {
 
 let stream = new WeakMap();
 
+// TODO: if return unlock, re call the method.
 // Just a wrap of the api of the extension for developers.
 class NightAElf {
   constructor(options) {
@@ -86,6 +87,17 @@ class NightAElf {
       payload: {
         payload: params.payload
       }
+    }).then(result => {
+      return this.callbackWrap(result, callback);
+    });
+  }
+
+  lock(params = {}, callback) {
+    return window.NightElf.api({
+      appName: params.appName || this.appName,
+      chainId: params.chainId || this.chainId,
+      method: 'LOCK_WALLET',
+      payload: {}
     }).then(result => {
       return this.callbackWrap(result, callback);
     });
@@ -245,7 +257,7 @@ class NightAElf {
         method: methodName,
         chainId: this.chainId,
         payload: {
-          contractName: 'From Extension',
+          contractName: contractAddress || 'From Extension',
           contractAddress: contractAddress,
           method: method,
           // params: paramsTemp
@@ -269,7 +281,8 @@ class NightAElf {
         chainId: this.chainId,
         payload: {
           address: wallet.address,
-          contractName: 'EXTENSION',
+          // contractName: 'EXTENSION',
+          contractName: contractAddress || 'EXTENSION',
           contractAddress: contractAddress
         }
       }).then(result => {

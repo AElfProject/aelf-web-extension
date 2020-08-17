@@ -28,6 +28,7 @@ import Prompt from './Prompt/Prompt';
 import LoginKeypairs from './LoginKeypairs/LoginKeypairs';
 import ConfirmationCall from './ConfirmationCall/ConfirmationCall';
 import ChangePermission from './ChangePermission/ChangePermission';
+import Lock from './Unlock/Lock';
 
 addLocaleData([...zh, ...en]);
 
@@ -35,11 +36,12 @@ ReactDOM.render(
     <IntlProvider locale={navigator.language} messages={chooseLocale()} >
         <LocaleProvider locale={antdChooseLocale()} >
             <Router history={hashHistory}>
-                <Route path="/" component={Permission}></Route>
-                <Route path="/prompt" component={Prompt}></Route>
-                <Route path="/loginkeypairs" component={LoginKeypairs}></Route>
-                <Route path='/confirmation' component={ConfirmationCall}></Route>
-                <Route path='/chengepermission' component={ChangePermission}></Route>
+                <Route path="/" component={Permission}/>
+                <Route path="/prompt" component={Prompt}/>
+                <Route path="/loginkeypairs" component={LoginKeypairs}/>
+                <Route path='/confirmation' component={ConfirmationCall}/>
+                <Route path='/changepermission' component={ChangePermission}/>
+                <Route path='/unlock' component={Lock}/>
             </Router>
         </LocaleProvider>
     </IntlProvider>,

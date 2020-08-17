@@ -51,7 +51,8 @@ function getPromptRoute(message) {
         SET_PERMISSION: '#/',
         SET_CONTRACT_PERMISSION: '#/',
         LOGIN: '#/loginkeypairs',
-        CALL_AELF_CONTRACT: '#/examine-approve'
+        CALL_AELF_CONTRACT: '#/examine-approve',
+        UNLOCK_NIGHT_ELF: '#/unlock'
     };
     return message.router || routMap[method] || '#/confirmation';
 }
@@ -742,18 +743,6 @@ export default class Background {
         Background.updateWallet(sendResponse);
     }
 
-    static unlockWallet(sendResponse, _seed) {
-        seed = _seed;
-        this.checkSeed({sendResponse}, ({nightElfObject}) => {
-            nightElf = NightElf.fromJson(nightElfObject);
-            Background.checkTimingLock(sendResponse);
-            sendResponse({
-                ...errorHandler(0),
-                nightElf: !!nightElf
-            });
-        });
-    }
-
     static updateWallet(sendResponse) {
         // TODO: Check seed.
         console.log(sendResponse);
@@ -919,6 +908,18 @@ export default class Background {
         nightElf = null;
         sendResponse({
             ...errorHandler(0)
+        });
+    }
+
+    static unlockWallet(sendResponse, _seed) {
+        seed = _seed;
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            nightElf = NightElf.fromJson(nightElfObject);
+            Background.checkTimingLock(sendResponse);
+            sendResponse({
+                ...errorHandler(0),
+                nightElf: !!nightElf
+            });
         });
     }
 
@@ -1325,9 +1326,12 @@ export default class Background {
         } = options;
         // TODO: sendResponse & resolve/reject
         if (!seed) {
-            sendResponse({
-                ...errorHandler(200005)
+            Background.openPrompt(sendResponse,{
+                payload: {
+                    method: 'UNLOCK_NIGHT_ELF'
+                }
             });
+
             return;
         }
         if (typeof sendResponse === 'function') {
