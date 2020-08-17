@@ -23,10 +23,7 @@
     "run_at": "document_end"
   }],
   "permissions": [
-    "contextMenus",
-    "notifications",
     "webRequest",
-    "webRequestBlocking",
     "storage",
     "http://*/*",
     "https://*/*"

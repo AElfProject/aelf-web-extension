@@ -66,7 +66,9 @@ export default class Import extends Component {
         }
 
         let mnemonicWallet = AElf.wallet.getWalletByMnemonic(this.state.mnemonic.trim() || '');
-        let privateKeyWallet = AElf.wallet.getWalletByPrivateKey(this.state.privateKey.trim() || '');
+
+        const privateKeyInput = this.state.privateKey.trim();
+        let privateKeyWallet = privateKeyInput ? AElf.wallet.getWalletByPrivateKey(privateKeyInput) : null;
 
         // if (!privateKeyWallet && !mnemonicWallet) {
         if (!mnemonicWallet) {
@@ -181,7 +183,7 @@ export default class Import extends Component {
                     opacity: 0.5,
                     margin: '0 0 20px 0'
                 }}
-            ></AelfButton>;
+            />;
         if (this.state.walletName) {
             createButton =
                 <AelfButton
@@ -190,7 +192,7 @@ export default class Import extends Component {
                     style={{
                         margin: '0 0 20px 0'
                     }}
-                ></AelfButton>;
+                />;
         }
 
         let containerStyle = getPageContainerStyle();
@@ -199,7 +201,7 @@ export default class Import extends Component {
             <div className={style.container} style={containerStyle}>
                 <NavNormal
                     onLeftClick={() => historyPush('/keypairs')}
-                ></NavNormal>
+                />
                 <div className={style.top}>
                     <div className={style.blank}></div>
                     <p className={style.wallet}>
@@ -223,7 +225,7 @@ export default class Import extends Component {
                                         defaultMessage = 'Mnemonic'
                                     />
                                 </div>
-                                <div className={style.tabSelectedLine}></div>
+                                <div className={style.tabSelectedLine}/>
                             </div>
 
                             <div
@@ -236,7 +238,7 @@ export default class Import extends Component {
                                         defaultMessage = 'Private Key'
                                     />
                                 </div>
-                                <div className={style.tabSelectedLine}></div>
+                                <div className={style.tabSelectedLine}/>
                             </div>
                         </div>
                         <div>
@@ -268,7 +270,7 @@ export default class Import extends Component {
                     </p>
                     <WalletName
                         setWalletName={walletName => this.setWalletName(walletName)}
-                    ></WalletName>
+                    />
                     <WhiteSpace />
                     {/* <Flex style={{ padding: '0 24px 0 24px' }}>
                         <Flex.Item style={{ padding: '15px 0', color: '#FFF', flex: 'none', opacity: 0.5 }}>

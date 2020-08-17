@@ -204,7 +204,7 @@ export default class BackupKeypairs extends Component {
                 {/*<NavNormal navTitle="导入钱包" */}
                 <NavNormal
                     onLeftClick={() => this.goNextPage()}
-                ></NavNormal>
+                />
 
                 <div className={style.container} style={containerStyle}>
                     <div className={style.textContainer}>
@@ -247,7 +247,7 @@ export default class BackupKeypairs extends Component {
                                     defaultMessage = 'you will need your Mnemonic to recover your wallet.'
                                 />
                             ]}
-                        ></NoticePanel>
+                        />
                     </div>
 
                     <div className={style.bottom}>
@@ -279,9 +279,9 @@ export default class BackupKeypairs extends Component {
                             //     ],
                             //     'secure-text',
                             // )}
-                        ></AelfButton>
+                        />
 
-                        <div className='aelf-blank12'></div>
+                        <div className='aelf-blank12'/>
 
                         <AelfButton
                             text='Private Key'
@@ -304,7 +304,7 @@ export default class BackupKeypairs extends Component {
                                 );
                             }
                             }
-                        ></AelfButton>
+                        />
                         {/*<AelfButton*/}
                             {/*text='备份助记词'*/}
                             {/*onClick={e => {*/}
