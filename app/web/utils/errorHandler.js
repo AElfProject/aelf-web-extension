@@ -20,6 +20,7 @@
 // B xxxx1x, 加密解密相关错误; xxxx0x 参数问题。
 // C 0，no Error
 const errorMap = {
+    // 1xxxx 错误码，是catch到的error
     200001: 'Payload is false.',
     200002: 'Please set permission at first.',
     200003: 'Please set permission at first.',
@@ -29,7 +30,19 @@ const errorMap = {
     200007: 'No Night Elf in storage.',
     200008: 'Please login first.',
     200009: 'No permission, can not set whitelist.',
-    200010: 'You closed the prompt without any action.'
+    200010: 'You closed the prompt without any action.',
+    200011: 'Decrypt failed, get Night Elf failed!',
+    200012: 'Wallet error or damaged',
+    200013: 'Decrypt keystore failed',
+    // [40000, 41000) 是动态错误
+    // 400001 都是动态错误
+    // [41001, 42000) 是固定错误
+    410001: 'Forbidden',
+    410002: 'Missing param address.',
+    410003: 'Missing param contractAddress.',
+    410004: 'Missing param sendResponse(function).',
+    // 5xxxxxx 一般和接口请求有关，插件主动抛出来
+    // 目前仅有500001，未分类
 };
 
 export default function errorHandler(code, error) {

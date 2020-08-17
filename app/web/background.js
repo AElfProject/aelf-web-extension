@@ -3,22 +3,18 @@
  * @author huangzongzhe,hzz780; Scatter: Shai James;
  */
 
-import {
-    LocalStream
-} from 'extension-streams';
+import {LocalStream} from 'extension-streams';
 import InternalMessage from './messages/InternalMessage';
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
 import NightElf from './models/NightElf';
 import {apis} from './utils/BrowserApis';
 import {
     contractsCompare,
-    formatContracts,
     contractWhitelistCheck,
+    formatContracts,
     getContractInfoWithAppPermissions
 } from './utils/contracts/contracts';
-import {
-    getApplicationPermssions
-} from './utils/permission/permission';
+import {getApplicationPermssions} from './utils/permission/permission';
 import errorHandler from './utils/errorHandler';
 import NotificationService from './service/NotificationService';
 import FileSaver from 'file-saver';
@@ -377,7 +373,7 @@ export default class Background {
         console.log('>>>>>>>>>>>>>>>>>', sendResponse, callInfo);
         if (callInfo.payload.method === 'sendTransaction') {
             sendResponse({
-                ...errorHandler(400001, 'Forbidden')
+                ...errorHandler(410001)
             });
             return;
         }
@@ -464,7 +460,7 @@ export default class Background {
         });
         if (!dappAelfMeta) {
             sendResponse({
-                ...errorHandler(400001, `Please connect the chain: ${chainId}.`)
+                ...errorHandler(400002, `Please connect the chain: ${chainId}.`)
             });
             return;
         }
@@ -488,7 +484,7 @@ export default class Background {
         });
         if (!dappContractPermission) {
             sendResponse({
-                ...errorHandler(400001, `There is no permission of this contract: ${contractAddress}.`)
+                ...errorHandler(400003, `There is no permission of this contract: ${contractAddress}.`)
             });
             return;
         }
@@ -518,7 +514,7 @@ export default class Background {
             });
             if (!keypair) {
                 sendResponse({
-                    ...errorHandler(400001, 'Missing keypair of' + address)
+                    ...errorHandler(400004, 'Missing keypair of' + address)
                 });
                 return;
             }
@@ -593,13 +589,13 @@ export default class Background {
 
             if (!extendContract) {
                 sendResponse({
-                    ...errorHandler(400001, `Please init contract ${contractName}: ${contractAddress}.`)
+                    ...errorHandler(400005, `Please init contract ${contractName}: ${contractAddress}.`)
                 });
                 return;
             }
             if (!extendContract.contractMethods[method]) {
                 sendResponse({
-                    ...errorHandler(400001, `Mehtod ${method} is not exist in the contract.`)
+                    ...errorHandler(400006, `Mehtod ${method} is not exist in the contract.`)
                 });
                 return;
             }
@@ -691,13 +687,13 @@ export default class Background {
             });
             if (!extendContract) {
                 sendResponse({
-                    ...errorHandler(400001, `Please init contract ${contractName}: ${contractAddress}.`)
+                    ...errorHandler(400007, `Please init contract ${contractName}: ${contractAddress}.`)
                 });
                 return;
             }
             if (!extendContract.contractMethods[method]) {
                 sendResponse({
-                    ...errorHandler(400001, `Mehtod ${method} is not exist in the contract.`)
+                    ...errorHandler(400008, `Mehtod ${method} is not exist in the contract.`)
                 });
                 return;
             }
@@ -832,25 +828,23 @@ export default class Background {
     // >>>>>>>>>>>>>>>>>>>>>>>>>
 
     static importWallet(sendResponse, values) {
-        const nightElfEncrypto = values.fileValue || null;
+        const nightElfEncrypt = values.fileValue || null;
         let seed = values.seed || null;
-        let noStorageMsg = '';
-        let decryptoFailMsg = 'Document error or damaged';
         if (seed) {
             let nightElfString;
             if (nightElfEncrypto) {
                 try {
-                    nightElfString = JSON.parse(AESDecrypt(nightElfEncrypto, seed));
+                    nightElfString = JSON.parse(AESDecrypt(nightElfEncrypt, seed));
                 }
                 catch (e) {
                     sendResponse({
-                        ...errorHandler(10000, 'Get Night Elf failed!')
+                        ...errorHandler(200013)
                     });
                 }
 
                 if (nightElfString) {
                     apis.storage.local.set({
-                        nightElfEncrypto
+                        nightElfEncrypt
                     }, result => {
                         Background.unlockWallet(sendResponse, seed);
                         sendResponse({
@@ -861,13 +855,13 @@ export default class Background {
                 }
                 else {
                     sendResponse({
-                        ...errorHandler(200006, decryptoFailMsg)
+                        ...errorHandler(200012)
                     });
                 }
             }
             else {
                 sendResponse({
-                    ...errorHandler(200007, noStorageMsg)
+                    ...errorHandler(200007)
                 });
             }
         }
@@ -1185,7 +1179,7 @@ export default class Background {
                     {
                         if (!queryInfo.address) {
                             sendResponse({
-                                ...errorHandler(400001, 'missing param address.')
+                                ...errorHandler(410002)
                             });
                             return;
                         }
@@ -1206,13 +1200,12 @@ export default class Background {
                     {
                         if (!queryInfo.contractAddress) {
                             sendResponse({
-                                ...errorHandler(400001, 'missing param contractAddress.')
+                                ...errorHandler(410003)
                             });
                             return;
                         }
                         const permissionsByDomain = permissions.filter(permission => {
-                            const domainCheck = permission.domain === queryInfo.hostname;
-                            return domainCheck;
+                            return permission.domain === queryInfo.hostname;
                         });
 
                         const permissionsByContract = permissionsByDomain.filter(permission => {
@@ -1329,8 +1322,6 @@ export default class Background {
     static checkSeed(options, callback) {
         const {
             sendResponse,
-            decryptoFailMsg = '',
-            noStorageMsg = ''
         } = options;
         // TODO: sendResponse & resolve/reject
         if (!seed) {
@@ -1348,7 +1339,7 @@ export default class Background {
                     }
                     catch (e) {
                         sendResponse({
-                            ...errorHandler(400001, 'Get Night Elf failed!')
+                            ...errorHandler(200011)
                         });
                     }
                     if (nightElfString) {
@@ -1360,20 +1351,20 @@ export default class Background {
                     }
                     else {
                         sendResponse({
-                            ...errorHandler(200006, decryptoFailMsg)
+                            ...errorHandler(200006)
                         });
                     }
                 }
                 else {
                     sendResponse({
-                        ...errorHandler(200007, noStorageMsg)
+                        ...errorHandler(200007)
                     });
                 }
             });
         }
         else {
             sendResponse({
-                ...errorHandler(400001, 'Missing param sendResponse(function).')
+                ...errorHandler(410004)
             });
         }
     }
