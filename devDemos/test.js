@@ -103,13 +103,17 @@ document.addEventListener('NightElf', result => {
     };
 
     getChainStatus.onclick = function () {
+        // If you unlock you night ELF
+        // When you get the unlock prompt page, callback way will be influence.
+        // You can not get callback in this demo.[Use callback && promise in the same time]
+        // But if you use callback way only. It's ok.
         aelf.chain.getChainStatus((error, result) => {
-            console.log('>>>>>>>>>>>>> getChainStatus >>>>>>>>>>>>>');
+            console.log('>>>>>>>>>>>>> getChainStatus callback >>>>>>>>>>>>>');
             console.log(error, result);
         });
 
         aelf.chain.getChainStatus().then(result => {
-            console.log('>>>>>>>>>>>>> getChainStatus >>>>>>>>>>>>>');
+            console.log('>>>>>>>>>>>>> getChainStatus promise >>>>>>>>>>>>>');
             console.log('promise then', result);
         }).catch(error => {
             console.log('promise catch', error);
@@ -323,6 +327,13 @@ document.addEventListener('NightElf', result => {
       }).then(result => {
           console.log('result: ', result);
       });
+    };
+
+    const getAddressBtn = document.getElementById('get-address-btn');
+    getAddressBtn.onclick = function () {
+        aelf.getAddress({}, (error, result) => {
+            console.log('getAddress>>>>>>>>>>>>>>>>>>', result);
+        });
     };
 
     // For test

@@ -120,5 +120,4 @@ export default class NotificationService {
             window.close();
         }
     }
-
 }

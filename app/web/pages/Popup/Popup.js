@@ -35,18 +35,18 @@ ReactDOM.render(
     <IntlProvider locale={navigator.language} messages={chooseLocale()} >
         <LocaleProvider locale={antdChooseLocale()} >
             <Router history={hashHistory}>
-                <Route path="/" component={Lock}></Route>
-                <Route path="/home" component={Home}></Route>
-                <Route path="/createkeypairs" component={CreateKeypairs}></Route>
-                <Route path="/keypairs" component={Keypairs}></Route>
-                <Route path="/permissions" component={Permissions}></Route>
-                <Route path='/permissionsdetail/:data' component={PermissionsDetail}></Route>
-                <Route path="/import" component={Import}></Route>
-                <Route path="/backupkeypairs/:address" component={BackupKeypairs}></Route>
-                <Route path="/extensionmanager" component={ExtensionManager}></Route>
-                <Route path="/loadfrombackup" component={LoadFromBackup}></Route>
+                <Route path="/" component={Lock}/>
+                <Route path="/home" component={Home}/>
+                <Route path="/createkeypairs" component={CreateKeypairs}/>
+                <Route path="/keypairs" component={Keypairs}/>
+                <Route path="/permissions" component={Permissions}/>
+                <Route path='/permissionsdetail/:data' component={PermissionsDetail}/>
+                <Route path="/import" component={Import}/>
+                <Route path="/backupkeypairs/:address" component={BackupKeypairs}/>
+                <Route path="/extensionmanager" component={ExtensionManager}/>
+                <Route path="/loadfrombackup" component={LoadFromBackup}/>
                 {/* TODO: contracts just for test */}
-                <Route path="/contracts" component={Contracts}></Route>
+                <Route path="/contracts" component={Contracts}/>
             </Router>
         </LocaleProvider>
     </IntlProvider>,

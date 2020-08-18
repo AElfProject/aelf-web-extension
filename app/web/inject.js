@@ -40,6 +40,7 @@ class NightAElf {
     this.appName = options.appName;
     this.chain = this.chain();
     this.chainId;
+    // Todo: resultOnly: true/false for polyfill
   }
 
   callbackWrap(result, callback = () => {}) {
@@ -61,6 +62,9 @@ class NightAElf {
         params: params // Array
       }
     }).then(result => {
+      if (result.error === 300000) {
+        return this.callAElfChain(methodName, params, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -74,6 +78,9 @@ class NightAElf {
         payload: params.payload
       }
     }).then(result => {
+      if (result.error === 300000) {
+        return this.login(params, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -88,6 +95,9 @@ class NightAElf {
         payload: params.payload
       }
     }).then(result => {
+      if (result.error === 300000) {
+        return this.logout(params, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -111,6 +121,9 @@ class NightAElf {
       type: params.type || '',
       contractAddress: params.contractAddress || ''
     }).then(result => {
+      if (result.error === 300000) {
+        return this.checkPermission(params, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -125,6 +138,9 @@ class NightAElf {
         payload: params.payload
       }
     }).then(result => {
+      if (result.error === 300000) {
+        return this.setContractPermission(params, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -135,6 +151,9 @@ class NightAElf {
       method: 'REMOVE_CONTRACT_PERMISSION',
       payload: params.payload
     }).then(result => {
+      if (result.error === 300000) {
+        return this.removeContractPermission(params, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -146,6 +165,9 @@ class NightAElf {
       method: 'REMOVE_METHODS_WHITELIST',
       payload: params.payload
     }).then(result => {
+      if (result.error === 300000) {
+        return this.removeMethodsWhitelist(params, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -155,6 +177,9 @@ class NightAElf {
       appName: param.appName || this.appName,
       method: 'GET_ADDRESS'
     }).then(result => {
+      if (result.error === 300000) {
+        return this.getAddress(param, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -166,6 +191,9 @@ class NightAElf {
       hexToBeSign: param.hexToBeSign,
       method: 'GET_SIGNATURE'
     }).then(result => {
+      if (result.error === 300000) {
+        return this.getSignature(param, callback);
+      }
       return this.callbackWrap(result, callback);
     });
   }
@@ -182,6 +210,11 @@ class NightAElf {
         if (!result.error) {
           this.chainId = result.result.ChainId;
         }
+
+        if (result.error === 300000) {
+          return getChainStatus(callback);
+        }
+
         return this.callbackWrap(result, callback);
       });
     };
@@ -264,16 +297,19 @@ class NightAElf {
           params: filterParams
         }
       }).then(result => {
+        if (result.error === 300000) {
+          return _callAelfContract(params, methodName, contractAddress, method);
+        }
+
         return this.callbackWrap(result, callback);
       });
-      // }
     };
 
-    const contractAt = (contractAddress, wallet, ...args) => {
+    const contractAt = (contractAddress, wallet, ...otherArgsArray) => {
       const {
         callback
         // isSync 在插件中被禁止使用
-      } = extractArgumentsIntoObject(args);
+      } = extractArgumentsIntoObject(otherArgsArray);
 
       return window.NightElf.api({
         appName: this.appName,
@@ -286,6 +322,10 @@ class NightAElf {
           contractAddress: contractAddress
         }
       }).then(result => {
+        if (result.error === 300000) {
+          return contractAt(contractAddress, wallet, ...otherArgsArray);
+        }
+
         if (result.error) {
           callback(result.error, result);
           if (callback.length) {
