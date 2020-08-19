@@ -40,11 +40,20 @@ class NightAElf {
     this.appName = options.appName;
     this.chain = this.chain();
     this.chainId;
+    this.pure = options.pure;
     // Todo: resultOnly: true/false for polyfill
   }
 
   callbackWrap(result, callback = () => {}) {
     if (result.result && result.result.hasOwnProperty('error') && result.result.hasOwnProperty('errorMessage')) {
+      if (this.pure && result.result.result) {
+        callback(null, result.result.result);
+        return result.result.result;
+      }
+      callback(null, result.result);
+      return result.result;
+    }
+    if (this.pure && result.result && result.hasOwnProperty('error')) {
       callback(null, result.result);
       return result.result;
     }

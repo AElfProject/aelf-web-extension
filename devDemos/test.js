@@ -35,32 +35,33 @@ document.addEventListener('NightElf', result => {
         httpProvider: ['http://3.25.10.185:8000'],
         // httpProvider: ['http://1.119.195.50:11105/chain'],
         // httpProvider: ['http://1.119.195.50:11105/chain'],
-        appName: 'your own app name'
+        appName: 'your own app name',
+        pure: true
     });
     console.log('aelf>>>>>>>>>>>', aelf);
 
     loginBtn.onclick = function () {
-        aelf.login({
-            chainId: 'AELF',
-            payload: {
-                method: 'LOGIN',
-                contracts: [{
-                    chainId: 'AELF',
-                    contractAddress: tokenContractAddress,
-                    contractName: 'token',
-                    description: 'token contract',
-                    github: ''
-                }, {
-                    chainId: 'AELF TEST',
-                    contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
-                    contractName: 'TEST contractName',
-                    description: 'contract description',
-                    github: ''
-                }]
-            }
-        }, (error, result) => {
-            console.log('login>>>>>>>>>>>>>>>>>>', result, JSON.stringify(result));
-        });
+        // aelf.login({
+        //     chainId: 'AELF',
+        //     payload: {
+        //         method: 'LOGIN',
+        //         contracts: [{
+        //             chainId: 'AELF',
+        //             contractAddress: tokenContractAddress,
+        //             contractName: 'token',
+        //             description: 'token contract',
+        //             github: ''
+        //         }, {
+        //             chainId: 'AELF TEST',
+        //             contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+        //             contractName: 'TEST contractName',
+        //             description: 'contract description',
+        //             github: ''
+        //         }]
+        //     }
+        // }, (error, result) => {
+        //     console.log('login>>>>>>>>>>>>>>>>>>', result, JSON.stringify(result));
+        // });
 
         aelf.login({
             chainId: 'AELF',

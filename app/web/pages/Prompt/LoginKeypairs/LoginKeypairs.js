@@ -19,6 +19,7 @@ import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 import AelfButton from '../../../components/Button/Button';
 import style from './LoginKeypairs.scss';
+import errorHandler from "../../../utils/errorHandler";
 require('./LoginKeypairs.css');
 
 const NUM_ROWS = 9999;
@@ -41,7 +42,7 @@ export default class LoginKeypairs extends Component {
             appName,
             domain: hostname,
             address: payload.payload.address,
-            contracts: payload.payload.contracts
+            contracts: payload.payload.contracts || []
         };
 
         const dataSource = new ListView.DataSource({
@@ -91,15 +92,21 @@ export default class LoginKeypairs extends Component {
     }
 
 
-    setPermission(address) {
+    async setPermission(address) {
         // Why do we do this?
         // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
-        if (address) {
-            this.checkWallet(address);
+        if (!address) {
+            return;
+        }
+        try {
+            await this.checkWallet(address);
+        } catch(error) {
+            Toast.fail(`Login failed. ${address} ${error.message}`, 3, () => {}, false);
         }
     }
 
-    turnToPermissionPage(walletStatus, address) {
+    // no more turn to permission page.
+    async turnToPermissionPage(walletStatus, address) {
         const {
             nightElf
         } = walletStatus || {};
@@ -107,17 +114,41 @@ export default class LoginKeypairs extends Component {
             Toast.fail('Night Elf is locked!', 3);
             return;
         }
-        const path = {
-            pathname: '/',
-            state: address
-        };
-        hashHistory.push(path);
+
+        const addressInfoInNightElf = await InternalMessage.payload(InternalMessageTypes.GET_ADDRESS).send();
+        const keypairMessage = addressInfoInNightElf.addressList.filter(item => {
+            return item.address === address;
+        });
+
+        let detail = null;
+        if (keypairMessage && keypairMessage.length) {
+            detail = JSON.stringify(keypairMessage[0]);
+        } else {
+            Toast.fail(`No matched wallet. ${address}`, 3, () => {}, false);
+            return;
+        }
+
+        this.permission.address = address;
+        const setResult = await InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission).send();
+        if (setResult.error === 0) {
+            Toast.success('Login Success, after 3s close the window.');
+            window.data.sendResponse({
+                ...errorHandler(0),
+                detail,
+                message: 'Login & Bind information success'
+            });
+            setTimeout(() => {
+                window.close();
+            }, 3000);
+        }
+        else {
+            Toast.fail(setResult.message, 3, () => {}, false);
+        }
     }
 
-    checkWallet(address) {
-        InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send().then(result => {
-            this.turnToPermissionPage(result, address);
-        });
+    async checkWallet(address) {
+        const checkWalletResult = await InternalMessage.payload(InternalMessageTypes.CHECK_WALLET).send();
+        await this.turnToPermissionPage(checkWalletResult, address);
     }
 
     renderSearch() {

@@ -83,14 +83,20 @@ export default class ConfirmationCall extends Component {
         .send()
         .then(result => {
             if (result && result.error === 0) {
+                let contract = {
+                    contractAddress: this.confirmation.contractAddress,
+                    type: '0',
+                };
                 const permission = result.permissions[0].contracts;
                 permission.map(item => {
                     if (item.contractAddress === this.confirmation.contractAddress) {
-                        this.setState({
-                            contract: item
-                        });
+                        contract = item;
+                        // this.setState({
+                        //     contract: item
+                        // });
                     }
                 });
+                this.setState({ contract });
             }
             else {
                 Toast.fail(result.errorMessage.message, 3);

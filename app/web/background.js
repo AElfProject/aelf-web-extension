@@ -436,30 +436,31 @@ export default class Background {
             return;
         }
 
-        const dappPermission = nightElf.keychain.permissions.find(item => {
-            const checkDomain = hostname === item.domain;
-            const checkAddress = address === item.address;
-            return checkDomain && checkAddress;
-        });
-        if (!dappPermission) {
-            sendResponse({
-                ...errorHandler(200002)
-            });
-            return;
-        }
+        // const dappPermission = nightElf.keychain.permissions.find(item => {
+        //     const checkDomain = hostname === item.domain;
+        //     const checkAddress = address === item.address;
+        //     return checkDomain && checkAddress;
+        // });
+        // if (!dappPermission) {
+        //     sendResponse({
+        //         ...errorHandler(200002)
+        //     });
+        //     return;
+        // }
 
-        const dappContractPermission = dappPermission.contracts.find(item => {
-            const checkChain = item.chainId === chainId;
-            const checkContractAddress = item.contractAddress === contractAddress;
-            return checkChain && checkContractAddress;
-        });
-        if (!dappContractPermission) {
-            sendResponse({
-                ...errorHandler(400003, `There is no permission of this contract: ${contractAddress}.`)
-            });
-            return;
-        }
-        callback({ dappAelfMetaIndex, dappAelfMeta, dappPermission, dappContractPermission });
+        // const dappContractPermission = dappPermission.contracts.find(item => {
+        //     const checkChain = item.chainId === chainId;
+        //     const checkContractAddress = item.contractAddress === contractAddress;
+        //     return checkChain && checkContractAddress;
+        // });
+        // if (!dappContractPermission) {
+        //     sendResponse({
+        //         ...errorHandler(400003, `There is no permission of this contract: ${contractAddress}.`)
+        //     });
+        //     return;//
+        // }
+        // callback({ dappAelfMetaIndex, dappAelfMeta, dappPermission, dappContractPermission });
+        callback({ dappAelfMetaIndex, dappAelfMeta, dappPermission: [], dappContractPermission: [] });
     }
 
     static async initAelfContract(sendResponse, contractInfo) {
@@ -1012,14 +1013,19 @@ export default class Background {
             if (appPermissionsTemp.length && appPermissionIndex.length) {
                 const permission = appPermissionsTemp[appPermissionIndex[0]];
                 const {contracts} = permission;
-                let indexTemp;
-                const contract = contracts.filter((item, index) => {
-                    if (item.contractAddress === contractAddress) {
-                        indexTemp = index;
-                        return true;
-                    }
-                    return false;
-                })[0];
+
+                let indexTemp = 0;
+                let contract = payload;
+                if (contracts.length !== 0) {
+                    contract = contracts.filter((item, index) => {
+                        if (item.contractAddress === contractAddress) {
+                            indexTemp = index;
+                            return true;
+                        }
+                        return false;
+                    })[0];
+                }
+
                 contract.whitelist = {
                     ...contract.whitelist,
                     ...whitelist

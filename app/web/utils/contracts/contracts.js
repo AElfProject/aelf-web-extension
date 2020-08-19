@@ -54,7 +54,7 @@ export function contractWhitelistCheck(options) {
         return item.contractAddress === contractAddress;
 
     });
-    return contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method);
+    return contractMatch && contractMatch.whitelist && contractMatch.whitelist.hasOwnProperty(method);
 
 }
 
@@ -65,18 +65,33 @@ export function getContractInfoWithAppPermissions(contractInfo, appPermissions) 
         return contractInfoOutput;
     }
 
-    const {hostname,payload} = contractInfo;
+    const {payload} = contractInfo;
     const {contractAddress} = payload;
+    return {
+        contractAddress
+        // contractName: 'token',
+        // description: 'token contract',
+        // description_zh: '',
+        // description_en: ''
+    };
 
-    appPermissions.permissions.forEach(permission => {
-        if (permission.domain === hostname) {
-            const { contracts } = permission;
-            contracts.forEach(contract => {
-                if (contract.contractAddress === contractAddress) {
-                    contractInfoOutput = contract;
-                }
-            });
-        }
-    });
-    return contractInfoOutput;
+    // let contractInfoOutput = {};
+    // if (!appPermissions || !appPermissions.permissions) {
+    //     return contractInfoOutput;
+    // }
+    //
+    // const {hostname,payload} = contractInfo;
+    // const {contractAddress} = payload;
+    //
+    // appPermissions.permissions.forEach(permission => {
+    //     if (permission.domain === hostname) {
+    //         const { contracts } = permission;
+    //         contracts.forEach(contract => {
+    //             if (contract.contractAddress === contractAddress) {
+    //                 contractInfoOutput = contract;
+    //             }
+    //         });
+    //     }
+    // });
+    // return contractInfoOutput;
 }
