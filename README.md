@@ -18,6 +18,8 @@ Note: Access to file URLs isn't automatic. The user must visit the extensions ma
 
 ## 2 For Dapp Developers
 
+####Please get code in ./devDemos, open test.html & test.js(need use you own wallet address) and you will get everything you want.
+
 ### 2.1 Interaction Flow
 
 - 1.Make sure the user get the Extension
@@ -26,6 +28,8 @@ Note: Access to file URLs isn't automatic. The user must visit the extensions ma
 - 4.Call the methods of contract 
 
 ### 2.2 Demo of Checking the Extension
+
+You can skip this when you first read this.
 
 ```js
 let nightElfInstance = null;
@@ -66,12 +70,17 @@ nightElfCheck.check.then(message => {
 
 ### 2.3 How Connect the blockchain
 
+`v1.1.3 add key: pure`
+
 ```javascript
 const aelf = new window.NightElf.AElf({
     httpProvider: [
         'http://127.0.0.1:8101',
     ],
-    appName: 'your own app name'
+    appName: 'your own app name',
+    // If you don't set pure=true, you will get old data structure which is not match aelf-sdk.js return.
+    // v1.1.3  
+    pure: true
 });
 ```
 ### 2.4 How to call the API
@@ -106,16 +115,25 @@ If you want to check token transfer demo. [click here](https://github.com/AElfPr
 
 The methods act the same as the methods of the aelf-sdk.js
 
+- [0. GET_VERSION](#get-version)
 - [1. LOGIN](#login)
 - [2. GET_CHAIN_STATUS](#get-chain-status)
 - [3. CALL_AELF_CHAIN](#call-aelf-chain)
 - [4. INIT_AELF_CONTRACT](#init-aelf-contract)
 - [5. CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call-aelf-contract)
-- [6. CHECK_PERMISSION](#check-permission)
-- [7. SET_CONTRACT_PERMISSION](#set-contract-permission)
-- [8. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
+- [6. CHECK_PERMISSION](#check-permission) [avoid >=v1.1.3]
+- [7. SET_CONTRACT_PERMISSION](#set-contract-permission) [avoid >=v1.1.3]
+- [8. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission) [avoid >=v1.1.3]
 - [9. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
 - [10. GET_SIGNATURE](#get-signature)
+
+<span id="get-version"></span>
+
+### 3.0 GET_VERSION
+
+```javascript
+aelf.getVersion() // v1.1.3
+```
 
 <span id="login"></span>
 
@@ -124,12 +142,16 @@ The methods act the same as the methods of the aelf-sdk.js
 LOGIN allows your application to request permission to interact with a user's NightELF
 and be provided with an account of the user's choosing. 
 
+`v1.1.3 you can ignore contracts`
+
 ```javascript
 aelf.login({
     chainId: 'AELF',
     payload: {
         method: 'LOGIN',
-        contracts: [{
+        // no more need contracts
+        // v1.1.3
+        /* contracts: [{
             chainId: 'AELF',
             contractAddress: '4rkKQpsRFt1nU6weAHuJ6CfQDqo6dxruU3K3wNUFr6ZwZYc',
             contractName: 'token',
@@ -141,7 +163,7 @@ aelf.login({
             contractName: 'TEST contractName',
             description: 'contract description',
             github: ''
-        }]
+        }] */
     }
 }, (error, result) => {
     console.log('login>>>>>>>>>>>>>>>>>>', result);
@@ -295,6 +317,8 @@ tokenContract.Approve(
 
 ### 3.6 CHECK_PERMISSION
 
+`v1.1.3 Please avoid the in your new code`
+
 CHECK_PERMISSION returns the contracts your can use with the address.
 
 ```javascript
@@ -335,6 +359,8 @@ aelf.checkPermission({
 
 ### 3.7 SET_CONTRACT_PERMISSION
 
+`v1.1.3 Please avoid the in your new code`
+
 SET_CONTRACT_PERMISSION applies to the users to allow the Dapp use the contract.
 
 ```javascript
@@ -358,6 +384,8 @@ aelf.setContractPermission({
 <span id="remove-contract-permission"></span>
 
 ### 3.8 REMOVE_CONTRACT_PERMISSION
+
+`v1.1.3 Please avoid the in your new code`
 
 ```javascript
 aelf.removeContractPermission({
@@ -389,6 +417,8 @@ aelf.removeMethodsWhitelist({
 <span id="get-signature"></span>
 
 ### 3.10 GET_SIGNATURE
+
+`v1.1.3 User will get a prompt to confirm`
 
 ```javascript
 aelf.getSignature({
@@ -462,6 +492,7 @@ Please import the `.zip file` with developer mode.
                     }
                 }
             ],
+            // >= v1.1.3, only whitelist is needed.
             permissions: [
                 {
                     chainId: 'AELF',

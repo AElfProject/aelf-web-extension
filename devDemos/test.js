@@ -6,14 +6,17 @@
 
 // century renew blade meadow faith evil uniform work discover poet ripple drill
 
+// JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE is Token contract in testnet.
 const tokenContractAddress = 'ELF_JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE_AELF';
 // const testAddress = '2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX';
+// Please set your own address.
 const testAddress = '2QCkN89q5XdsGJXoiobuVGJQ5NHdFsUQVbY88rLKQb3S4hQHC2';
 
 document.addEventListener('NightElf', result => {
     console.log(Date.now());
     console.log('NightElf test.html: ', result);
 
+    const versionBtn = document.getElementById('version-btn');
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
     const lockBtn = document.getElementById('lock-btn');
@@ -39,6 +42,10 @@ document.addEventListener('NightElf', result => {
         pure: true
     });
     console.log('aelf>>>>>>>>>>>', aelf);
+
+    versionBtn.onclick = function () {
+        console.log('version:' ,aelf.getVersion());
+    };
 
     loginBtn.onclick = function () {
         // aelf.login({

@@ -209,6 +209,10 @@ class NightAElf {
     });
   }
 
+  getVersion() {
+    return process.env.SDK_VERSION;
+  }
+
   chain() {
     const getChainStatus = callback => {
       return window.NightElf.api({
