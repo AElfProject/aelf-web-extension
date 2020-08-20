@@ -67,19 +67,20 @@ document.addEventListener('NightElf', result => {
             chainId: 'AELF',
             payload: {
                 method: 'LOGIN',
-                contracts: [{
-                    chainId: 'AELF',
-                    contractAddress: tokenContractAddress,
-                    contractName: 'token',
-                    description: 'token contract',
-                    github: ''
-                }, {
-                    chainId: 'AELF TEST',
-                    contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
-                    contractName: 'TEST contractName',
-                    description: 'contract description',
-                    github: ''
-                }]
+                // Please avoid add these in your new code
+                // contracts: [{
+                //     chainId: 'AELF',
+                //     contractAddress: tokenContractAddress,
+                //     contractName: 'token',
+                //     description: 'token contract',
+                //     github: ''
+                // }, {
+                //     chainId: 'AELF TEST',
+                //     contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+                //     contractName: 'TEST contractName',
+                //     description: 'contract description',
+                //     github: ''
+                // }]
             }
         }).then(result => {
             console.log('promise then', result);
@@ -192,8 +193,10 @@ document.addEventListener('NightElf', result => {
     removeWhitelist.onclick = function () {
         aelf.removeMethodsWhitelist({
             payload: {
-                contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
-                whitelist: ['Approve']
+                // contractAddress: '2Xg2HKh8vusnFMQsHCXW1q3vys5JxG5ZnjiGwNDLrrpb9Mb',
+                // whitelist: ['Approve']
+                contractAddress: tokenContractAddress,
+                whitelist: ['Transfer']
             }
         }, (error, result) => {
             console.log('removeWhitelist>>>>>>>>>>>>>>>>>', result);
@@ -324,6 +327,7 @@ document.addEventListener('NightElf', result => {
       aelf.getSignature({
         appName: 'hzzTest',
         address: testAddress,
+        // address: 'ELF_28Y8JA1i2cN6oHvdv7EraXJr9a1gY6D1PpJXw9QtRMRwKcBQMK_AELF',
         hexToBeSign: '2333'
       }).then(result => {
           console.log('result: ', result);

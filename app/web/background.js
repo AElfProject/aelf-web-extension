@@ -278,59 +278,22 @@ export default class Background {
 
             if (appPermissons.permissions.length) {
                 const appPermission = appPermissons.permissions[0];
-
-                const appNameBinded = appPermission.appName;
-                const domainBinded = appPermission.domain;
                 const addressBinded = appPermission.address;
-                const contractsBinded = appPermission.contracts;
-
-                const nameChecked = appName === appNameBinded;
-                const domainChecked = domain === domainBinded;
-
-                const isLoginAndSetPermission = loginInfo.payload
-                    && loginInfo.payload.method === 'SET_PERMISSION'
-                    && loginInfo.payload.payload
-                    && loginInfo.payload.payload.contracts
-                    && appPermissons;
 
                 const keypairLoggedIn
-                    = keypairs.find(item => item.address === addressBinded);
+                  = keypairs.find(item => item.address === addressBinded);
 
-                if (isLoginAndSetPermission) {
-                    const address = loginInfo.payload.payload.address;
-                    const contracts = loginInfo.payload.payload.contracts;
-
-                    const addressChecked = address === addressBinded;
-
-                    const contractChecked = contractsCompare(contracts, contractsBinded);
-
-                    if (nameChecked && domainChecked && addressChecked && contractChecked) {
-                        sendResponse({
-                            ...errorHandler(0),
-                            message: '',
-                            detail: JSON.stringify({
-                                name: keypairLoggedIn.name,
-                                address: addressBinded,
-                                publicKey: keypairLoggedIn.publicKey
-                            })
-                        });
-                        return;
-                    }
-                }
-                else {
-                    if (nameChecked && domainChecked) {
-                        sendResponse({
-                            ...errorHandler(0),
-                            message: '',
-                            detail: JSON.stringify({
-                                name: keypairLoggedIn.name,
-                                address: addressBinded,
-                                publicKey: keypairLoggedIn.publicKey
-                            })
-                        });
-                        return;
-                    }
-                }
+                sendResponse({
+                    ...errorHandler(0),
+                    message: '',
+                    detail: JSON.stringify({
+                        name: keypairLoggedIn.name,
+                        address: addressBinded,
+                        publicKey: keypairLoggedIn.publicKey,
+                        appPermission
+                    })
+                });
+                return;
             }
 
             const input = {
@@ -436,17 +399,17 @@ export default class Background {
             return;
         }
 
-        // const dappPermission = nightElf.keychain.permissions.find(item => {
-        //     const checkDomain = hostname === item.domain;
-        //     const checkAddress = address === item.address;
-        //     return checkDomain && checkAddress;
-        // });
-        // if (!dappPermission) {
-        //     sendResponse({
-        //         ...errorHandler(200002)
-        //     });
-        //     return;
-        // }
+        const dappPermission = nightElf.keychain.permissions.find(item => {
+            const checkDomain = hostname === item.domain;
+            const checkAddress = address === item.address;
+            return checkDomain && checkAddress;
+        });
+        if (!dappPermission) {
+            sendResponse({
+                ...errorHandler(200008)
+            });
+            return;
+        }
 
         // const dappContractPermission = dappPermission.contracts.find(item => {
         //     const checkChain = item.chainId === chainId;
@@ -460,7 +423,7 @@ export default class Background {
         //     return;//
         // }
         // callback({ dappAelfMetaIndex, dappAelfMeta, dappPermission, dappContractPermission });
-        callback({ dappAelfMetaIndex, dappAelfMeta, dappPermission: [], dappContractPermission: [] });
+        callback({ dappAelfMetaIndex, dappAelfMeta, dappPermission, dappContractPermission: [] });
     }
 
     static async initAelfContract(sendResponse, contractInfo) {
@@ -1342,9 +1305,20 @@ export default class Background {
           ].join('');
         }
 
-        sendResponse({
-          ...errorHandler(0),
-          signature: signedMsgString
+        if (!keypair) {
+            sendResponse({
+              ...errorHandler(200014)
+            });
+            return;
+        }
+
+        Background.openPrompt(sendResponse, {
+          keypairAddress: keypair.address,
+          payload: {
+              input: options,
+              method: 'GET_SIGNATURE',
+              signature: signedMsgString,
+          }
         });
       });
     }

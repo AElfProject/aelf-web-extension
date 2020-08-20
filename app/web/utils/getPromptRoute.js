@@ -11,7 +11,8 @@ export default function getPromptRoute(message) {
     SET_CONTRACT_PERMISSION: '#/',
     LOGIN: '#/loginkeypairs',
     CALL_AELF_CONTRACT: '#/examine-approve',
-    UNLOCK_NIGHT_ELF: '#/unlock'
+    UNLOCK_NIGHT_ELF: '#/unlock',
+    GET_SIGNATURE: '#/signature'
   };
   return message.router || routMap[method] || '#/confirmation';
 }

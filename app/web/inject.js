@@ -122,6 +122,7 @@ class NightAElf {
     });
   }
 
+  // You should avoid them in new code
   checkPermission(params, callback) {
     return window.NightElf.api({
       appName: params.appName || this.appName,
@@ -137,6 +138,7 @@ class NightAElf {
     });
   }
 
+  // You should avoid them in new code
   setContractPermission(params, callback) {
     return window.NightElf.api({
       appName: params.appName || this.appName,

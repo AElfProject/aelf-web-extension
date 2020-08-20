@@ -34,6 +34,7 @@ const errorMap = {
     200011: 'Decrypt failed, get Night Elf failed!',
     200012: 'Wallet error or damaged',
     200013: 'Decrypt keystore failed',
+    200014: 'Can not find this wallet.',
     // 3xxxxx 暂时仅用于内部重定向
     300000: 'Unlocked your wallet, recall your function please.',
     // [40000, 41000) 是动态错误

@@ -9,12 +9,6 @@
     word-wrap: break-word;
 }
 
-.paramsInfo {
-    word-break: break-all;
-    word-wrap: break-word;
-    text-align: left;
-}
-
 .appName {
     text-align: center;
     font-size: 44px;
@@ -29,15 +23,6 @@
         text-align: left;
     }
 
-}
-
-
-.login {
-    padding:6px 18px;
-    background: #6987F4;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
 }
 
 .confirmationInfo {
@@ -68,43 +53,11 @@
     }
 }
 
-.blank {
-    margin: 10px 0;
-}
-
-.enableWhitelist {
-    color: #e6e83a;
-    text-decoration: underline;
-    font-size: 28px;
-    cursor: pointer;
-    font-weight: 700;
-    margin-top: 20px;
-}
-
-.whitelistTip {
-    text-align: center;
-    margin: 24px;
-}
-
-.whitelistContainer {
-    height: 210px;
-    width: 370px;
-    overflow: scroll;
-    word-break: break-all;
-    text-align: left;
-}
-
 .title {
-    font-size: 18px;
-    color: #333;
-    text-align: left;
-}
-
-.codeLikeContent {
-    width: 100%;
-    background: rgba(0,0,0,0.1);
-    color: #FFF;
-    border-radius: 3px;
-    /* padding: 8px; */
-    margin-top: 8px;
+    //font-size: 18px;
+    //color: #333;
+    //text-align: left;
+    font-size: 24px;
+    padding: 16px 16px 0 16px;
+    word-break: keep-all;
 }

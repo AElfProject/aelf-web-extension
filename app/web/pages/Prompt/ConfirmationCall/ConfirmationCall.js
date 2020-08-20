@@ -28,7 +28,6 @@ export default class ConfirmationCall extends Component {
         };
     }
 
-
     componentDidMount() {
         this.getContractAbi();
         this.getPermissions();
@@ -157,7 +156,6 @@ export default class ConfirmationCall extends Component {
         });
     }
 
-
     renderWhitelist() {
         return <div className={style.whitelistTip}>
                 <div>
@@ -177,20 +175,12 @@ export default class ConfirmationCall extends Component {
     }
 
     renderConfirmation() {
-
-        const { contractName } = this.message.contractInfoWithAppPermissions;
-
-        // <div>
-        //     {this.appName} {JSON.stringify(this.message)}
-        // </div>
+        // const { contractName } = this.message.contractInfoWithAppPermissions;
         return <div className={style.appLogin}>
                 <div className={style.appName}>
-                    <div className={style.loginTip}>
-                        Contract Name: {contractName}
-                    </div>
-                    <div className={style.loginTip}>
-                        Method: {this.confirmation.method}
-                    </div>
+                    {/*<div className={style.loginTip}>*/}
+                    {/*    Method: {this.confirmation.method}*/}
+                    {/*</div>*/}
                     <div className={style.loginTip}>
                         Wallet Address: {this.keypairAddress}
                     </div>
@@ -201,12 +191,25 @@ export default class ConfirmationCall extends Component {
     renderConfirmationInfo() {
         const info = Object.keys(this.confirmation);
         const infoHTMl = info.map(item => {
-            if (item !== 'contractName') {
+            if (item === 'contractName') {
+                return null;
+            }
+            if (item !== 'params') {
                 return <div key={item}
                                 className={style.confirmationInfoItem}
                             >{item}: {JSON.stringify(this.confirmation[item])}
                         </div>;
             }
+            return <div key={item}
+                        className={style.confirmationInfoItem}
+                    >{item}:
+                        <textarea
+                          rows={8}
+                          value={JSON.stringify(this.confirmation[item], null, 2)}
+                          className={style.codeLikeContent}
+                          disabled>
+                        ></textarea>
+                    </div>;
         });
 
         return <div className={style.confirmationInfo}>
@@ -251,7 +254,6 @@ export default class ConfirmationCall extends Component {
             return  <React.Fragment>
                 <div className={style.title}>wallet address</div>
                 <div className={style.content}>{ this.keypairAddress }</div>
-                <div className={style.title}>contract name</div>
                 <div className={style.content}>{ contractName }</div>
                 <div className={style.title}>contact address</div>
                 <div className={style.content}>{ this.confirmation.contractAddress }</div>

@@ -41,10 +41,6 @@
     <div>【Necessary】It is necessary to getChainStatus at first when use extension.</div>
     <br>
 
-    <button type-="button" id="set-contract-permission">Set contract permission</button>
-    <p>We can reset permission after login.</p>
-    <br>
-
     <button type="button" id="remove-contract-permission">Remove contract permission</button>
     <p>We remove the permission after set it.</p>
     <br>
@@ -60,6 +56,8 @@
     <button type="button" id="get-contract-descriptor-set">callAelfChain: getContractFileDescriptorSet</button>
     <br>
     <button type="button" id="send-transation">sendTransation: send-transation, throw error</button>
+    <br>
+    <button type="button" id="get-signature">get-signature</button>
     <br>
     <br>
 
@@ -95,11 +93,13 @@
     <button type="button" id="error-get-tx-result">error: get-tx-result ['']</button>
     <br>
 
-    <button type="button" id="get-signature">get-signature</button>
-    <br>
-
     <button type="button" id="get-address-btn">Get Address</button>
     <br>
+
+    <div class="sub-title">You should avoid them in new code</div>
+    <button type-="button" id="set-contract-permission">Set contract permission</button>
+    <p>We can reset permission after login.</p>
+    <p>Please no more set permission when login.</p>
 
     <!-- <div class="sub-title">init & call different contract</div> -->
     <!-- <button type="button" id="bind-permission-01">permission</button> -->

@@ -136,7 +136,6 @@ export default class PermissionsDetail extends Component {
             if (this.state.openRow === rowID) {
                 infoHeight = 'auto';
                 transformRotate = 'rotate(270deg)';
-                
             }
             return (
                 <div key={rowID} className={style.txListBox}>
@@ -201,8 +200,7 @@ export default class PermissionsDetail extends Component {
         };
 
         this.renderWhiteList = (data, contractAddress, rowID) => {
-            let whiteListDate = data;
-            const whiteList = Object.keys(whiteListDate);
+            const whiteList = Object.keys(data);
             const whiteListHTML = whiteList.map(item => {
                 return <div key={item}>
                         <div className={style.operationList}>
@@ -297,7 +295,7 @@ export default class PermissionsDetail extends Component {
                     <Flex>
                         <div className={style.headInfoBox}>
                             <div className={style.head}>
-                                <div className={style.headPortrait}></div>
+                                <div className={style.headPortrait}/>
                             </div>
                             <div className={style.permissionInfo}>
                                 <div className={style.permissionOptions}>
@@ -337,7 +335,7 @@ export default class PermissionsDetail extends Component {
         // backgroundStyle.height -= 14; // remove padding 7px * 2
 
         const {permissions} = this.state;
-        let permissionsInfoHTML = <div></div>;
+        let permissionsInfoHTML = <div/>;
         if (permissions) {
             permissionsInfoHTML = this.renderPermissionsInfo();
         }
@@ -347,7 +345,7 @@ export default class PermissionsDetail extends Component {
                     onLeftClick={() => historyPush('/permissions')}
                 />
                 <div className={style.top}>
-                    <div className={style.blank}></div>
+                    <div className={style.blank}/>
                     <p className={style.wallet}>
                         <FormattedMessage
                             id='aelf.Application details'
