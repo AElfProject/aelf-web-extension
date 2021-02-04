@@ -79,7 +79,10 @@ export default class LoginKeypairs extends Component {
                 >
                     {/* <div className={style.keypairsNickname}>{item.name}</div> */}
                     <div className={style.keypairAddress}>
-                        <div className={style.address}>{address} - {item.name}</div>
+                        <div className={style.address}>
+                          <div>Name: {item.name}</div>
+                          <div>ID: {address}</div>
+                        </div>
                         <div className={style.login} onClick={() => this.setPermission(address)}>
                             <FormattedMessage
                                 id='aelf.Login'

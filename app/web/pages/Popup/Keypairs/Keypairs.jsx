@@ -162,7 +162,7 @@ export default class Keypairs extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className={style.keypairsAddress}>{address}</div>
+                    <div className={style.keypairsAddress}>ID: {address}</div>
                 </div>
             );
         };
