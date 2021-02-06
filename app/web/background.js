@@ -718,13 +718,13 @@ export default class Background {
     }
 
     static importWallet(sendResponse, values) {
-        const nightElfEncrypt = values.fileValue || null;
+        const nightElfEncrypto = values.fileValue || null;
         let seed = values.seed || null;
         if (seed) {
             let nightElfString;
             if (nightElfEncrypto) {
                 try {
-                    nightElfString = JSON.parse(AESDecrypt(nightElfEncrypt, seed));
+                    nightElfString = JSON.parse(AESDecrypt(nightElfEncrypto, seed));
                 }
                 catch (e) {
                     sendResponse({
@@ -734,7 +734,7 @@ export default class Background {
 
                 if (nightElfString) {
                     apis.storage.local.set({
-                        nightElfEncrypt
+                        nightElfEncrypto
                     }, result => {
                         Background.unlockWallet(sendResponse, seed);
                         sendResponse({
@@ -1402,7 +1402,10 @@ export default class Background {
         // };
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const {
-                chainInfo = {}
+                chainInfo = {
+                    inner: [],
+                    custom: [],
+                }
             } = nightElfObject;
             chainInfo.inner = [
                 {

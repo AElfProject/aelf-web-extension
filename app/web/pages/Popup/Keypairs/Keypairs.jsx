@@ -267,7 +267,7 @@ export default class Keypairs extends Component {
         };
 
         const {chains} = this.state;
-        const {inner, custom} = chains;
+        const {inner = [], custom = []} = chains;
         // containerStyle.height -= 2; // remove border 2px
         return (
             <div style={pageContainerStyle} className='asstes-container'>
@@ -415,7 +415,7 @@ export default class Keypairs extends Component {
                 <Modal
                   className="chain-add-modal"
                   transparent
-                  title="Title"
+                  title="Add Custom"
                   footer={[
                     {
                         text: 'Cancel',
@@ -428,7 +428,7 @@ export default class Keypairs extends Component {
                         onPress: () => {
                             const {customChainId, customPrefix, chains} = this.state;
                             if (!customChainId) {
-                                alert('Please input chain id');
+                                Toast.fail('Please input chain id');
                                 return;
                             }
 
