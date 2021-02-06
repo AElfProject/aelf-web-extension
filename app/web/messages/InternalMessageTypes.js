@@ -58,5 +58,8 @@ export const OPEN_PROMPT = 'openPrompt';
 
 export const OPEN_LOGIN_KEYPAIR = 'openLoginKeypairs';
 
+export const GET_CHAIN_INFO = 'getChainInfo';
+export const UPDATE_CHAIN_INFO = 'updateChainInfo';
+
 
 

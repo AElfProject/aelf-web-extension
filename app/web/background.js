@@ -128,6 +128,13 @@ export default class Background {
                 Background.removeKeypair(sendResponse, message.payload);
                 break;
 
+            case InternalMessageTypes.GET_CHAIN_INFO:
+                Background.getChainInfo(sendResponse);
+                break;
+            case InternalMessageTypes.UPDATE_CHAIN_INFO:
+                Background.updateChainInfo(sendResponse, message.payload);
+                break;
+
             case InternalMessageTypes.SET_LOGIN_PERMISSION:
                 Background.setLoginPermission(sendResponse, message.payload);
                 break;
@@ -1361,6 +1368,59 @@ export default class Background {
             return false;
         }
         return true;
+    }
+
+    static updateChainInfo(sendResponse, chainInfo) {
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            nightElfObject.chainInfo = chainInfo; // keychain.keypairs.unshift(keypair);
+            nightElf = NightElf.fromJson(nightElfObject);
+            Background.updateWallet(sendResponse);
+        });
+    }
+
+    static getChainInfo(sendResponse) {
+        // const chains = {
+        //     inner: [
+        //         {
+        //             chainId: 'AELF',
+        //             head: 'ELF',
+        //             tail: 'AELF',
+        //         },
+        //         {
+        //             chainId: 'tDVV',
+        //             head: 'ELF',
+        //             tail: 'tDVV',
+        //         },
+        //     ],
+        //     custom: [
+        //         {
+        //             chainId: 'tDVX1',
+        //             head: 'ELF',
+        //             tail: 'tDVX',
+        //         }
+        //     ]
+        // };
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
+            const {
+                chainInfo = {}
+            } = nightElfObject;
+            chainInfo.inner = [
+                {
+                    chainId: 'AELF',
+                    head: 'ELF',
+                    tail: 'AELF',
+                },
+                {
+                    chainId: 'tDVV',
+                    head: 'ELF',
+                    tail: 'tDVV',
+                },
+            ];
+            sendResponse({
+                ...errorHandler(0),
+                chainInfo
+            });
+        });
     }
 }
 

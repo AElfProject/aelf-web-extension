@@ -79,33 +79,6 @@ function removeKeypairs(address, callback) {
     });
 }
 
-const chains = {
-    inner: [
-        {
-            chainId: 'AELF',
-            head: 'ELF',
-            tail: 'AELF',
-        },
-        {
-            chainId: 'tDVV',
-            head: 'ELF',
-            tail: 'tDVV',
-        },
-    ],
-    custom: [
-        {
-            chainId: 'tDVX1',
-            head: 'ELF',
-            tail: 'tDVX',
-        },
-        {
-            chainId: 'tDVX2',
-            head: 'WEX',
-            tail: 'tDVX',
-        },
-    ]
-};
-
 // React component
 // TODO, 这里以后考虑使用ListView
 // https://mobile.ant.design/components/list-view-cn/#components-list-view-demo-basic
@@ -241,8 +214,14 @@ export default class Keypairs extends Component {
                 isLoading: false
             });
         });
-        this.setState({
-            chains: chains
+
+        InternalMessage.payload(InternalMessageTypes.GET_CHAIN_INFO).send().then(result => {
+            console.log(InternalMessageTypes.GET_CHAIN_INFO, result);
+            if (result.error === 0 && result.chainInfo) {
+                this.setState({
+                    chains: result.chainInfo
+                });
+            }
         });
     }
 
@@ -452,20 +431,25 @@ export default class Keypairs extends Component {
                                 alert('Please input chain id');
                                 return;
                             }
-                            this.setState({
-                                chains: {
-                                    inner: chains.inner,
-                                    custom: [...chains.custom,
-                                        {
-                                            chainId: customChainId,
-                                            head: customPrefix || 'ELF',
-                                            tail: customChainId,
-                                        }
-                                    ],
-                                }
-                            });
 
-                            this.onModalClose('addChainModal');
+                            const newChain = {
+                                inner: chains.inner,
+                                custom: [...chains.custom,
+                                    {
+                                        chainId: customChainId,
+                                        head: customPrefix || 'ELF',
+                                        tail: customChainId,
+                                    }
+                                ],
+                            };
+
+                            InternalMessage.payload(InternalMessageTypes.UPDATE_CHAIN_INFO, newChain).send().then(result => {
+                                console.log(InternalMessageTypes.GET_CHAIN_INFO, result);
+                                this.setState({
+                                    chains: newChain
+                                });
+                                this.onModalClose('addChainModal');
+                            });
                         }
                     }]}
                   maskClosable={false}
