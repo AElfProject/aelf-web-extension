@@ -226,3 +226,53 @@
     margin: 0 0 8px 0;
     width: 90px;
 }
+
+// pannel
+.pannelTitle {
+    height: 35px;
+    line-height: 35px;
+    text-align: left;
+    text-indent: 24px;
+    border-bottom: 0.5px solid #F2F2F2;
+    color: #ADAAB3;
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px 0 0;
+}
+
+.addCustomChain {
+    text-indent: 0px;
+    padding: 0 8px 0 8px;
+    /* width: 130px; */
+    color: #AC00E6;
+    margin: 5px 0 0 0;
+    height: 24px;
+    line-height: 24px;
+}
+
+.chainList {
+    color: #333;
+    height: 200px;
+    overflow: scroll;
+    //background: #EEE;
+}
+
+.chainItem:hover {
+    //background: #AC00E6 !important;
+    background: #EEE !important;
+}
+
+.chainText {
+    color: #333 !important;
+    display: flex;
+    justify-content: space-around;
+}
+
+.chainDiv {
+    width: 100px;
+    height: 32px;
+    line-height: 32px;
+    margin: 4px 0 4px 0;
+    text-align: center;
+}

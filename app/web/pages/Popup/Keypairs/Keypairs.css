@@ -6,3 +6,13 @@
 .asstes-container .am-list-view-scrollview-content {
     width: 100%;
 }
+
+.chain-add-modal .am-list-item .am-input-label.am-input-label-5 {
+    font-size: 12px;
+    text-align: right;
+}
+
+.chain-add-modal .am-list-item .am-input-control input{
+    font-size: 14px;
+    color: #333;
+}

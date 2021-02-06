@@ -10,8 +10,15 @@ import {
     ListView,
     Toast,
     Modal,
-    Flex
+    Flex,
+    Button,
+    List,
+    InputItem,
+    PickerView
 } from 'antd-mobile';
+
+import copy from 'copy-to-clipboard';
+
 import {historyPush} from '../../../utils/historyChange';
 import {
     getPageContainerStyle,
@@ -29,6 +36,7 @@ import insert from '../../../utils/insert';
 import checkWallet from '../../../utils/checkWallet';
 require('./Keypairs.css');
 
+const { Item } = List;
 const alert = Modal.alert;
 
 const NUM_ROWS = 9999;
@@ -71,6 +79,33 @@ function removeKeypairs(address, callback) {
     });
 }
 
+const chains = {
+    inner: [
+        {
+            chainId: 'AELF',
+            head: 'ELF',
+            tail: 'AELF',
+        },
+        {
+            chainId: 'tDVV',
+            head: 'ELF',
+            tail: 'tDVV',
+        },
+    ],
+    custom: [
+        {
+            chainId: 'tDVX1',
+            head: 'ELF',
+            tail: 'tDVX',
+        },
+        {
+            chainId: 'tDVX2',
+            head: 'WEX',
+            tail: 'tDVX',
+        },
+    ]
+};
+
 // React component
 // TODO, 这里以后考虑使用ListView
 // https://mobile.ant.design/components/list-view-cn/#components-list-view-demo-basic
@@ -88,7 +123,16 @@ export default class Keypairs extends Component {
             refreshing: true,
             isLoading: true,
             height: document.documentElement.clientHeight,
-            useBodyScroll: false
+            useBodyScroll: false,
+            addressCopyModal: false,
+            chains: {
+                inner: [],
+                custom: [],
+            },
+            addChainModal: false,
+            customChainId: '',
+            customPrefix: '',
+            addressSelected: '',
         };
 
         this.renderRow = (rowData, sectionID, rowID) => {
@@ -114,24 +158,29 @@ export default class Keypairs extends Component {
                             <div className={style.button}>
                                 <div
                                     onClick={() => {
-                                        let btn = document.getElementById(clipboardID);
-                                        btn.click();
+                                        this.setState({
+                                            addressSelected: address
+                                        });
+                                        this.onModalShow('addressCopyModal');
+                                        // this.onModalShow('addChainModal');
+                                        // let btn = document.getElementById(clipboardID);
+                                        // btn.click();
                                     }}
                                 >
                                     <FormattedMessage
                                         id='aelf.Copy Address'
                                     />
                                 </div>
-                                <button id={clipboardID}
-                                        data-clipboard-target={`#${keypairAddressText}`}
-                                        className={style.textarea}>copy
-                                </button>
-                                <input id={keypairAddressText}
-                                    type="text"
-                                    className={style.textarea}
-                                    value={address}
-                                    readOnly
-                                />
+                                {/*<button id={clipboardID}*/}
+                                {/*        data-clipboard-target={`#${keypairAddressText}`}*/}
+                                {/*        className={style.textarea}>copy*/}
+                                {/*</button>*/}
+                                {/*<input id={keypairAddressText}*/}
+                                {/*    type="text"*/}
+                                {/*    className={style.textarea}*/}
+                                {/*    value={address}*/}
+                                {/*    readOnly*/}
+                                {/*/>*/}
                             </div>
                             <div className={style.button} onClick={() => this.backupKeyPairs(address)}>
                                 <FormattedMessage
@@ -192,6 +241,9 @@ export default class Keypairs extends Component {
                 isLoading: false
             });
         });
+        this.setState({
+            chains: chains
+        });
     }
 
 
@@ -212,6 +264,18 @@ export default class Keypairs extends Component {
         hashHistory.push(`/backupkeypairs/${address}`);
     }
 
+    onModalClose(key) {
+        this.setState({
+            [key]: false
+        });
+    }
+
+    onModalShow(key) {
+        this.setState({
+            [key]: true
+        });
+    }
+
     render() {
         let pageContainerStyle = getPageContainerStyle();
         pageContainerStyle.height -= 200;
@@ -222,6 +286,9 @@ export default class Keypairs extends Component {
             height: '32px',
             lineHeight: '32px'
         };
+
+        const {chains} = this.state;
+        const {inner, custom} = chains;
         // containerStyle.height -= 2; // remove border 2px
         return (
             <div style={pageContainerStyle} className='asstes-container'>
@@ -276,6 +343,160 @@ export default class Keypairs extends Component {
                     </div>
                 </div>
                 {/* </div> */}
+
+
+            {/*  For copy address start  */}
+                <Modal
+                  popup
+                  visible={this.state.addressCopyModal}
+                  onClose={() => this.onModalClose('addressCopyModal')}
+                  animationType="slide-up"
+                >
+                    <div>
+                        <div className={style.pannelTitle}>
+                            <FormattedMessage
+                              id = 'aelf.Select Chain'
+                              defaultMessage = 'Select Chain'
+                            />
+                            <Button
+                              size="small"
+                              className={style.addCustomChain}
+                              onClick={() => {
+                                  this.onModalShow('addChainModal')
+                              }}
+                            >Add Custom</Button>
+                        </div>
+                        <div>
+                            <List className={style.chainList}>
+                                {
+                                    (() => {
+                                        const innerLength = inner.length;
+                                        const list = [...inner, ...custom];
+
+                                        const chainSelect = (chainInfo) => {
+                                            const { addressSelected } = this.state;
+                                            const address = `${chainInfo.head}_${addressSelected}_${chainInfo.tail}`;
+                                            const result = copy(address);
+                                            if (result) {
+                                                Toast.success(addressOmit(address, 15, 56));
+                                                this.onModalClose('addressCopyModal');
+                                            } else {
+                                                Toast.fail('Copy failed')
+                                            }
+                                        };
+
+                                        return list.map((chain, index) => {
+                                            if (index < innerLength) {
+                                                return <Item
+                                                  className={style.chainItem}
+                                                  key={chain.chainId}
+                                                  onClick={() => chainSelect(chain)}
+                                                >
+                                                    <div className={style.chainText}>
+                                                        <div className={style.chainDiv}>{chain.chainId}</div>
+                                                    </div>
+                                                </Item>
+                                            }
+
+                                            return <Item
+                                              className={style.chainItem}
+                                              key={chain.chainId}
+                                              onClick={() => chainSelect(chain)}
+                                            >
+                                                <div className={style.chainText}>
+                                                    <div className={style.chainDiv}/>
+                                                    <div className={style.chainDiv}>{chain.chainId}</div>
+                                                    <div className={style.chainDiv}>
+                                                        <Button
+                                                          size="small"
+                                                          onClick={event => {
+                                                              event.stopPropagation();
+                                                              // event.nativeEvent.stopImmediatePropagation();
+                                                              custom.splice(index - innerLength, 1);
+                                                              this.setState({
+                                                                  chains: {
+                                                                      inner,
+                                                                      custom,
+                                                                  }
+                                                              });
+                                                              Toast.success(`Deleted`);
+                                                          }}
+                                                        >Delete</Button>
+                                                    </div>
+                                                </div>
+                                            </Item>
+                                        });
+                                    })()
+                                }
+                            </List>
+                        </div>
+                    </div>
+                </Modal>
+
+                <Modal
+                  className="chain-add-modal"
+                  transparent
+                  title="Title"
+                  footer={[
+                    {
+                        text: 'Cancel',
+                        onPress: () => {
+                            this.onModalClose('addChainModal');
+                        }
+                    },
+                    {
+                        text: 'Add',
+                        onPress: () => {
+                            const {customChainId, customPrefix, chains} = this.state;
+                            if (!customChainId) {
+                                alert('Please input chain id');
+                                return;
+                            }
+                            this.setState({
+                                chains: {
+                                    inner: chains.inner,
+                                    custom: [...chains.custom,
+                                        {
+                                            chainId: customChainId,
+                                            head: customPrefix || 'ELF',
+                                            tail: customChainId,
+                                        }
+                                    ],
+                                }
+                            });
+
+                            this.onModalClose('addChainModal');
+                        }
+                    }]}
+                  maskClosable={false}
+                  visible={this.state.addChainModal}
+                  onClose={() => this.onModalClose('addChainModal')}
+                >
+                    <InputItem
+                      placeholder="eg.AELF, tDVV"
+                      clear
+                      onChange={(v) => {
+                          this.setState({
+                              customChainId: v
+                          });
+                          console.log('onChange', v);
+                      }}
+                      onBlur={(v) => { console.log('onBlur', v); }}
+                    >Chain ID:</InputItem>
+                    <InputItem
+                      placeholder="Optional"
+                      clear
+                      onChange={(v) => {
+                          this.setState({
+                              customPrefix: v
+                          });
+                          console.log('onChange', v);
+                      }}
+                      onBlur={(v) => { console.log('onBlur', v); }}
+                    >Custom Prefix: </InputItem>
+                </Modal>
+
+            {/*  For copy address end  */}
             </div>
         );
     }
