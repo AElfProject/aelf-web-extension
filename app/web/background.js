@@ -981,7 +981,8 @@ export default class Background {
             const appPermissionsTemp = appPermissons.permissions;
 
             if (appPermissionsTemp.length && appPermissionIndex.length) {
-                const permission = appPermissionsTemp[appPermissionIndex[0]];
+                // const permission = appPermissionsTemp[appPermissionIndex[0]];
+                const permission = appPermissionsTemp[0];
                 const {contracts} = permission;
 
                 let indexTemp = 0;
