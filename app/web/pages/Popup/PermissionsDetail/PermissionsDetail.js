@@ -154,7 +154,7 @@ export default class PermissionsDetail extends Component {
                                             {
                                                 text: 'Cancel', onPress: () => console.log('cancel')
                                             }, {
-                                                text: 'Ok',
+                                                text: 'OK',
                                                 onPress: () => removeContract(item.contractAddress, this.domain, () => {
                                                     this.getPermissions(result => {
                                                         this.rData = result[0].contracts;
@@ -173,7 +173,7 @@ export default class PermissionsDetail extends Component {
                                 </div>
                             </div>
                             <div className={style.operationList}>
-                                <span className={style.infoClass}>Address:</span> {item.contractAddress}
+                                <span className={style.infoIdClass}>ID:</span> {item.contractAddress}
                             </div>
                             <div className={style.operationList}>
                                 <span className={style.infoClass}>Description:</span> {item.description}
@@ -213,7 +213,7 @@ export default class PermissionsDetail extends Component {
                                         {
                                             text: 'Cancel', onPress: () => console.log('cancel')
                                         }, {
-                                            text: 'Ok',
+                                            text: 'OK',
                                             onPress: () => removeWhitelist(contractAddress, item, this.domain, () => {
                                                 this.getPermissions(result => {
                                                     this.rData = result[0].contracts;
@@ -294,9 +294,6 @@ export default class PermissionsDetail extends Component {
         return <div>
                     <Flex>
                         <div className={style.headInfoBox}>
-                            <div className={style.head}>
-                                <div className={style.headPortrait}/>
-                            </div>
                             <div className={style.permissionInfo}>
                                 <div className={style.permissionOptions}>
                                     {permissions.appName}
@@ -308,7 +305,7 @@ export default class PermissionsDetail extends Component {
                                                 {
                                                     text: 'Cancel', onPress: () => console.log('cancel')
                                                 }, {
-                                                    text: 'Ok',
+                                                    text: 'OK',
                                                     onPress: () => removePermission(permissionNeedRemove, () => {
                                                         hashHistory.push('/permissions');
                                                     })
@@ -321,7 +318,7 @@ export default class PermissionsDetail extends Component {
                                         />
                                     </div>
                                 </div>
-                                <div>KEYPAIR: {permissions.address}</div>
+                                <div>ID: {permissions.address}</div>
                             </div>
                         </div>
                     </Flex>

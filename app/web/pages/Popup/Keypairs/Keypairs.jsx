@@ -114,7 +114,7 @@ export default class Keypairs extends Component {
             const keypairAddressText = 'keypair-text-' + rowID;
             const address = item.address;
             setTimeout(() => {
-                clipboard(`#${clipboardID}`, addressOmit(address, 15, 56));
+                clipboard(`#${clipboardID}`, addressOmit(address, 14, 54));
             }, 10);
             return (
                 <div key={rowID}
@@ -167,7 +167,7 @@ export default class Keypairs extends Component {
                                         {
                                             text: 'Cancel', onPress: () => console.log('cancel')
                                         }, {
-                                            text: 'Ok',
+                                            text: 'OK',
                                             onPress: () => removeKeypairs(address, () => {
                                                 this.rData = this.rData.filter(rItem => {
                                                     return rItem.address !== address;
@@ -357,7 +357,7 @@ export default class Keypairs extends Component {
                                             const address = `${chainInfo.head}_${addressSelected}_${chainInfo.tail}`;
                                             const result = copy(address);
                                             if (result) {
-                                                Toast.success(addressOmit(address, 15, 56));
+                                                Toast.success(<span>{addressOmit(address, 14, 54)}</span>);
                                                 this.onModalClose('addressCopyModal');
                                             } else {
                                                 Toast.fail('Copy failed')
@@ -384,7 +384,12 @@ export default class Keypairs extends Component {
                                             >
                                                 <div className={style.chainText}>
                                                     <div className={style.chainDiv}/>
-                                                    <div className={style.chainDiv}>{chain.chainId}</div>
+                                                    <div className={style.chainDiv}>
+                                                        {chain.head !== '' && chain.head !== 'ELF'
+                                                          ? <span className={style.chainCustomPrefix}>{chain.head}-</span>
+                                                          : null}
+                                                        {chain.chainId}
+                                                    </div>
                                                     <div className={style.chainDiv}>
                                                         <Button
                                                           size="small"
@@ -392,11 +397,19 @@ export default class Keypairs extends Component {
                                                               event.stopPropagation();
                                                               // event.nativeEvent.stopImmediatePropagation();
                                                               custom.splice(index - innerLength, 1);
+                                                              const newChain = {
+                                                                  inner,
+                                                                  custom,
+                                                              };
                                                               this.setState({
-                                                                  chains: {
-                                                                      inner,
-                                                                      custom,
-                                                                  }
+                                                                  chains: newChain
+                                                              });
+
+                                                              InternalMessage.payload(InternalMessageTypes.UPDATE_CHAIN_INFO, newChain).send().then(result => {
+                                                                  console.log(InternalMessageTypes.GET_CHAIN_INFO, result);
+                                                                  this.setState({
+                                                                      chains: newChain
+                                                                  });
                                                               });
                                                               Toast.success(`Deleted`);
                                                           }}
@@ -429,6 +442,18 @@ export default class Keypairs extends Component {
                             const {customChainId, customPrefix, chains} = this.state;
                             if (!customChainId) {
                                 Toast.fail('Please input chain id');
+                                return;
+                            }
+
+                            const existedChains = [...chains.inner, ...chains.custom];
+                            const existed = existedChains.find(chain => {
+                                const {chainId, head, tail} = chain;
+                                return chainId === customChainId
+                                  && head === (customPrefix || 'ELF')
+                                  && tail === customChainId;
+                            });
+                            if (existed) {
+                                Toast.fail('Already in the list');
                                 return;
                             }
 
