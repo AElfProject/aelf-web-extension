@@ -8,4 +8,5 @@ If you have finished authorization, left your personal device for a long period 
 
 If you think the default time is too long or too short, you can set different lock time. We provide some different time intervals for you to choose, you can also choose not to use the Timing Lock.
 
-![Backup](../../Asset/time-lock.jpg)
+![Backup](../.gitbook/assets/time-lock.jpg)
+

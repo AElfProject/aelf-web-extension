@@ -1,15 +1,15 @@
-# Summary
+# Table of contents
 
 * [Getting Started](GettingStarted/GettingStarted.md)
-* [User document](User/User.md)
-  * [Install](User/Step/install.md)
-  * [Create](User/Step/create.md)
-  * [Create Keypair](User/Step/keypair.md)
-  * [Backup Keypair / Import Keypair](User/Step/backup-import.md)
-  * [Backup NightELF](User/Step/backup-nightelf.md)
-  * [Delete Keypair / Delete NightELF](User/Step/delete.md)
-  * [Permission Manager](User/Step/permission.md)
-  * [How to use in Dapp](User/Step/how-to-use.md)
-  <!-- * [How to confirm the transaction](User/Step/transaction.md) -->
-  * [Timing Lock](User/Step/time-lock.md)
-* [Dev document](DevDocs/devDocs.md)
+* [User document](user/README.md)
+  * [Install](user/install.md)
+  * [Create](user/create.md)
+  * [Create Keypair](user/create-keypair.md)
+  * [Backup Keypair / Import Keypair](user/backup-import.md)
+  * [Backup NightELF](user/backup-nightelf.md)
+  * [Delete Keypair / Delete NightELF](user/delete.md)
+  * [Permission Manager](user/permission.md)
+  * [How to use in Dapp](user/how-to-use.md)
+  * [Timing Lock](user/time-lock.md)
+* [Dev document](devdocs.md)
+
