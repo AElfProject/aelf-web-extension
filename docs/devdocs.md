@@ -1,8 +1,8 @@
-# aelf-web-extension
+# 开发者文档
 
 ## 1 Download
 
-[release version, please waiting](#)
+[release version, please waiting](devdocs.md)
 
 [dev version](https://chrome.google.com/webstore/detail/aelf-explorer-extension-d/mlmlhipeonlflbcclinpbmcjdnpnmkpf)
 
@@ -10,14 +10,14 @@
 
 ### 2.1 Interaction Flow
 
-- 1.Make sure the user get the Extension
-- 2.Connect the blockchain
-- 3.Initialize contract / Call the methods of the blockchain
-- 4.Call the methods of contract 
+* 1.Make sure the user get the Extension
+* 2.Connect the blockchain
+* 3.Initialize contract / Call the methods of the blockchain
+* 4.Call the methods of contract 
 
 ### 2.2 Demo of Checking the Extension
 
-```js
+```javascript
 let nightElfInstance = null;
 class NightElfCheck {
     constructor() {
@@ -64,6 +64,7 @@ const aelf = new window.NightElf.AElf({
     appName: 'your own app name'
 });
 ```
+
 ### 2.4 How to call the API
 
 Callback or promise are both ok.
@@ -84,8 +85,6 @@ aelf.chain.getChainStatus().then(result => {
 });
 ```
 
-<span id="check-extension-demo"></span>
-
 ## 3 API Reference
 
 Here you can find examples and in-depth information about NightELF's API.
@@ -96,23 +95,20 @@ If you want to check token transfer demo. [click here](https://github.com/AElfPr
 
 The methods act the same as the methods of the aelf-sdk.js
 
-- [1. LOGIN](#login)
-- [2. GET_CHAIN_STATUS](#get-chain-status)
-- [3. CALL_AELF_CHAIN](#call-aelf-chain)
-- [4. INIT_AELF_CONTRACT](#init-aelf-contract)
-- [5. CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call-aelf-contract)
-- [6. CHECK_PERMISSION](#check-permission)
-- [7. SET_CONTRACT_PERMISSION](#set-contract-permission)
-- [8. REMOVE_CONTRACT_PERMISSION](#remove-contract-permission)
-- [9. REMOVE_METHODS_WHITELIST](#remove-methods-whitelist)
-- [10. GET_SIGNATURE](#get-signature)
-
-<span id="login"></span>
+* [1. LOGIN](devdocs.md#login)
+* [2. GET\_CHAIN\_STATUS](devdocs.md#get-chain-status)
+* [3. CALL\_AELF\_CHAIN](devdocs.md#call-aelf-chain)
+* [4. INIT\_AELF\_CONTRACT](devdocs.md#init-aelf-contract)
+* [5. CALL\_AELF\_CONTRACT / CALL\_AELF\_CONTRACT\_READONLY](devdocs.md#call-aelf-contract)
+* [6. CHECK\_PERMISSION](devdocs.md#check-permission)
+* [7. SET\_CONTRACT\_PERMISSION](devdocs.md#set-contract-permission)
+* [8. REMOVE\_CONTRACT\_PERMISSION](devdocs.md#remove-contract-permission)
+* [9. REMOVE\_METHODS\_WHITELIST](devdocs.md#remove-methods-whitelist)
+* [10. GET\_SIGNATURE](devdocs.md#get-signature)
 
 ### 3.1 LOGIN
 
-LOGIN allows your application to request permission to interact with a user's NightELF
-and be provided with an account of the user's choosing. 
+LOGIN allows your application to request permission to interact with a user's NightELF and be provided with an account of the user's choosing.
 
 ```javascript
 aelf.login({
@@ -180,22 +176,16 @@ aelf.login({
 // }
 ```
 
-<span id="get-chain-status"></span>
-
-### 3.2 GET_CHAIN_STATUS
+### 3.2 GET\_CHAIN\_STATUS
 
 ```javascript
-
 aelf.chain.getChainStatus((error, result) => {
     console.log('>>>>>>>>>>>>> connectChain >>>>>>>>>>>>>');
     console.log(error, result);
 });
-
 ```
 
-<span id="call-aelf-chain"></span>
-
-### 3.3 CALL_AELF_CHAIN
+### 3.3 CALL\_AELF\_CHAIN
 
 ```javascript
 // this txid is an example.
@@ -212,9 +202,7 @@ aelf.chain.getTxResult(txid, (err, result) => {
 // }
 ```
 
-<span id="init-aelf-contract"></span>
-
-### 3.4 INIT_AELF_CONTRACT
+### 3.4 INIT\_AELF\_CONTRACT
 
 ```javascript
 // In aelf-sdk.js wallet is the realy wallet.
@@ -243,9 +231,7 @@ aelf.chain.contractAt(
 // }
 ```
 
-<span id="call-aelf-contract"></span>
-
-### 3.5 CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY
+### 3.5 CALL\_AELF\_CONTRACT / CALL\_AELF\_CONTRACT\_READONLY
 
 ```javascript
 // tokenContract from the pre step.
@@ -281,11 +267,9 @@ tokenContract.Approve(
 // }
 ```
 
-<span id="check-permission"></span>
+### 3.6 CHECK\_PERMISSION
 
-### 3.6 CHECK_PERMISSION
-
-CHECK_PERMISSION returns the contracts your can use with the address.
+CHECK\_PERMISSION returns the contracts your can use with the address.
 
 ```javascript
 aelf.checkPermission({
@@ -321,11 +305,9 @@ aelf.checkPermission({
 // }
 ```
 
-<span id="set-contract-permission"></span>
+### 3.7 SET\_CONTRACT\_PERMISSION
 
-### 3.7 SET_CONTRACT_PERMISSION
-
-SET_CONTRACT_PERMISSION applies to the users to allow the Dapp use the contract.
+SET\_CONTRACT\_PERMISSION applies to the users to allow the Dapp use the contract.
 
 ```javascript
 aelf.setContractPermission({
@@ -345,9 +327,7 @@ aelf.setContractPermission({
 });
 ```
 
-<span id="remove-contract-permission"></span>
-
-### 3.8 REMOVE_CONTRACT_PERMISSION
+### 3.8 REMOVE\_CONTRACT\_PERMISSION
 
 ```javascript
 aelf.removeContractPermission({
@@ -360,9 +340,7 @@ aelf.removeContractPermission({
 });
 ```
 
-<span id="remove-methods-whitelist"></span>
-
-### 3.9 REMOVE_METHODS_WHITELIST
+### 3.9 REMOVE\_METHODS\_WHITELIST
 
 ```javascript
 aelf.removeMethodsWhitelist({
@@ -376,9 +354,7 @@ aelf.removeMethodsWhitelist({
 });
 ```
 
-<span id="get-signature"></span>
-
-### 3.10 GET_SIGNATURE
+### 3.10 GET\_SIGNATURE
 
 ```javascript
 aelf.getSignature({
@@ -421,18 +397,16 @@ git clone https://github.com/AElfProject/aelf-web-extension.git
 ```bash
     open development mode, add the webpack output app/public.
 ```
-   
+
 ### 4.5 How to publish to chrome
 
 zip app/public to public.zip, and follow the notes.
 
 ### 4.6 Can not use crx
 
-You can not install the extension from an offline crx if Chrome >= 73.
+You can not install the extension from an offline crx if Chrome &gt;= 73.
 
 Please import the `.zip file` with developer mode.
-
-<span id="dataformat"></span>
 
 ## 5 Formatted Data Example
 
@@ -471,3 +445,4 @@ Please import the `.zip file` with developer mode.
         }
     }
 ```
+
