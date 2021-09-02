@@ -289,7 +289,9 @@ export default class Lock extends Component {
 
 
     getAgreement() {
+        console.log(this.state, 'this.state')
         const {password} = this.state;
+        console.log(password, 'passwordpassword')
         if (password) {
             this.setState({
                 agreement: true
@@ -313,20 +315,24 @@ export default class Lock extends Component {
         return <div>
             <Password
                 setPassword={password => this.setPassword(password)}
+                onKeyUp={()=>this.getAgreement()}
             />
             <div className={style.createBottom}>
                 <div className='aelf-blank12'/>
                 <AelfButton
                     text='Create Wallet'
-                    aelficon='add_purple20'
+                    type='createbtn'
+                    // aelficon='add_purple20'
                     onClick={() => this.getAgreement()}
-                    style={{marginBottom: '10px'}}
+                    style={{margin: '38px 0 12px'}}
                 >
                 </AelfButton>
                 <AelfButton
-                    type='transparent'
+                    // type='transparent'
                     text='Load From Backup'
-                    aelficon='in20'
+                    type='createbtn'
+                    style={{background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
+                    // aelficon='in20'
                     onClick={() => this.loadFromBackup()}>
                 </AelfButton>
             </div>
@@ -346,18 +352,36 @@ export default class Lock extends Component {
                         placeholder=""
                         onChange={password => this.setPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                        onKeyUp={(e)=>this.onKeyup(e,'Clear Wallet')}
                     />
                 </List>
             </div>
             <div className={style.bottom}>
                 <div className='aelf-blank12'/>
+                <div className='aelf-blank12'/>
                 <AelfButton
                     text='Clear Wallet'
+                    type='createbtn'
                     aelficon='add_purple20'
                     onClick={() => this.clearWallet()}>
                 </AelfButton>
             </div>
         </div>;
+    }
+
+    onKeyup(e,type) {
+        if(e.keyCode === 13) {
+            if(type === 'Unlock Wallet') {
+                this.unlockWallet()
+                return;
+            }else if(type === 'Backup NightELF') {
+                this.backupWallet();
+                return;
+            }else if(type === 'Clear Wallet') {
+                this.clearWallet();
+                return;
+            }
+        }
     }
 
     renderUnlock() {
@@ -379,13 +403,16 @@ export default class Lock extends Component {
                             placeholder=""
                             onChange={password => this.setPassword(password)}
                             moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                            onKeyUp={(e)=>this.onKeyup(e,'Unlock Wallet')}
                         />
                     </List>
                 </div>
                 <div className={style.bottom}>
                     <div className='aelf-blank12'/>
+                    <div className='aelf-blank12'/>
                     <AelfButton
                         text='Unlock Wallet'
+                        type='createbtn'
                         aelficon='add_purple20'
                         onClick={() => this.unlockWallet()}>
                     </AelfButton>
@@ -412,13 +439,16 @@ export default class Lock extends Component {
                         placeholder=""
                         onChange={password => this.setPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                        onKeyUp={(e)=>{this.onKeyup(e, 'Backup NightELF')}}
                     />
                 </List>
             </div>
             <div className={style.bottom}>
                 <div className='aelf-blank12'/>
+                <div className='aelf-blank12'/>
                 <AelfButton
                     text='Backup NightELF'
+                    type='createbtn'
                     aelficon='add_purple20'
                     onClick={() => this.backupWallet()}>
                 </AelfButton>
@@ -460,8 +490,10 @@ export default class Lock extends Component {
             </div>
             <div className={style.bottom} style={{marginTop: '170px'}}>
                 <div className='aelf-blank12'/>
+                <div className='aelf-blank12'/>
                 <AelfButton
                     text='Submit'
+                    type='createbtn'
                     aelficon='add_purple20'
                     onClick={() => this.getTimingLock()}>
                 </AelfButton>
@@ -505,8 +537,11 @@ export default class Lock extends Component {
 
     renderAgreement() {
         const btnStyle = {
-            height: '32px',
-            lineHeight: '32px'
+            height: '47px',
+            lineHeight: '47px',
+            fontSize: '16px',
+            fontWeight: 'nomarl',
+            fontFamily: 'HelveticaNeue'
         };
         const agreementContent = this.renderAgreementContent();
         return <div>
@@ -521,19 +556,22 @@ export default class Lock extends Component {
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 width: '100%',
-                                margin: '20px 0 0 0'
+                                margin: '25px 0 24px 0'
                             }}>
                             <div style={{width: '48%'}} >
                                 <AelfButton
                                 style={btnStyle}
                                     text='Agree'
+                                    type='createbtn'
                                     onClick={() => this.createWallet()}>
                                 </AelfButton>
                             </div>
                             <div style={{width: '48%'}} >
                                 <AelfButton
-                                    type='transparent'
-                                    style={btnStyle}
+                                    // type='transparent'
+                                    type='createbtn'
+                                    style={{...btnStyle, background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
+                                    // style={{...btnStyle}}
                                     text='Refuse'
                                     onClick={() => this.setState({agreement: false})}>
                                 </AelfButton>
@@ -551,7 +589,7 @@ export default class Lock extends Component {
         let navHTML = '';
         let bodyHTML = '';
         let margin = {
-            marginTop: '62px'
+            marginTop: '14px'
         };
         const walletStatus = this.state.walletStatus;
         const {
@@ -605,9 +643,10 @@ export default class Lock extends Component {
             bodyHTML = <div>
                             {navHTML}
                             <div className={style.top}>
+                                {this.isTimingLock ? '' : <div className={style.logo}/>}
                                 <p className={style.welcome} style={margin}>{titleText}</p>
                                 <p className={style.wallet}>NIGHT ELF</p>
-                                <p className={style.description}>{process.env.SDK_VERSION}</p>
+                                {/* <p className={style.description}>{process.env.SDK_VERSION}</p> */}
                             </div>
                             {buttonHTML}
                             {/* {testHTML} */}

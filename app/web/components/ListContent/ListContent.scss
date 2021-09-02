@@ -1,8 +1,8 @@
 .listContainer {
   display: flex;
   justify-content: space-between;
-  height: 38px;
-  line-height: 38px;
+  height: 42px;
+  line-height: 42px;
   align-items: center;
 }
 
@@ -13,3 +13,11 @@
 .listIconLeft {
   margin: 0 8px 0 0;
 }
+
+.moreIcon {
+  width: 16px;
+  height: 16px;
+  background: url(../../assets/images/more2X.png) no-repeat;
+  background-size: 16px;
+}
+/* */

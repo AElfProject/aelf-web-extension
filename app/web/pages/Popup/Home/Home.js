@@ -19,6 +19,7 @@ import insert from '../../../utils/insert';
 import checkWallet from '../../../utils/checkWallet';
 import {FormattedMessage} from 'react-intl';
 import './Home.css';
+import { historyPush } from '../../../utils/historyChange';
 
 const Item = List.Item;
 
@@ -41,13 +42,14 @@ export default class personalCenterHome extends Component {
             <div className={style.container + ' ' + 'aelf-personal-pages aelf-solid'}>
                 <div className={style.top}>
                     <div className={style.blank}></div>
+                    <div className={style.logo}/>
                     <p className={style.wallet}>NIGHT ELF</p>
-                    <p>{process.env.SDK_VERSION}</p>
+                    {/* <p>{process.env.SDK_VERSION}</p> */}
                 </div>
                 <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/keypairs')}>
                         <ListContent
-                            icon="wallet16"
+                            // icon="wallet16"
                             text={
                                 <FormattedMessage
                                     id = 'aelf.Key Pairs'
@@ -60,7 +62,7 @@ export default class personalCenterHome extends Component {
                 <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/permissions')}>
                         <ListContent
-                            icon="tx_history16"
+                            // icon="tx_history16"
                             text={
                                 <FormattedMessage
                                     id = 'aelf.Application Management'
@@ -73,7 +75,7 @@ export default class personalCenterHome extends Component {
                 <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/extensionmanager')}>
                         <ListContent
-                            icon="about16"
+                            // icon="about16"
                             text={
                                 <FormattedMessage
                                     id = 'aelf.Extension Management'
@@ -86,7 +88,7 @@ export default class personalCenterHome extends Component {
                 <List className={style.aelfList}>
                     <Item onClick={() => this.lockWallet()}>
                         <ListContent
-                            icon="about16"
+                            // icon="about16"
                             text={
                                 <FormattedMessage
                                     id = 'aelf.Lock'
@@ -96,6 +98,21 @@ export default class personalCenterHome extends Component {
                         ></ListContent>
                     </Item>
                 </List>
+
+                <List className={style.aelfList}>
+                    <Item onClick={() => window.open('https://web-wallet.aelf.io/')}>
+                        <ListContent
+                            // icon="about16"
+                            text={
+                                <FormattedMessage
+                                    id = 'aelf.Connect Wallet'
+                                    defaultMessage = "Connect Wallet"
+                                />
+                            }
+                        ></ListContent>
+                    </Item>
+                </List>
+                <div className={style.bottomSpace}/>
             </div>
         );
     }

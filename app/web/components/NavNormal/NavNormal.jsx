@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { NavBar, Icon } from 'antd-mobile'
 import { hashHistory } from 'react-router'
-
+import Goback from '../../assets/images/back2X.png'
 require('./NavNormal.css');
 
 class NavNormal extends Component {
@@ -35,7 +35,7 @@ class NavNormal extends Component {
         return (
             <div className='aelf-normal-navbar-container'>
                 <NavBar
-                    icon={this.props.hideLeft ? '' : <Icon type="left" />}
+                    icon={this.props.hideLeft ? '' : <img src={Goback} className='aelf-back-icon'/>}
                     onLeftClick={() => this.goBack()}
                     rightContent={this.props.rightContent}
                     className='aelf-normal-navbar'>

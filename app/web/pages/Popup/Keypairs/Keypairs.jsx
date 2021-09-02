@@ -14,7 +14,8 @@ import {
     Button,
     List,
     InputItem,
-    PickerView
+    PickerView,
+    WhiteSpace
 } from 'antd-mobile';
 
 import copy from 'copy-to-clipboard';
@@ -161,7 +162,7 @@ export default class Keypairs extends Component {
                                     defaultMessage = 'Backup'
                                 />
                             </div>
-                            <div className={style.button} onClick={() =>
+                            <div className={style.button + ' ' + style.delete} onClick={() =>
                                     alert('Delete Keypair', 'Are you sure?',
                                     [
                                         {
@@ -262,8 +263,11 @@ export default class Keypairs extends Component {
         // backgroundStyle.height -= 14; // remove padding 7px * 2
         let containerStyle = Object.assign({}, backgroundStyle);
         const btnStyle = {
-            height: '32px',
-            lineHeight: '32px'
+            height: '47px',
+            lineHeight: '47px',
+            fontSize: '16px',
+            fontWeight: 'nomarl',
+            fontFamily: 'HelveticaNeue'
         };
 
         const {chains} = this.state;
@@ -271,6 +275,7 @@ export default class Keypairs extends Component {
         // containerStyle.height -= 2; // remove border 2px
         return (
             <div style={pageContainerStyle} className='asstes-container'>
+                <WhiteSpace/>
                 <NavNormal
                     onLeftClick={() => historyPush('/home')}
                 />
@@ -283,17 +288,18 @@ export default class Keypairs extends Component {
                     </p>
                 </div>
                 <div className={style.functionButton}>
-                    <div style={{width: '45%'}} >
+                    <div style={{width: '48%'}} >
                         <AelfButton
                             style={btnStyle}
+                            type='createbtn'
                             text='Create Keypair'
                             onClick={() => this.createKeyPairs()}>
                         </AelfButton>
                     </div>
-                    <div style={{width: '45%'}} >
+                    <div style={{width: '48%'}} >
                         <AelfButton
-                            type='transparent'
-                            style={btnStyle}
+                            type='createbtn'
+                            style={{...btnStyle, background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
                             text='Import Keypair'
                             onClick={() => this.importKeyPairs()}>
                         </AelfButton>

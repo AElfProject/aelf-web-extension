@@ -131,7 +131,7 @@ export default class PermissionsDetail extends Component {
             if (JSON.stringify(item.whitelist) !== '{}' && item.whitelist) {
                 whiteListHTML = this.renderWhiteList(item.whitelist, item.contractAddress, rowID);
             }
-            let infoHeight = '17px';
+            let infoHeight = '20px';
             let transformRotate = 'rotate(90deg)';
             if (this.state.openRow === rowID) {
                 infoHeight = 'auto';
@@ -145,7 +145,9 @@ export default class PermissionsDetail extends Component {
                     >
                         <div className={style.operationContainer}>
                             <div className={style.operationList}>
-                                {item.contractName}
+                                <span className={style.title}>
+                                    {item.contractName}
+                                </span>
                                 <div
                                     className = {style.remove}
                                     onClick={() =>
@@ -318,7 +320,7 @@ export default class PermissionsDetail extends Component {
                                         />
                                     </div>
                                 </div>
-                                <div>ID: {permissions.address}</div>
+                                <div className={style.idAddress}>ID: {permissions.address}</div>
                             </div>
                         </div>
                     </Flex>

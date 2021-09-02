@@ -9,7 +9,8 @@ import React, {
 
 import style from './ListContent.scss';
 import Svg from '../../components/Svg/Svg';
-
+import './ListContent.css';
+import More from '../../assets/images/more2X.png'
 export default class ListContent extends Component {
 
     render() {
@@ -37,10 +38,11 @@ export default class ListContent extends Component {
                     {listIconLeftHtml}
                     <div style={textStyle}>{this.props.text}</div>
                 </div>
-                <div style={{marginTop: '-14px'}}>
-                    <Svg
+                <div className={style.moreIcon} >
+                    {/* <Svg
+                        style={{width: 16, height: 16}}
                         icon="right12"
-                    ></Svg>
+                    ></Svg> */}
                 </div>
             </div>
         );

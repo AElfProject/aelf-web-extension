@@ -232,12 +232,14 @@ export default class Permission extends Component {
                         <div>
                             <AelfButton
                                 text='Submit'
+                                type='createbtn'
                                 onClick={() => this.setPermission()}
                             />
                         </div>
                         <div>
                             <AelfButton
-                                type='transparent'
+                                type='createbtn'
+                                style={{background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
                                 text='Cancel'
                                 onClick={() => this.cancel()}
                             />

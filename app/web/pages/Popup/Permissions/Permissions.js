@@ -170,7 +170,7 @@ export default class Permissions extends Component {
                         <div className={style.operationList}>
                             {appName}
                         </div>
-                        <div className={style.operationList} style={{justifyContent: 'flex-end'}}>
+                        <div className={style.buttonManage} style={{justifyContent: 'flex-end'}}>
                             <div
                                 className={style.button + ' ' + style.details}
                                 onClick={() => this.getDetails(domain, address, appName)}

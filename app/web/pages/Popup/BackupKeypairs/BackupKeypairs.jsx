@@ -199,13 +199,13 @@ export default class BackupKeypairs extends Component {
         // let containerStyle = getPageContainerStyle();
         console.log(jumpPosition);
         return (
-            <div className='aelf-bg-light'>
-
+            <div>
+                <div className={style.space3}></div>
                 {/*<NavNormal navTitle="导入钱包" */}
                 <NavNormal
                     onLeftClick={() => this.goNextPage()}
                 />
-
+                <div className={style.space3}></div>
                 <div className={style.container} style={containerStyle}>
                     <div className={style.textContainer}>
                         <NoticePanel
@@ -254,6 +254,7 @@ export default class BackupKeypairs extends Component {
 
                         <AelfButton
                             text='Mnemonic'
+                            type='createbtn'
                             onClick={e => prompt(
                                 'Password',
                                 'Please make sure you are under safe enviroment.',
@@ -285,6 +286,8 @@ export default class BackupKeypairs extends Component {
 
                         <AelfButton
                             text='Private Key'
+                            type='createbtn'
+                            style={{ background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
                             onClick={e => {
                                 // be nullified after the event callback has been invoked,
                                 // if dont e.persist(), we can't get e.preventDefault in this.showModal

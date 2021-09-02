@@ -184,7 +184,8 @@ const zh_CN = {
     'aelf.Whitelist': '白名单',
     'aelf.New Contract Method': '新增合约权限',
     'aelf.Delete Contract Method': '删除合约权限',
-    'aelf.Details of contract changes': '合约变更详情'
+    'aelf.Details of contract changes': '合约变更详情',
+    'aelf.Connect Wallet': '连接钱包'
 };
 
 export default zh_CN;
