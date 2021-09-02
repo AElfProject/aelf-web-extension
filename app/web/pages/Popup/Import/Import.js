@@ -179,6 +179,7 @@ export default class Import extends Component {
         let createButton =
             <AelfButton
                 text={createButtonText}
+                type='createbtn'
                 style={{
                     opacity: 0.5,
                     margin: '0 0 20px 0'
@@ -187,6 +188,7 @@ export default class Import extends Component {
         if (this.state.walletName) {
             createButton =
                 <AelfButton
+                    type='createbtn'
                     text={createButtonText}
                     onClick={() => this.createAndGO()}
                     style={{
@@ -270,6 +272,7 @@ export default class Import extends Component {
                     </p>
                     <WalletName
                         setWalletName={walletName => this.setWalletName(walletName)}
+                        onEnterKeyUp={()=>{this.createAndGO()}}
                     />
                     <WhiteSpace />
                     {/* <Flex style={{ padding: '0 24px 0 24px' }}>

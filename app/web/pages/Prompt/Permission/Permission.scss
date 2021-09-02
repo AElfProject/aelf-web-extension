@@ -1,7 +1,7 @@
 .container {
-    color: #FFF;
+    color: #252533;
     min-height: 578px;
-    background: url('../../../assets/background/bg1_long.svg') no-repeat;
+    background: #FFF;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -18,7 +18,7 @@
 
 .wallet {
     font-size: 36px;
-    color: #FFF;
+    color: #252533;
     margin: 8px 0 8px 0;
     font-weight: 700;
 }
@@ -29,8 +29,8 @@
 }
 
 .domain {
-    font-size: 30px;
-    margin:24px;
+    font-size: 16px;
+    margin: 0 24px 24px;
 }
 
 .buttons {

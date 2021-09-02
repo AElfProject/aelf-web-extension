@@ -57,15 +57,16 @@ require('./Password.css');
 */
 
 function getPasswordLevelInfo(passwordInfo) {
+    console.log(passwordInfo, 'passwordInfo')
     let level = {
         level1: {
-            opacity: 0.5
+            // opacity: 0.5
         },
         level2: {
-            opacity: 0.5
+            // opacity: 0.5
         },
         level3: {
-            opacity: 0.5
+            // opacity: 0.5
         },
         text: 'At least 9 bits'
     };
@@ -75,16 +76,23 @@ function getPasswordLevelInfo(passwordInfo) {
             case 0:
                 break;
             case 1:
-                level.level1.opacity = 1;
+            // background: '#F43160'
+                // level.level1.opacity = 1; 
+                level.level1.background = '#F43160';
                 break;
             case 2:
-                level.level1.opacity = 1;
-                level.level2.opacity = 1;
+                // level.level1.opacity = 1;
+                // level.level2.opacity = 1;
+                level.level1.background = '#F43160';
+                level.level2.background = '#F43160';
                 break;
             default:
-                level.level1.opacity = 1;
-                level.level2.opacity = 1;
-                level.level3.opacity = 1;
+                // level.level1.opacity = 1;
+                // level.level2.opacity = 1;
+                // level.level3.opacity = 1;
+                level.level1.background = '#F43160';
+                level.level2.background = '#F43160';
+                level.level3.background = '#F43160';
         }
 
         if (passwordInfo.level > 2) {
@@ -109,6 +117,10 @@ export default class Password extends Component {
             password: '',
             passwordReplay: ''
         };
+        this.refs = {
+            confirm:null,
+            password: null,
+        }
     }
 
     inputPassword(password) {
@@ -170,6 +182,20 @@ export default class Password extends Component {
         return passwordReplayErrorText;
     }
 
+    onKeyup(e, type) {
+        if(e.keyCode === 13) {
+            if(type === '1' && this.refs.confirm) {
+                this.refs.confirm.focus();
+            }else if (type === '2') {
+                console.log(this.props, 'keyup')
+                if(this.state.passwordCheckResult.ready) {
+                    console.log(this.state.passwordCheckResult.ready, 'isReady')
+                    this.props.onKeyUp()
+                }
+            }
+        }
+    }
+
     render() {
 
         let passwordReplayErrorText = this.renderPassowrdErrorText();
@@ -199,29 +225,33 @@ export default class Password extends Component {
                     </div>
                     <InputItem
                         value={this.state.password}
+                        ref={password =>this.refs.password = password}
                         type="password"
                         placeholder=""
                         onChange={password => this.inputPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                        onKeyUp={(e)=>this.onKeyup(e,'1')}
                     ></InputItem>
                 </List>
 
                 <List>
-                    <div className="aelf-input-title">
-                        <div>
+                    <div style={{height: '16px',marginTop: '4px'}}>
+                        {/* <div>
                             <FormattedMessage
                                 id = 'aelf.Confirm Password'
                                 defaultMessage = 'Confirm Password'
                             />
-                        </div>
+                        </div> */}
                         {passwordReplayErrorText}
                     </div>
                     <InputItem
+                        ref={confirm =>this.refs.confirm = confirm}
                         value={this.state.passwordReplay}
                         type="password"
-                        placeholder=""
+                        placeholder="Confirm Password"
                         onChange={password => this.comfirmPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                        onKeyUp={(e)=>this.onKeyup(e,'2')}
                     ></InputItem>
                 </List>
 

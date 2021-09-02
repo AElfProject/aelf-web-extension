@@ -30,9 +30,12 @@ import {historyPush} from '../../../../utils/historyChange';
 import getPageContainerStyle from '../../../../utils/getPageContainerStyle';
 
 import {FormattedMessage} from 'react-intl';
+import Goback from '../../../../assets/images/back2X.png'
 
-const selectedStyle = '#AC00E6';
-const unSelectedStyle = '#FFF';
+const selectedStyle = '#502EA2';
+const selectedStyleColor = '#FFF'
+const unSelectedStyle = '#F5F5F8';
+const unSelectedStyleColor = '#252533';
 // const confirmSubTitle = '请按顺序点击助记词，以确认您正确备份。';
 // const confirmSubTitle = 'To confirm your backup, please click on the Mnemonic in order.';
 const confirmSubTitle = <FormattedMessage
@@ -208,11 +211,12 @@ export default class Mnemonic extends Component {
             <div>
                 <div className={style.page} style={containerStyle}>
                     <div>
+                        <div className={style.space3}></div>
                         <NavBar
-                            icon={<Icon type="left" />}
+                            icon={<img src={Goback} className='aelf-back-icon'/>}
                             onLeftClick={() => this.props.onLeftClick()}>
                         </NavBar>
-
+                        <div className={style.space3}></div>
                         <div className={style.container} style={pageContainerStyle}>
                             <div className={style.top}>
                                 <NoticePanel
@@ -252,6 +256,7 @@ export default class Mnemonic extends Component {
                             <div className={style.bottom}>
                                 <AelfButton
                                     text='Next'
+                                    type='createbtn'
                                     onClick={() => this.toggleConfirm()}
                                 ></AelfButton>
                             </div>
@@ -262,7 +267,7 @@ export default class Mnemonic extends Component {
                 <div className={style.page} style={confirmContainerStyle}>
                     <div>
                         <NavBar
-                            icon={<Icon type="left" />}
+                            icon={<img src={Goback} className='aelf-back-icon'/>}
                             onLeftClick={() => this.toggleConfirm()}>
                         </NavBar>
 
@@ -297,6 +302,7 @@ export default class Mnemonic extends Component {
                             <div className={style.bottom}>
                                 <AelfButton
                                     text='Submit'
+                                    type='createbtn'
                                     onClick={() => this.confirm()}
                                 ></AelfButton>
                             </div>

@@ -1,5 +1,5 @@
 .container {
-    color: #FFF;
+    color: #000000;
     flex-direction: column;
     height: 100%;
 }
@@ -9,15 +9,15 @@
 }
 
 .welcome {
-    font-weight: 100;
-    font-size: 36px;
+    font-weight: bold;
+    font-size: 33px;
     margin: 17px 0 0px 0;
 }
 
 .wallet {
-    font-size: 36px;
+    font-size: 33px;
     margin: 8px 0 8px 0;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .description {
@@ -44,7 +44,7 @@
 
 .updateFile {
     cursor: pointer;
-    color: #bb737a;
+    color: #FFA500;
     display: inline-block;
     position: relative;
     text-decoration: underline !important;
@@ -63,4 +63,5 @@
 .fileName {
     word-break: break-all;
     word-wrap: break-word;
+    margin-top: 4px;
 }

@@ -19,6 +19,7 @@ import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 import AelfButton from '../../../components/Button/Button';
 import style from './LoginKeypairs.scss';
+import NoticeIcon from '../../../assets/images/notice2X.png'
 import errorHandler from "../../../utils/errorHandler";
 require('./LoginKeypairs.css');
 
@@ -213,14 +214,16 @@ export default class LoginKeypairs extends Component {
     renderNoKeypairs() {
         return <div>
                     <div className={style.noKeypairs}>
-                        <Svg icon='notice32' /> No Keypairs !
+                        {/* <Svg icon='notice32' />  */}
+                        <img className={style.noticeIcon} src={NoticeIcon}/>
+                        <span>No Keypairs !</span>
                     </div>
                     <div className={style.noKeypairsTips}>
                         You do not have keypairs available yet. Go to the extension and create your ELF Keypair<br></br>
                         Retrieve the authorization page by refreshing the page!
                     </div>
                     <AelfButton
-                        type='transparent'
+                        type='createbtn'
                         style={{width: '50%', margin: '30px auto'}}
                         text='Cancel'
                         onClick={() => window.close()}

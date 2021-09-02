@@ -1,8 +1,8 @@
 .container {
-    color: #FFF;
+    color: #253325;
     min-height: 578px;
     width: 320px;
-    background: url('../../../assets/background/bg1_long.svg') no-repeat;
+    background: #FFF;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -10,7 +10,18 @@
 }
 
 .top {
-    padding: 0 24px 0 24px;
+    padding: 0 28px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 40px;
+    font-family: HelveticaNeue-Bold, HelveticaNeue;
+}
+
+.logo {
+    margin-top: 54px;
+    height: 84px;
+    background: url(../../../assets/images/aelf_logo2X.png) center center no-repeat;
+    background-size: 84px 84px;
 }
 
 .blank {
@@ -23,15 +34,13 @@
 }
 
 .welcome {
-    font-weight: 100;
-    font-size: 22px;
-    margin: 62px 0 0px 0;
+    font-size: 33px;
+    margin: 14px 0 0px 0;
 }
 
 .wallet {
-    font-size: 36px;
-    margin: 8px 0 8px 0;
-    font-weight: 700;
+    font-size: 33px;
+    margin: 0;
 }
 
 .description {
@@ -40,8 +49,7 @@
 }
 
 .bottom {
-    width: 80%;
-    margin: 16px auto 50px 10%;
+    margin: 0 28px 50px;
 }
 
 .btn {
@@ -138,4 +146,7 @@
     right: 0;
     top: 0;
     text-align: center;
+}
+.blank24 {
+    height: 24px;
 }

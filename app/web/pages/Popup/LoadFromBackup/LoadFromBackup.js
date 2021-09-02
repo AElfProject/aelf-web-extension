@@ -89,9 +89,15 @@ export default class LoadFromBackup extends Component {
         return <div className="aelf-file-name">{fileName}</div>;
     }
 
+    onKeyup(e) {
+        if(e.keyCode === 13) {
+            this.importBackup()
+        }
+    }
+
     renderBackup() {
         const {fileName} = this.state;
-        return <div style={{marginTop: '90px'}}>
+        return <div style={{marginTop: '130px'}}>
             <div className="aelf-input-container aelf-dash">
                 <List>
                     <div className='aelf-import-file'>
@@ -108,23 +114,29 @@ export default class LoadFromBackup extends Component {
                         </div>
                     </div>
                     <div className={style.fileName}>{fileName}</div>
-                    <div className="aelf-input-title">
+                    {/* <div className="aelf-input-title">
                         <div><FormattedMessage id = 'aelf.Password' /></div>
-                    </div>
+                    </div> */}
+                    <div className='aelf-blank12'></div>
+                    <div className='aelf-blank12'></div>
+                    <div className='aelf-blank12'></div>
                     <InputItem
                         value={this.state.password}
                         type="password"
-                        placeholder=""
+                        placeholder="Password"
                         onChange={password => this.setPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                        onKeyUp={(e)=>this.onKeyup(e)}
                     ></InputItem>
                 </List>
             </div>
             <div className={style.bottom}>
                 <div className='aelf-blank12'></div>
+                <div className='aelf-blank12'></div>
+                <div className='aelf-blank12'></div>
                 <AelfButton
                     text='Submit Backup'
-                    aelficon='in20'
+                    type='createbtn'
                     onClick={() => this.importBackup()}>
                 </AelfButton>
             </div>

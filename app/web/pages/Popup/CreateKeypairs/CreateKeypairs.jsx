@@ -109,6 +109,12 @@ export default class CreateKeypairs extends Component {
         console.log('Is ready to insert wallet');
     }
 
+    onKeyup(e) {
+        if(e.keyCode === 13) {
+            this.createKeyPair();
+        }
+    }
+
     render() {
 
         let mnemonicHtml = '';
@@ -123,13 +129,15 @@ export default class CreateKeypairs extends Component {
         }
 
         return (
-            <div className='aelf-bg-light'>
+            <div>
                 {/*<NavNormal navTitle="导入钱包" */}
+                <div className={style.space3}/>
                 <NavNormal
                     onLeftClick={() => historyPush('/keypairs')}
                 />
+                <div className={style.space3}/>
                 <div className={style.top}>
-                    <div className={style.blank}/>
+                    {/* <div className={style.blank}/> */}
                     <p className={style.wallet}>
                         <FormattedMessage
                             id='aelf.Create Keypair'
@@ -176,7 +184,7 @@ export default class CreateKeypairs extends Component {
                         />
                     ]}
                 ></NoticePanel> */}
-                <div className="aelf-input-container aelf-dash" style={{marginTop: '170px'}}>
+                <div className="aelf-input-container aelf-dash" style={{marginTop: '200px'}}>
                     <List>
                         <div className="aelf-input-title">
                             <div><FormattedMessage id='aelf.Keypair Name' /></div>
@@ -187,6 +195,7 @@ export default class CreateKeypairs extends Component {
                             placeholder=""
                             onChange={name => this.setName(name)}
                             moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                            onKeyUp={(e)=>this.onKeyup(e)}
                         />
                     </List>
                 </div>
@@ -194,6 +203,7 @@ export default class CreateKeypairs extends Component {
                 <div className={style.buttonContainer}>
                     <AelfButton
                         text='Create Keypair'
+                        type='createbtn'
                         aelficon='add_purple20'
                         onClick={() => this.createKeyPair()}>
                     </AelfButton>
