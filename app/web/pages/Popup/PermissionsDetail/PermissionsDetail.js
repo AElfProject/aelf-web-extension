@@ -131,7 +131,7 @@ export default class PermissionsDetail extends Component {
             if (JSON.stringify(item.whitelist) !== '{}' && item.whitelist) {
                 whiteListHTML = this.renderWhiteList(item.whitelist, item.contractAddress, rowID);
             }
-            let infoHeight = '17px';
+            let infoHeight = '20px';
             let transformRotate = 'rotate(90deg)';
             if (this.state.openRow === rowID) {
                 infoHeight = 'auto';
@@ -145,7 +145,9 @@ export default class PermissionsDetail extends Component {
                     >
                         <div className={style.operationContainer}>
                             <div className={style.operationList}>
-                                {item.contractName}
+                                <span className={style.title}>
+                                    {item.contractName}
+                                </span>
                                 <div
                                     className = {style.remove}
                                     onClick={() =>
@@ -154,7 +156,7 @@ export default class PermissionsDetail extends Component {
                                             {
                                                 text: 'Cancel', onPress: () => console.log('cancel')
                                             }, {
-                                                text: 'Ok',
+                                                text: 'OK',
                                                 onPress: () => removeContract(item.contractAddress, this.domain, () => {
                                                     this.getPermissions(result => {
                                                         this.rData = result[0].contracts;
@@ -173,7 +175,7 @@ export default class PermissionsDetail extends Component {
                                 </div>
                             </div>
                             <div className={style.operationList}>
-                                <span className={style.infoClass}>Address:</span> {item.contractAddress}
+                                <span className={style.infoIdClass}>ID:</span> {item.contractAddress}
                             </div>
                             <div className={style.operationList}>
                                 <span className={style.infoClass}>Description:</span> {item.description}
@@ -213,7 +215,7 @@ export default class PermissionsDetail extends Component {
                                         {
                                             text: 'Cancel', onPress: () => console.log('cancel')
                                         }, {
-                                            text: 'Ok',
+                                            text: 'OK',
                                             onPress: () => removeWhitelist(contractAddress, item, this.domain, () => {
                                                 this.getPermissions(result => {
                                                     this.rData = result[0].contracts;
@@ -294,9 +296,6 @@ export default class PermissionsDetail extends Component {
         return <div>
                     <Flex>
                         <div className={style.headInfoBox}>
-                            <div className={style.head}>
-                                <div className={style.headPortrait}/>
-                            </div>
                             <div className={style.permissionInfo}>
                                 <div className={style.permissionOptions}>
                                     {permissions.appName}
@@ -308,7 +307,7 @@ export default class PermissionsDetail extends Component {
                                                 {
                                                     text: 'Cancel', onPress: () => console.log('cancel')
                                                 }, {
-                                                    text: 'Ok',
+                                                    text: 'OK',
                                                     onPress: () => removePermission(permissionNeedRemove, () => {
                                                         hashHistory.push('/permissions');
                                                     })
@@ -321,7 +320,7 @@ export default class PermissionsDetail extends Component {
                                         />
                                     </div>
                                 </div>
-                                <div>KEYPAIR: {permissions.address}</div>
+                                <div className={style.idAddress}>ID: {permissions.address}</div>
                             </div>
                         </div>
                     </Flex>

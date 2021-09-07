@@ -11,7 +11,7 @@ const SCROLLLIST = {
 };
 export default (isLoading, hasMore) => {
     return (
-        <div style={{padding: 6, textAlign: 'center', color: 'rgba(255, 255, 255, 0.7)'}}>
+        <div style={{padding: 6, textAlign: 'center'}}>
             {
                 isLoading
                     ? SCROLLLIST.loading

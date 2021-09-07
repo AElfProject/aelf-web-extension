@@ -8,6 +8,7 @@ body {
     width: 375px;
     height: 500px;
     margin: auto !important;
+    background-color: #FFF !important;
 }
 
 #welcome-page {
@@ -94,10 +95,10 @@ body {
 
 #root {
     /*background: url("../assets/background/bg2_long.svg") no-repeat;*/
-    background: url(../assets/background/bg1.svg) no-repeat;
+    /* background: url(../assets/background/bg1.svg) no-repeat; */
     /*background-size: contain;*/
     background-size: cover;
-    background-color: #200a43;
+    background-color: #FFF;
     /* width: 100%; */
     /*min-height: 100%;*/
     /* height: 100%; */
@@ -109,10 +110,10 @@ body {
 @media (min-width: 768px) {
     #root {
         /*background: url("../assets/background/bg2_long.svg") no-repeat;*/
-        background: url(../assets/background/bg1.svg) no-repeat;
+        /* background: url(../assets/background/bg1.svg) no-repeat; */
         /*background-size: contain;*/
         background-size: cover;
-        background-color: #200a43;
+        background-color: #FFF;
         width: 100%;
         /*min-height: 100%;*/
         height: 100%;
@@ -149,11 +150,11 @@ body {
 
 /* 修改 Antd Model  */
 .am-modal-button-group-h .am-modal-button:first-child {
-    color: #260073 !important;
+    color: #252533 !important;
 }
 
 .am-modal-button-group-h .am-modal-button {
-    color: #AC00E6 !important;
+    color: #502EA2 !important;
 }
 
 .am-pull-to-refresh-indicator {
@@ -161,7 +162,10 @@ body {
 }
 
 .aelf-personal-pages .am-list-item .am-list-line .am-list-content {
-    color: #FFF;
+    color: #000000 !important;
+    font-size: 16px;
+    font-family: HelveticaNeue;
+    line-height: 16px;
 }
 .aelf-personal-pages .aelf-list:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -173,4 +177,9 @@ body {
 
 ::after {
     background-color: transparent !important;
+}
+
+.aelf-back-icon {
+	width: 19px;
+	height: 19px;
 }

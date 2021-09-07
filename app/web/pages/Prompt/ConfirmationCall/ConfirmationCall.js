@@ -221,11 +221,13 @@ export default class ConfirmationCall extends Component {
         return <div className={style.buttons}>
                     <AelfButton
                         text='Submit'
+                        type='createbtn'
                         onClick={() => this.getCallAelfContract()}
                     />
                     <AelfButton
                         text='Cancel'
-                        type='transparent'
+                        type='createbtn'
+                        style={{background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
                         onClick={() => this.cancel()}
                     />
                 </div>;

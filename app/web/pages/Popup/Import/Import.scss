@@ -10,10 +10,11 @@
 	margin: 0 0 12px 0;
 	font-size: 20px;
 	line-height: 24px;
-	color: #FFF;
+	color: #252533;
 }
 .tabSelected {
 	font-size: 24px;
+	color: #502EA2;
 }
 .tabSelected .tabSelectedLine {
 	display: block;
@@ -27,14 +28,14 @@
 	display: none;
 	width: 24px;
 	height: 4px;
-	background: #FFF;
+	background: #502EA2;
 	margin: 9px auto 0 auto;
 }
 
 .textareaContainer {
 	display: none;
-	background: rgba(0, 0, 0, 0.2);
-	border: none;
+	background: #FFFFFF;
+	border: 1px solid #DFDFDF;
 	border-radius: 4px;
 	padding: 14px;
 }
@@ -43,7 +44,7 @@
 }
 .textarea {
 	width: 100%;
-	color: #FFF;
+	color: #000;
 	//background: rgba(0, 0, 0, 0.2);
 	background: rgba(0, 0, 0, 0);
 	border: none;
@@ -54,9 +55,9 @@
 
 .title {
 	padding: 0px 24px;
-	margin: 12px 0 0 0;
+	margin: 12px 0 20px 0;
 	font-size: 12px;
-	color: rgba(255, 255, 255, 0.7);
+	color: #F43160;
 }
 
 .error {
@@ -71,7 +72,7 @@
 
 .bottom {
 	width: 80%;
-	margin: 0px 0 0 10%;
+	margin: 10px 0 0 10%;
 }
 
 .top {
@@ -91,5 +92,5 @@
     font-size: 36px;
     margin: 8px 0 20px 0;
 	font-weight: 700;
-	color: #FFF;
+	color: #252533;
 }

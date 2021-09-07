@@ -60,10 +60,10 @@ export default class NoticePanel extends Component {
         if (!this.props.iconHidden) {
             svgHtml
                 = <div className={style.noticeIcon}>
-                    <Svg icon="notice32" style={{
+                    {/* <Svg icon="notice32" style={{
                         width: 32,
                         height: 32
-                    }}></Svg>
+                    }}></Svg> */}
                 </div>;
         }
         return svgHtml;

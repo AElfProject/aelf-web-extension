@@ -49,10 +49,11 @@ export default class ExtensionManager extends Component {
                         />
                     </p>
                 </div>
+                <div className={style.whiteSapce}/>
                 <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/?action=backup_wallet')}>
                         <ListContent
-                            icon="wallet16"
+                            // icon="wallet16"
                             text={
                                 <FormattedMessage
                                     id = 'aelf.Backup NightELF'
@@ -65,7 +66,7 @@ export default class ExtensionManager extends Component {
                 <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/?action=clear_wallet')}>
                         <ListContent
-                            icon="tx_history16"
+                            // icon="tx_history16"
                             text={
                                 <FormattedMessage
                                     id = 'aelf.Delete NightELF'
@@ -78,7 +79,7 @@ export default class ExtensionManager extends Component {
                 <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/?action=timing_lock')}>
                         <ListContent
-                            icon="about16"
+                            // icon="about16"
                             text={
                                 <FormattedMessage
                                     id = 'aelf.Timer Locks'

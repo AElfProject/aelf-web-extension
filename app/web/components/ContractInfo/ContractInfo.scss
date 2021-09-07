@@ -1,8 +1,8 @@
 .contractList {
     margin: 24px;
     padding: 12px;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    background: #F8F8F8;
     height: 244px;
     overflow: auto;
 }
@@ -12,16 +12,17 @@
     word-wrap: break-word;
     margin: 8px 0;
     padding: 12px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, .3);
+    border-radius: 3px;
+    background: #FFF;
 }
 
 .contractTitle {
     display: flex;
+    color: #999;
 }
 
 .contractName {
-    color: #e6e73e;
+    color: #999;
     min-width: 110px;
     text-align: right;
 }

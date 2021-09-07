@@ -5,7 +5,7 @@
 	left: 0;
 	right: 0;
 	z-index: 999;
-	background: url("../../../../assets/background/bg1_long.svg") no-repeat;
+	background: #fff;
 }
 @media (min-width: 768px) {
 	.page {
@@ -35,19 +35,17 @@
 
 .privateContainer {
 	word-wrap: break-word;
-	border: 1px solid #ccc;
+	border: 1px solid #DFDFDF;
 	border-radius: 3px;
 	padding: 8px;
-	margin: 32px 24px 15px 24px;
-	background: #fefefe;
+	margin: 25px 28px 28px;
+	background: #FFFFFF;
 	line-height: 1.5;
 	height: 88px;
 }
 
 .privateContainer.purple {
 	margin-top: 0;
-	background: rgba(0, 0, 0, 0.2);
-	border: none;
 }
 
 .mnemonicListContainer {
@@ -72,7 +70,7 @@
 
 .listItem.selectd {
 	border:  none;
-	color: #FFF;
+	color: #252533;
 	margin: 0;
 }
 
@@ -93,4 +91,8 @@
 .bottom {
 	width: 80%;
 	margin: 0 auto 50px 10%;
+}
+
+.space3 {
+	height: 3px;
 }

@@ -192,7 +192,8 @@ const en_US = {
     'aelf.Whitelist': 'Whitelist',
     'aelf.New Contract Method': 'New contract method',
     'aelf.Delete Contract Method': 'Delete contract method',
-    'aelf.Details of contract changes': 'Details of contract changes'
+    'aelf.Details of contract changes': 'Details of contract changes',
+    'aelf.Connect Wallet': 'Connect Wallet'
 };
 
 export default en_US;

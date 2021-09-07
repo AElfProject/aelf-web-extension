@@ -10,7 +10,7 @@
 const tokenContractAddress = 'ELF_JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE_AELF';
 // const testAddress = '2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX';
 // Please set your own address.
-const testAddress = '2QCkN89q5XdsGJXoiobuVGJQ5NHdFsUQVbY88rLKQb3S4hQHC2';
+let testAddress = '2QCkN89q5XdsGJXoiobuVGJQ5NHdFsUQVbY88rLKQb3S4hQHC2';
 
 document.addEventListener('NightElf', result => {
     console.log(Date.now());
@@ -91,6 +91,7 @@ document.addEventListener('NightElf', result => {
             }
         }).then(result => {
             console.log('promise then', result);
+            testAddress = JSON.parse(result.detail).address;
         }).catch(error => {
             console.log('promise catch', error);
         });
@@ -247,8 +248,8 @@ document.addEventListener('NightElf', result => {
         tokenC.Transfer(
           {
               symbol: 'ELF',
-              to: 'ELF_2RCLmZQ2291xDwSbDEJR6nLhFJcMkyfrVTq1i1YxWC4SdY49a6_AELF',
-              // to: 'ELF_2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX_AELF',
+              // to: 'ELF_2RCLmZQ2291xDwSbDEJR6nLhFJcMkyfrVTq1i1YxWC4SdY49a6_AELF',
+              to: 'ELF_2hxkDg6Pd2d4yU1A16PTZVMMrEDYEPR8oQojMDwWdax5LsBaxX_AELF',
               amount: 1,
               memo: 'have fun'
           },

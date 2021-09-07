@@ -170,7 +170,7 @@ export default class Permissions extends Component {
                         <div className={style.operationList}>
                             {appName}
                         </div>
-                        <div className={style.operationList} style={{justifyContent: 'flex-end'}}>
+                        <div className={style.buttonManage} style={{justifyContent: 'flex-end'}}>
                             <div
                                 className={style.button + ' ' + style.details}
                                 onClick={() => this.getDetails(domain, address, appName)}
@@ -188,7 +188,7 @@ export default class Permissions extends Component {
                                         {
                                             text: 'Cancel', onPress: () => console.log('cancel')
                                         }, {
-                                            text: 'Ok',
+                                            text: 'OK',
                                             onPress: () => removePermission(permissionNeedRemove, () => {
                                                 this.rData = this.rData.filter(rItem => {
                                                     const domainCheck = domain === rItem.domain;
@@ -209,7 +209,7 @@ export default class Permissions extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className={style.permissionOption}>{address}</div>
+                    <div className={style.permissionOption}>ID: {address}</div>
                     <div className={style.permissionsNum}>PERMISSIONS: {permissionsCount}</div>
                 </div>
             );

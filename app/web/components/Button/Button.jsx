@@ -73,6 +73,20 @@ export default class AelfButton extends Component {
         );
     }
 
+    renderCreateWallet() {
+        return (
+            <div {...this.props} className={style.button + ' ' + style.createbtn + ' ' + this.props.className}>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div>
+                        <FormattedMessage
+                            id={'aelf.' + this.props.text || this.props.children || ''}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         if (this.props.type === 'blue') {
             return this.renderBlue();
@@ -82,6 +96,9 @@ export default class AelfButton extends Component {
             return this.renderTransparent();
         }
 
+        if (this.props.type === 'createbtn') {
+            return this.renderCreateWallet()
+        }
         let svgStyle = {
             padding: '3px 12px 0 0',
             display: this.props.aelficon ? 'block' : 'none'

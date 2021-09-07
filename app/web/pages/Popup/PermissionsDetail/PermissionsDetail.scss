@@ -1,5 +1,5 @@
 .top {
-    padding: 0 24px 12px 24px;
+    padding: 0 28px 12px;
 }
 
 .blank {
@@ -7,18 +7,18 @@
 }
 
 .wallet {
-    font-size: 36px;
-    color: #FFF;
+    font-size: 33px;
+    color: #252533;
     margin: 8px 0 8px 0;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .containerBody {
-    color: #FFF;
+    color: #252533;
 }
 
 .headInfoBox {
-    margin: 0 24px;
+    margin: 0 28px;
     display: flex;
     justify-content: space-between;
 }
@@ -38,7 +38,7 @@
 }
 
 .permissionInfo {
-    width: 66%;
+    //width: 66%;
     margin: 2%;
     word-break: break-all;
     word-wrap: break-word;
@@ -46,26 +46,29 @@
 
 
 .txList {
-    padding: 8px 16px 16px 16px;
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    color: #FFF;
+    padding: 16px 0 13px;
+    //background: rgba(0, 0, 0, 0.15);
+    //border-radius: 12px;
+    color: #252533;
     align-items: center;
     position: relative;
     overflow: hidden;
     word-break: break-all;
+    border-bottom: 1px solid #DFDFDF;
+    margin: 0 13px;
 }
 
 .txListBox {
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 12px;
-    margin:12px 7px;
-    box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.20), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);
+    background: #FFF;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    //margin:12px 7px;
+    //box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.20), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.16);
 
 }
 
 .arrow {
-    color: #fff;
+    color: #999999;
     text-align: center;
     font-size: 14px;
     line-height: 22px;
@@ -139,11 +142,11 @@
 
 
 .background {
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin: 14px 24px;
-    padding: 7px;
-    background: rgba(0, 0, 0, 0.3);
+    //box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    margin: 0 28px 50px;
+    padding: 10px;
+    background: #F8F8F8;
     height: 100%;
     overflow: hidden;
     position: relative;
@@ -178,7 +181,7 @@
     justify-content: space-between;
     vertical-align: middle;
     font-size: 20px;
-    font-weight: 700;
+    //font-weight: 700;
 }
 
 // >>>>>>>>>>>>>>>>>>>>>
@@ -229,8 +232,12 @@
     line-height: 24px;
     justify-content: space-between;
     margin: 0 0 8px 0;
+    color: #999;
 }
 
+.title {
+    color: #252533;
+}
 // >>>>>>>>>>>>>>>>>>>>>
 .transactionList {
     flex: 1;
@@ -261,19 +268,31 @@
 }
 
 .remove {
-    background: #e42750;
+    background: #F43160;
     color: #FFF;
     font-size: 12px;
     line-height: 24px;
     text-align: center;
-    border-radius: 30px;
-    padding: 0 8px;
+    border-radius: 3px;
+    padding: 0 10px;
     cursor: pointer;
     height: 24px;
-    width: 116px;
+    //width: 116px;
 }
 
 .infoClass {
-    color: #e8e73c;
+    //color: #e8e73c;
     width: 45%;
+}
+
+.infoIdClass {
+    //color: #e8e73c;
+    width: 35px;
+}
+
+.idAddress {
+    font-size: 14px;
+    font-family: HelveticaNeue;
+    color: #999999;
+    margin-top: 8px;
 }

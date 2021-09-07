@@ -27,22 +27,29 @@ export default class WalletName extends Component {
         this.setState({walletName});
     }
 
+    onKeyup(e) {
+        if(e.keyCode === 13) {
+            this.props.onEnterKeyUp();
+        }
+    }
+
     render() {
         return (
             <div className="aelf-input-container aelf-dash">
                 <List>
-                    <div className="aelf-input-title" style={{margin: '10px 0 0 0'}}>
+                    {/* <div className="aelf-input-title" style={{margin: '10px 0 0 0'}}>
                         <FormattedMessage
                             id = 'aelf.Keypair Name'
                             defaultMessage = 'Keypair Name'
                         />
-                    </div>
+                    </div> */}
                     <InputItem
                         value={this.state.walletName}
                         type="text"
-                        placeholder=""
+                        placeholder="Keypair Name"
                         onChange={walletName => this.inputWalletName(walletName)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                        onKeyUp={(e)=>this.onKeyup(e)}
                     ></InputItem>
                 </List>
             </div>

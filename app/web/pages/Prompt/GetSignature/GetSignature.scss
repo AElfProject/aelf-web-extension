@@ -1,8 +1,8 @@
 .container {
-    color: #FFF;
+    color: #252533;
     min-height: 578px;
     min-width: 100%;
-    background: url('../../../assets/background/bg1_long.svg') no-repeat;
+    background: #FFF;
     background-size: cover;
     background-position: 0 10%;
     word-break: break-all;
@@ -13,7 +13,7 @@
     text-align: center;
     font-size: 44px;
     font-weight: 900;
-    color: #FFF;
+    color: #252533;
     padding: 24px 20px;
 
     .loginTip {
@@ -28,10 +28,11 @@
 .confirmationInfo {
     margin:0 24px;
     padding: 12px;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    background: #F8F8F8;
     height: 240px;
     overflow: auto;
+    color: #999999;
 }
 
 .confirmationInfoItem {
@@ -57,7 +58,8 @@
     //font-size: 18px;
     //color: #333;
     //text-align: left;
-    font-size: 24px;
+    font-size: 18px;
     padding: 16px 16px 0 16px;
     word-break: keep-all;
+    font-weight: 500;
 }

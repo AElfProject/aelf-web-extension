@@ -1,5 +1,5 @@
 .container {
-    color: #FFF;
+    //color: #FFF;
 }
 
 .top {
@@ -18,10 +18,14 @@
 
 .aelfList {
     margin: 0 24px;
-    border: 1px solid #FFF;
-    background: rgba(255, 255, 255, .3);
+    //border: 1px solid #FFF;
+    //background: rgba(255, 255, 255, .3);
     border-radius: 4px;
     height: 36px;
     margin-bottom: 10px;
     cursor: pointer;
+}
+
+.whiteSapce {
+    height: 80px;
 }

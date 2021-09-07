@@ -1,7 +1,7 @@
 .note {
   padding: 0 24px;
   border-radius: 3px;
-  color: #FFAA00;
+  color: #F43966;
   font-size: 12px;
   //flex: 1;
 }
@@ -12,17 +12,21 @@
 
 .mainTitle {
   font-size: 28px;
-  color: #FFF;
+  color: #252533;
   padding: 0;
   margin: 0 0 16px 0;
 }
 
 .subTitle {
-  color: #FFF;
-  margin: 0 0 32px 0;
+  color: #AFAFAF;
+  margin: 0 0 17px 0;
 }
 .noticeIcon {
   margin: 32px 0 0 0;
+  width: 27px;
+  height: 27px;
+  background: url(../../assets/images/notice2X.png) no-repeat;
+  background-size: 27px 27px;
 }
 .subNoticeIcon {
   display: flex;

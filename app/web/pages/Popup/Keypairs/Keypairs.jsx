@@ -10,8 +10,16 @@ import {
     ListView,
     Toast,
     Modal,
-    Flex
+    Flex,
+    Button,
+    List,
+    InputItem,
+    PickerView,
+    WhiteSpace
 } from 'antd-mobile';
+
+import copy from 'copy-to-clipboard';
+
 import {historyPush} from '../../../utils/historyChange';
 import {
     getPageContainerStyle,
@@ -29,6 +37,7 @@ import insert from '../../../utils/insert';
 import checkWallet from '../../../utils/checkWallet';
 require('./Keypairs.css');
 
+const { Item } = List;
 const alert = Modal.alert;
 
 const NUM_ROWS = 9999;
@@ -88,7 +97,16 @@ export default class Keypairs extends Component {
             refreshing: true,
             isLoading: true,
             height: document.documentElement.clientHeight,
-            useBodyScroll: false
+            useBodyScroll: false,
+            addressCopyModal: false,
+            chains: {
+                inner: [],
+                custom: [],
+            },
+            addChainModal: false,
+            customChainId: '',
+            customPrefix: '',
+            addressSelected: '',
         };
 
         this.renderRow = (rowData, sectionID, rowID) => {
@@ -97,7 +115,7 @@ export default class Keypairs extends Component {
             const keypairAddressText = 'keypair-text-' + rowID;
             const address = item.address;
             setTimeout(() => {
-                clipboard(`#${clipboardID}`, addressOmit(address, 15, 56));
+                clipboard(`#${clipboardID}`, addressOmit(address, 14, 54));
             }, 10);
             return (
                 <div key={rowID}
@@ -114,24 +132,29 @@ export default class Keypairs extends Component {
                             <div className={style.button}>
                                 <div
                                     onClick={() => {
-                                        let btn = document.getElementById(clipboardID);
-                                        btn.click();
+                                        this.setState({
+                                            addressSelected: address
+                                        });
+                                        this.onModalShow('addressCopyModal');
+                                        // this.onModalShow('addChainModal');
+                                        // let btn = document.getElementById(clipboardID);
+                                        // btn.click();
                                     }}
                                 >
                                     <FormattedMessage
                                         id='aelf.Copy Address'
                                     />
                                 </div>
-                                <button id={clipboardID}
-                                        data-clipboard-target={`#${keypairAddressText}`}
-                                        className={style.textarea}>copy
-                                </button>
-                                <input id={keypairAddressText}
-                                    type="text"
-                                    className={style.textarea}
-                                    value={address}
-                                    readOnly
-                                />
+                                {/*<button id={clipboardID}*/}
+                                {/*        data-clipboard-target={`#${keypairAddressText}`}*/}
+                                {/*        className={style.textarea}>copy*/}
+                                {/*</button>*/}
+                                {/*<input id={keypairAddressText}*/}
+                                {/*    type="text"*/}
+                                {/*    className={style.textarea}*/}
+                                {/*    value={address}*/}
+                                {/*    readOnly*/}
+                                {/*/>*/}
                             </div>
                             <div className={style.button} onClick={() => this.backupKeyPairs(address)}>
                                 <FormattedMessage
@@ -139,13 +162,13 @@ export default class Keypairs extends Component {
                                     defaultMessage = 'Backup'
                                 />
                             </div>
-                            <div className={style.button} onClick={() =>
+                            <div className={style.button + ' ' + style.delete} onClick={() =>
                                     alert('Delete Keypair', 'Are you sure?',
                                     [
                                         {
                                             text: 'Cancel', onPress: () => console.log('cancel')
                                         }, {
-                                            text: 'Ok',
+                                            text: 'OK',
                                             onPress: () => removeKeypairs(address, () => {
                                                 this.rData = this.rData.filter(rItem => {
                                                     return rItem.address !== address;
@@ -162,7 +185,7 @@ export default class Keypairs extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className={style.keypairsAddress}>{address}</div>
+                    <div className={style.keypairsAddress}>ID: {address}</div>
                 </div>
             );
         };
@@ -192,6 +215,15 @@ export default class Keypairs extends Component {
                 isLoading: false
             });
         });
+
+        InternalMessage.payload(InternalMessageTypes.GET_CHAIN_INFO).send().then(result => {
+            console.log(InternalMessageTypes.GET_CHAIN_INFO, result);
+            if (result.error === 0 && result.chainInfo) {
+                this.setState({
+                    chains: result.chainInfo
+                });
+            }
+        });
     }
 
 
@@ -212,6 +244,18 @@ export default class Keypairs extends Component {
         hashHistory.push(`/backupkeypairs/${address}`);
     }
 
+    onModalClose(key) {
+        this.setState({
+            [key]: false
+        });
+    }
+
+    onModalShow(key) {
+        this.setState({
+            [key]: true
+        });
+    }
+
     render() {
         let pageContainerStyle = getPageContainerStyle();
         pageContainerStyle.height -= 200;
@@ -219,12 +263,19 @@ export default class Keypairs extends Component {
         // backgroundStyle.height -= 14; // remove padding 7px * 2
         let containerStyle = Object.assign({}, backgroundStyle);
         const btnStyle = {
-            height: '32px',
-            lineHeight: '32px'
+            height: '47px',
+            lineHeight: '47px',
+            fontSize: '16px',
+            fontWeight: 'nomarl',
+            fontFamily: 'HelveticaNeue'
         };
+
+        const {chains} = this.state;
+        const {inner = [], custom = []} = chains;
         // containerStyle.height -= 2; // remove border 2px
         return (
             <div style={pageContainerStyle} className='asstes-container'>
+                <WhiteSpace/>
                 <NavNormal
                     onLeftClick={() => historyPush('/home')}
                 />
@@ -237,17 +288,18 @@ export default class Keypairs extends Component {
                     </p>
                 </div>
                 <div className={style.functionButton}>
-                    <div style={{width: '45%'}} >
+                    <div style={{width: '48%'}} >
                         <AelfButton
                             style={btnStyle}
+                            type='createbtn'
                             text='Create Keypair'
                             onClick={() => this.createKeyPairs()}>
                         </AelfButton>
                     </div>
-                    <div style={{width: '45%'}} >
+                    <div style={{width: '48%'}} >
                         <AelfButton
-                            type='transparent'
-                            style={btnStyle}
+                            type='createbtn'
+                            style={{...btnStyle, background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
                             text='Import Keypair'
                             onClick={() => this.importKeyPairs()}>
                         </AelfButton>
@@ -276,6 +328,190 @@ export default class Keypairs extends Component {
                     </div>
                 </div>
                 {/* </div> */}
+
+
+            {/*  For copy address start  */}
+                <Modal
+                  popup
+                  visible={this.state.addressCopyModal}
+                  onClose={() => this.onModalClose('addressCopyModal')}
+                  animationType="slide-up"
+                >
+                    <div>
+                        <div className={style.pannelTitle}>
+                            <FormattedMessage
+                              id = 'aelf.Select Chain'
+                              defaultMessage = 'Select Chain'
+                            />
+                            <Button
+                              size="small"
+                              className={style.addCustomChain}
+                              onClick={() => {
+                                  this.onModalShow('addChainModal')
+                              }}
+                            >Add Custom</Button>
+                        </div>
+                        <div>
+                            <List className={style.chainList}>
+                                {
+                                    (() => {
+                                        const innerLength = inner.length;
+                                        const list = [...inner, ...custom];
+
+                                        const chainSelect = (chainInfo) => {
+                                            const { addressSelected } = this.state;
+                                            const address = `${chainInfo.head}_${addressSelected}_${chainInfo.tail}`;
+                                            const result = copy(address);
+                                            if (result) {
+                                                Toast.success(<span>{addressOmit(address, 14, 54)}</span>);
+                                                this.onModalClose('addressCopyModal');
+                                            } else {
+                                                Toast.fail('Copy failed')
+                                            }
+                                        };
+
+                                        return list.map((chain, index) => {
+                                            if (index < innerLength) {
+                                                return <Item
+                                                  className={style.chainItem}
+                                                  key={chain.chainId}
+                                                  onClick={() => chainSelect(chain)}
+                                                >
+                                                    <div className={style.chainText}>
+                                                        <div className={style.chainDiv}>{chain.chainId}</div>
+                                                    </div>
+                                                </Item>
+                                            }
+
+                                            return <Item
+                                              className={style.chainItem}
+                                              key={chain.chainId}
+                                              onClick={() => chainSelect(chain)}
+                                            >
+                                                <div className={style.chainText}>
+                                                    <div className={style.chainDiv}/>
+                                                    <div className={style.chainDiv}>
+                                                        {chain.head !== '' && chain.head !== 'ELF'
+                                                          ? <span className={style.chainCustomPrefix}>{chain.head}-</span>
+                                                          : null}
+                                                        {chain.chainId}
+                                                    </div>
+                                                    <div className={style.chainDiv}>
+                                                        <Button
+                                                          size="small"
+                                                          onClick={event => {
+                                                              event.stopPropagation();
+                                                              // event.nativeEvent.stopImmediatePropagation();
+                                                              custom.splice(index - innerLength, 1);
+                                                              const newChain = {
+                                                                  inner,
+                                                                  custom,
+                                                              };
+                                                              this.setState({
+                                                                  chains: newChain
+                                                              });
+
+                                                              InternalMessage.payload(InternalMessageTypes.UPDATE_CHAIN_INFO, newChain).send().then(result => {
+                                                                  console.log(InternalMessageTypes.GET_CHAIN_INFO, result);
+                                                                  this.setState({
+                                                                      chains: newChain
+                                                                  });
+                                                              });
+                                                              Toast.success(`Deleted`);
+                                                          }}
+                                                        >Delete</Button>
+                                                    </div>
+                                                </div>
+                                            </Item>
+                                        });
+                                    })()
+                                }
+                            </List>
+                        </div>
+                    </div>
+                </Modal>
+
+                <Modal
+                  className="chain-add-modal"
+                  transparent
+                  title="Add Custom"
+                  footer={[
+                    {
+                        text: 'Cancel',
+                        onPress: () => {
+                            this.onModalClose('addChainModal');
+                        }
+                    },
+                    {
+                        text: 'Add',
+                        onPress: () => {
+                            const {customChainId, customPrefix, chains} = this.state;
+                            if (!customChainId) {
+                                Toast.fail('Please input chain id');
+                                return;
+                            }
+
+                            const existedChains = [...chains.inner, ...chains.custom];
+                            const existed = existedChains.find(chain => {
+                                const {chainId, head, tail} = chain;
+                                return chainId === customChainId
+                                  && head === (customPrefix || 'ELF')
+                                  && tail === customChainId;
+                            });
+                            if (existed) {
+                                Toast.fail('Already in the list');
+                                return;
+                            }
+
+                            const newChain = {
+                                inner: chains.inner,
+                                custom: [...chains.custom,
+                                    {
+                                        chainId: customChainId,
+                                        head: customPrefix || 'ELF',
+                                        tail: customChainId,
+                                    }
+                                ],
+                            };
+
+                            InternalMessage.payload(InternalMessageTypes.UPDATE_CHAIN_INFO, newChain).send().then(result => {
+                                console.log(InternalMessageTypes.GET_CHAIN_INFO, result);
+                                this.setState({
+                                    chains: newChain
+                                });
+                                this.onModalClose('addChainModal');
+                            });
+                        }
+                    }]}
+                  maskClosable={false}
+                  visible={this.state.addChainModal}
+                  onClose={() => this.onModalClose('addChainModal')}
+                >
+                    <InputItem
+                      placeholder="eg.AELF, tDVV"
+                      clear
+                      onChange={(v) => {
+                          this.setState({
+                              customChainId: v
+                          });
+                          console.log('onChange', v);
+                      }}
+                      onBlur={(v) => { console.log('onBlur', v); }}
+                    >Chain ID:</InputItem>
+                    <InputItem
+                      placeholder="Optional"
+                      clear
+                      onChange={(v) => {
+                          this.setState({
+                              customPrefix: v
+                          });
+                          console.log('onChange', v);
+                      }}
+                      onBlur={(v) => { console.log('onBlur', v); }}
+                    >Custom Prefix: </InputItem>
+                </Modal>
+
+            {/*  For copy address end  */}
             </div>
         );
     }

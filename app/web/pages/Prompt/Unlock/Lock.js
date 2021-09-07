@@ -42,7 +42,7 @@ export default class Lock extends Component {
     this.state = {
       password: '',
     };
-    this.marginStyle = {marginTop: '154px'};
+    this.marginStyle = {marginTop: '100px'};
   }
 
 
@@ -86,6 +86,12 @@ export default class Lock extends Component {
     }
   }
 
+  onKeyup(e) {
+    if(e.keyCode === 13) {
+        this.unlockWallet();
+    }
+  }
+
   //
   renderUnlock() {
     return <div style={this.marginStyle}>
@@ -100,14 +106,16 @@ export default class Lock extends Component {
             placeholder=""
             onChange={password => this.setPassword(password)}
             moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+            onKeyUp={(e)=>this.onKeyup(e)}
           />
         </List>
       </div>
       <div className={style.bottom}>
-        <div className='aelf-blank12'/>
+        <div className={style.blank24}/>
         <AelfButton
           text='Unlock Wallet'
           aelficon='add_purple20'
+          type='createbtn'
           onClick={() => this.unlockWallet()}>
         </AelfButton>
       </div>
@@ -128,9 +136,10 @@ export default class Lock extends Component {
 
     bodyHTML = <div>
       <div className={style.top}>
+        <div className={style.logo}/>
         <p className={style.welcome} style={margin}>{titleText}</p>
         <p className={style.wallet}>NIGHT ELF</p>
-        <p className={style.description}>{process.env.SDK_VERSION}</p>
+        {/* <p className={style.description}>{process.env.SDK_VERSION}</p> */}
       </div>
       {buttonHTML}
     </div>;
