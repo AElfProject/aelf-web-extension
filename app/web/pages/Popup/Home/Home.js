@@ -44,7 +44,7 @@ export default class personalCenterHome extends Component {
                     <div className={style.blank}></div>
                     <div className={style.logo}/>
                     <p className={style.wallet}>NIGHT ELF</p>
-                    {/* <p>{process.env.SDK_VERSION}</p> */}
+                    <p className={style.version}>{process.env.SDK_VERSION}</p>
                 </div>
                 <List className={style.aelfList}>
                     <Item onClick={() => hashHistory.push('/keypairs')}>

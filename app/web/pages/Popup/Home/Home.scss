@@ -23,6 +23,19 @@
     font-family: Helvetica Neue Bold;
 }
 
+.version {
+    position: fixed;
+    font-size: 14px;
+    font-family: HelveticaNeue;
+    color: #AFAFAF;
+    line-height: 13px;
+    font-weight: normal;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+    padding: 0;
+}
+
 .aelfList {
     margin: 0 28px 10px 31px;
     cursor: pointer;
