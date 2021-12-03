@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Extension Test</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script> -->
+</head>
+<style>
+    .sub-title {
+        background: #2d0379;
+        color: #FFF;
+        height: 30px;
+        line-height: 30px;
+        text-indent: 8px;
+    }
+</style>
+<body>
+    <h1>Hello Test.html</h1>
+    <p>You can see the console.log in the dev tool.</p>
+
+
+    <button type="button" id="version-btn">Get Version 获取插件版本信息</button>
+    <br>
+
+    <div class="sub-title">1. 账户 登录、登录，锁定插件</div>
+    <button type="button" id="login-btn">* 1. Login</button>
+    <div>If the user had logged in, you will get the information of the user.</div>
+    <div>If not, there will be a prompt for user to login in.</div>
+    <br>
+
+    <button type="button" id="logout-btn">logout</button>
+    <div>You can change you wallet</div>
+    <br>
+
+    <button type="button" id="lock-btn">lock NightELF</button>
+    <div>You can lock your web extension</div>
+    <br>
+
+    <div class="sub-title">2. 获取链状态，每次调用合约前，一定要先确定状态</div>
+    <button type="button" id="get-chain-status">* 2. getChainStatus</button>
+    <div>【Necessary】It is necessary to getChainStatus at first when use extension.</div>
+    <br>
+
+    <div class="sub-title">3. 基本的区块链信息查询、签名获取功能, 需要先执行getChainStatus</div>
+    <button type="button" id="get-block-by-height">callAelfChain: getBlockByHeight</button>
+    <br>
+    <button type="button" id="call-aelf-chain">callAelfChain: getTxResult</button>
+    <br>
+    <button type="button" id="get-contract-descriptor-set">callAelfChain: getContractFileDescriptorSet</button>
+    <br>
+    <button type="button" id="send-transation">sendTransation: send-transation, throw error</button>
+    <br>
+    <button type="button" id="get-signature">get-signature 需要login才能签名</button>
+    <br>
+    <br>
+
+    <div class="sub-title">4. 通用的合约调用示例，以Token合约为例</div>
+    <p>1. Login 2. GetChainStatus 3.执行合约相关操作</p>
+    <p>所有的调用都支持 callback, promise, async/await</p>
+    <button type="button" id="init-aelf-contract">INIT_AELF_CONTRACT</button>
+    <br>
+    <button type="button" id="call-aelf-contract">CALL_AELF_CONTRACT</button>
+    <br>
+    <button type="button" id="execute-aelf-contract">EXECUTE_AELF_CONTRACT</button>
+    <br>
+    <button type="button" id="execute-aelf-contract-diff">EXECUTE_AELF_CONTRACT_DIFFERENT_PARAMS</button>
+    <br>
+    <br>
+    <button type="button" id="token-approve">Token合约，给下面二次方合约授权 Approve</button>
+    <br>
+    <br>
+
+    <div class="sub-title">5. 二次方投票合约</div>
+    <p>1. Login 2. GetChainStatus 3.执行合约相关操作</p>
+    <button type="button" id="init-vote-contract">INIT_VOTE_CONTRACT 初始化合约实例</button>
+    <p>5.0 初始化 只能执行一次，第二次只会交易失败</p>
+    <button type="button" id="initialize-vote">Initialize 整体初始化</button>
+    <p>5.1 管理员方法</p>
+    <button type="button" id="vote-change-owner">ChangeOwner</button>
+    <button type="button" id="vote-ban-project">BanProject</button>
+    <button type="button" id="vote-un-ban-project">UnBanProject</button>
+    <button type="button" id="vote-round-start">RoundStart</button>
+    <button type="button" id="vote-round-over">RoundOver</button>
+    <button type="button" id="">SetTaxPoint/SetInterval/SetVotingUnit 见注释</button>
+    <button type="button" id="vote-withdraw">Withdraw</button>
+
+    <p>5.2 其它人 给参赛方/投票用户用的方法</p>
+    <button type="button" id="vote-donate">Donate 赞助当前期</button>
+    <button type="button" id="vote-upload-project">UploadProject</button>
+    <button type="button" id="vote-vote">Vote 新账号记得先Approve</button>
+    <button type="button" id="vote-take-out-grants">TakeOutGrants</button>
+
+    <p>5.3 只读方法</p>
+    <button type="button" id="vote-get-current-round">GetCurrentRound 获取当前期数</button>
+    <button type="button" id="vote-get-all-projects">GetAllProjects 某期</button>
+    <button type="button" id="vote-get-ranking-list">GetRankingList 某期</button>
+    <button type="button" id="vote-get-paged-ranking-list">GetPagedRankingList 某期</button>
+    <button type="button" id="vote-get-round-info">GetRoundInfo</button>
+    <button type="button" id="vote-get-voting-cost">GetVotingCost 某地址</button>
+
+    <button type="button" id="vote-get-grands-of">GetGrandsOf PID</button>
+    <button type="button" id="vote-get-project-of">GetProjectOf PID</button>
+    <button type="button" id="vote-calculate-project-id">CalculateProjectId Address</button>
+
+    <div class="sub-title">报错的示例 error demos</div>
+    <button type="button" id="error-illegal-method">error: illegal method</button>
+    <br>
+
+    <button type="button" id="error-get-tx-result">error: get-tx-result ['']</button>
+    <br>
+
+    <button type="button" id="get-address-btn">Get Address</button>
+    <br>
+
+    <div class="sub-title">check permission</div>
+    <button type="button" id="check-permission-address">CHECK_PERMISSION by address</button>
+    <br>
+    <button type="button" id="check-permission-contract">CHECK_PERMISSION by contract</button>
+    <br>
+    <button type="button" id="check-permission-default">
+        CHECK_PERMISSION by hostname || defaut way
+    </button>
+    <br>
+
+    <div class="sub-title"> 一些移除已设定的权限的方法，一般用不到</div>
+    <button type="button" id="remove-contract-permission">Remove contract permission</button>
+    <p>We remove the permission after set it.</p>
+    <br>
+
+    <button type="button" id="remove-whitelist">Remove permission whitelist</button>
+    <p>We can remove the action in whitelist out after the user set the action in whitelist.</p>
+    <br>
+
+
+    <script src="dora.js"></script>
+</body>
+</html>
