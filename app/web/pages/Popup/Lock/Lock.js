@@ -646,7 +646,7 @@ export default class Lock extends Component {
                                 {this.isTimingLock ? '' : <div className={style.logo}/>}
                                 <p className={style.welcome} style={margin}>{titleText}</p>
                                 <p className={style.wallet}>NIGHT ELF</p>
-                                {/* <p className={style.description}>{process.env.SDK_VERSION}</p> */}
+                                <p className={style.version}>{process.env.SDK_VERSION}</p>
                             </div>
                             {buttonHTML}
                             {/* {testHTML} */}
