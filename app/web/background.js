@@ -32,7 +32,7 @@ const lockService = new LockService();
 let seed = '';
 let nightElf = null;
 
-let inactivityInterval = 900000;
+let inactivityInterval = 14400000; // 900000; 15min -> 4hours
 let timeoutLocker = null;
 
 // TODO: release single contract
