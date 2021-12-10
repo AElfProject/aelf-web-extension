@@ -11,6 +11,8 @@ export default function getPromptRoute(message) {
     SET_CONTRACT_PERMISSION: '#/',
     LOGIN: '#/loginkeypairs',
     CALL_AELF_CONTRACT: '#/examine-approve',
+    CROSS_SEND: '#/confirmation-cross',
+    CROSS_RECEIVE: '#/confirmation-cross',
     UNLOCK_NIGHT_ELF: '#/unlock',
     GET_SIGNATURE: '#/signature'
   };

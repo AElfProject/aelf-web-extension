@@ -387,6 +387,55 @@ class NightAElf {
   }
 }
 
+class CrossChain {
+  constructor(options) {
+    this.wallet = options.wallet;
+    // const CROSS_INFO = {
+    //     mainChainId: 9992731,
+    //     issueChainId: 9992731, // Token issue chain id
+    //     from: {
+    //         name: 'AELF',
+    //         url: 'https://explorer-test.aelf.io/chain',
+    //         id: 9992731,
+    //         mainTokenContract: 'JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE',
+    //         crossChainContract: '2SQ9LeGZYSWmfJcYuQkDQxgd3HzwjamAaaL4Tge2eFSXw2cseq'
+    //     },
+    //     to: {
+    //         name: 'tDVV',
+    //         url: 'https://tdvv-wallet-test.aelf.io/chain', // provider url
+    //         id: 1866392, // chain id
+    //         mainTokenContract: '7RzVGiuVWkvL4VfVHdZfQF2Tri3sgLe9U991bohHFfSRZXuGX',
+    //         crossChainContract: '2snHc8AMh9QMbCAa7XXmdZZVM5EBZUUPDdLjemwUJkBnL6k8z9'
+    //     }
+    // };
+    this.CROSS_INFO = options.CROSS_INFO;
+  }
+
+  send(param) {
+    return window.NightElf.api({
+      method: 'CROSS_SEND',
+      payload: {
+        method: 'CROSS_SEND',
+        address: this.wallet.address,
+        param,
+        CROSS_INFO: this.CROSS_INFO
+      }
+    });
+  }
+
+  receive(param) {
+    return window.NightElf.api({
+      method: 'CROSS_RECEIVE',
+      payload: {
+        method: 'CROSS_RECEIVE',
+        address: this.wallet.address,
+        param,
+        CROSS_INFO: this.CROSS_INFO
+      }
+    });
+  }
+}
+
 export default class Inject {
 
   constructor() {
@@ -426,7 +475,8 @@ export default class Inject {
     window.NightElf = {
       // ...window.NightElf,
       api: this.promiseSend,
-      AElf: NightAElf
+      AElf: NightAElf,
+      CrossChain,
     };
 
     document.dispatchEvent(new CustomEvent('NightElf', {

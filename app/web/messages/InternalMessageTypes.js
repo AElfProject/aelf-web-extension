@@ -48,6 +48,11 @@ export const CALL_AELF_CONTRACT_WITHOUT_CHECK = 'callAelfContractWithoutCheck';
 export const GET_CONTRACT_ABI = 'getExistContractAbi';
 export const RELEASE_AELF_CONTRACT = 'releaseAelfContract'; // TODO:
 
+export const INIT_CROSS_INSTANCE = 'initCrossInstance';
+export const CROSS_SEND = 'crossSend';
+export const CROSS_SEND_WITHOUT_CHECK = 'crossSendWithoutCheck';
+export const CROSS_RECEIVE = 'crossReceive';
+export const CROSS_RECEIVE_WITHOUT_CHECK = 'crossReceiveWithoutCheck';
 
 export const GET_ADDRESS = 'getAddress';
 export const GET_SIGNATURE = 'getSignature';

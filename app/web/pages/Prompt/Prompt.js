@@ -30,6 +30,7 @@ import ConfirmationCall from './ConfirmationCall/ConfirmationCall';
 import GetSignature from './GetSignature/GetSignature';
 import ChangePermission from './ChangePermission/ChangePermission';
 import Lock from './Unlock/Lock';
+import ConfirmationCallCross from "./ConfirmationCallCross/ConfirmationCallCross";
 
 addLocaleData([...zh, ...en]);
 
@@ -41,6 +42,7 @@ ReactDOM.render(
                 <Route path="/prompt" component={Prompt}/>
                 <Route path="/loginkeypairs" component={LoginKeypairs}/>
                 <Route path='/confirmation' component={ConfirmationCall}/>
+                <Route path='/confirmation-cross' component={ConfirmationCallCross}/>
                 <Route path='/signature' component={GetSignature}/>
                 <Route path='/changepermission' component={ChangePermission}/>
                 <Route path='/unlock' component={Lock}/>
