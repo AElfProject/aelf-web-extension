@@ -46,25 +46,27 @@ export default class ConfirmationCallCross extends Component {
     }
 
     getCrossAction() {
-        const messageType = this.message.payload.method === 'CROSS_RECEIVE'
-          ? InternalMessageTypes.CROSS_RECEIVE_WITHOUT_CHECK : InternalMessageTypes.CROSS_SEND_WITHOUT_CHECK
+      Toast.loading('Cross chain transfer', 60);
+      const messageType = this.message.payload.method === 'CROSS_RECEIVE'
+        ? InternalMessageTypes.CROSS_RECEIVE_WITHOUT_CHECK : InternalMessageTypes.CROSS_SEND_WITHOUT_CHECK
 
-        InternalMessage.payload(
-          messageType,
-          this.message
-        ).send()
-          .then(result => {
-              if (result && result.error === 0) {
-                  Toast.success('Success, after 3s close the window.');
-                  window.data.sendResponse(result);
-                  setTimeout(() => {
-                      window.close();
-                  }, 3000);
-              }
-              else {
-                  Toast.fail(result.errorMessage.message, 3);
-              }
-          });
+      InternalMessage.payload(
+        messageType,
+        this.message
+      ).send()
+        .then(result => {
+          Toast.hide();
+          if (result && result.error === 0) {
+            Toast.success('Success, after 3s close the window.');
+            window.data.sendResponse(result);
+            setTimeout(() => {
+              window.close();
+            }, 3000);
+          }
+          else {
+            Toast.fail(result.errorMessage.message, 3);
+          }
+        });
     }
 
     renderConfirmation() {

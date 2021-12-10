@@ -95,13 +95,11 @@ export class CrossChainMethodsExtension {
      */
     async send(params) {
         const crossChainInstance = await this.crossChainInstanceInit(params);
-        const {
-            crossTransferTxId
-        } = await crossChainInstance.send(params);
+        const sendResult = await crossChainInstance.send(params);
 
-        console.log('crossTransferTxId: ', crossTransferTxId);
+        console.log('crossTransferTxId: ', sendResult);
 
-        return crossTransferTxId;
+        return sendResult;
     }
 
     // {
