@@ -8,12 +8,7 @@ import InternalMessage from './messages/InternalMessage';
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
 import NightElf from './models/NightElf';
 import {apis} from './utils/BrowserApis';
-import {
-    contractsCompare,
-    contractWhitelistCheck,
-    formatContracts,
-    getContractInfoWithAppPermissions
-} from './utils/contracts/contracts';
+import {contractWhitelistCheck, formatContracts, getContractInfoWithAppPermissions} from './utils/contracts/contracts';
 import {getApplicationPermssions} from './utils/permission/permission';
 import errorHandler from './utils/errorHandler';
 import getPromptRoute from './utils/getPromptRoute';
@@ -23,6 +18,7 @@ import FileSaver from 'file-saver';
 import SparkMD5 from 'spark-md5';
 
 import AElf from 'aelf-sdk';
+import {CrossChainMethodsExtension} from "./utils/crossChain/crossChainForExtension";
 
 const {wallet} = AElf;
 const {
@@ -36,7 +32,7 @@ const lockService = new LockService();
 let seed = '';
 let nightElf = null;
 
-let inactivityInterval = 900000;
+let inactivityInterval = 14400000; // 900000; 15min -> 4hours
 let timeoutLocker = null;
 
 // TODO: release single contract
@@ -48,6 +44,7 @@ let timeoutLocker = null;
 // });
 
 let aelfMeta = [];
+let aelfCrossMeta = {};
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
     constructor() {
@@ -186,6 +183,22 @@ export default class Background {
                 break;
             case InternalMessageTypes.GET_CONTRACT_ABI:
                 Background.getExistContractAbi(sendResponse, message.payload);
+                break;
+
+            case InternalMessageTypes.INIT_CROSS_INSTANCE:
+                Background.initCrossInstance(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CROSS_SEND:
+                Background.crossSend(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CROSS_SEND_WITHOUT_CHECK:
+                Background.crossSendWithoutCheck(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CROSS_RECEIVE:
+                Background.crossReceive(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.CROSS_RECEIVE_WITHOUT_CHECK:
+                Background.crossReceiveWithoutCheck(sendResponse, message.payload);
                 break;
 
             case InternalMessageTypes.GET_ADDRESS:
@@ -486,6 +499,93 @@ export default class Background {
                     detail: JSON.stringify(dappAelfMeta)
                 });
             });
+        });
+    }
+
+    // inner
+    static async initCrossInstance(sendResponse, crossInfo) {
+        if (!(await Background.lockStatusCheckAndUnlock(sendResponse))) {
+            return;
+        }
+        const {payload} = crossInfo;
+        const {address, CROSS_INFO} = payload;
+        const keypair = nightElf.keychain.keypairs.find(item => {
+            return item.address === address;
+        });
+        if (!keypair) {
+            sendResponse({
+                ...errorHandler(400004, 'Missing keypair of' + address)
+            });
+            return;
+        }
+        const wallet = AElf.wallet.getWalletByPrivateKey(keypair.privateKey);
+
+        // console.log('initCrossInstance: ', crossInfo);
+
+        aelfCrossMeta[`${address}${CROSS_INFO.from.id}${CROSS_INFO.to.id}`]
+          = new CrossChainMethodsExtension({
+            wallet,
+            CROSS_INFO
+        });
+
+        return aelfCrossMeta[`${address}${CROSS_INFO.from.id}${CROSS_INFO.to.id}`];
+    }
+
+    static async crossSendWithoutCheck(sendResponse, crossInfo){
+        this.crossSend(sendResponse, crossInfo, false);
+    }
+    static async crossSend(sendResponse, crossInfo,  check = true){
+        if (!(await Background.lockStatusCheckAndUnlock(sendResponse))) {
+            return;
+        }
+        if (check) {
+            Background.openPrompt(sendResponse, crossInfo);
+            return;
+        }
+
+        const {payload} = crossInfo;
+        const {address, CROSS_INFO, param} = payload;
+
+        let crossInstance = aelfCrossMeta[`${address}${CROSS_INFO.from.id}${CROSS_INFO.to.id}`];
+        if (!crossInstance) {
+            crossInstance = await this.initCrossInstance(sendResponse, crossInfo)
+        }
+        const sendResult = await crossInstance.send(param);
+
+        sendResponse({
+            ...errorHandler(0),
+            message: '',
+            detail: JSON.stringify(sendResult)
+        });
+    }
+
+    static async crossReceiveWithoutCheck(sendResponse, crossInfo){
+        this.crossReceive(sendResponse, crossInfo, false);
+    }
+
+    static async crossReceive(sendResponse, crossInfo, check = true){
+        if (!(await Background.lockStatusCheckAndUnlock(sendResponse))) {
+            return;
+        }
+        if (check) {
+            Background.openPrompt(sendResponse, crossInfo);
+            return;
+        }
+
+        const {payload} = crossInfo;
+        const {address, CROSS_INFO, param} = payload;
+
+        let crossInstance = aelfCrossMeta[`${address}${CROSS_INFO.from.id}${CROSS_INFO.to.id}`];
+        // console.log('crossReceive: crossInstance ', aelfCrossMeta);
+        if (!crossInstance) {
+            crossInstance = await this.initCrossInstance(sendResponse, crossInfo)
+        }
+        const receiveResult = await crossInstance.receive(param);
+
+        sendResponse({
+            ...errorHandler(0),
+            message: '',
+            detail: JSON.stringify(receiveResult)
         });
     }
 

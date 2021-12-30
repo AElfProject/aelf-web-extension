@@ -1,0 +1,111 @@
+.container {
+    color: #252533;
+    min-height: 578px;
+    min-width: 100%;
+    background: #FFF;
+    background-size: cover;
+    background-position: 0 10%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.paramsInfo {
+    word-break: break-all;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.appName {
+    text-align: center;
+    font-size: 44px;
+    font-weight: 900;
+    color: #252533;
+    padding: 24px 20px;
+
+    .loginTip {
+        font-size: 16px;
+        font-weight: normal;
+        padding: 20px 6px 0 6px;
+        text-align: left;
+    }
+
+}
+
+
+.login {
+    padding:6px 18px;
+    background: #6987F4;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.confirmationInfo {
+    margin:0 24px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #F8F8F8;
+    height: 340px;
+    overflow: auto;
+    color: #999999;
+}
+
+.confirmationInfoItem {
+    margin: 12px 0px;
+    font-size: 14px;
+}
+
+.buttons {
+    width: 80%;
+    margin: 12px auto;
+    display: flex;
+    > a {
+        flex: 1;
+        margin: 8px;
+    }
+    > div {
+        flex: 1;
+        margin: 8px;
+    }
+}
+
+.blank {
+    margin: 10px 0;
+}
+
+.enableWhitelist {
+    color: #FFA500;
+    text-decoration: underline;
+    font-size: 28px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.whitelistTip {
+    text-align: center;
+    margin: 24px;
+}
+
+.whitelistContainer {
+    height: 210px;
+    width: 370px;
+    overflow: scroll;
+    word-break: break-all;
+    text-align: left;
+}
+
+.title {
+    font-size: 18px;
+    color: #333;
+    text-align: left;
+}
+
+.codeLikeContent {
+    width: 100%;
+    //background: rgba(0,0,0,0.1);
+    color: #999;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 8px;
+}

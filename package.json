@@ -1,11 +1,12 @@
 {
   "name": "aelf-explorer-extension",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "aelf-explorer-extension",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.3.1",
     "aelf-sdk": "^3.2.34",
+    "aelf-sdk-cross-chain": "^1.0.14",
     "antd-mobile": "^2.2.2",
     "apisauce": "^1.0.1",
     "clipboard": "^2.0.1",
