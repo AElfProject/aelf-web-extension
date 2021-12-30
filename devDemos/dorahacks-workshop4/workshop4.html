@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dorahacks Workshop4</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script> -->
+</head>
+<style>
+    .sub-title {
+        background: #2d0379;
+        color: #FFF;
+        height: 30px;
+        line-height: 30px;
+        text-indent: 8px;
+    }
+</style>
+<body>
+    <h1>Hello Dorahacks Workshop4</h1>
+    <p>You can see the console.log in the dev tool.</p>
+
+
+    <button type="button" id="version-btn">Get Version</button>
+    <br>
+
+    <button type="button" id="login-btn">* 1. Login</button>&nbsp;
+    <button type="button" id="logout-btn">logout</button>&nbsp;
+    <button type="button" id="lock-btn">lock NightELF</button>
+    <div>If the user had logged in, you will get the information of the user.</div>
+    <div>If not, there will be a prompt for user to login in.</div>
+    <br>
+
+    <button type="button" id="get-chain-status">* 2. getChainStatus</button>
+    <div>【Necessary】It is necessary to getChainStatus at first when use extension.</div>
+    <br>
+
+    <button type="button" id="call-aelf-chain">callAelfChain: getTxResult</button>
+    <br>
+    <button type="button" id="get-signature">get-signature</button>
+    <br>
+    <br>
+
+    <div class="sub-title">contract demo(use token contract)</div>
+    <p>If it does not work, please change the wallet address and contract address.</p>
+    <button type="button" id="init-aelf-contract">INIT_AELF_CONTRACT</button>
+    <br>
+    <button type="button" id="call-aelf-contract">CALL_AELF_CONTRACT</button>
+    <br>
+    <button type="button" id="execute-aelf-contract">EXECUTE_AELF_CONTRACT</button>
+    <br>
+
+    <script src="test.js"></script>
+
+</body>
+</html>
