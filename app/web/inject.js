@@ -343,9 +343,9 @@ class NightAElf {
 
         if (result.error) {
           callback(result.error, result);
-          if (callback.length) {
+          // if (callback.length) {
             throw result;
-          }
+          // }
         }
 
         const message = JSON.parse(result.message);
