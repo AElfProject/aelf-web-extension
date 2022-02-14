@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.3.1",
-    "aelf-sdk": "^3.2.34",
+    "aelf-sdk": "^3.2.40",
     "aelf-sdk-cross-chain": "^1.0.14",
     "antd-mobile": "^2.2.2",
     "apisauce": "^1.0.1",
