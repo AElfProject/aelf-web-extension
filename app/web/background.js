@@ -271,7 +271,6 @@ export default class Background {
         } catch(error) {
             sendResponse({
                 ...errorHandler(500001, error && error.message ? error.message : error),
-                result
             });
         }
     }
