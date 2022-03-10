@@ -1,6 +1,6 @@
 {
   "name": "aelf-explorer-extension",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "aelf-explorer-extension",
   "private": true,
   "dependencies": {
