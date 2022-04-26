@@ -14,6 +14,16 @@ import checkSetPermission from '../utils/checkSetPermission';
 let openWindow = null;
 let getPopupTimeout = null;
 
+let closeSender = null;
+apis.windows.onRemoved.addListener(
+  (number) => {
+      console.log('onRemoved', number);
+      closeSender.sendResponse({
+          ...errorHandler(200010)
+      });
+  }
+)
+
 export default class NotificationService {
 
     /***
@@ -71,6 +81,7 @@ export default class NotificationService {
                 `width=${width},height=${height},resizable=0,top=${middleY},left=${middleX},titlebar=0`);
             win.data = notification;
             openWindow = win;
+            closeSender = notification;
             return win;
         };
 
