@@ -77,7 +77,7 @@ function getPasswordLevelInfo(passwordInfo) {
                 break;
             case 1:
             // background: '#F43160'
-                // level.level1.opacity = 1; 
+                // level.level1.opacity = 1;
                 level.level1.background = '#F43160';
                 break;
             case 2:
@@ -117,10 +117,8 @@ export default class Password extends Component {
             password: '',
             passwordReplay: ''
         };
-        this.refs = {
-            confirm:null,
-            password: null,
-        }
+        this.passwordRef = React.createRef();
+        this.confirmRef = React.createRef();
     }
 
     inputPassword(password) {
@@ -184,8 +182,8 @@ export default class Password extends Component {
 
     onKeyup(e, type) {
         if(e.keyCode === 13) {
-            if(type === '1' && this.refs.confirm) {
-                this.refs.confirm.focus();
+            if(type === '1' && this.confirmRef) {
+                this.confirmRef.current.focus();
             }else if (type === '2') {
                 console.log(this.props, 'keyup')
                 if(this.state.passwordCheckResult.ready) {
@@ -212,9 +210,9 @@ export default class Password extends Component {
                             />
                         </div>
                         <div className={style.passwordLevel}>
-                            <div className={`${style.level1}  ${style.list}`} style={levelInfo.level1}></div>
-                            <div className={`${style.level2}  ${style.list}`} style={levelInfo.level2}></div>
-                            <div className={`${style.level3}  ${style.list}`} style={levelInfo.level3}></div>
+                            <div className={`${style.level1}  ${style.list}`} style={levelInfo.level1}/>
+                            <div className={`${style.level2}  ${style.list}`} style={levelInfo.level2}/>
+                            <div className={`${style.level3}  ${style.list}`} style={levelInfo.level3}/>
                             <div className={style.levelText}>
                                 <FormattedMessage
                                     id = {'aelf.' + levelInfo.text }
@@ -225,13 +223,13 @@ export default class Password extends Component {
                     </div>
                     <InputItem
                         value={this.state.password}
-                        ref={password =>this.refs.password = password}
+                        ref={this.passwordRef}
                         type="password"
                         placeholder=""
                         onChange={password => this.inputPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
                         onKeyUp={(e)=>this.onKeyup(e,'1')}
-                    ></InputItem>
+                    />
                 </List>
 
                 <List>
@@ -245,14 +243,14 @@ export default class Password extends Component {
                         {passwordReplayErrorText}
                     </div>
                     <InputItem
-                        ref={confirm =>this.refs.confirm = confirm}
+                        ref={this.confirmRef}
                         value={this.state.passwordReplay}
                         type="password"
                         placeholder="Confirm Password"
                         onChange={password => this.comfirmPassword(password)}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
                         onKeyUp={(e)=>this.onKeyup(e,'2')}
-                    ></InputItem>
+                    />
                 </List>
 
                 <WhiteSpace />

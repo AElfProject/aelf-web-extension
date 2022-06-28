@@ -60,7 +60,7 @@ export default function errorHandler(code, error) {
     else if (error && error.constructor !== String) {
         output.errorMessage = {
             name: error.name,
-            message: error.message,
+            message: error.message || error.Error,
             stack: error.stack
         };
     }

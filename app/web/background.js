@@ -271,7 +271,6 @@ export default class Background {
         } catch(error) {
             sendResponse({
                 ...errorHandler(500001, error && error.message ? error.message : error),
-                result
             });
         }
     }
@@ -447,6 +446,7 @@ export default class Background {
     }
 
     static async initAelfContract(sendResponse, contractInfo) {
+        try {
         if (!(await Background.lockStatusCheckAndUnlock(sendResponse))) {
             return;
         }
@@ -468,13 +468,8 @@ export default class Background {
                 return;
             }
             const wallet = AElf.wallet.getWalletByPrivateKey(keypair.privateKey);
-            dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet, (error, contractMethods) => {
-                if (error) {
-                    sendResponse({
-                        ...errorHandler(500001, error)
-                    });
-                    return;
-                }
+
+            dappAelfMeta.aelf.chain.contractAt(contractAddress, wallet).then((contractMethods) => {
                 const contractNew = { address, contractName, contractAddress, contractMethods };
 
                 let extendContractIndex = -1;
@@ -498,8 +493,19 @@ export default class Background {
                     message: JSON.stringify(contractMethods),
                     detail: JSON.stringify(dappAelfMeta)
                 });
+            }).catch(error=>{
+                console.log(error, 'background,')
+                sendResponse({
+                    ...errorHandler(500001, error)
+                });
+                return;
             });
         });
+    }catch(error) {
+        sendResponse({
+            ...errorHandler(410003,  error)
+        });
+    }
     }
 
     // inner
