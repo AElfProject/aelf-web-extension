@@ -6,8 +6,10 @@
 import {LocalStream} from 'extension-streams';
 import InternalMessage from './messages/InternalMessage';
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
+import * as ActionEventTypes from './messages/ActionEventTypes';
 import NightElf from './models/NightElf';
 import {apis} from './utils/BrowserApis';
+import EventHandler from './utils/eventHandler';
 import {contractWhitelistCheck, formatContracts, getContractInfoWithAppPermissions} from './utils/contracts/contracts';
 import {getApplicationPermssions} from './utils/permission/permission';
 import errorHandler from './utils/errorHandler';
@@ -27,6 +29,7 @@ const {
 } = wallet;
 
 const lockService = new LockService();
+const eventHandler = new EventHandler();
 
 /* eslint-disable fecs-camelcase */
 let seed = '';
@@ -282,6 +285,8 @@ export default class Background {
      */
     static login(sendResponse, loginInfo) {
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
+
+            eventHandler.addTabs();
 
             // 如果permissions下有对应的
             const {
@@ -897,11 +902,18 @@ export default class Background {
     }
 
     static lockWallet(sendResponse) {
-        seed = null;
-        nightElf = null;
-        sendResponse({
-            ...errorHandler(0)
-        });
+        try{
+            seed = null;
+            nightElf = null;
+            eventHandler.dispatch(ActionEventTypes.NIGHTELF_LOCK_WALLET, undefined)
+            sendResponse({
+                ...errorHandler(0)
+            });
+        }catch(e) {
+            sendResponse({
+                ...errorHandler(500001)
+            });
+        }
     }
 
     static unlockWallet(sendResponse, _seed) {
@@ -935,6 +947,7 @@ export default class Background {
 
             nightElf = NightElf.fromJson(nightElfObject);
             Background.updateWallet(sendResponse);
+            eventHandler.dispatch(ActionEventTypes.NIGHTELF_REMOVE_KEYPAIR, {address})
         });
     }
 

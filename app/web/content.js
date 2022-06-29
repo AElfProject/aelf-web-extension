@@ -11,6 +11,7 @@ import * as PageContentTags from './messages/PageContentTags';
 // import InternalMessage from './messages/InternalMessage';
 // import * as InternalMessageTypes from './messages/InternalMessageTypes'
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
+import ActionEvent from './messages/ActionEvent';
 import InternalMessage from './messages/InternalMessage';
 
 import {
@@ -38,6 +39,11 @@ class Content {
 
         this.setupEncryptedStream();
         this.injectInteractionScript();
+        this.extensionWatch();
+    }
+
+    extensionWatch() {
+        new ActionEvent();
     }
 
     setupEncryptedStream() {

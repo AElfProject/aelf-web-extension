@@ -15,7 +15,8 @@ class ApiGenerator {
             'storage',
             'extension',
             'runtime',
-            'windows'
+            'windows',
+            'tabs',
         ]
         .map(api => {
             if (typeof chrome !== 'undefined') swallow(() => {
