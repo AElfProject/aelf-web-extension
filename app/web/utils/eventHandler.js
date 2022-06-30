@@ -15,13 +15,6 @@ export default class EventHandler {
     // super();
   }
 
-  static event(type, payload) {
-    switch (type) {
-      case ActionEventTypes.NIGHTELF_LOCK_WALLET:
-        break;
-    }
-  }
-
   addTabs() {
     apis.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabsList.includes(tabs[0].id)) return;

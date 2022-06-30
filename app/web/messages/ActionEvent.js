@@ -43,9 +43,7 @@ export default class ActionEvent {
   }
 
   dispatchToWeb(eventName, message) {
-    const event = new CustomEvent(eventName, {
-      detail: message,
-    });
+    const event = new CustomEvent(eventName, message);
     document.dispatchEvent(event);
   }
 }
