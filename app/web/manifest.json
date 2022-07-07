@@ -1,6 +1,9 @@
 {
-  "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "manifest_version": 3,
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'",
+    "sandbox": "sandbox allow-scripts; script-src 'self' 'unsafe-eval'"
+  },
   "name": "aelf-explorer-extension",
   "version": "1.2.8",
   "description": "__MSG_pluginDesc__",
@@ -10,28 +13,31 @@
     "128": "assets/images/aelf_logo.png"
   },
   "background": {
-    "page": "background.html"
+    "service_worker": "./js/background.js"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "assets/images/aelf_logo.png",
     "default_title": "aelf-explorer-extension",
     "default_popup": "popup.html"
   },
-  "content_scripts": [{
-    "matches": ["<all_urls>"],
-    "js": ["js/content.js"],
-    "run_at": "document_end"
-  }],
-  "permissions": [
-    "storage",
-    "http://*/*",
-    "https://*/*"
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content.js"],
+      "run_at": "document_end"
+    }
   ],
-  "web_accessible_resources": ["js/inject.js"],
+  "permissions": ["storage", "app", "windows", "tabs", "scripting"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["js/inject.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "options_page": "options.html",
   "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
+    "page": "options.html"
   },
   "default_locale": "zh_CN"
 }

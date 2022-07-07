@@ -7,7 +7,7 @@
 const webpack = require('webpack'); // 用于访问内置插件
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin');
@@ -24,13 +24,13 @@ const {version} = require(path.resolve(ROOT, 'package.json'));
 // let LiveReloadPlugin = require('webpack-livereload-plugin');
 
 // clean-webpack-plugin: https://github.com/johnagan/clean-webpack-plugin
-let pathsToClean = [
-    // 'app/public/js/*.js'
-    'app/public/*'
-];
-let cleanOptions = {
-    watch: true
-};
+// let pathsToClean = [
+//     'app/public/js/*'
+//     // 'app/public/*'
+// ];
+// let cleanOptions = {
+//     watch: true
+// };
 
 const outputDir = 'public';
 
@@ -62,6 +62,11 @@ let config = {
         extensions: ['.js', '.jsx', '.scss'],
         alias: {
             'aelf-sdk$': 'aelf-sdk/dist/aelf.umd.js'
+        },
+        fallback: {
+            crypto: false,
+            fs: false,
+            child_process: false,
         }
     },
     module: {
@@ -96,8 +101,9 @@ let config = {
                 {
                     loader: 'css-loader',
                     options: {
-                        modules: true,
-                        localIdentName: 'AELF-[path][name]_[local]-[hash:base64:5]'
+                        modules: {
+                            localIdentName: 'AELF-[path][name]_[local]-[hash:base64:5]'
+                        },
                         // localIdentName: '[path][name]__[local]--[hash:base64:5]',
                         // getLocalIdent: (context, localIdentName, localName, options) => {
                         // 	console.log('localIdentName', localName);
@@ -130,10 +136,10 @@ let config = {
             }]
         }]
     },
-    node: {
-        fs: 'empty',
-        child_process: 'empty'
-    },
+    // node: {
+    //     fs: 'empty',
+    //     child_process: 'empty'
+    // },
     plugins: [
         new HtmlWebpackPlugin({
             chunks: [''],
@@ -155,7 +161,7 @@ let config = {
             template: './app/web/prompt.html',
             filename: `./${outputDir}/prompt.html`
         }),
-        new CopyWebpackPlugin([{
+        new CopyWebpackPlugin({patterns: [{
                 from: './app/web/manifest.json',
                 to: `./${outputDir}/manifest.json`,
                 toType: 'file'
@@ -175,7 +181,7 @@ let config = {
                 to: `./${outputDir}/_locales`,
                 toType: 'dir'
             }
-        ]),
+        ]}),
         new webpack.DefinePlugin({
             'process.env.SDK_VERSION': JSON.stringify( 'v' + version)
         }),
@@ -184,7 +190,12 @@ let config = {
         //     template: './app/web/page/transactionDetail.tpl',
         //     filename: './view/transactionDetail.tpl'
         // }),
-        new CleanWebpackPlugin(pathsToClean, cleanOptions)
+        // new CleanWebpackPlugin({
+        //     // pathsToClean, cleanOptions
+        //     verbose: true,
+        //     cleanStaleWebpackAssets: false,
+        //     // cleanAfterEveryBuildPatterns: pathsToClean,
+        // })
     ]
 };
 
@@ -193,7 +204,7 @@ module.exports = (env, argv) => {
     if (argv.mode === 'production') {
         config.plugins.push(
             new TerserPlugin({
-              cache: true,
+            //   cache: true,
               parallel: true,
               terserOptions: {
                 ecma: undefined,
@@ -210,10 +221,10 @@ module.exports = (env, argv) => {
                 keep_fnames: false,
                 safari10: false,
                 compress: {
-                  drop_debugger: true,
-                  drop_console: true
-                }
-              },
+                    drop_debugger: true,
+                    drop_console: true
+                  }
+                },
             }),
         );
     }
