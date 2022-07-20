@@ -21,6 +21,7 @@ import AelfButton from '../../../components/Button/Button';
 import style from './LoginKeypairs.scss';
 import NoticeIcon from '../../../assets/images/notice2X.png'
 import errorHandler from "../../../utils/errorHandler";
+import {endOfOperation, getMessageFromService} from '../../../utils/promptToService';
 require('./LoginKeypairs.css');
 
 const NUM_ROWS = 9999;
@@ -28,22 +29,21 @@ const pageSize = 9999;
 export default class LoginKeypairs extends Component {
     constructor(props) {
         super(props);
-        const data = window.data || apis.extension.getBackgroundPage().notification || null;
-        const message = data.message;
+        const message = {};
 
         const {
-            appName,
-            payload,
-            domain,
-            chainId,
-            hostname
+            appName = '',
+            payload = {},
+            domain = '',
+            chainId = '',
+            hostname = ''
         } = message;
 
         this.permission = {
-            appName,
-            domain: hostname,
-            address: payload.payload.address,
-            contracts: payload.payload.contracts || []
+            appName: '',
+            domain: '',
+            address: '',
+            contracts: []
         };
 
         const dataSource = new ListView.DataSource({
@@ -136,14 +136,11 @@ export default class LoginKeypairs extends Component {
         const setResult = await InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission).send();
         if (setResult.error === 0) {
             Toast.success('Login Success, after 3s close the window.');
-            window.data.sendResponse({
+            endOfOperation({
                 ...errorHandler(0),
                 detail,
                 message: 'Login & Bind information success'
-            });
-            setTimeout(() => {
-                window.close();
-            }, 3000);
+            }, 3000)
         }
         else {
             Toast.fail(setResult.message, 3, () => {}, false);
@@ -171,9 +168,34 @@ export default class LoginKeypairs extends Component {
         });
     }
 
+    async getMessage() {
+        const result = await getMessageFromService();
+        const message = result.message;
+        const {
+            appName,
+            payload,
+            domain,
+            chainId,
+            hostname
+        } = message;
+        this.permission = {
+            appName,
+            domain: hostname,
+            address: payload.payload.address,
+            contracts: payload.payload.contracts || []
+        };
+        this.setState({
+            appName,
+            hostname,
+            domain,
+            chainId,
+            payload,
+        })
+    }
 
     componentDidMount() {
         const hei = this.state.height - 142;
+        this.getMessage();
         this.getKeypairs(result => {
             this.rData = result;
             if (result.length > 0) {

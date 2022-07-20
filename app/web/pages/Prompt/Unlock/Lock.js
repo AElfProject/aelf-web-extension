@@ -25,6 +25,8 @@ import {
   FormattedMessage
 } from 'react-intl';
 import errorHandler from "../../../utils/errorHandler";
+import {apis} from '../../../utils/BrowserApis';
+import { endOfOperation } from '../../../utils/promptToService';
 
 function getSeed(password) {
   if (password) {
@@ -66,14 +68,7 @@ export default class Lock extends Component {
       InternalMessage.payload(InternalMessageTypes.UNLOCK_WALLET, seed).send().then(result => {
         console.log(InternalMessageTypes.UNLOCK_WALLET, seed, result);
         if (result && result.error === 0) {
-          window.data.sendResponse({
-            ...errorHandler(300000),
-            detail: null,
-            message: 'Unlock wallet success.'
-          });
-          setTimeout(() => {
-            window.close();
-          }, 500);
+          this.unlockWalletSuccess();
         }
         else {
           console.log(result.error);
@@ -84,6 +79,14 @@ export default class Lock extends Component {
         Toast.fail('Unlock wallet failed.', 3, () => {}, false);
       });
     }
+  }
+
+  unlockWalletSuccess() {
+    endOfOperation({
+      ...errorHandler(300000),
+      detail: null,
+      message: 'Unlock wallet success.'
+    });
   }
 
   onKeyup(e) {

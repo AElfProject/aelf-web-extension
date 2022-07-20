@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "aelf-sdk": "^3.2.40",
+    "aelf-sdk": "git+ssh://git@github.com:potter-sun/aelf-sdk.js.git#feature/change-XMLHttpRequest-to-Fetch",
     "aelf-sdk-cross-chain": "^1.0.14",
     "antd-mobile": "^2.2.2",
     "apisauce": "^2.1.5",
@@ -48,6 +48,7 @@
     "browser-sync-webpack-plugin": "^2.3.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
+    "crypto-browserify": "^3.12.0",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.12",
     "eslint": "^8.19.0",
@@ -67,8 +68,8 @@
     "postcss-preset-env": "^7.7.2",
     "sass-loader": "^13.0.2",
     "spark-md5": "^3.0.2",
+    "stream-browserify": "^3.0.0",
     "style-loader": "^3.3.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.73.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.10.0",
@@ -85,11 +86,11 @@
     "commit": "git-cz",
     "start:dev": "webpack-dev-server",
     "none": "webpack --mode none --devtool eval-source-map",
-    "none:watch": "webpack --mode none --watch --devtool source-map",
+    "none:watch": "webpack watch --mode none --devtool source-map",
     "dev": "webpack --mode development --devtool eval-source-map",
-    "dev:watch": "webpack --mode development --watch --devtool eval-source-map",
+    "dev:watch": "webpack watch --mode development --devtool eval-source-map",
     "pro": "webpack --mode production --devtool source-map",
-    "pro:watch": "webpack --mode production --watch"
+    "pro:watch": "webpack watch --mode production"
   },
   "ci": {
     "version": "8"

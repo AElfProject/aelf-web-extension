@@ -66,5 +66,5 @@ export const OPEN_LOGIN_KEYPAIR = 'openLoginKeypairs';
 export const GET_CHAIN_INFO = 'getChainInfo';
 export const UPDATE_CHAIN_INFO = 'updateChainInfo';
 
-
-
+export const GET_MESSAGE_FROM_SERVICE = 'getMessageFromService';
+export const PROMPT_TO_SERVICE = 'promptToService'

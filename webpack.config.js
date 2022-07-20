@@ -7,7 +7,7 @@
 const webpack = require('webpack'); // 用于访问内置插件
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
-// const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin');
@@ -64,7 +64,9 @@ let config = {
             'aelf-sdk$': 'aelf-sdk/dist/aelf.umd.js'
         },
         fallback: {
-            crypto: false,
+            // crypto: false,
+            crypto: require.resolve("crypto-browserify"),
+            stream: require.resolve("stream-browserify"),
             fs: false,
             child_process: false,
         }
@@ -128,12 +130,14 @@ let config = {
             use: [{
                 loader: 'file-loader',
                 options: {
+                    esModule:false,
                     // file output path
                     outputPath: `${outputDir}/assets/output`,
                     // path in css
                     publicPath: './assets/output'
                 }
-            }]
+            }],
+            type:'javascript/auto'
         }]
     },
     // node: {
@@ -183,19 +187,21 @@ let config = {
             }
         ]}),
         new webpack.DefinePlugin({
-            'process.env.SDK_VERSION': JSON.stringify( 'v' + version)
+            'process.env.SDK_VERSION': JSON.stringify( 'v' + version),
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
         // new HtmlWebpackPlugin({
         //     chunks: ['transactionDetail'],
         //     template: './app/web/page/transactionDetail.tpl',
         //     filename: './view/transactionDetail.tpl'
         // }),
-        // new CleanWebpackPlugin({
-        //     // pathsToClean, cleanOptions
-        //     verbose: true,
-        //     cleanStaleWebpackAssets: false,
-        //     // cleanAfterEveryBuildPatterns: pathsToClean,
-        // })
+        new CleanWebpackPlugin({
+            verbose: true,
+            cleanStaleWebpackAssets: false,
+            cleanOnceBeforeBuildPatterns: [path.join(process.cwd(), `./${outputDir}/*`)],
+            // remove files that are not created directly by Webpack.
+            // cleanAfterEveryBuildPatterns
+        })
     ]
 };
 

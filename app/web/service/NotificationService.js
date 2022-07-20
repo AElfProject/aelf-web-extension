@@ -16,12 +16,15 @@ let getPopupTimeout = null;
 
 let closeSender = null;
 apis.windows.onRemoved.addListener(
-  (number) => {
-      console.log('onRemoved', number);
-      closeSender.sendResponse({
-          ...errorHandler(200010)
-      });
-  }
+    (number) => {
+        console.log('onRemoved', number);
+        if(openWindow && openWindow.id === number) {
+            openWindow = null;
+        };
+        closeSender.sendResponse({
+            ...errorHandler(200010)
+        });
+    }
 )
 
 export default class NotificationService {
@@ -35,7 +38,7 @@ export default class NotificationService {
         if (openWindow) {
             // For now we're just going to close the window to get rid of the error
             // that is caused by already open windows swallowing all further requests
-            openWindow.close();
+            openWindow.id && apis.windows.remove(openWindow.id);
             openWindow = null;
 
             // Alternatively we could focus the old window, but this would cause
@@ -54,35 +57,29 @@ export default class NotificationService {
         // if (notification.message) {
         //     method = notification.message.payload.method;
         // }
+        const windows = await chrome.windows.getCurrent();
         const width = checkSetPermission(notification.message) || 700;
-        let middleX = window.screen.availWidth / 2 - (width / 2);
-        let middleY = window.screen.availHeight / 2 - (height / 2);
-
+        let middleX = windows.width / 2 - (width / 2);
+        let middleY =  windows.height / 2 - (height / 2);
         const getPopup = async () => {
             const route = notification.route || '';
             const url = apis.runtime.getURL('/prompt.html' + route);
 
             // Notifications get bound differently depending on browser
             // as Firefox does not support opening windows from background.
-            if (typeof browser !== 'undefined') {
-                const created = await apis.windows.create({
-                    url,
-                    height,
-                    width,
-                    type: 'popup'
-                });
-
-                window.notification = notification;
-                return created;
-            }
-            const win = window.open(
+            const created = await apis.windows.create({
                 url,
-                'NightElf Prompt',
-                `width=${width},height=${height},resizable=0,top=${middleY},left=${middleX},titlebar=0`);
-            win.data = notification;
-            openWindow = win;
+                height,
+                width,
+                type: 'popup',
+                focused: true,
+                top: middleY,
+                left: middleX,
+            });
             closeSender = notification;
-            return win;
+            openWindow = created;
+
+            return created;
         };
 
         // Could not establish connection. Receiving end does not exist.
@@ -120,15 +117,9 @@ export default class NotificationService {
      * Otherwise you will double send responses and one will always be null.
      */
     static async close() {
-        if (typeof browser !== 'undefined') {
-            const {
-                id: windowId
-            } = (await apis.windows.getCurrent());
-            apis.windows.remove(windowId);
-        }
-        else {
-            window.onbeforeunload = () => {};
-            window.close();
-        }
+        const {
+            id: windowId
+        } = (await apis.windows.getCurrent());
+        apis.windows.remove(windowId);
     }
 }

@@ -8,23 +8,38 @@ import React, {
 } from 'react';
 
 import {apis} from '../../../utils/BrowserApis';
+import { getMessageFromService } from '../../../utils/promptToService';
 
 export default class Prompt extends Component {
     constructor() {
         super();
-        const data = window.data || apis.extension.getBackgroundPage().notification || null;
-        const messageTemp = data.message;
+        this.state = {
+            message: 'No message'
+        }
+    }
+
+    async getMessage() {
+        const result = await getMessageFromService();
+        const messageTemp = result.message;
         const {
             payload
         } = messageTemp;
-        this.message = payload.message || 'No message';
+        if(payload.message) {
+            this.setState({
+                message: payload.message
+            })
+        }
+    }
+
+    componentDidMount() {
+        this.getMessage();
     }
 
     render() {
         return (
             <div>
                 <div>Prompt</div>
-                <p>{this.message}</p>
+                <p>{this.state.message}</p>
             </div>
         );
     }

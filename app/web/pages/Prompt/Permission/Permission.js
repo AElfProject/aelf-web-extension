@@ -23,28 +23,51 @@ import diffPermissions from '../../../utils/diffPermissions';
 
 // import {FormattedMessage} from 'react-intl';
 import style from './Permission.scss';
-
+import {endOfOperation, getMessageFromService} from '../../../utils/promptToService'
 export default class Permission extends Component {
 
     constructor(props) {
         super(props);
-        const data = window.data || apis.extension.getBackgroundPage().notification || null;
-        const message = data.message;
+        this.address = this.props.location.state;
+        this.isSetPermission = false;
+        this.newPermissions = null;
+        this.quryInfo = {
+            appName: '',
+            hostname: '',
+            type: 'domain'
+        };
+
+        this.state = {
+            address: this.address,
+            permissionsList: null,
+            isLogin: false,
+            permission: {
+                appName: '',
+                domain: '',
+                // Why do we do this?
+                // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
+                address: this.address,
+                contracts: [],
+            }
+        };
+    }
+
+    async getMessage() {
+        const result = await getMessageFromService();
+        const message = result.message;
         const {
             appName,
             hostname,
             payload
         } = message;
         this.address = this.props.location.state === undefined ? message.payload.payload.address : this.props.location.state;
-        this.permission = {
+        const permission = {
             appName,
             domain: hostname,
-            // Why do we do this?
-            // Because two prompt pages cannot be opened at the same time, and route cannot pass values using /:address
             address: this.address,
             contracts: payload.payload.contracts
         };
-        this.isLogin = payload.payload.method === 'LOGIN';
+        const isLogin = payload.payload.method === 'LOGIN';
         this.isSetPermission = payload.payload.method === 'SET_CONTRACT_PERMISSION';
         this.newPermissions = message.payload.payload.contracts;
         this.quryInfo = {
@@ -52,20 +75,25 @@ export default class Permission extends Component {
             hostname,
             type: 'domain'
         };
-
-        this.state = {
+        this.setState({
             address: this.address,
-            permissionsList: null
-        };
+            permission,
+            isLogin
+        });
+        this.checkPermission();
     }
 
-
     componentDidMount() {
+        this.getMessage();
+    }
+
+    checkPermission() {
         InternalMessage.payload(InternalMessageTypes.CHECK_PERMISSION, this.quryInfo).send().then(result => {
+            console.log(result, this.quryInfo, 'checkPermission');
             if (result && result.error === 0) {
                 if (result.permissions.length > 0) {
                     const permissionsList = diffPermissions(result.permissions[0].contracts, this.newPermissions);
-                    console.log(permissionsList);
+                    console.log(permissionsList, 'permissionsList===');
                     this.setState({
                         permissionsList
                     });
@@ -77,7 +105,7 @@ export default class Permission extends Component {
     setPermission() {
         const {address} = this.state;
         let detail = null;
-        // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.permission)
+        // InternalMessage.payload(InternalMessageTypes.SET_PERMISSION, this.state.permission)
         InternalMessage.payload(InternalMessageTypes.GET_ADDRESS)
         .send().
         then(result => {
@@ -91,20 +119,17 @@ export default class Permission extends Component {
                 Toast.fail(`No matched wallet. ${address}`, 3, () => {}, false);
             }
 
-            if (this.isLogin) {
-                InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.permission)
+            if (this.state.isLogin) {
+                InternalMessage.payload(InternalMessageTypes.SET_LOGIN_PERMISSION, this.state.permission)
                 .send()
                 .then(result => {
                     console.log(InternalMessageTypes.SET_LOGIN_PERMISSION, result);
                     if (result.error === 0) {
                         Toast.success('Bind Permisson Success, after 3s close the window.');
-                        window.data.sendResponse({
+                        endOfOperation({
                             ...errorHandler(0),
                             detail,
                             message: 'Bind Permisson Success'
-                        });
-                        setTimeout(() => {
-                            window.close();
                         }, 3000);
                     }
                     else {
@@ -113,19 +138,16 @@ export default class Permission extends Component {
                 });
             }
             else {
-                InternalMessage.payload(InternalMessageTypes.SET_CONTRACT_PERMISSION, this.permission)
+                InternalMessage.payload(InternalMessageTypes.SET_CONTRACT_PERMISSION, this.state.permission)
                 .send()
                 .then(result => {
                     console.log(InternalMessageTypes.SET_CONTRACT_PERMISSION, result);
                     if (result.error === 0) {
                         Toast.success('Bind Permisson Success, after 3s close the window.');
-                        window.data.sendResponse({
+                        endOfOperation({
                             ...errorHandler(0),
                             detail,
                             message: 'Bind Permisson Success'
-                        });
-                        setTimeout(() => {
-                            window.close();
                         }, 3000);
                     }
                     else {
@@ -139,15 +161,14 @@ export default class Permission extends Component {
     }
 
     cancel() {
-        window.data.sendResponse({
+        endOfOperation({
             ...errorHandler(400001, 'Authorization operation cancelled.')
-        });
-        window.close();
+        }, 10)
     }
 
     renderContrast() {
 
-        if (this.isLogin) {
+        if (this.state.isLogin) {
             return null;
         }
 
@@ -155,7 +176,7 @@ export default class Permission extends Component {
         const contractInfoHeight = {
             height: '150px'
         };
-
+        console.log(permissionsList, 'renderContrast===')
         // const addPermissions = permissionsList ? permissionsList.addPermissions : [];
         // const removePermissions = permissionsList ? permissionsList.addPermissions : [];
         // <div className={style.blank}>{JSON.stringify(permissionsList)} {typeof permissionsList}</div>
@@ -206,7 +227,7 @@ export default class Permission extends Component {
     //     contract audit address and contract description:
     // </div>
     render() {
-        const permission = this.permission;
+        const permission = this.state.permission;
         const contrast = this.renderContrast();
         return (
             <div className={style.container}>

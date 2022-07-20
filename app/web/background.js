@@ -21,6 +21,8 @@ import SparkMD5 from 'spark-md5';
 
 import AElf from 'aelf-sdk';
 import {CrossChainMethodsExtension} from "./utils/crossChain/crossChainForExtension";
+import storage from './utils/storage';
+import {getAllStorageLocalData} from './utils/getAllStorage';
 
 const {wallet} = AElf;
 const {
@@ -48,6 +50,15 @@ let timeoutLocker = null;
 
 let aelfMeta = [];
 let aelfCrossMeta = {};
+let promptParam = {};
+let pageState = {
+    [storage.seed] : '',
+    [storage.nightElf] : null,
+    [storage.inactivityInterval] : 0, // 900000, 15min -> 4hours
+    [storage.timeoutLocker] : null,
+    [storage.aelfMeta] : [],
+    [storage.aelfCrossMeta] : {},
+}
 // This is the script that runs in the extension's background ( singleton )
 export default class Background {
     constructor() {
@@ -55,12 +66,25 @@ export default class Background {
     }
 
     // Watches the internal messaging system ( LocalStream )
-    setupInternalMessaging() {
-        LocalStream.watch((request, sendResponse) => {
-            const message = InternalMessage.fromJson(request);
-            console.log(sendResponse);
-            this.dispenseMessage(sendResponse, message);
-        });
+    async setupInternalMessaging() {
+        try {
+            const storage = await getAllStorageLocalData();
+            Object.entries(storage).map(([key, val])=>{
+                if(key in pageState) {
+                    try {
+                        pageState[key] = JSON.parse(val);
+                    } catch (error) {
+                        pageState[key] = val;
+                    }
+                }
+            })
+            LocalStream.watch((request, sendResponse) => {
+                const message = InternalMessage.fromJson(request);
+                this.dispenseMessage(sendResponse, message);
+            });  
+        } catch (error) {
+            throw error;
+        }
     }
 
     /**
@@ -224,9 +248,25 @@ export default class Background {
             // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
             //     Background.releaseAELFContract(sendResponse);
             //     break;
+            case InternalMessageTypes.GET_MESSAGE_FROM_SERVICE:
+                Background.connectWithPrompt(sendResponse, message.payload);
+                break;
+            case InternalMessageTypes.PROMPT_TO_SERVICE:
+                Background.promptCallback(sendResponse, message.payload);
+                break;
         }
     }
 
+    static connectWithPrompt(sendResponse, data) {
+        console.log(promptParam, 'promptParam====')
+        sendResponse(promptParam);
+        return;
+    }
+
+    static promptCallback(sendResponse, data) {
+        promptParam.sendResponse(data);
+        sendResponse({type: 'success'});
+    }
     /**
      * connect chain, init or refresh the instance of Aelf for dapp.
      * hostname & chainId as a union key.[like sql]
@@ -1464,11 +1504,12 @@ export default class Background {
             }
         };
         const routeTemp = getPromptRoute(messageTemp);
-        NotificationService.open({
+        promptParam = {
             sendResponse,
             route: routeTemp,
             message: messageTemp
-        });
+        }
+        NotificationService.open(promptParam);
     }
 
     /***

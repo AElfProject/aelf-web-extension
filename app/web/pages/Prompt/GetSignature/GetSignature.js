@@ -11,26 +11,40 @@ import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
 import InternalMessage from '../../../messages/InternalMessage';
 import AelfButton from '../../../components/Button/Button';
 import style from './GetSignature.scss';
+import { endOfOperation, getMessageFromService } from '../../../utils/promptToService';
 
 export default class GetSignature extends Component {
     constructor(props) {
         super(props);
-        const data = window.data || apis.extension.getBackgroundPage().notification || null;
-        this.message = data.message;
-        this.keypairAddress = this.message.keypairAddress;
-        this.confirmation = this.message.payload;
-        this.appName = this.message.appName;
-        this.hostname = this.message.hostname;
+        this.message = {};
+        this.appName = '';
+        this.hostname ='';
         this.state = {
-            show: false
+            show: false,
+            keypairAddress: '',
+            confirmation: {}
         };
     }
 
+    async getMessage() {
+        const result = await getMessageFromService();
+        this.message = result.message;
+        this.appName = this.message.appName;
+        this.hostname = this.message.hostname;
+        this.setState({
+            keypairAddress: this.message.keypairAddress,
+            confirmation: this.message.payload
+        })
+    }
+
+    componentDidMount() {
+        this.getMessage();
+    }
+
     cancel() {
-        window.data.sendResponse({
+        endOfOperation({
             ...errorHandler(400001, 'Operation canceled.')
-        });
-        window.close();
+        }, 10);
     }
 
     onClose() {
@@ -43,23 +57,23 @@ export default class GetSignature extends Component {
         return <div className={style.appLogin}>
                 <div className={style.appName}>
                     <div className={style.loginTip}>
-                        Wallet Address: {this.keypairAddress}
+                        Wallet Address: {this.state.keypairAddress}
                     </div>
                 </div>
             </div>;
     }
 
     renderConfirmationInfo() {
-        const info = Object.keys(this.confirmation);
+        const info = Object.keys(this.state.confirmation);
         const infoHTMl = info.map(item => {
             if (item !== 'input') {
-              return <div key={item}
-                              className={style.confirmationInfoItem}
-                          >{item}: {JSON.stringify(this.confirmation[item])}
-                      </div>;
+                return <div key={item}
+                        className={style.confirmationInfoItem}
+                        >{item}: {JSON.stringify(this.state.confirmation[item])}
+                    </div>;
             }
             return <div key={item} className={style.confirmationInfoItem}>
-                        String to be sign: {this.confirmation[item].hexToBeSign}
+                        String to be sign: {this.state.confirmation[item].hexToBeSign}
                     </div>;
         });
         return <div className={style.confirmationInfo}>
@@ -69,21 +83,18 @@ export default class GetSignature extends Component {
 
     getCallAelfContract() {
         InternalMessage.payload(
-          InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK,
-          this.message
+            InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK,
+            this.message
         ).send()
-          .then(result => {
-              if (result && result.error === 0) {
-                  Toast.success('Success, after 3s close the window.');
-                  window.data.sendResponse(result);
-                  setTimeout(() => {
-                      window.close();
-                  }, 3000);
-              }
-              else {
-                  Toast.fail(result.errorMessage.message, 3);
-              }
-          });
+        .then(result => {
+            if (result && result.error === 0) {
+                Toast.success('Success, after 3s close the window.');
+                endOfOperation(result, 3000)
+            }
+            else {
+                Toast.fail(result.errorMessage.message, 3);
+            }
+        });
     }
 
     renderConfirm() {
@@ -93,11 +104,10 @@ export default class GetSignature extends Component {
                         type='createbtn'
                         // onClick={() => this.getCallAelfContract()}
                         onClick={() => {
-                          window.data.sendResponse({
-                            ...errorHandler(0),
-                            signature: this.confirmation.signature
-                          });
-                          window.close();
+                            endOfOperation({
+                                ...errorHandler(0),
+                                signature: this.state.confirmation.signature
+                            }, 10)
                         }}
                     />
                     <AelfButton

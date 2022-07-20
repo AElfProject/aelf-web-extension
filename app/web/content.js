@@ -79,7 +79,7 @@ class Content {
      */
     injectInteractionScript() {
         let script = document.createElement('script');
-        script.src = apis.extension.getURL(INJECTION_SCRIPT_FILENAME);
+        script.src = apis.runtime.getURL(INJECTION_SCRIPT_FILENAME);
         (document.head || document.documentElement).appendChild(script);
         script.onload = () => {
             console.log('inject.js onload!!!');
