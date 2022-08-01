@@ -182,7 +182,7 @@ export default class Background {
                 Background.callAelfContractReadonly(sendResponse, message.payload);
                 break;
             case InternalMessageTypes.CALL_AELF_CONTRACT_SIGNED_TX:
-                Background.callAelfContract(sendResponse, message.payload);
+                Background.callAelfContractSignedTx(sendResponse, message.payload);
                 break;
             case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
                 Background.callAelfContractWithoutCheck(sendResponse, message.payload);
@@ -667,10 +667,14 @@ export default class Background {
     }
 
     static callAelfContractSignedTx(sendResponse, contractInfo) {
-        Background.callAelfContract(sendResponse, contractInfo, false, false, true);
+        Background.callAelfContract(sendResponse, contractInfo, true, false, true);
     }
 
     static callAelfContractWithoutCheck(sendResponse, contractInfo) {
+        if(contractInfo.method === 'CALL_AELF_CONTRACT_SIGNED_TX') {
+            Background.callAelfContract(sendResponse, contractInfo, false, false, true);
+            return;
+        }
         Background.callAelfContract(sendResponse, contractInfo, false);
     }
     // static callAelfContractWithoutCheckReadonly(sendResponse, contractInfo) {
@@ -744,26 +748,24 @@ export default class Background {
                 }
             });
             // If the user remove the permission after the dapp initialized the contract
-            this.checkDappContractStatus({ sendResponse, contractInfo: contractInfoTemp }, () => {
+            this.checkDappContractStatus({ sendResponse, contractInfo: contractInfoTemp }, async () => {
                 try {
                     let contractMethod = signedTx
                         ? extendContract.contractMethods[method].getSignedTx
                         : readonly
                         ? extendContract.contractMethods[method].call
                         : extendContract.contractMethods[method];
-                    contractMethod(...params, (error, result) => {
-                        if (error || (result && result.error)) {
-                            sendResponse({
-                                ...errorHandler(500001, error || result.error)
-                            });
-                        }
-                        else {
-                            sendResponse({
-                                ...errorHandler(0, error),
-                                result
-                            });
-                        }
-                    });
+                    const result = await contractMethod(...params);
+                    if(!result || result && result.error) {
+                        sendResponse({
+                            ...errorHandler(500001, result && result.error ? result.error : result)
+                        });
+                    } else {
+                        sendResponse({
+                            ...errorHandler(0, result.error),
+                            result
+                        });
+                    }
                 }
                 catch (error) {
                     sendResponse({
