@@ -181,6 +181,9 @@ export default class Background {
             case InternalMessageTypes.CALL_AELF_CONTRACT_READONLY:
                 Background.callAelfContractReadonly(sendResponse, message.payload);
                 break;
+            case InternalMessageTypes.CALL_AELF_CONTRACT_SIGNED_TX:
+                Background.callAelfContract(sendResponse, message.payload);
+                break;
             case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
                 Background.callAelfContractWithoutCheck(sendResponse, message.payload);
                 break;
@@ -663,6 +666,10 @@ export default class Background {
         Background.callAelfContract(sendResponse, contractInfo, false, true);
     }
 
+    static callAelfContractSignedTx(sendResponse, contractInfo) {
+        Background.callAelfContract(sendResponse, contractInfo, false, false, true);
+    }
+
     static callAelfContractWithoutCheck(sendResponse, contractInfo) {
         Background.callAelfContract(sendResponse, contractInfo, false);
     }
@@ -670,7 +677,7 @@ export default class Background {
     //     Background.callAelfContract(sendResponse, contractInfo, false, true);
     // }
 
-    static callAelfContract(sendResponse, contractInfo, checkWhitelist = true, readonly = false) {
+    static callAelfContract(sendResponse, contractInfo, checkWhitelist = true, readonly = false, signedTx = false) {
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const { payload, chainId, hostname } = contractInfo;
@@ -739,7 +746,9 @@ export default class Background {
             // If the user remove the permission after the dapp initialized the contract
             this.checkDappContractStatus({ sendResponse, contractInfo: contractInfoTemp }, () => {
                 try {
-                    let contractMethod = readonly
+                    let contractMethod = signedTx
+                        ? extendContract.contractMethods[method].getSignedTx
+                        : readonly
                         ? extendContract.contractMethods[method].call
                         : extendContract.contractMethods[method];
                     contractMethod(...params, (error, result) => {
