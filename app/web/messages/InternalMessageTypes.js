@@ -57,6 +57,7 @@ export const CROSS_RECEIVE_WITHOUT_CHECK = 'crossReceiveWithoutCheck';
 
 export const GET_ADDRESS = 'getAddress';
 export const GET_SIGNATURE = 'getSignature';
+export const GET_EXTENSION_INFO = 'GET_EXTENSION_INFO';
 
 export const OPEN_PROMPT = 'openPrompt';
 // export const SET_PROMPT = 'setPrompt';
