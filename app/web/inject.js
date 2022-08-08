@@ -386,6 +386,14 @@ class NightAElf {
       contractAt
     };
   }
+
+  getExtensionInfo() {
+    return window.NightElf.api({
+      method: 'GET_EXTENSION_INFO',
+    }).then(result => {
+      return {...result, version: this.getVersion()};
+    });
+  }
 }
 
 class CrossChain {
