@@ -244,6 +244,9 @@ export default class Background {
             case InternalMessageTypes.GET_TIMING_LOCK:
                 Background.getTimingLock(sendResponse, message.payload);
                 break;
+            case InternalMessageTypes.GET_EXTENSION_INFO:
+                Background.getExtensionInfo(sendResponse, message.payload);
+                break;
             // TODO:
             // case InternalMessageTypes.RELEASE_AELF_CONTRACT:
             //     Background.releaseAELFContract(sendResponse);
@@ -1522,13 +1525,17 @@ export default class Background {
         sendResponse(true);
     }
 
-    static async lockStatusCheckAndUnlock(sendResponse) {
+    static async unlockStatusCheck() {
         const lockInfo = await lockService.lockGuard(seed);
-        if (lockInfo.error !== 0) {
+        return lockInfo.error === 0
+    }
+
+    static async lockStatusCheckAndUnlock(sendResponse) {
+        const unlock = await Background.unlockStatusCheck();
+        if(!unlock) {
             lockService.callUnLockPagePrompt(Background, sendResponse);
-            return false;
         }
-        return true;
+        return unlock;
     }
 
     static updateChainInfo(sendResponse, chainInfo) {
@@ -1584,6 +1591,56 @@ export default class Background {
                 ...errorHandler(0),
                 chainInfo
             });
+        });
+    }
+
+    static async getExtensionInfo(sendResponse, loginInfo) {
+        // locked
+        const isLock = await Background.unlockStatusCheck();
+        if(!isLock) {
+            sendResponse({
+                ...errorHandler(200005),
+                locked: true
+            });
+            return;
+        }
+        // unlocked and getExtensionInfo
+        this.checkSeed({sendResponse}, ({nightElfObject}) => {
+
+            const {
+                keychain: {
+                    keypairs = [],
+                    permissions = []
+                }
+            } = nightElfObject;
+
+            const domain = loginInfo.hostname || loginInfo.domain;
+            const appPermissons = getApplicationPermssions(permissions, domain);
+
+            if (appPermissons.permissions.length) {
+                const appPermission = appPermissons.permissions[0];
+                const addressBinded = appPermission.address;
+
+                const keypairLoggedIn
+                    = keypairs.find(item => item.address === addressBinded);
+
+                sendResponse({
+                    ...errorHandler(0),
+                    message: '',
+                    locked: false,
+                    detail: JSON.stringify({
+                        name: keypairLoggedIn.name,
+                        address: addressBinded,
+                        publicKey: keypairLoggedIn.publicKey,
+                        appPermission
+                    })
+                });
+                return;
+            }
+            sendResponse({
+                ...errorHandler(200005),
+                locked: true
+            })
         });
     }
 }
