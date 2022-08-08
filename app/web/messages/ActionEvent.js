@@ -29,7 +29,7 @@ export default class ActionEvent {
       message: "Night Elf is lock",
     };
     sendResponse(info);
-    this.dispatchToWeb(message.type, {
+    this.dispatchToUserPage(message.type, {
       message,
     });
   }
@@ -39,10 +39,10 @@ export default class ActionEvent {
       ...errorHandler(0),
     };
     sendResponse(info);
-    this.dispatchToWeb(message.type, message);
+    this.dispatchToUserPage(message.type, message);
   }
 
-  dispatchToWeb(eventName, message) {
+  dispatchToUserPage(eventName, message) {
     const event = new CustomEvent(eventName, message);
     document.dispatchEvent(event);
   }

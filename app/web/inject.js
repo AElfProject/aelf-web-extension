@@ -361,6 +361,9 @@ class NightAElf {
             contractMethods[item].call = (...params) => {
               return _callAelfContract(params, 'CALL_AELF_CONTRACT_READONLY', contractAddress, item);
             };
+            contractMethods[item].getSignedTx = (...params) => {
+              return _callAelfContract(params, 'CALL_AELF_CONTRACT_SIGNED_TX', contractAddress, item);
+            };
           });
         });
         callback(null, contractMethods);
