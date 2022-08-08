@@ -1573,6 +1573,7 @@ export default class Background {
                 sendResponse({
                     ...errorHandler(0),
                     message: '',
+                    locked: false,
                     detail: JSON.stringify({
                         name: keypairLoggedIn.name,
                         address: addressBinded,
