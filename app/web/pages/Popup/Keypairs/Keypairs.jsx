@@ -283,7 +283,7 @@ export default class Keypairs extends Component {
                     <div className={style.blank}/>
                     <p className={style.wallet}>
                         <FormattedMessage
-                            id='aelf.Key Pairs'
+                            id='aelf.Keypairs'
                         />
                     </p>
                 </div>

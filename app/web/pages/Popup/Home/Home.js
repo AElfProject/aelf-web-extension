@@ -52,8 +52,8 @@ export default class personalCenterHome extends Component {
                             // icon="wallet16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Key Pairs'
-                                    defaultMessage = 'Key Pairs'
+                                    id = 'aelf.Keypairs'
+                                    defaultMessage = 'Keypairs'
                                 />
                             }
                         ></ListContent>
