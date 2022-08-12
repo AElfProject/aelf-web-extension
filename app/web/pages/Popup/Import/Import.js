@@ -264,12 +264,6 @@ export default class Import extends Component {
                         </div>
 
                     </div>
-                    <p className={style.title}>
-                        <FormattedMessage
-                            id = 'aelf.hint03'
-                            defaultMessage = 'In this wallet, there is no Mnemonic when import Private Key. But we can get Private Key when we import Mnemonic.'
-                        />
-                    </p>
                     <WalletName
                         setWalletName={walletName => this.setWalletName(walletName)}
                         onEnterKeyUp={()=>{this.createAndGO()}}

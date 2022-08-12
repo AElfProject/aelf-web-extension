@@ -329,7 +329,7 @@ export default class Lock extends Component {
                 </AelfButton>
                 <AelfButton
                     // type='transparent'
-                    text='Load From Backup'
+                    text='Import from Backup'
                     type='createbtn'
                     style={{background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
                     // aelficon='in20'
@@ -477,7 +477,7 @@ export default class Lock extends Component {
             <div className="aelf-input-container aelf-dash">
                 <div className={style.lockTip}>
                     <FormattedMessage
-                        id='aelf.Please select the timing lock-in time:'
+                        id='aelf.NightELF auto-locked after:'
                     />
                 </div>
                 <div className={style.timeLock} onClick={() => this.showOption()}>
@@ -626,7 +626,7 @@ export default class Lock extends Component {
                 }
                 else if (this.isTimingLock) {
                     buttonHTML = this.renderTimingLock();
-                    titleText = 'Timing Lock';
+                    titleText = 'Auto-Lock';
                     margin.marginTop = '17px';
                     navHTML = <NavNormal
                             onLeftClick={() => this.backClick()}

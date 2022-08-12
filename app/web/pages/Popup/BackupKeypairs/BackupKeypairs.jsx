@@ -257,7 +257,7 @@ export default class BackupKeypairs extends Component {
                             type='createbtn'
                             onClick={e => prompt(
                                 'Password',
-                                'Please make sure you are under safe enviroment.',
+                                'Please protect your password from data leaks.',
                                 [
                                     {text: 'Cancel'},
                                     {text: 'Submit', onPress: password => {
@@ -295,7 +295,7 @@ export default class BackupKeypairs extends Component {
                                 e.persist();
                                 prompt(
                                     'Password',
-                                    'Please make sure you are under safe enviroment.',
+                                    'Please protect your password from data leaks.',
                                     [
                                         {text: 'Cancel'},
                                         {text: 'Submit', onPress: password => {
