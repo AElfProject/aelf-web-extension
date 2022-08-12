@@ -165,6 +165,11 @@ let config = {
             template: './app/web/prompt.html',
             filename: `./${outputDir}/prompt.html`
         }),
+        new HtmlWebpackPlugin({
+            chunks: [''],
+            template: './app/web/sandbox.html',
+            filename: `./${outputDir}/sandbox.html`
+        }),
         new CopyWebpackPlugin({patterns: [{
                 from: './app/web/manifest.json',
                 to: `./${outputDir}/manifest.json`,
@@ -216,7 +221,6 @@ module.exports = (env, argv) => {
                 ecma: undefined,
                 warnings: false,
                 parse: {},
-                compress: {},
                 mangle: true, // Note `mangle.properties` is `false` by default.
                 module: false,
                 output: null,

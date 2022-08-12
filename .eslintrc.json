@@ -1,25 +1,32 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "root": true,
+  "env": {
+    "browser": true,
+    "node":true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-    },
-    "implicitProjectConfig": {
-        "experimentalDecorators": true
-    }
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "no-useless-escape": 0,
+    "no-empty": 0,
+    "comma-dangle": 0,
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
+    "no-underscore-dangle": "off",
+    "no-bitwise": "off",
+    "no-mixed-operators": "off",
+    "max-len": ["error", { "code": 120 }],
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-unused-vars":"warn"
+  }
 }

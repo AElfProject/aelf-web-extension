@@ -35,7 +35,7 @@ document.addEventListener('NightElf', result => {
     // Login at first
     const aelf = new window.NightElf.AElf({
         // httpProvider: 'http://192.168.199.210:5000/chain',
-        httpProvider: ['http://3.25.10.185:8000'],
+        httpProvider: ['https://explorer-test.aelf.io/chain'],
         // httpProvider: ['http://1.119.195.50:11105/chain'],
         // httpProvider: ['http://1.119.195.50:11105/chain'],
         appName: 'your own app name',

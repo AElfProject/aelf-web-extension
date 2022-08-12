@@ -6,7 +6,6 @@
 export const SET_SEED = 'setSeed';
 export const LOGIN = 'login';
 
-
 export const CREAT_WALLET = 'createWallet';
 export const CHECK_WALLET = 'checkWallet';
 export const CLEAR_WALLET = 'clearWallet';
@@ -20,7 +19,7 @@ export const IMPORT_WALLET = 'importWallet';
 
 // Timing Lock
 export const GET_TIMING_LOCK = 'getTimingLock';
-export const CHECK_INACTIVITY_INTERVAL =  'checkInactivityInterval';
+export const CHECK_INACTIVITY_INTERVAL = 'checkInactivityInterval';
 
 export const INSERT_KEYPAIR = 'insertKeypair';
 export const REMOVE_KEYPAIR = 'removeKeypair';
@@ -69,4 +68,4 @@ export const GET_CHAIN_INFO = 'getChainInfo';
 export const UPDATE_CHAIN_INFO = 'updateChainInfo';
 
 export const GET_MESSAGE_FROM_SERVICE = 'getMessageFromService';
-export const PROMPT_TO_SERVICE = 'promptToService'
+export const PROMPT_TO_SERVICE = 'promptToService';

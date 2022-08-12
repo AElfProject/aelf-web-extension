@@ -14,13 +14,9 @@ import style from './ExtensionManager.scss';
 import ListContent from '../../../components/ListContent/ListContent';
 import NavNormal from '../../../components/NavNormal/NavNormal';
 import {historyPush} from '../../../utils/historyChange';
-import * as InternalMessageTypes from '../../../messages/InternalMessageTypes';
-import InternalMessage from '../../../messages/InternalMessage';
 import insert from '../../../utils/insert';
 import checkWallet from '../../../utils/checkWallet';
 import {FormattedMessage} from 'react-intl';
-
-// import aelf from 'aelf-sdk';
 
 const Item = List.Item;
 

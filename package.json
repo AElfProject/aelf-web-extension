@@ -85,10 +85,10 @@
     "autod": "autod",
     "commit": "git-cz",
     "start:dev": "webpack-dev-server",
-    "none": "webpack --mode none --devtool eval-source-map",
+    "none": "webpack --mode none --devtool source-map",
     "none:watch": "webpack watch --mode none --devtool source-map",
-    "dev": "webpack --mode development --devtool eval-source-map",
-    "dev:watch": "webpack watch --mode development --devtool eval-source-map",
+    "dev": "webpack --mode development --devtool source-map",
+    "dev:watch": "webpack watch --mode development --devtool source-map",
     "pro": "webpack --mode production --devtool source-map",
     "pro:watch": "webpack watch --mode production"
   },
@@ -98,6 +98,18 @@
   "repository": {
     "type": "git",
     "url": ""
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "babel": {
     "plugins": [

@@ -1,8 +1,7 @@
 {
   "manifest_version": 3,
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'",
-    "sandbox": "sandbox allow-scripts; script-src 'self' 'unsafe-eval'"
+    "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "name": "aelf-explorer-extension",
   "version": "1.2.8",
@@ -19,6 +18,11 @@
     "default_icon": "assets/images/aelf_logo.png",
     "default_title": "aelf-explorer-extension",
     "default_popup": "popup.html"
+  },
+  "sandbox": {
+    "pages": [
+      "sandbox.html"
+    ]
   },
   "content_scripts": [
     {

@@ -7,6 +7,7 @@ import IdGenerator from './utils/IdGenerator';
 import EncryptedStream from './utils/EncryptedStream';
 import * as PageContentTags from './messages/PageContentTags';
 import extractArgumentsIntoObject from './utils/extractArgumentsIntoObject';
+import AElf from 'aelf-sdk';
 
 // import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
 
@@ -15,12 +16,12 @@ import extractArgumentsIntoObject from './utils/extractArgumentsIntoObject';
  * the application and facilitates communication between
  * NightElf and the web application.
  */
-/* eslint-disable fecs-camelcase */
+
 let promisePendingList = [];
 const handlePendingPromise = function (eventMessage) {
   if (eventMessage) {
     const sid = eventMessage.sid;
-    promisePendingList = promisePendingList.filter((item, index) => {
+    promisePendingList = promisePendingList.filter((item) => {
       if (item.sid === sid) {
         item.resolve(eventMessage);
         return false;
@@ -45,6 +46,7 @@ class NightAElf {
   }
 
   callbackWrap(result, callback = () => {}) {
+    // eslint-disable-next-line no-prototype-builtins
     if (result.result && result.result.hasOwnProperty('error') && result.result.hasOwnProperty('errorMessage')) {
       if (this.pure && result.result.result) {
         callback(null, result.result.result);
@@ -53,6 +55,7 @@ class NightAElf {
       callback(null, result.result);
       return result.result;
     }
+    // eslint-disable-next-line no-prototype-builtins
     if (this.pure && result.result && result.hasOwnProperty('error')) {
       callback(null, result.result);
       return result.result;
@@ -78,7 +81,17 @@ class NightAElf {
     });
   }
 
-  login(params, callback) {
+  async login(params, callback) {
+    const aelf = new AElf(
+      new AElf.providers.HttpProvider("https://explorer-test.aelf.io/chain")
+    );
+    const wallet = AElf.wallet.getWalletByPrivateKey(
+      "5488501df664597d66d1db6b0be1d23224acda458ffeb9b4aaaea343561fb85b"
+    );
+    const WHITELIST_CONTRACT = "2ZUgaDqWSh4aJ5s5Ker2tRczhJSNep4bVVfrRBRJTRQdMTbA5W";
+    const whitelist = await aelf.chain.contractAt(WHITELIST_CONTRACT, wallet);
+    console.log(whitelist, 'whitelist===');
+
     return window.NightElf.api({
       appName: params.appName || this.appName,
       chainId: params.chainId,
@@ -210,6 +223,7 @@ class NightAElf {
   }
 
   getVersion() {
+    // eslint-disable-next-line no-undef
     return process.env.SDK_VERSION;
   }
 
@@ -455,7 +469,19 @@ export default class Inject {
     // web application.
     this.aesKey = IdGenerator.text(256);
     this.setupEncryptedStream();
+    this.injectSandbox();
   }
+
+  injectSandbox() {
+    // let iframe = document.createElement('iframe');
+    // iframe.src='./sandbox.html';
+    // iframe.id='sandbox';
+    // (document.head || document.documentElement).appendChild(iframe);
+    // iframe.onload = () => {
+    //     console.log('iframe.js onload!!!');
+    //     // script.remove();
+    // };
+}
 
   setupEncryptedStream() {
     stream = new EncryptedStream(PageContentTags.PAGE_NIGHTELF, this.aesKey);
@@ -463,7 +489,7 @@ export default class Inject {
       handlePendingPromise(result);
     });
 
-    stream.setupEestablishEncryptedCommunication(PageContentTags.CONTENT_NIGHTELF).then(ready => {
+    stream.setupEestablishEncryptedCommunication(PageContentTags.CONTENT_NIGHTELF).then(() => {
       this.initNightElf();
     });
     stream.sendPublicKey(PageContentTags.CONTENT_NIGHTELF);

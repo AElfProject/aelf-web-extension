@@ -9,7 +9,6 @@ const {
 // import Hasher from '../util/Hasher'
 // import IdGenerator from '../util/IdGenerator'
 
-/* eslint-disable fecs-camelcase */
 export default class NightElf {
 
     constructor() {

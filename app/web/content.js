@@ -14,11 +14,10 @@ import * as InternalMessageTypes from './messages/InternalMessageTypes';
 import ActionEvent from './messages/ActionEvent';
 import InternalMessage from './messages/InternalMessage';
 
-import {
-    apis
-} from './utils/BrowserApis';
+import { apis } from './utils/BrowserApis';
 import getHostname from './utils/getHostname';
 import errorHandler from './utils/errorHandler';
+import AElf from 'aelf-sdk';
 
 // The stream that connects between the content script
 // and the website
@@ -32,125 +31,142 @@ let INJECTION_SCRIPT_FILENAME = 'js/inject.js';
  * It also injects and instance of Scatterdapp
  */
 class Content {
+  constructor() {
+    this.aesKey = IdGenerator.text(256);
+    this.aesKeyOfInject;
 
-    constructor() {
-        this.aesKey = IdGenerator.text(256);
-        this.aesKeyOfInject;
+    this.setupEncryptedStream();
+    this.injectInteractionScript();
+    this.extensionWatch();
+  }
 
-        this.setupEncryptedStream();
-        this.injectInteractionScript();
-        this.extensionWatch();
+  async extensionWatch() {
+    new ActionEvent();
+
+    const aelf = new AElf(new AElf.providers.HttpProvider('https://explorer-test.aelf.io/chain'));
+    const wallet = AElf.wallet.getWalletByPrivateKey(
+      '5488501df664597d66d1db6b0be1d23224acda458ffeb9b4aaaea343561fb85b',
+    );
+    const WHITELIST_CONTRACT = '2ZUgaDqWSh4aJ5s5Ker2tRczhJSNep4bVVfrRBRJTRQdMTbA5W';
+    const whitelist = await aelf.chain.contractAt(WHITELIST_CONTRACT, wallet);
+    console.log(whitelist, 'whitelist===content');
+  }
+
+  setupEncryptedStream() {
+    // Setting up a new encrypted stream for
+    // interaction between the extension and the application
+    stream = new EncryptedStream(PageContentTags.CONTENT_NIGHTELF, this.aesKey);
+
+    stream.addEventListener((result) => {
+      console.log('setupEncryptedStream: ', result);
+      this.contentListener(result);
+      // this.respond(result);
+    });
+
+    stream.setupEestablishEncryptedCommunication(PageContentTags.PAGE_NIGHTELF);
+    // stream.sendPublicKey(PageContentTags.PAGE_NIGHTELF);
+  }
+
+  respond(payload) {
+    // if (!isReady) return;
+    stream.send(payload, PageContentTags.PAGE_NIGHTELF);
+  }
+
+  getVersion() {
+    return 'beta';
+    // return InternalMessage.signal(InternalMessageTypes.REQUEST_GET_VERSION)
+    //     .send()
+  }
+
+  /***
+   * Injecting the interaction script into the application.
+   * This injects an encrypted stream into the application which will
+   * sync up with the one here.
+   */
+  injectInteractionScript() {
+    let script = document.createElement('script');
+    script.src = apis.runtime.getURL(INJECTION_SCRIPT_FILENAME);
+    (document.head || document.documentElement).appendChild(script);
+    script.onload = () => {
+      console.log('inject.js onload!!!');
+      script.remove();
+    };
+  }
+
+  contentListener(input) {
+    let message = Object.assign({}, input, {
+      hostname: getHostname(),
+    });
+    console.log('contentListener: ', message, location.host || location.hostname);
+    // TODO: params check or use TS?
+    // sid, method, appName, hostname,
+    const { method, sid } = message;
+    console.log('message: ', message);
+
+    if (method === 'CHECK_CONTENT') {
+      this.respond({
+        sid,
+        ...errorHandler(0, 'Refuse'),
+        message: 'NightElf is ready.',
+      });
+      return;
     }
 
-    extensionWatch() {
-        new ActionEvent();
-    }
+    // GET_ADDRESS
+    const methodWhiteList = [
+      'CALL_AELF_CHAIN',
+      'INIT_AELF_CONTRACT',
+      'CALL_AELF_CONTRACT',
+      'CHECK_PERMISSION',
+      'LOGIN',
+      'REMOVE_PERMISSION',
+      'REMOVE_CONTRACT_PERMISSION',
+      'REMOVE_METHODS_WHITELIST',
+      'SET_CONTRACT_PERMISSION',
+      'GET_CHAIN_STATUS',
+      'CALL_AELF_CONTRACT_READONLY',
+      'GET_SIGNATURE',
+      'LOCK_WALLET',
+      'CROSS_SEND',
+      'CROSS_RECEIVE',
+      'GET_EXTENSION_INFO',
+      'CALL_AELF_CONTRACT_SIGNED_TX',
+    ];
 
-    setupEncryptedStream() {
-        // Setting up a new encrypted stream for
-        // interaction between the extension and the application
-        stream = new EncryptedStream(PageContentTags.CONTENT_NIGHTELF, this.aesKey);
-
-        stream.addEventListener(result => {
-            console.log('setupEncryptedStream: ', result);
-            this.contentListener(result);
-            // this.respond(result);
+    if (method === 'OPEN_PROMPT') {
+      if (!methodWhiteList.includes(message.payload.method)) {
+        this.respond({
+          sid,
+          ...errorHandler(
+            400001,
+            `${message.payload.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`,
+          ),
         });
-
-        stream.setupEestablishEncryptedCommunication(PageContentTags.PAGE_NIGHTELF);
-        // stream.sendPublicKey(PageContentTags.PAGE_NIGHTELF);
+        return;
+      }
+    } else if (!methodWhiteList.includes(message.method)) {
+      this.respond({
+        sid,
+        ...errorHandler(400001, `${message.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`),
+      });
+      return;
     }
 
-    respond(payload) {
-        // if (!isReady) return;
-        stream.send(payload, PageContentTags.PAGE_NIGHTELF);
-    }
+    this.internalCommunicate(method, message);
+  }
 
-    getVersion() {
-        return 'beta';
-        // return InternalMessage.signal(InternalMessageTypes.REQUEST_GET_VERSION)
-        //     .send()
-    }
-
-    /***
-     * Injecting the interaction script into the application.
-     * This injects an encrypted stream into the application which will
-     * sync up with the one here.
-     */
-    injectInteractionScript() {
-        let script = document.createElement('script');
-        script.src = apis.runtime.getURL(INJECTION_SCRIPT_FILENAME);
-        (document.head || document.documentElement).appendChild(script);
-        script.onload = () => {
-            console.log('inject.js onload!!!');
-            script.remove();
-        };
-    }
-
-    contentListener(input) {
-        let message = Object.assign({}, input, {
-            hostname: getHostname()
+  internalCommunicate(method, message) {
+    InternalMessage.payload(InternalMessageTypes[method], message)
+      .send()
+      .then((result) => {
+        result.sid = message.sid;
+        console.log(InternalMessageTypes[method], result);
+        this.respond({
+          ...errorHandler(0),
+          ...result,
         });
-        console.log('contentListener: ', message, location.host || location.hostname);
-        // TODO: params check or use TS?
-        // sid, method, appName, hostname,
-        const {method, sid} = message;
-        console.log('message: ', message);
-
-        if (method === 'CHECK_CONTENT') {
-            this.respond({
-                sid,
-                ...errorHandler(0, 'Refuse'),
-                message: 'NightElf is ready.'
-            });
-            return;
-        }
-
-        // GET_ADDRESS
-        const methodWhiteList = [
-            'CALL_AELF_CHAIN', 'INIT_AELF_CONTRACT', 'CALL_AELF_CONTRACT',
-            'CHECK_PERMISSION', 'LOGIN', 'REMOVE_PERMISSION',
-            'REMOVE_CONTRACT_PERMISSION', 'REMOVE_METHODS_WHITELIST',
-            'SET_CONTRACT_PERMISSION', 'GET_CHAIN_STATUS',
-            'CALL_AELF_CONTRACT_READONLY', 'GET_SIGNATURE',
-            'LOCK_WALLET', 'CROSS_SEND', 'CROSS_RECEIVE', 
-            'GET_EXTENSION_INFO', 'CALL_AELF_CONTRACT_SIGNED_TX'
-        ];
-
-        if (method === 'OPEN_PROMPT') {
-            if (!methodWhiteList.includes(message.payload.method)) {
-                this.respond({
-                    sid,
-                    ...errorHandler(400001, `${message.payload.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`)
-                });
-                return;
-            }
-        }
-        else if (!methodWhiteList.includes(message.method)) {
-            this.respond({
-                sid,
-                ...errorHandler(400001, `${message.method} is illegal method. ${methodWhiteList.join(', ')} are legal.`)
-            });
-            return;
-        }
-
-
-
-        this.internalCommunicate(method, message);
-    }
-
-    internalCommunicate(method, message) {
-        InternalMessage.payload(InternalMessageTypes[method], message)
-            .send()
-            .then(result => {
-                result.sid = message.sid;
-                console.log(InternalMessageTypes[method], result);
-                this.respond({
-                    ...errorHandler(0),
-                    ...result
-                });
-            });
-    }
+      });
+  }
 }
 
 new Content();

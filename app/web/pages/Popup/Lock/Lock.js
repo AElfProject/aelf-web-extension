@@ -154,6 +154,13 @@ export default class Lock extends Component {
     }
 
     unlockWallet() {
+        const iframe = document.getElementById('sandbox');
+        window.addEventListener('message', (event) => { 
+            console.log('EVAL output', event.data); 
+        });
+        console.log(iframe, 'iframe===')
+        iframe.contentWindow.postMessage({event: 'sandbox', data:'10 + 20'}, '*');
+
         const seed = getSeed(this.state.password);
         if (seed) {
             InternalMessage.payload(InternalMessageTypes.UNLOCK_WALLET, seed).send().then(result => {
@@ -570,7 +577,10 @@ export default class Lock extends Component {
                                 <AelfButton
                                     // type='transparent'
                                     type='createbtn'
-                                    style={{...btnStyle, background: '#fff', color: '#502EA2', border: '1px solid #502EA2'}}
+                                    style={{
+                                        ...btnStyle, background: '#fff', 
+                                        color: '#502EA2',
+                                        border: '1px solid #502EA2'}}
                                     // style={{...btnStyle}}
                                     text='Refuse'
                                     onClick={() => this.setState({agreement: false})}>
