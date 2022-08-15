@@ -59,7 +59,7 @@ const en_US = {
     'aelf.Backup Mnemonic': 'Backup Mnemonic',
     'aelf.Becareful07': 'Mnemonic is used to restore your wallet, import existing wallets, and reset password.',
     'aelf.Becareful08': 'Please write them down on a piece of paper and keep it in a safe place. DO NOT use screenshot as it may be seized by others when your device is lost or stolen. ',
-    'aelf.Becareful09': 'Anyone with your mnemonic can access your digital assets directly, so be careful not not let others have it.',
+    'aelf.Becareful09': 'Anyone with your mnemonic can access your digital assets directly, so be careful not to let others have it.',
     'aelf.Becareful010': 'If anyone obtains your Mnemonic, they WILL obtain your digital assets!',
     'aelf.Confirm Mnemonic ': 'Confirm Mnemonic',
     'aelf.ConfirmMnemonic': 'Confirm Mnemonic',
