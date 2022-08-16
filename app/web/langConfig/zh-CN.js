@@ -48,7 +48,7 @@ const en_US = {
     'aelf.Backup Wallet': 'Backup Wallet',
     'aelf.AElf Wallet': 'AELF Wallet',
     'aelf.Manage your wallet addresses': 'Manage your wallet addresses',
-    'aelf.Becareful03': 'Please backup your Mnemonic in a secure environment!',
+    'aelf.Becareful03': 'Please backup your Mnemonic and Private Key are in a secure environment!',
     'aelf.Becareful04': 'No secure Mnemonic backup means no secure wallet.',
     'aelf.Becareful05': 'In the case of wallet or App deletion,',
     'aelf.Becareful06': 'you will need your Mnemonic to recover your wallet.',
