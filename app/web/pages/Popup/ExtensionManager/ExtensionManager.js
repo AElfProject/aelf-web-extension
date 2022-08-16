@@ -82,8 +82,8 @@ export default class ExtensionManager extends Component {
                             // icon="about16"
                             text={
                                 <FormattedMessage
-                                    id = 'aelf.Timer Locks'
-                                    defaultMessage = "Timer Locks"
+                                    id = 'aelf.Auto-Lock'
+                                    defaultMessage = "Auto-Lock"
                                 />
                             }
                         ></ListContent>

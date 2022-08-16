@@ -243,9 +243,6 @@ export default class Mnemonic extends Component {
                                         <FormattedMessage
                                             id = 'aelf.Becareful09'
                                         />,
-                                        <FormattedMessage
-                                            id = 'aelf.Becareful010'
-                                        />
                                     ]}
                                 ></NoticePanel>
                                 <div className={style.privateContainer}>
