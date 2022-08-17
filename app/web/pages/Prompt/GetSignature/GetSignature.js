@@ -74,11 +74,8 @@ export default class GetSignature extends Component {
         ).send()
           .then(result => {
               if (result && result.error === 0) {
-                  Toast.success('Success, after 3s close the window.');
-                  window.data.sendResponse(result);
-                  setTimeout(() => {
-                      window.close();
-                  }, 3000);
+                window.data.sendResponse(result);
+                window.close();
               }
               else {
                   Toast.fail(result.errorMessage.message, 3);
@@ -97,7 +94,7 @@ export default class GetSignature extends Component {
                             ...errorHandler(0),
                             signature: this.confirmation.signature
                           });
-                          window.close();
+                            window.close();
                         }}
                     />
                     <AelfButton

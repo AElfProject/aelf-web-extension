@@ -59,11 +59,8 @@ export default class ConfirmationCall extends Component {
         ).send()
         .then(result => {
             if (result && result.error === 0) {
-                Toast.success('Success, after 3s close the window.');
                 window.data.sendResponse(result);
-                setTimeout(() => {
-                    window.close();
-                }, 3000);
+                window.close();
             }
             else {
                 Toast.fail(result.errorMessage.message, 3);

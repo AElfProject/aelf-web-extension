@@ -141,9 +141,7 @@ export default class LoginKeypairs extends Component {
                 detail,
                 message: 'Login & Bind information success'
             });
-            setTimeout(() => {
-                window.close();
-            }, 3000);
+            window.close();
         }
         else {
             Toast.fail(setResult.message, 3, () => {}, false);

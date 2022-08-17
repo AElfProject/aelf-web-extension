@@ -11,6 +11,7 @@ import * as PageContentTags from './messages/PageContentTags';
 // import InternalMessage from './messages/InternalMessage';
 // import * as InternalMessageTypes from './messages/InternalMessageTypes'
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
+import ActionEvent from './messages/ActionEvent';
 import InternalMessage from './messages/InternalMessage';
 
 import {
@@ -38,6 +39,11 @@ class Content {
 
         this.setupEncryptedStream();
         this.injectInteractionScript();
+        this.extensionWatch();
+    }
+
+    extensionWatch() {
+        new ActionEvent();
     }
 
     setupEncryptedStream() {
@@ -107,7 +113,8 @@ class Content {
             'REMOVE_CONTRACT_PERMISSION', 'REMOVE_METHODS_WHITELIST',
             'SET_CONTRACT_PERMISSION', 'GET_CHAIN_STATUS',
             'CALL_AELF_CONTRACT_READONLY', 'GET_SIGNATURE',
-            'LOCK_WALLET', 'CROSS_SEND', 'CROSS_RECEIVE', 'GET_EXTENSION_INFO'
+            'LOCK_WALLET', 'CROSS_SEND', 'CROSS_RECEIVE', 'GET_EXTENSION_INFO',
+            'CALL_AELF_CONTRACT_SIGNED_TX'
         ];
 
         if (method === 'OPEN_PROMPT') {

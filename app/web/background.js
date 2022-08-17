@@ -6,8 +6,10 @@
 import {LocalStream} from 'extension-streams';
 import InternalMessage from './messages/InternalMessage';
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
+import * as ActionEventTypes from './messages/ActionEventTypes';
 import NightElf from './models/NightElf';
 import {apis} from './utils/BrowserApis';
+import EventHandler from './utils/eventHandler';
 import {contractWhitelistCheck, formatContracts, getContractInfoWithAppPermissions} from './utils/contracts/contracts';
 import {getApplicationPermssions} from './utils/permission/permission';
 import errorHandler from './utils/errorHandler';
@@ -27,6 +29,7 @@ const {
 } = wallet;
 
 const lockService = new LockService();
+const eventHandler = new EventHandler();
 
 /* eslint-disable fecs-camelcase */
 let seed = '';
@@ -66,7 +69,7 @@ export default class Background {
      * @param message - The message to be dispensed
      */
     dispenseMessage(sendResponse, message) {
-        console.log('dispenseMessage: ', message, JSON.stringify(nightElf));
+        console.log('dispenseMessage: ', message);
         if (message.payload === false) {
             sendResponse({
                 ...errorHandler(200001)
@@ -178,6 +181,9 @@ export default class Background {
             case InternalMessageTypes.CALL_AELF_CONTRACT_READONLY:
                 Background.callAelfContractReadonly(sendResponse, message.payload);
                 break;
+            case InternalMessageTypes.CALL_AELF_CONTRACT_SIGNED_TX:
+                Background.callAelfContractSignedTx(sendResponse, message.payload);
+                break;
             case InternalMessageTypes.CALL_AELF_CONTRACT_WITHOUT_CHECK:
                 Background.callAelfContractWithoutCheck(sendResponse, message.payload);
                 break;
@@ -285,6 +291,8 @@ export default class Background {
      */
     static login(sendResponse, loginInfo) {
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
+
+            eventHandler.addTabs();
 
             // 如果permissions下有对应的
             const {
@@ -661,14 +669,22 @@ export default class Background {
         Background.callAelfContract(sendResponse, contractInfo, false, true);
     }
 
+    static callAelfContractSignedTx(sendResponse, contractInfo) {
+        Background.callAelfContract(sendResponse, contractInfo, true, false, true);
+    }
+
     static callAelfContractWithoutCheck(sendResponse, contractInfo) {
+        if(contractInfo.method === 'CALL_AELF_CONTRACT_SIGNED_TX') {
+            Background.callAelfContract(sendResponse, contractInfo, false, false, true);
+            return;
+        }
         Background.callAelfContract(sendResponse, contractInfo, false);
     }
     // static callAelfContractWithoutCheckReadonly(sendResponse, contractInfo) {
     //     Background.callAelfContract(sendResponse, contractInfo, false, true);
     // }
 
-    static callAelfContract(sendResponse, contractInfo, checkWhitelist = true, readonly = false) {
+    static callAelfContract(sendResponse, contractInfo, checkWhitelist = true, readonly = false, signedTx = false) {
 
         this.checkSeed({sendResponse}, ({nightElfObject}) => {
             const { payload, chainId, hostname } = contractInfo;
@@ -735,23 +751,17 @@ export default class Background {
                 }
             });
             // If the user remove the permission after the dapp initialized the contract
-            this.checkDappContractStatus({ sendResponse, contractInfo: contractInfoTemp }, () => {
+            this.checkDappContractStatus({ sendResponse, contractInfo: contractInfoTemp }, async () => {
                 try {
-                    let contractMethod = readonly
+                    let contractMethod = signedTx
+                        ? extendContract.contractMethods[method].getSignedTx
+                        : readonly
                         ? extendContract.contractMethods[method].call
                         : extendContract.contractMethods[method];
-                    contractMethod(...params, (error, result) => {
-                        if (error || (result && result.error)) {
-                            sendResponse({
-                                ...errorHandler(500001, error || result.error)
-                            });
-                        }
-                        else {
-                            sendResponse({
-                                ...errorHandler(0, error),
-                                result
-                            });
-                        }
+                    const result = await contractMethod(...params);
+                    sendResponse({
+                        ...errorHandler(0, result ? result.error : result),
+                        result
                     });
                 }
                 catch (error) {
@@ -900,11 +910,18 @@ export default class Background {
     }
 
     static lockWallet(sendResponse) {
-        seed = null;
-        nightElf = null;
-        sendResponse({
-            ...errorHandler(0)
-        });
+        try{
+            seed = null;
+            nightElf = null;
+            eventHandler.dispatch(ActionEventTypes.NIGHTELF_LOCK_WALLET, undefined)
+            sendResponse({
+                ...errorHandler(0)
+            });
+        }catch(e) {
+            sendResponse({
+                ...errorHandler(500001)
+            });
+        }
     }
 
     static unlockWallet(sendResponse, _seed) {
@@ -938,6 +955,7 @@ export default class Background {
 
             nightElf = NightElf.fromJson(nightElfObject);
             Background.updateWallet(sendResponse);
+            eventHandler.dispatch(ActionEventTypes.NIGHTELF_REMOVE_KEYPAIR, {address})
         });
     }
 

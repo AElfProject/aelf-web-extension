@@ -97,15 +97,12 @@ export default class Permission extends Component {
                 .then(result => {
                     console.log(InternalMessageTypes.SET_LOGIN_PERMISSION, result);
                     if (result.error === 0) {
-                        Toast.success('Bind Permisson Success, after 3s close the window.');
                         window.data.sendResponse({
                             ...errorHandler(0),
                             detail,
                             message: 'Bind Permisson Success'
                         });
-                        setTimeout(() => {
-                            window.close();
-                        }, 3000);
+                        window.close();
                     }
                     else {
                         Toast.fail(result.message, 3, () => {}, false);
@@ -118,15 +115,12 @@ export default class Permission extends Component {
                 .then(result => {
                     console.log(InternalMessageTypes.SET_CONTRACT_PERMISSION, result);
                     if (result.error === 0) {
-                        Toast.success('Bind Permisson Success, after 3s close the window.');
                         window.data.sendResponse({
                             ...errorHandler(0),
                             detail,
                             message: 'Bind Permisson Success'
                         });
-                        setTimeout(() => {
-                            window.close();
-                        }, 3000);
+                        window.close();
                     }
                     else {
                         Toast.fail(result.message, 3, () => {}, false);

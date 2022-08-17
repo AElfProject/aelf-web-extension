@@ -71,9 +71,7 @@ export default class Lock extends Component {
             detail: null,
             message: 'Unlock wallet success.'
           });
-          setTimeout(() => {
-            window.close();
-          }, 500);
+          window.close();
         }
         else {
           console.log(result.error);

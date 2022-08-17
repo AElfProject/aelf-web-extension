@@ -3,6 +3,7 @@ package-lock.json
 app/public
 .idea
 .DS_Store
+.vscode
 app/public.pem
 app/public.crx
 app/public.zip
