@@ -69,7 +69,7 @@ export default class Background {
      * @param message - The message to be dispensed
      */
     dispenseMessage(sendResponse, message) {
-        console.log('dispenseMessage: ', message, JSON.stringify(nightElf));
+        console.log('dispenseMessage: ', message);
         if (message.payload === false) {
             sendResponse({
                 ...errorHandler(200001)
@@ -759,16 +759,10 @@ export default class Background {
                         ? extendContract.contractMethods[method].call
                         : extendContract.contractMethods[method];
                     const result = await contractMethod(...params);
-                    if(!result || result && result.error) {
-                        sendResponse({
-                            ...errorHandler(500001, result && result.error ? result.error : result)
-                        });
-                    } else {
-                        sendResponse({
-                            ...errorHandler(0, result.error),
-                            result
-                        });
-                    }
+                    sendResponse({
+                        ...errorHandler(0, result ? result.error : result),
+                        result
+                    });
                 }
                 catch (error) {
                     sendResponse({
