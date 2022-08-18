@@ -232,7 +232,7 @@ export default class BackupKeypairs extends Component {
                                 // '您需要通过备份的助记词来会恢复钱包！'
                                 <FormattedMessage
                                     id = 'aelf.Becareful03'
-                                    defaultMessage = 'Please backup your Mnemonic in a secure environment!'
+                                    defaultMessage = 'Please backup your Mnemonic and Private Key are in a secure environment!'
                                 />,
                                 <FormattedMessage
                                     id = 'aelf.Becareful04'
@@ -257,7 +257,7 @@ export default class BackupKeypairs extends Component {
                             type='createbtn'
                             onClick={e => prompt(
                                 'Password',
-                                'Please make sure you are under safe enviroment.',
+                                'Please protect your password from data leaks.',
                                 [
                                     {text: 'Cancel'},
                                     {text: 'Submit', onPress: password => {
@@ -295,7 +295,7 @@ export default class BackupKeypairs extends Component {
                                 e.persist();
                                 prompt(
                                     'Password',
-                                    'Please make sure you are under safe enviroment.',
+                                    'Please protect your password from data leaks.',
                                     [
                                         {text: 'Cancel'},
                                         {text: 'Submit', onPress: password => {

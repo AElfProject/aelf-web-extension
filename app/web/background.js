@@ -815,16 +815,10 @@ export default class Background {
             ? extendContract.contractMethods[method].call
             : extendContract.contractMethods[method];
           const result = await contractMethod(...params);
-          if (!result || (result && result.error)) {
-            sendResponse({
-              ...errorHandler(500001, result && result.error ? result.error : result),
-            });
-          } else {
-            sendResponse({
-              ...errorHandler(0, result.error),
-              result,
-            });
-          }
+          sendResponse({
+            ...errorHandler(0, result ? result.error : result),
+            result,
+          });
         } catch (error) {
           sendResponse({
             ...errorHandler(100001, error),

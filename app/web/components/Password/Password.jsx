@@ -68,7 +68,7 @@ function getPasswordLevelInfo(passwordInfo) {
         level3: {
             // opacity: 0.5
         },
-        text: 'At least 9 bits'
+        text: 'At least 9 characters'
     };
 
     if (passwordInfo && passwordInfo.type) {
