@@ -1,15 +1,6 @@
-// import {
-//     EncryptedStream
-//     // LocalStream
-// } from 'extension-streams';
 import IdGenerator from './utils/IdGenerator';
 import EncryptedStream from './utils/EncryptedStream';
 import * as PageContentTags from './messages/PageContentTags';
-// import * as PairingTags from './messages/PairingTags'
-// import NetworkMessage from './messages/NetworkMessage';
-// import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
-// import InternalMessage from './messages/InternalMessage';
-// import * as InternalMessageTypes from './messages/InternalMessageTypes'
 import * as InternalMessageTypes from './messages/InternalMessageTypes';
 import ActionEvent from './messages/ActionEvent';
 import InternalMessage from './messages/InternalMessage';
@@ -17,7 +8,6 @@ import InternalMessage from './messages/InternalMessage';
 import { apis } from './utils/BrowserApis';
 import getHostname from './utils/getHostname';
 import errorHandler from './utils/errorHandler';
-import AElf from 'aelf-sdk';
 
 // The stream that connects between the content script
 // and the website
@@ -41,15 +31,15 @@ class Content {
   }
 
   async extensionWatch() {
-    new ActionEvent();
 
-    const aelf = new AElf(new AElf.providers.HttpProvider('https://explorer-test.aelf.io/chain'));
-    const wallet = AElf.wallet.getWalletByPrivateKey(
-      '5488501df664597d66d1db6b0be1d23224acda458ffeb9b4aaaea343561fb85b',
-    );
-    const WHITELIST_CONTRACT = '2ZUgaDqWSh4aJ5s5Ker2tRczhJSNep4bVVfrRBRJTRQdMTbA5W';
-    const whitelist = await aelf.chain.contractAt(WHITELIST_CONTRACT, wallet);
-    console.log(whitelist, 'whitelist===content');
+    // apis.runtime.onConnect.addListener(function (port) {
+    //   console.log(port, 'port===onConnect');
+    //   port.onDisconnect.addListener(function (msg) {
+    //     console.log(msg, 'msg===onConnect')
+    //   });
+    // });
+
+    new ActionEvent();
   }
 
   setupEncryptedStream() {
@@ -60,15 +50,12 @@ class Content {
     stream.addEventListener((result) => {
       console.log('setupEncryptedStream: ', result);
       this.contentListener(result);
-      // this.respond(result);
     });
 
     stream.setupEestablishEncryptedCommunication(PageContentTags.PAGE_NIGHTELF);
-    // stream.sendPublicKey(PageContentTags.PAGE_NIGHTELF);
   }
 
   respond(payload) {
-    // if (!isReady) return;
     stream.send(payload, PageContentTags.PAGE_NIGHTELF);
   }
 
@@ -131,6 +118,7 @@ class Content {
       'CROSS_RECEIVE',
       'GET_EXTENSION_INFO',
       'CALL_AELF_CONTRACT_SIGNED_TX',
+      'KEEP_CONNECT',
     ];
 
     if (method === 'OPEN_PROMPT') {
@@ -159,6 +147,7 @@ class Content {
     InternalMessage.payload(InternalMessageTypes[method], message)
       .send()
       .then((result) => {
+        console.log(result, 'result===internalCommunicate');
         result.sid = message.sid;
         console.log(InternalMessageTypes[method], result);
         this.respond({

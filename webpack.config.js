@@ -12,6 +12,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin');
 
+
+// TODO ^1.1.9 MV3 is not supported yet
+// const ExtReloader = require('webpack-ext-reloader');
+
 const ROOT = path.resolve(__dirname, './');
 const {version} = require(path.resolve(ROOT, 'package.json'));
 
@@ -191,15 +195,6 @@ let config = {
                 toType: 'dir'
             }
         ]}),
-        new webpack.DefinePlugin({
-            'process.env.SDK_VERSION': JSON.stringify( 'v' + version),
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-        }),
-        // new HtmlWebpackPlugin({
-        //     chunks: ['transactionDetail'],
-        //     template: './app/web/page/transactionDetail.tpl',
-        //     filename: './view/transactionDetail.tpl'
-        // }),
         new CleanWebpackPlugin({
             verbose: true,
             cleanStaleWebpackAssets: false,
@@ -211,6 +206,12 @@ let config = {
 };
 
 module.exports = (env, argv) => {
+    config.plugins.push(
+        new webpack.DefinePlugin({
+            'process.env.SDK_VERSION': JSON.stringify('v' + version),
+            'process.env.NODE_ENV': JSON.stringify(argv.mode),
+        }),
+    );
 
     if (argv.mode === 'production') {
         config.plugins.push(

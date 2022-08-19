@@ -37,6 +37,10 @@
     {
       "resources": ["js/inject.js"],
       "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["sandbox.html"],
+      "matches": ["<all_urls>"]
     }
   ],
   "options_page": "options.html",

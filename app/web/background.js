@@ -26,13 +26,16 @@ import SparkMD5 from 'spark-md5';
 import AElf from 'aelf-sdk';
 import { CrossChainMethodsExtension } from './utils/crossChain/crossChainForExtension';
 import { getAllStorageLocalData, getLocalStorage, setLocalStorage } from './utils/utils.storage';
-import { AESDecrypt, AESEncrypt } from './utils/utils.crypto';
 
 const lockService = new LockService();
 const eventHandler = new EventHandler();
 
-// let seed = '';
-// let nightElf = null;
+const { wallet } = AElf;
+const { AESDecrypt, AESEncrypt } = wallet;
+
+// TODO test in localStroage
+let seed = '';
+let nightElf = null;
 
 // let inactivityInterval = 14400000; // 900000; 15min -> 4hours
 // let timeoutLocker = null;
@@ -45,15 +48,12 @@ const eventHandler = new EventHandler();
 //     }
 // });
 
-// let aelfMeta = [];
+let aelfMeta = [];
 let aelfCrossMeta = {};
 let promptParam = {};
 let pageState = {
-  seed: '',
-  nightElf: null,
   inactivityInterval: 14400000, // 900000, 15min -> 4hours
   timeoutLocker: null,
-  aelfMeta: [], // TODO aelf can not be init
   // aelfCrossMeta: {},
 };
 // This is the script that runs in the extension's background ( singleton )
@@ -65,22 +65,6 @@ export default class Background {
   // Watches the internal messaging system ( LocalStream )
   async setupInternalMessaging() {
     try {
-      // const aelf = new AElf(new AElf.providers.HttpProvider('https://explorer-test.aelf.io/chain'));
-      // console.log('first', AElf.utils.chainIdConvertor.(9992731));
-
-      // const aelf = new AElf(
-      //   new AElf.providers.HttpProvider("https://explorer-test.aelf.io/chain")
-      // );
-      // const wallet = AElf.wallet.getWalletByPrivateKey(
-      //   "5488501df664597d66d1db6b0be1d23224acda458ffeb9b4aaaea343561fb85b"
-      // );
-      // const WHITELIST_CONTRACT = "2ZUgaDqWSh4aJ5s5Ker2tRczhJSNep4bVVfrRBRJTRQdMTbA5W";
-      // // const whitelist = await aelf.chain.contractAt(WHITELIST_CONTRACT, wallet);
-      // // console.log(whitelist, 'whitelist===backg');
-      // setLocalStorage({
-      //   _aelf: aelf
-      // })
-
       const storage = await getAllStorageLocalData();
       Object.entries(storage).map(([key, val]) => {
         if (key in pageState) {
@@ -114,7 +98,6 @@ export default class Background {
       });
       return;
     }
-
     // sendResponse(true);
     Background.checkTimingLock(sendResponse);
     switch (message.type) {
@@ -269,7 +252,22 @@ export default class Background {
       case InternalMessageTypes.PROMPT_TO_SERVICE:
         Background.promptCallback(sendResponse, message.payload);
         break;
+      case InternalMessageTypes.KEEP_CONNECT:
+        Background.keepConnect(sendResponse, message.payload);
+        break;
     }
+  }
+
+  static async keepConnect(sendResponse, payload) {
+    const windows = await apis.windows.getCurrent();
+    console.log(windows, 'windows===');
+    var port = apis.tabs.connect(windows.id);
+    console.log(port, 'port===');
+    port.onMessage.addListener(function getResp(response) {
+      console.log(response, 'response==');
+    });
+
+    sendResponse({ ...errorHandler(0), result: 'keepConnect' });
   }
 
   static setPageState(_state) {
@@ -307,7 +305,7 @@ export default class Background {
 
       const chainId = chainStatus.ChainId || 'Can not find ChainId:';
       let existentMetaIndex = -1;
-      const existentMeta = pageState.aelfMeta?.find((item, index) => {
+      const existentMeta = aelfMeta?.find((item, index) => {
         const checkDomain = chainInfo.hostname === item.hostname;
         const checkChainId = item.chainId === chainId;
         if (checkDomain && checkChainId) {
@@ -324,9 +322,9 @@ export default class Background {
         contracts: [],
       };
       if (existentMeta) {
-        pageState.aelfMeta[existentMetaIndex] = aelfMetaTemp;
+        aelfMeta[existentMetaIndex] = aelfMetaTemp;
       } else {
-        pageState.aelfMeta.push(aelfMetaTemp);
+        aelfMeta.push(aelfMetaTemp);
       }
       sendResponse({
         ...errorHandler(0),
@@ -410,13 +408,13 @@ export default class Background {
     }
 
     console.log('callAelfChain: ', callInfo);
-    const dappAelfMeta = pageState.aelfMeta.find((item) => {
+    const dappAelfMeta = aelfMeta.find((item) => {
       const checkDomain = callInfo.hostname === item.hostname;
       const checkChainId = item.chainId === callInfo.chainId;
       return checkDomain && checkChainId;
     });
-    console.log('call AelfChain show dappAelfMeta: ', pageState.aelfMeta);
-    console.log('call AelfChain show NightElf: ', pageState.nightElf);
+    console.log('call AelfChain show dappAelfMeta: ', aelfMeta);
+    console.log('call AelfChain show NightElf: ', nightElf);
     if (dappAelfMeta) {
       const { method, params } = callInfo.payload;
       try {
@@ -465,7 +463,7 @@ export default class Background {
     const { hostname, chainId, payload } = contractInfo;
     const { address, contractAddress } = payload;
     console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', contractInfo, contractAddress);
-    const dappAelfMeta = pageState.aelfMeta.find((item, index) => {
+    const dappAelfMeta = aelfMeta.find((item, index) => {
       // const checkDomain = contractInfo.hostname.includes(item.hostname);
       const checkDomain = hostname === item.hostname;
       const checkChainId = item.chainId === chainId;
@@ -481,7 +479,7 @@ export default class Background {
       return;
     }
 
-    const dappPermission = pageState.nightElf.keychain.permissions.find((item) => {
+    const dappPermission = nightElf.keychain.permissions.find((item) => {
       const checkDomain = hostname === item.domain;
       const checkAddress = address === item.address;
       return checkDomain && checkAddress;
@@ -523,7 +521,7 @@ export default class Background {
           // dappPermission, // dappContractPermission
         } = output;
 
-        const keypair = pageState.nightElf.keychain.keypairs.find((item) => {
+        const keypair = nightElf.keychain.keypairs.find((item) => {
           return item.address === address;
         });
         if (!keypair) {
@@ -533,7 +531,7 @@ export default class Background {
           return;
         }
         const wallet = AElf.wallet.getWalletByPrivateKey(keypair.privateKey);
-
+        console.log(wallet, 'wallet===');
         dappAelfMeta.aelf.chain
           .contractAt(contractAddress, wallet)
           .then((contractMethods) => {
@@ -552,7 +550,7 @@ export default class Background {
               dappAelfMeta.contracts.push(contractNew);
             }
 
-            pageState.aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
+            aelfMeta[dappAelfMetaIndex] = dappAelfMeta;
 
             sendResponse({
               ...errorHandler(0),
@@ -582,7 +580,7 @@ export default class Background {
     }
     const { payload } = crossInfo;
     const { address, CROSS_INFO } = payload;
-    const keypair = pageState.nightElf.keychain.keypairs.find((item) => {
+    const keypair = nightElf.keychain.keypairs.find((item) => {
       return item.address === address;
     });
     if (!keypair) {
@@ -667,7 +665,7 @@ export default class Background {
       const { payload, chainId, hostname } = contractInfo;
       const { contractName, method, contractAddress } = payload;
 
-      const dappAelfMeta = pageState.aelfMeta.find((item) => {
+      const dappAelfMeta = aelfMeta.find((item) => {
         const checkDomain = hostname === item.hostname;
         const checkChainId = item.chainId === chainId;
         return checkDomain && checkChainId;
@@ -772,7 +770,7 @@ export default class Background {
         }
       }
 
-      const dappAelfMeta = pageState.aelfMeta.find((item) => {
+      const dappAelfMeta = aelfMeta.find((item) => {
         const checkDomain = hostname === item.hostname;
         const checkChainId = item.chainId === chainId;
         return checkDomain && checkChainId;
@@ -829,19 +827,16 @@ export default class Background {
   }
 
   static createWallet(sendResponse, _seed) {
-    Background.setPageState({
-      nightElf: NightElf.fromJson({}),
-      seed: _seed,
-    });
-    Background.updateWallet(sendResponse);
+    seed = _seed;
+    (nightElf = NightElf.fromJson({})), Background.updateWallet(sendResponse);
   }
 
   static updateWallet(sendResponse) {
     // TODO: Check seed.
-    if (pageState.nightElf && pageState.seed) {
-      const nightElfEncrypto = AESEncrypt(JSON.stringify(pageState.nightElf), pageState.seed);
+    if (nightElf && seed) {
+      const nightElfEncrypto = AESEncrypt(JSON.stringify(nightElf), seed);
       apis.storage.local.set({ nightElfEncrypto }, (result) => {
-        console.log('updateWallet: ', nightElfEncrypto, pageState.nightElf);
+        console.log('updateWallet: ', nightElfEncrypto, nightElf);
         sendResponse({
           ...errorHandler(0),
           result,
@@ -859,16 +854,14 @@ export default class Background {
       sendResponse({
         ...errorHandler(0),
         nightElfEncrypto: !!result.nightElfEncrypto,
-        nightElf: pageState.nightElf,
+        nightElf: nightElf,
       });
     });
   }
 
   static clearWallet(sendResponse, _seed) {
-    Background.setPageState({
-      seed: _seed,
-      nightElf: null,
-    });
+    seed = _seed;
+    nightElf = null;
     this.checkSeed({ sendResponse }, () => {
       apis.storage.local.clear(() => {
         Background.lockWallet(sendResponse);
@@ -877,22 +870,20 @@ export default class Background {
   }
 
   static backupWallet(sendResponse, _seed) {
-    Background.setPageState({
-      seed: _seed,
-    });
-    this.checkSeed({ sendResponse }, () => {
-      const nightElfEncrypto = AESEncrypt(JSON.stringify(pageState.nightElf), pageState.seed);
-      let blob = new Blob([nightElfEncrypto], { type: 'text/plain;charset=utf-8' });
-      // let file = new File(
-      //     [nightElfEncrypto],
-      //     'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt',
-      //     {type: 'text/plain;charset=utf-8'}
-      // );
-      FileSaver.saveAs(blob, 'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt');
-      sendResponse({
-        ...errorHandler(0),
+    (seed = _seed),
+      this.checkSeed({ sendResponse }, () => {
+        const nightElfEncrypto = AESEncrypt(JSON.stringify(nightElf), seed);
+        let blob = new Blob([nightElfEncrypto], { type: 'text/plain;charset=utf-8' });
+        // let file = new File(
+        //     [nightElfEncrypto],
+        //     'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt',
+        //     {type: 'text/plain;charset=utf-8'}
+        // );
+        FileSaver.saveAs(blob, 'NightELF_backup_file_' + SparkMD5.hash(nightElfEncrypto) + '.txt');
+        sendResponse({
+          ...errorHandler(0),
+        });
       });
-    });
   }
 
   static importWallet(sendResponse, values) {
@@ -942,7 +933,7 @@ export default class Background {
     if (pageState.timeoutLocker) {
       clearTimeout(pageState.timeoutLocker);
     }
-    if (pageState.seed && pageState.nightElf) {
+    if (seed && nightElf) {
       const timeoutLocker = setTimeout(() => {
         Background.lockWallet(sendResponse);
       }, pageState.inactivityInterval);
@@ -965,16 +956,16 @@ export default class Background {
     const result = await getLocalStorage('inactivityInterval');
     sendResponse({
       ...errorHandler(0),
-      result,
+      result: {
+        inactivityInterval: result,
+      },
     });
   }
 
   static lockWallet(sendResponse) {
     try {
-      Background.setPageState({
-        seed: null,
-        nightElf: null,
-      });
+      seed = null;
+      nightElf = null;
       eventHandler.dispatch(ActionEventTypes.NIGHTELF_LOCK_WALLET, undefined);
       sendResponse({
         ...errorHandler(0),
@@ -987,13 +978,13 @@ export default class Background {
   }
 
   static unlockWallet(sendResponse, _seed) {
-    Background.setPageState({ seed: _seed });
+    seed = _seed;
     this.checkSeed({ sendResponse }, ({ nightElfObject }) => {
-      Background.setPageState({ nightElf: NightElf.fromJson(nightElfObject) });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.checkTimingLock(sendResponse);
       sendResponse({
         ...errorHandler(0),
-        nightElf: !!pageState.nightElf,
+        nightElf: !!nightElf,
       });
     });
   }
@@ -1001,7 +992,7 @@ export default class Background {
   static insertKeypair(sendResponse, keypair) {
     this.checkSeed({ sendResponse }, ({ nightElfObject }) => {
       nightElfObject.keychain.keypairs.unshift(keypair);
-      Background.setPageState({ nightElf: NightElf.fromJson(nightElfObject) });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.updateWallet(sendResponse);
     });
   }
@@ -1015,7 +1006,7 @@ export default class Background {
         return address !== item.address;
       });
 
-      Background.setPageState({ nightElf: NightElf.fromJson(nightElfObject) });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.updateWallet(sendResponse);
       eventHandler.dispatch(ActionEventTypes.NIGHTELF_REMOVE_KEYPAIR, { address });
     });
@@ -1106,7 +1097,7 @@ export default class Background {
         });
         return;
       }
-      Background.setPageState({ nightElf: NightElf.fromJson(nightElfObject) });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.updateWallet(sendResponse);
     });
   }
@@ -1183,7 +1174,7 @@ export default class Background {
         });
         return;
       }
-      Background.setPageState({ nightElf: NightElf.fromJson(nightElfObject) });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.updateWallet(sendResponse);
     });
   }
@@ -1217,7 +1208,7 @@ export default class Background {
         });
       }
 
-      Background.setPageState({ nightElf: NightElf.fromJson(nightElfObject) });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.updateWallet(sendResponse);
     });
   }
@@ -1335,7 +1326,7 @@ export default class Background {
         return !(domainCheck && addressCheck);
       });
 
-      Background.setPageState({ nightElf: NightElf.fromJson(nightElfObject) });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.updateWallet(sendResponse);
     });
   }
@@ -1363,9 +1354,7 @@ export default class Background {
         });
       }
 
-      Background.setPageState({
-        nightElf: NightElf.fromJson(nightElfObject),
-      });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.updateWallet(sendResponse);
     });
   }
@@ -1373,7 +1362,7 @@ export default class Background {
   static checkSeed(options, callback) {
     const { sendResponse } = options;
     // TODO: sendResponse & resolve/reject
-    if (!pageState.seed) {
+    if (!seed) {
       lockService.callUnLockPagePrompt(Background, sendResponse);
       return;
     }
@@ -1383,11 +1372,9 @@ export default class Background {
         if (result.nightElfEncrypto) {
           let nightElfString;
           try {
-            nightElfString = AESDecrypt(result.nightElfEncrypto, pageState.seed);
+            nightElfString = AESDecrypt(result.nightElfEncrypto, seed);
           } catch (e) {
-            Background.setPageState({
-              seed: null,
-            });
+            seed = null;
             sendResponse({
               ...errorHandler(200011),
             });
@@ -1492,7 +1479,7 @@ export default class Background {
    * @param {Object} message input data for prompt page.
    */
   static openPrompt(sendResponse, message) {
-    const messageTemp = pageState.seed
+    const messageTemp = seed
       ? message
       : {
           payload: {
@@ -1514,14 +1501,12 @@ export default class Background {
    * @param _seed - The seed to set
    */
   static setSeed(sendResponse, _seed) {
-    Background.setPageState({
-      seed: _seed,
-    });
+    seed = _seed;
     sendResponse(true);
   }
 
   static async unlockStatusCheck() {
-    const lockInfo = await lockService.lockGuard(pageState.seed);
+    const lockInfo = await lockService.lockGuard(seed);
     return lockInfo.error === 0;
   }
 
@@ -1536,7 +1521,7 @@ export default class Background {
   static updateChainInfo(sendResponse, chainInfo) {
     this.checkSeed({ sendResponse }, ({ nightElfObject }) => {
       nightElfObject.chainInfo = chainInfo; // keychain.keypairs.unshift(keypair);
-      Background.setPageState({ nightElf: NightElf.fromJson(nightElfObject) });
+      nightElf = NightElf.fromJson(nightElfObject);
       Background.updateWallet(sendResponse);
     });
   }

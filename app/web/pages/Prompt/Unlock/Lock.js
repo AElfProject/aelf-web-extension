@@ -63,6 +63,14 @@ export default class Lock extends Component {
   }
 
   unlockWallet() {
+
+    const iframe = document.getElementById('sandbox');
+    window.addEventListener('message', (event) => { 
+        console.log('EVAL output', event.data); 
+    });
+    console.log(iframe, 'iframe===')
+    iframe.contentWindow.postMessage({event: InternalMessageTypes.CALL_AELF_CONTRACT}, '*');
+
     const seed = getSeed(this.state.password);
     if (seed) {
       InternalMessage.payload(InternalMessageTypes.UNLOCK_WALLET, seed).send().then(result => {

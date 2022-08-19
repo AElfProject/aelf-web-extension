@@ -17,6 +17,7 @@ class ApiGenerator {
             'runtime',
             'windows',
             'tabs',
+            'action'
         ]
         .map(api => {
             if (typeof chrome !== 'undefined') swallow(() => {

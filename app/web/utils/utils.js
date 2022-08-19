@@ -24,7 +24,18 @@ import clipboard from './clipboard';
 // import tokenOmit from './tokenOmit';
 import IdGenerator from './IdGenerator';
 
+const sleep = (time) => {
+    return new Promise((resolve) => {
+        let timeout = setTimeout(() => {
+            clearTimeout(timeout);
+            timeout = null;
+            resolve('sleep');
+        }, time);
+    });
+};
+
 export {
+    sleep,
     addressOmit,
     // addressCheck,
     // apisauce,

@@ -7,7 +7,7 @@ import IdGenerator from './utils/IdGenerator';
 import EncryptedStream from './utils/EncryptedStream';
 import * as PageContentTags from './messages/PageContentTags';
 import extractArgumentsIntoObject from './utils/extractArgumentsIntoObject';
-import AElf from 'aelf-sdk';
+import { sleep } from './utils/utils';
 
 // import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
 
@@ -82,15 +82,6 @@ class NightAElf {
   }
 
   async login(params, callback) {
-    const aelf = new AElf(
-      new AElf.providers.HttpProvider("https://explorer-test.aelf.io/chain")
-    );
-    const wallet = AElf.wallet.getWalletByPrivateKey(
-      "5488501df664597d66d1db6b0be1d23224acda458ffeb9b4aaaea343561fb85b"
-    );
-    const WHITELIST_CONTRACT = "2ZUgaDqWSh4aJ5s5Ker2tRczhJSNep4bVVfrRBRJTRQdMTbA5W";
-    const whitelist = await aelf.chain.contractAt(WHITELIST_CONTRACT, wallet);
-    console.log(whitelist, 'whitelist===');
 
     return window.NightElf.api({
       appName: params.appName || this.appName,
@@ -469,19 +460,7 @@ export default class Inject {
     // web application.
     this.aesKey = IdGenerator.text(256);
     this.setupEncryptedStream();
-    this.injectSandbox();
   }
-
-  injectSandbox() {
-    // let iframe = document.createElement('iframe');
-    // iframe.src='./sandbox.html';
-    // iframe.id='sandbox';
-    // (document.head || document.documentElement).appendChild(iframe);
-    // iframe.onload = () => {
-    //     console.log('iframe.js onload!!!');
-    //     // script.remove();
-    // };
-}
 
   setupEncryptedStream() {
     stream = new EncryptedStream(PageContentTags.PAGE_NIGHTELF, this.aesKey);
@@ -523,7 +502,29 @@ export default class Inject {
         message: 'Night Elf is ready.'
       }
     }));
+    // this.keepConnect();
   }
+
+  async keepConnect() {
+    // let i = 0;
+    // const CONNECTION_TIME = 60000; // second
+    // const INTERVAL = 12000;
+    // while(i < CONNECTION_TIME) {
+    //   await sleep(INTERVAL);
+      this.keepConnectAPI();
+    //   i+=INTERVAL;
+    // }
+  }
+
+  keepConnectAPI() {
+    window.NightElf.api({
+      method: 'KEEP_CONNECT',
+    }).then(result => {
+      console.log(result);
+    });
+    
+  }
+
 }
 
 new Inject();

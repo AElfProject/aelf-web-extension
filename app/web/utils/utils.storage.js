@@ -27,13 +27,14 @@ function getLocalStorage(str) {
   return new Promise((resolve) => {
     const key = storage[str] ? storage[str] : str;
     apis.storage.local.get([key], (result) => {
-      resolve(result);
+      resolve(result?.[key]);
     });
   });
 }
 
 function setLocalStorage(_data) {
   return new Promise((resolve, reject) => {
+    if (typeof _data !== 'object') throw Error('typeError');
     let storageData = {};
     for (var key in _data) {
       if (storage[key]) storageData = { ...storageData, [storage[key]]: _data[key] };

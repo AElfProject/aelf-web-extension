@@ -154,12 +154,6 @@ export default class Lock extends Component {
     }
 
     unlockWallet() {
-        const iframe = document.getElementById('sandbox');
-        window.addEventListener('message', (event) => { 
-            console.log('EVAL output', event.data); 
-        });
-        console.log(iframe, 'iframe===')
-        iframe.contentWindow.postMessage({event: 'sandbox', data:'10 + 20'}, '*');
 
         const seed = getSeed(this.state.password);
         if (seed) {
@@ -282,13 +276,14 @@ export default class Lock extends Component {
 
     checkTime() {
         InternalMessage.payload(InternalMessageTypes.CHECK_INACTIVITY_INTERVAL).send().then(result => {
+            console.log(result, 'result===chek')
             if (result) {
                 const lockTime = result.result.inactivityInterval;
                 const timingLockTimes = this.timingLockData.filter(item => {
                     return item.value === lockTime;
                 });
                 this.setState({
-                    timingLockTimes: timingLockTimes[0].value
+                    timingLockTimes: timingLockTimes?.[0]?.value || this.timingLockData[-1]
                 });
             }
         });

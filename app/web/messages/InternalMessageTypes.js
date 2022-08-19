@@ -69,3 +69,5 @@ export const UPDATE_CHAIN_INFO = 'updateChainInfo';
 
 export const GET_MESSAGE_FROM_SERVICE = 'getMessageFromService';
 export const PROMPT_TO_SERVICE = 'promptToService';
+
+export const KEEP_CONNECT = 'KEEP_CONNECT'
